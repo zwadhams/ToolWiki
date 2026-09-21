@@ -8,7 +8,7 @@ const tools = [
   { id: 'hybrid', title: 'Combined analyzer', description: 'Static and runtime checks', modes: ['Static', 'Dynamic'], inputTypes: ['Source code', 'Binaries'], findings: ['Memory safety', 'Specification violations'], languages: ['Python'], targets: ['Source code', 'Native programs'], techniques: ['SAST', 'Runtime memory checking'], licenseCategory: 'Open source', cost: ['Free with limits', 'Paid'], costNote: 'Hosted usage conditions.', verified: '2026-09-21' },
 ];
 test('combines filters and all search terms instead of returning their union', () => {
-  assert.deepEqual(selectTools(tools, { language: 'Python', target: 'Source code', technique: 'SAST', license: 'Open source', q: 'CHECKER flow' }).map((t) => t.id), ['python']);
+  assert.deepEqual(selectTools(tools, { language: 'Python', input: 'Source code', technique: 'SAST', license: 'Open source', q: 'CHECKER flow' }).map((t) => t.id), ['python']);
 });
 test('multi-mode tools appear in either relevant category', () => {
   assert.deepEqual(selectTools(tools, { mode: 'Dynamic', language: 'Python' }).map((t) => t.id), ['hybrid']);
@@ -25,7 +25,7 @@ test('finding descriptions are searchable and clearing the filter restores resul
 test('input types support multiple workflows and combine with other filters', () => {
   assert.deepEqual(selectTools(tools, { input: 'Binaries' }).map((t) => t.id), ['hybrid']);
   assert.deepEqual(selectTools(tools, { input: 'Source code', cost: 'Free' }).map((t) => t.id), ['python']);
-  assert.deepEqual(selectTools(tools, { input: 'Binaries', target: 'HTTP APIs' }), []);
+  assert.deepEqual(selectTools(tools, { input: 'Binaries', technique: 'DAST' }), []);
   assert.deepEqual(selectTools(tools, { q: 'binaries' }).map((t) => t.id), ['hybrid']);
 });
 test('dependency ecosystem tags do not imply source analysis', () => {
@@ -36,8 +36,9 @@ test('dependency ecosystem tags do not imply source analysis', () => {
   assert.deepEqual(selectTools(candidates, { input: 'Binaries', technique: 'SAST' }), []);
 });
 test('language-independent HTTP tools are not falsely tagged for source languages', () => {
-  assert.equal(selectTools(tools, { language: 'Python', target: 'HTTP APIs' }).length, 0);
-  assert.equal(selectTools(tools, { language: 'Language independent', target: 'HTTP APIs' }).length, 1);
+  assert.equal(selectTools(tools, { language: 'Python', input: 'Running applications' }).length, 0);
+  assert.equal(selectTools(tools, { language: 'Language independent', input: 'Running applications' }).length, 1);
+  assert.deepEqual(selectTools(tools, { q: 'HTTP APIs' }).map((t) => t.id), ['http']);
 });
 test('sorts without mutating input and breaks date ties by name', () => {
   const original = tools.map((t) => t.id);

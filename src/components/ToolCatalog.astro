@@ -7,12 +7,11 @@ const entries = (await getCollection('docs', ({ data }) => !!data.tool && !data.
 const allTools = entries.map(({ id, data }) => ({ id, title: data.title, description: data.description || '', ...data.tool! }))
   .sort((a, b) => a.title.localeCompare(b.title, 'en'));
 const tools = allTools.filter((tool) => !mode || tool.modes.includes(mode));
-const options = (key: 'inputTypes' | 'findings' | 'languages' | 'targets' | 'techniques') => [...new Set(tools.flatMap((tool) => tool[key]))].sort();
+const options = (key: 'inputTypes' | 'findings' | 'languages' | 'techniques') => [...new Set(tools.flatMap((tool) => tool[key]))].sort();
 const groups = [
-  { name: 'finding', label: 'What can it find?', values: options('findings') },
   { name: 'input', label: 'Input type', values: options('inputTypes') },
   { name: 'language', label: 'Language / ecosystem', values: options('languages') },
-  { name: 'target', label: 'What it analyzes', values: options('targets') },
+  { name: 'finding', label: 'What can it find?', values: options('findings') },
   { name: 'technique', label: 'Technique', values: options('techniques') },
   { name: 'license', label: 'License type', values: [...new Set(tools.map((tool) => tool.licenseCategory))].sort() },
 ];
@@ -43,7 +42,6 @@ const groups = [
       <div class="card-meta"><span class:list={['mode-badge', { dynamic: tool.modes.includes('Dynamic') }]}>{tool.modes.join(' / ')}</span><span>{tool.licenseCategory}</span></div>
       <h2><a href={`${base}/${tool.id}/`}>{tool.title}</a></h2>
       <p class="tool-summary">{tool.description}</p>
-      <div class="target-tags">{tool.targets.map((target) => <span>{target}</span>)}</div>
       <dl class="card-facts"><div><dt>Findings</dt><dd>{tool.findings.join(', ')}</dd></div><div><dt>Input</dt><dd>{tool.inputTypes.join(', ')}</dd></div><div><dt>Cost</dt><dd><a class="cost-link" href={`${base}/${tool.id}/#cost-and-editions`}>{tool.cost.join(' / ')}</a></dd></div><div><dt>Technique</dt><dd>{tool.techniques.join(', ')}</dd></div><div><dt>Languages</dt><dd>{tool.languages.slice(0, 4).join(', ')}{tool.languages.length > 4 ? ` +${tool.languages.length - 4}` : ''}</dd></div></dl>
       <label class="compare-choice"><input type="checkbox" data-compare-id={tool.id} aria-label={`Compare ${tool.title}`} /> Compare</label>
       <div class="card-footer"><span>Verified {tool.verified}</span><a href={`${base}/${tool.id}/`} aria-label={`Read notes on ${tool.title}`}>Read notes</a></div>
@@ -51,7 +49,7 @@ const groups = [
   </div>
   <div class="catalog-empty" hidden><h2>No matching tools</h2><p>Try a broader search or clear a filter. This catalog is a starting collection, not a complete inventory.</p><button type="button" class="reset-filters">Clear filters</button></div>
   <p class="catalog-note">Cost applies to the listed edition or use. "Free with limits" has eligibility or usage conditions; a free trial does not count as a free edition. Required runtimes, hosting, and compute can have separate costs. Check the tool notes for details.</p>
-  <p class="catalog-note">Input type describes what a tool examines. Combine "Source code" with a language to find source analyzers; "Dependency metadata" covers manifests and SBOMs. Binary and HTTP tools can be language independent. Read each entry's scope for limits.</p>
+  <p class="catalog-note">Input type describes what a tool examines. Combine "Source code" with a language to find source analyzers; "Dependency metadata" covers manifests and SBOMs. "Container images" means inspecting an image at rest. Binary formats and instrumentation requirements are described in the tool notes.</p>
   <p class="catalog-note">Finding categories describe selected capabilities. Rules, languages, and editions differ; fuzzers and property tools may need assertions or instrumentation. Check Finding scope in the notes or comparison.</p>
   <noscript><p>All tools are listed below. Enable JavaScript to search, filter, and sort.</p></noscript>
   <script type="application/json" data-catalog-data set:html={JSON.stringify(tools).replace(/</g, '\u003c')} />
@@ -68,7 +66,7 @@ const groups = [
       const empty = this.querySelector<HTMLElement>('.catalog-empty')!;
       const tools = JSON.parse(this.querySelector('[data-catalog-data]')!.textContent!);
       const cards = new Map(Array.from(this.querySelectorAll<HTMLElement>('[data-tool-id]')).map((card) => [card.dataset.toolId, card]));
-      const fields = ['q', 'finding', 'input', 'language', 'target', 'technique', 'license', 'cost', 'sort'];
+      const fields = ['q', 'finding', 'input', 'language', 'technique', 'license', 'cost', 'sort'];
       const selectionTools: { id: string; title: string }[] = JSON.parse(this.querySelector('[data-selection-data]')!.textContent!);
       const allowedIds = selectionTools.map((tool) => tool.id);
       let selected: string[] = [];
@@ -105,7 +103,10 @@ const groups = [
         }
       };
       const restore = () => {
-        const params = new URLSearchParams(location.search);
+        const url = new URL(location.href);
+        url.searchParams.delete('target');
+        if (url.href !== location.href) history.replaceState(null, '', url);
+        const params = url.searchParams;
         selected = normalizeSelection(params.get('compare'), allowedIds);
         updateSelection(false);
         form.reset();

@@ -1,7 +1,7 @@
 # Software Analysis Wiki
 
 A personal reference for static and dynamic analysis tools, built with Astro and
-Starlight. Browse by findings, input type, language, analysis target, technique, license, and cost. Each tool
+Starlight. Browse by findings, input type, language, technique, license, and cost. Each tool
 has a Markdown page with sources, scope limitations, and a verification date.
 
 ## Preview the wiki
@@ -45,10 +45,12 @@ New tools populate the catalog and sidebar automatically. Keep language tags
 scoped to verified support; a language match does not promise every framework or
 version is supported. Starter entries are documentation reviews, not benchmarks.
 
-The Input type filter separates source code, binaries, dependency metadata,
+The Input type filter separates source code, binaries, dependency metadata, container images,
 running applications, callable code, executable models, and execution traces. Tools can accept
 multiple input types. Combine a language with Source code when looking for a
 source analyzer; dependency ecosystem support does not imply source analysis.
+Software context such as firmware or HTTP APIs stays in the tool notes and is
+searchable in the catalog, rather than appearing as a separate filter.
 
 Use What can it find? for finding categories. Select Compare on two or three
 catalog cards, or open Compare tools to choose directly. Selection survives
@@ -59,6 +61,12 @@ Cost is separate from open-source licensing. `Free with limits` covers continuin
 free access with usage or eligibility conditions. Trials do not count as free
 editions. Where capabilities differ, editions have their own catalog entries so
 cost and language filters cannot combine features from different editions.
+
+The workflow guides compare Java source/bytecode analysis, memory-error detection,
+and temporal monitoring versus falsification. New worked examples are explicitly
+labeled when they have not been executed. `Source available` distinguishes licenses
+with use restrictions from open-source licenses; Coverity Scan and commercial
+Coverity have separate catalog entries.
 
 ## Verify changes
 

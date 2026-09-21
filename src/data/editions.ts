@@ -2,6 +2,23 @@ type Edition = { name: string; cost: string; difference: string; url: string; sl
 type Comparison = { intro: string; editions: Edition[]; note?: string; source?: { label: string; url: string } };
 
 export const editionComparisons: Record<string, Comparison> = {
+  coverity: {
+    intro: 'Commercial Coverity and the free Scan service have separate eligibility and advertised language coverage. Their catalog entries keep those differences filterable.',
+    editions: [
+      { name: 'Coverity Scan', cost: 'Free with limits', difference: 'Hosted analysis for approved registered open-source projects. Languages follow the Scan service list; submission quotas vary by project size.', url: 'https://scan.coverity.com/faq', slug: 'tools/coverity-scan' },
+      { name: 'Commercial Coverity', cost: 'Paid; request quote', difference: 'Commercial source-analysis and review workflows, broader advertised language coverage, and deployment options according to the purchased agreement.', url: 'https://www.blackduck.com/static-analysis-tools-sast/coverity.html', slug: 'tools/coverity' },
+    ],
+    note: 'A publicly visible repository is not by itself proof of Scan eligibility. The service requires registration and acceptance of its terms.',
+  },
+  polyspace: {
+    intro: 'These are related products with distinct jobs. The catalog entry covers Code Prover; a trial does not count as a permanent free edition.',
+    editions: [
+      { name: 'Polyspace Bug Finder', cost: 'Paid; confirm entitlements', difference: 'Defect, coding-rule, and code-quality analysis. Listed as a required product for Code Prover.', url: 'https://www.mathworks.com/products/polyspace-bug-finder.html' },
+      { name: 'Polyspace Code Prover', cost: 'Paid; trial available', difference: 'Desktop verification of selected C/C++ runtime checks, with proof and unproven-result review.', url: 'https://www.mathworks.com/products/polyspace-code-prover.html', slug: 'tools/polyspace-code-prover' },
+      { name: 'Polyspace Code Prover Server', cost: 'Paid; confirm entitlements', difference: 'Automated analysis for CI/server workflows. Check required products and result-sharing licenses separately.', url: 'https://www.mathworks.com/products/polyspace-code-prover.html' },
+    ],
+    source: { label: 'Required products and platforms', url: 'https://www.mathworks.com/support/requirements/polyspace-code-prover.html' },
+  },
   cppcheck: {
     intro: 'The catalog entry covers the free open-source analyzer. Premium adds capabilities and commercial license options; it is not included in the Free filter result.',
     editions: [

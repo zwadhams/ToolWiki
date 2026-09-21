@@ -12,10 +12,13 @@ description: Distinguish source analysis, binary analysis, and known-vulnerabili
 | Source code | Code structure, types, values, or possible paths, often with build and dependency context. | [Cppcheck](../../tools/cppcheck/), [PHPStan](../../tools/phpstan/), [Clippy](../../tools/clippy/) |
 | Binaries | Compiled artifacts. A tool might recover code for weakness analysis or identify embedded components. | [cwe-checker](../../tools/cwe-checker/), [CVE Binary Tool](../../tools/cve-bin-tool/) |
 | Dependency metadata | Package manifests, lockfiles, or software bills of materials (SBOMs). | [CVE Binary Tool](../../tools/cve-bin-tool/) |
+| Container images | Installed artifacts extracted from an image without running its application. | [OSV-Scanner](../../tools/osv-scanner/) |
 
 Use the catalog's **Input type** filter to browse [source analyzers](../../static/?input=Source%20code), [binary tools](../../static/?input=Binaries), or [dependency tools](../../static/?input=Dependency%20metadata). A tool with multiple input types has more than one documented workflow.
 
 Input type and analysis mode are independent. [Memcheck](../../tools/valgrind-memcheck/) also takes a compiled program, but observes it executing and therefore belongs under dynamic analysis. A source analyzer can run build steps to prepare its input without dynamically testing the application.
+
+For JVM class files, see [Java source and bytecode analysis](../../guides/java-analysis/). For native memory errors, compare [source, instrumented-build, and executable workflows](../../guides/memory-error-detection/).
 
 ## What kind of answer do you need?
 

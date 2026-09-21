@@ -5,13 +5,14 @@ import ToolComparison from './ToolComparison.astro';
 import EditionComparison from './EditionComparison.astro';
 const { entry } = Astro.locals.starlightRoute;
 const tool = entry.data.tool;
+const contexts = tool?.targets.filter((target) => !tool.inputTypes.some((input) => input === target)) || [];
 ---
 {tool && <section class="tool-profile" aria-label="Tool facts">
   <div class="profile-heading"><span class="mode-badge">{tool.modes.join(' / ')} analysis</span><a href={tool.website}>Official website</a></div>
   <p>{entry.data.description}</p>
   <dl class="profile-facts">
     <div><dt>Input type</dt><dd>{tool.inputTypes.join(', ')}</dd></div>
-    <div><dt>Analyzes</dt><dd>{tool.targets.join(', ')}</dd></div>
+    {contexts.length > 0 && <div><dt>Context</dt><dd>{contexts.join(', ')}</dd></div>}
     <div><dt>Techniques</dt><dd>{tool.techniques.join(', ')}</dd></div>
     <div><dt>What can it find?</dt><dd>{tool.findings.join(', ')}</dd></div>
     <div><dt>Where it runs</dt><dd>{tool.environment}</dd></div>

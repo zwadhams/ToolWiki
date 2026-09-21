@@ -31,6 +31,8 @@ These are ways to expose functionality to the test, not distinct security guaran
 | --- | --- | --- |
 | Coverage-guided fuzzing | Generates inputs and uses execution feedback to guide further tests. | Can test native functions and libraries, beyond web scanning. See [libFuzzer](../../tools/libfuzzer/). |
 | Runtime memory checking | Observes memory operations during an execution. | Can detect memory defects; it is not an HTTP scanner. See [Memcheck](../../tools/valgrind-memcheck/). |
+| Runtime race detection | Observes conflicting accesses and synchronization between threads. | Checks a different class of runtime defects from memory bounds or web requests. See [ThreadSanitizer](../../tools/thread-sanitizer/). |
+| Temporal monitoring | Evaluates supplied signals against a temporal specification. | A monitor does not generate a falsification search by itself. See [RTAMT](../../tools/rtamt/). |
 | Model and temporal falsification | Searches simulation inputs for a trace that violates a behavioral requirement. | Fits under dynamic analysis and can test controllers or hybrid systems without a security focus. See [the falsification guide](../model-falsification/). |
 | Property-based testing | Generates inputs to test properties or assertions you define. | Can test functions or stateful behavior without targeting web security. See [Hypothesis](../../tools/hypothesis/). |
 | Interactive application security testing (IAST) | Uses instrumentation inside the running application while tests exercise it. | Adds an internal view rather than relying only on external responses. |

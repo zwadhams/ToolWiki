@@ -29,6 +29,11 @@ export default defineConfig({
         { label: 'Model and temporal falsification', slug: 'concepts/model-falsification' },
         { label: 'Verification and generated tests', slug: 'concepts/verification-and-generated-tests' },
       ] },
+      { label: 'Choose a workflow', items: [
+        { label: 'Java source and bytecode', slug: 'guides/java-analysis' },
+        { label: 'Memory-error checks', slug: 'guides/memory-error-detection' },
+        { label: 'Temporal monitoring and falsification', slug: 'guides/temporal-monitoring-and-falsification' },
+      ] },
       { label: 'Tool notes', items: [{ autogenerate: { directory: 'tools' } }], collapsed: true },
       { label: 'Maintain the wiki', items: [{ label: 'Add or update a tool', slug: 'guides/editing' }] },
       { label: 'Personal website', link: 'https://zwadhams.github.io/' },

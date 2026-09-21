@@ -6,7 +6,7 @@ import { docsSchema, i18nSchema } from '@astrojs/starlight/schema';
 const nonempty = z.array(z.string().min(1)).min(1);
 const tool = z.object({
   modes: z.array(z.enum(['Static', 'Dynamic'])).min(1),
-  inputTypes: z.array(z.enum(['Source code', 'Binaries', 'Dependency metadata', 'Running applications', 'Callable code', 'Executable models', 'Execution traces'])).min(1),
+  inputTypes: z.array(z.enum(['Source code', 'Binaries', 'Dependency metadata', 'Container images', 'Running applications', 'Callable code', 'Executable models', 'Execution traces'])).min(1),
   findings: nonempty,
   findingNote: z.string().min(1),
   environment: z.string().min(1),
@@ -15,11 +15,11 @@ const tool = z.object({
   languages: nonempty,
   languageNote: z.string().min(1),
   targets: nonempty,
-  licenseCategory: z.enum(['Open source', 'Proprietary']),
+  licenseCategory: z.enum(['Open source', 'Source available', 'Proprietary']),
   license: z.string().min(1),
   cost: z.array(z.enum(['Free', 'Free with limits', 'Paid'])).min(1),
   costNote: z.string().min(1),
-  editionGroup: z.enum(['codeql', 'sonarqube', 'semgrep', 'burp', 'cppcheck', 'pvs-studio', 'phpstan']).optional(),
+  editionGroup: z.enum(['codeql', 'sonarqube', 'semgrep', 'burp', 'cppcheck', 'pvs-studio', 'phpstan', 'coverity', 'polyspace']).optional(),
   website: z.url(),
   verified: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine((value) => {
     const date = new Date(value);

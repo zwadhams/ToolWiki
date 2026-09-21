@@ -1,5 +1,5 @@
 /** @typedef {{id: string, title: string, description: string, modes: string[], inputTypes: string[], findings: string[], techniques: string[], languages: string[], targets: string[], licenseCategory: string, cost: string[], costNote: string, verified: string}} Tool */
-/** @typedef {{q?: string, mode?: string, finding?: string, input?: string, language?: string, target?: string, technique?: string, license?: string, cost?: string, sort?: string}} Filters */
+/** @typedef {{q?: string, mode?: string, finding?: string, input?: string, language?: string, technique?: string, license?: string, cost?: string, sort?: string}} Filters */
 
 /** @param {Tool[]} tools @param {Filters} filters */
 export function selectTools(tools, filters = {}) {
@@ -11,7 +11,6 @@ export function selectTools(tools, filters = {}) {
       && (!filters.input || tool.inputTypes.includes(filters.input))
       && (!filters.finding || tool.findings.includes(filters.finding))
       && (!filters.language || tool.languages.includes(filters.language))
-      && (!filters.target || tool.targets.includes(filters.target))
       && (!filters.technique || tool.techniques.includes(filters.technique))
       && (!filters.license || tool.licenseCategory === filters.license)
       && (!filters.cost || (filters.cost === 'any-free'

@@ -64,3 +64,15 @@ Separate documentation review from hands-on experience. Record your test environ
 For worked examples, state the prerequisites, input, command or configuration, and how to interpret the result. Label examples that have not been run; do not present expected output as a captured result. Keep simulator, compiler, plugin, and license requirements explicit.
 
 Use ordinary Markdown headings beginning at level two (`##`); the site supplies the page title. Relative links should point to the rendered page path and end with a slash.
+
+## Add research notes and connections
+
+Research notes live in `src/content/docs/research/`. Copy the structure of a similar note: the practical question, study or proposal, findings, limitations, suggested application, and a full paper citation with a source link. Keep your suggested workflow separate from observations actually reported in the paper.
+
+Write research notes from Zach's perspective: use "I" for personal discussion and recommendations, and "we" for work with coauthors. Follow the papers' terminology and keep headings short and descriptive, such as Methods, Findings, and Limitations. Preserve uncertainty and the distinction between proposed methods and evaluated results.
+
+Add a new note to the Research notes group in `astro.config.mjs` and link it from the research overview. Record the publication year separately from a later preprint-upload date. Prefer an author copy or publisher source and point readers to the relevant sections. Do not treat a thesis chapter and its corresponding conference paper as independent evidence.
+
+On a relevant tool page, add a `## Related research` section in the Markdown body. Link to both the local note and the paper, and explain the connection: used in the study, discussed in a proposal, or related through a product family. A mention alone does not establish that the tool was evaluated.
+
+Keep current edition coverage and historical study configurations distinct. Record missing configuration details rather than assigning old findings to a current paid or free edition. Updating a research connection alone does not update the tool's documentation-verification date.

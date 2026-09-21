@@ -43,3 +43,9 @@ A flagged pattern needs context: an API call may be intentional, or its input ma
 ## Getting started
 
 The official documentation links installation, configuration, plugin, and CI/CD guides. Begin with the default checks on a small Python project, then review findings before adding exclusions.
+
+## Related research
+
+**Used in a study:** The [OCPP paper](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf) used Bandit for its Python implementation. Its results illustrate how a focused analyzer can produce a different report from a multi-language platform. They do not establish that every reported pattern is a confirmed vulnerability.
+
+See [comparing SAST tools](../../research/comparing-tools/) for interpreting counts and [SAST adoption](../../research/sast-adoption/) for planning the effort needed to review them.

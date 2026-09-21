@@ -34,9 +34,17 @@ export default defineConfig({
         { label: 'Memory-error checks', slug: 'guides/memory-error-detection' },
         { label: 'Temporal monitoring and falsification', slug: 'guides/temporal-monitoring-and-falsification' },
       ] },
+      { label: 'Research notes', items: [
+        { label: 'Research overview', slug: 'research' },
+        { label: 'Comparing SAST tools', slug: 'research/comparing-tools' },
+        { label: 'SAST adoption', slug: 'research/sast-adoption' },
+        { label: 'SAST in CI/CD', slug: 'research/sast-workflow' },
+        { label: 'Software quality models', slug: 'research/software-quality' },
+        { label: 'Malware sophistication', slug: 'research/binary-analysis' },
+      ] },
       { label: 'Tool notes', items: [{ autogenerate: { directory: 'tools' } }], collapsed: true },
       { label: 'Maintain the wiki', items: [{ label: 'Add or update a tool', slug: 'guides/editing' }] },
-      { label: 'Personal website', link: 'https://zwadhams.github.io/' },
+      { label: 'Made by Zach Wadhams', link: 'https://zwadhams.github.io/', attrs: { class: 'sidebar-credit' } },
     ],
   })],
 });

@@ -44,3 +44,9 @@ Feature depth also varies. Do not treat a shared language name as evidence that 
 ## When it is useful
 
 Consider it when you want to maintain your own code-analysis service and its supported checks fit the project. Free software still requires an environment to run it and someone to maintain that environment.
+
+## Related research
+
+**Related product family:** The [CI/CD case study](../../research/sast-workflow/) used SonarQube, and the [OCPP study](../../research/comparing-tools/) included it in a comparison across languages. Neither note assigns the historical results to today's Community Build or implies that it includes Server's language coverage.
+
+Read the [CI/CD paper](https://arxiv.org/abs/2609.00676) and [OCPP paper](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf). For your own trial, use the current edition scope above and the [SAST adoption checklist](../../research/sast-adoption/).

@@ -67,3 +67,9 @@ Find Security Bugs extends SpotBugs with security detectors and framework knowle
 Review findings in context and record exclusions. Missing dependencies, unsupported bytecode, or an unmatched pattern can leave defects undiscovered.
 
 See [Java source and bytecode analysis](../../guides/java-analysis/) for a comparison with CodeQL and JBMC.
+
+## Related research
+
+**Used in a study:** The [OCPP paper](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf) used SpotBugs for the Java implementation. Its discussion contrasts targeted bug-pattern findings with the broader quality findings reported by SonarQube. It does not establish that one tool is more accurate.
+
+Read [comparing SAST tools](../../research/comparing-tools/). The paper's mention of SpotBugs does not establish use of the optional Find Security Bugs plugin; keep plugin-enabled coverage separate.

@@ -49,3 +49,9 @@ Confirm packages loaded successfully before interpreting a low issue count. Docu
 A nonzero exit can reflect findings or a processing error. A zero exit under a configured no-fail option is not evidence that the scan found nothing. These details matter when interpreting CI results.
 
 Dependency advisory matching is a separate job; see [OSV-Scanner](../osv-scanner/).
+
+## Related research
+
+**Used in a study:** The [OCPP paper](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf) used gosec as its Go-specific analyzer alongside SonarQube and Semgrep. The study examined one Go implementation and did not validate finding accuracy.
+
+[Comparing SAST tools](../../research/comparing-tools/) explains why successful execution, rule scope, and project context matter when interpreting such counts.

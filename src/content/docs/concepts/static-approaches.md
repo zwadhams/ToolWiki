@@ -48,3 +48,7 @@ For a source analyzer, a language tag describes code it can inspect. For a depen
 Combine **Source code + Rust** to find Rust source analysis. Selecting **Rust** alone can also show tools that inspect Rust dependency inventories. Read the language note on each tool for the distinction.
 
 Similarly, do not assume all features in a product share a language list. PMD's bundled CPD utility detects duplication across more languages than PMD's supplied defect rules cover.
+
+## Research in context
+
+[Comparing SAST tools](../../research/comparing-tools/) uses the OCPP study to explain why report counts depend on project and analysis scope. [Malware sophistication](../../research/binary-analysis/) explores how the available artifact constrains quality measurements.

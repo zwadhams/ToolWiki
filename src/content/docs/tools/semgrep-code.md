@@ -42,3 +42,9 @@ The standalone [CE engine](../semgrep-ce/) is a separate option with different a
 The pricing comparison lists a maximum of 10 contributors and 10 private repositories for Free Edition, with unlimited public repositories. Semgrep defines contributors using recent activity in scanned private repositories. Check those definitions and current limits when choosing a plan.
 
 Paid plans expand team and organization support. Product modules and additional AI usage may have separate charges; the edition table links current pricing rather than presenting one universal price.
+
+## Related research
+
+**Related product family:** The [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf) included Semgrep, but its reported configuration should not be treated as a benchmark of today's Semgrep Code, Pro rules, or plan features.
+
+[Comparing SAST tools](../../research/comparing-tools/) explains how to interpret differences in reported findings. Check the edition and selected rules when applying those lessons to this platform.

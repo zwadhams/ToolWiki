@@ -36,6 +36,7 @@ node scripts/preview.mjs
 
 - Tool entries: `src/content/docs/tools/`, one Markdown file per tool.
 - Concept guides: `src/content/docs/concepts/`.
+- Research notes and paper references: `src/content/docs/research/`.
 - Colors, spacing, and catalog appearance: `src/styles/custom.css`.
 - Shared comparisons of free and paid editions: `src/data/editions.ts`.
 - Navigation and GitHub Pages address: `astro.config.mjs`.
@@ -67,6 +68,12 @@ and temporal monitoring versus falsification. New worked examples are explicitly
 labeled when they have not been executed. `Source available` distinguishes licenses
 with use restrictions from open-source licenses; Coverity Scan and commercial
 Coverity have separate catalog entries.
+
+Research notes connect publications by Zachary Wadhams and collaborators to tool
+selection, workflows, and interpretation. Relevant tool pages contain a Related
+research section explaining whether the tool was used in a study, discussed in a
+proposal, or linked through a product family with an unspecified historical edition.
+Keep study results separate from current documentation and locally tested examples.
 
 ## Verify changes
 

@@ -50,3 +50,9 @@ CE and [Semgrep Code](../semgrep-code/) have different analysis capabilities. Cr
 ## Getting started
 
 Start with a small, relevant rule set, inspect the findings, and tune the rules against representative examples. Check rule licenses separately from the engine license.
+
+## Related research
+
+**Related product family:** The [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf) used Semgrep alongside SonarQube and language-specific analyzers. It does not supply enough edition detail to attribute its results specifically to today's CE engine or Semgrep Code.
+
+Read [comparing SAST tools](../../research/comparing-tools/) for lessons about rule scope, execution failures, and zero-finding runs. Use the current CE scope above when selecting a configuration.

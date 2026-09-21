@@ -53,3 +53,9 @@ Do not equate every implemented check with default coverage: the repository expl
 ## A useful first evaluation
 
 Use the official stable release workflow with one known ELF binary. Confirm its architecture, review enabled checks and API configuration, and inspect a warning alongside the recovered code. Record the binary hash, analyzer and Ghidra versions, and configuration for reproducibility.
+
+## Related research
+
+**Discussed in a paper:** [Characterizing and Codifying Malware Sophistication](https://www.cs.montana.edu/izurieta/pubs/iETC_Porcella_2026.pdf) cites cwe-checker as an example of detecting selected reliability-related weaknesses in binaries. It does not benchmark the tool or validate a malware sophistication score.
+
+[Malware sophistication](../../research/binary-analysis/) connects this example to recovered-code coverage, observable features, and the limits of inferring quality from them.

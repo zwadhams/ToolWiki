@@ -54,3 +54,11 @@ A passing quality gate means the configured conditions passed. It is not a guara
 ## Getting started
 
 Choose the relevant product and edition, then analyze a small representative project. Review the rule profile and findings before defining quality gates for a larger workflow.
+
+## Related research
+
+- **Used in a case study:** [SAST in CI/CD](../../research/sast-workflow/) explains the SonarQube-to-GitLab integration and developer feedback. [CI/CD paper](https://arxiv.org/abs/2609.00676).
+- **Used in an empirical comparison:** [Comparing SAST tools](../../research/comparing-tools/) explains why the OCPP study's report counts cannot rank tools by accuracy. [OCPP paper](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf).
+- **Discussed in a proposed approach:** [Software quality models](../../research/software-quality/) connects SonarQube output to quality modeling for EV charging software. [EV charging paper](https://www.cs.montana.edu/izurieta/pubs/Sheppard_CSR_2025.pdf).
+
+These papers name SonarQube; their historical setups do not establish the capabilities or performance of every current Server edition or Community Build.

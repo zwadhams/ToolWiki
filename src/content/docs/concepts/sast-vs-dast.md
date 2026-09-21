@@ -36,3 +36,5 @@ For a native library, static bug finding plus a fuzzer and a memory checker may 
 - [ZAP scanning and authentication guide](https://www.zaproxy.org/docs/api/)
 
 Continue with [ways to do DAST](../dast-approaches/).
+
+For research on using SAST in practice, see [SAST adoption](../../research/sast-adoption/) and [SAST in CI/CD](../../research/sast-workflow/).

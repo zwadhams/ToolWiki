@@ -54,3 +54,9 @@ Consider it for native or embedded C/C++ projects, including code with platform-
 ## A useful first evaluation
 
 Follow the official manual to import a representative build configuration. Review configuration diagnostics before judging defect findings, then examine a small set of results with the check descriptions. Keep the analyzer version, enabled checks, exclusions, and library configuration with the report.
+
+## Related research
+
+**Used in a study:** The [OCPP paper](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf) used Cppcheck for its C and C++ implementations. The reported counts describe those projects and study configurations; they are not validated accuracy measurements or a comparison of Open Source and Premium.
+
+See [comparing SAST tools](../../research/comparing-tools/) for how to compare scope and useful findings before combining reports.

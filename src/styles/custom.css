@@ -50,6 +50,8 @@ h1 { letter-spacing: -.035em; line-height: 1.15; }
 .site-title { letter-spacing: -.035em; font-weight: 700; font-size: clamp(1rem, 1.6vw, 1.25rem); white-space: nowrap; }
 .site-title::before { content: '[ ]'; color: var(--sl-color-accent-high); font-family: monospace; font-size: 1.4rem; letter-spacing: -.2em; padding-right: .35rem; }
 .sidebar-content a[aria-current='page'] { background: var(--sl-color-accent-low); color: var(--sl-color-accent-high); border-inline-start: 2px solid var(--sl-color-accent-high); border-radius: 0 .3rem .3rem 0; }
+.sidebar-content .sidebar-credit { margin-top: 1.75rem; padding-top: 1rem; border-top: 1px solid var(--line); border-radius: 0; color: var(--muted); font-size: .875rem; font-weight: 400; }
+.sidebar-content .sidebar-credit:hover { color: var(--sl-color-accent-high); text-decoration: underline; text-underline-offset: .2em; }
 .content-panel { border-top-color: var(--line); }
 body:has(tool-catalog) .right-sidebar-container { display: none; }
 body:has(tool-catalog) .main-pane { width: 100%; }

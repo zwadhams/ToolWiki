@@ -58,3 +58,9 @@ Source availability does not make this an unrestricted open-source license. The 
 A source warning is a review lead. It does not show that authentication, routing, or deployed configuration makes the path reachable. Conversely, an unrecognized pattern can escape a check.
 
 Combine source review with [ZAP](../zap/) or another suitable runtime test when you need evidence about a running Rails application.
+
+## Related research
+
+**Used in a study:** The [OCPP paper](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf) lists Brakeman as its Ruby analyzer. That historical selection does not broaden Brakeman's documented Rails scope to arbitrary Ruby applications.
+
+Read [comparing SAST tools](../../research/comparing-tools/) for the study's limitations. For a new evaluation, verify that the application's framework matches the tool before interpreting its report.

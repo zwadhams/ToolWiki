@@ -1,0 +1,35 @@
+---
+import MarkdownContent from '@astrojs/starlight/components/MarkdownContent.astro';
+import ToolCatalog from './ToolCatalog.astro';
+import ToolComparison from './ToolComparison.astro';
+import EditionComparison from './EditionComparison.astro';
+const { entry } = Astro.locals.starlightRoute;
+const tool = entry.data.tool;
+---
+{tool && <section class="tool-profile" aria-label="Tool facts">
+  <div class="profile-heading"><span class="mode-badge">{tool.modes.join(' / ')} analysis</span><a href={tool.website}>Official website</a></div>
+  <p>{entry.data.description}</p>
+  <dl class="profile-facts">
+    <div><dt>Input type</dt><dd>{tool.inputTypes.join(', ')}</dd></div>
+    <div><dt>Analyzes</dt><dd>{tool.targets.join(', ')}</dd></div>
+    <div><dt>Techniques</dt><dd>{tool.techniques.join(', ')}</dd></div>
+    <div><dt>What can it find?</dt><dd>{tool.findings.join(', ')}</dd></div>
+    <div><dt>Where it runs</dt><dd>{tool.environment}</dd></div>
+    <div><dt>Build / harness requirements</dt><dd>{tool.setup}</dd></div>
+    <div><dt>Languages / ecosystem</dt><dd>{tool.languages.join(', ')}</dd></div>
+    <div><dt>License</dt><dd>{tool.license}</dd></div>
+    <div><dt>Cost</dt><dd><a href="#cost-and-editions">{tool.cost.join(' / ')}</a></dd></div>
+    <div><dt>Documentation verified</dt><dd>{tool.verified}</dd></div>
+    <div><dt>Entry scope</dt><dd>{tool.scope}</dd></div>
+  </dl>
+  <p class="profile-note">{tool.languageNote}</p>
+  <p class="profile-note"><strong>Finding scope:</strong> {tool.findingNote}</p>
+</section>}
+{tool && <section class="edition-section" aria-labelledby="cost-and-editions">
+  <h2 id="cost-and-editions">Cost and editions</h2>
+  <p>{tool.costNote}</p>
+  {tool.editionGroup && <EditionComparison group={tool.editionGroup} />}
+  <p class="edition-note">Cost information checked {tool.verified}; any verification limits are noted above. Required runtimes, hosting, and compute can have separate costs. Trials are not treated as free editions.</p>
+</section>}
+{entry.data.catalog ? <div class="catalog-content"><slot /><ToolCatalog mode={entry.data.catalogMode} /></div> : entry.data.comparison ? <div class="catalog-content"><slot /><ToolComparison /></div> : <MarkdownContent><slot /></MarkdownContent>}
+{tool && <section class="profile-sources" aria-labelledby="tool-sources"><h2 id="tool-sources">Sources</h2><ul>{tool.sources.map((source) => <li><a href={source.url}>{source.label}</a></li>)}</ul><p>Checked against documentation on {tool.verified}. This is a documentation review, not a hands-on benchmark.</p></section>}

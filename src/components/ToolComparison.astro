@@ -1,0 +1,108 @@
+---
+import { getCollection } from 'astro:content';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const tools = (await getCollection('docs', ({ data }) => !!data.tool && !data.draft))
+  .map(({ id, data }) => ({ id, title: data.title, description: data.description || '', ...data.tool! }))
+  .sort((a, b) => a.title.localeCompare(b.title, 'en'));
+---
+<tool-comparison data-base={base}>
+  <form class="comparison-picker" aria-label="Choose tools to compare">
+    {[1, 2, 3].map((n) => <label for={`compare-tool-${n}`}>Tool {n}{n === 3 ? ' (optional)' : ''}<select id={`compare-tool-${n}`} name={`tool-${n}`}><option value="">Choose a tool</option>{tools.map((tool) => <option value={tool.id}>{tool.title}</option>)}</select></label>)}
+  </form>
+  <div class="comparison-actions"><p role="status" aria-live="polite" data-comparison-status>Choose two or three tools.</p><button type="button" data-clear-comparison>Clear comparison</button><a href={`${base}/`} data-browse-tools>Browse tools</a></div>
+  <p class="comparison-help">The comparison is saved in this page's URL, so you can bookmark it. On a narrow screen, scroll the table sideways to see every tool.</p>
+  <p class="comparison-help">Finding tags describe selected capabilities, not equivalent coverage. Read the scope and requirements: a fuzzer may need a sanitizer or your own assertion, while a scanner may provide built-in checks. Platform notes describe where the tool runs, not every target it can analyze.</p>
+  <div class="comparison-empty" data-comparison-empty>Pick at least two tools above, or select Compare on catalog cards.</div>
+  <div class="comparison-scroll" role="region" aria-label="Tool comparison table" tabindex="0" hidden>
+    <table class="comparison-table"><caption>Tool capabilities and requirements</caption><thead></thead><tbody></tbody></table>
+  </div>
+  <noscript><p>Enable JavaScript to select tools and build the comparison. Each tool's notes remain available from the catalog.</p></noscript>
+  <script type="application/json" data-comparison-data set:html={JSON.stringify(tools).replace(/</g, '\u003c')} />
+</tool-comparison>
+<script>
+  import { normalizeSelection } from '../lib/comparison.mjs';
+  class ToolComparison extends HTMLElement {
+    connectedCallback() {
+      const tools = JSON.parse(this.querySelector('[data-comparison-data]')!.textContent!);
+      const ids = tools.map((tool: { id: string }) => tool.id);
+      const controls = [...this.querySelectorAll<HTMLSelectElement>('select')];
+      const status = this.querySelector<HTMLElement>('[data-comparison-status]')!;
+      const region = this.querySelector<HTMLElement>('.comparison-scroll')!;
+      const empty = this.querySelector<HTMLElement>('[data-comparison-empty]')!;
+      const head = this.querySelector('thead')!;
+      const body = this.querySelector('tbody')!;
+      const base = this.dataset.base!;
+      const rows = [
+        ['Purpose', 'description'], ['Analysis mode', 'modes'], ['Input type', 'inputTypes'],
+        ['Languages / ecosystem', 'languages'], ['Language scope', 'languageNote'],
+        ['What can it find?', 'findings'], ['Finding scope', 'findingNote'], ['Techniques', 'techniques'],
+        ['Where it runs', 'environment'], ['Build / harness requirements', 'setup'],
+        ['Cost', 'cost'], ['Cost and edition limits', 'costNote'], ['License', 'license'],
+        ['Entry scope', 'scope'], ['Documentation checked', 'verified'],
+      ];
+      const render = (save = true) => {
+        const selected = normalizeSelection(controls.map((control) => control.value), ids);
+        controls.forEach((control) => [...control.options].forEach((option) => {
+          option.disabled = !!option.value && option.value !== control.value && selected.includes(option.value);
+        }));
+        const chosen = selected.map((id) => tools.find((tool: { id: string }) => tool.id === id)!);
+        status.textContent = chosen.length < 2 ? `Choose ${2 - chosen.length} more tool${chosen.length ? '' : 's'} to compare.` : `Comparing ${chosen.length} tools.`;
+        empty.hidden = chosen.length >= 2;
+        region.hidden = chosen.length < 2;
+        head.replaceChildren();
+        body.replaceChildren();
+        if (chosen.length >= 2) {
+          const header = document.createElement('tr');
+          const label = document.createElement('th'); label.scope = 'col'; label.textContent = 'Compare'; header.append(label);
+          chosen.forEach((tool) => {
+            const cell = document.createElement('th'); cell.scope = 'col';
+            const link = document.createElement('a'); link.href = `${base}/${tool.id}/`; link.textContent = tool.title;
+            cell.append(link); header.append(cell);
+          });
+          head.append(header);
+          for (const [title, key] of rows) {
+            const row = document.createElement('tr');
+            const label = document.createElement('th'); label.scope = 'row'; label.textContent = title; row.append(label);
+            chosen.forEach((tool) => {
+              const cell = document.createElement('td');
+              cell.textContent = Array.isArray(tool[key]) ? tool[key].join(', ') : tool[key];
+              if (key === 'costNote') {
+                const link = document.createElement('a'); link.href = `${base}/${tool.id}/#cost-and-editions`; link.textContent = 'See edition details'; cell.append(document.createElement('br'), link);
+              }
+              row.append(cell);
+            });
+            body.append(row);
+          }
+          const sourceRow = document.createElement('tr');
+          const sourceTitle = document.createElement('th'); sourceTitle.scope = 'row'; sourceTitle.textContent = 'Primary sources'; sourceRow.append(sourceTitle);
+          chosen.forEach((tool) => {
+            const cell = document.createElement('td'); const list = document.createElement('ul');
+            tool.sources.forEach((source: { label: string; url: string }) => {
+              const item = document.createElement('li'); const link = document.createElement('a'); link.href = source.url; link.textContent = source.label; item.append(link); list.append(item);
+            });
+            cell.append(list); sourceRow.append(cell);
+          });
+          body.append(sourceRow);
+        }
+        const browse = new URL(`${base}/`, location.origin);
+        if (selected.length) browse.searchParams.set('compare', selected.join(','));
+        this.querySelector<HTMLAnchorElement>('[data-browse-tools]')!.href = browse.pathname + browse.search;
+        if (save) {
+          const url = new URL(location.href);
+          if (selected.length) url.searchParams.set('tools', selected.join(',')); else url.searchParams.delete('tools');
+          history.replaceState(null, '', url);
+        }
+      };
+      const restore = () => {
+        const selected = normalizeSelection(new URLSearchParams(location.search).get('tools'), ids);
+        controls.forEach((control, index) => { control.value = selected[index] || ''; }); render(false);
+      };
+      this.querySelector('form')!.addEventListener('submit', (event) => event.preventDefault());
+      controls.forEach((control) => control.addEventListener('change', () => render()));
+      this.querySelector('[data-clear-comparison]')!.addEventListener('click', () => { controls.forEach((control) => { control.value = ''; }); render(); });
+      window.addEventListener('popstate', restore);
+      restore();
+    }
+  }
+  if (!customElements.get('tool-comparison')) customElements.define('tool-comparison', ToolComparison);
+</script>

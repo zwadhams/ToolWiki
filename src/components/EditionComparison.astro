@@ -1,0 +1,18 @@
+---
+import { editionComparisons } from '../data/editions';
+interface Props { group: string }
+const comparison = editionComparisons[Astro.props.group];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<p>{comparison.intro}</p>
+<div class="edition-table-scroll" tabindex="0" role="region" aria-label="Edition comparison">
+  <table class="edition-table">
+    <caption>Free and paid options</caption>
+    <thead><tr><th scope="col">Edition or use</th><th scope="col">Cost</th><th scope="col">Capabilities and limits</th></tr></thead>
+    <tbody>{comparison.editions.map((edition) => <tr>
+      <th scope="row"><a href={edition.url}>{edition.name}</a>{edition.slug && <a class="edition-wiki-link" href={`${base}/${edition.slug}/`}>Wiki entry</a>}</th>
+      <td>{edition.cost}</td><td>{edition.difference}</td>
+    </tr>)}</tbody>
+  </table>
+</div>
+{comparison.note && <p>{comparison.note} {comparison.source && <a href={comparison.source.url}>{comparison.source.label}</a>}</p>}

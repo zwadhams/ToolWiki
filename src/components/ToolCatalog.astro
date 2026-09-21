@@ -1,0 +1,150 @@
+---
+import { getCollection } from 'astro:content';
+interface Props { mode?: 'Static' | 'Dynamic' }
+const { mode = '' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const entries = (await getCollection('docs', ({ data }) => !!data.tool && !data.draft));
+const allTools = entries.map(({ id, data }) => ({ id, title: data.title, description: data.description || '', ...data.tool! }))
+  .sort((a, b) => a.title.localeCompare(b.title, 'en'));
+const tools = allTools.filter((tool) => !mode || tool.modes.includes(mode));
+const options = (key: 'inputTypes' | 'findings' | 'languages' | 'targets' | 'techniques') => [...new Set(tools.flatMap((tool) => tool[key]))].sort();
+const groups = [
+  { name: 'finding', label: 'What can it find?', values: options('findings') },
+  { name: 'input', label: 'Input type', values: options('inputTypes') },
+  { name: 'language', label: 'Language / ecosystem', values: options('languages') },
+  { name: 'target', label: 'What it analyzes', values: options('targets') },
+  { name: 'technique', label: 'Technique', values: options('techniques') },
+  { name: 'license', label: 'License type', values: [...new Set(tools.map((tool) => tool.licenseCategory))].sort() },
+];
+---
+<tool-catalog data-mode={mode} data-base={base}>
+  <nav class="catalog-tabs" aria-label="Analysis category">
+    {[['', 'All tools', ''], ['Static', 'Static analysis', 'static/'], ['Dynamic', 'Dynamic analysis', 'dynamic/']].map(([value, label, path]) =>
+      <a data-catalog-category href={`${base}/${path}`} aria-current={mode === value ? 'page' : undefined}>{label}</a>
+    )}
+  </nav>
+  <form class="catalog-controls" role="search" aria-label="Filter tools">
+    <div class="search-row">
+      <label class="catalog-query"><span>Search the catalog</span><input type="search" name="q" placeholder="Tool name, language, or capability" autocomplete="off" /></label>
+      <label class="catalog-cost"><span>Cost</span><select name="cost"><option value="">All</option><option value="any-free">Any free option</option><option value="Free">Free</option><option value="Free with limits">Free with limits</option><option value="Paid">Paid</option></select></label>
+      <label class="catalog-sort"><span>Sort by</span><select name="sort"><option value="az">Name: A to Z</option><option value="za">Name: Z to A</option><option value="verified">Recently verified</option></select></label>
+    </div>
+    <div class="filter-row">
+      {groups.map(({ name, label, values }) => <label><span>{label}</span><select name={name}><option value="">All</option>{values.map((value) => <option value={value}>{value}</option>)}</select></label>)}
+    </div>
+  </form>
+  <section class="compare-tray" aria-label="Selected tools for comparison">
+    <div class="compare-tray-heading"><p data-selection-status role="status" tabindex="-1">Select two or three tools to compare.</p><a href={`${base}/compare/`} data-open-comparison>Open comparison</a><button type="button" data-clear-selection hidden>Clear selection</button></div>
+    <div class="selected-tools" data-selected-tools></div>
+  </section>
+  <div class="results-bar"><p role="status" aria-live="polite" aria-atomic="true" data-result-count>{tools.length} entries</p><button type="button" class="reset-filters">Clear filters</button></div>
+  <div class="tool-grid">
+    {tools.map((tool) => <article class="tool-card" data-tool-id={tool.id}>
+      <div class="card-meta"><span class:list={['mode-badge', { dynamic: tool.modes.includes('Dynamic') }]}>{tool.modes.join(' / ')}</span><span>{tool.licenseCategory}</span></div>
+      <h2><a href={`${base}/${tool.id}/`}>{tool.title}</a></h2>
+      <p class="tool-summary">{tool.description}</p>
+      <div class="target-tags">{tool.targets.map((target) => <span>{target}</span>)}</div>
+      <dl class="card-facts"><div><dt>Findings</dt><dd>{tool.findings.join(', ')}</dd></div><div><dt>Input</dt><dd>{tool.inputTypes.join(', ')}</dd></div><div><dt>Cost</dt><dd><a class="cost-link" href={`${base}/${tool.id}/#cost-and-editions`}>{tool.cost.join(' / ')}</a></dd></div><div><dt>Technique</dt><dd>{tool.techniques.join(', ')}</dd></div><div><dt>Languages</dt><dd>{tool.languages.slice(0, 4).join(', ')}{tool.languages.length > 4 ? ` +${tool.languages.length - 4}` : ''}</dd></div></dl>
+      <label class="compare-choice"><input type="checkbox" data-compare-id={tool.id} aria-label={`Compare ${tool.title}`} /> Compare</label>
+      <div class="card-footer"><span>Verified {tool.verified}</span><a href={`${base}/${tool.id}/`} aria-label={`Read notes on ${tool.title}`}>Read notes</a></div>
+    </article>)}
+  </div>
+  <div class="catalog-empty" hidden><h2>No matching tools</h2><p>Try a broader search or clear a filter. This catalog is a starting collection, not a complete inventory.</p><button type="button" class="reset-filters">Clear filters</button></div>
+  <p class="catalog-note">Cost applies to the listed edition or use. "Free with limits" has eligibility or usage conditions; a free trial does not count as a free edition. Required runtimes, hosting, and compute can have separate costs. Check the tool notes for details.</p>
+  <p class="catalog-note">Input type describes what a tool examines. Combine "Source code" with a language to find source analyzers; "Dependency metadata" covers manifests and SBOMs. Binary and HTTP tools can be language independent. Read each entry's scope for limits.</p>
+  <p class="catalog-note">Finding categories describe selected capabilities. Rules, languages, and editions differ; fuzzers and property tools may need assertions or instrumentation. Check Finding scope in the notes or comparison.</p>
+  <noscript><p>All tools are listed below. Enable JavaScript to search, filter, and sort.</p></noscript>
+  <script type="application/json" data-catalog-data set:html={JSON.stringify(tools).replace(/</g, '\u003c')} />
+  <script type="application/json" data-selection-data set:html={JSON.stringify(allTools.map(({ id, title }) => ({ id, title }))).replace(/</g, '\u003c')} />
+</tool-catalog>
+<script>
+  import { selectTools } from '../lib/catalog.mjs';
+  import { normalizeSelection, comparisonHref } from '../lib/comparison.mjs';
+  class ToolCatalog extends HTMLElement {
+    connectedCallback() {
+      const form = this.querySelector<HTMLFormElement>('form')!;
+      const grid = this.querySelector<HTMLElement>('.tool-grid')!;
+      const count = this.querySelector<HTMLElement>('[data-result-count]')!;
+      const empty = this.querySelector<HTMLElement>('.catalog-empty')!;
+      const tools = JSON.parse(this.querySelector('[data-catalog-data]')!.textContent!);
+      const cards = new Map(Array.from(this.querySelectorAll<HTMLElement>('[data-tool-id]')).map((card) => [card.dataset.toolId, card]));
+      const fields = ['q', 'finding', 'input', 'language', 'target', 'technique', 'license', 'cost', 'sort'];
+      const selectionTools: { id: string; title: string }[] = JSON.parse(this.querySelector('[data-selection-data]')!.textContent!);
+      const allowedIds = selectionTools.map((tool) => tool.id);
+      let selected: string[] = [];
+      const selectionStatus = this.querySelector<HTMLElement>('[data-selection-status]')!;
+      const checkboxes = [...this.querySelectorAll<HTMLInputElement>('[data-compare-id]')];
+      const updateSelection = (save = true) => {
+        selected = normalizeSelection(selected, allowedIds);
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = selected.includes(checkbox.dataset.compareId!);
+          checkbox.disabled = selected.length >= 3 && !checkbox.checked;
+        });
+        const selectionHint = selected.length === 3 ? 'Remove a tool to choose another.' : selected.length === 2 ? 'Ready to compare, or choose a third tool.' : 'Select one more tool to compare.';
+        selectionStatus.textContent = selected.length ? `${selected.length} of 3 selected. ${selectionHint}` : 'Select two or three tools to compare.';
+        const link = this.querySelector<HTMLAnchorElement>('[data-open-comparison]')!;
+        link.href = comparisonHref(this.dataset.base!, selected);
+        link.textContent = selected.length >= 2 ? `Compare ${selected.length} tools` : 'Open comparison';
+        this.querySelector<HTMLButtonElement>('[data-clear-selection]')!.hidden = !selected.length;
+        const list = this.querySelector('[data-selected-tools]')!; list.replaceChildren();
+        selected.forEach((id) => {
+          const button = document.createElement('button'); button.type = 'button';
+          button.textContent = `Remove ${selectionTools.find((tool) => tool.id === id)!.title}`;
+          button.addEventListener('click', () => { selected = selected.filter((value) => value !== id); updateSelection(); selectionStatus.focus(); });
+          list.append(button);
+        });
+        this.querySelectorAll<HTMLAnchorElement>('[data-catalog-category]').forEach((anchor) => {
+          const url = new URL(anchor.href);
+          if (selected.length) url.searchParams.set('compare', selected.join(',')); else url.searchParams.delete('compare');
+          anchor.href = url.pathname + url.search;
+        });
+        if (save) {
+          const url = new URL(location.href);
+          if (selected.length) url.searchParams.set('compare', selected.join(',')); else url.searchParams.delete('compare');
+          history.replaceState(null, '', url);
+        }
+      };
+      const restore = () => {
+        const params = new URLSearchParams(location.search);
+        selected = normalizeSelection(params.get('compare'), allowedIds);
+        updateSelection(false);
+        form.reset();
+        for (const name of fields) {
+          const control = form.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement;
+          const value = params.get(name);
+          if (value !== null) control.value = value;
+          if (name === 'sort' && !control.value) control.value = 'az';
+        }
+      };
+      const update = (save = true) => {
+        const filters = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+        const results = selectTools(tools, filters);
+        const visible = new Set(results.map((tool) => tool.id));
+        cards.forEach((card, id) => { card.hidden = !visible.has(id!); });
+        results.forEach((tool) => grid.append(cards.get(tool.id)!));
+        count.textContent = `${results.length} of ${tools.length} entries`;
+        empty.hidden = results.length !== 0;
+        grid.hidden = results.length === 0;
+        if (save) {
+          const url = new URL(location.href);
+          fields.forEach((name) => { const value = filters[name]; if (value && !(name === 'sort' && value === 'az')) url.searchParams.set(name, value); else url.searchParams.delete(name); });
+          history.replaceState(null, '', url);
+        }
+      };
+      form.addEventListener('input', () => update());
+      form.addEventListener('change', () => update());
+      form.addEventListener('submit', (event) => { event.preventDefault(); update(); });
+      checkboxes.forEach((checkbox) => checkbox.addEventListener('change', () => {
+        const id = checkbox.dataset.compareId!;
+        selected = checkbox.checked ? [...selected, id] : selected.filter((value) => value !== id);
+        updateSelection();
+      }));
+      this.querySelector('[data-clear-selection]')!.addEventListener('click', () => { selected = []; updateSelection(); selectionStatus.focus(); });
+      this.querySelectorAll('.reset-filters').forEach((button) => button.addEventListener('click', () => { form.reset(); update(); }));
+      window.addEventListener('popstate', () => { restore(); update(false); });
+      restore();
+      update(false);
+    }
+  }
+  if (!customElements.get('tool-catalog')) customElements.define('tool-catalog', ToolCatalog);
+</script>

@@ -1,0 +1,62 @@
+---
+title: Add or update a tool
+description: Maintain one Markdown file per tool and let the catalog update itself.
+---
+
+Each tool has one Markdown file in `src/content/docs/tools/`. Its metadata supplies the catalog filters and facts panel. The rest of the file contains your notes.
+
+## Update an existing entry
+
+1. Open its file, or use **Edit page** at the bottom of the tool's page to edit on GitHub.
+2. Update the facts and notes against primary documentation.
+3. Update `verified` only when you have checked the sources. Record an exact version in `scope` when the claim depends on one.
+4. Review the live preview and run the checks described in the repository README.
+
+## Add an entry
+
+1. Copy a similar tool file into the same folder using a lowercase, hyphenated filename ending in `.md`.
+2. Replace its title, description, metadata, sources, and notes.
+3. Use existing tag spellings where possible. New tags automatically appear in the filters.
+
+The entry automatically appears in the catalog, the matching analysis section, the tool sidebar, and the published site's search index. A tool can use both `Static` and `Dynamic` in `modes`.
+
+## Metadata fields
+
+| Field | What to record |
+| --- | --- |
+| `title`, `description` | Tool name and a short factual description. |
+| `tool.modes` | A list containing `Static`, `Dynamic`, or both. |
+| `tool.inputTypes` | One or more of `Source code`, `Binaries`, `Dependency metadata`, `Running applications`, `Callable code`, `Executable models`, or `Execution traces`. Drives the Input type filter. |
+| `tool.findings` | Selected finding categories, such as `Memory safety`, `Injection risks`, `Type errors`, or `Specification violations`. Drives What can it find? |
+| `tool.findingNote` | Explain whether the findings need selected rules, manual investigation, assertions, instrumentation, or user-supplied specifications. |
+| `tool.environment` | Where the analyzer runs, including OS, runtime, container/WSL routes, and documented compatibility limits. Distinguish host from target. |
+| `tool.setup` | Build, dependency, harness, annotation, and other preparation requirements. |
+| `tool.techniques` | Analysis methods such as `SAST`, `DAST`, or `Coverage-guided fuzzing`. |
+| `tool.languages` | Languages or ecosystems in this entry's verified scope. |
+| `tool.languageNote` | Coverage limits, incomplete lists, or language-independent behavior. |
+| `tool.targets` | Inputs or software types such as `Source code` or `HTTP APIs`. |
+| `tool.licenseCategory` | `Open source` or `Proprietary`, for the component this entry covers. |
+| `tool.license` | Specific terms and edition caveats. |
+| `tool.cost` | A list containing `Free`, `Free with limits`, and/or `Paid`. Multiple values represent different usage entitlements or plans for this entry. |
+| `tool.costNote` | Explain free-use eligibility, usage limits, and any paid alternatives. Do not count a time-limited trial as a free edition. |
+| `tool.editionGroup` | Optional shared comparison: `codeql`, `sonarqube`, `semgrep`, `burp`, `cppcheck`, `pvs-studio`, or `phpstan`. The table lives in `src/data/editions.ts`. |
+| `tool.website` | The official product or project URL. |
+| `tool.verified` | A quoted date such as `'2026-09-21'`. |
+| `tool.scope` | Product edition, component, and any verified version. |
+| `tool.sources` | A list of `label` and `url` pairs for primary references. |
+
+## Keep claims scoped
+
+Record what the analyzer examines in `inputTypes`, rather than the language used to implement the analyzer. Binary inspection is `Binaries`; manifest or SBOM matching is `Dependency metadata`. Use multiple values when separate documented workflows accept different inputs. Analysis mode remains separate: a binary can be inspected statically or executed under a dynamic checker.
+
+Language tags on a dependency scanner describe package ecosystems. They do not imply source-level analysis. Do not copy a bundled utility's broader language list into an entry for a different capability, such as PMD rules versus CPD duplicate detection.
+
+Finding categories are selected capabilities, not exhaustive coverage claims. Do not claim that a fuzzer supplies a property checker just because an assertion can be placed in its harness. Explain that dependency in `findingNote`. The comparison page reads these same fields automatically, so keep them useful without relying on the surrounding article.
+
+Cost and license type answer different questions. Proprietary software can be free to use. "Free with limits" means a continuing free option with eligibility or usage conditions, rather than a trial.
+
+Keep separately filterable entries when editions have different language or analysis capabilities. For example, do not label the paid edition's C++ analyzer as free just because a free edition of the product exists. Update the shared edition comparison when a product changes its free plan or paid features.
+
+Separate documentation review from hands-on experience. Record your test environment and versions if you add evaluation results. Avoid treating an unlisted language as unsupported when an entry only includes selected examples.
+
+Use ordinary Markdown headings beginning at level two (`##`); the site supplies the page title. Relative links should point to the rendered page path and end with a slash.

@@ -25,12 +25,20 @@ For a website, discovery may follow links, submit forms, or use a browser to rea
 
 These are ways to expose functionality to the test, not distinct security guarantees. See [Burp Scanner's crawl and audit model](https://portswigger.net/burp/documentation/scanner).
 
+## API and protocol testing
+
+[Schemathesis](../../tools/schemathesis/) generates tests from OpenAPI or GraphQL definitions and checks responses. [RESTler](../../tools/restler/) uses an OpenAPI specification to construct REST request sequences, including relationships such as creating a resource before reading it. Both require a running target and appropriate authentication; parsing a specification alone is not a dynamic test.
+
+For a custom network or device protocol, [boofuzz](../../tools/boofuzz/) lets you describe message fields and request order. It requires a suitable failure monitor and reset strategy. A generated input, an HTTP error, and a confirmed vulnerability are different results.
+
+These workflows can find correctness and robustness problems as well as security-relevant failures. Compare the enabled checks and exercised operations rather than assuming every API tester supplies the same DAST rules.
+
 ## Related dynamic techniques
 
 | Technique | What changes | Relationship to DAST |
 | --- | --- | --- |
-| Coverage-guided fuzzing | Generates inputs and uses execution feedback to guide further tests. | Can test native functions and libraries, beyond web scanning. See [libFuzzer](../../tools/libfuzzer/). |
-| Runtime memory checking | Observes memory operations during an execution. | Can detect memory defects; it is not an HTTP scanner. See [Memcheck](../../tools/valgrind-memcheck/). |
+| Coverage-guided fuzzing | Generates inputs and uses execution feedback to guide further tests. | Can test native or JVM functions and libraries, beyond web scanning. See [libFuzzer](../../tools/libfuzzer/) and [Jazzer](../../tools/jazzer/). |
+| Runtime memory checking | Observes memory operations during an execution. | Can detect memory defects; it is not an HTTP scanner. See [Memcheck](../../tools/valgrind-memcheck/) and [Dr. Memory](../../tools/dr-memory/). |
 | Runtime race detection | Observes conflicting accesses and synchronization between threads. | Checks a different class of runtime defects from memory bounds or web requests. See [ThreadSanitizer](../../tools/thread-sanitizer/). |
 | Temporal monitoring | Evaluates supplied signals against a temporal specification. | A monitor does not generate a falsification search by itself. See [RTAMT](../../tools/rtamt/). |
 | Model and temporal falsification | Searches simulation inputs for a trace that violates a behavioral requirement. | Fits under dynamic analysis and can test controllers or hybrid systems without a security focus. See [the falsification guide](../model-falsification/). |

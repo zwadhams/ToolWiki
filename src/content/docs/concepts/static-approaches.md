@@ -11,7 +11,7 @@ description: Distinguish source analysis, binary analysis, and known-vulnerabili
 | --- | --- | --- |
 | Source code | Code structure, types, values, or possible paths, often with build and dependency context. | [Cppcheck](../../tools/cppcheck/), [PHPStan](../../tools/phpstan/), [Clippy](../../tools/clippy/) |
 | Binaries | Compiled artifacts. A tool might recover code for weakness analysis or identify embedded components. | [cwe-checker](../../tools/cwe-checker/), [CVE Binary Tool](../../tools/cve-bin-tool/) |
-| Dependency metadata | Package manifests, lockfiles, or software bills of materials (SBOMs). | [CVE Binary Tool](../../tools/cve-bin-tool/) |
+| Dependency metadata | Package manifests, lockfiles, or software bills of materials (SBOMs). | [cargo-audit](../../tools/cargo-audit/), [OSV-Scanner](../../tools/osv-scanner/), [CVE Binary Tool](../../tools/cve-bin-tool/) |
 | Container images | Installed artifacts extracted from an image without running its application. | [OSV-Scanner](../../tools/osv-scanner/) |
 
 Use the catalog's **Input type** filter to browse [source analyzers](../../static/?input=Source%20code), [binary tools](../../static/?input=Binaries), or [dependency tools](../../static/?input=Dependency%20metadata). A tool with multiple input types has more than one documented workflow.
@@ -32,6 +32,22 @@ For JVM class files, see [Java source and bytecode analysis](../../guides/java-a
 | Formal verification | Can a stated property be established under the model and assumptions? | [CBMC](../../tools/cbmc/), [Frama-C](../../tools/frama-c/), [Dafny](../../tools/dafny/) |
 
 These categories overlap. For example, a linter can find real bugs, and an SCA tool can inspect binaries. The label describes the workflow, not a ranking of effectiveness.
+
+## Binary analysis questions
+
+The same executable can support several kinds of investigation:
+
+| Question | Starting tool | How to interpret the output |
+| --- | --- | --- |
+| What files or regions are embedded here? | [Binwalk](../../tools/binwalk/) | Candidate formats and offsets guide further inspection. |
+| What code structure can be recovered? | [Ghidra](../../tools/ghidra/) | Disassembly and decompilation need analyst interpretation. |
+| What strings can be recovered? | [FLOSS](../../tools/floss/) | Strings are leads; decoder emulation is distinct from a full sandbox run. |
+| Does this artifact match my patterns? | [YARA-X](../../tools/yara-x/) | A match establishes the rule's condition, not malicious intent. |
+| What capabilities are suggested by the evidence? | [capa](../../tools/capa/) | Record whether the evidence came from the binary or an execution report. |
+| Does recovered code contain a known weakness pattern? | [cwe-checker](../../tools/cwe-checker/) | Review code recovery and the applicable checker assumptions. |
+| Do identified dependencies match advisories? | [CVE Binary Tool](../../tools/cve-bin-tool/), [cargo-audit](../../tools/cargo-audit/) | Component/version identification and advisory matching are separate steps. |
+
+These tools complement one another. Start with the question you need to answer, and preserve locations and artifact versions when moving between them.
 
 Use **What can it find?** to filter by the kind of problem, such as memory safety or known vulnerable dependencies. Read Finding scope before comparing coverage: some categories depend on optional rules, annotations, or instrumentation. [Verification and generated tests](../verification-and-generated-tests/) explains what different results establish.
 

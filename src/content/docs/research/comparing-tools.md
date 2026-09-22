@@ -32,7 +32,11 @@ I use the [catalog comparison](../../compare/) to present documented capabilitie
 
 ## Related tools
 
-We used [SonarQube](../../tools/sonarqube/), Semgrep, [Cppcheck](../../tools/cppcheck/), [gosec](../../tools/gosec/), [SpotBugs](../../tools/spotbugs/), [Bandit](../../tools/bandit/), and [Brakeman](../../tools/brakeman/).
+We used [SonarQube](../../tools/sonarqube/), Semgrep, [Cppcheck](../../tools/cppcheck/), [gosec](../../tools/gosec/), [SpotBugs](../../tools/spotbugs/), [detekt](../../tools/detekt/), [Psalm](../../tools/psalm/), [Bandit](../../tools/bandit/), [Brakeman](../../tools/brakeman/), [cargo-audit](../../tools/cargo-audit/), and [WartRemover](../../tools/wartremover/). Our tool table also lists NodeJsScan for JavaScript and Roslyn for C#.
+
+I link [the .NET SDK analyzers](../../tools/dotnet-analyzers/) as related Roslyn-based tooling. The paper does not identify the exact Roslyn package or rule set, so I do not assign our C# results to the current SDK defaults.
+
+Cargo-audit matches dependency versions to advisories; it does not inspect Rust source logic for new defects. I retain that scope distinction when comparing its findings with those of source analyzers. Likewise, a tool name does not establish use of every optional mode: Psalm's separate taint analysis and detekt's type-resolution tasks need explicit configuration.
 
 I list [Semgrep CE](../../tools/semgrep-ce/) and [Semgrep Code](../../tools/semgrep-code/) separately, as I do [SonarQube Community Build](../../tools/sonarqube-community/) and Server. Our paper does not provide enough edition detail to assign the findings to these current offerings.
 

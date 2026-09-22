@@ -11,10 +11,12 @@ Memory errors can be investigated before execution or while tests exercise a pro
 | --- | --- | --- | --- |
 | Source and build configuration | [Infer Pulse](../../tools/infer/), [Cppcheck](../../tools/cppcheck/), [Clang Static Analyzer](../../tools/clang-static-analyzer/) | Capture or configure the source analysis. | Models and selected checkers determine coverage. |
 | Source plus an instrumentable build | [AddressSanitizer](../../tools/address-sanitizer/) | Compile and link with instrumentation, then run tests or fuzzing. | It checks executed behavior and does not diagnose every class of memory defect. |
-| A compatible native executable | [Memcheck](../../tools/valgrind-memcheck/) | Run it under Memcheck with a reproducible workload. | Platform support, workload coverage, and runtime overhead matter. |
+| A compatible native executable | [Memcheck](../../tools/valgrind-memcheck/), [Dr. Memory](../../tools/dr-memory/) | Run it under the selected checker with a reproducible workload. | Platform support, workload coverage, and runtime overhead matter. |
 | A precise property and environment model | [CBMC](../../tools/cbmc/), [Frama-C](../../tools/frama-c/), [Polyspace Code Prover](../../tools/polyspace-code-prover/) | Configure bounds, contracts, ranges, or other required modeling. | Proof claims depend on the model and completeness conditions. |
 
 [Compare Infer, AddressSanitizer, and Memcheck](../../compare/?tools=tools%2Finfer%2Ctools%2Faddress-sanitizer%2Ctools%2Fvalgrind-memcheck).
+
+For a Windows executable, consider [Dr. Memory's documented Windows workflow](../../tools/dr-memory/). It instruments execution without requiring a sanitizer build. Check the selected release's architecture and application limitations, and keep symbols for useful diagnostic locations. [Compare Dr. Memory, Memcheck, and AddressSanitizer](../../compare/?tools=tools%2Fdr-memory%2Ctools%2Fvalgrind-memcheck%2Ctools%2Faddress-sanitizer/) before choosing a setup.
 
 ## A useful first experiment
 

@@ -27,6 +27,12 @@ Choose one Java revision with a reproducible build. Include a small null-access 
 
 The worked examples on the SpotBugs and JBMC pages are illustrative and have not been analyzed locally.
 
+## Add execution tests
+
+[Jazzer](../../tools/jazzer/) adds a dynamic workflow for JVM code. Compile a callable fuzz test, let the fuzzer vary its inputs, and use assertions or enabled detectors to identify failures. Its JUnit integration defaults to regression testing; enable fuzzing mode when you intend to generate new inputs.
+
+SpotBugs inspecting class files and Jazzer executing instrumented classes both use compiled artifacts. Their conclusions differ: one reports code patterns, while the other reports failures from exercised behavior. A fuzzing run without a failure is not a proof that other inputs are safe.
+
 ## Avoid misleading comparisons
 
 A scanner can report a pattern that a verifier never checks because its entry point cannot reach the code. A verifier can fail an assertion that no supplied scanner rule attempts to enforce. Matching the intended question is more useful than ranking raw issue counts.

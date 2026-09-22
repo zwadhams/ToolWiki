@@ -37,6 +37,8 @@ These considerations support interpretation of tool output. I do not present the
 
 [cwe-checker](../../tools/cwe-checker/) examines recovered code for weakness patterns. We discuss it in connection with possible reliability measurements. We did not conduct a comparative evaluation of binary analyzers.
 
+We also discuss [Ghidra](../../tools/ghidra/), [capa](../../tools/capa/), and YARA in the context of binary analysis and obfuscation. Ghidra provides recovered code structure, while capa matches features to capability rules. I include [YARA-X](../../tools/yara-x/) as a related successor to YARA; our paper does not evaluate YARA-X. These outputs support different questions and should not be combined into a sophistication score without validation.
+
 [CVE Binary Tool](../../tools/cve-bin-tool/) provides a related workflow based on component identification and advisory matching. I link it here to clarify the distinction between binary-analysis inputs and analysis purpose. We did not evaluate it in the malware paper.
 
 Use the [Binaries filter](../../static/?input=Binaries) and each tool's scope to identify an appropriate workflow.

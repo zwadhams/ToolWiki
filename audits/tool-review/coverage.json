@@ -1,0 +1,482 @@
+{
+  "address-sanitizer": {
+    "supported": 23,
+    "supported with qualification": 10,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "165d35cca1fe4db7151366a9b6eb67a9f0395885e27ea88316952d0bfe2d190e"
+  },
+  "afl-plus-plus": {
+    "supported": 30,
+    "supported with qualification": 6,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "419653ffe060ec61d356f77610948c6943eb9f7eb8c0b2eb5aa0040d62c7a6d0"
+  },
+  "angr": {
+    "supported": 21,
+    "supported with qualification": 15,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "4db2e54f9baad2acece419751d791ff721500baf66ce14e173e798787ff73288"
+  },
+  "bandit": {
+    "supported": 22,
+    "supported with qualification": 9,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "0a79b01277f0161b991962a7de88328c3e6f9183c6168d880aadcf20d8f375c1"
+  },
+  "binwalk": {
+    "supported": 24,
+    "supported with qualification": 9,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "27653e7586d1266765332303780ec1b6092bf405fc4385626887e8e75803bdeb"
+  },
+  "boofuzz": {
+    "supported": 24,
+    "supported with qualification": 8,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "f96487dbcda95675b00d809fc6e6881d8a06cf64307bea82905acdb69a0259f4"
+  },
+  "brakeman": {
+    "supported": 25,
+    "supported with qualification": 13,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "7317ea37e68e32ed2fe8d10b15eaf6c29ebf9fefea53fb089e6f09d8b553e077"
+  },
+  "breach": {
+    "supported": 25,
+    "supported with qualification": 7,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "26f4696fad3ebf09dc6434d1c8a8801debae439e807c2dd424a791b4e49f63e9"
+  },
+  "burp-suite-community": {
+    "supported": 23,
+    "supported with qualification": 6,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "93469b1cb1795342667be58a6dec3f409620da7953516fcf4a76fa18d7daabfe"
+  },
+  "burp-suite-professional": {
+    "supported": 23,
+    "supported with qualification": 9,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "acf285c02b9a8d3e29a4cd1ae437961bdb953408bb89c17fbbd74f9f5453c38f"
+  },
+  "capa": {
+    "supported": 27,
+    "supported with qualification": 10,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "1c5da7a1058c8bcf848f7f56e754150e50e7a5a84fd5a8888cf9251462f1fc11"
+  },
+  "cargo-audit": {
+    "supported": 23,
+    "supported with qualification": 13,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "d7ef93bf86cc95ac3ef8335ab5a3de82313348a28be2dd230b702cd47574c27c"
+  },
+  "cbmc": {
+    "supported": 24,
+    "supported with qualification": 7,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "2526dfda53cf6e7fd86580abb58cf512c506bdca7350171160eb308a2ba4bb79"
+  },
+  "clang-static-analyzer": {
+    "supported": 23,
+    "supported with qualification": 6,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "dc48f5a5b18187f6e55641f75a86b6f746a3f1fa78da7a094c02c350c3e785cf"
+  },
+  "clippy": {
+    "supported": 25,
+    "supported with qualification": 8,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "0edc0f92fb78ed60fc06584c846da0e695eb64e83acfe6a8c8544ff56697df69"
+  },
+  "codeql": {
+    "supported": 37,
+    "supported with qualification": 11,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "ad913b16f343679ab1f7fca040a8e0a90358c0e627223f4da197aa8dbfa895c3"
+  },
+  "coverity-scan": {
+    "supported": 30,
+    "supported with qualification": 10,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "2926447856ba03f97914a5e066ec0c3f577e3248ba032bf5a8d00b246ffc3d05"
+  },
+  "coverity": {
+    "supported": 44,
+    "supported with qualification": 12,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "f035862c58bbd8d237a4156409a46e0a441e10836141a35c4b0953338b90ba2c"
+  },
+  "cppcheck": {
+    "supported": 25,
+    "supported with qualification": 11,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "075a0c42d7317b13d77c91df51c173ea4edbd8d9b3d78fec70a52f155b3517c3"
+  },
+  "cve-bin-tool": {
+    "supported": 39,
+    "supported with qualification": 10,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "b213cbe6f6f709dc80cf007760e009aee6a000bf29788821c65926165754ed37"
+  },
+  "cwe-checker": {
+    "supported": 28,
+    "supported with qualification": 8,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "aafa8aabdcd305b4dd8624bfee091561018747e62b5b825286f3e829dec76155"
+  },
+  "dafny": {
+    "supported": 24,
+    "supported with qualification": 7,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "75c1db5ed92b03828feb5b2d7bbf558a6f1dfad6b0a4b7adb9f6d23b9ef01e1f"
+  },
+  "detekt": {
+    "supported": 24,
+    "supported with qualification": 11,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "958990b7699cb6ffb70a296e67bd4939c3d8d248b08a2ddfed80f835026e6585"
+  },
+  "dotnet-analyzers": {
+    "supported": 24,
+    "supported with qualification": 12,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "b4c1d9aa79133b3765e57060290872ddce6e63bacf11bf63866927101e278f20"
+  },
+  "dr-memory": {
+    "supported": 26,
+    "supported with qualification": 10,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "8e0be0961da8d0a65fdf0601e3fe20ec1c64b3e5b9fca10b441fd51d81eb6b21"
+  },
+  "eslint": {
+    "supported": 26,
+    "supported with qualification": 10,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "aeab059611b0040381b570aec5f5065451d746d502a2c227a6a036a246e70dfc"
+  },
+  "floss": {
+    "supported": 27,
+    "supported with qualification": 9,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "6e7c541eafb2cdf3be6e6710affa535d10340d4764b167f683af48fc12ce1261"
+  },
+  "frama-c": {
+    "supported": 26,
+    "supported with qualification": 7,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "4ced9ef507b68f76fe6e3824ba334d18931b69790797fb2a095223d482bab153"
+  },
+  "ghidra": {
+    "supported": 23,
+    "supported with qualification": 8,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "d3bbd13c32acc5dc7a05502a31be09d208ff4d8ccd340ffae2cf65b9f1c8b1b6"
+  },
+  "gosec": {
+    "supported": 25,
+    "supported with qualification": 10,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "c273c124b7b8be0e5ff1f260a2b833800ee7ae907814a28f4434ef4a7017757b"
+  },
+  "hypothesis": {
+    "supported": 24,
+    "supported with qualification": 7,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "29ac29db3a19a0742115386045e9a8583bb9c8bf8a50adc6a84336afe9bc934b"
+  },
+  "infer": {
+    "supported": 25,
+    "supported with qualification": 12,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "d3c0098a7eac4c6d5d74095a1ffce20b11e42c87ce9d8eafef013558d31f61c3"
+  },
+  "jazzer": {
+    "supported": 25,
+    "supported with qualification": 10,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "68635c0ac15963f5c7d0780f6b0cd1f993d5252fd59328f1963aa57effd20594"
+  },
+  "jbmc": {
+    "supported": 23,
+    "supported with qualification": 12,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "102e9615d8818d8536ce65bf284aed21d457d743de0460d4280642a01c9310ea"
+  },
+  "kani": {
+    "supported": 24,
+    "supported with qualification": 12,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "11049fae42d8edc82c707b8d75be8ca252d9bee7714c6be46f4da0e08126f580"
+  },
+  "libfuzzer": {
+    "supported": 24,
+    "supported with qualification": 6,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "bd68519692b7a9c353289c3b201e9e0eab443f281b2439b11ce1c755c562c3b7"
+  },
+  "osv-scanner": {
+    "supported": 38,
+    "supported with qualification": 13,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "e096acad5d7c1c95552a721d0611780efba4dc10a55f98cd9bff4d17a1d71e12"
+  },
+  "phpstan": {
+    "supported": 25,
+    "supported with qualification": 11,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "2d58632f00db7172a4225848080e90f89e482a0f2affb6bbb6c919ce80e1f14b"
+  },
+  "pmd": {
+    "supported": 35,
+    "supported with qualification": 7,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "d73f2e1f7a7ad6077383262374f26e4af7a7d3a1bd6902153484452e7c948fb8"
+  },
+  "polyspace-code-prover": {
+    "supported": 25,
+    "supported with qualification": 11,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "047a381c2bd1838af5d58f98e841afc81debafa9a4a7269572887df2da094668"
+  },
+  "psalm": {
+    "supported": 25,
+    "supported with qualification": 12,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "f5db066cefd709fe8e3c44c64fc899fd09c4762f1a0310f201580ed5f8905863"
+  },
+  "psy-taliro": {
+    "supported": 24,
+    "supported with qualification": 8,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "ee6b23194a065223648c8773c919bf55a388cef2defb4508b677272ae2ba73ad"
+  },
+  "pvs-studio": {
+    "supported": 35,
+    "supported with qualification": 11,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "f4b38d99fdc20114a7230ad56a4515d485691d4c18f360d5d4e5c3c994292204"
+  },
+  "restler": {
+    "supported": 24,
+    "supported with qualification": 9,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "5bac5bf5706bfa2e706409b7ca98784a71a6ac94183916e56c5cdaab2b87d191"
+  },
+  "rtamt": {
+    "supported": 24,
+    "supported with qualification": 6,
+    "contradicted": 0,
+    "unresolved": 2,
+    "assessed": true,
+    "sha256": "ae38af310aa36ef7091f69ad5213db37ae6a2e5e277761d508214aa66859ebe7"
+  },
+  "ruff": {
+    "supported": 28,
+    "supported with qualification": 9,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "c4dec4ecc0638d88fee0bacc9a2e73cc09baf5a9b81c1012f94f4a5ce092da9a"
+  },
+  "s-taliro": {
+    "supported": 21,
+    "supported with qualification": 5,
+    "contradicted": 0,
+    "unresolved": 6,
+    "assessed": true,
+    "sha256": "639c2c612a13a7fdea8ef4649118b589ee469f395881e30cd8046ff1c9ce8e83"
+  },
+  "schemathesis": {
+    "supported": 27,
+    "supported with qualification": 9,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "364add0b7735e9331ca12c5d3fb723328089214528d6070880b97bef9068b73a"
+  },
+  "semgrep-ce": {
+    "supported": 34,
+    "supported with qualification": 13,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "1a3247c809d1f6dd29d1c849d97e87e8e8408d7ea6256739914892276d55db68"
+  },
+  "semgrep-code": {
+    "supported": 41,
+    "supported with qualification": 9,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "cf056668b488861deb1809b6067c9f3ee06e1c71e0f8f8d1843020c2120fe00f"
+  },
+  "sonarqube-community": {
+    "supported": 44,
+    "supported with qualification": 10,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "5372e9645c097d94788b0ad56616ff4299dcce472cfccbf86b18a9dbc4beda08"
+  },
+  "sonarqube": {
+    "supported": 41,
+    "supported with qualification": 12,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "121506bcee08bb0e39b0070c433f162e51f359d8c1987bf693ca2a424dd7e95b"
+  },
+  "spotbugs": {
+    "supported": 26,
+    "supported with qualification": 13,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "a62358ddb3e517a0248b3608eaeabcf01a69ecc987bd759fa141ee9f469b963d"
+  },
+  "staticcheck": {
+    "supported": 25,
+    "supported with qualification": 9,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "80ef85f34f481ee9d6e7a37df3877f86743049f5432bbd52c4b8b94a01c5f4a6"
+  },
+  "thread-sanitizer": {
+    "supported": 21,
+    "supported with qualification": 11,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "233103db4ff8ad8b0229f3d142658364ff6382d61c44c469995053c861616683"
+  },
+  "valgrind-memcheck": {
+    "supported": 21,
+    "supported with qualification": 7,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "1c7e8c0fdee550e694bf4f480685ea08d0f72e50c068aecd465a5855a797bb68"
+  },
+  "verifai": {
+    "supported": 25,
+    "supported with qualification": 12,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "84e6ca706ebb2d30493eb0204dd2341430b3fd8c3f99add69e73edaf34a92358"
+  },
+  "wartremover": {
+    "supported": 23,
+    "supported with qualification": 12,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "93772415f56ac15b8fd9f0fe9164b5d9fc05cecde9fa4f2bde126e87c82d432f"
+  },
+  "yara-x": {
+    "supported": 23,
+    "supported with qualification": 13,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "c3302cb4eb0f9436964aae6cbfe1b43c5ad8b789fedf3db18f4326f9c8491f41"
+  },
+  "zap": {
+    "supported": 23,
+    "supported with qualification": 8,
+    "contradicted": 0,
+    "unresolved": 0,
+    "assessed": true,
+    "sha256": "18ef9f083fce5d846fb739b60a52ef58f95c9dd301cd6d46a07b5375d41f7d07"
+  }
+}

@@ -17,7 +17,7 @@ tool:
   cost: [Free]
   costNote: Free under the current open-source terms. The project also documents an optional commercial licensing route with a donation requirement; it changes licensing terms rather than unlocking a paid detection tier. Check the license of the exact release and components you use.
   website: https://aflplus.plus/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Current stable repository documentation identifying version 5.03c. Earlier releases can have different licensing; the current license is not inferred from older Apache-only descriptions.
   sources:
     - label: AFL++ workflow, findings, and current licensing

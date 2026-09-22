@@ -13,7 +13,7 @@ tool:
   cost: [Free]
   costNote: Free Python toolbox. MATLAB is not required for a Python-only workflow. An external simulator, optional integration, or compute service can have its own costs and license requirements.
   website: https://psy-taliro.readthedocs.io/latest/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: PSY-TaLiRo 3.1.0 documentation; supported temporal syntax depends on the chosen monitor.
   findings: ["Temporal requirement violations"]
   findingNote: "You define temporal requirements and expose signals through a model/monitor interface. A finite search cannot prove universal satisfaction."

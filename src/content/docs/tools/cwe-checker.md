@@ -13,7 +13,7 @@ tool:
   cost: [Free]
   costNote: Free open-source analyzer. Ghidra and the other required analysis components have their own licenses; a container runtime or hosted compute can add costs.
   website: https://github.com/fkie-cad/cwe_checker
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Official cwe_checker repository and checker documentation; ELF is the main target, with experimental kernel-module and bare-metal support.
   findings: ["Memory safety","Concurrency issues","Unsafe API use"]
   findingNote: "Selected binary CWE checks, including lifetime errors and TOCTOU patterns. Enabled checks and recovered program models determine coverage."

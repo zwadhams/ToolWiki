@@ -9,9 +9,9 @@ tool:
   languageNote: These tags describe model execution and the testing environment. Temporal requirements are evaluated over simulation traces, rather than source code syntax.
   targets: [Simulated systems, Hybrid systems]
   licenseCategory: Open source
-  license: GPL-3.0, as reported in ARCH-COMP 2019
+  license: GPL, as reported in ARCH-COMP 2019; the report does not specify the license version
   cost: [Free]
-  costNote: The cited tool report describes a free GPL-3.0 toolbox. MATLAB and any required Simulink or additional toolbox licenses are separate. Current distribution availability and release terms have not been reverified.
+  costNote: The historical toolbox was publicly available under the GPL according to the cited report. MATLAB and any required Simulink or additional toolbox licenses are separate. Current distribution availability, exact GPL version, and release terms have not been reverified.
   website: https://sites.google.com/a/asu.edu/s-taliro/s-taliro
   verified: '2026-09-21'
   scope: Historical MATLAB S-TaLiRo described in the 2014 tool paper and ARCH-COMP 2019 report; current installation availability is unverified.
@@ -40,7 +40,7 @@ This entry provides context for reading falsification research or reproducing ex
 
 ## Availability and setup
 
-The historical project link redirected to a Google sign-in page during this review. A current downloadable release and its installation instructions could not be verified. The Free and GPL-3.0 labels reflect the cited report, not a newly inspected distribution.
+The historical project link redirected to a Google sign-in page during this review. A current downloadable release and its installation instructions could not be verified. The Free and Open source labels describe the historical toolbox, not a newly inspected distribution. The ARCH-COMP report names the GPL but does not specify its version; the superscript 3 after GPL is a project-link footnote, not a license version.
 
 Before reproducing an experiment, match its toolbox version, model, MATLAB dependencies, and search configuration.
 

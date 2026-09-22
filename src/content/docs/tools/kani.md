@@ -17,7 +17,7 @@ tool:
   cost: ["Free"]
   costNote: "Free open-source verifier. No paid edition is needed; solver time and CI compute are separate resource costs."
   website: "https://model-checking.github.io/kani/"
-  verified: "2026-09-21"
+  verified: "2026-09-22"
   scope: "Current Kani documentation and supported Rust feature set. A bounded proof claim must state its assumptions and completeness conditions."
   sources:
     - label: "Capabilities and project scope"

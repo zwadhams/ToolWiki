@@ -13,7 +13,7 @@ tool:
   costNote: Free engine in the LLVM toolchain. You provide the build environment and fuzzing compute.
   license: Apache-2.0 with LLVM exceptions
   website: https://llvm.org/docs/LibFuzzer.html
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: LLVM libFuzzer and its in-process harness workflow.
   findings: ["Crashes and hangs","Memory safety","Specification violations"]
   findingNote: "Execution failures and timeouts; detailed memory errors need sanitizer instrumentation and property failures need assertions or another failure signal."

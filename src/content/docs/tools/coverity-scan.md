@@ -18,7 +18,7 @@ tool:
   costNote: "Free for approved registered open-source projects. Submission quotas vary with project size. Corporate-maintained projects can require discretionary approval; private commercial code is not covered by general free access."
   editionGroup: "coverity"
   website: "https://scan.coverity.com/"
-  verified: "2026-09-21"
+  verified: "2026-09-22"
   scope: "Coverity Scan service only. Free access, languages, quotas, and data handling follow the Scan terms rather than commercial Coverity entitlements."
   sources:
     - label: "Scan service and advertised languages"

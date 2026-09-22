@@ -17,7 +17,7 @@ tool:
   cost: ["Free"]
   costNote: "Free local analyzer. Pulse does not require a paid edition; build infrastructure and compute are separate costs."
   website: "https://fbinfer.com/"
-  verified: "2026-09-21"
+  verified: "2026-09-22"
   scope: "Pulse-focused entry using the current 1.3.0 documentation. This is not a combined capability list for every Infer checker."
   sources:
     - label: "Pulse languages, diagnostics, and modeling limits"

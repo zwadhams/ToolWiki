@@ -1,0 +1,412 @@
+[
+  {
+    "file": "src/content/docs/404.md",
+    "baselineSha256": "b73dabe4f67971b674e02fcaf2e406cd7128aec3ed7bc64b2ba2f7b737a2a69b",
+    "reviewedSha256": "b73dabe4f67971b674e02fcaf2e406cd7128aec3ed7bc64b2ba2f7b737a2a69b"
+  },
+  {
+    "file": "src/content/docs/compare.md",
+    "baselineSha256": "232ca731013e196081b80b894ee61fc0670774da5136fdfc1ef523a1a119bc07",
+    "reviewedSha256": "232ca731013e196081b80b894ee61fc0670774da5136fdfc1ef523a1a119bc07"
+  },
+  {
+    "file": "src/content/docs/concepts/dast-approaches.md",
+    "baselineSha256": "fb00ce568be0c8eabe3bfe30347390caf05edd168a601dc44adfdd814581d4fa",
+    "reviewedSha256": "fb00ce568be0c8eabe3bfe30347390caf05edd168a601dc44adfdd814581d4fa"
+  },
+  {
+    "file": "src/content/docs/concepts/model-falsification.md",
+    "baselineSha256": "aeb30290729334f71916c7b6bda89d9aa6a54038384d5db94585c6b7d6fe967c",
+    "reviewedSha256": "8f106e039bdda27eda2fffe63b9fb232b650ab23de2b29539ecef74a606e3cab"
+  },
+  {
+    "file": "src/content/docs/concepts/sast-vs-dast.md",
+    "baselineSha256": "600bdf352a5bfad022fd5f6ea078c435dd5f75d7aa902ef3562c2d0ddff8d089",
+    "reviewedSha256": "600bdf352a5bfad022fd5f6ea078c435dd5f75d7aa902ef3562c2d0ddff8d089"
+  },
+  {
+    "file": "src/content/docs/concepts/static-approaches.md",
+    "baselineSha256": "5f070f0c63a608d6f091ef5f9c345c7b307eaa229eb2656c0535c2fd67402812",
+    "reviewedSha256": "5f070f0c63a608d6f091ef5f9c345c7b307eaa229eb2656c0535c2fd67402812"
+  },
+  {
+    "file": "src/content/docs/concepts/static-vs-dynamic.md",
+    "baselineSha256": "0a57f7b7e8df397389142a883922201dfa13ac30e4f07bd72d2040506c0390b9",
+    "reviewedSha256": "4d4208b9eaf0e0e658c2747b93e36ae49b4e598603037db9560ab6027fef743a"
+  },
+  {
+    "file": "src/content/docs/concepts/verification-and-generated-tests.md",
+    "baselineSha256": "5be5bfb5ab5e06cfa37f1e79863c4087841a5b6451f703faf93f513e03feacd6",
+    "reviewedSha256": "5be5bfb5ab5e06cfa37f1e79863c4087841a5b6451f703faf93f513e03feacd6"
+  },
+  {
+    "file": "src/content/docs/dynamic.md",
+    "baselineSha256": "9856dc73d873a50944f52eaaaa238f876ba76370349e32366e01c82f06ee0fbd",
+    "reviewedSha256": "fa5aae8e21809bfd18fdd656612a941a8e01182773f9d37eceacc60df593f521"
+  },
+  {
+    "file": "src/content/docs/guides/editing.md",
+    "baselineSha256": "60827fcf854ea87186a57b0f44ee2209a8467c72bc8076692618200d368aa3b1",
+    "reviewedSha256": "60827fcf854ea87186a57b0f44ee2209a8467c72bc8076692618200d368aa3b1"
+  },
+  {
+    "file": "src/content/docs/guides/java-analysis.md",
+    "baselineSha256": "0323ca73d7e269fa22e9df6974daad43ab7b331ca343669aff19a57ca69b7798",
+    "reviewedSha256": "0323ca73d7e269fa22e9df6974daad43ab7b331ca343669aff19a57ca69b7798"
+  },
+  {
+    "file": "src/content/docs/guides/memory-error-detection.md",
+    "baselineSha256": "21da2e7bf84a399e4bd2b6ff999762932881820007d7887d1eafc90af78eaa0c",
+    "reviewedSha256": "21da2e7bf84a399e4bd2b6ff999762932881820007d7887d1eafc90af78eaa0c"
+  },
+  {
+    "file": "src/content/docs/guides/temporal-monitoring-and-falsification.md",
+    "baselineSha256": "4795cb812d98f1a79794f2e483f15bf3ff63928d76294344323b9ad5886ce2b6",
+    "reviewedSha256": "4795cb812d98f1a79794f2e483f15bf3ff63928d76294344323b9ad5886ce2b6"
+  },
+  {
+    "file": "src/content/docs/index.md",
+    "baselineSha256": "340f0693c0247e8f55bbe922365daa954e77bda07c736d0c2b0cf1353809ef3e",
+    "reviewedSha256": "340f0693c0247e8f55bbe922365daa954e77bda07c736d0c2b0cf1353809ef3e"
+  },
+  {
+    "file": "src/content/docs/research/binary-analysis.md",
+    "baselineSha256": "9de9309d0708a49ebda8bed62842eb6d9086e66eba8c37eb9de56421c8183500",
+    "reviewedSha256": "9de9309d0708a49ebda8bed62842eb6d9086e66eba8c37eb9de56421c8183500"
+  },
+  {
+    "file": "src/content/docs/research/comparing-tools.md",
+    "baselineSha256": "2287fcfa075496afd7b398cbe32ff9142447efcf981c3705771e7d2815659082",
+    "reviewedSha256": "2287fcfa075496afd7b398cbe32ff9142447efcf981c3705771e7d2815659082"
+  },
+  {
+    "file": "src/content/docs/research/index.md",
+    "baselineSha256": "3c58094befdf227f4ca8d17552a5df10fd53dba1e06b209ec5eb2d7cf7e0565d",
+    "reviewedSha256": "2c78748c01fe4a32e5858d4500e6322ba0dfe0f6aa023468b6a4836d6e3a8dff"
+  },
+  {
+    "file": "src/content/docs/research/sast-adoption.md",
+    "baselineSha256": "400bbcea5b70645c7a779f4de1ebb9ca14c2610fc10fab9c35f93635aabe7917",
+    "reviewedSha256": "400bbcea5b70645c7a779f4de1ebb9ca14c2610fc10fab9c35f93635aabe7917"
+  },
+  {
+    "file": "src/content/docs/research/sast-workflow.md",
+    "baselineSha256": "ba25bdc0e96ebde21834b85dce52e32e225ca04d618574e67d4e9fe2f7a15a77",
+    "reviewedSha256": "ba25bdc0e96ebde21834b85dce52e32e225ca04d618574e67d4e9fe2f7a15a77"
+  },
+  {
+    "file": "src/content/docs/research/software-quality.md",
+    "baselineSha256": "fa4b461014ea4ebddb26cae523b580385b26c719f3da0dd5433679ec55e76fa8",
+    "reviewedSha256": "fa4b461014ea4ebddb26cae523b580385b26c719f3da0dd5433679ec55e76fa8"
+  },
+  {
+    "file": "src/content/docs/static.md",
+    "baselineSha256": "95b59d0525eea3d3525720ff6eaad097285d43ffe58ec4fb10ef5f9d33b58091",
+    "reviewedSha256": "95b59d0525eea3d3525720ff6eaad097285d43ffe58ec4fb10ef5f9d33b58091"
+  },
+  {
+    "file": "src/content/docs/tools/address-sanitizer.md",
+    "baselineSha256": "e24e0dbbe29652fd1df243a2ac3bd9895639fc5b8faaf285425259ca1d21a99a",
+    "reviewedSha256": "165d35cca1fe4db7151366a9b6eb67a9f0395885e27ea88316952d0bfe2d190e"
+  },
+  {
+    "file": "src/content/docs/tools/afl-plus-plus.md",
+    "baselineSha256": "cc3834c79ba675065bf6760a6b29ff72b6d74a4f5fddeb923d99f086c0067149",
+    "reviewedSha256": "419653ffe060ec61d356f77610948c6943eb9f7eb8c0b2eb5aa0040d62c7a6d0"
+  },
+  {
+    "file": "src/content/docs/tools/angr.md",
+    "baselineSha256": "b688e97bbc41f0730e341905b0a0576e9313b17d3d4cf4bc0583b86336049bba",
+    "reviewedSha256": "4db2e54f9baad2acece419751d791ff721500baf66ce14e173e798787ff73288"
+  },
+  {
+    "file": "src/content/docs/tools/bandit.md",
+    "baselineSha256": "a2888c04c7f4cda8a3306e4e00568d9038a62091240a3fb04f313f1b9f51d2d4",
+    "reviewedSha256": "0a79b01277f0161b991962a7de88328c3e6f9183c6168d880aadcf20d8f375c1"
+  },
+  {
+    "file": "src/content/docs/tools/binwalk.md",
+    "baselineSha256": "27653e7586d1266765332303780ec1b6092bf405fc4385626887e8e75803bdeb",
+    "reviewedSha256": "27653e7586d1266765332303780ec1b6092bf405fc4385626887e8e75803bdeb"
+  },
+  {
+    "file": "src/content/docs/tools/boofuzz.md",
+    "baselineSha256": "f96487dbcda95675b00d809fc6e6881d8a06cf64307bea82905acdb69a0259f4",
+    "reviewedSha256": "f96487dbcda95675b00d809fc6e6881d8a06cf64307bea82905acdb69a0259f4"
+  },
+  {
+    "file": "src/content/docs/tools/brakeman.md",
+    "baselineSha256": "df1fd843a14b57bf3f16871060f93354b9e11116fbb04729949f6613725f6852",
+    "reviewedSha256": "7317ea37e68e32ed2fe8d10b15eaf6c29ebf9fefea53fb089e6f09d8b553e077"
+  },
+  {
+    "file": "src/content/docs/tools/breach.md",
+    "baselineSha256": "2cebe5b6501990a5151bd3b4a329cb07233e15373c229f3387d7cfa6b86dffdc",
+    "reviewedSha256": "26f4696fad3ebf09dc6434d1c8a8801debae439e807c2dd424a791b4e49f63e9"
+  },
+  {
+    "file": "src/content/docs/tools/burp-suite-community.md",
+    "baselineSha256": "2fc002d64543ab31874c4321a72fca5263197948056f754330b88645efdb307c",
+    "reviewedSha256": "93469b1cb1795342667be58a6dec3f409620da7953516fcf4a76fa18d7daabfe"
+  },
+  {
+    "file": "src/content/docs/tools/burp-suite-professional.md",
+    "baselineSha256": "b6c1c450ca8ca3769aa96eec5ac928e6380036e7f96bed702751f2bad34523c4",
+    "reviewedSha256": "acf285c02b9a8d3e29a4cd1ae437961bdb953408bb89c17fbbd74f9f5453c38f"
+  },
+  {
+    "file": "src/content/docs/tools/capa.md",
+    "baselineSha256": "1c5da7a1058c8bcf848f7f56e754150e50e7a5a84fd5a8888cf9251462f1fc11",
+    "reviewedSha256": "1c5da7a1058c8bcf848f7f56e754150e50e7a5a84fd5a8888cf9251462f1fc11"
+  },
+  {
+    "file": "src/content/docs/tools/cargo-audit.md",
+    "baselineSha256": "d7ef93bf86cc95ac3ef8335ab5a3de82313348a28be2dd230b702cd47574c27c",
+    "reviewedSha256": "d7ef93bf86cc95ac3ef8335ab5a3de82313348a28be2dd230b702cd47574c27c"
+  },
+  {
+    "file": "src/content/docs/tools/cbmc.md",
+    "baselineSha256": "362ddf6e2fded0205110ee89f4334e74d54caf4e1c2a23040ea31ba4672beb34",
+    "reviewedSha256": "2526dfda53cf6e7fd86580abb58cf512c506bdca7350171160eb308a2ba4bb79"
+  },
+  {
+    "file": "src/content/docs/tools/clang-static-analyzer.md",
+    "baselineSha256": "b95d2dd4d6ed2d329212f9f0589cd3ec9b8fd551b8a1ea77722b7f5ab123d28e",
+    "reviewedSha256": "dc48f5a5b18187f6e55641f75a86b6f746a3f1fa78da7a094c02c350c3e785cf"
+  },
+  {
+    "file": "src/content/docs/tools/clippy.md",
+    "baselineSha256": "788d6c601fed7c2eeb4cc47b2f8b9715882bff51cb0e8b7005345394cca3b208",
+    "reviewedSha256": "0edc0f92fb78ed60fc06584c846da0e695eb64e83acfe6a8c8544ff56697df69"
+  },
+  {
+    "file": "src/content/docs/tools/codeql.md",
+    "baselineSha256": "71c912aace0e3f0a132c593a383bb31ab22ff288d4a3c145817c9511e4cdb59d",
+    "reviewedSha256": "ad913b16f343679ab1f7fca040a8e0a90358c0e627223f4da197aa8dbfa895c3"
+  },
+  {
+    "file": "src/content/docs/tools/coverity-scan.md",
+    "baselineSha256": "98f365151955f71ca7c50f95830b6cf59b6956cbb8feb7a831d35876509792a5",
+    "reviewedSha256": "2926447856ba03f97914a5e066ec0c3f577e3248ba032bf5a8d00b246ffc3d05"
+  },
+  {
+    "file": "src/content/docs/tools/coverity.md",
+    "baselineSha256": "b9a713a3c6a0292b5993d8bc04a20ca259f30d974da2c79ab9a496b76e33f956",
+    "reviewedSha256": "f035862c58bbd8d237a4156409a46e0a441e10836141a35c4b0953338b90ba2c"
+  },
+  {
+    "file": "src/content/docs/tools/cppcheck.md",
+    "baselineSha256": "4cc3a7b6e3414d50510998d6e00dd2ab631b9132ddff605206f98da4506c61e8",
+    "reviewedSha256": "075a0c42d7317b13d77c91df51c173ea4edbd8d9b3d78fec70a52f155b3517c3"
+  },
+  {
+    "file": "src/content/docs/tools/cve-bin-tool.md",
+    "baselineSha256": "af8f21d9b1d473869d5293678aa5e6cd3b00a0244ac0dcaa242e6817323de140",
+    "reviewedSha256": "b213cbe6f6f709dc80cf007760e009aee6a000bf29788821c65926165754ed37"
+  },
+  {
+    "file": "src/content/docs/tools/cwe-checker.md",
+    "baselineSha256": "d4281fedce94a8edf1cb0e5a10674804f5a22aa9db259d3fe4f296f2919fb3ae",
+    "reviewedSha256": "aafa8aabdcd305b4dd8624bfee091561018747e62b5b825286f3e829dec76155"
+  },
+  {
+    "file": "src/content/docs/tools/dafny.md",
+    "baselineSha256": "4f842c188f9db6c5bcdfdccf97fbe75b6b05747bd12f15595a6eee9c23c0fb46",
+    "reviewedSha256": "75c1db5ed92b03828feb5b2d7bbf558a6f1dfad6b0a4b7adb9f6d23b9ef01e1f"
+  },
+  {
+    "file": "src/content/docs/tools/detekt.md",
+    "baselineSha256": "958990b7699cb6ffb70a296e67bd4939c3d8d248b08a2ddfed80f835026e6585",
+    "reviewedSha256": "958990b7699cb6ffb70a296e67bd4939c3d8d248b08a2ddfed80f835026e6585"
+  },
+  {
+    "file": "src/content/docs/tools/dotnet-analyzers.md",
+    "baselineSha256": "b4c1d9aa79133b3765e57060290872ddce6e63bacf11bf63866927101e278f20",
+    "reviewedSha256": "b4c1d9aa79133b3765e57060290872ddce6e63bacf11bf63866927101e278f20"
+  },
+  {
+    "file": "src/content/docs/tools/dr-memory.md",
+    "baselineSha256": "8e0be0961da8d0a65fdf0601e3fe20ec1c64b3e5b9fca10b441fd51d81eb6b21",
+    "reviewedSha256": "8e0be0961da8d0a65fdf0601e3fe20ec1c64b3e5b9fca10b441fd51d81eb6b21"
+  },
+  {
+    "file": "src/content/docs/tools/eslint.md",
+    "baselineSha256": "fe7e783a931ac762865825eed6f41f6e8622ff06593ac24441af87b46a8d316a",
+    "reviewedSha256": "aeab059611b0040381b570aec5f5065451d746d502a2c227a6a036a246e70dfc"
+  },
+  {
+    "file": "src/content/docs/tools/floss.md",
+    "baselineSha256": "6e7c541eafb2cdf3be6e6710affa535d10340d4764b167f683af48fc12ce1261",
+    "reviewedSha256": "6e7c541eafb2cdf3be6e6710affa535d10340d4764b167f683af48fc12ce1261"
+  },
+  {
+    "file": "src/content/docs/tools/frama-c.md",
+    "baselineSha256": "0ef1b8d248f357746d1f43f8570e843bd692d59aed7b5249a76b3db03bd9878b",
+    "reviewedSha256": "4ced9ef507b68f76fe6e3824ba334d18931b69790797fb2a095223d482bab153"
+  },
+  {
+    "file": "src/content/docs/tools/ghidra.md",
+    "baselineSha256": "d3bbd13c32acc5dc7a05502a31be09d208ff4d8ccd340ffae2cf65b9f1c8b1b6",
+    "reviewedSha256": "d3bbd13c32acc5dc7a05502a31be09d208ff4d8ccd340ffae2cf65b9f1c8b1b6"
+  },
+  {
+    "file": "src/content/docs/tools/gosec.md",
+    "baselineSha256": "3be8f358f2ad6616baa42b216774c3e67168eaf7e6078b8943976b7ec5c363a5",
+    "reviewedSha256": "c273c124b7b8be0e5ff1f260a2b833800ee7ae907814a28f4434ef4a7017757b"
+  },
+  {
+    "file": "src/content/docs/tools/hypothesis.md",
+    "baselineSha256": "059df8c9d01c7a6c5f8bef0412952b076f56fefdcb295998e5ca5849559c7cc3",
+    "reviewedSha256": "29ac29db3a19a0742115386045e9a8583bb9c8bf8a50adc6a84336afe9bc934b"
+  },
+  {
+    "file": "src/content/docs/tools/infer.md",
+    "baselineSha256": "b1d6cc7fe2a50fdc857d54d388d3dbe321ae1d1f09252b37ee4e3c1cfe7b7e8f",
+    "reviewedSha256": "d3c0098a7eac4c6d5d74095a1ffce20b11e42c87ce9d8eafef013558d31f61c3"
+  },
+  {
+    "file": "src/content/docs/tools/jazzer.md",
+    "baselineSha256": "68635c0ac15963f5c7d0780f6b0cd1f993d5252fd59328f1963aa57effd20594",
+    "reviewedSha256": "68635c0ac15963f5c7d0780f6b0cd1f993d5252fd59328f1963aa57effd20594"
+  },
+  {
+    "file": "src/content/docs/tools/jbmc.md",
+    "baselineSha256": "90012662b08466250f677e5bf92a153e144103a3327c0d13cefaa79fd31619c9",
+    "reviewedSha256": "102e9615d8818d8536ce65bf284aed21d457d743de0460d4280642a01c9310ea"
+  },
+  {
+    "file": "src/content/docs/tools/kani.md",
+    "baselineSha256": "92e411b3fcdc447a1598d606e1fe2719af23dd85200b6e30647427bbc910e0ad",
+    "reviewedSha256": "11049fae42d8edc82c707b8d75be8ca252d9bee7714c6be46f4da0e08126f580"
+  },
+  {
+    "file": "src/content/docs/tools/libfuzzer.md",
+    "baselineSha256": "2ca6d06e9e593469482727e4b476972f2bff250acbc82f29387d7aae7a306de1",
+    "reviewedSha256": "bd68519692b7a9c353289c3b201e9e0eab443f281b2439b11ce1c755c562c3b7"
+  },
+  {
+    "file": "src/content/docs/tools/osv-scanner.md",
+    "baselineSha256": "5736b5b77cdbab30e1839a09e33c07f2eef1750d0a25e26094176c753a48abfb",
+    "reviewedSha256": "e096acad5d7c1c95552a721d0611780efba4dc10a55f98cd9bff4d17a1d71e12"
+  },
+  {
+    "file": "src/content/docs/tools/phpstan.md",
+    "baselineSha256": "2d58632f00db7172a4225848080e90f89e482a0f2affb6bbb6c919ce80e1f14b",
+    "reviewedSha256": "2d58632f00db7172a4225848080e90f89e482a0f2affb6bbb6c919ce80e1f14b"
+  },
+  {
+    "file": "src/content/docs/tools/pmd.md",
+    "baselineSha256": "c4dc08757938fec4185df7264f742e35f356edf2ca3681e195a7c211d9b705e8",
+    "reviewedSha256": "d73f2e1f7a7ad6077383262374f26e4af7a7d3a1bd6902153484452e7c948fb8"
+  },
+  {
+    "file": "src/content/docs/tools/polyspace-code-prover.md",
+    "baselineSha256": "21d8337b2fee8855e296f4971dc0e9a5f16c1ddff8a36f787b60e16b41e72fc1",
+    "reviewedSha256": "047a381c2bd1838af5d58f98e841afc81debafa9a4a7269572887df2da094668"
+  },
+  {
+    "file": "src/content/docs/tools/psalm.md",
+    "baselineSha256": "f5db066cefd709fe8e3c44c64fc899fd09c4762f1a0310f201580ed5f8905863",
+    "reviewedSha256": "f5db066cefd709fe8e3c44c64fc899fd09c4762f1a0310f201580ed5f8905863"
+  },
+  {
+    "file": "src/content/docs/tools/psy-taliro.md",
+    "baselineSha256": "1b95105ee8fc3a45926292f87ed0b4c1a27baab13834a7319892ed096045a3c3",
+    "reviewedSha256": "ee6b23194a065223648c8773c919bf55a388cef2defb4508b677272ae2ba73ad"
+  },
+  {
+    "file": "src/content/docs/tools/pvs-studio.md",
+    "baselineSha256": "7e2fd16d7929f09f4ba7008e8b8f301296b37caa18fcfa7e8204d4168a079ca9",
+    "reviewedSha256": "f4b38d99fdc20114a7230ad56a4515d485691d4c18f360d5d4e5c3c994292204"
+  },
+  {
+    "file": "src/content/docs/tools/restler.md",
+    "baselineSha256": "5bac5bf5706bfa2e706409b7ca98784a71a6ac94183916e56c5cdaab2b87d191",
+    "reviewedSha256": "5bac5bf5706bfa2e706409b7ca98784a71a6ac94183916e56c5cdaab2b87d191"
+  },
+  {
+    "file": "src/content/docs/tools/rtamt.md",
+    "baselineSha256": "c6ae1b533d0bb5cffa0b49be3a9baec0679ccdb52f543f43a4e7ff4ca0eb7288",
+    "reviewedSha256": "ae38af310aa36ef7091f69ad5213db37ae6a2e5e277761d508214aa66859ebe7"
+  },
+  {
+    "file": "src/content/docs/tools/ruff.md",
+    "baselineSha256": "2dd5743ab71c1fecd43de52da5ff8d3c354807e26adef688a6327d89e8c6f22e",
+    "reviewedSha256": "c4dec4ecc0638d88fee0bacc9a2e73cc09baf5a9b81c1012f94f4a5ce092da9a"
+  },
+  {
+    "file": "src/content/docs/tools/s-taliro.md",
+    "baselineSha256": "b84ba26a0c5521781358db82c94e49577db9afac017047b2d54cf482cb6e6263",
+    "reviewedSha256": "639c2c612a13a7fdea8ef4649118b589ee469f395881e30cd8046ff1c9ce8e83"
+  },
+  {
+    "file": "src/content/docs/tools/schemathesis.md",
+    "baselineSha256": "364add0b7735e9331ca12c5d3fb723328089214528d6070880b97bef9068b73a",
+    "reviewedSha256": "364add0b7735e9331ca12c5d3fb723328089214528d6070880b97bef9068b73a"
+  },
+  {
+    "file": "src/content/docs/tools/semgrep-ce.md",
+    "baselineSha256": "9944e96b0518454f932dab5bec7ea7c4e7b00563dd552cbd7712fa5c518060c5",
+    "reviewedSha256": "1a3247c809d1f6dd29d1c849d97e87e8e8408d7ea6256739914892276d55db68"
+  },
+  {
+    "file": "src/content/docs/tools/semgrep-code.md",
+    "baselineSha256": "bc29dcdbf650a4eb1a3f2eee77f713df0d031b8ffc88eb20d47877e1d395943d",
+    "reviewedSha256": "cf056668b488861deb1809b6067c9f3ee06e1c71e0f8f8d1843020c2120fe00f"
+  },
+  {
+    "file": "src/content/docs/tools/sonarqube-community.md",
+    "baselineSha256": "a5a4be53514676e230de67d7ff8629f35af5079871f42e91e3b058b7dfe4a916",
+    "reviewedSha256": "5372e9645c097d94788b0ad56616ff4299dcce472cfccbf86b18a9dbc4beda08"
+  },
+  {
+    "file": "src/content/docs/tools/sonarqube.md",
+    "baselineSha256": "b1700424e371cec43873db2a7c5ad4ccd2574ecc166ab81a3a764b6da7f31a1a",
+    "reviewedSha256": "121506bcee08bb0e39b0070c433f162e51f359d8c1987bf693ca2a424dd7e95b"
+  },
+  {
+    "file": "src/content/docs/tools/spotbugs.md",
+    "baselineSha256": "1e345a894e846adfed5f13c6b39a13add08102527e01c865049150c8ef2e168c",
+    "reviewedSha256": "a62358ddb3e517a0248b3608eaeabcf01a69ecc987bd759fa141ee9f469b963d"
+  },
+  {
+    "file": "src/content/docs/tools/staticcheck.md",
+    "baselineSha256": "d0d69bb3debfa0ad46a9a58750f284c28da05d90351af262fd336a5269ba0755",
+    "reviewedSha256": "80ef85f34f481ee9d6e7a37df3877f86743049f5432bbd52c4b8b94a01c5f4a6"
+  },
+  {
+    "file": "src/content/docs/tools/thread-sanitizer.md",
+    "baselineSha256": "7462ebf0d379d0dbc3588fc8ad60b26b65a2a4c05b68b701eae8477ada9a8b89",
+    "reviewedSha256": "233103db4ff8ad8b0229f3d142658364ff6382d61c44c469995053c861616683"
+  },
+  {
+    "file": "src/content/docs/tools/valgrind-memcheck.md",
+    "baselineSha256": "82cc249074663421d526729a8a4165735c40d4f654f3b7c7a80ad8af7207a9a5",
+    "reviewedSha256": "1c7e8c0fdee550e694bf4f480685ea08d0f72e50c068aecd465a5855a797bb68"
+  },
+  {
+    "file": "src/content/docs/tools/verifai.md",
+    "baselineSha256": "80d550d8b9e2b840639977be88cef507176c6a5e36121eb90dfe9e1f6356f103",
+    "reviewedSha256": "84e6ca706ebb2d30493eb0204dd2341430b3fd8c3f99add69e73edaf34a92358"
+  },
+  {
+    "file": "src/content/docs/tools/wartremover.md",
+    "baselineSha256": "93772415f56ac15b8fd9f0fe9164b5d9fc05cecde9fa4f2bde126e87c82d432f",
+    "reviewedSha256": "93772415f56ac15b8fd9f0fe9164b5d9fc05cecde9fa4f2bde126e87c82d432f"
+  },
+  {
+    "file": "src/content/docs/tools/yara-x.md",
+    "baselineSha256": "c3302cb4eb0f9436964aae6cbfe1b43c5ad8b789fedf3db18f4326f9c8491f41",
+    "reviewedSha256": "c3302cb4eb0f9436964aae6cbfe1b43c5ad8b789fedf3db18f4326f9c8491f41"
+  },
+  {
+    "file": "src/content/docs/tools/zap.md",
+    "baselineSha256": "8cfcdc3173b499d160724abbff8cf90dc18eca2f72dcf44beefd3c8e9535958f",
+    "reviewedSha256": "18ef9f083fce5d846fb739b60a52ef58f95c9dd301cd6d46a07b5375d41f7d07"
+  },
+  {
+    "file": "src/data/editions.ts",
+    "baselineSha256": "b7fb55d6a1d6dd01a8af0564ff4364afc75bf42d23eb7a83f574b3b284d3aaef",
+    "reviewedSha256": "0bdc090af6725e7dd956fd74b230608a2c70084a96fa37afb86cd4a9effd8884"
+  }
+]

@@ -13,7 +13,7 @@ tool:
   costNote: Included with the open-source Clang toolchain, without a separate analyzer license fee.
   license: Apache-2.0 with LLVM exceptions
   website: https://clang.llvm.org/docs/ClangStaticAnalyzer.html
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Clang Static Analyzer; separate from ordinary compiler warnings and clang-tidy.
   findings: ["Memory safety","Logic errors"]
   findingNote: "Selected path-sensitive checkers, including pointer and lifetime defects. Checker maturity and modeling limit coverage."

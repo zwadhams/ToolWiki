@@ -13,7 +13,7 @@ tool:
   costNote: Free Memcheck tool in Valgrind. No paid upgrade is needed for the memory checks described here.
   license: GPL-2.0; see the project for component-specific terms.
   website: https://valgrind.org/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Memcheck only; Valgrind includes other tools for different analysis tasks.
   findings: ["Memory safety"]
   findingNote: "Observes memory operations in executed paths. Includes invalid accesses, uninitialized values, and leak checks; unexecuted behavior is not covered."

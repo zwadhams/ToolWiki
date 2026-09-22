@@ -17,7 +17,7 @@ tool:
   cost: ["Free"]
   costNote: "Free local scanner and project-maintained CI integration. No paid edition is required for the documented rule set."
   website: "https://github.com/securego/gosec"
-  verified: "2026-09-21"
+  verified: "2026-09-22"
   scope: "Current gosec v2 documentation. Pin a release for repeatable checks; rule IDs and language requirements can change."
   sources:
     - label: "Installation, scanning, and result formats"

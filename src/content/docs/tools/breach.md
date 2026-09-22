@@ -13,7 +13,7 @@ tool:
   cost: [Free]
   costNote: The Breach toolbox is free. Running it requires separately licensed MATLAB, plus Simulink for Simulink models. Model dependencies may require other licensed products; these costs are not included in the Free label.
   website: https://github.com/decyphir/breach
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Breach repository documentation for STL monitoring and simulation-based falsification.
   findings: ["Temporal requirement violations"]
   findingNote: "You supply STL requirements and signals. Monitoring checks supplied traces; falsification adds a search over simulator inputs."

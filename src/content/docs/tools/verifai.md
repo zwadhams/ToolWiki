@@ -17,7 +17,7 @@ tool:
   cost: ["Free"]
   costNote: "Free toolkit. Simulator licenses, scenario assets, and compute can add costs; they are not paid VerifAI detection tiers."
   website: "https://verifai.readthedocs.io/en/latest/"
-  verified: "2026-09-21"
+  verified: "2026-09-22"
   scope: "Simulation-guided falsification in the current documentation. This entry does not claim exhaustive verification of arbitrary neural networks or real-world systems."
   sources:
     - label: "Toolkit scope and license"

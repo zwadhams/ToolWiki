@@ -17,7 +17,7 @@ tool:
   cost: ["Free"]
   costNote: "Free compiler/runtime component. No paid analysis edition is required; instrumented execution uses additional memory and compute."
   website: "https://clang.llvm.org/docs/AddressSanitizer.html"
-  verified: "2026-09-21"
+  verified: "2026-09-22"
   scope: "Clang/LLVM AddressSanitizer. Leak and stack-lifetime checks have platform and configuration limits. This is not a binary-only substitute for an instrumented build."
   sources:
     - label: "Current checks, usage, and platform limits"

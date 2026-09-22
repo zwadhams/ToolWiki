@@ -13,7 +13,7 @@ tool:
   costNote: Free local Python security checker; no paid edition is covered by this entry.
   license: Apache-2.0
   website: https://bandit.readthedocs.io/en/latest/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Bandit project; documentation overview, not a version-specific evaluation.
   findings: ["Injection risks","Unsafe API use","Security misconfiguration"]
   findingNote: "Selected security-pattern plugins; a flagged call requires context and is not a demonstrated exploit."

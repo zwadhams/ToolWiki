@@ -17,7 +17,7 @@ tool:
   cost: [Free]
   costNote: Free open-source verifier. Optional external solvers and compute have their own requirements; no paid CBMC edition is needed for the workflow described here.
   website: https://www.cprover.org/cbmc/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: CBMC 6.x C/C++ bounded checking; guarantees depend on the harness, program model, checked properties, and completeness of exploration.
   sources:
     - label: CBMC capabilities and supported hosts

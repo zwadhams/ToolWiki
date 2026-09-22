@@ -1,0 +1,66 @@
+# Tool evidence index
+
+All source access/review dates are 2026-09-22. These are documentation assessments, not benchmarks. Exact source sections and qualifications appear in each record.
+
+| Tool record | Supported | Qualified | Unresolved |
+| --- | ---: | ---: | ---: |
+| [address-sanitizer](records/address-sanitizer.md) | 23 | 10 | 0 |
+| [afl-plus-plus](records/afl-plus-plus.md) | 30 | 6 | 0 |
+| [angr](records/angr.md) | 21 | 15 | 0 |
+| [bandit](records/bandit.md) | 22 | 9 | 0 |
+| [binwalk](records/binwalk.md) | 24 | 9 | 0 |
+| [boofuzz](records/boofuzz.md) | 24 | 8 | 0 |
+| [brakeman](records/brakeman.md) | 25 | 13 | 0 |
+| [breach](records/breach.md) | 25 | 7 | 0 |
+| [burp-suite-community](records/burp-suite-community.md) | 23 | 6 | 0 |
+| [burp-suite-professional](records/burp-suite-professional.md) | 23 | 9 | 0 |
+| [capa](records/capa.md) | 27 | 10 | 0 |
+| [cargo-audit](records/cargo-audit.md) | 23 | 13 | 0 |
+| [cbmc](records/cbmc.md) | 24 | 7 | 0 |
+| [clang-static-analyzer](records/clang-static-analyzer.md) | 23 | 6 | 0 |
+| [clippy](records/clippy.md) | 25 | 8 | 0 |
+| [codeql](records/codeql.md) | 37 | 11 | 0 |
+| [coverity-scan](records/coverity-scan.md) | 30 | 10 | 0 |
+| [coverity](records/coverity.md) | 44 | 12 | 0 |
+| [cppcheck](records/cppcheck.md) | 25 | 11 | 0 |
+| [cve-bin-tool](records/cve-bin-tool.md) | 39 | 10 | 0 |
+| [cwe-checker](records/cwe-checker.md) | 28 | 8 | 0 |
+| [dafny](records/dafny.md) | 24 | 7 | 0 |
+| [detekt](records/detekt.md) | 24 | 11 | 0 |
+| [dotnet-analyzers](records/dotnet-analyzers.md) | 24 | 12 | 0 |
+| [dr-memory](records/dr-memory.md) | 26 | 10 | 0 |
+| [eslint](records/eslint.md) | 26 | 10 | 0 |
+| [floss](records/floss.md) | 27 | 9 | 0 |
+| [frama-c](records/frama-c.md) | 26 | 7 | 0 |
+| [ghidra](records/ghidra.md) | 23 | 8 | 0 |
+| [gosec](records/gosec.md) | 25 | 10 | 0 |
+| [hypothesis](records/hypothesis.md) | 24 | 7 | 0 |
+| [infer](records/infer.md) | 25 | 12 | 0 |
+| [jazzer](records/jazzer.md) | 25 | 10 | 0 |
+| [jbmc](records/jbmc.md) | 23 | 12 | 0 |
+| [kani](records/kani.md) | 24 | 12 | 0 |
+| [libfuzzer](records/libfuzzer.md) | 24 | 6 | 0 |
+| [osv-scanner](records/osv-scanner.md) | 38 | 13 | 0 |
+| [phpstan](records/phpstan.md) | 25 | 11 | 0 |
+| [pmd](records/pmd.md) | 35 | 7 | 0 |
+| [polyspace-code-prover](records/polyspace-code-prover.md) | 25 | 11 | 0 |
+| [psalm](records/psalm.md) | 25 | 12 | 0 |
+| [psy-taliro](records/psy-taliro.md) | 24 | 8 | 0 |
+| [pvs-studio](records/pvs-studio.md) | 35 | 11 | 0 |
+| [restler](records/restler.md) | 24 | 9 | 0 |
+| [rtamt](records/rtamt.md) | 24 | 6 | 2 |
+| [ruff](records/ruff.md) | 28 | 9 | 0 |
+| [s-taliro](records/s-taliro.md) | 21 | 5 | 6 |
+| [schemathesis](records/schemathesis.md) | 27 | 9 | 0 |
+| [semgrep-ce](records/semgrep-ce.md) | 34 | 13 | 0 |
+| [semgrep-code](records/semgrep-code.md) | 41 | 9 | 0 |
+| [sonarqube-community](records/sonarqube-community.md) | 44 | 10 | 0 |
+| [sonarqube](records/sonarqube.md) | 41 | 12 | 0 |
+| [spotbugs](records/spotbugs.md) | 26 | 13 | 0 |
+| [staticcheck](records/staticcheck.md) | 25 | 9 | 0 |
+| [thread-sanitizer](records/thread-sanitizer.md) | 21 | 11 | 0 |
+| [valgrind-memcheck](records/valgrind-memcheck.md) | 21 | 7 | 0 |
+| [verifai](records/verifai.md) | 25 | 12 | 0 |
+| [wartremover](records/wartremover.md) | 23 | 12 | 0 |
+| [yara-x](records/yara-x.md) | 23 | 13 | 0 |
+| [zap](records/zap.md) | 23 | 8 | 0 |

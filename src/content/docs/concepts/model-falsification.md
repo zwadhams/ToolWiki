@@ -43,7 +43,7 @@ Many searches minimize a **robustness score**, which describes how a trace relat
 | Tool | Environment | Cost notes |
 | --- | --- | --- |
 | [Breach](../../tools/breach/) | MATLAB; Simulink or a simulator interface; STL | Free toolbox; MATLAB and model dependencies are separate. |
-| [S-TaLiRo](../../tools/s-taliro/) | MATLAB and Simulink; temporal-logic falsification | Historical free GPL-3.0 toolbox; current distribution unverified. MATLAB costs are separate. |
+| [S-TaLiRo](../../tools/s-taliro/) | MATLAB and Simulink; temporal-logic falsification | Historical free GPL toolbox; exact license version and current distribution unverified. MATLAB costs are separate. |
 | [PSY-TaLiRo](../../tools/psy-taliro/) | Python harness; temporal monitoring through a selected backend | Free toolbox; external simulator costs depend on the integration. |
 
 The language filter describes the harness or modeling ecosystem here. A Python harness can call a simulator implemented in another language if you provide a suitable interface. [PSY-TaLiRo's documentation](https://psy-taliro.readthedocs.io/latest/) illustrates the model, requirement, and search components.

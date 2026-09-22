@@ -17,7 +17,7 @@ tool:
   cost: ["Free"]
   costNote: "SpotBugs and the optional Find Security Bugs plugin are free open-source components. Security checks require adding the plugin, not purchasing an edition."
   website: "https://spotbugs.github.io/"
-  verified: "2026-09-21"
+  verified: "2026-09-22"
   scope: "SpotBugs 4.10.4 documentation, with Find Security Bugs explicitly treated as an optional plugin. JVM bytecode support is not native-binary support."
   sources:
     - label: "SpotBugs introduction and runtime requirements"

@@ -17,7 +17,7 @@ tool:
   cost: [Free]
   costNote: The open-source distribution includes the Eva and WP workflows. Commercial support, customization, and alternative licensing are separate options; optional solvers have their own terms.
   website: https://www.frama-c.com/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Frama-C 33.0 documentation, focused on static Eva and WP analyses. E-ACSL runtime checking is outside this entry's filter scope.
   sources:
     - label: Frama-C analysis overview

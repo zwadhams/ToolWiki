@@ -14,7 +14,7 @@ tool:
   editionGroup: sonarqube
   license: Commercial SonarQube Server editions; the separate Community Build has different licensing and features.
   website: https://www.sonarsource.com/products/sonarqube/server/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: SonarQube Server commercial editions. Community Build, Cloud, and IDE products are separate offerings.
   findings: ["Injection risks","Logic errors","Coding conventions"]
   findingNote: "Selected language-specific quality and security rules. Depth depends on edition, analyzer, and quality profile."

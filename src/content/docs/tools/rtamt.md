@@ -34,7 +34,7 @@ Use RTAMT when you already have signals to evaluate, or can stream observations 
 
 ## Worked example: a temperature requirement
 
-**Checked locally on 2026-09-21:** Windows, Python 3.12.14, RTAMT 0.4.10, using the pure-Python backend. In that environment:
+**Previously reported local check on 2026-09-21:** Windows, Python 3.12.14, RTAMT 0.4.10, using the pure-Python backend. The 2026-09-22 documentation audit did not rerun this example or locate a saved execution record in the repository. The code and reported results below preserve the earlier account; they are not independently verified execution evidence from this audit.
 
 ```python
 import rtamt
@@ -49,7 +49,7 @@ robustness = spec.evaluate(["temperature", trace])
 print(robustness[0])
 ```
 
-The example printed `[0, -5.0]`. At time zero, the requested two-unit interval includes a temperature of 85, producing negative robustness. Replacing both 85 values with 79 produced `[0, 1.0]`, a positive margin for this trace. These two checks validate the example, not the monitor's behavior on every formula or signal.
+The earlier account reported `[0, -5.0]`. At time zero, the requested two-unit interval includes a temperature of 85, consistent with negative robustness. Replacing both 85 values with 79 was reported to produce `[0, 1.0]`, a positive margin for this trace. These values are consistent with the stated robustness calculation, but reproducing the exact output still requires the specified environment. They do not establish the monitor's behavior on every formula or signal.
 
 ## Interpret timing carefully
 

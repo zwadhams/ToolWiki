@@ -14,7 +14,7 @@ tool:
   costNote: Free self-managed software. You operate its server and database; your hosting, maintenance, and compute costs are separate.
   editionGroup: sonarqube
   website: https://docs.sonarsource.com/sonarqube-community-build
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: SonarQube Community Build only. Commercial Server and hosted Cloud offerings differ.
   findings: ["Injection risks","Logic errors","Coding conventions"]
   findingNote: "Community Build rules for supported languages; commercial language coverage and advanced features are not inherited."

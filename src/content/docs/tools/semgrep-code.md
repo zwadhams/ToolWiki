@@ -14,7 +14,7 @@ tool:
   costNote: Free Edition includes Pro rules and cross-file analysis within contributor and repository limits. Teams and Enterprise are paid plans; standalone Semgrep CE remains a separate free option.
   editionGroup: semgrep
   website: https://semgrep.dev/products/semgrep-code/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Semgrep Code on the AppSec Platform, including Free Edition and paid plans. Supply Chain and Secrets are separate products.
   findings: ["Injection risks","Unsafe API use","Security misconfiguration"]
   findingNote: "Selected SAST rules and supported advanced analyses. Known-dependency detection belongs to the separate Supply Chain product."

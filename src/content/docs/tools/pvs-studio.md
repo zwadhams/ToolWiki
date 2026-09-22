@@ -14,7 +14,7 @@ tool:
   costNote: Paid licenses are quoted by the vendor. A renewable free license is available for qualifying personal open-source projects with attribution requirements; commercial projects, organization-developed projects, mirrors, and forks are excluded. Educational licenses have separate eligibility and duration rules. A general trial is not the free option counted here.
   editionGroup: pvs-studio
   website: https://pvs-studio.com/en/pvs-studio/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: PVS-Studio source-code analysis and documented licensing options; separate SCA functionality is outside this entry's filter scope.
   findings: ["Memory safety","Injection risks","Logic errors","Coding-standard violations"]
   findingNote: "Selected diagnostics and standard mappings. Checks differ by language and analyzer; mappings are not full-standard coverage."

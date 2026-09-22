@@ -3,7 +3,7 @@ title: Static vs. dynamic analysis
 description: Understand whether a tool reasons about code or observes software executing.
 ---
 
-**Static analysis inspects a program without executing that program. Dynamic analysis examines behavior while the program runs.** These labels describe how analysis happens, not whether a tool only finds security issues.
+**Static analysis inspects a program without exercising its runtime behavior. Dynamic analysis examines actual or emulated executions, either live or through recorded traces.** These labels describe how analysis happens, not whether a tool only finds security issues.
 
 ## Two views of the same problem
 
@@ -16,8 +16,8 @@ The first gives evidence from a model of the code. The second gives evidence fro
 
 | Question | Static analysis | Dynamic analysis |
 | --- | --- | --- |
-| What does it need? | Source, bytecode, or another code representation, depending on the tool. | Executable software and a way to exercise or observe it. |
-| Does the target execute during analysis? | No. A build or extraction step may still be required. | Yes. |
+| What does it need? | Source, bytecode, or another code representation, depending on the tool. | Executable software and a way to exercise or observe it, or recorded execution data. |
+| Does the target execute during analysis? | No. A build or extraction step may still be required. | Live tools exercise the target; trace monitors can analyze data from an earlier execution. |
 | What limits coverage? | Models, rules, language support, and analysis scope. | Inputs, reached paths, environment, and instrumentation. |
 | Example in this wiki | [Clang Static Analyzer](../../tools/clang-static-analyzer/) | [Valgrind Memcheck](../../tools/valgrind-memcheck/) |
 
@@ -30,6 +30,8 @@ SAST and DAST focus on application security. Static and dynamic analysis also se
 [SAST vs. DAST](../sast-vs-dast/) explains the security-specific terms. [Ways to do DAST](../dast-approaches/) separates web scanning choices from related dynamic techniques.
 
 [Model and temporal falsification](../model-falsification/) covers simulation searches for violations of behavioral requirements, including requirements about timing. These tools belong under dynamic analysis because they execute models and inspect traces.
+
+[RTAMT](../../tools/rtamt/) and capa's [sandbox-report workflow](../../tools/capa/) can analyze recorded execution data without running the original program again. FLOSS's [decoder emulation](../../tools/floss/) is also distinguished from a full-program sandbox run in this catalog.
 
 ## Sources
 

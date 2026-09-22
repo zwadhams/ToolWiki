@@ -17,7 +17,7 @@ My research examines how static analysis tools are used to assess software secur
 
 The **Related research** section on a tool page explains its role in the corresponding work. Some tools were used in an empirical study or implementation; others were discussed as possible inputs to a quality model.
 
-Where a paper does not identify a product edition, the connection is labeled **Related product family**. Consult the tool profile for current capabilities, configuration requirements, and licensing. Study results describe the configurations used in the research.
+Where a paper does not identify a product edition, the connection is labeled **Related product family**. Consult the tool profile for capabilities, configuration requirements, and licensing within its stated edition and version scope. Study results describe the configurations used in the research.
 
 ## Papers
 

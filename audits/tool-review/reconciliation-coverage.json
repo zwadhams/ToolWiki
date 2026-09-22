@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "research/comparing-tools",
+    "research/sast-workflow",
+    "research/binary-analysis",
+    "research/software-quality",
+    "research/sast-adoption",
+    "research/index",
+    "guides/java-analysis",
+    "guides/memory-error-detection",
+    "guides/temporal-monitoring-and-falsification",
+    "guides/editing",
+    "concepts/static-approaches",
+    "concepts/dast-approaches",
+    "concepts/static-vs-dynamic",
+    "concepts/sast-vs-dast",
+    "concepts/model-falsification",
+    "concepts/verification-and-generated-tests",
+    "index",
+    "static",
+    "dynamic",
+    "compare"
+  ],
+  "passages": 213,
+  "editionGroups": [
+    "coverity",
+    "polyspace",
+    "cppcheck",
+    "pvs-studio",
+    "phpstan",
+    "codeql",
+    "sonarqube",
+    "semgrep",
+    "burp"
+  ],
+  "editionClaims": 145
+}

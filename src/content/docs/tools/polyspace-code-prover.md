@@ -18,7 +18,7 @@ tool:
   costNote: "Paid product with quote and trial options. A trial is not a continuing free edition. Include the required Polyspace Bug Finder entitlement; existing institutional access depends on the actual license."
   editionGroup: "polyspace"
   website: "https://www.mathworks.com/products/polyspace-code-prover.html"
-  verified: "2026-09-21"
+  verified: "2026-09-22"
   scope: "Polyspace Code Prover C/C++ analysis, not the entire Polyspace family. Desktop, Server, Bug Finder, and model-integration workflows have different purposes and licensing."
   sources:
     - label: "Purpose, result meanings, product differences, and trial"

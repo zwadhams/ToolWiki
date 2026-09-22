@@ -13,7 +13,7 @@ tool:
   cost: [Free]
   costNote: Free open-source analyzer and bundled CPD utility. Local use and CI do not require a PMD subscription. Build infrastructure costs are separate.
   website: https://pmd.github.io/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: PMD 7.27.0 rule analysis. CPD is described for comparison but is not the language scope of this catalog entry.
   findings: ["Logic errors","Coding conventions"]
   findingNote: "Language-specific rules only. CPD duplication support does not imply defect-rule support for the same language."

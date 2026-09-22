@@ -14,7 +14,7 @@ tool:
   costNote: Permanently free manual toolkit. It does not include automated Burp Scanner; Professional is a separate paid edition.
   editionGroup: burp
   website: https://portswigger.net/burp/communitydownload
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Community Edition; automated vulnerability scanning is not included.
   findings: ["Injection risks","Security misconfiguration"]
   findingNote: "Manual investigation using intercepted and edited requests. Community Edition does not include automated Burp Scanner."

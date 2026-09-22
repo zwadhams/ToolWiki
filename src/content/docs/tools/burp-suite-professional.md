@@ -14,7 +14,7 @@ tool:
   editionGroup: burp
   license: Commercial proprietary license
   website: https://portswigger.net/burp/pro
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Professional edition with Burp Scanner; do not assume these features are present in Community Edition.
   findings: ["Injection risks","Security misconfiguration"]
   findingNote: "Automated and manual web testing; reachable endpoints, authentication, and enabled checks determine coverage."

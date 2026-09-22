@@ -44,7 +44,7 @@ export const editionComparisons: Record<string, Comparison> = {
       { name: 'PHPStan', cost: 'Free', difference: 'Open-source command-line analysis, configurable rule levels, and baseline support.', url: 'https://phpstan.org/', slug: 'tools/phpstan' },
       { name: 'PHPStan Pro', cost: 'Paid subscription', difference: 'Local browser UI for findings, continuous analysis as files change, and migration wizards. A trial is available, but Pro is not a permanent free tier.', url: 'https://phpstan.org/blog/introducing-phpstan-pro' },
     ],
-    note: 'See the current subscription page for prices; the linked introduction also contains historical launch pricing.',
+    note: 'Subscription management requires an account; current prices were not verified. The linked introduction contains historical launch pricing.',
     source: { label: 'PHPStan Pro subscriptions', url: 'https://account.phpstan.com/' },
   },
   codeql: {
@@ -69,7 +69,7 @@ export const editionComparisons: Record<string, Comparison> = {
   semgrep: {
     intro: 'The local Community Edition engine and the hosted Free Edition are different offerings. Advanced analysis is also available on the hosted free plan within its limits.',
     editions: [
-      { name: 'Semgrep CE', cost: 'Free', difference: 'Open-source local engine, custom rules, and supported local analysis. Platform contributor limits do not describe the standalone CE engine.', url: 'https://github.com/semgrep/semgrep', slug: 'tools/semgrep-ce' },
+      { name: 'Semgrep CE', cost: 'Free', difference: 'Open-source local engine and custom rules, with data flow analysis limited to a single function. Platform contributor limits do not describe the standalone CE engine.', url: 'https://docs.semgrep.dev/semgrep-ce-languages', slug: 'tools/semgrep-ce' },
       { name: 'Semgrep Code - Free Edition', cost: 'Free with limits', difference: 'Pro rules and cross-file analysis; maximum 10 contributors and 10 private repositories. Public projects have separate limits. An account is required.', url: 'https://semgrep.dev/pricing/', slug: 'tools/semgrep-code' },
       { name: 'Semgrep Code - Teams', cost: 'Paid', difference: 'Per-contributor subscription for larger teams, with SSO and support. The Code, Supply Chain, and Secrets products are priced separately.', url: 'https://semgrep.dev/pricing/' },
       { name: 'Enterprise', cost: 'Paid; contact sales', difference: 'Adds enterprise deployment options, on-premises source control support, and tailored support.', url: 'https://semgrep.dev/pricing/' },

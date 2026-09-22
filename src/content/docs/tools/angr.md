@@ -17,7 +17,7 @@ tool:
   cost: ["Free"]
   costNote: "Free framework and Python API. No paid tier is required for the documented symbolic-execution workflow."
   website: "https://angr.io/"
-  verified: "2026-09-21"
+  verified: "2026-09-22"
   scope: "Offline binary loading and symbolic execution. Concrete-execution integrations and separate analysis packages are outside this entry's mode tags."
   sources:
     - label: "Binary loading and supported loader concepts"
@@ -28,6 +28,10 @@ tool:
       url: https://docs.angr.io/en/latest/getting-started/installing.html
     - label: "Modeling and analysis pitfalls"
       url: https://docs.angr.io/en/latest/advanced-topics/gotchas.html
+    - label: "Symbolic streams and stdin"
+      url: https://docs.angr.io/en/latest/advanced-topics/file_system.html
+    - label: "Simulation managers and exploration predicates"
+      url: https://docs.angr.io/en/latest/core-concepts/pathgroups.html
     - label: "License"
       url: https://github.com/angr/angr/blob/master/LICENSE
 ---

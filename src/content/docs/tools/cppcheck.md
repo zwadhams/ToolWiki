@@ -14,7 +14,7 @@ tool:
   costNote: The open-source analyzer is free, including for commercial code analysis. Cppcheck Premium is a separate paid offering with additional analysis and reporting; its features are not included in this entry's filter tags.
   editionGroup: cppcheck
   website: https://cppcheck.sourceforge.io/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Open-source Cppcheck 2.22 and its manual; Premium is compared separately below.
   findings: ["Memory safety","Logic errors","Coding-standard violations"]
   findingNote: "Selected defect checks and partial open-source coding-standard checks. Premium coverage is not inherited by these tags."
@@ -23,10 +23,10 @@ tool:
   sources:
     - label: Cppcheck overview and open-source feature matrix
       url: https://cppcheck.sourceforge.io/
-    - label: Cppcheck manual and configuration
-      url: https://github.com/cppcheck-opensource/cppcheck/blob/main/man/manual.md
-    - label: Cppcheck license
-      url: https://github.com/cppcheck-opensource/cppcheck/blob/main/COPYING
+    - label: Cppcheck 2.22.0 manual and configuration
+      url: https://github.com/cppcheck-opensource/cppcheck/blob/2.22.0/man/manual.md
+    - label: Cppcheck 2.22.0 license
+      url: https://github.com/cppcheck-opensource/cppcheck/blob/2.22.0/COPYING
     - label: Premium capabilities and license options
       url: https://www.cppcheck.com/
 ---

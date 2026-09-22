@@ -13,7 +13,7 @@ tool:
   costNote: Free and open-source scanner. Core passive and active scanning do not require a paid edition.
   license: Apache-2.0
   website: https://www.zaproxy.org/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: ZAP core and documented scanning features; add-ons and configuration affect coverage.
   findings: ["Injection risks","Security misconfiguration"]
   findingNote: "Selected active/passive web scan rules; add-ons, authentication, and reachable endpoints control coverage."

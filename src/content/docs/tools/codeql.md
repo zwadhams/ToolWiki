@@ -14,7 +14,7 @@ tool:
   editionGroup: codeql
   license: CodeQL CLI terms; query libraries have separate licenses. Check eligibility for your use.
   website: https://codeql.github.com/docs/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: CodeQL CLI and query libraries; catalog license category describes the CLI.
   findings: ["Injection risks","Memory safety","Concurrency issues"]
   findingNote: "Selected query families; availability depends on language, query pack, framework models, and extraction mode."

@@ -13,7 +13,7 @@ tool:
   cost: [Free]
   costNote: Free open-source linter and formatter, with no paid analyzer edition required. Editor integration and local checks do not require a hosted account.
   website: https://docs.astral.sh/ruff/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Ruff's Python linter, including documented notebook support. The formatter is separate functionality; Ruff is not a type checker.
   findings: ["Logic errors","Coding conventions","Unsafe API use"]
   findingNote: "Selected lint families; security-related rules require configuration. Ruff is not a Python type checker."

@@ -17,7 +17,7 @@ tool:
   cost: ["Free"]
   costNote: "Free open-source verifier. No paid JBMC edition is required for this workflow."
   website: "https://www.cprover.org/jbmc/"
-  verified: "2026-09-21"
+  verified: "2026-09-22"
   scope: "JBMC within the CBMC project. The official introductory example uses an older version; confirm current options and class-file compatibility with the selected release."
   sources:
     - label: "Purpose and Java class-file quickstart"

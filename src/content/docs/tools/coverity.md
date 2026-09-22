@@ -18,7 +18,7 @@ tool:
   costNote: "Commercial pricing is by quote. The separately listed Coverity Scan service offers eligible open-source projects free access under its own language scope and submission limits; it is not unrestricted free commercial Coverity."
   editionGroup: "coverity"
   website: "https://www.blackduck.com/static-analysis-tools-sast/coverity.html"
-  verified: "2026-09-21"
+  verified: "2026-09-22"
   scope: "Commercial Coverity source analysis using public vendor documentation. Private release documentation, exact host support, purchased entitlements, and pricing were not independently verified."
   sources:
     - label: "Commercial capabilities, deployment, and quote model"

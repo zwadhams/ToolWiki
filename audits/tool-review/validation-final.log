@@ -1,0 +1,144 @@
+$ pnpm check && pnpm test && pnpm build && node scripts/check-site.mjs
+$ astro check
+12:28:10 [content] Syncing content
+12:28:10 [content] Synced content
+12:28:10 [types] Generated 1.04s
+12:28:10 [check] Getting diagnostics for Astro files in C:\Users\zwadh\Repos\ToolWiki...
+Result (21 files):
+- 0 errors
+- 0 warnings
+- 0 hints
+
+$ node --test tests/*.test.mjs
+\u2714 combines filters and all search terms instead of returning their union (1.8802ms)
+\u2714 multi-mode tools appear in either relevant category (0.1112ms)
+\u2714 finding categories combine with input, language, and cost filters (0.2264ms)
+\u2714 finding descriptions are searchable and clearing the filter restores results (6.4568ms)
+\u2714 input types support multiple workflows and combine with other filters (0.1776ms)
+\u2714 dependency ecosystem tags do not imply source analysis (0.7221ms)
+\u2714 language-independent HTTP tools are not falsely tagged for source languages (0.1334ms)
+\u2714 sorts without mutating input and breaks date ties by name (0.1849ms)
+\u2714 empty searches restore the full catalog and impossible filters return nothing (0.0955ms)
+\u2714 free options include restricted free use but exclude paid trials (0.2642ms)
+\u2714 free proprietary manual tools do not inherit automated scanning from paid editions (0.128ms)
+\u2714 cost and language filters must match the same edition (0.0947ms)
+\u2714 comparison URLs ignore unknown IDs and repeated tools (1.6392ms)
+\u2714 comparisons preserve order and cap selection at three valid tools (0.0942ms)
+\u2714 empty and single selections are supported without inventing a comparison (0.0774ms)
+\u2714 normalizing checkbox state leaves its input unchanged (0.0882ms)
+\u2714 bookmark URLs round-trip tool IDs and the configured base path (0.5399ms)
+\u2139 tests 17
+\u2139 suites 0
+\u2139 pass 17
+\u2139 fail 0
+\u2139 cancelled 0
+\u2139 skipped 0
+\u2139 todo 0
+\u2139 duration_ms 125.0622
+$ astro build
+12:28:16 [content] Syncing content
+12:28:16 [content] Synced content
+12:28:16 [types] Generated 549ms
+12:28:16 [build] output: "static"
+12:28:16 [build] mode: "static"
+12:28:16 [build] directory: C:\Users\zwadh\Repos\ToolWiki\dist\
+12:28:16 [build] Collecting build info...
+12:28:16 [build] \u2713 Completed in 730ms.
+12:28:16 [build] Building static entrypoints...
+12:28:16 [vite] \u2713 built in 460ms
+12:28:16 [vite] \u2713 built in 51ms
+12:28:16 [build] Rearranging server assets...
+
+ generating static routes
+12:28:17 [WARN] [build] Could not render `/404` from route `/[...slug]` as it conflicts with higher priority route `/404`.
+12:28:17   \u251c\u2500 /404.html (+19ms)
+12:28:17   \u251c\u2500 /compare/index.html (+8ms)
+12:28:17   \u251c\u2500 /concepts/dast-approaches/index.html (+6ms)
+12:28:17   \u251c\u2500 /concepts/model-falsification/index.html (+14ms)
+12:28:17   \u251c\u2500 /concepts/sast-vs-dast/index.html (+4ms)
+12:28:17   \u251c\u2500 /concepts/static-approaches/index.html (+4ms)
+12:28:17   \u251c\u2500 /concepts/static-vs-dynamic/index.html (+3ms)
+12:28:17   \u251c\u2500 /concepts/verification-and-generated-tests/index.html (+3ms)
+12:28:17   \u251c\u2500 /dynamic/index.html (+9ms)
+12:28:17   \u251c\u2500 /guides/editing/index.html (+4ms)
+12:28:17   \u251c\u2500 /guides/java-analysis/index.html (+2ms)
+12:28:17   \u251c\u2500 /guides/memory-error-detection/index.html (+2ms)
+12:28:17   \u251c\u2500 /guides/temporal-monitoring-and-falsification/index.html (+3ms)
+12:28:17   \u251c\u2500 /index.html (+5ms)
+12:28:17   \u251c\u2500 /research/index.html (+4ms)
+12:28:17   \u251c\u2500 /research/binary-analysis/index.html (+12ms)
+12:28:17   \u251c\u2500 /research/comparing-tools/index.html (+2ms)
+12:28:17   \u251c\u2500 /research/sast-adoption/index.html (+3ms)
+12:28:17   \u251c\u2500 /research/sast-workflow/index.html (+3ms)
+12:28:17   \u251c\u2500 /research/software-quality/index.html (+3ms)
+12:28:17   \u251c\u2500 /static/index.html (+6ms)
+12:28:17   \u251c\u2500 /tools/address-sanitizer/index.html (+5ms)
+12:28:17   \u251c\u2500 /tools/afl-plus-plus/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/angr/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/bandit/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/binwalk/index.html (+3ms)
+12:28:17   \u251c\u2500 /tools/boofuzz/index.html (+21ms)
+12:28:17   \u251c\u2500 /tools/brakeman/index.html (+5ms)
+12:28:17   \u251c\u2500 /tools/breach/index.html (+6ms)
+12:28:17   \u251c\u2500 /tools/burp-suite-community/index.html (+4ms)
+12:28:17   \u251c\u2500 /tools/burp-suite-professional/index.html (+3ms)
+12:28:17   \u251c\u2500 /tools/capa/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/cargo-audit/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/cbmc/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/clang-static-analyzer/index.html (+3ms)
+12:28:17   \u251c\u2500 /tools/clippy/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/codeql/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/coverity/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/coverity-scan/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/cppcheck/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/cve-bin-tool/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/cwe-checker/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/dafny/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/detekt/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/dotnet-analyzers/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/dr-memory/index.html (+25ms)
+12:28:17   \u251c\u2500 /tools/eslint/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/floss/index.html (+4ms)
+12:28:17   \u251c\u2500 /tools/frama-c/index.html (+3ms)
+12:28:17   \u251c\u2500 /tools/ghidra/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/gosec/index.html (+3ms)
+12:28:17   \u251c\u2500 /tools/hypothesis/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/infer/index.html (+3ms)
+12:28:17   \u251c\u2500 /tools/jazzer/index.html (+9ms)
+12:28:17   \u251c\u2500 /tools/jbmc/index.html (+3ms)
+12:28:17   \u251c\u2500 /tools/kani/index.html (+6ms)
+12:28:17   \u251c\u2500 /tools/libfuzzer/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/osv-scanner/index.html (+4ms)
+12:28:17   \u251c\u2500 /tools/phpstan/index.html (+3ms)
+12:28:17   \u251c\u2500 /tools/pmd/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/polyspace-code-prover/index.html (+8ms)
+12:28:17   \u251c\u2500 /tools/psalm/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/psy-taliro/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/pvs-studio/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/restler/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/rtamt/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/ruff/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/s-taliro/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/schemathesis/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/semgrep-ce/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/semgrep-code/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/sonarqube/index.html (+3ms)
+12:28:17   \u251c\u2500 /tools/sonarqube-community/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/spotbugs/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/staticcheck/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/thread-sanitizer/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/valgrind-memcheck/index.html (+3ms)
+12:28:17   \u251c\u2500 /tools/verifai/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/wartremover/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/yara-x/index.html (+2ms)
+12:28:17   \u251c\u2500 /tools/zap/index.html (+2ms)
+12:28:17 \u2713 Completed in 398ms.
+
+12:28:17 [build] \u2713 Completed in 944ms.
+12:28:17 [starlight:pagefind] Building search index with Pagefind...
+12:28:17 [starlight:pagefind] Found 81 HTML files.
+12:28:17 [starlight:pagefind] Finished building search index in 599ms.
+12:28:17 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+12:28:17 [build] 81 page(s) built in 2.32s
+12:28:17 [build] Complete!
+Verified 81 built pages, local links, fragments, assets, and search index.

@@ -6,7 +6,7 @@ tool:
   inputTypes: [Source code]
   techniques: [SAST, Pattern matching, Data flow analysis]
   languages: [C, C++, 'C#', Go, Java, JavaScript, Kotlin, Python, Ruby, Rust, TypeScript, PHP]
-  languageNote: Selected supported language examples, not an exhaustive list. Language maturity and analysis features differ; the product support matrix also describes features outside CE.
+  languageNote: Selected community-supported language examples, not an exhaustive list. CE support is best effort, and its documented data flow analysis is limited to a single function. Check the CE column for syntax-version limits rather than applying the Code product's support to CE.
   targets: [Source code]
   licenseCategory: Open source
   cost: [Free]
@@ -14,7 +14,7 @@ tool:
   editionGroup: semgrep
   license: LGPL-2.1 engine; rules may have different licenses.
   website: https://github.com/semgrep/semgrep
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Community Edition engine. Do not assume Semgrep Code platform capabilities are included.
   findings: ["Injection risks","Unsafe API use","Coding conventions"]
   findingNote: "Selected local rules and supported local taint checks. Cross-file platform features and separate Supply Chain detection are outside CE scope."
@@ -31,8 +31,8 @@ tool:
       url: https://github.com/semgrep/semgrep
     - label: Semgrep CE design and scope
       url: https://semgrep.dev/docs/contributing/semgrep-philosophy
-    - label: Product language support matrix
-      url: https://docs.semgrep.dev/supported-languages
+    - label: CE language support and analysis limits
+      url: https://docs.semgrep.dev/semgrep-ce-languages
 ---
 
 ## What it does
@@ -45,7 +45,7 @@ Use it when you want to turn a recognizable coding mistake into a repeatable che
 
 ## What to keep in mind
 
-CE and [Semgrep Code](../semgrep-code/) have different analysis capabilities. Cross-file analysis and Pro rules are platform capabilities available even on its limited free plan; they are not features of standalone CE. Rule quality and language support influence what a scan finds.
+CE and [Semgrep Code](../semgrep-code/) have different analysis capabilities. CE's documented data flow analysis is limited to a single function. Cross-file analysis and Pro rules are platform capabilities available even on its limited free plan; they are not features of standalone CE. Rule quality and language support influence what a scan finds.
 
 ## Getting started
 

@@ -17,7 +17,7 @@ tool:
   cost: [Free]
   costNote: Free open-source Python testing library. No paid service is required for input generation, shrinking, or the documented local test workflow.
   website: https://hypothesis.readthedocs.io/en/latest/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Hypothesis for Python, based on the 6.168.0 documentation. Third-party extensions and external fuzzing backends are separate integrations.
   sources:
     - label: Hypothesis quickstart

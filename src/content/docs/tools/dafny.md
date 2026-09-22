@@ -17,7 +17,7 @@ tool:
   cost: [Free]
   costNote: Free open-source language and verification toolchain. Optional hosting, support, or backend toolchains can have separate costs; there is no required paid verification tier.
   website: https://dafny.org/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Dafny verification workflow and installation documentation, distinct from running compiled output.
   sources:
     - label: Dafny project

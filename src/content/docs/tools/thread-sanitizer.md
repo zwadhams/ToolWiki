@@ -17,7 +17,7 @@ tool:
   cost: ["Free"]
   costNote: "Free compiler/runtime component. The instrumented program can require substantially more time and memory."
   website: "https://clang.llvm.org/docs/ThreadSanitizer.html"
-  verified: "2026-09-21"
+  verified: "2026-09-22"
   scope: "Clang/LLVM ThreadSanitizer C/C++ data-race checking. Target support and synchronization modeling depend on the compiler/runtime release."
   sources:
     - label: "Clang usage, supported targets, and limitations"

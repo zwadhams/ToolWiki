@@ -17,7 +17,7 @@ tool:
   cost: ["Free with limits","Paid"]
   costNote: "The license allows analyzing your own software without charge. Defined commercial uses such as providing a managed scanning service or incorporating the scanner into a commercial product require a separate license. These are use rights, not detection tiers."
   website: "https://brakemanscanner.org/"
-  verified: "2026-09-21"
+  verified: "2026-09-22"
   scope: "Current Brakeman Rails scanner and Public Use License. The repository's older MIT file does not describe the entire current distribution."
   sources:
     - label: "Rails-specific purpose and findings"

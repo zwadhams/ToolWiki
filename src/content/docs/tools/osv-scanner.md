@@ -17,7 +17,7 @@ tool:
   cost: ["Free"]
   costNote: "Free open-source scanner. Registry access, CI execution, and optional surrounding services can have separate costs."
   website: "https://google.github.io/osv-scanner/"
-  verified: "2026-09-21"
+  verified: "2026-09-22"
   scope: "Current v2 scan source and scan image workflows. The input tags cover dependency inventories and images; this entry does not claim general source-defect detection."
   sources:
     - label: "Purpose and advisory matching"
@@ -43,7 +43,7 @@ Image scanning extracts supported installed artifacts. It is static inspection o
 **Illustrative workflow, not run here.** With OSV-Scanner v2 installed, enter a project with a supported lockfile, such as `pnpm-lock.yaml` or `Cargo.lock`:
 
 ```sh
-osv-scanner scan source -r . --format json --output-file osv-results.json
+osv-scanner scan source --format json --output-file osv-results.json -r .
 ```
 
 Review the identified package, version, ecosystem, and advisory identifiers. A result means the identified version matches the advisory conditions; investigate whether the affected behavior is used. The exact findings change with the lockfile and advisory database.

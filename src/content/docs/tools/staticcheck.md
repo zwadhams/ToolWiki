@@ -13,7 +13,7 @@ tool:
   cost: [Free]
   costNote: The project offers Staticcheck free of charge as open-source software. Sponsorship supports development; it does not unlock a required paid analysis tier.
   website: https://staticcheck.dev/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Standalone Staticcheck and its documented checks; distinct from Go's built-in vet command or a wrapper that aggregates multiple linters.
   findings: ["Logic errors","Coding conventions"]
   findingNote: "Selected Go correctness, simplification, and style checks; performance patterns are not runtime profiling measurements."

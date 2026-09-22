@@ -13,7 +13,7 @@ tool:
   cost: [Free]
   costNote: Free open-source linter. The documented local JavaScript and typescript-eslint workflows require no paid ESLint plan. Optional support services and hosted CI are separate.
   website: https://eslint.org/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: ESLint core linting and the official typescript-eslint integration; third-party security and framework plugins need their own coverage review.
   findings: ["Logic errors","Coding conventions"]
   findingNote: "Configured core and plugin rules. TypeScript typed rules require type information; arbitrary security checks are not built into every setup."

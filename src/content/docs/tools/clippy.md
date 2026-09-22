@@ -13,7 +13,7 @@ tool:
   cost: [Free]
   costNote: Free open-source Rust toolchain component. No paid Clippy edition or hosted account is required; build infrastructure is separate.
   website: https://doc.rust-lang.org/clippy/
-  verified: '2026-09-21'
+  verified: '2026-09-22'
   scope: Rust Clippy's documented lint groups and Cargo workflow; not a runtime checker or a proof of application correctness.
   findings: ["Logic errors","Coding conventions"]
   findingNote: "Selected compiler-integrated lint patterns. The defaults and optional lint groups differ; this is not exhaustive verification."

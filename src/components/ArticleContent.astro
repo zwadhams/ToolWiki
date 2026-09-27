@@ -10,6 +10,7 @@ const contexts = tool?.targets.filter((target) => !tool.inputTypes.some((input) 
 {tool && <section class="tool-profile" aria-label="Tool facts">
   <div class="profile-heading"><span class="mode-badge">{tool.modes.join(' / ')} analysis</span><a href={tool.website}>Official website</a></div>
   <p>{entry.data.description}</p>
+  {tool.aliases.length > 0 && <p class="profile-aliases">Also known as: {tool.aliases.join(', ')}</p>}
   <dl class="profile-facts">
     <div><dt>Input type</dt><dd>{tool.inputTypes.join(', ')}</dd></div>
     {contexts.length > 0 && <div><dt>Context</dt><dd>{contexts.join(', ')}</dd></div>}

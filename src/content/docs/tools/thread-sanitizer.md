@@ -2,6 +2,8 @@
 title: "ThreadSanitizer (Clang)"
 description: "Detect data races during executions of instrumented multithreaded C and C++ programs."
 tool:
+  aliases: [TSan, Thread Sanitizer]
+  searchTerms: [data race, race conditions]
   modes: ["Dynamic"]
   inputTypes: ["Binaries"]
   techniques: ["Runtime race detection","Sanitizer instrumentation"]
@@ -64,3 +66,5 @@ Look for a data-race report with the conflicting accesses and their threads. A m
 Results depend on the exercised workload and the synchronization the runtime can observe. Missing instrumentation or broad suppressions can obscure relevant events. An execution with no report is not a proof for every possible schedule.
 
 Use a separate build from [AddressSanitizer](../address-sanitizer/) when evaluating both kinds of defects.
+
+For other concurrency workflows, see [Valgrind Helgrind](../valgrind-helgrind/) for native pthread programs and [the Go race detector](../go-race-detector/) for Go tests and applications.

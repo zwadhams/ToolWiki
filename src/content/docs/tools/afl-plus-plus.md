@@ -2,6 +2,7 @@
 title: AFL++
 description: Mutate inputs using execution feedback to find crashes, hangs, and failures exposed by a fuzzing target.
 tool:
+  aliases: [AFL plus plus, AFLplusplus]
   modes: [Dynamic]
   inputTypes: [Binaries]
   techniques: [Coverage-guided fuzzing]

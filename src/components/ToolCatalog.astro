@@ -7,16 +7,16 @@ const entries = (await getCollection('docs', ({ data }) => !!data.tool && !data.
 const allTools = entries.map(({ id, data }) => ({ id, title: data.title, description: data.description || '', ...data.tool! }))
   .sort((a, b) => a.title.localeCompare(b.title, 'en'));
 const tools = allTools.filter((tool) => !mode || tool.modes.includes(mode));
-const options = (key: 'inputTypes' | 'findings' | 'languages' | 'techniques') => [...new Set(tools.flatMap((tool) => tool[key]))].sort();
+const options = (key: 'inputTypes' | 'findings' | 'languages' | 'techniques') => [...new Set(allTools.flatMap((tool) => tool[key]))].sort();
 const groups = [
   { name: 'input', label: 'Input type', values: options('inputTypes') },
   { name: 'language', label: 'Language / ecosystem', values: options('languages') },
   { name: 'finding', label: 'What can it find?', values: options('findings') },
   { name: 'technique', label: 'Technique', values: options('techniques') },
-  { name: 'license', label: 'License type', values: [...new Set(tools.map((tool) => tool.licenseCategory))].sort() },
+  { name: 'license', label: 'License type', values: [...new Set(allTools.map((tool) => tool.licenseCategory))].sort() },
 ];
 ---
-<tool-catalog data-mode={mode} data-base={base}>
+<tool-catalog data-mode={mode} data-base={base} data-pagefind-ignore>
   <nav class="catalog-tabs" aria-label="Analysis category">
     {[['', 'All tools', ''], ['Static', 'Static analysis', 'static/'], ['Dynamic', 'Dynamic analysis', 'dynamic/']].map(([value, label, path]) =>
       <a data-catalog-category href={`${base}/${path}`} aria-current={mode === value ? 'page' : undefined}>{label}</a>
@@ -24,19 +24,25 @@ const groups = [
   </nav>
   <form class="catalog-controls" role="search" aria-label="Filter tools">
     <div class="search-row">
-      <label class="catalog-query"><span>Search the catalog</span><input type="search" name="q" placeholder="Tool name, language, or capability" autocomplete="off" /></label>
-      <label class="catalog-cost"><span>Cost</span><select name="cost"><option value="">All</option><option value="any-free">Any free option</option><option value="Free">Free</option><option value="Free with limits">Free with limits</option><option value="Paid">Paid</option></select></label>
-      <label class="catalog-sort"><span>Sort by</span><select name="sort"><option value="az">Name: A to Z</option><option value="za">Name: Z to A</option><option value="verified">Recently verified</option></select></label>
+      <label class="catalog-query"><span>Find a tool</span><input type="search" name="q" placeholder="Name, alias, language, or capability" aria-describedby="catalog-search-help" autocomplete="off" /></label>
+      <label class="catalog-sort"><span>Sort by</span><select name="sort"><option value="relevance">Best match</option><option value="az">Name: A to Z</option><option value="za">Name: Z to A</option><option value="verified">Recently verified</option></select></label>
     </div>
+    <p id="catalog-search-help" class="search-help">Search tool names and capabilities. Use filters to narrow the results.</p>
+    <div class="search-examples" aria-label="Example searches"><span>Try:</span>{['ASan', 'Python linting', 'API testing'].map((query) => <button type="button" data-example-query={query}>{query}</button>)}</div>
     <div class="filter-row">
-      {groups.map(({ name, label, values }) => <label><span>{label}</span><select name={name}><option value="">All</option>{values.map((value) => <option value={value}>{value}</option>)}</select></label>)}
+      {groups.slice(0, 3).map(({ name, label, values }) => <label><span>{label}</span><select name={name}><option value="">All</option>{values.map((value) => <option value={value}>{value}</option>)}</select></label>)}
+      <label class="catalog-cost"><span>Cost</span><select name="cost"><option value="">All</option><option value="any-free">Any free option</option><option value="Free">Free</option><option value="Free with limits">Free with limits</option><option value="Paid">Paid</option></select></label>
     </div>
+    <details class="more-filters"><summary>More filters<span data-extra-filter-count></span></summary><div class="filter-row">
+      {groups.slice(3).map(({ name, label, values }) => <label><span>{label}</span><select name={name}><option value="">All</option>{values.map((value) => <option value={value}>{value}</option>)}</select></label>)}
+    </div></details>
+    <div class="active-filters" data-active-filters aria-label="Active filters" hidden></div>
   </form>
   <section class="compare-tray" aria-label="Selected tools for comparison">
     <div class="compare-tray-heading"><p data-selection-status role="status" tabindex="-1">Select two or three tools to compare.</p><a href={`${base}/compare/`} data-open-comparison>Open comparison</a><button type="button" data-clear-selection hidden>Clear selection</button></div>
     <div class="selected-tools" data-selected-tools></div>
   </section>
-  <div class="results-bar"><p role="status" aria-live="polite" aria-atomic="true" data-result-count>{tools.length} entries</p><button type="button" class="reset-filters">Clear filters</button></div>
+  <div class="results-bar"><p role="status" aria-live="polite" aria-atomic="true" tabindex="-1" data-result-count>{tools.length} entries</p><button type="button" class="reset-filters">Reset search</button></div>
   <div class="tool-grid">
     {tools.map((tool) => <article class="tool-card" data-tool-id={tool.id}>
       <div class="card-meta"><span class:list={['mode-badge', { dynamic: tool.modes.includes('Dynamic') }]}>{tool.modes.join(' / ')}</span><span>{tool.licenseCategory}</span></div>
@@ -47,16 +53,24 @@ const groups = [
       <div class="card-footer"><span>Verified {tool.verified}</span><a href={`${base}/${tool.id}/`} aria-label={`Read notes on ${tool.title}`}>Read notes</a></div>
     </article>)}
   </div>
-  <div class="catalog-empty" hidden><h2>No matching tools</h2><p>Try a broader search or clear a filter. This catalog is a starting collection, not a complete inventory.</p><button type="button" class="reset-filters">Clear filters</button></div>
+  <div class="catalog-empty" hidden>
+    <h2>No matching tools</h2>
+    <p data-empty-message>Try a tool name or fewer search terms.</p>
+    <div class="search-suggestions" data-suggestions hidden></div>
+    <button type="button" data-clear-filters hidden>Clear filters, keep search</button>
+    <a data-search-all hidden href={`${base}/`}>Search all tools</a>
+    <p>This catalog is a starting collection, not a complete inventory.</p>
+    <button type="button" class="reset-filters">Reset search</button>
+  </div>
   <p class="catalog-note">Cost applies to the listed edition or use. "Free with limits" has eligibility or usage conditions; a free trial does not count as a free edition. Required runtimes, hosting, and compute can have separate costs. Check the tool notes for details.</p>
-  <p class="catalog-note">Input type describes what a tool examines. Combine "Source code" with a language to find source analyzers; "Dependency metadata" covers manifests and SBOMs. "Container images" means inspecting an image at rest. Binary formats and instrumentation requirements are described in the tool notes.</p>
+  <p class="catalog-note">Input type describes what a tool examines. Combine "Source code" with a language to find source analyzers; "Dependency metadata" covers manifests and SBOMs. "Container images" means inspecting an image at rest. "Configuration files" covers infrastructure definitions such as Terraform and Kubernetes manifests. Binary formats and instrumentation requirements are described in the tool notes.</p>
   <p class="catalog-note">Finding categories describe selected capabilities. Rules, languages, and editions differ; fuzzers and property tools may need assertions or instrumentation. Check Finding scope in the notes or comparison.</p>
   <noscript><p>All tools are listed below. Enable JavaScript to search, filter, and sort.</p></noscript>
-  <script type="application/json" data-catalog-data set:html={JSON.stringify(tools).replace(/</g, '\u003c')} />
+  <script type="application/json" data-catalog-data set:html={JSON.stringify(allTools).replace(/</g, '\u003c')} />
   <script type="application/json" data-selection-data set:html={JSON.stringify(allTools.map(({ id, title }) => ({ id, title }))).replace(/</g, '\u003c')} />
 </tool-catalog>
 <script>
-  import { selectTools } from '../lib/catalog.mjs';
+  import { selectTools, suggestTools } from '../lib/catalog.mjs';
   import { normalizeSelection, comparisonHref } from '../lib/comparison.mjs';
   class ToolCatalog extends HTMLElement {
     connectedCallback() {
@@ -64,12 +78,27 @@ const groups = [
       const grid = this.querySelector<HTMLElement>('.tool-grid')!;
       const count = this.querySelector<HTMLElement>('[data-result-count]')!;
       const empty = this.querySelector<HTMLElement>('.catalog-empty')!;
-      const tools = JSON.parse(this.querySelector('[data-catalog-data]')!.textContent!);
+      const allTools = JSON.parse(this.querySelector('[data-catalog-data]')!.textContent!);
+      const tools = selectTools(allTools, { mode: this.dataset.mode });
+      const query = form.elements.namedItem('q') as HTMLInputElement;
+      const extraFilters = this.querySelector<HTMLDetailsElement>('.more-filters')!;
       const cards = new Map(Array.from(this.querySelectorAll<HTMLElement>('[data-tool-id]')).map((card) => [card.dataset.toolId, card]));
       const fields = ['q', 'finding', 'input', 'language', 'technique', 'license', 'cost', 'sort'];
       const selectionTools: { id: string; title: string }[] = JSON.parse(this.querySelector('[data-selection-data]')!.textContent!);
       const allowedIds = selectionTools.map((tool) => tool.id);
       let selected: string[] = [];
+      const syncCategoryLinks = () => {
+        const filters = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+        this.querySelectorAll<HTMLAnchorElement>('[data-catalog-category], [data-search-all]').forEach((anchor) => {
+          const url = new URL(anchor.href);
+          fields.forEach((name) => {
+            if (filters[name] && !(name === 'sort' && filters[name] === 'relevance')) url.searchParams.set(name, filters[name]);
+            else url.searchParams.delete(name);
+          });
+          if (selected.length) url.searchParams.set('compare', selected.join(',')); else url.searchParams.delete('compare');
+          anchor.href = url.pathname + url.search;
+        });
+      };
       const selectionStatus = this.querySelector<HTMLElement>('[data-selection-status]')!;
       const checkboxes = [...this.querySelectorAll<HTMLInputElement>('[data-compare-id]')];
       const updateSelection = (save = true) => {
@@ -91,11 +120,7 @@ const groups = [
           button.addEventListener('click', () => { selected = selected.filter((value) => value !== id); updateSelection(); selectionStatus.focus(); });
           list.append(button);
         });
-        this.querySelectorAll<HTMLAnchorElement>('[data-catalog-category]').forEach((anchor) => {
-          const url = new URL(anchor.href);
-          if (selected.length) url.searchParams.set('compare', selected.join(',')); else url.searchParams.delete('compare');
-          anchor.href = url.pathname + url.search;
-        });
+        syncCategoryLinks();
         if (save) {
           const url = new URL(location.href);
           if (selected.length) url.searchParams.set('compare', selected.join(',')); else url.searchParams.delete('compare');
@@ -114,8 +139,9 @@ const groups = [
           const control = form.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement;
           const value = params.get(name);
           if (value !== null) control.value = value;
-          if (name === 'sort' && !control.value) control.value = 'az';
+          if (name === 'sort' && !control.value) control.value = 'relevance';
         }
+        extraFilters.open = ['technique', 'license'].some((name) => (form.elements.namedItem(name) as HTMLSelectElement).value);
       };
       const update = (save = true) => {
         const filters = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
@@ -126,9 +152,52 @@ const groups = [
         count.textContent = `${results.length} of ${tools.length} entries`;
         empty.hidden = results.length !== 0;
         grid.hidden = results.length === 0;
+        const filterNames = fields.filter((name) => name !== 'q' && name !== 'sort');
+        const activeNames = filterNames.filter((name) => filters[name]);
+        const chips = this.querySelector<HTMLElement>('[data-active-filters]')!;
+        chips.replaceChildren();
+        chips.hidden = activeNames.length === 0;
+        activeNames.forEach((name) => {
+          const control = form.elements.namedItem(name) as HTMLSelectElement;
+          const label = control.labels?.[0]?.querySelector('span')?.textContent || name;
+          const value = control.selectedOptions[0].textContent;
+          const button = document.createElement('button'); button.type = 'button';
+          button.textContent = `${label}: ${value} [x]`;
+          button.setAttribute('aria-label', `Remove ${label}: ${value}`);
+          button.addEventListener('click', () => { control.value = ''; update(); count.focus(); });
+          chips.append(button);
+        });
+        const extraCount = activeNames.filter((name) => name === 'technique' || name === 'license').length;
+        this.querySelector('[data-extra-filter-count]')!.textContent = extraCount ? ` (${extraCount} active)` : '';
+        const suggestions = this.querySelector<HTMLElement>('[data-suggestions]')!;
+        suggestions.replaceChildren(); suggestions.hidden = true;
+        const clearFilters = this.querySelector<HTMLButtonElement>('[data-clear-filters]')!;
+        clearFilters.hidden = activeNames.length === 0;
+        const allLink = this.querySelector<HTMLAnchorElement>('[data-search-all]')!;
+        allLink.hidden = true;
+        if (!results.length) {
+          const withoutFilters = selectTools(tools, { q: filters.q }).length;
+          this.querySelector('[data-empty-message]')!.textContent = withoutFilters && activeNames.length
+            ? `${withoutFilters} ${withoutFilters === 1 ? 'entry matches' : 'entries match'} your search without these filters.`
+            : 'Try a tool name, a common alias, or fewer search terms.';
+          const alternatives = suggestTools(tools, filters);
+          if (alternatives.length) {
+            suggestions.hidden = false;
+            const label = document.createElement('p'); label.textContent = 'Did you mean:'; suggestions.append(label);
+            alternatives.forEach((tool) => {
+              const button = document.createElement('button'); button.type = 'button'; button.textContent = tool.title;
+              button.addEventListener('click', () => { query.value = tool.title; update(); query.focus(); });
+              suggestions.append(button);
+            });
+          }
+          const acrossCategories = selectTools(allTools, filters).length;
+          allLink.hidden = !this.dataset.mode || !acrossCategories;
+          allLink.textContent = `Search all tools (${acrossCategories} ${acrossCategories === 1 ? 'match' : 'matches'})`;
+        }
+        syncCategoryLinks();
         if (save) {
           const url = new URL(location.href);
-          fields.forEach((name) => { const value = filters[name]; if (value && !(name === 'sort' && value === 'az')) url.searchParams.set(name, value); else url.searchParams.delete(name); });
+          fields.forEach((name) => { const value = filters[name]; if (value && !(name === 'sort' && value === 'relevance')) url.searchParams.set(name, value); else url.searchParams.delete(name); });
           history.replaceState(null, '', url);
         }
       };
@@ -141,7 +210,12 @@ const groups = [
         updateSelection();
       }));
       this.querySelector('[data-clear-selection]')!.addEventListener('click', () => { selected = []; updateSelection(); selectionStatus.focus(); });
-      this.querySelectorAll('.reset-filters').forEach((button) => button.addEventListener('click', () => { form.reset(); update(); }));
+      this.querySelectorAll('.reset-filters').forEach((button) => button.addEventListener('click', () => { form.reset(); extraFilters.open = false; update(); query.focus(); }));
+      this.querySelector('[data-clear-filters]')!.addEventListener('click', () => {
+        fields.filter((name) => name !== 'q' && name !== 'sort').forEach((name) => { (form.elements.namedItem(name) as HTMLSelectElement).value = ''; });
+        update(); query.focus();
+      });
+      this.querySelectorAll<HTMLButtonElement>('[data-example-query]').forEach((button) => button.addEventListener('click', () => { query.value = button.dataset.exampleQuery!; update(); query.focus(); }));
       window.addEventListener('popstate', () => { restore(); update(false); });
       restore();
       update(false);

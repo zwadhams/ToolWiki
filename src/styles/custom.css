@@ -69,14 +69,23 @@ tool-catalog a { text-decoration: none; }
 .catalog-tabs a[aria-current='page'] { color: var(--sl-color-accent-high); border-bottom-color: currentColor; }
 .catalog-controls { padding: 1.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: .6rem; }
 .catalog-controls label { display: flex; flex-direction: column; gap: .5rem; font-size: .875rem; font-weight: 600; min-width: 0; color: var(--sl-color-white); }
-.search-row { display: grid; grid-template-columns: minmax(0, 1fr) 11rem 12rem; gap: 1rem; }
-.filter-row { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
-.filter-row label { grid-column: span 2; }
-.filter-row label:nth-last-child(-n + 2) { grid-column: span 3; }
+.search-row { display: grid; grid-template-columns: minmax(0, 1fr) 12rem; gap: 1rem; }
+.filter-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+.more-filters { margin-top: 1.1rem; }
+.more-filters summary { cursor: pointer; color: var(--sl-color-accent-high); font-size: .875rem; }
+.more-filters .filter-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.catalog-controls .search-help { margin-top: .6rem; color: var(--muted); font-size: .85rem; }
+.search-examples, .active-filters { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; font-size: .85rem; }
+.search-examples span { color: var(--muted); }
+.active-filters { border-top: 1px solid var(--line); padding-top: 1rem; }
+:is(.search-examples, .active-filters, .search-suggestions) button, [data-clear-filters] { border: 1px solid var(--line); background: var(--surface-raised); color: var(--sl-color-accent-high); border-radius: .35rem; padding: .4rem .65rem; font: inherit; cursor: pointer; }
+.search-suggestions button { margin: .25rem; }
+[data-search-all] { display: block; margin-top: .75rem; color: var(--sl-color-accent-high); text-decoration: underline; }
+.tool-profile .profile-aliases { margin-top: .6rem; color: var(--muted); font-size: .875rem; }
 .catalog-controls :is(input,select) { width: 100%; min-height: 2.85rem; background: var(--sl-color-black); border: 1px solid var(--line); border-radius: .3rem; padding: .65rem .75rem; color: var(--sl-color-white); font: inherit; font-weight: 400; }
 .catalog-controls select { padding-right: 1.5rem; text-overflow: ellipsis; }
 .catalog-controls input::placeholder { color: var(--muted); opacity: 1; }
-tool-catalog :is(a,button,input,select):focus-visible { outline: 2px solid var(--sl-color-accent-high); outline-offset: 4px; }
+tool-catalog :is(a,button,input,select,summary,[tabindex]):focus-visible { outline: 2px solid var(--sl-color-accent-high); outline-offset: 4px; }
 .results-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 1.3rem 0 1rem; color: var(--muted); font-size: .9rem; }
 .reset-filters { padding: .25rem 0; background: transparent; border: 0; color: var(--sl-color-accent-high); font: inherit; text-decoration: underline; text-underline-offset: .2em; cursor: pointer; }
 .tool-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
@@ -160,7 +169,7 @@ tool-comparison :is(a,button,select,.comparison-scroll):focus-visible { outline:
 .profile-sources { border-top: 1px solid var(--line); margin-top: 2.5rem; padding-top: 1.5rem; }
 .profile-sources h2 { font-size: 1.4rem; }
 .profile-sources p { font-size: .875rem; color: var(--muted); }
-@media (max-width: 70rem) { .filter-row, .search-row { grid-template-columns: 1fr 1fr; } .filter-row label:nth-child(n) { grid-column: auto; } .filter-row label:last-child, .catalog-query { grid-column: 1 / -1; } }
+@media (max-width: 70rem) { .filter-row { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 48rem) { .tool-grid { grid-template-columns: 1fr; } .tool-card { padding: 1.2rem; } }
-@media (max-width: 32rem) { .search-row, .filter-row, .profile-facts { grid-template-columns: 1fr; } .catalog-tabs { gap: 1rem; } .catalog-tabs a { font-size: .875rem; } .catalog-controls { padding: 1rem; } }
+@media (max-width: 32rem) { .search-row, .filter-row, .more-filters .filter-row, .profile-facts { grid-template-columns: 1fr; } .catalog-tabs { gap: 1rem; } .catalog-tabs a { font-size: .875rem; } .catalog-controls { padding: 1rem; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .tool-card { transition: none; } }

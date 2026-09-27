@@ -16,6 +16,13 @@ The catalog search and filters work in the live preview. Starlight's full-site
 search index is generated during a production build; use the production preview
 below to check that search experience.
 
+Use **Find a tool** for ranked catalog search by name, alias, language, or
+capability. Common spellings such as `ASan`, `cpp`, and `C sharp` are supported.
+**More filters** contains technique and license; active filters can be removed
+individually. Empty results offer spelling suggestions or a way to broaden the
+search while keeping the query. **Search all pages** searches full tool notes
+and guides. Catalog search and full-page search use different indexes.
+
 ## Set up another computer
 
 Install Node.js 24 LTS and pnpm 11.19.0, then install the locked dependencies:
@@ -46,12 +53,16 @@ New tools populate the catalog and sidebar automatically. Keep language tags
 scoped to verified support; a language match does not promise every framework or
 version is supported. Starter entries are documentation reviews, not benchmarks.
 
-The Input type filter separates source code, binaries, dependency metadata, container images,
+The Input type filter separates source code, binaries, dependency metadata, container images, configuration files,
 running applications, callable code, executable models, and execution traces. Tools can accept
 multiple input types. Combine a language with Source code when looking for a
 source analyzer; dependency ecosystem support does not imply source analysis.
 Software context such as firmware or HTTP APIs stays in the tool notes and is
 searchable in the catalog, rather than appearing as a separate filter.
+
+Configuration files covers infrastructure definitions such as Terraform,
+Dockerfiles, and Kubernetes manifests. Trivy's configuration and dependency
+checks do not make it a general application-source analyzer.
 
 Use What can it find? for finding categories. Select Compare on two or three
 catalog cards, or open Compare tools to choose directly. Selection survives

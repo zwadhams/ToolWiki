@@ -2,6 +2,7 @@
 title: .NET analyzers
 description: Run the .NET SDK's Roslyn-based code-quality rules on C# and Visual Basic projects.
 tool:
+  aliases: [Roslyn analyzers, .NET SDK analyzers]
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Linting, Bug finding]

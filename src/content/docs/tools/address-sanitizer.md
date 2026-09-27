@@ -2,6 +2,8 @@
 title: "AddressSanitizer (Clang)"
 description: "Detect selected memory errors while executing a program built with AddressSanitizer instrumentation."
 tool:
+  aliases: [ASan, Address Sanitizer]
+  searchTerms: [buffer overflow, out of bounds, use after free]
   modes: ["Dynamic"]
   inputTypes: ["Binaries"]
   techniques: ["Runtime memory checking","Sanitizer instrumentation"]

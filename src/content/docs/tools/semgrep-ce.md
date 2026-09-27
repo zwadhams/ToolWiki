@@ -2,6 +2,7 @@
 title: Semgrep CE
 description: Match code patterns and apply local data flow checks using customizable analysis rules.
 tool:
+  aliases: [Semgrep Community Edition]
   modes: [Static]
   inputTypes: [Source code]
   techniques: [SAST, Pattern matching, Data flow analysis]

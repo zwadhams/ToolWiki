@@ -38,6 +38,8 @@ OSV-Scanner identifies dependencies and looks them up in vulnerability data. Its
 
 Image scanning extracts supported installed artifacts. It is static inspection of the image, not a test of a running container.
 
+[Trivy](../trivy/) provides another package-vulnerability workflow and separate infrastructure-configuration checks. [Compare Trivy and OSV-Scanner](../../compare/?tools=tools%2Ftrivy%2Ctools%2Fosv-scanner) without treating their input and scanner coverage as identical.
+
 ## Worked example: inspect a dependency inventory
 
 **Illustrative workflow, not run here.** With OSV-Scanner v2 installed, enter a project with a supported lockfile, such as `pnpm-lock.yaml` or `Cargo.lock`:

@@ -42,7 +42,7 @@ The `check` operation performs linting. The formatter is a separate operation; f
 
 ## What it does not replace
 
-Ruff is not a Python type checker. Its documentation recommends combining linting with a type checker for deeper type errors. It also does not provide arbitrary third-party lint plugins in the same way as Flake8; a rule you used elsewhere may not have a Ruff equivalent.
+Ruff is not a Python type checker. Its documentation recommends combining linting with a type checker such as [mypy](../mypy/) for deeper type errors. It also does not provide arbitrary third-party lint plugins in the same way as Flake8; a rule you used elsewhere may not have a Ruff equivalent.
 
 Security-related rules must be selected deliberately. Their presence in the rule catalog does not mean they run by default or that Ruff provides whole-application security coverage. Compare [Bandit](../bandit/) for a dedicated Python security-rule workflow.
 
@@ -59,3 +59,5 @@ Ruff distinguishes fixes intended to preserve behavior from unsafe fixes that ca
 ## A useful first evaluation
 
 Run the linter without applying fixes, inspect a few diagnostics, and select the rule families you want. Compare the result with your existing lint and type-checking configuration before replacing any part of that workflow.
+
+Related options include [Pylint](../pylint/) for a separate linting workflow and [Pyright](../pyright/) for type checking. [Compare Ruff, Pylint, and Pyright](../../compare/?tools=tools%2Fruff%2Ctools%2Fpylint%2Ctools%2Fpyright) to review their roles and setup requirements.

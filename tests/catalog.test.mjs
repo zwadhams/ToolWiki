@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { selectTools } from '../src/lib/catalog.mjs';
+import { selectTools, suggestTools } from '../src/lib/catalog.mjs';
 
 const tools = [
   { id: 'python', title: 'Python checker', description: 'Checks untrusted data flow', modes: ['Static'], inputTypes: ['Source code'], findings: ['Injection risks'], languages: ['Python'], targets: ['Source code'], techniques: ['SAST'], licenseCategory: 'Open source', cost: ['Free'], costNote: 'Local engine.', verified: '2026-09-20' },
@@ -67,4 +67,59 @@ test('cost and language filters must match the same edition', () => {
   const community = { ...tools[0], id: 'community', languages: ['Java'], cost: ['Free'] };
   assert.deepEqual(selectTools([commercial, community], { cost: 'any-free', language: 'C++' }), []);
   assert.deepEqual(selectTools([commercial, community], { cost: 'any-free', language: 'Java' }).map((t) => t.id), ['community']);
+});
+
+test('ranks names and aliases before descriptive mentions while retaining explicit sorts', () => {
+  const asan = { ...tools[2], id: 'asan', title: 'AddressSanitizer (Clang)', aliases: ['ASan', 'Address Sanitizer'], searchTerms: ['buffer overflow'] };
+  const mention = { ...tools[0], id: 'mention', title: 'A companion', description: 'Use with ASan instrumentation.' };
+  assert.deepEqual(selectTools([mention, asan], { q: 'ASan' }).map(t => t.id), ['asan', 'mention']);
+  assert.equal(selectTools([asan], { q: 'address sanitizer' })[0].id, 'asan');
+  assert.equal(selectTools([asan], { q: 'buffer overflow' })[0].id, 'asan');
+  assert.deepEqual(selectTools([mention, asan], { q: 'ASan', sort: 'az' }).map(t => t.id), ['mention', 'asan']);
+});
+
+test('language names stay distinct and common abbreviations find the same candidates', () => {
+  const candidates = [
+    { ...tools[0], id: 'c', title: 'Native checker', description: '', languages: ['C'] },
+    { ...tools[0], id: 'cpp', title: 'Native checker', description: '', languages: ['C++'] },
+    { ...tools[0], id: 'cs', title: 'Managed checker', description: '', languages: ['C#'] },
+    { ...tools[0], id: 'go', title: 'Go checker', description: '', languages: ['Go'] },
+    { ...tools[0], id: 'rust', title: 'cargo-audit', description: '', languages: ['Rust'] },
+    { ...tools[0], id: 'java', title: 'JVM checker', description: '', languages: ['Java'] },
+    { ...tools[0], id: 'js', title: 'Script checker', description: '', languages: ['JavaScript'] },
+  ];
+  for (const [query, id] of [['C', 'c'], ['C++', 'cpp'], ['cpp', 'cpp'], ['c plus plus', 'cpp'], ['c#', 'cs'], ['csharp', 'cs'], ['C sharp', 'cs'], ['go', 'go'], ['golang', 'go'], ['java', 'java'], ['js', 'js']]) {
+    assert.deepEqual(selectTools(candidates, { q: query }).map(t => t.id), [id], query);
+  }
+  assert.equal(selectTools(tools, { q: 'py checker flow' })[0].id, 'python');
+});
+
+test('punctuation and partial names work without requiring exact formatting', () => {
+  const candidates = [{ ...tools[0], title: 'OSV-Scanner' }, { ...tools[1], title: 'AFL++', aliases: ['AFL plus plus'] }];
+  assert.equal(selectTools(candidates, { q: 'osv scanner' })[0].id, 'python');
+  assert.equal(selectTools(candidates, { q: 'OSV scann' })[0].id, 'python');
+  assert.equal(selectTools(candidates, { q: 'AFL plus plus' })[0].id, 'http');
+  assert.equal(selectTools(candidates, { q: 'AFL++' })[0].id, 'http');
+});
+
+test('cost caveats and unsupported platform notes do not become capabilities', () => {
+  const candidate = { ...tools[1], environment: 'Windows is not supported.', costNote: 'No free edition; paid trial only.' };
+  assert.deepEqual(selectTools([candidate], { q: 'free' }), []);
+  assert.deepEqual(selectTools([candidate], { q: 'windows' }), []);
+});
+
+test('typo suggestions are explicit and obey cost, language, and mode filters', () => {
+  const candidates = [
+    { ...tools[0], id: 'ce', title: 'Semgrep CE' },
+    { ...tools[1], id: 'pro', title: 'Semgrep Code' },
+  ];
+  assert.deepEqual(selectTools(candidates, { q: 'semgerp' }), []);
+  for (const q of ['semgerp', 'semgrp', 'semgrepp', 'semgrap']) {
+    assert.deepEqual(suggestTools(candidates, { q }).map(t => t.id), ['ce', 'pro']);
+  }
+  assert.deepEqual(suggestTools(candidates, { q: 'semgerp', cost: 'Free', language: 'Python', mode: 'Static' }).map(t => t.id), ['ce']);
+  assert.deepEqual(suggestTools(candidates, { q: 'semgerp', cost: 'Free', mode: 'Dynamic' }), []);
+  assert.deepEqual(suggestTools(candidates, { q: 'go' }), []);
+  assert.deepEqual(suggestTools(candidates, { q: 'totally unrelated query' }), []);
+  assert.deepEqual(suggestTools(candidates, { q: 'semgrep cod' }).map(t => t.id), ['pro']);
 });

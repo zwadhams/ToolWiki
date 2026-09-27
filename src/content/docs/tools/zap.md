@@ -2,6 +2,7 @@
 title: ZAP
 description: Inspect web traffic and test running web applications with passive and active security checks.
 tool:
+  aliases: [OWASP ZAP, Zed Attack Proxy]
   modes: [Dynamic]
   inputTypes: [Running applications]
   techniques: [DAST, Passive scanning, Active scanning]

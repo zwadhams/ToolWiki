@@ -1,6 +1,7 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import { selectTools, suggestTools } from '../src/lib/catalog.mjs';
 
 const root = path.resolve('dist');
 const base = '/ToolWiki/';
@@ -40,4 +41,55 @@ for (const [file, html] of contents) {
 }
 assert.equal(errors.length, 0, errors.join('\n'));
 await stat(path.join(root, 'pagefind', 'pagefind.js'));
-console.log(`Verified ${pages.length} built pages, local links, fragments, assets, and search index.`);
+const catalogHtml = contents.get(path.join(root, 'index.html'));
+const catalog = JSON.parse(catalogHtml.match(/<script[^>]*data-catalog-data[^>]*>([\s\S]*?)<\/script>/)[1]);
+for (const tool of catalog) {
+  for (const q of [tool.title, ...(tool.aliases || [])]) {
+    assert.ok(selectTools(catalog, { q }).some(({ id }) => id === tool.id), `${q} must find ${tool.id}`);
+  }
+}
+for (const [q, id] of [
+  ['ASan', 'tools/address-sanitizer'], ['TSan', 'tools/thread-sanitizer'],
+  ['AFL plus plus', 'tools/afl-plus-plus'], ['buffer overflow', 'tools/address-sanitizer'],
+  ['C sharp', 'tools/dotnet-analyzers'],
+]) assert.equal(selectTools(catalog, { q })[0]?.id, id, `${q} should rank ${id} first`);
+assert.ok(!selectTools(catalog, { q: 'go' }).some(({ id }) => id === 'tools/cargo-audit'));
+assert.ok(!selectTools(catalog, { q: 'java' }).some(({ id }) => id === 'tools/eslint'));
+assert.ok(suggestTools(catalog, { q: 'semgerp', cost: 'Free' }).some(({ id }) => id === 'tools/semgrep-ce'));
+assert.ok(!suggestTools(catalog, { q: 'semgerp', cost: 'Free' }).some(({ id }) => id === 'tools/semgrep-code'));
+for (const [q, id, filters] of [
+  ['Python type checker', 'tools/mypy', { input: 'Source code', language: 'Python', finding: 'Type errors' }],
+  ['bash linter', 'tools/shellcheck', { input: 'Source code', language: 'Bash' }],
+  ['clang tidy', 'tools/clang-tidy', { input: 'Source code', language: 'C++' }],
+  ['UBSan', 'tools/undefined-behavior-sanitizer', { mode: 'Dynamic', input: 'Binaries' }],
+  ['container scanner', 'tools/trivy', { mode: 'Static', input: 'Container images' }],
+  ['IaC', 'tools/trivy', { input: 'Configuration files', finding: 'Security misconfiguration' }],
+  ['Python type checker', 'tools/pyright', { input: 'Source code', language: 'Python' }],
+  ['Ruby linter', 'tools/rubocop', { input: 'Source code', language: 'Ruby' }],
+  ['SQL linting', 'tools/sqlfluff', { language: 'SQL', technique: 'Linting' }],
+  ['CSS linter', 'tools/stylelint', { language: 'CSS', input: 'Source code' }],
+  ['Dockerfile linting', 'tools/hadolint', { input: 'Configuration files' }],
+  ['Terraform security', 'tools/checkov', { input: 'Configuration files', finding: 'Security misconfiguration' }],
+  ['GitHub Actions', 'tools/actionlint', { input: 'Configuration files' }],
+  ['Go CVE', 'tools/govulncheck', { language: 'Go', finding: 'Known vulnerable dependencies' }],
+  ['SBOM', 'tools/grype', { input: 'Dependency metadata', finding: 'Known vulnerable dependencies' }],
+  ['secret scanning', 'tools/detect-secrets', { finding: 'Exposed secrets' }],
+  ['MSan', 'tools/memory-sanitizer', { mode: 'Dynamic', input: 'Binaries' }],
+  ['race conditions', 'tools/thread-sanitizer', { mode: 'Dynamic', language: 'C++' }],
+  ['race conditions', 'tools/valgrind-helgrind', { mode: 'Dynamic', language: 'C++' }],
+  ['go test -race', 'tools/go-race-detector', { mode: 'Dynamic', language: 'Go' }],
+  ['unsafe Rust', 'tools/miri', { mode: 'Dynamic', input: 'Callable code' }],
+  ['Python fuzzing', 'tools/atheris', { mode: 'Dynamic', language: 'Python' }],
+  ['TypeScript property testing', 'tools/fast-check', { input: 'Callable code' }],
+  ['LLVM bitcode', 'tools/klee', { mode: 'Static', input: 'Binaries' }],
+  ['C verification', 'tools/cpachecker', { input: 'Source code', language: 'C' }],
+  ['C++ verification', 'tools/esbmc', { input: 'Source code', language: 'C++' }],
+]) assert.ok(selectTools(catalog, { q, cost: 'Free', ...filters }).some((tool) => tool.id === id), `${q} must find ${id} with its scope filters`);
+assert.ok(!selectTools(catalog, { q: 'Trivy', input: 'Source code', language: 'Python' }).length, 'Dependency ecosystem support must not imply source analysis');
+assert.ok(!selectTools(catalog, { q: 'UBSan', mode: 'Static' }).length, 'UBSan needs instrumented execution');
+for (const q of ['Grype', 'Dependency-Check', 'Hadolint', 'Checkov', 'actionlint']) {
+  assert.ok(!selectTools(catalog, { q, input: 'Source code' }).some(({ id }) => id === `tools/${q.toLowerCase()}`), `${q} must not imply general source-code defect analysis`);
+}
+assert.ok(!selectTools(catalog, { q: 'Miri', input: 'Binaries' }).length, 'Miri must not appear as an arbitrary native-binary checker');
+assert.ok(!selectTools(catalog, { q: 'MSan', mode: 'Static' }).length, 'MSan needs instrumented execution');
+console.log(`Verified ${pages.length} built pages, local links, fragments, assets, search index, and discovery for ${catalog.length} tools.`);

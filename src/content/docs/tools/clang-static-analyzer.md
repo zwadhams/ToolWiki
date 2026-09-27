@@ -41,3 +41,5 @@ The analyzer needs an accurate view of the code and build configuration. Its mod
 ## Getting started
 
 Follow the analyzer's documentation for a build-integrated run. Keep the compiler configuration and enabled checker set with your results so later runs are comparable.
+
+See [clang-tidy](../clang-tidy/) for a configurable linting and modernization workflow that can also select Clang Static Analyzer checks. [Compare the two tools](../../compare/?tools=tools%2Fclang-static-analyzer%2Ctools%2Fclang-tidy) before choosing the checks to run.

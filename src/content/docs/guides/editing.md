@@ -14,6 +14,18 @@ Each tool has one Markdown file in `src/content/docs/tools/`. Its metadata suppl
 
 ## Add an entry
 
+Only admit a tool when its primary documentation supports a useful, scoped profile. A directory listing or product landing page can identify a candidate, but is not sufficient evidence by itself.
+
+Before adding it, verify:
+
+- What it examines, which languages or formats it covers, and which component or edition is described.
+- How to install or access it, prepare its inputs, and follow a documented first-use workflow.
+- What its findings mean, with a rule reference, example report, or explanation of result types.
+- The material limits, such as required instrumentation, incomplete language support, exploration bounds, or external data dependencies.
+- Its license and usage terms, including restrictions on required solvers or services.
+
+Link the relevant official guides and license evidence, and record the review date. A detailed official repository guide can qualify; the number of links alone does not establish documentation quality. If a required fact cannot be verified, keep the candidate in research notes until it can be resolved. Limit the entry to documented capabilities instead of filling gaps with assumptions.
+
 1. Copy a similar tool file into the same folder using a lowercase, hyphenated filename ending in `.md`.
 2. Replace its title, description, metadata, sources, and notes.
 3. Use existing tag spellings where possible. New tags in filterable fields automatically appear in the filters.
@@ -25,8 +37,10 @@ The entry automatically appears in the catalog, the matching analysis section, t
 | Field | What to record |
 | --- | --- |
 | `title`, `description` | Tool name and a short factual description. |
+| `tool.aliases` | Optional list of common names or abbreviations, such as `[ASan, Address Sanitizer]`. Used for catalog matching and shown on the tool page. Defaults to an empty list. |
+| `tool.searchTerms` | Optional list of additional, source-supported capability phrases, such as `[buffer overflow]`. Used only by catalog search. Defaults to an empty list. |
 | `tool.modes` | A list containing `Static`, `Dynamic`, or both. |
-| `tool.inputTypes` | One or more of `Source code`, `Binaries`, `Dependency metadata`, `Container images`, `Running applications`, `Callable code`, `Executable models`, or `Execution traces`. Drives the Input type filter. |
+| `tool.inputTypes` | One or more of `Source code`, `Binaries`, `Dependency metadata`, `Container images`, `Configuration files`, `Running applications`, `Callable code`, `Executable models`, or `Execution traces`. Drives the Input type filter. |
 | `tool.findings` | Selected finding categories, such as `Memory safety`, `Injection risks`, `Type errors`, or `Specification violations`. Drives What can it find? |
 | `tool.findingNote` | Explain whether the findings need selected rules, manual investigation, assertions, instrumentation, or user-supplied specifications. |
 | `tool.environment` | Where the analyzer runs, including OS, runtime, container/WSL routes, and documented compatibility limits. Distinguish host from target. |
@@ -45,11 +59,25 @@ The entry automatically appears in the catalog, the matching analysis section, t
 | `tool.scope` | Product edition, component, and any verified version. |
 | `tool.sources` | A list of `label` and `url` pairs for primary references. |
 
+## Make tools easy to find
+
+Catalog search ranks exact names and aliases first, followed by names, capability tags, and descriptions. With no query, Best match lists entries alphabetically. Readers can still choose an explicit name or verification-date sort.
+
+Add aliases for the exact entry's name, not for a different edition or predecessor. Keep capability phrases tied to the sources and scope already documented on the page. For example, a race detector can have `race conditions` as a search phrase without implying that it detects all concurrency failures.
+
+Search understands common language spellings such as `cpp`, `C sharp`, `js`, and `golang`. It keeps C, C++, C#, Java, and JavaScript distinct. Search terms must all match; spelling suggestions appear separately when there are no results and retain the current filters. This is keyword search, not a natural-language question-answering system.
+
+The catalog does not search the full article, platform caveats, or cost notes. Those can mention unsupported features or other editions. Use **Search all pages** to search the full notes and guides. Aliases shown on tool pages are also indexed there when the site is built.
+
+Check the official name, each alias, a capability phrase, and a relevant combination of filters after editing an entry. Ensure a free-edition search cannot inherit a paid edition's capabilities. Search and filter choices remain in category links and bookmark URLs.
+
 ## Keep claims scoped
 
 Record what the analyzer examines in `inputTypes`, rather than the language used to implement the analyzer. Binary inspection is `Binaries`; manifest or SBOM matching is `Dependency metadata`. Use multiple values when separate documented workflows accept different inputs. Analysis mode remains separate: a binary can be inspected statically or executed under a dynamic checker.
 
 Explain native executable versus JVM bytecode in the notes, and say whether a binary must be rebuilt with instrumentation. `Container images` describes an image artifact inspected at rest, not a running container. Trace monitoring remains dynamic analysis even when a monitor reads saved execution data offline.
+
+Use `Configuration files` for infrastructure definitions such as Terraform, Dockerfiles, or Kubernetes manifests. Configuration analysis does not establish support for general application-source analysis; do not tag a dependency/configuration scanner as `Source code` merely because it scans a repository.
 
 Language tags on a dependency scanner describe package ecosystems. They do not imply source-level analysis. Do not copy a bundled utility's broader language list into an entry for a different capability, such as PMD rules versus CPD duplicate detection.
 

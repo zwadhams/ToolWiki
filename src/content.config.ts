@@ -5,8 +5,10 @@ import { docsSchema, i18nSchema } from '@astrojs/starlight/schema';
 
 const nonempty = z.array(z.string().min(1)).min(1);
 const tool = z.object({
+  aliases: z.array(z.string().trim().min(1)).default([]),
+  searchTerms: z.array(z.string().trim().min(1)).default([]),
   modes: z.array(z.enum(['Static', 'Dynamic'])).min(1),
-  inputTypes: z.array(z.enum(['Source code', 'Binaries', 'Dependency metadata', 'Container images', 'Running applications', 'Callable code', 'Executable models', 'Execution traces'])).min(1),
+  inputTypes: z.array(z.enum(['Source code', 'Binaries', 'Dependency metadata', 'Container images', 'Configuration files', 'Running applications', 'Callable code', 'Executable models', 'Execution traces'])).min(1),
   findings: nonempty,
   findingNote: z.string().min(1),
   environment: z.string().min(1),

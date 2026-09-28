@@ -2,6 +2,40 @@
 title: PMD
 description: Apply language-specific rules to find coding defects and maintainability problems across several source languages.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Java
+        - Apex
+        - JavaScript
+        - Kotlin
+        - Swift
+        - Modelica
+        - PL/SQL
+        - HTML
+        - XML
+        - Visualforce
+        - JSP
+      findings:
+        - Logic errors
+        - Coding conventions
+      caveat: Language-specific rules only. CPD duplication support does not imply defect-rule support for
+        the same language.
+      sources:
+        - https://pmd.github.io/
+        - https://docs.pmd-code.org/latest/
+        - https://docs.pmd-code.org/latest/pmd_userdocs_installation.html
+        - https://github.com/pmd/pmd/blob/main/LICENSE
+      requires: []
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Linting, Bug finding]

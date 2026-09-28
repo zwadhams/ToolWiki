@@ -2,6 +2,26 @@
 title: Clang Static Analyzer
 description: Explore possible execution paths to find bugs in C, C++, and Objective-C code.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+        - C++
+        - Objective-C
+      findings:
+        - Memory safety
+        - Logic errors
+      caveat: Selected path-sensitive checkers, including pointer and lifetime defects. Checker maturity
+        and modeling limit coverage.
+      sources:
+        - https://clang.llvm.org/docs/ClangStaticAnalyzer.html
+        - https://llvm.org/docs/DeveloperPolicy.html#license
+      requires: []
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Symbolic execution, Bug finding]

@@ -2,6 +2,35 @@
 title: .NET analyzers
 description: Run the .NET SDK's Roslyn-based code-quality rules on C# and Visual Basic projects.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C#
+        - VB.NET
+      findings:
+        - Logic errors
+        - Coding conventions
+        - Unsafe API use
+      caveat: Selected CA rules cover correctness, design, performance, and security concerns. Rule
+        availability and default severity depend on the SDK and configuration; these are not
+        comprehensive security guarantees.
+      sources:
+        - https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview
+        - https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-options
+        - https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2014
+        - https://github.com/dotnet/sdk/blob/main/LICENSE.TXT
+        - https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf
+      requires:
+        - rebuild
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   aliases: [Roslyn analyzers, .NET SDK analyzers]
   modes: [Static]
   inputTypes: [Source code]

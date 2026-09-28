@@ -2,6 +2,25 @@
 title: "Pyright"
 description: "Check Python types and imports using configurable static analysis."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Python
+      findings:
+        - Type errors
+      caveat: Reports selected type and import problems. Unknown types, Any, exclusions, and diagnostic
+        settings affect coverage.
+      sources:
+        - https://github.com/microsoft/pyright
+        - https://raw.githubusercontent.com/microsoft/pyright/main/docs/command-line.md
+        - https://raw.githubusercontent.com/microsoft/pyright/main/docs/configuration.md
+        - https://raw.githubusercontent.com/microsoft/pyright/main/LICENSE.txt
+      requires: []
   aliases: ["Pyright type checker"]
   searchTerms: ["Python type checker","type hints","type annotations","static typing"]
   modes: ["Static"]

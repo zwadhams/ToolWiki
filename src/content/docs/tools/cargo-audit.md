@@ -2,6 +2,23 @@
 title: cargo-audit
 description: Check Rust dependency versions against RustSec security advisories.
 tool:
+  analysisWorkflows:
+    - id: lockfile
+      label: Audit Cargo dependency metadata
+      subject: component
+      inputs:
+        - Dependency metadata
+      languageScope: ecosystem
+      languages:
+        - Rust
+      findings:
+        - Known vulnerable dependencies
+      caveat: Matches identified crate versions to advisories. A match does not establish reachability or
+        exploitability; incomplete binary inventories can miss dependencies.
+      sources:
+        - https://rustsec.org/
+        - https://github.com/RustSec/rustsec/tree/main/cargo-audit
+        - https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf
   modes: [Static]
   inputTypes: [Dependency metadata, Binaries]
   techniques: [Software composition analysis, Known vulnerability detection]

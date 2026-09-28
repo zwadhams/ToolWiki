@@ -2,6 +2,40 @@
 title: "MemorySanitizer"
 description: "Detect uses of uninitialized values while an instrumented native program runs."
 tool:
+  analysisWorkflows:
+    - id: instrumented-build
+      label: Build and exercise instrumented code
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+        - C++
+      findings:
+        - Memory safety
+      caveat: Detects selected uninitialized-value uses on executed paths. Incomplete instrumentation can
+        produce misleading reports.
+      sources:
+        - https://clang.llvm.org/docs/MemorySanitizer.html
+        - https://clang.llvm.org/docs/UsersManual.html
+        - https://raw.githubusercontent.com/llvm/llvm-project/main/compiler-rt/LICENSE.TXT
+      requires:
+        - rebuild
+        - instrument
+        - testInstance
+      binaryFormats: []
+      targetPlatforms:
+        - Linux
+        - FreeBSD
+        - NetBSD
+      excludedTargets:
+        - Windows
+        - macOS
+        - Browser
+        - RTOS
+        - Bare metal
+        - Android
   aliases: ["MSan","Memory Sanitizer"]
   searchTerms: ["uninitialized memory","uninitialized values","Clang memory sanitizer"]
   modes: ["Dynamic"]

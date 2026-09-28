@@ -2,6 +2,33 @@
 title: ESLint
 description: Apply configurable lint rules to JavaScript and, with typescript-eslint, TypeScript source.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - JavaScript
+        - TypeScript
+      findings:
+        - Logic errors
+        - Coding conventions
+      caveat: Configured core and plugin rules. TypeScript typed rules require type information; arbitrary
+        security checks are not built into every setup.
+      sources:
+        - https://eslint.org/docs/latest/use/getting-started
+        - https://eslint.org/docs/latest/use/core-concepts/
+        - https://eslint.org/docs/latest/rules/
+        - https://typescript-eslint.io/getting-started/
+        - https://typescript-eslint.io/getting-started/typed-linting/
+        - https://github.com/eslint/eslint/blob/main/LICENSE
+      requires: []
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Linting, Bug finding]

@@ -2,6 +2,24 @@
 title: "RTAMT"
 description: "Evaluate signal traces against temporal requirements using online or offline monitors."
 tool:
+  analysisWorkflows:
+    - id: trace
+      label: Monitor temporal requirements over traces
+      subject: component
+      inputs:
+        - Execution traces
+      languageScope: independent
+      languages: []
+      findings:
+        - Temporal requirement violations
+      caveat: Evaluates the supplied trace against the specified formula. It does not generate scenarios
+        or search for counterexamples by itself, and a satisfying trace is not a model-checking proof.
+      sources:
+        - https://github.com/nickovic/rtamt
+        - https://github.com/nickovic/rtamt/tree/master/examples
+        - https://github.com/nickovic/rtamt/blob/master/LICENSE
+      requires:
+        - harness
   modes: ["Dynamic"]
   inputTypes: ["Execution traces"]
   techniques: ["Temporal logic monitoring","Runtime verification"]

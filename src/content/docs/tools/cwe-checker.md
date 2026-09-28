@@ -2,6 +2,29 @@
 title: cwe-checker
 description: Find potential weakness patterns in native binaries using Ghidra and static data flow analysis.
 tool:
+  analysisWorkflows:
+    - id: binary
+      label: Inspect a supplied binary
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: independent
+      languages: []
+      findings:
+        - Memory safety
+        - Concurrency issues
+        - Unsafe API use
+      caveat: Selected binary CWE checks, including lifetime errors and TOCTOU patterns. Enabled checks
+        and recovered program models determine coverage.
+      sources:
+        - https://github.com/fkie-cad/cwe_checker
+        - https://docs.cwe-checker.io/cwe_checker_lib/checkers/index.html
+        - https://github.com/fkie-cad/cwe_checker/blob/master/LICENSE
+      binaryFormats:
+        - Native executable
+        - Firmware image
+      hostPlatforms:
+        - Linux
   modes: [Static]
   inputTypes: [Binaries]
   techniques: [Binary analysis, Data flow analysis, Weakness detection]

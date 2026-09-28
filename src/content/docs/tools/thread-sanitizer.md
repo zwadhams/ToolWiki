@@ -2,6 +2,40 @@
 title: "ThreadSanitizer (Clang)"
 description: "Detect data races during executions of instrumented multithreaded C and C++ programs."
 tool:
+  analysisWorkflows:
+    - id: instrumented-build
+      label: Build and exercise instrumented code
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+        - C++
+      findings:
+        - Concurrency issues
+      caveat: Finds observed conflicting memory accesses without the required synchronization. It is not a
+        general detector of deadlocks, scheduling bugs, or all concurrency failures.
+      sources:
+        - https://clang.llvm.org/docs/ThreadSanitizer.html
+        - https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual
+        - https://github.com/llvm/llvm-project/blob/main/compiler-rt/LICENSE.TXT
+      requires:
+        - rebuild
+        - instrument
+        - testInstance
+      binaryFormats: []
+      targetPlatforms:
+        - Linux
+        - macOS
+        - Android
+        - FreeBSD
+        - NetBSD
+      excludedTargets:
+        - Windows
+        - Browser
+        - RTOS
+        - Bare metal
   aliases: [TSan, Thread Sanitizer]
   searchTerms: [data race, race conditions]
   modes: ["Dynamic"]

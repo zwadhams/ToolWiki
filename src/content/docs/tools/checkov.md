@@ -2,6 +2,27 @@
 title: "Checkov"
 description: "Review infrastructure configuration against security and policy checks."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Configuration checks
+      subject: component
+      inputs:
+        - Configuration files
+      languageScope: configuration
+      languages:
+        - Terraform
+        - Kubernetes/Helm
+        - CloudFormation
+        - Docker
+      findings:
+        - Security misconfiguration
+      caveat: Reports selected configuration policies. Variables, external modules, skipped checks, and
+        runner selection affect coverage.
+      sources:
+        - https://www.checkov.io/1.Welcome/Quick%20Start.html
+        - https://www.checkov.io/2.Basics/CLI%20Command%20Reference.html
+        - https://raw.githubusercontent.com/bridgecrewio/checkov/main/LICENSE
+      requires: []
   aliases: []
   searchTerms: ["IaC","infrastructure as code","Terraform security","Kubernetes security","cloud configuration"]
   modes: ["Static"]

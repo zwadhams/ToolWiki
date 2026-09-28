@@ -2,6 +2,30 @@
 title: "Brakeman"
 description: "Check Ruby on Rails source for security weaknesses using Rails-specific analysis."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Ruby
+      findings:
+        - Injection risks
+        - Unsafe API use
+        - Security misconfiguration
+      caveat: Warnings depend on recognized Rails behavior and enabled checks. Confidence levels guide
+        review; a warning does not establish that a deployed endpoint is exploitable.
+      sources:
+        - https://brakemanscanner.org/
+        - https://brakemanscanner.org/docs/install/
+        - https://brakemanscanner.org/docs/options/
+        - https://github.com/presidentbeef/brakeman/blob/main/COPYING.md
+        - https://github.com/presidentbeef/brakeman/blob/main/LICENSE.md
+      requires: []
+      technologies:
+        - Ruby on Rails
   modes: ["Static"]
   inputTypes: ["Source code"]
   techniques: ["SAST","Data flow analysis"]

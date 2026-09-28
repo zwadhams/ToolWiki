@@ -2,6 +2,32 @@
 title: ZAP
 description: Inspect web traffic and test running web applications with passive and active security checks.
 tool:
+  analysisWorkflows:
+    - id: http
+      label: HTTP security testing
+      subject: connection
+      inputs:
+        - Running applications
+      languageScope: independent
+      languages: []
+      findings:
+        - Injection risks
+        - Security misconfiguration
+      caveat: Selected active/passive web scan rules; add-ons, authentication, and reachable endpoints
+        control coverage.
+      sources:
+        - https://www.zaproxy.org/download/
+        - https://www.zaproxy.org/docs/api/
+        - https://www.zaproxy.org/docs/getting-further/authentication/authentication-methods/
+        - https://github.com/zaproxy/zaproxy
+      requires:
+        - testInstance
+      interfaces:
+        - HTTP API
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   aliases: [OWASP ZAP, Zed Attack Proxy]
   modes: [Dynamic]
   inputTypes: [Running applications]

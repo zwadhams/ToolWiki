@@ -2,6 +2,29 @@
 title: Ghidra
 description: Recover and inspect code structure from compiled programs with disassembly and decompilation.
 tool:
+  analysisWorkflows:
+    - id: binary
+      label: Inspect a supplied binary
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: independent
+      languages: []
+      findings:
+        - Code structure
+      caveat: Produces disassembly, recovered functions, references, and decompiled code for
+        investigation. These are analysis aids, not an automatic list of confirmed vulnerabilities.
+      sources:
+        - https://github.com/NationalSecurityAgency/ghidra
+        - https://github.com/NationalSecurityAgency/ghidra/blob/master/GhidraDocs/GettingStarted.md
+        - https://www.cs.montana.edu/izurieta/pubs/iETC_Porcella_2026.pdf
+      binaryFormats:
+        - Native executable
+        - Firmware image
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: [Static]
   inputTypes: [Binaries]
   techniques: [Binary analysis, Disassembly, Decompilation]

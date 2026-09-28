@@ -2,6 +2,32 @@
 title: Cppcheck (Open Source)
 description: Find undefined behavior, memory errors, and other defects in C and C++ source code.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+        - C++
+      findings:
+        - Memory safety
+        - Logic errors
+        - Coding-standard violations
+      caveat: Selected defect checks and partial open-source coding-standard checks. Premium coverage is
+        not inherited by these tags.
+      sources:
+        - https://cppcheck.sourceforge.io/
+        - https://github.com/cppcheck-opensource/cppcheck/blob/2.22.0/man/manual.md
+        - https://github.com/cppcheck-opensource/cppcheck/blob/2.22.0/COPYING
+        - https://www.cppcheck.com/
+      requires: []
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Bug finding, Data flow analysis]

@@ -2,6 +2,41 @@
 title: "govulncheck"
 description: "Find known vulnerabilities affecting Go source or compiled Go programs."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Go dependency reachability from source
+      subject: component
+      inputs:
+        - Source code
+      languageScope: ecosystem
+      languages:
+        - Go
+      findings:
+        - Known vulnerable dependencies
+      caveat: Combines vulnerability records with source analysis or binary information. Reflection,
+        unsafe operations, and missing symbols limit precision.
+      sources:
+        - https://go.dev/doc/security/vuln/
+        - https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck
+        - https://raw.githubusercontent.com/golang/vuln/master/LICENSE
+    - id: binary
+      label: Go binary vulnerability checks
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: ecosystem
+      languages:
+        - Go
+      findings:
+        - Known vulnerable dependencies
+      caveat: Combines vulnerability records with source analysis or binary information. Reflection,
+        unsafe operations, and missing symbols limit precision.
+      sources:
+        - https://go.dev/doc/security/vuln/
+        - https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck
+        - https://raw.githubusercontent.com/golang/vuln/master/LICENSE
+      binaryFormats:
+        - Native executable
   aliases: ["Go vulnerability checker"]
   searchTerms: ["Go CVE","Go vulnerabilities","SCA","dependency vulnerabilities","vulnerability reachability"]
   modes: ["Static"]

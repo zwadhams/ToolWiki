@@ -2,6 +2,7 @@
 import MarkdownContent from '@astrojs/starlight/components/MarkdownContent.astro';
 import ToolCatalog from './ToolCatalog.astro';
 import ToolComparison from './ToolComparison.astro';
+import SystemBuilder from './SystemBuilder.astro';
 import EditionComparison from './EditionComparison.astro';
 const { entry } = Astro.locals.starlightRoute;
 const tool = entry.data.tool;
@@ -33,5 +34,5 @@ const contexts = tool?.targets.filter((target) => !tool.inputTypes.some((input) 
   {tool.editionGroup && <EditionComparison group={tool.editionGroup} />}
   <p class="edition-note">Cost information checked {tool.verified}; any verification limits are noted above. Required runtimes, hosting, and compute can have separate costs. Trials are not treated as free editions.</p>
 </section>}
-{entry.data.catalog ? <div class="catalog-content"><slot /><ToolCatalog mode={entry.data.catalogMode} /></div> : entry.data.comparison ? <div class="catalog-content"><slot /><ToolComparison /></div> : <MarkdownContent><slot /></MarkdownContent>}
+{entry.data.systemBuilder ? <SystemBuilder /> : entry.data.catalog ? <div class="catalog-content"><slot /><ToolCatalog mode={entry.data.catalogMode} /></div> : entry.data.comparison ? <div class="catalog-content"><slot /><ToolComparison /></div> : <MarkdownContent><slot /></MarkdownContent>}
 {tool && <section class="profile-sources" aria-labelledby="tool-sources"><h2 id="tool-sources">Sources</h2><ul>{tool.sources.map((source) => <li><a href={source.url}>{source.label}</a></li>)}</ul><p>Checked against documentation on {tool.verified}. This is a documentation review, not a hands-on benchmark.</p></section>}

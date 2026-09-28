@@ -2,6 +2,30 @@
 title: Dafny
 description: Verify programs written in Dafny against contracts, invariants, and other specifications.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Dafny
+      findings:
+        - Specification violations
+        - Type errors
+      caveat: Checks Dafny program well-formedness and verification obligations. An unproved obligation
+        does not by itself demonstrate an executable counterexample.
+      sources:
+        - https://dafny.org/
+        - https://dafny.org/latest/OnlineTutorial/guide
+        - https://dafny.org/latest/Installation
+        - https://github.com/dafny-lang/dafny/blob/master/LICENSE.txt
+      requires: []
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Deductive verification, Formal verification]

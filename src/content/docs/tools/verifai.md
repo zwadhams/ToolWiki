@@ -2,6 +2,32 @@
 title: "VerifAI"
 description: "Search simulation scenarios for behavior that violates a specification, including temporal requirements."
 tool:
+  analysisWorkflows:
+    - id: model
+      label: Simulation-based falsification
+      subject: component
+      inputs:
+        - Executable models
+      languageScope: model
+      languages:
+        - Python
+        - Scenic
+      findings:
+        - Temporal requirement violations
+        - Specification violations
+      caveat: The monitor or objective supplied by the user defines a failure. Search can return
+        counterexamples, but exhausting a sample budget without one is not a proof.
+      sources:
+        - https://verifai.readthedocs.io/en/latest/
+        - https://verifai.readthedocs.io/en/latest/installation.html
+        - https://verifai.readthedocs.io/en/latest/basic_usage.html
+        - https://verifai.readthedocs.io/en/latest/tutorial.html
+      requires:
+        - harness
+        - testInstance
+      hostPlatforms:
+        - Linux
+        - macOS
   modes: ["Dynamic"]
   inputTypes: ["Executable models"]
   techniques: ["Model falsification","Simulation-based testing"]

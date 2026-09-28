@@ -2,6 +2,28 @@
 title: "JBMC"
 description: "Check Java bytecode for runtime exceptions and assertion violations using bounded model checking."
 tool:
+  analysisWorkflows:
+    - id: jvm
+      label: Bounded verification of JVM classes
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: source
+      languages:
+        - Java
+      findings:
+        - Logic errors
+        - Specification violations
+      caveat: Checks selected exception conditions and assertions in the modeled program. Library models,
+        environment assumptions, and unwinding bounds define the scope of the result.
+      sources:
+        - https://www.cprover.org/jbmc/
+        - https://github.com/diffblue/cbmc/blob/develop/jbmc/README.md
+        - https://github.com/diffblue/cbmc/blob/develop/LICENSE
+      binaryFormats:
+        - JVM bytecode
+      requires:
+        - harness
   modes: ["Static"]
   inputTypes: ["Binaries"]
   techniques: ["Bounded model checking","Formal verification"]

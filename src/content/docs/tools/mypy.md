@@ -2,6 +2,26 @@
 title: mypy
 description: Check Python types to find incompatible arguments, return values, and operations without running the program.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Python
+      findings:
+        - Type errors
+      caveat: Checks type consistency in the analyzed code. Any, missing stubs, ignored errors, and
+        untyped functions can reduce coverage; it does not prove runtime correctness.
+      sources:
+        - https://mypy.readthedocs.io/en/stable/
+        - https://mypy.readthedocs.io/en/stable/getting_started.html
+        - https://mypy.readthedocs.io/en/stable/running_mypy.html
+        - https://mypy.readthedocs.io/en/stable/common_issues.html
+        - https://github.com/python/mypy/blob/master/LICENSE
+      requires: []
   aliases: [mypy type checker]
   searchTerms: [Python type checker, static typing, type hints, type annotations, gradual typing]
   modes: [Static]

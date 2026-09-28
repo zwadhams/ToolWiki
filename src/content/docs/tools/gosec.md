@@ -2,6 +2,26 @@
 title: "gosec"
 description: "Inspect Go source for security problems using syntax, value-flow, and selected taint checks."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Go
+      findings:
+        - Injection risks
+        - Unsafe API use
+        - Security misconfiguration
+      caveat: Findings depend on the installed rule set, package loading, build tags, and suppressions.
+        Security patterns and taint checks do not prove end-to-end exploitability.
+      sources:
+        - https://github.com/securego/gosec
+        - https://github.com/securego/gosec/blob/master/RULES.md
+        - https://github.com/securego/gosec/blob/master/LICENSE.txt
+      requires: []
   modes: ["Static"]
   inputTypes: ["Source code"]
   techniques: ["SAST","Pattern matching","Data flow analysis"]

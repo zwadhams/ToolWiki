@@ -2,6 +2,31 @@
 title: libFuzzer
 description: Exercise an instrumented function with evolving inputs guided by code coverage.
 tool:
+  analysisWorkflows:
+    - id: instrumented-build
+      label: Build and exercise instrumented code
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+        - C++
+      findings:
+        - Crashes and hangs
+        - Memory safety
+        - Specification violations
+      caveat: Execution failures and timeouts; detailed memory errors need sanitizer instrumentation and
+        property failures need assertions or another failure signal.
+      sources:
+        - https://llvm.org/docs/LibFuzzer.html
+        - https://llvm.org/docs/DeveloperPolicy.html#license
+      requires:
+        - rebuild
+        - instrument
+        - testInstance
+        - harness
+      binaryFormats: []
   modes: [Dynamic]
   inputTypes: [Binaries]
   techniques: [Coverage-guided fuzzing]

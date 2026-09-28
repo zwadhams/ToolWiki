@@ -2,6 +2,29 @@
 title: "Hadolint"
 description: "Check Dockerfiles and their embedded shell commands for common mistakes."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Configuration checks
+      subject: component
+      inputs:
+        - Configuration files
+      languageScope: configuration
+      languages:
+        - Docker
+      findings:
+        - Coding conventions
+        - Logic errors
+      caveat: Uses Dockerfile rules and ShellCheck integration. Findings depend on the selected rules and
+        shell assumptions.
+      sources:
+        - https://github.com/hadolint/hadolint
+        - https://github.com/hadolint/hadolint/wiki/DL3006
+        - https://raw.githubusercontent.com/hadolint/hadolint/master/LICENSE
+      requires: []
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   aliases: ["Dockerfile linter"]
   searchTerms: ["Dockerfile linting","container build","Docker best practices"]
   modes: ["Static"]

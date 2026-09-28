@@ -2,6 +2,32 @@
 title: Burp Suite Professional
 description: Investigate web applications manually and use Burp Scanner for automated vulnerability checks.
 tool:
+  analysisWorkflows:
+    - id: http
+      label: HTTP security testing
+      subject: connection
+      inputs:
+        - Running applications
+      languageScope: independent
+      languages: []
+      findings:
+        - Injection risks
+        - Security misconfiguration
+      caveat: Automated and manual web testing; reachable endpoints, authentication, and enabled checks
+        determine coverage.
+      sources:
+        - https://portswigger.net/burp/documentation/desktop/getting-started/system-requirements
+        - https://portswigger.net/burp/communitydownload
+        - https://portswigger.net/burp/documentation/scanner
+        - https://portswigger.net/burp/pro
+      requires:
+        - testInstance
+      interfaces:
+        - HTTP API
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: [Dynamic]
   inputTypes: [Running applications]
   techniques: [DAST, Active scanning, Passive scanning]

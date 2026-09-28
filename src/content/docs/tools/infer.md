@@ -2,6 +2,32 @@
 title: "Infer (Pulse)"
 description: "Find memory and value errors across function calls using Infer's Pulse analysis."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+        - C++
+        - Objective-C
+        - Java
+        - Hack
+      findings:
+        - Memory safety
+        - Specification violations
+      caveat: Pulse checks modeled paths for selected memory, value, and assertion errors. Unknown
+        functions and missing models can affect both false positives and missed findings.
+      sources:
+        - https://fbinfer.com/docs/checker-pulse/
+        - https://fbinfer.com/docs/getting-started/
+        - https://github.com/facebook/infer/blob/main/LICENSE
+      requires:
+        - rebuild
+      hostPlatforms:
+        - Linux
   modes: ["Static"]
   inputTypes: ["Source code"]
   techniques: ["SAST","Symbolic execution"]

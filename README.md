@@ -69,6 +69,14 @@ catalog cards, or open Compare tools to choose directly. Selection survives
 catalog filtering and category links; comparison URLs can be bookmarked or
 shared. The table uses the same Markdown metadata as the tool profiles.
 
+Use **Build your analysis suite** to describe components and connections, choose
+analysis goals, and explore explained candidates and gaps. Optional platform and
+testing-access details refine the suggestions. The latest system saves in this
+browser; export/import a system file to keep a copy. Recommendations come from
+reviewed workflows and do not represent measured test coverage. Some catalog
+entries are intentionally excluded until their workflow scope is verified; see
+the [workflow review](audits/system-builder/README.md).
+
 Cost is separate from open-source licensing. `Free with limits` covers continuing
 free access with usage or eligibility conditions. Trials do not count as free
 editions. Where capabilities differ, editions have their own catalog entries so

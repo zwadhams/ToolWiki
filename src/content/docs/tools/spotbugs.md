@@ -2,6 +2,54 @@
 title: "SpotBugs"
 description: "Find Java bug patterns in compiled class files, with optional security checks from Find Security Bugs."
 tool:
+  analysisWorkflows:
+    - id: core
+      label: Core JVM bug-pattern checks
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: source
+      languages:
+        - Java
+      findings:
+        - Logic errors
+        - Concurrency issues
+      caveat: Core SpotBugs provides Java bug detectors. The injection-risk tag requires the separately
+        installed Find Security Bugs plugin; it is not a claim about the default core rules.
+      sources:
+        - https://spotbugs.readthedocs.io/en/stable/introduction.html
+        - https://spotbugs.readthedocs.io/en/stable/running.html
+        - https://github.com/spotbugs/spotbugs
+        - https://github.com/find-sec-bugs/find-sec-bugs
+      binaryFormats:
+        - JVM bytecode
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
+    - id: security-plugin
+      label: JVM checks with Find Security Bugs
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: source
+      languages:
+        - Java
+      findings:
+        - Injection risks
+      caveat: Install and configure the separate Find Security Bugs plugin. Core SpotBugs alone does not
+        provide these injection-risk checks.
+      sources:
+        - https://spotbugs.readthedocs.io/en/stable/introduction.html
+        - https://spotbugs.readthedocs.io/en/stable/running.html
+        - https://github.com/spotbugs/spotbugs
+        - https://github.com/find-sec-bugs/find-sec-bugs
+      binaryFormats:
+        - JVM bytecode
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: ["Static"]
   inputTypes: ["Binaries"]
   techniques: ["Bug finding","Pattern matching"]

@@ -2,6 +2,28 @@
 title: "Go race detector"
 description: "Detect data races during Go tests and instrumented application runs."
 tool:
+  analysisWorkflows:
+    - id: instrumented-build
+      label: Build and exercise instrumented code
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Go
+      findings:
+        - Concurrency issues
+      caveat: Finds data races in executed code. It does not establish that every schedule or concurrency
+        property is safe.
+      sources:
+        - https://go.dev/doc/articles/race_detector
+        - https://pkg.go.dev/cmd/go
+        - https://go.dev/LICENSE
+      requires:
+        - rebuild
+        - instrument
+        - testInstance
+      binaryFormats: []
   aliases: ["go test -race","Go data race detector"]
   searchTerms: ["Go race conditions","goroutine races","Go concurrency","data races"]
   modes: ["Dynamic"]

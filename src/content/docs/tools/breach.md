@@ -2,6 +2,46 @@
 title: Breach
 description: Search simulations for violations of Signal Temporal Logic requirements and monitor recorded traces.
 tool:
+  analysisWorkflows:
+    - id: model
+      label: Simulation-based falsification
+      subject: component
+      inputs:
+        - Executable models
+      languageScope: model
+      languages:
+        - MATLAB
+        - Simulink
+      findings:
+        - Temporal requirement violations
+      caveat: You supply STL requirements and signals. Monitoring checks supplied traces; falsification
+        adds a search over simulator inputs.
+      sources:
+        - https://github.com/decyphir/breach/blob/master/README.md
+        - https://github.com/decyphir/breach/blob/master/LICENSE
+        - https://www.mathworks.com/pricing-licensing.html
+      requires:
+        - harness
+        - testInstance
+    - id: trace
+      label: Monitor recorded traces in Breach
+      subject: component
+      inputs:
+        - Execution traces
+      languageScope: independent
+      languages: []
+      findings:
+        - Temporal requirement violations
+      caveat: You supply STL requirements and signals. Monitoring checks supplied traces; falsification
+        adds a search over simulator inputs.
+      sources:
+        - https://github.com/decyphir/breach/blob/master/README.md
+        - https://github.com/decyphir/breach/blob/master/LICENSE
+        - https://www.mathworks.com/pricing-licensing.html
+      technologies:
+        - MATLAB
+      requires:
+        - harness
   modes: [Dynamic]
   inputTypes: [Executable models, Execution traces]
   techniques: [Model falsification, Temporal logic monitoring]

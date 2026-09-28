@@ -2,6 +2,32 @@
 title: "Kani"
 description: "Check Rust safety properties and assertions with model checking and explicit proof harnesses."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Rust
+      findings:
+        - Memory safety
+        - Specification violations
+      caveat: Checks selected undefined behavior, panics, arithmetic conditions, and user assertions under
+        the harness assumptions. Guarantees depend on bounds, supported features, and modeled
+        dependencies.
+      sources:
+        - https://model-checking.github.io/kani/
+        - https://model-checking.github.io/kani/install-guide.html
+        - https://model-checking.github.io/kani/tutorial-first-steps.html
+        - https://model-checking.github.io/kani/limitations.html
+        - https://github.com/model-checking/kani
+      requires:
+        - harness
+      hostPlatforms:
+        - Linux
+        - macOS
   modes: ["Static"]
   inputTypes: ["Source code"]
   techniques: ["Bounded model checking","Formal verification"]

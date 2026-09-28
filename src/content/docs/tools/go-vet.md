@@ -2,6 +2,24 @@
 title: "go vet"
 description: "Find suspicious constructs in Go packages with the Go toolchain's static checks."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Go
+      findings:
+        - Logic errors
+      caveat: Heuristic checks report likely mistakes, including selected format-string and
+        synchronization-related problems; they are not exhaustive correctness checks.
+      sources:
+        - https://pkg.go.dev/cmd/vet
+        - https://pkg.go.dev/cmd/go
+        - https://go.dev/LICENSE
+      requires: []
   aliases: ["go tool vet"]
   searchTerms: ["Go bug checker","printf arguments","copylocks","Go static analysis"]
   modes: ["Static"]

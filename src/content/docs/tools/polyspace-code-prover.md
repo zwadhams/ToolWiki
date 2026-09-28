@@ -2,6 +2,28 @@
 title: "Polyspace Code Prover"
 description: "Use abstract interpretation to prove selected C and C++ runtime checks safe or identify possible and definite failures."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+        - C++
+      findings:
+        - Memory safety
+        - Logic errors
+      caveat: Selected runtime checks include bounds, invalid accesses, division by zero, and numerical
+        errors. A proof applies to the configured program/environment model; an unproven check is not
+        automatically a confirmed bug.
+      sources:
+        - https://www.mathworks.com/products/polyspace-code-prover.html
+        - https://www.mathworks.com/support/requirements/polyspace-code-prover.html
+        - https://www.mathworks.com/help/codeprover/getting-started-with-polyspace-code-prover.html
+        - https://www.mathworks.com/help/codeprover/run-time-error-review.html
+      requires: []
   modes: ["Static"]
   inputTypes: ["Source code"]
   techniques: ["Abstract interpretation","Formal verification"]

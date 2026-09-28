@@ -2,6 +2,33 @@
 title: Ruff
 description: Find Python lint violations, common mistakes, and selected security patterns with configurable built-in rules.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Python
+      findings:
+        - Logic errors
+        - Coding conventions
+        - Unsafe API use
+      caveat: Selected lint families; security-related rules require configuration. Ruff is not a Python
+        type checker.
+      sources:
+        - https://docs.astral.sh/ruff/installation/
+        - https://docs.astral.sh/ruff/
+        - https://docs.astral.sh/ruff/linter/
+        - https://docs.astral.sh/ruff/configuration/
+        - https://docs.astral.sh/ruff/faq/
+        - https://github.com/astral-sh/ruff/blob/main/LICENSE
+      requires: []
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Linting, Bug finding]

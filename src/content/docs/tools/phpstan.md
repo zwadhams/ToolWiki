@@ -2,6 +2,28 @@
 title: PHPStan
 description: Use PHP types, declarations, and inference to find incorrect calls, invalid access, and other code errors.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - PHP
+      findings:
+        - Type errors
+        - Logic errors
+      caveat: Type and symbol checks depend on rule level, annotations, stubs, and framework extensions.
+        This is not a general injection scanner.
+      sources:
+        - https://phpstan.org/
+        - https://phpstan.org/user-guide/getting-started
+        - https://phpstan.org/user-guide/rule-levels
+        - https://phpstan.org/user-guide/baseline
+        - https://phpstan.org/blog/introducing-phpstan-pro
+        - https://github.com/phpstan/phpstan/blob/2.1.x/LICENSE
+      requires: []
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Type checking, Bug finding]

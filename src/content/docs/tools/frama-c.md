@@ -2,6 +2,51 @@
 title: Frama-C (Eva and WP)
 description: Analyze C runtime safety with Eva and verify specified C behavior with WP.
 tool:
+  analysisWorkflows:
+    - id: eva
+      label: Eva runtime safety analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+      findings:
+        - Memory safety
+      caveat: Eva reports possible runtime errors in its supported classes; WP generates proof obligations
+        from specifications. Unproved obligations are not automatically concrete bugs.
+      sources:
+        - https://www.frama-c.com/
+        - https://www.frama-c.com/fc-plugins/eva.html
+        - https://www.frama-c.com/fc-plugins/wp.html
+        - https://www.frama-c.com/html/get-frama-c.html
+        - https://www.frama-c.com/html/contact.html
+      hostPlatforms:
+        - Linux
+        - macOS
+    - id: wp
+      label: WP specification verification
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+      findings:
+        - Specification violations
+      caveat: Eva reports possible runtime errors in its supported classes; WP generates proof obligations
+        from specifications. Unproved obligations are not automatically concrete bugs.
+      sources:
+        - https://www.frama-c.com/
+        - https://www.frama-c.com/fc-plugins/eva.html
+        - https://www.frama-c.com/fc-plugins/wp.html
+        - https://www.frama-c.com/html/get-frama-c.html
+        - https://www.frama-c.com/html/contact.html
+      requires:
+        - harness
+      hostPlatforms:
+        - Linux
+        - macOS
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Abstract interpretation, Deductive verification, Formal verification]

@@ -2,6 +2,27 @@
 title: WartRemover
 description: Apply selected Scala compiler checks to constructs that can weaken type safety or hide mistakes.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Scala
+      findings:
+        - Coding conventions
+        - Logic errors
+      caveat: Reports enabled warts, such as partial Option access or disallowed null usage. Rules enforce
+        selected restrictions and do not prove overall program safety.
+      sources:
+        - https://www.wartremover.org/doc/install-setup.html
+        - https://www.wartremover.org/doc/warts.html
+        - https://www.wartremover.org/dev/license.html
+        - https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf
+      requires:
+        - rebuild
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Linting, Bug finding]

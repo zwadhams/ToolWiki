@@ -2,6 +2,29 @@
 title: FLOSS
 description: Recover ordinary and obfuscated strings from compiled programs for further investigation.
 tool:
+  analysisWorkflows:
+    - id: binary
+      label: Inspect a supplied binary
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: independent
+      languages: []
+      findings:
+        - Recovered strings
+      caveat: Recovers candidate strings and locations. Strings provide investigation leads; their
+        presence does not establish a program's intent or that a real execution used them.
+      sources:
+        - https://github.com/mandiant/flare-floss
+        - https://github.com/mandiant/flare-floss/blob/master/doc/theory.md
+        - https://github.com/mandiant/flare-floss/blob/master/doc/installation.md
+        - https://github.com/mandiant/flare-floss/blob/master/doc/usage.md
+      binaryFormats:
+        - Native executable
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: [Static, Dynamic]
   inputTypes: [Binaries]
   techniques: [Binary analysis, String extraction, Emulation]

@@ -2,6 +2,31 @@
 title: "KLEE"
 description: "Explore LLVM bitcode symbolically and generate inputs for program paths."
 tool:
+  analysisWorkflows:
+    - id: bitcode
+      label: Symbolically explore prepared LLVM bitcode
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: source
+      languages:
+        - C
+      findings:
+        - Specification violations
+        - Memory safety
+      caveat: Findings depend on assertions, symbolic inputs, environment models, and completed
+        exploration. Interrupted paths remain unresolved.
+      sources:
+        - https://klee-se.org/getting-started/
+        - https://klee-se.org/tutorials/testing-function/
+        - https://klee-se.org/tutorials/testing-regex/
+        - https://klee-se.org/docs/options/
+        - https://klee-se.org/docs/files/
+        - https://raw.githubusercontent.com/klee/klee/master/LICENSE.TXT
+      binaryFormats:
+        - LLVM bitcode
+      requires:
+        - harness
   aliases: ["KLEE symbolic execution"]
   searchTerms: ["symbolic execution","LLVM bitcode","symbolic inputs","test generation"]
   modes: ["Static"]

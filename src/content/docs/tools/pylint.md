@@ -2,6 +2,26 @@
 title: "Pylint"
 description: "Inspect Python source for selected programming mistakes, conventions, and maintainability issues."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Python
+      findings:
+        - Logic errors
+        - Coding conventions
+        - Code complexity
+      caveat: Selected messages use syntax and inference. Dynamic attributes and unavailable dependencies
+        can produce incomplete or misleading results.
+      sources:
+        - https://raw.githubusercontent.com/pylint-dev/pylint/main/README.rst
+        - https://pylint.readthedocs.io/en/stable/user_guide/usage/run.html
+        - https://raw.githubusercontent.com/pylint-dev/pylint/main/LICENSE
+      requires: []
   aliases: ["PyLint"]
   searchTerms: ["Python linter","unused variables","code smells","Python code quality"]
   modes: ["Static"]

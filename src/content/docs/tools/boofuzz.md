@@ -2,6 +2,32 @@
 title: boofuzz
 description: Generate malformed protocol messages and exercise a running service through a configurable test session.
 tool:
+  analysisWorkflows:
+    - id: custom-protocol
+      label: Exercise a custom protocol description
+      subject: connection
+      inputs:
+        - Running applications
+      languageScope: independent
+      languages: []
+      findings:
+        - Crashes and hangs
+        - Specification violations
+      caveat: Failure detection depends on monitors, response checks, and callbacks you configure. Sending
+        malformed messages alone does not identify every crash, memory error, or protocol violation.
+      sources:
+        - https://github.com/jtpereyda/boofuzz
+        - https://boofuzz.readthedocs.io/en/stable/user/install.html
+        - https://boofuzz.readthedocs.io/en/stable/user/quickstart.html
+      requires:
+        - harness
+        - testInstance
+      interfaces:
+        - Custom protocol
+      transports:
+        - TCP
+        - UDP
+        - Serial
   modes: [Dynamic]
   inputTypes: [Running applications]
   techniques: [Protocol fuzzing, Mutation-based fuzzing]

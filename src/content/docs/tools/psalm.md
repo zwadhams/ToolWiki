@@ -2,6 +2,28 @@
 title: Psalm
 description: Check PHP types and code behavior, with a separate taint-analysis mode for security questions.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - PHP
+      findings:
+        - Type errors
+        - Logic errors
+        - Injection risks
+      caveat: Type and code checks differ from the separate taint-analysis mode. Injection findings depend
+        on modeled sources, sinks, and sanitization; enabling ordinary analysis does not establish
+        taint coverage.
+      sources:
+        - https://psalm.dev/docs/running_psalm/installation/
+        - https://psalm.dev/docs/security_analysis/
+        - https://github.com/vimeo/psalm/blob/master/LICENSE
+        - https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf
+      requires: []
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Type checking, Bug finding, Taint analysis]

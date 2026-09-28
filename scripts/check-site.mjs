@@ -2,6 +2,7 @@ import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { selectTools, suggestTools } from '../src/lib/catalog.mjs';
+import { analyzeSystem, newComponent, newConnection, newProfile } from '../src/lib/system-builder.mjs';
 
 const root = path.resolve('dist');
 const base = '/ToolWiki/';
@@ -93,3 +94,26 @@ for (const q of ['Grype', 'Dependency-Check', 'Hadolint', 'Checkov', 'actionlint
 assert.ok(!selectTools(catalog, { q: 'Miri', input: 'Binaries' }).length, 'Miri must not appear as an arbitrary native-binary checker');
 assert.ok(!selectTools(catalog, { q: 'MSan', mode: 'Static' }).length, 'MSan needs instrumented execution');
 console.log(`Verified ${pages.length} built pages, local links, fragments, assets, search index, and discovery for ${catalog.length} tools.`);
+
+const builderHtml = contents.get(path.join(root, 'analysis-suite', 'index.html'));
+assert.ok(builderHtml?.includes('<system-builder'), 'Builder page must render its component');
+assert.ok(catalogHtml.includes('/ToolWiki/analysis-suite/'), 'Builder must appear in navigation');
+const builder = JSON.parse(builderHtml.match(/<script[^>]*data-builder-data[^>]*>([\s\S]*?)<\/script>/)[1]);
+assert.equal(builder.totalTools, catalog.length);
+assert.ok(builder.tools.length >= 80, 'Keep the reviewed workflow catalog available');
+assert.ok(builder.tools.every(t => t.analysisWorkflows.length));
+const system = newProfile();
+system.components = [{ ...newComponent('service'), languages: ['Python'], inputs: ['Source code'], inputsComplete: true, goals: ['correctness'], hostPlatform: 'Linux' }, { ...newComponent('device'), languages: ['C++'], inputs: ['Binaries'], inputsComplete: true, binaryFormat: 'Native executable', goals: ['memory'], targetPlatform: 'Linux', access: { rebuild: 'no', instrument: 'no', harness: 'no', testInstance: 'yes' } }];
+system.connections = [{ ...newConnection('api', 'service', 'device'), interface: 'HTTP API', definition: 'OpenAPI', testInstance: 'yes', goals: ['robustness'], hostPlatform: 'Linux' }];
+const candidates = (id, data = analyzeSystem(system, builder.tools)) => data.subjects.find(s => s.subjectId === id).candidates.map(c => c.toolId);
+assert.ok(candidates('service').includes('tools/ruff'));
+assert.ok(!candidates('service').includes('tools/cppcheck'));
+assert.ok(candidates('device').includes('tools/valgrind-memcheck'));
+assert.ok(!candidates('device').includes('tools/address-sanitizer'));
+assert.ok(!candidates('device').includes('tools/spotbugs'));
+assert.ok(candidates('api').includes('tools/schemathesis'));
+system.connections[0].interface = 'MQTT'; system.connections[0].transport = 'TCP';
+assert.equal(candidates('api').length, 0, 'MQTT over TCP must not inherit HTTP or custom-protocol support');
+system.components[0].goals = ['dependencies'];
+assert.ok(!candidates('service').includes('tools/trivy'), 'Python source must not imply a Trivy dependency workflow');
+console.log(`Verified builder navigation and real-catalog recommendations for ${builder.tools.length} reviewed tools.`);

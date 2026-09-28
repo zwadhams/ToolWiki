@@ -2,6 +2,31 @@
 title: Hypothesis
 description: Generate Python test inputs and simplify failing examples for properties you define.
 tool:
+  analysisWorkflows:
+    - id: tests
+      label: Checks over callable code
+      subject: component
+      inputs:
+        - Callable code
+      languageScope: source
+      languages:
+        - Python
+      findings:
+        - Specification violations
+      caveat: Your assertions and test behavior define failure. Hypothesis generates and shrinks examples;
+        it does not provide a universal security or correctness specification for the target.
+      sources:
+        - https://hypothesis.readthedocs.io/en/latest/quickstart.html
+        - https://hypothesis.readthedocs.io/en/latest/tutorial/introduction.html
+        - https://hypothesis.readthedocs.io/en/latest/compatibility.html
+        - https://github.com/HypothesisWorks/hypothesis/blob/master/LICENSE.txt
+      requires:
+        - harness
+        - testInstance
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: [Dynamic]
   inputTypes: [Callable code]
   techniques: [Property-based testing]

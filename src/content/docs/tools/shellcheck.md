@@ -2,6 +2,36 @@
 title: ShellCheck
 description: Find quoting mistakes, portability problems, and other bugs in shell scripts without executing them.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Bash
+        - POSIX sh
+        - Dash
+        - Ksh
+        - BusyBox sh
+      findings:
+        - Logic errors
+        - Coding conventions
+        - Portability issues
+      caveat: Syntax and semantic checks include quoting, expansion, and shell-dialect mistakes. Findings
+        depend on the selected dialect and the code that can be inspected statically.
+      sources:
+        - https://github.com/koalaman/shellcheck
+        - https://github.com/koalaman/shellcheck/blob/master/shellcheck.1.md
+        - https://www.shellcheck.net/wiki/SC2086
+        - https://github.com/koalaman/shellcheck/blob/master/ShellCheck.cabal
+        - https://github.com/koalaman/shellcheck/blob/master/LICENSE
+      requires: []
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   aliases: [Shell Check]
   searchTerms: [shell linter, bash linter, shell scripts, quoting, word splitting, globbing, shell portability]
   modes: [Static]

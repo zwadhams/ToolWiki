@@ -2,6 +2,30 @@
 title: "angr"
 description: "Explore compiled programs with a programmable binary-analysis and symbolic-execution framework."
 tool:
+  analysisWorkflows:
+    - id: binary
+      label: Inspect a supplied binary
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: independent
+      languages: []
+      findings:
+        - Specification violations
+      caveat: You must encode the behavior or failure condition to investigate. Finding a reachable state
+        is not automatically a vulnerability; angr is a framework, not a fixed vulnerability-rule
+        scanner.
+      sources:
+        - https://docs.angr.io/en/latest/core-concepts/loading.html
+        - https://docs.angr.io/en/latest/core-concepts/symbolic.html
+        - https://docs.angr.io/en/latest/getting-started/installing.html
+        - https://docs.angr.io/en/latest/advanced-topics/gotchas.html
+        - https://docs.angr.io/en/latest/advanced-topics/file_system.html
+        - https://docs.angr.io/en/latest/core-concepts/pathgroups.html
+        - https://github.com/angr/angr/blob/master/LICENSE
+      binaryFormats:
+        - Native executable
+        - Firmware image
   modes: ["Static"]
   inputTypes: ["Binaries"]
   techniques: ["Binary analysis","Symbolic execution"]

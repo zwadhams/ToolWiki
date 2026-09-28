@@ -2,6 +2,26 @@
 title: Bandit
 description: Find common security issues in Python source code using checks against its syntax tree.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Python
+      findings:
+        - Injection risks
+        - Unsafe API use
+        - Security misconfiguration
+      caveat: Selected security-pattern plugins; a flagged call requires context and is not a demonstrated
+        exploit.
+      sources:
+        - https://bandit.readthedocs.io/en/latest/start.html
+        - https://bandit.readthedocs.io/en/latest/
+        - https://github.com/PyCQA/bandit
+      requires: []
   modes: [Static]
   inputTypes: [Source code]
   techniques: [SAST, Pattern matching]

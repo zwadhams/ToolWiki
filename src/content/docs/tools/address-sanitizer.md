@@ -2,6 +2,33 @@
 title: "AddressSanitizer (Clang)"
 description: "Detect selected memory errors while executing a program built with AddressSanitizer instrumentation."
 tool:
+  analysisWorkflows:
+    - id: instrumented-build
+      label: Build and exercise instrumented code
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+        - C++
+      findings:
+        - Memory safety
+      caveat: Detects instrumented, executed memory errors such as out-of-bounds access and
+        use-after-free. It does not cover all undefined behavior or general uninitialized-value use.
+      sources:
+        - https://clang.llvm.org/docs/AddressSanitizer.html
+        - https://github.com/google/sanitizers/wiki/AddressSanitizer
+        - https://github.com/llvm/llvm-project/blob/main/compiler-rt/LICENSE.TXT
+      requires:
+        - rebuild
+        - instrument
+        - testInstance
+      binaryFormats: []
+      targetPlatforms:
+        - Linux
+        - macOS
+        - Windows
   aliases: [ASan, Address Sanitizer]
   searchTerms: [buffer overflow, out of bounds, use after free]
   modes: ["Dynamic"]

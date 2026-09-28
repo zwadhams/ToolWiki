@@ -2,6 +2,23 @@
 title: "Stylelint"
 description: "Lint CSS for rule violations and consistency problems."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - CSS
+      findings:
+        - Coding conventions
+      caveat: Reports enabled rules. Configuration and parser coverage determine which styles are checked.
+      sources:
+        - https://stylelint.io/user-guide/get-started/
+        - https://stylelint.io/user-guide/configure/
+        - https://raw.githubusercontent.com/stylelint/stylelint/main/LICENSE
+      requires: []
   aliases: []
   searchTerms: ["CSS linter","stylesheet linting","CSS conventions"]
   modes: ["Static"]

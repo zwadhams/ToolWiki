@@ -2,6 +2,36 @@
 title: AFL++
 description: Mutate inputs using execution feedback to find crashes, hangs, and failures exposed by a fuzzing target.
 tool:
+  analysisWorkflows:
+    - id: instrumented
+      label: Fuzz an instrumented source build
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+        - C++
+      findings:
+        - Crashes and hangs
+        - Memory safety
+        - Specification violations
+      caveat: Crash and hang detection is built in. Memory diagnostics depend on instrumentation such as
+        sanitizers; specification failures require an assertion or another failure signal in the
+        target.
+      sources:
+        - https://github.com/AFLplusplus/AFLplusplus
+        - https://github.com/AFLplusplus/AFLplusplus/blob/stable/docs/INSTALL.md
+        - https://github.com/AFLplusplus/AFLplusplus/blob/stable/docs/fuzzing_binary-only_targets.md
+        - https://github.com/AFLplusplus/AFLplusplus/blob/stable/LICENSING.md
+      requires:
+        - rebuild
+        - instrument
+        - harness
+        - testInstance
+      hostPlatforms:
+        - Linux
+        - macOS
   aliases: [AFL plus plus, AFLplusplus]
   modes: [Dynamic]
   inputTypes: [Binaries]

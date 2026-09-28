@@ -2,6 +2,30 @@
 title: capa
 description: Match binary features or recorded execution behavior to rules describing program capabilities.
 tool:
+  analysisWorkflows:
+    - id: binary
+      label: Identify capabilities in executable files
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: independent
+      languages: []
+      findings:
+        - Program capabilities
+      caveat: Matches capability rules to extracted evidence. A match does not establish malicious intent,
+        a vulnerability, or that every identified static capability executed.
+      sources:
+        - https://github.com/mandiant/capa
+        - https://github.com/mandiant/capa/blob/master/doc/installation.md
+        - https://github.com/mandiant/capa/blob/master/doc/limitations.md
+        - https://www.cs.montana.edu/izurieta/pubs/iETC_Porcella_2026.pdf
+      binaryFormats:
+        - Native executable
+        - .NET assembly
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: [Static, Dynamic]
   inputTypes: [Binaries, Execution traces]
   techniques: [Binary analysis, Rule-based matching, Trace analysis]

@@ -2,6 +2,25 @@
 title: "Checkstyle"
 description: "Check Java source against configured coding standards and selected structural rules."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Java
+      findings:
+        - Coding conventions
+        - Coding-standard violations
+      caveat: Checks the configured rules, such as naming, layout, imports, and selected structural
+        patterns; it does not provide general semantic bug detection.
+      sources:
+        - https://checkstyle.org/
+        - https://checkstyle.org/cmdline.html
+        - https://github.com/checkstyle/checkstyle
+      requires: []
   aliases: ["Check Style"]
   searchTerms: ["Java style checker","Java coding standard","Java linting","Google Java Style"]
   modes: ["Static"]

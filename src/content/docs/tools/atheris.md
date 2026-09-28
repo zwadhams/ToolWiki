@@ -2,6 +2,31 @@
 title: "Atheris"
 description: "Generate coverage-guided inputs for Python code and instrumented CPython extensions."
 tool:
+  analysisWorkflows:
+    - id: tests
+      label: Checks over callable code
+      subject: component
+      inputs:
+        - Callable code
+      languageScope: source
+      languages:
+        - Python
+      findings:
+        - Crashes and hangs
+        - Specification violations
+      caveat: Finds failures exposed by the harness, including uncaught exceptions. Semantic properties
+        need user assertions; native memory checks need compatible sanitizer instrumentation.
+      sources:
+        - https://raw.githubusercontent.com/google/atheris/master/README.md
+        - https://raw.githubusercontent.com/google/atheris/master/native_extension_fuzzing.md
+        - https://raw.githubusercontent.com/google/atheris/master/LICENSE
+      requires:
+        - harness
+        - testInstance
+        - instrument
+      hostPlatforms:
+        - Linux
+        - macOS
   aliases: ["Atheris Python fuzzer"]
   searchTerms: ["Python fuzzing","Python fuzzer","CPython extensions","coverage guided"]
   modes: ["Dynamic"]

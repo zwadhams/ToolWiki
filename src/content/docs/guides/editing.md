@@ -58,6 +58,60 @@ The entry automatically appears in the catalog, the matching analysis section, t
 | `tool.verified` | A quoted date such as `'2026-09-21'`. |
 | `tool.scope` | Product edition, component, and any verified version. |
 | `tool.sources` | A list of `label` and `url` pairs for primary references. |
+| `tool.analysisWorkflows` | Optional scoped workflows for the analysis suite builder. Defaults to an empty list; see below. |
+
+## Add a builder workflow
+
+The [analysis suite builder](../../analysis-suite/) matches individual workflows rather than combining a tool's catalog tags. A tool without a reviewed workflow remains in the catalog but does not generate builder recommendations. The matching review is recorded in the repository's `audits/system-builder/README.md`.
+
+1. Check the entry's primary documentation for one concrete workflow, including its language, input, findings, and preparation requirements.
+2. Add an item to `tool.analysisWorkflows`. Keep alternative inputs, plugins, editions, and analysis modes separate whenever their requirements or findings differ.
+3. Reference evidence URLs already listed in `tool.sources`. Retain the entry's verification date unless you have rechecked its documented claims.
+4. Try a matching system, an incomplete description, and an incompatible system in the builder. Run `pnpm verify` to check metadata, matching, and generated pages.
+
+This example describes a hypothetical Python source workflow; adapt its finding and evidence to the actual tool:
+
+```yaml
+analysisWorkflows:
+  - id: python-source
+    label: Python source checks
+    subject: component
+    inputs: [Source code]
+    languageScope: source
+    languages: [Python]
+    findings: [Logic errors]
+    caveat: Selected rules only; verify supported syntax and configuration.
+    sources:
+      - https://example.org/official-tool-documentation
+```
+
+The fields above are required, except `languages` may be empty for `languageScope: independent`. These additional fields default to empty lists:
+
+| Field | Meaning |
+| --- | --- |
+| `interfaces`, `transports` | Explicit application interfaces and transports for a connection workflow. Connections require at least one interface. TCP support alone is not MQTT or HTTP support. |
+| `definitions` | Accepted API definitions: `OpenAPI` or `GraphQL schema`. A definition and a reachable test service are separate requirements. |
+| `binaryFormats` | Accepted binary artifacts, such as `Native executable`, `JVM bytecode`, or `LLVM bitcode`. Required when a component workflow takes `Binaries`. |
+| `technologies` | Additional required technologies, such as `Ruby on Rails` or `MATLAB`. At least one must be confirmed. |
+| `requires` | Required access: `rebuild`, `instrument`, `harness`, and/or `testInstance`. Unknown answers request detail; an explicit No blocks the workflow. |
+| `hostPlatforms`, `targetPlatforms` | Documented OS examples for the analysis host and target. Unlisted platforms need confirmation; these lists are not exhaustive exclusions. |
+| `excludedHosts`, `excludedTargets` | Explicit, evidence-backed incompatibilities. Do not infer them from a platform missing from an example list. |
+
+`subject` is `component` or `connection`. `languageScope` is `source`, `ecosystem`, `independent`, `model`, or `configuration`. Ecosystem languages describe dependency support. Ecosystem, configuration, and model workflows also inspect selected technologies. All listed `inputs` are required together; use separate workflows for alternatives. An instrumented-build workflow can require source even when the catalog input is the executable it eventually checks.
+
+Workflow findings must be supported by the entry and that particular workflow. Do not give every language all of a product's aggregate capabilities. Record rule, version, plugin, solver, and architecture qualifications in `caveat`; results also display setup, environment, scope, and cost notes. Candidate status means recorded requirements matched, not that all compatibility details or findings were demonstrated.
+
+Keep controlled choices in `src/lib/system-schema.mjs` consistent with metadata. Add focused tests for new matching distinctions. Preserve subject, goal, tool, and workflow relationships so a future coverage view can use the same evidence.
+
+## Use and save a system
+
+Add component cards, available material, and analysis goals, then optionally describe connections. Unchecked material is unknown until you select **Only these materials are available**. Names, component types, deployment context, and free-text notes describe the system; they are not searched for inferred capabilities.
+
+Each included part/goal combination reports candidates, missing information, unmet requirements, or no verified catalog match. A catalog gap does not establish that no suitable tool exists. A candidate does not represent completed testing or full coverage of its goal.
+
+The latest description saves in this browser. **Export system** downloads a version 1 JSON file; **Import system** validates it before replacing the description and recomputes candidates from the current catalog. Imports accept up to 1 MB, 50 components, and 100 connections. Invalid imports preserve the current system. **Undo removal or import** restores the most recently removed part and its incident connections while preserving later edits. Undoing an import restores the entire description from before that import.
+
+If browser storage is unavailable, continue editing and export before leaving. Clearing site data removes the local copy. Comparison selections are temporary and open the comparison page in a new tab. System exports contain descriptions and preferences, not tool results.
 
 ## Make tools easy to find
 

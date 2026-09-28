@@ -2,6 +2,27 @@
 title: "Miri"
 description: "Run Rust code in an interpreter to detect undefined behavior in exercised tests."
 tool:
+  analysisWorkflows:
+    - id: tests
+      label: Checks over callable code
+      subject: component
+      inputs:
+        - Callable code
+      languageScope: source
+      languages:
+        - Rust
+      findings:
+        - Memory safety
+        - Concurrency issues
+      caveat: Checks particular executions against Miri's model of Rust behavior. Experimental aliasing
+        checks and unsupported operations need careful interpretation.
+      sources:
+        - https://raw.githubusercontent.com/rust-lang/miri/master/README.md
+        - https://doc.rust-lang.org/reference/behavior-considered-undefined.html
+        - https://raw.githubusercontent.com/rust-lang/miri/master/LICENSE-MIT
+      requires:
+        - harness
+        - testInstance
   aliases: ["cargo miri"]
   searchTerms: ["Rust undefined behavior","unsafe Rust","Rust memory safety","Rust data races"]
   modes: ["Dynamic"]

@@ -2,6 +2,31 @@
 title: CBMC
 description: Check C and C++ assertions and memory safety by translating bounded program executions into solver queries.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+        - C++
+      findings:
+        - Memory safety
+        - Specification violations
+      caveat: Built-in safety checks and user assertions are evaluated within the modeled environment and
+        exploration bounds. A successful bounded check is not automatically an unbounded proof.
+      sources:
+        - https://www.cprover.org/cbmc/
+        - https://model-checking.github.io/cbmc-training/faq/loop-unwinding.html
+        - https://github.com/diffblue/cbmc/blob/develop/LICENSE
+      requires:
+        - harness
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Bounded model checking, Formal verification]

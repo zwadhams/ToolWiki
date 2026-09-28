@@ -2,6 +2,27 @@
 title: detekt
 description: Check Kotlin source for code smells, complexity, and selected bug patterns.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Kotlin
+      findings:
+        - Coding conventions
+        - Logic errors
+        - Code complexity
+      caveat: Selected rules report maintainability and potential correctness issues. A code smell is not
+        automatically a security weakness; rules requiring type resolution do not run without it.
+      sources:
+        - https://detekt.dev/docs/1.23.8/gettingstarted/cli/
+        - https://detekt.dev/docs/1.23.8/gettingstarted/type-resolution/
+        - https://github.com/detekt/detekt/blob/main/LICENSE
+        - https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf
+      requires: []
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Linting, Bug finding]

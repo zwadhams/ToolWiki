@@ -2,6 +2,33 @@
 title: clang-tidy
 description: Check C and C++ source for selected bugs, coding conventions, and modernization opportunities using Clang-based rules.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+        - C++
+      findings:
+        - Logic errors
+        - Coding conventions
+        - Unsafe API use
+      caveat: Coverage depends on enabled checks and successful parsing. clang-analyzer checks can be
+        selected, but their availability does not mean every analyzer runs by default.
+      sources:
+        - https://clang.llvm.org/extra/clang-tidy/
+        - https://clang.llvm.org/docs/HowToSetupToolingForLLVM.html
+        - https://clang.llvm.org/extra/clang-tidy/checks/modernize/use-nullptr.html
+        - https://llvm.org/docs/GettingStarted.html
+        - https://github.com/llvm/llvm-project/blob/main/clang-tools-extra/LICENSE.TXT
+      requires: []
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   aliases: [Clang Tidy, clangtidy]
   searchTerms: [C++ linter, C linter, modernization, readability, clang tidy checks, automatic fixes]
   modes: [Static]

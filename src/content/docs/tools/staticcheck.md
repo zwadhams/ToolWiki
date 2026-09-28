@@ -2,6 +2,28 @@
 title: Staticcheck
 description: Detect Go bugs, suspicious API use, simplification opportunities, and performance-related code issues.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Go
+      findings:
+        - Logic errors
+        - Coding conventions
+      caveat: Selected Go correctness, simplification, and style checks; performance patterns are not
+        runtime profiling measurements.
+      sources:
+        - https://staticcheck.dev/docs/getting-started/
+        - https://staticcheck.dev/docs/
+        - https://staticcheck.dev/docs/running-staticcheck/cli/
+        - https://staticcheck.dev/docs/checks/
+        - https://staticcheck.dev/docs/configuration/
+        - https://github.com/dominikh/go-tools/blob/master/LICENSE
+      requires: []
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Linting, Bug finding]

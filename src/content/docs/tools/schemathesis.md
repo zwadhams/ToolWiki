@@ -2,6 +2,53 @@
 title: Schemathesis
 description: Generate API tests from OpenAPI or GraphQL definitions and check observed responses.
 tool:
+  analysisWorkflows:
+    - id: openapi
+      label: Generated tests from OpenAPI
+      subject: connection
+      inputs:
+        - Running applications
+      languageScope: independent
+      languages: []
+      findings:
+        - Specification violations
+        - Server errors
+        - Input validation
+      caveat: Finds failures of enabled response and schema checks. An HTTP error or schema mismatch needs
+        investigation and is not automatically a security vulnerability.
+      sources:
+        - https://github.com/schemathesis/schemathesis
+        - https://schemathesis.readthedocs.io/en/stable/tutorials/cli/
+        - https://github.com/schemathesis/schemathesis/blob/master/pyproject.toml
+      requires:
+        - testInstance
+      interfaces:
+        - HTTP API
+      definitions:
+        - OpenAPI
+    - id: graphql
+      label: Generated tests from a GraphQL schema
+      subject: connection
+      inputs:
+        - Running applications
+      languageScope: independent
+      languages: []
+      findings:
+        - Specification violations
+        - Server errors
+        - Input validation
+      caveat: Finds failures of enabled response and schema checks. An HTTP error or schema mismatch needs
+        investigation and is not automatically a security vulnerability.
+      sources:
+        - https://github.com/schemathesis/schemathesis
+        - https://schemathesis.readthedocs.io/en/stable/tutorials/cli/
+        - https://github.com/schemathesis/schemathesis/blob/master/pyproject.toml
+      requires:
+        - testInstance
+      interfaces:
+        - GraphQL
+      definitions:
+        - GraphQL schema
   modes: [Dynamic]
   inputTypes: [Running applications]
   techniques: [API testing, Property-based testing, Stateful testing]

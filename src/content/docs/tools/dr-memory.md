@@ -2,6 +2,29 @@
 title: Dr. Memory
 description: Detect memory errors while a compatible native executable runs under dynamic instrumentation.
 tool:
+  analysisWorkflows:
+    - id: runtime
+      label: Exercise a native executable
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: independent
+      languages: []
+      findings:
+        - Memory safety
+        - Resource leaks
+      caveat: Checks exercised memory operations for issues including unaddressable access, uninitialized
+        reads, and allocation errors. Supported leak checks include Windows-specific resources;
+        unexecuted paths remain unchecked.
+      sources:
+        - https://drmemory.org/
+        - https://drmemory.org/page_install.html
+        - https://drmemory.org/page_running.html
+        - https://drmemory.org/page_license.html
+      binaryFormats:
+        - Native executable
+      requires:
+        - testInstance
   modes: [Dynamic]
   inputTypes: [Binaries]
   techniques: [Dynamic instrumentation, Runtime memory checking]

@@ -2,6 +2,87 @@
 title: Trivy
 description: Find known package vulnerabilities and infrastructure misconfigurations in container images, dependency inventories, and configuration files.
 tool:
+  analysisWorkflows:
+    - id: dependencies
+      label: Dependency vulnerability matching
+      subject: component
+      inputs:
+        - Dependency metadata
+      languageScope: ecosystem
+      languages:
+        - Python
+        - JavaScript
+        - Java
+        - .NET
+        - Ruby
+        - PHP
+      findings:
+        - Known vulnerable dependencies
+      caveat: Package findings depend on component identification and advisory data. Configuration checks
+        inspect supported definitions. Neither establishes application exploitability or verifies the
+        behavior of a running deployment.
+      sources:
+        - https://trivy.dev/docs/latest/getting-started/installation/
+        - https://trivy.dev/docs/latest/guide/scanner/vulnerability/
+        - https://trivy.dev/docs/latest/guide/coverage/language/
+        - https://trivy.dev/docs/latest/guide/scanner/misconfiguration/
+        - https://trivy.dev/docs/latest/guide/target/sbom/
+        - https://github.com/aquasecurity/trivy/blob/main/LICENSE
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
+    - id: image
+      label: Container package vulnerability matching
+      subject: component
+      inputs:
+        - Container images
+      languageScope: independent
+      languages: []
+      findings:
+        - Known vulnerable dependencies
+      caveat: Package findings depend on component identification and advisory data. Configuration checks
+        inspect supported definitions. Neither establishes application exploitability or verifies the
+        behavior of a running deployment.
+      sources:
+        - https://trivy.dev/docs/latest/getting-started/installation/
+        - https://trivy.dev/docs/latest/guide/scanner/vulnerability/
+        - https://trivy.dev/docs/latest/guide/coverage/language/
+        - https://trivy.dev/docs/latest/guide/scanner/misconfiguration/
+        - https://trivy.dev/docs/latest/guide/target/sbom/
+        - https://github.com/aquasecurity/trivy/blob/main/LICENSE
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
+    - id: configuration
+      label: Infrastructure configuration checks
+      subject: component
+      inputs:
+        - Configuration files
+      languageScope: configuration
+      languages:
+        - Terraform
+        - Docker
+        - Kubernetes/Helm
+        - CloudFormation
+        - Azure Resource Manager
+      findings:
+        - Security misconfiguration
+      caveat: Package findings depend on component identification and advisory data. Configuration checks
+        inspect supported definitions. Neither establishes application exploitability or verifies the
+        behavior of a running deployment.
+      sources:
+        - https://trivy.dev/docs/latest/getting-started/installation/
+        - https://trivy.dev/docs/latest/guide/scanner/vulnerability/
+        - https://trivy.dev/docs/latest/guide/coverage/language/
+        - https://trivy.dev/docs/latest/guide/scanner/misconfiguration/
+        - https://trivy.dev/docs/latest/guide/target/sbom/
+        - https://github.com/aquasecurity/trivy/blob/main/LICENSE
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   aliases: [Aqua Trivy]
   searchTerms: [container scanning, container vulnerabilities, Docker image scanner, dependency scanner, SCA, SBOM, IaC, infrastructure as code, Terraform scanning, Kubernetes configuration]
   modes: [Static]

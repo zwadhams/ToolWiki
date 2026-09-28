@@ -2,6 +2,25 @@
 title: "actionlint"
 description: "Check GitHub Actions workflow syntax, expressions, and action usage."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Configuration checks
+      subject: component
+      inputs:
+        - Configuration files
+      languageScope: configuration
+      languages:
+        - GitHub Actions
+      findings:
+        - Logic errors
+        - Type errors
+      caveat: Checks workflow structure, expressions, and selected action interfaces; optional script
+        checks require their external linters.
+      sources:
+        - https://github.com/rhysd/actionlint
+        - https://raw.githubusercontent.com/rhysd/actionlint/main/docs/usage.md
+        - https://raw.githubusercontent.com/rhysd/actionlint/main/LICENSE.txt
+      requires: []
   aliases: ["GitHub Actions linter"]
   searchTerms: ["GitHub Actions","workflow linting","CI configuration","workflow expressions"]
   modes: ["Static"]

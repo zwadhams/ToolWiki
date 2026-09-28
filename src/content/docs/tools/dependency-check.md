@@ -2,6 +2,63 @@
 title: "OWASP Dependency-Check"
 description: "Identify known vulnerabilities associated with application dependencies."
 tool:
+  analysisWorkflows:
+    - id: dependencies
+      label: Dependency artifact vulnerability matching
+      subject: component
+      inputs:
+        - Dependency metadata
+      languageScope: ecosystem
+      languages:
+        - Java
+        - .NET
+      findings:
+        - Known vulnerable dependencies
+      caveat: Matches dependency evidence to vulnerability data. Review component identification and false
+        positives; source-level exploitability is not established.
+      sources:
+        - https://dependency-check.github.io/DependencyCheck/dependency-check-cli/
+        - https://dependency-check.github.io/DependencyCheck/analyzers/index.html
+        - https://raw.githubusercontent.com/dependency-check/DependencyCheck/main/README.md
+        - https://raw.githubusercontent.com/dependency-check/DependencyCheck/main/LICENSE.txt
+    - id: java-artifacts
+      label: Java archive vulnerability matching
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: ecosystem
+      languages:
+        - Java
+      findings:
+        - Known vulnerable dependencies
+      caveat: Matches dependency evidence to vulnerability data. Review component identification and false
+        positives; source-level exploitability is not established.
+      sources:
+        - https://dependency-check.github.io/DependencyCheck/dependency-check-cli/
+        - https://dependency-check.github.io/DependencyCheck/analyzers/index.html
+        - https://raw.githubusercontent.com/dependency-check/DependencyCheck/main/README.md
+        - https://raw.githubusercontent.com/dependency-check/DependencyCheck/main/LICENSE.txt
+      binaryFormats:
+        - JVM bytecode
+    - id: dotnet-artifacts
+      label: .NET assembly vulnerability matching
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: ecosystem
+      languages:
+        - .NET
+      findings:
+        - Known vulnerable dependencies
+      caveat: Matches dependency evidence to vulnerability data. Review component identification and false
+        positives; source-level exploitability is not established.
+      sources:
+        - https://dependency-check.github.io/DependencyCheck/dependency-check-cli/
+        - https://dependency-check.github.io/DependencyCheck/analyzers/index.html
+        - https://raw.githubusercontent.com/dependency-check/DependencyCheck/main/README.md
+        - https://raw.githubusercontent.com/dependency-check/DependencyCheck/main/LICENSE.txt
+      binaryFormats:
+        - .NET assembly
   aliases: ["Dependency-Check","dependency check"]
   searchTerms: ["SCA","dependency CVE","NVD","Java dependencies","NuGet vulnerabilities"]
   modes: ["Static"]

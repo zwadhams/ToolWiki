@@ -2,6 +2,63 @@
 title: "OSV-Scanner"
 description: "Match project dependencies and supported container artifacts against known vulnerability records."
 tool:
+  analysisWorkflows:
+    - id: dependencies
+      label: Dependency vulnerability matching
+      subject: component
+      inputs:
+        - Dependency metadata
+      languageScope: ecosystem
+      languages:
+        - C
+        - C++
+        - Dart
+        - Elixir
+        - Go
+        - Haskell
+        - Java
+        - JavaScript
+        - .NET
+        - PHP
+        - Python
+        - R
+        - Ruby
+        - Rust
+      findings:
+        - Known vulnerable dependencies
+      caveat: Matches identified package versions or commits to advisories. This does not by itself
+        establish that a vulnerable function is reachable or exploitable in the application.
+      sources:
+        - https://google.github.io/osv-scanner/
+        - https://google.github.io/osv-scanner/supported-languages-and-lockfiles/
+        - https://google.github.io/osv-scanner/usage/
+        - https://google.github.io/osv-scanner/installation/
+        - https://github.com/google/osv-scanner/blob/main/LICENSE
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
+    - id: image
+      label: Container package vulnerability matching
+      subject: component
+      inputs:
+        - Container images
+      languageScope: independent
+      languages: []
+      findings:
+        - Known vulnerable dependencies
+      caveat: Matches identified package versions or commits to advisories. This does not by itself
+        establish that a vulnerable function is reachable or exploitable in the application.
+      sources:
+        - https://google.github.io/osv-scanner/
+        - https://google.github.io/osv-scanner/supported-languages-and-lockfiles/
+        - https://google.github.io/osv-scanner/usage/
+        - https://google.github.io/osv-scanner/installation/
+        - https://github.com/google/osv-scanner/blob/main/LICENSE
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: ["Static"]
   inputTypes: ["Dependency metadata","Container images"]
   techniques: ["Software composition analysis","Known vulnerability detection"]

@@ -2,6 +2,34 @@
 title: UndefinedBehaviorSanitizer (Clang)
 description: Detect selected undefined behavior while executing instrumented C and C++ programs.
 tool:
+  analysisWorkflows:
+    - id: instrumented-build
+      label: Build and exercise instrumented code
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+        - C++
+      findings:
+        - Undefined behavior
+        - Memory safety
+      caveat: Selected arithmetic, pointer, and bounds checks on executed code. It does not detect every
+        form of undefined behavior.
+      sources:
+        - https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html
+        - https://clang.llvm.org/docs/UsersManual.html
+        - https://github.com/llvm/llvm-project/blob/main/compiler-rt/LICENSE.TXT
+      requires:
+        - rebuild
+        - instrument
+        - testInstance
+      binaryFormats: []
+      targetPlatforms:
+        - Linux
+        - macOS
+        - Windows
   aliases: [UBSan, Undefined Behavior Sanitizer]
   searchTerms: [undefined behaviour, signed integer overflow, integer divide by zero, invalid shifts, misaligned pointers]
   modes: [Dynamic]

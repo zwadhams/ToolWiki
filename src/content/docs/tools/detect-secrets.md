@@ -2,6 +2,37 @@
 title: "detect-secrets"
 description: "Find potential embedded secrets and review new findings against a repository baseline."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Find secret-like strings in files
+      subject: component
+      inputs:
+        - Source code
+      languageScope: independent
+      languages: []
+      findings:
+        - Exposed secrets
+      caveat: Potential secrets need review. Enabled plugins, filters, exclusions, and baseline decisions
+        affect results.
+      sources:
+        - https://raw.githubusercontent.com/Yelp/detect-secrets/master/README.md
+        - https://raw.githubusercontent.com/Yelp/detect-secrets/master/docs/audit.md
+        - https://raw.githubusercontent.com/Yelp/detect-secrets/master/LICENSE
+    - id: configuration
+      label: Find secret-like strings in files
+      subject: component
+      inputs:
+        - Configuration files
+      languageScope: independent
+      languages: []
+      findings:
+        - Exposed secrets
+      caveat: Potential secrets need review. Enabled plugins, filters, exclusions, and baseline decisions
+        affect results.
+      sources:
+        - https://raw.githubusercontent.com/Yelp/detect-secrets/master/README.md
+        - https://raw.githubusercontent.com/Yelp/detect-secrets/master/docs/audit.md
+        - https://raw.githubusercontent.com/Yelp/detect-secrets/master/LICENSE
   aliases: ["Yelp detect-secrets"]
   searchTerms: ["secret scanning","hardcoded credentials","API keys","secret detection","pre commit"]
   modes: ["Static"]

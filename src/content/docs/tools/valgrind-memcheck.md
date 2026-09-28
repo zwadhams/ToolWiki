@@ -2,6 +2,34 @@
 title: Valgrind Memcheck
 description: Detect invalid memory access, uninitialized-value use, and leaks while a native program runs.
 tool:
+  analysisWorkflows:
+    - id: runtime
+      label: Exercise a native executable
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: independent
+      languages: []
+      findings:
+        - Memory safety
+      caveat: Observes memory operations in executed paths. Includes invalid accesses, uninitialized
+        values, and leak checks; unexecuted behavior is not covered.
+      sources:
+        - https://valgrind.org/info/platforms.html
+        - https://valgrind.org/docs/manual/mc-manual.html
+        - https://valgrind.org/info/
+      binaryFormats:
+        - Native executable
+      requires:
+        - testInstance
+      targetPlatforms:
+        - Linux
+        - FreeBSD
+      excludedTargets:
+        - Windows
+        - Browser
+        - RTOS
+        - Bare metal
   modes: [Dynamic]
   inputTypes: [Binaries]
   techniques: [Runtime memory checking]

@@ -2,6 +2,27 @@
 title: PSY-TaLiRo
 description: Use a Python harness to search for system behaviors that violate temporal requirements.
 tool:
+  analysisWorkflows:
+    - id: model
+      label: Simulation-based falsification
+      subject: component
+      inputs:
+        - Executable models
+      languageScope: model
+      languages:
+        - Python
+      findings:
+        - Temporal requirement violations
+      caveat: You define temporal requirements and expose signals through a model/monitor interface. A
+        finite search cannot prove universal satisfaction.
+      sources:
+        - https://psy-taliro.readthedocs.io/latest/
+        - https://github.com/cpslab-asu/psy-taliro
+        - https://github.com/cpslab-asu/psy-taliro/blob/main/LICENSE
+        - https://arxiv.org/abs/2106.02200
+      requires:
+        - harness
+        - testInstance
   modes: [Dynamic]
   inputTypes: [Executable models, Execution traces]
   techniques: [Model falsification, Temporal logic monitoring]

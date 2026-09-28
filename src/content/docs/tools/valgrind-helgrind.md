@@ -2,6 +2,34 @@
 title: "Valgrind Helgrind"
 description: "Observe native threaded programs for data races and synchronization mistakes."
 tool:
+  analysisWorkflows:
+    - id: runtime
+      label: Exercise a native executable
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: independent
+      languages: []
+      findings:
+        - Concurrency issues
+      caveat: Checks observed synchronization, data races, and inconsistent lock ordering. A lock-order
+        warning indicates potential deadlock, not necessarily an observed one.
+      sources:
+        - https://valgrind.org/docs/manual/hg-manual.html
+        - https://valgrind.org/info/platforms.html
+        - https://valgrind.org/info/
+      binaryFormats:
+        - Native executable
+      requires:
+        - testInstance
+      targetPlatforms:
+        - Linux
+        - FreeBSD
+      excludedTargets:
+        - Windows
+        - Browser
+        - RTOS
+        - Bare metal
   aliases: ["Helgrind"]
   searchTerms: ["data races","race conditions","pthreads","lock ordering","deadlocks"]
   modes: ["Dynamic"]

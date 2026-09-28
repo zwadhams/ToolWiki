@@ -2,6 +2,32 @@
 title: RESTler
 description: Generate sequences of REST API requests using dependencies inferred from an OpenAPI specification.
 tool:
+  analysisWorkflows:
+    - id: openapi
+      label: Stateful tests from OpenAPI
+      subject: connection
+      inputs:
+        - Running applications
+      languageScope: independent
+      languages: []
+      findings:
+        - Server errors
+        - Specification violations
+      caveat: Reports server failures and violations detected by enabled checkers. Authentication,
+        resource dependencies, and checker configuration affect coverage and interpretation.
+      sources:
+        - https://github.com/microsoft/restler-fuzzer
+        - https://github.com/microsoft/restler-fuzzer/blob/main/docs/user-guide/QuickStart.md
+        - https://github.com/microsoft/restler-fuzzer/blob/main/LICENSE
+      requires:
+        - testInstance
+      interfaces:
+        - HTTP API
+      definitions:
+        - OpenAPI
+      hostPlatforms:
+        - Windows
+        - Linux
   modes: [Dynamic]
   inputTypes: [Running applications]
   techniques: [API testing, Stateful fuzzing]

@@ -2,6 +2,28 @@
 title: "ESBMC"
 description: "Check C and C++ program properties with SMT-based bounded model checking."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+        - C++
+      findings:
+        - Memory safety
+        - Specification violations
+        - Undefined behavior
+      caveat: Selected checks include pointer/bounds problems, arithmetic errors, and assertions. Enabled
+        properties, unwinding, and assumptions determine the claim.
+      sources:
+        - https://github.com/esbmc/esbmc
+        - https://ssvlab.github.io/esbmc/documentation.html
+        - https://raw.githubusercontent.com/esbmc/esbmc/master/COPYING
+      requires:
+        - harness
   aliases: ["Efficient SMT-based Context-Bounded Model Checker"]
   searchTerms: ["bounded model checking","BMC","C verification","C++ verification","SMT","assertion checking"]
   modes: ["Static"]

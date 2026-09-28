@@ -2,9 +2,11 @@ import { defineCollection } from 'astro:content';
 import { z } from 'zod';
 import { docsLoader, i18nLoader } from '@astrojs/starlight/loaders';
 import { docsSchema, i18nSchema } from '@astrojs/starlight/schema';
+import { workflowSchema } from './lib/system-schema.mjs';
 
 const nonempty = z.array(z.string().min(1)).min(1);
 const tool = z.object({
+  analysisWorkflows: z.array(workflowSchema).default([]),
   aliases: z.array(z.string().trim().min(1)).default([]),
   searchTerms: z.array(z.string().trim().min(1)).default([]),
   modes: z.array(z.enum(['Static', 'Dynamic'])).min(1),
@@ -29,12 +31,20 @@ const tool = z.object({
   }, 'Use a valid date in YYYY-MM-DD format.'),
   scope: z.string().min(1),
   sources: z.array(z.object({ label: z.string().min(1), url: z.url() })).min(1),
+}).superRefine((tool, ctx) => {
+  const ids = new Set<string>();
+  for (const workflow of tool.analysisWorkflows) {
+    if (ids.has(workflow.id)) ctx.addIssue({ code: 'custom', message: `Repeated workflow ID: ${workflow.id}` });
+    ids.add(workflow.id);
+    if (workflow.findings.some(f => !tool.findings.includes(f))) ctx.addIssue({ code: 'custom', message: 'Workflow findings must be documented in the tool profile.' });
+    if (workflow.sources.some(url => !tool.sources.some(source => source.url === url))) ctx.addIssue({ code: 'custom', message: 'Workflow evidence must reference the tool sources.' });
+  }
 });
 
 export const collections = {
   docs: defineCollection({
     loader: docsLoader(),
-    schema: docsSchema({ extend: z.object({ tool: tool.optional(), catalog: z.boolean().default(false), comparison: z.boolean().default(false), catalogMode: z.enum(['Static', 'Dynamic']).optional() }) }),
+    schema: docsSchema({ extend: z.object({ tool: tool.optional(), catalog: z.boolean().default(false), comparison: z.boolean().default(false), systemBuilder: z.boolean().default(false), catalogMode: z.enum(['Static', 'Dynamic']).optional() }) }),
   }),
   i18n: defineCollection({ loader: i18nLoader(), schema: i18nSchema() }),
 };

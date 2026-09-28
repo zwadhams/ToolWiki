@@ -2,6 +2,36 @@
 title: Jazzer
 description: Fuzz JVM code with execution coverage and save inputs that expose failures.
 tool:
+  analysisWorkflows:
+    - id: jvm-harness
+      label: Fuzz a compiled JVM target with a harness
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: source
+      languages:
+        - Java
+        - Kotlin
+      findings:
+        - Crashes and hangs
+        - Specification violations
+        - Injection risks
+      caveat: Assertions and uncaught exceptions expose failures in exercised code. Selected security
+        detectors add checks such as command injection; enabled detectors and harness reachability
+        determine coverage.
+      sources:
+        - https://github.com/CodeIntelligenceTesting/jazzer
+        - https://codeintelligencetesting.github.io/jazzer-docs/jazzer-junit/com/code_intelligence/jazzer/junit/FuzzTest.html
+        - https://github.com/CodeIntelligenceTesting/jazzer/blob/main/LICENSE
+      binaryFormats:
+        - JVM bytecode
+      requires:
+        - harness
+        - testInstance
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: [Dynamic]
   inputTypes: [Callable code, Binaries]
   techniques: [Coverage-guided fuzzing]

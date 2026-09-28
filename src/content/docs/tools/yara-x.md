@@ -2,6 +2,35 @@
 title: YARA-X
 description: Scan file contents using rules that combine text, byte patterns, and conditions.
 tool:
+  analysisWorkflows:
+    - id: binary
+      label: Inspect a supplied binary
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: independent
+      languages: []
+      findings:
+        - File pattern matches
+      caveat: Findings mean that a supplied rule matched. Their meaning depends on that rule; a match
+        alone does not prove maliciousness or a software defect.
+      sources:
+        - https://virustotal.github.io/yara-x/docs/intro/installation/
+        - https://virustotal.github.io/yara-x/docs/cli/commands/
+        - https://virustotal.github.io/yara-x/docs/writing_rules/differences-with-yara/
+        - https://virustotal.github.io/yara-x/blog/yara-x-is-stable/
+        - https://github.com/VirusTotal/yara-x/blob/main/LICENSE
+      binaryFormats:
+        - Native executable
+        - Firmware image
+        - JVM bytecode
+        - .NET assembly
+        - LLVM bitcode
+        - Other
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: [Static]
   inputTypes: [Binaries]
   techniques: [Pattern matching, Rule-based matching]

@@ -2,6 +2,26 @@
 title: "RuboCop"
 description: "Check Ruby source for coding conventions and selected bug patterns with configurable cops."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Ruby
+      findings:
+        - Logic errors
+        - Coding conventions
+        - Code complexity
+      caveat: Cops cover selected lint, style, and metric rules. Enabled departments, target Ruby version,
+        and exclusions determine coverage.
+      sources:
+        - https://raw.githubusercontent.com/rubocop/rubocop/master/README.md
+        - https://docs.rubocop.org/rubocop/1.61/usage/basic_usage.html
+        - https://raw.githubusercontent.com/rubocop/rubocop/master/LICENSE.txt
+      requires: []
   aliases: ["Rubo Cop"]
   searchTerms: ["Ruby linter","Ruby code quality","Ruby style","Ruby linting"]
   modes: ["Static"]

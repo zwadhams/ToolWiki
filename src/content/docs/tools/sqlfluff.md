@@ -2,6 +2,26 @@
 title: "SQLFluff"
 description: "Lint SQL files using a selected dialect, templater, and rule configuration."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - SQL
+      findings:
+        - Coding conventions
+        - Coding-standard violations
+      caveat: Reports selected parsing and lint issues. It does not prove query correctness or predict
+        database execution performance.
+      sources:
+        - https://docs.sqlfluff.com/en/stable/
+        - https://docs.sqlfluff.com/en/stable/gettingstarted.html
+        - https://docs.sqlfluff.com/en/stable/reference/dialects.html
+        - https://raw.githubusercontent.com/sqlfluff/sqlfluff/main/LICENSE.md
+      requires: []
   aliases: ["SQL Fluff"]
   searchTerms: ["SQL linter","SQL linting","SQL style","SQL dialect","dbt"]
   modes: ["Static"]

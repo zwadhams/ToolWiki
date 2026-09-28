@@ -20,6 +20,7 @@ export default defineConfig({
         { label: 'Static analysis', slug: 'static' },
         { label: 'Dynamic analysis', slug: 'dynamic' },
         { label: 'Compare tools', slug: 'compare' },
+        { label: 'Build your analysis suite', slug: 'analysis-suite' },
       ] },
       { label: 'Understand the concepts', items: [
         { label: 'Static vs. dynamic analysis', slug: 'concepts/static-vs-dynamic' },

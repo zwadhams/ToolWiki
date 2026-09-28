@@ -2,6 +2,27 @@
 title: "CPAchecker"
 description: "Verify selected properties of C programs using configurable program analyses."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - C
+      findings:
+        - Specification violations
+      caveat: Checks the selected specification, such as assertions and error reachability. Results apply
+        to that configuration and program model.
+      sources:
+        - https://cpachecker.sosy-lab.org/doc.php
+        - https://raw.githubusercontent.com/sosy-lab/cpachecker/main/README.md
+        - https://raw.githubusercontent.com/sosy-lab/cpachecker/main/INSTALL.md
+        - https://raw.githubusercontent.com/sosy-lab/cpachecker/main/doc/Configuration.md
+      requires: []
+      hostPlatforms:
+        - Linux
   aliases: ["CPA checker"]
   searchTerms: ["C verification","configurable program analysis","predicate analysis","software verification"]
   modes: ["Static"]

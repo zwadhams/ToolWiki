@@ -2,6 +2,28 @@
 title: "fast-check"
 description: "Generate and shrink JavaScript and TypeScript test inputs for user-defined properties."
 tool:
+  analysisWorkflows:
+    - id: tests
+      label: Checks over callable code
+      subject: component
+      inputs:
+        - Callable code
+      languageScope: source
+      languages:
+        - JavaScript
+        - TypeScript
+      findings:
+        - Specification violations
+      caveat: Finds counterexamples to the properties supplied by the user. Generated values, assumptions,
+        and test budgets determine coverage.
+      sources:
+        - https://fast-check.dev/docs/introduction/
+        - https://fast-check.dev/docs/introduction/getting-started/
+        - https://fast-check.dev/docs/configuration/
+        - https://raw.githubusercontent.com/dubzzz/fast-check/main/LICENSE
+      requires:
+        - harness
+        - testInstance
   aliases: ["fast check"]
   searchTerms: ["JavaScript property testing","TypeScript property testing","property based testing","shrinking","test generators"]
   modes: ["Dynamic"]

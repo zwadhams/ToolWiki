@@ -2,6 +2,28 @@
 title: "SwiftLint"
 description: "Check Swift source against selected style, convention, and code-quality rules."
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Swift
+      findings:
+        - Coding conventions
+        - Logic errors
+      caveat: Selected lint and analyzer rules; opt-in rules do not run merely because they exist in the
+        rule catalog.
+      sources:
+        - https://github.com/realm/SwiftLint
+        - https://realm.github.io/SwiftLint/rule-directory.html
+        - https://github.com/realm/SwiftLint/blob/main/LICENSE
+      requires: []
+      hostPlatforms:
+        - Linux
+        - macOS
   aliases: ["Swift Lint"]
   searchTerms: ["Swift linter","Swift code quality","Swift style"]
   modes: ["Static"]

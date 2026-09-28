@@ -2,6 +2,52 @@
 title: "Grype"
 description: "Match packages in container images, filesystems, and SBOMs against known vulnerabilities."
 tool:
+  analysisWorkflows:
+    - id: dependencies
+      label: Dependency vulnerability matching
+      subject: component
+      inputs:
+        - Dependency metadata
+      languageScope: ecosystem
+      languages:
+        - Python
+        - JavaScript
+        - Java
+        - Go
+        - PHP
+        - .NET
+        - Dart
+        - Ruby
+        - Rust
+        - Swift
+        - GitHub Actions
+      findings:
+        - Known vulnerable dependencies
+      caveat: Reports database matches for identified packages. A match is not a demonstration that a
+        deployment is exploitable.
+      sources:
+        - https://oss.anchore.com/docs/installation/grype/
+        - https://oss.anchore.com/docs/guides/vulnerability/scan-targets/
+        - https://oss.anchore.com/docs/guides/vulnerability/ecosystems/
+        - https://oss.anchore.com/docs/guides/vulnerability/interpreting-results/
+        - https://raw.githubusercontent.com/anchore/grype/main/LICENSE
+    - id: image
+      label: Container package vulnerability matching
+      subject: component
+      inputs:
+        - Container images
+      languageScope: independent
+      languages: []
+      findings:
+        - Known vulnerable dependencies
+      caveat: Reports database matches for identified packages. A match is not a demonstration that a
+        deployment is exploitable.
+      sources:
+        - https://oss.anchore.com/docs/installation/grype/
+        - https://oss.anchore.com/docs/guides/vulnerability/scan-targets/
+        - https://oss.anchore.com/docs/guides/vulnerability/ecosystems/
+        - https://oss.anchore.com/docs/guides/vulnerability/interpreting-results/
+        - https://raw.githubusercontent.com/anchore/grype/main/LICENSE
   aliases: ["Anchore Grype"]
   searchTerms: ["SBOM","CVE","SCA","container vulnerability scanner","image vulnerabilities","dependency vulnerabilities"]
   modes: ["Static"]

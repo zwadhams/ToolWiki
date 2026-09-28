@@ -2,6 +2,30 @@
 title: Burp Suite Community Edition
 description: Inspect and modify web requests with a free toolkit for manual security testing.
 tool:
+  analysisWorkflows:
+    - id: http
+      label: Manual HTTP security testing
+      subject: connection
+      inputs:
+        - Running applications
+      languageScope: independent
+      languages: []
+      findings:
+        - Injection risks
+        - Security misconfiguration
+      caveat: Manual investigation using intercepted and edited requests. Community Edition does not
+        include automated Burp Scanner.
+      sources:
+        - https://portswigger.net/burp/documentation/desktop/getting-started/system-requirements
+        - https://portswigger.net/burp/communitydownload
+      requires:
+        - testInstance
+      interfaces:
+        - HTTP API
+      hostPlatforms:
+        - Windows
+        - Linux
+        - macOS
   modes: [Dynamic]
   inputTypes: [Running applications]
   techniques: [Manual web testing, HTTP interception]

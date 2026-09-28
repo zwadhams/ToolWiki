@@ -2,6 +2,32 @@
 title: Binwalk
 description: Identify embedded file formats and inspect firmware images and other binary containers.
 tool:
+  analysisWorkflows:
+    - id: binary
+      label: Inspect a supplied binary
+      subject: component
+      inputs:
+        - Binaries
+      languageScope: independent
+      languages: []
+      findings:
+        - Embedded file formats
+      caveat: Reports candidate embedded formats and offsets. Entropy can suggest compressed or encrypted
+        regions, but neither signatures nor entropy establish a vulnerability.
+      sources:
+        - https://github.com/ReFirmLabs/binwalk
+        - https://github.com/ReFirmLabs/binwalk/wiki/Supported-Platforms
+        - https://github.com/ReFirmLabs/binwalk/wiki/File-Analysis-and-Extraction
+        - https://github.com/ReFirmLabs/binwalk/blob/master/LICENSE
+      binaryFormats:
+        - Native executable
+        - Firmware image
+        - JVM bytecode
+        - .NET assembly
+        - LLVM bitcode
+        - Other
+      hostPlatforms:
+        - Linux
   modes: [Static]
   inputTypes: [Binaries]
   techniques: [Binary analysis, Signature matching, Entropy analysis]

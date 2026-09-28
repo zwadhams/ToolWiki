@@ -2,6 +2,27 @@
 title: Clippy
 description: Use Rust compiler-integrated lints to catch common mistakes and improve Rust code.
 tool:
+  analysisWorkflows:
+    - id: source
+      label: Source analysis
+      subject: component
+      inputs:
+        - Source code
+      languageScope: source
+      languages:
+        - Rust
+      findings:
+        - Logic errors
+        - Coding conventions
+      caveat: Selected compiler-integrated lint patterns. The defaults and optional lint groups differ;
+        this is not exhaustive verification.
+      sources:
+        - https://doc.rust-lang.org/clippy/
+        - https://doc.rust-lang.org/clippy/usage.html
+        - https://doc.rust-lang.org/clippy/installation.html
+        - https://github.com/rust-lang/rust-clippy
+      requires:
+        - rebuild
   modes: [Static]
   inputTypes: [Source code]
   techniques: [Linting, Bug finding]

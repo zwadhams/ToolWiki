@@ -101,13 +101,15 @@ The fields above are required, except `languages` may be empty for `languageScop
 
 Workflow findings must be supported by the entry and that particular workflow. Do not give every language all of a product's aggregate capabilities. Record rule, version, plugin, solver, and architecture qualifications in `caveat`; results also display setup, environment, scope, and cost notes. Candidate status means recorded requirements matched, not that all compatibility details or findings were demonstrated.
 
-Keep controlled choices in `src/lib/system-schema.mjs` consistent with metadata. Add focused tests for new matching distinctions. Preserve subject, goal, tool, and workflow relationships so a future coverage view can use the same evidence.
+Keep controlled choices in `src/lib/system-schema.mjs` consistent with metadata. Add focused tests for new matching distinctions. Preserve subject, finding, tool, and workflow relationships so a future coverage view can use the same evidence. Finding categories are derived from matched workflows; users do not need to select investigation goals.
 
 ## Use and save a system
 
-Add component cards, available material, and analysis goals, then optionally describe connections. Unchecked material is unknown until you select **Only these materials are available**. Names, component types, deployment context, and free-text notes describe the system; they are not searched for inferred capabilities.
+Add component cards, select their languages and available material, then optionally describe connections. Language and ecosystem choices open by default and can be collapsed. All matching candidates appear automatically from the system description, and each card explains what it can help find. There is no shortlist limit or investigation-goal selection. Unchecked material is unknown until you select **Only these materials are available**. Names, component types, deployment context, and free-text notes describe the system; they are not searched for inferred capabilities.
 
-Each included part/goal combination reports candidates, missing information, unmet requirements, or no verified catalog match. A catalog gap does not establish that no suitable tool exists. A candidate does not represent completed testing or full coverage of its goal.
+The optional **System parts and gaps** summary reports candidates, missing information, unmet requirements, or no verified catalog match for each described part. Blank parts prompt for a description instead of suggesting every tool. At least one selected language, ecosystem, material, or interface must support each suggested workflow. A catalog gap does not establish that no suitable tool exists, and a candidate does not represent completed testing or full coverage.
+
+Existing version 1 system files remain supported. Their legacy `goals` fields are optional and no longer filter recommendations, including after restoring browser storage or importing a file.
 
 The latest description saves in this browser. **Export system** downloads a version 1 JSON file; **Import system** validates it before replacing the description and recomputes candidates from the current catalog. Imports accept up to 1 MB, 50 components, and 100 connections. Invalid imports preserve the current system. **Undo removal or import** restores the most recently removed part and its incident connections while preserving later edits. Undoing an import restores the entire description from before that import.
 

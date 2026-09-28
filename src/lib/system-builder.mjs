@@ -74,15 +74,22 @@ function evaluateWorkflow(subject, type, workflow, preferences, tool) {
     else reasons.push(`${label}: ${value}`);
   };
   if (type === 'component') {
+    let hasEvidence = workflow.inputs.some(input => subject.inputs.includes(input))
+      || (subject.binaryFormat && workflow.binaryFormats.includes(subject.binaryFormat))
+      || workflow.technologies.some(technology => subject.technologies.includes(technology));
     if (workflow.languageScope !== 'independent') {
       const languages = workflow.languageScope === 'configuration' || workflow.languageScope === 'model' || workflow.languageScope === 'ecosystem'
         ? unique([...knownLanguages(subject), ...subject.technologies]) : knownLanguages(subject);
       const matches = languages.filter(l => workflow.languages.includes(l));
       if (!matches.length && languages.length) return null;
       if (!matches.length && subject.languages.includes('Other') && !subject.languages.includes('Not sure')) return null;
+      if (matches.length) hasEvidence = true;
       if (!matches.length) unresolved.push(`Specify a supported ${workflow.languageScope === 'configuration' ? 'configuration format' : 'language or ecosystem'}: ${workflow.languages.join(', ')}.`);
       else reasons.push(`${workflow.languageScope === 'ecosystem' ? 'Dependency ecosystem' : 'Language or format'}: ${matches.join(', ')}`);
     }
+    // Unknown answers qualify a plausible match; they do not make every tool
+    // relevant. Require evidence from this component before suggesting a workflow.
+    if (!hasEvidence) return null;
     for (const input of workflow.inputs) {
       if (subject.inputs.includes(input)) reasons.push(`Available input: ${input}`);
       else if (subject.inputsComplete) blocked.push(`Requires ${input.toLowerCase()}, which is not available.`);
@@ -98,6 +105,9 @@ function evaluateWorkflow(subject, type, workflow, preferences, tool) {
   } else {
     // A TCP transport is never evidence of MQTT, HTTP, or another application protocol.
     if (subject.interface && !workflow.interfaces.includes(subject.interface)) return null;
+    if (!workflow.interfaces.includes(subject.interface)
+      && !workflow.transports.includes(subject.transport)
+      && !workflow.definitions.includes(subject.definition)) return null;
     if (!subject.interface) unresolved.push(`Specify the interface: ${workflow.interfaces.join(' or ')}.`);
     else reasons.push(`Interface: ${subject.interface}`);
     if (!subject.from || !subject.to) unresolved.push('Choose both connection endpoints.');
@@ -129,28 +139,25 @@ export function analyzeSystem(profile, tools) {
   for (const [type, parts] of [['component', profile.components], ['connection', profile.connections]]) {
     for (const subject of parts.filter(s => s.included)) {
       const subjectMatches = [];
-      for (const goalId of subject.goals) {
-        const goal = GOALS.find(g => g.id === goalId);
-        if (!goal) continue;
-        const goalMatches = [];
+      const needsDescription = type === 'component'
+        ? !subject.languages.some(language => language !== 'Not sure') && !subject.inputs.length && !subject.technologies.length && !subject.binaryFormat && !subject.inputsComplete
+        : !subject.interface && !subject.transport && !subject.definition;
+      if (!needsDescription) {
         for (const tool of tools) {
           for (const workflow of tool.analysisWorkflows || []) {
-            const findings = workflow.findings.filter(f => goal.findings.includes(f));
-            if (!findings.length) continue;
             const evaluation = evaluateWorkflow(subject, type, workflow, profile.preferences, tool);
             if (!evaluation) continue;
-            const match = { toolId: tool.id, workflowId: workflow.id, subjectType: type, subjectId: subject.id, goalId, findings, ...evaluation };
-            goalMatches.push(match);
+            const goalIds = GOALS.filter(goal => workflow.findings.some(finding => goal.findings.includes(finding))).map(goal => goal.id);
+            subjectMatches.push({ toolId: tool.id, workflowId: workflow.id, subjectType: type, subjectId: subject.id, goalIds, findings: [...workflow.findings], ...evaluation });
           }
         }
-        const status = goalMatches.some(m => m.status === 'candidate') ? 'candidate'
-          : goalMatches.some(m => m.status === 'details') ? 'details'
-          : goalMatches.some(m => m.status === 'blocked') ? 'blocked' : 'gap';
-        gaps.push({ subjectType: type, subjectId: subject.id, goalId, status, reasons: unique(goalMatches.filter(m => m.status === status).flatMap(m => {
+        const status = subjectMatches.some(m => m.status === 'candidate') ? 'candidate'
+          : subjectMatches.some(m => m.status === 'details') ? 'details'
+          : subjectMatches.some(m => m.status === 'blocked') ? 'blocked' : 'gap';
+        gaps.push({ subjectType: type, subjectId: subject.id, status, reasons: unique(subjectMatches.filter(m => m.status === status).flatMap(m => {
           const title = tools.find(t => t.id === m.toolId)?.title || m.toolId;
           return (status === 'blocked' ? m.blocked : status === 'details' ? m.unresolved : []).map(reason => `${title}: ${reason}`);
         })) });
-        subjectMatches.push(...goalMatches);
       }
       matches.push(...subjectMatches);
       const grouped = new Map();
@@ -162,7 +169,7 @@ export function analyzeSystem(profile, tools) {
       }
       const title = id => tools.find(t => t.id === id)?.title || id;
       const candidates = [...grouped.values()].sort((a, b) => (a.status === 'candidate' ? 0 : 1) - (b.status === 'candidate' ? 0 : 1) || title(a.toolId).localeCompare(title(b.toolId), 'en'));
-      subjects.push({ subjectId: subject.id, subjectType: type, name: subjectName(profile, subject), candidates });
+      subjects.push({ subjectId: subject.id, subjectType: type, name: subjectName(profile, subject), candidates, needsDescription });
     }
   }
   return { matches, gaps, subjects };

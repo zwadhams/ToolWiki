@@ -29,7 +29,8 @@ const text = z.string().max(200);
 const notes = z.string().max(2000);
 const id = z.string().regex(/^[a-zA-Z0-9_-]{1,80}$/);
 const list = (schema, max = 80) => z.array(schema).max(max).refine(a => new Set(a).size === a.length, 'Repeated values are not allowed.');
-const goals = list(z.enum(GOALS.map(g => g.id)), GOALS.length);
+// Retain the optional v1 field for saved systems. It no longer filters results.
+const goals = list(z.enum(GOALS.map(g => g.id)), GOALS.length).default([]);
 const shared = { id, name: text, included: z.boolean(), goals, notes, hostPlatform: z.enum(['', ...PLATFORMS]) };
 export const componentSchema = z.object({
   ...shared, kind: z.enum(['', ...COMPONENT_TYPES]), languages: list(text), inputs: list(z.enum(INPUTS)), inputsComplete: z.boolean(),
@@ -42,7 +43,7 @@ export const connectionSchema = z.object({
   ...shared, from: z.union([z.literal(''), id]), to: z.union([z.literal(''), id]),
   interface: z.enum(['', ...INTERFACES]), transport: z.enum(['', ...TRANSPORTS]),
   definition: z.enum(['', 'None', 'OpenAPI', 'GraphQL schema', 'Other']), testInstance: tri, harness: tri,
-  goals: list(z.enum(CONNECTION_GOALS), CONNECTION_GOALS.length),
+  goals: list(z.enum(CONNECTION_GOALS), CONNECTION_GOALS.length).default([]),
 }).strict();
 export const profileSchema = z.object({
   version: z.literal(1), name: text,

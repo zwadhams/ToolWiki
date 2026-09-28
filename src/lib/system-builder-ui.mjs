@@ -1,4 +1,4 @@
-import { ACCESS, COMPONENT_TYPES, CONNECTION_GOALS, FORMATS, GOALS, INPUTS, INTERFACES, PLATFORMS, STATUS_LABELS, TECHNOLOGIES, TRANSPORTS } from './system-schema.mjs';
+import { ACCESS, COMPONENT_TYPES, FORMATS, INPUTS, INTERFACES, PLATFORMS, STATUS_LABELS, TECHNOLOGIES, TRANSPORTS } from './system-schema.mjs';
 import { analyzeSystem, MAX_IMPORT_BYTES, newComponent, newConnection, parseProfile, removalSnapshot, removeComponent, restoreProfile, saveProfile, serializeProfile, subjectName, undoRemoval } from './system-builder.mjs';
 import { comparisonHref } from './comparison.mjs';
 
@@ -12,7 +12,6 @@ const button = (text, callback, className = '') => {
   const node = el('button', text, className); node.type = 'button'; node.addEventListener('click', callback); return node;
 };
 const unique = values => [...new Set(values)];
-const goalLabel = id => GOALS.find(g => g.id === id)?.label || id;
 const choice = (value, label = value) => ({ value, label });
 const unknown = choice('', 'Not sure / not specified');
 const tri = [choice('unknown', 'Not sure'), choice('yes', 'Yes'), choice('no', 'No')];
@@ -28,8 +27,7 @@ class SystemBuilder extends HTMLElement {
     this.base = this.dataset.base;
     this.root = this.querySelector('[data-builder-root]');
     this.selected = [];
-    this.expanded = new Set();
-    this.openSections = new Set();
+    this.openSections = new Map();
     this.undo = null;
     let restored;
     try { this.storage = window.localStorage; restored = restoreProfile(this.storage); }
@@ -77,8 +75,8 @@ class SystemBuilder extends HTMLElement {
   disclosure(parent, key, title, open = false) {
     const details = el('details', '', 'suite-disclosure');
     const summary = el('summary', title); details.append(summary);
-    details.open = this.openSections.has(key) || open;
-    details.addEventListener('toggle', () => { if (details.open) this.openSections.add(key); else this.openSections.delete(key); });
+    details.open = this.openSections.get(key) ?? open;
+    details.addEventListener('toggle', () => { if (details.isConnected) this.openSections.set(key, details.open); });
     parent.append(details); return details;
   }
 
@@ -123,13 +121,13 @@ class SystemBuilder extends HTMLElement {
     }
     this.root.append(jump);
     this.componentSection = el('section'); this.componentSection.id = 'suite-components';
-    this.componentSection.append(el('h2', 'Components'), el('p', 'Give each part its own languages, inputs, and questions. Collapse a card when you are finished.', 'suite-muted'));
+    this.componentSection.append(el('h2', 'Components'), el('p', 'Choose the languages and material available for each part. Candidates will explain what they can find. Collapse a card when you are finished.', 'suite-muted'));
     this.componentList = el('div', '', 'suite-parts'); this.componentSection.append(this.componentList);
     for (const component of this.profile.components) this.renderComponent(component);
     if (!this.profile.components.length) this.componentList.append(el('p', 'Add a component to begin describing your system.'));
     const addComponent = button('Add component', () => {
       if (this.profile.components.length >= 50) return;
-      const component = newComponent(); this.profile.components.push(component); this.openSections.add(component.id); this.render(); this.changed('Component added.');
+      const component = newComponent(); this.profile.components.push(component); this.openSections.set(component.id, true); this.render(); this.changed('Component added.');
       this.root.querySelector(`[data-part-id="${component.id}"] input[type=text]`)?.focus();
     }, 'suite-primary');
     addComponent.disabled = this.profile.components.length >= 50; this.componentSection.append(addComponent); this.root.append(this.componentSection);
@@ -141,7 +139,7 @@ class SystemBuilder extends HTMLElement {
     const addConnection = button('Add connection', () => {
       if (this.profile.components.length < 2 || this.profile.connections.length >= 100) return;
       const connection = newConnection(undefined, this.profile.components[0].id, this.profile.components[1].id);
-      this.profile.connections.push(connection); this.openSections.add(connection.id); this.render(); this.changed('Connection added.');
+      this.profile.connections.push(connection); this.openSections.set(connection.id, true); this.render(); this.changed('Connection added.');
       this.root.querySelector(`[data-part-id="${connection.id}"] input[type=text]`)?.focus();
     });
     addConnection.disabled = this.profile.components.length < 2 || this.profile.connections.length >= 100;
@@ -176,7 +174,7 @@ class SystemBuilder extends HTMLElement {
     });
     this.field(fields, 'Component type', part.kind, value => { part.kind = value; this.changed(); }, [unknown, ...COMPONENT_TYPES]);
     content.append(fields);
-    const languages = this.disclosure(content, `${part.id}-languages`, `Languages and ecosystems (${part.languages.length} selected)`);
+    const languages = this.disclosure(content, `${part.id}-languages`, `Languages and ecosystems (${part.languages.length} selected)`, true);
     const languageContainer = el('div'); languages.append(languageContainer);
     const updateLanguages = value => {
       part.languages = value; languages.querySelector('summary').textContent = `Languages and ecosystems (${value.length} selected)`;
@@ -196,7 +194,6 @@ class SystemBuilder extends HTMLElement {
       if (part.inputs.includes('Binaries')) this.field(inputsContainer, 'Binary format', part.binaryFormat, value => { part.binaryFormat = value; this.changed(); }, [unknown, ...FORMATS]);
     };
     renderInputs();
-    this.renderGoals(content, part, GOALS);
     const advanced = this.disclosure(content, `${part.id}-advanced`, 'Environment and testing access (optional)');
     const advancedFields = el('div', '', 'suite-field-grid');
     this.field(advancedFields, 'Target operating system', part.targetPlatform, value => { part.targetPlatform = value; this.changed(); }, [unknown, ...PLATFORMS]);
@@ -213,15 +210,6 @@ class SystemBuilder extends HTMLElement {
     advanced.append(access);
     this.field(advanced, 'Other technology or context (optional notes)', part.notes, value => { part.notes = value; this.changed(); }, null, true);
     advanced.append(el('p', 'Names, component types, deployment context, and notes describe your system. Recommendations use the selected capabilities and verified workflow requirements, not keywords in your notes.', 'suite-muted'));
-  }
-
-  renderGoals(parent, part, goals) {
-    const container = el('div'); parent.append(container);
-    const render = () => {
-      container.replaceChildren();
-      this.checklist(container, 'What do you want to investigate?', goals.map(g => choice(g.id, g.label)), part.goals, value => { part.goals = value; render(); this.changed(); });
-    };
-    render();
   }
 
   refreshEndpoints() {
@@ -256,7 +244,6 @@ class SystemBuilder extends HTMLElement {
     this.field(fields, 'Available interface definition', part.definition, value => { part.definition = value; this.changed(); }, [unknown, 'None', 'OpenAPI', 'GraphQL schema', 'Other']);
     this.field(fields, 'Can you run a test endpoint?', part.testInstance, value => { part.testInstance = value; this.changed(); }, tri);
     content.append(fields);
-    this.renderGoals(content, part, GOALS.filter(g => CONNECTION_GOALS.includes(g.id)));
     const advanced = this.disclosure(content, `${part.id}-advanced`, 'Testing details and notes (optional)');
     this.field(advanced, 'Analysis host operating system', part.hostPlatform, value => { part.hostPlatform = value; this.changed(); }, [unknown, ...PLATFORMS]);
     this.field(advanced, 'Can you write a protocol test harness?', part.harness, value => { part.harness = value; this.changed(); }, tri);
@@ -270,19 +257,19 @@ class SystemBuilder extends HTMLElement {
     this.results.replaceChildren(); this.results.append(el('h2', 'Tool candidates'));
     this.results.append(el('p', `${this.tools.length} of ${this.totalTools} catalog entries have reviewed matching workflows. The shortlist describes potential analyses, not measured test coverage or a security score.`, 'suite-muted'));
     if (!result.gaps.length) {
-      this.results.append(el('p', 'Choose at least one analysis goal on an included component or connection to see candidates.', 'suite-empty'));
+      this.results.append(el('p', 'Choose a language, ecosystem, available material, or connection interface on an included part to see candidates.', 'suite-empty'));
       if (this.selected.length) { this.tray = el('section', '', 'suite-comparison'); this.results.append(this.tray); this.renderComparison(); }
       return;
     }
-    const ready = result.gaps.filter(g => g.status === 'candidate').length;
-    const summary = el('p', `Candidates found for ${ready} of ${result.gaps.length} selected part/goal combinations.`, 'suite-summary');
+    const count = unique(result.subjects.flatMap(subject => subject.candidates.map(candidate => candidate.toolId))).length;
+    const summary = el('p', `${count} potential tool${count === 1 ? '' : 's'} for your system. Each card explains what it can find and what it needs.`, 'suite-summary');
     summary.setAttribute('role', 'status'); this.results.append(summary);
-    const gapDetails = el('details', '', 'suite-panel'); gapDetails.open = true; gapDetails.append(el('summary', 'Analysis areas and gaps'));
+    const gapDetails = el('details', '', 'suite-panel'); gapDetails.append(el('summary', 'System parts and gaps'));
     const gapList = el('ul', '', 'suite-gaps');
     for (const gap of result.gaps) {
       const subject = result.subjects.find(s => s.subjectId === gap.subjectId);
-      const item = el('li'); item.append(el('strong', `${subject.name}: ${goalLabel(gap.goalId)}`), el('span', STATUS_LABELS[gap.status], `suite-status suite-status-${gap.status}`));
-      if (gap.status === 'gap') item.append(el('p', 'No verified workflow in this catalog matches this area. This does not establish that no suitable tool exists.', 'suite-muted'));
+      const item = el('li'); item.append(el('strong', subject.name), el('span', STATUS_LABELS[gap.status], `suite-status suite-status-${gap.status}`));
+      if (gap.status === 'gap') item.append(el('p', 'No verified workflow in this catalog matches this part. This does not establish that no suitable tool exists.', 'suite-muted'));
       else if (gap.reasons.length) {
         const more = el('details'); more.append(el('summary', gap.status === 'blocked' ? 'See unmet requirements' : 'See information to clarify'));
         const reasons = el('ul'); for (const reason of gap.reasons) reasons.append(el('li', reason)); more.append(reasons); item.append(more);
@@ -293,18 +280,13 @@ class SystemBuilder extends HTMLElement {
     const tray = el('section', '', 'suite-comparison'); tray.setAttribute('aria-label', 'Compare shortlisted tools'); this.results.append(tray); this.tray = tray;
     this.renderComparison();
     for (const subject of result.subjects) {
-      if (!result.gaps.some(g => g.subjectId === subject.subjectId)) continue;
       const section = el('section', '', 'suite-result-group'); section.append(el('h3', subject.name));
-      if (!subject.candidates.length) section.append(el('p', 'No applicable candidates yet. Review this part\'s gaps above, add more detail, or browse the full catalog.', 'suite-muted'));
+      if (!subject.candidates.length) section.append(el('p', subject.needsDescription
+        ? 'Choose a language, ecosystem, available material, or connection interface for this part to see candidates.'
+        : 'No applicable candidates yet. Review this part\'s gaps above, add more detail, or browse the full catalog.', 'suite-muted'));
       const grid = el('div', '', 'suite-candidates');
-      const candidates = this.expanded.has(subject.subjectId) ? subject.candidates : subject.candidates.slice(0, 3);
-      for (const entry of candidates) grid.append(this.renderCandidate(entry));
+      for (const entry of subject.candidates) grid.append(this.renderCandidate(entry));
       section.append(grid);
-      if (subject.candidates.length > 3) section.append(button(this.expanded.has(subject.subjectId) ? 'Show fewer' : `Show all ${subject.candidates.length} candidates`, () => {
-        if (this.expanded.has(subject.subjectId)) this.expanded.delete(subject.subjectId); else this.expanded.add(subject.subjectId);
-        this.renderResults(); this.results.querySelector(`[data-expand-id="${subject.subjectId}"]`)?.focus();
-      }));
-      const expand = section.querySelector(':scope > button'); if (expand) expand.dataset.expandId = subject.subjectId;
       this.results.append(section);
     }
     const browse = el('a', 'Browse all tools'); browse.href = `${this.base}/`; this.results.append(browse);
@@ -318,12 +300,13 @@ class SystemBuilder extends HTMLElement {
       : 'Needs more information';
     card.append(el('span', badge, `suite-status suite-status-${entry.status}`));
     const heading = el('h4'); const link = el('a', tool.title); link.href = `${this.base}/${tool.id}/`; heading.append(link); card.append(heading);
-    card.append(el('p', unique(entry.matches.flatMap(m => m.findings)).join(', ')), el('p', `${tool.cost.join(' / ')} | ${tool.licenseCategory}`, 'suite-muted'));
+    const findings = el('p'); findings.append(el('strong', 'Can help find: '), document.createTextNode(unique(entry.matches.flatMap(m => m.findings)).join(', ')));
+    card.append(findings, el('p', `${tool.cost.join(' / ')} | ${tool.licenseCategory}`, 'suite-muted'));
     const evidence = el('details'); evidence.append(el('summary', 'Why this tool appears and what it needs'));
     for (const workflowId of unique(entry.matches.map(m => m.workflowId))) {
       const workflow = tool.analysisWorkflows.find(w => w.id === workflowId);
       const matches = entry.matches.filter(m => m.workflowId === workflowId);
-      evidence.append(el('h5', workflow.label), el('p', `Addresses: ${unique(matches.map(m => goalLabel(m.goalId))).join('; ')}`));
+      evidence.append(el('h5', workflow.label), el('p', `Can help find: ${unique(matches.flatMap(m => m.findings)).join(', ')}`));
       const reasons = el('ul'); for (const reason of unique(matches.flatMap(m => m.reasons))) reasons.append(el('li', reason)); evidence.append(reasons);
       const unresolved = unique(matches.flatMap(m => m.unresolved));
       if (unresolved.length) {
@@ -377,7 +360,7 @@ class SystemBuilder extends HTMLElement {
     try {
       if (file.size > MAX_IMPORT_BYTES) throw new Error('Choose a system file smaller than 1 MB.');
       const profile = parseProfile(await file.text());
-      this.undo = { type: 'import', profile: structuredClone(this.profile) }; this.profile = profile; this.selected = []; this.expanded.clear();
+      this.undo = { type: 'import', profile: structuredClone(this.profile) }; this.profile = profile; this.selected = [];
       this.initialSaveError = ''; this.render(); this.changed('System imported. Recommendations use the current catalog. Undo is available above.'); this.root.querySelector('input')?.focus();
     } catch (error) { this.announce.textContent = error.message; }
     finally { const input = this.root.querySelector('input[type=file]'); if (input) input.value = ''; }

@@ -11,39 +11,43 @@ const inventory = tool('Dependency scanner', workflow({ inputs: ['Dependency met
 const http = tool('HTTP tests', workflow({ id: 'http', subject: 'connection', inputs: ['Running applications'], languageScope: 'independent', languages: [], findings: ['Server errors'], interfaces: ['HTTP API'], definitions: ['OpenAPI'], requires: ['testInstance'] }));
 const protocol = tool('Custom protocol fuzzer', workflow({ id: 'custom', subject: 'connection', inputs: ['Running applications'], languageScope: 'independent', languages: [], findings: ['Crashes and hangs'], interfaces: ['Custom protocol'], transports: ['TCP', 'UDP', 'Serial'], requires: ['harness', 'testInstance'] }));
 const sanitizer = tool('Instrumented checker', workflow({ languages: ['C++'], findings: ['Memory safety'], requires: ['rebuild', 'instrument', 'testInstance'], targetPlatforms: ['Linux'], excludedTargets: ['Windows'] }));
-const makeProfile = () => ({ ...newProfile(), components: [{ ...newComponent('service'), name: 'Service', languages: ['Python'], inputs: ['Source code'], inputsComplete: true, goals: ['correctness'] }], connections: [] });
+const makeProfile = () => ({ ...newProfile(), components: [{ ...newComponent('service'), name: 'Service', languages: ['Python'], inputs: ['Source code'], inputsComplete: true }], connections: [] });
 const addConnection = (p, overrides = {}) => {
-  p.components.push({ ...newComponent('device'), languages: ['C++'], goals: ['memory'], inputs: ['Source code'], inputsComplete: true });
-  p.connections.push({ ...newConnection('wire', 'service', 'device'), interface: 'HTTP API', definition: 'OpenAPI', testInstance: 'yes', goals: ['robustness'], ...overrides });
+  p.components.push({ ...newComponent('device'), languages: ['C++'], inputs: ['Source code'], inputsComplete: true });
+  p.connections.push({ ...newConnection('wire', 'service', 'device'), interface: 'HTTP API', definition: 'OpenAPI', testInstance: 'yes', ...overrides });
 };
 const status = result => result.gaps[0]?.status;
 
-test('mixed-language components get their own tool/workflow/goal relationships', () => {
+test('mixed-language components get their own tools with automatically described findings', () => {
   const p = makeProfile(); addConnection(p);
   const result = analyzeSystem(p, [python, native, http]);
   assert.deepEqual(result.subjects[0].candidates.map(c => c.toolId), ['Python checker']);
   assert.deepEqual(result.subjects[1].candidates.map(c => c.toolId), ['C++ checker']);
   assert.deepEqual(result.subjects[2].candidates.map(c => c.toolId), ['HTTP tests']);
   assert.equal(result.matches.find(m => m.toolId === 'HTTP tests').subjectType, 'connection');
-  assert.equal(result.matches[0].goalId, 'correctness');
+  assert.deepEqual(result.matches[0].goalIds, ['correctness']);
+  assert.deepEqual(result.matches[0].findings, ['Logic errors']);
   assert.equal(result.matches[0].workflowId, 'source');
 });
 
 test('dependency tags do not imply source inspection', () => {
-  const p = makeProfile(); p.components[0].goals = ['correctness', 'dependencies'];
+  const p = makeProfile();
   const result = analyzeSystem(p, [inventory]);
-  assert.equal(result.gaps[0].status, 'gap');
-  assert.equal(result.gaps[1].status, 'blocked');
+  assert.equal(result.gaps[0].status, 'blocked');
+  assert.equal(result.subjects[0].candidates.length, 0);
   p.components[0].inputs = ['Dependency metadata'];
-  assert.equal(analyzeSystem(p, [inventory]).gaps[1].status, 'candidate');
+  assert.equal(analyzeSystem(p, [inventory]).gaps[0].status, 'candidate');
 });
 
 test('capabilities from different workflows are never combined', () => {
   const hybrid = tool('Hybrid', workflow({ inputs: ['Source code'], findings: ['Logic errors'] }));
   hybrid.analysisWorkflows.push(workflow({ id: 'dependencies', inputs: ['Dependency metadata'], languageScope: 'ecosystem', findings: ['Known vulnerable dependencies'] }));
-  const p = makeProfile(); p.components[0].goals = ['dependencies'];
-  assert.equal(status(analyzeSystem(p, [hybrid])), 'blocked');
-  assert.equal(analyzeSystem(p, [hybrid]).subjects[0].candidates.length, 0);
+  const p = makeProfile();
+  const result = analyzeSystem(p, [hybrid]);
+  assert.equal(status(result), 'candidate');
+  assert.deepEqual(result.subjects[0].candidates[0].matches.map(m => m.workflowId), ['source']);
+  assert.deepEqual(result.subjects[0].candidates[0].matches.flatMap(m => m.findings), ['Logic errors']);
+  assert.equal(result.matches.find(m => m.workflowId === 'dependencies').status, 'blocked');
 });
 
 test('native binaries, JVM bytecode, and LLVM bitcode remain distinct', () => {
@@ -76,7 +80,7 @@ test('API definitions and test endpoints are separate prerequisites', () => {
 });
 
 test('rebuild access and supported target OS affect instrumented workflows', () => {
-  const p = makeProfile(); Object.assign(p.components[0], { languages: ['C++'], goals: ['memory'], targetPlatform: 'Linux', access: { rebuild: 'yes', instrument: 'yes', harness: 'unknown', testInstance: 'yes' } });
+  const p = makeProfile(); Object.assign(p.components[0], { languages: ['C++'], targetPlatform: 'Linux', access: { rebuild: 'yes', instrument: 'yes', harness: 'unknown', testInstance: 'yes' } });
   assert.equal(status(analyzeSystem(p, [sanitizer])), 'candidate');
   p.components[0].access.rebuild = 'no';
   assert.equal(status(analyzeSystem(p, [sanitizer])), 'blocked');
@@ -122,13 +126,15 @@ test('cost and license stay attached to the same edition', () => {
   assert.equal(status(analyzeSystem(p, [limited])), 'blocked');
 });
 
-test('deduplicated tool cards retain distinct workflow and goal statuses', () => {
-  const p = makeProfile(); p.components[0].goals = ['correctness', 'dependencies'];
+test('deduplicated tool cards retain findings and requirement statuses per workflow', () => {
+  const p = makeProfile();
   const hybrid = tool('Hybrid', workflow()); hybrid.analysisWorkflows.push(workflow({ id: 'dependencies', inputs: ['Dependency metadata'], findings: ['Known vulnerable dependencies'] }));
   p.components[0].inputsComplete = false;
   const result = analyzeSystem(p, [hybrid]);
   assert.equal(result.subjects[0].candidates.length, 1);
-  assert.deepEqual(result.gaps.map(g => g.status), ['candidate', 'details']);
+  assert.deepEqual(result.gaps.map(g => g.status), ['candidate']);
+  assert.deepEqual(result.matches.map(m => m.status), ['candidate', 'details']);
+  assert.deepEqual(result.matches.flatMap(m => m.findings), ['Logic errors', 'Known vulnerable dependencies']);
   assert.equal(result.subjects[0].candidates[0].matches.length, 2);
 });
 
@@ -198,10 +204,38 @@ test('local saving restores the latest profile and storage failures remain recov
   assert.deepEqual(parseProfile(serializeProfile(p)), p);
 });
 
-test('no selected goals means no implied coverage or default recommendations', () => {
-  const p = makeProfile(); p.components[0].goals = [];
-  assert.deepEqual(analyzeSystem(p, [python]).gaps, []);
-  assert.deepEqual(analyzeSystem(p, [python]).matches, []);
+test('candidates appear without goals and old saved goal selections do not narrow them', () => {
+  const p = makeProfile(); p.components[0].inputs = ['Source code', 'Dependency metadata'];
+  const expected = analyzeSystem(p, [python, inventory]);
+  assert.equal(expected.subjects[0].candidates.length, 2);
+  p.components[0].goals = ['memory'];
+  assert.deepEqual(analyzeSystem(parseProfile(serializeProfile(p)), [python, inventory]), expected);
+  delete p.components[0].goals;
+  assert.deepEqual(analyzeSystem(parseProfile(JSON.stringify(p)), [python, inventory]), expected);
+});
+
+test('blank components and connections ask for a description instead of listing every tool', () => {
+  const p = newProfile(); p.connections = [newConnection('empty')];
+  const result = analyzeSystem(p, [python, inventory, http, protocol]);
+  assert.deepEqual(result.gaps, []);
+  assert.deepEqual(result.matches, []);
+  assert.ok(result.subjects.every(s => s.needsDescription && !s.candidates.length));
+});
+
+test('language selection alone suggests related tools without inventing unrelated inputs', () => {
+  const p = makeProfile(); p.components[0].inputs = []; p.components[0].inputsComplete = false;
+  const binary = tool('Binary inspector', workflow({ inputs: ['Binaries'], languageScope: 'independent', languages: [], binaryFormats: ['Native executable'], findings: ['Code structure'] }));
+  const result = analyzeSystem(p, [python, inventory, native, binary]);
+  assert.deepEqual(result.subjects[0].candidates.map(c => c.toolId), ['Dependency scanner', 'Python checker']);
+  assert.ok(result.matches.every(m => m.status === 'details'));
+});
+
+test('connection candidates also ignore legacy goals and explain their full finding scope', () => {
+  const p = makeProfile(); addConnection(p, { goals: ['security'] });
+  const result = analyzeSystem(parseProfile(serializeProfile(p)), [http]);
+  assert.equal(result.subjects.at(-1).candidates[0].toolId, 'HTTP tests');
+  assert.deepEqual(result.matches[0].findings, ['Server errors']);
+  assert.deepEqual(result.matches[0].goalIds, ['robustness']);
 });
 
 test('workflow metadata requires explicit interface, artifact and language scope', () => {

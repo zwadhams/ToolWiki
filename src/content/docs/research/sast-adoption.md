@@ -3,6 +3,8 @@ title: SAST adoption
 description: Usability problems and human factors that affect the adoption and continued use of SAST tools.
 ---
 
+**When evaluating a tool:** try the complete cycle of setup, reviewing findings, and fixing an issue. The ongoing effort matters as much as the first run.
+
 In [Barriers to Using SAST Tools](https://arxiv.org/abs/2609.01669), we examined the problems developers encounter when adopting and using static application security testing. We focused on usability and the technical and human factors that affect continued use.
 
 ## Methods
@@ -33,7 +35,7 @@ When evaluating a tool, I would consider the following questions:
 
 Evaluate these aspects over several analysis runs. Initial setup alone does not account for the ongoing work of maintaining rules and reviewing findings.
 
-I include **Input type**, **Build / harness requirements**, and **Finding scope** in the tool profiles to help prepare an evaluation. Experience in the intended development environment is still needed to assess usability.
+I include **What it examines**, **What you need**, and **Checks and limits** in the tool profiles to help prepare an evaluation. Experience in the intended development environment is still needed to assess usability.
 
 ## Paper
 

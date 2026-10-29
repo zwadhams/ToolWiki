@@ -3,6 +3,8 @@ title: Comparing SAST tools
 description: Detection patterns and language-specific analysis capabilities in twelve OCPP implementations.
 ---
 
+**When choosing tools:** compare what they actually check before comparing finding counts. Our study describes detection patterns, not an accuracy ranking.
+
 In our [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf), we examined how static application security testing (SAST) findings vary across programming languages and their analysis tools. We used implementations of the Open Charge Point Protocol (OCPP) as our software corpus.
 
 ## Methods

@@ -6,6 +6,12 @@ import { workflowSchema } from './lib/system-schema.mjs';
 
 const nonempty = z.array(z.string().min(1)).min(1);
 const tool = z.object({
+  cardRequirement: z.string().min(1).optional(),
+  decision: z.object({
+    useWhen: z.string().min(1),
+    result: z.string().min(1),
+    limit: z.string().min(1),
+  }).optional(),
   analysisWorkflows: z.array(workflowSchema).default([]),
   aliases: z.array(z.string().trim().min(1)).default([]),
   searchTerms: z.array(z.string().trim().min(1)).default([]),

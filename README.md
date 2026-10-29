@@ -46,10 +46,12 @@ node scripts/preview.mjs
 - Research notes and paper references: `src/content/docs/research/`.
 - Colors, spacing, and catalog appearance: `src/styles/custom.css`.
 - Shared comparisons of free and paid editions: `src/data/editions.ts`.
+- Explanations of common tool choices: `src/data/tool-choices.ts`.
 - Navigation and GitHub Pages address: `astro.config.mjs`.
 
 Read the [editing guide](src/content/docs/guides/editing.md) before adding entries.
-New tools populate the catalog and sidebar automatically. Keep language tags
+New tools populate the catalog automatically. The sidebar links to the catalog,
+workflow guides, and concepts. Keep language tags
 scoped to verified support; a language match does not promise every framework or
 version is supported. Starter entries are documentation reviews, not benchmarks.
 
@@ -69,7 +71,7 @@ catalog cards, or open Compare tools to choose directly. Selection survives
 catalog filtering and category links; comparison URLs can be bookmarked or
 shared. The table uses the same Markdown metadata as the tool profiles.
 
-Use **Build your analysis suite** to describe components and connections and
+Use **Find tools for your system** to describe components and connections and
 automatically explore candidates that explain what they can find. Language and
 ecosystem choices open by default. Optional platform and
 testing-access details refine the suggestions. The latest system saves in this
@@ -88,6 +90,11 @@ and temporal monitoring versus falsification. New worked examples are explicitly
 labeled when they have not been executed. `Source available` distinguishes licenses
 with use restrictions from open-source licenses; Coverity Scan and commercial
 Coverity have separate catalog entries.
+
+The visual theme follows [Zach's personal site](https://zwadhams.github.io/):
+Inter body text, Departure Mono headings, and warm charcoal/cream/amber colors.
+Fonts are bundled locally with their SIL Open Font License notices; see
+`src/assets/fonts/README.md`. Public license copies ship in `public/licenses/`.
 
 Research notes connect publications by Zachary Wadhams and collaborators to tool
 selection, workflows, and interpretation. Relevant tool pages contain a Related

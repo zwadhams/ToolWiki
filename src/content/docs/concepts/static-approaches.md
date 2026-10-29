@@ -49,7 +49,7 @@ The same executable can support several kinds of investigation:
 
 These tools complement one another. Start with the question you need to answer, and preserve locations and artifact versions when moving between them.
 
-Use **What can it find?** to filter by the kind of problem, such as memory safety or known vulnerable dependencies. Read Finding scope before comparing coverage: some categories depend on optional rules, annotations, or instrumentation. [Verification and generated tests](../verification-and-generated-tests/) explains what different results establish.
+Use **What can it find?** to filter by the kind of problem, such as memory safety or known vulnerable dependencies. Read Checks and limits before comparing coverage: some categories depend on optional rules, annotations, or instrumentation. [Verification and generated tests](../verification-and-generated-tests/) explains what different results establish.
 
 ## CWE is different from CVE
 

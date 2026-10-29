@@ -20,9 +20,9 @@ export default defineConfig({
         { label: 'Static analysis', slug: 'static' },
         { label: 'Dynamic analysis', slug: 'dynamic' },
         { label: 'Compare tools', slug: 'compare' },
-        { label: 'Build your analysis suite', slug: 'analysis-suite' },
+        { label: 'Find tools for your system', slug: 'analysis-suite' },
       ] },
-      { label: 'Understand the concepts', collapsed: true, items: [
+      { label: 'Concepts', collapsed: true, items: [
         { label: 'Static vs. dynamic analysis', slug: 'concepts/static-vs-dynamic' },
         { label: 'Static analysis approaches', slug: 'concepts/static-approaches' },
         { label: 'SAST vs. DAST', slug: 'concepts/sast-vs-dast' },
@@ -30,7 +30,7 @@ export default defineConfig({
         { label: 'Model and temporal falsification', slug: 'concepts/model-falsification' },
         { label: 'Verification and generated tests', slug: 'concepts/verification-and-generated-tests' },
       ] },
-      { label: 'Choose a workflow', collapsed: true, items: [
+      { label: 'Workflows', collapsed: true, items: [
         { label: 'Java source and bytecode', slug: 'guides/java-analysis' },
         { label: 'Memory-error checks', slug: 'guides/memory-error-detection' },
         { label: 'Temporal monitoring and falsification', slug: 'guides/temporal-monitoring-and-falsification' },
@@ -43,7 +43,6 @@ export default defineConfig({
         { label: 'Software quality models', slug: 'research/software-quality' },
         { label: 'Malware sophistication', slug: 'research/binary-analysis' },
       ] },
-      { label: 'Tool notes', items: [{ autogenerate: { directory: 'tools' } }], collapsed: true },
       { label: 'Made by Zach Wadhams', link: 'https://zwadhams.github.io/', attrs: { class: 'sidebar-credit' } },
     ],
   })],

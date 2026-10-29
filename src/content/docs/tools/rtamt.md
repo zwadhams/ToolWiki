@@ -2,6 +2,10 @@
 title: "RTAMT"
 description: "Evaluate signal traces against temporal requirements using online or offline monitors."
 tool:
+  decision:
+    useWhen: Use RTAMT to check recorded or streaming signals against a requirement about values over time.
+    result: A robustness value for the requirement on the supplied trace. Its sign and margin help locate and interpret a violation.
+    limit: It evaluates observations you provide. It does not generate test scenarios, and a passing trace does not prove that every execution satisfies the requirement.
   analysisWorkflows:
     - id: trace
       label: Monitor temporal requirements over traces
@@ -29,7 +33,7 @@ tool:
   findings: ["Temporal requirement violations"]
   findingNote: "Evaluates the supplied trace against the specified formula. It does not generate scenarios or search for counterexamples by itself, and a satisfying trace is not a model-checking proof."
   environment: "A compatible Python environment for the selected RTAMT and parser versions. Pure-Python monitors avoid the optional compiled backend, which adds CMake, compiler, and Boost.Python requirements."
-  setup: "Define typed signal names, an STL specification, timestamps or sampling assumptions, and the observed values. Match dense-time or discrete-time semantics to the data."
+  setup: "A compatible Python environment, named signals with timestamps, and a requirement written in Signal Temporal Logic (STL). Choose the timing semantics that match your data."
   licenseCategory: "Open source"
   license: "BSD-3-Clause"
   cost: ["Free"]
@@ -50,9 +54,13 @@ tool:
 
 Use RTAMT when you already have signals to evaluate, or can stream observations from a running system. Pairing a monitor with a simulator and a search algorithm can support falsification; the monitor alone does not perform that search.
 
-## Worked example: a temperature requirement
+<span id="worked-example-a-temperature-requirement"></span>
 
-**Previously reported local check on 2026-09-21:** Windows, Python 3.12.14, RTAMT 0.4.10, using the pure-Python backend. The 2026-09-22 documentation audit did not rerun this example or locate a saved execution record in the repository. The code and reported results below preserve the earlier account; they are not independently verified execution evidence from this audit.
+## First try
+
+**Previously reported; not reproduced in this review.** The earlier environment was Windows, Python 3.12.14, RTAMT 0.4.10, using the pure-Python backend. The saved parser dependency failed to import on Python 3.13.15 during this review; use a compatible Python/parser combination.
+
+Follow the [installation instructions](https://github.com/nickovic/rtamt#installation) for a compatible environment. Save this as `temperature.py`, then run `python temperature.py`. The requirement says that temperature must stay at or below 80 for the next two time units:
 
 ```python
 import rtamt
@@ -67,7 +75,14 @@ robustness = spec.evaluate(["temperature", trace])
 print(robustness[0])
 ```
 
-The earlier account reported `[0, -5.0]`. At time zero, the requested two-unit interval includes a temperature of 85, consistent with negative robustness. Replacing both 85 values with 79 was reported to produce `[0, 1.0]`, a positive margin for this trace. These values are consistent with the stated robustness calculation, but reproducing the exact output still requires the specified environment. They do not establish the monitor's behavior on every formula or signal.
+The earlier account reported `[0, -5.0]`: at time zero, the two-unit interval includes a temperature of 85, five above the limit. Replacing both 85 values with 79 was reported to produce `[0, 1.0]`, a positive margin for this trace.
+
+<details>
+<summary>Earlier example evidence</summary>
+
+The local check was reported on 2026-09-21. The 2026-09-22 audit did not rerun it or locate a saved execution record. On 2026-10-29, the saved RTAMT 0.4.10 and antlr4-python3-runtime 4.7 packages failed before evaluation on Windows/Python 3.13.15 because the parser imported `typing.io`. The listed trace outputs remain the earlier reported results; the current check did not reproduce them.
+
+</details>
 
 ## Interpret timing carefully
 

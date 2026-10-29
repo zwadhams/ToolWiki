@@ -5,4 +5,4 @@ comparison: true
 tableOfContents: false
 editUrl: false
 ---
-<p class="catalog-intro">Choose tools for the same job and see their capabilities and requirements together. Each column links to the full notes and sources.</p>
+<p class="catalog-intro">Compare what you need, what you can learn, and the limits of each tool. Follow a task comparison or choose two or three tools.</p>

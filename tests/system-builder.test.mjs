@@ -79,6 +79,19 @@ test('API definitions and test endpoints are separate prerequisites', () => {
   assert.equal(analyzeSystem(p, [http]).gaps.at(-1).status, 'blocked');
 });
 
+test('a connection question targets its own host field rather than a component host', () => {
+  const p = makeProfile(); p.components[0].hostPlatform = 'Linux'; addConnection(p);
+  const api = tool('API on Linux', workflow({ ...http.analysisWorkflows[0], hostPlatforms: ['Linux'] }));
+  const match = analyzeSystem(p, [api]).matches.find(match => match.toolId === api.id);
+  assert.equal(match.subjectId, 'wire');
+  assert.equal(match.status, 'details');
+  assert.deepEqual(match.questions, [{ field: 'hostPlatform', message: 'Specify analysis host OS.' }]);
+  p.connections[0].hostPlatform = 'Linux';
+  const resolved = analyzeSystem(p, [api]).matches.find(match => match.toolId === api.id);
+  assert.equal(resolved.status, 'candidate');
+  assert.deepEqual(resolved.questions, []);
+});
+
 test('rebuild access and supported target OS affect instrumented workflows', () => {
   const p = makeProfile(); Object.assign(p.components[0], { languages: ['C++'], targetPlatform: 'Linux', access: { rebuild: 'yes', instrument: 'yes', harness: 'unknown', testInstance: 'yes' } });
   assert.equal(status(analyzeSystem(p, [sanitizer])), 'candidate');

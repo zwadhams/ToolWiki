@@ -62,7 +62,7 @@ Gradual typing lets a project adopt annotations in stages. By default, bodies of
 
 ## Worked example: an incompatible argument
 
-**Illustrative example, not run here.** With mypy installed in the selected Python environment, save this as `sample.py`:
+**Illustrative example, not run here.** Follow the [mypy installation instructions](https://mypy.readthedocs.io/en/stable/getting_started.html) in your selected Python environment, then save this as `sample.py`:
 
 ```python
 def next_count(count: int) -> int:
@@ -77,7 +77,13 @@ Check it without running the program:
 python -m mypy sample.py
 ```
 
-The intended diagnostic identifies a string passed to an integer parameter. Replace the argument with `3` and check again. This example exercises one type mismatch, not the entire type system.
+Representative diagnostic, not captured output (formatting varies by version):
+
+```text
+sample.py:4: error: Argument 1 to "next_count" has incompatible type "str"; expected "int" [arg-type]
+```
+
+`sample.py:4` locates the call. `arg-type` identifies an incompatible argument type: text was passed to an integer parameter. Replace the argument with `3` and check again. This example exercises one mismatch, not the entire type system. See the [argument-type diagnostic reference](https://mypy.readthedocs.io/en/stable/error_code_list.html#check-argument-types-arg-type) for details.
 
 ## Configure a useful check
 

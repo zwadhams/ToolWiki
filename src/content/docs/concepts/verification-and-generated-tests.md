@@ -3,7 +3,7 @@ title: Verification and generated tests
 description: Compare fuzzing, property-based testing, temporal falsification, bounded checking, and deductive verification.
 ---
 
-**Start with the claim you want to check and the evidence you need.** Generating many executions can find counterexamples. Formal verification can establish properties under stated assumptions, when its proof obligations are discharged. These workflows require different inputs and interpret success differently.
+**Start with the claim you want to check and the evidence you need.** Testing tries selected inputs and can reveal failures. Formal verification can establish a stated property when its proof succeeds, under the model's assumptions. These workflows need different inputs and give different kinds of evidence.
 
 ## Compare the approaches
 
@@ -15,7 +15,7 @@ description: Compare fuzzing, property-based testing, temporal falsification, bo
 | Bounded model checking | A solver checks modeled executions within exploration bounds. | Property results and possible counterexamples; completeness needs separate attention. | [CBMC](../../tools/cbmc/) |
 | Static formal verification | Program models, specifications, annotations, and proof procedures. | Proved properties, possible-error alarms, or unresolved proof obligations, depending on the analysis. | [Frama-C](../../tools/frama-c/), [Dafny](../../tools/dafny/) |
 
-These categories can overlap. A fuzzing harness can check a property, and property-based testing can use feedback-guided generation. The important distinctions are the input model, failure detector, and meaning of the result.
+These categories can overlap. A test harness is code that calls the target and checks its behavior. A fuzzing harness can check a property, and property-based testing can use execution feedback to choose inputs. Compare what inputs each method needs, how it recognizes failure, and what its result establishes.
 
 ## One example, several checks
 
@@ -33,7 +33,7 @@ These are illustrative checks, not claims that every listed tool accepts the sam
 
 Generated inputs are only part of a test. A **failure detector**, sometimes called an oracle, decides whether the result is wrong. It might be a crash, an assertion, a comparison with a reference implementation, or a temporal-logic monitor.
 
-An incorrect result that returns normally can go unnoticed by a crash-only harness. This is why the wiki distinguishes a tool's finding categories from its **Finding scope** note. See the [Hypothesis quickstart](https://hypothesis.readthedocs.io/en/latest/quickstart.html) and [AFL++ workflow](https://github.com/AFLplusplus/AFLplusplus) for concrete testing interfaces.
+An incorrect result that returns normally can go unnoticed by a crash-only harness. This is why the wiki distinguishes a tool's finding categories from its **Checks and limits** note. See the [Hypothesis quickstart](https://hypothesis.readthedocs.io/en/latest/quickstart.html) and [AFL++ workflow](https://github.com/AFLplusplus/AFLplusplus) for concrete testing interfaces.
 
 ## Interpret the result precisely
 

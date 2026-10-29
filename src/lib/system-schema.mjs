@@ -23,7 +23,7 @@ export const GOALS = [
   { id: 'understanding', label: 'Understand binaries and their contents', findings: ['Code structure', 'Program capabilities', 'Recovered strings', 'Embedded file formats', 'File pattern matches'] },
 ];
 export const CONNECTION_GOALS = ['security', 'configuration', 'robustness', 'specification'];
-export const STATUS_LABELS = { candidate: 'Candidates found', details: 'More information needed', blocked: 'Requirements not currently met', gap: 'No verified catalog match' };
+export const STATUS_LABELS = { candidate: 'Candidates found', details: 'More information needed', blocked: 'Requirements not currently met', gap: 'No reviewed catalog match' };
 const tri = z.enum(['unknown', 'yes', 'no']);
 const text = z.string().max(200);
 const notes = z.string().max(2000);

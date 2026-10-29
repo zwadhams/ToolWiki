@@ -2,14 +2,18 @@
 import { getCollection } from 'astro:content';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const tools = (await getCollection('docs', ({ data }) => !!data.tool && !data.draft))
-  .map(({ id, data }) => ({ id, title: data.title, ...data.tool! }));
+  .map(({ id, data }) => ({ id, title: data.title, description: data.description || '', ...data.tool! }));
 const languages = [...new Set(tools.flatMap(t => t.languages))].filter(l => l !== 'Language independent').sort();
 const data = { tools: tools.filter(t => t.analysisWorkflows.length), languages, totalTools: tools.length };
 ---
 <system-builder data-base={base} data-pagefind-ignore>
   <div class="suite-intro">
-    <p class="catalog-intro">Describe the parts of your system to discover suitable analysis tools. Each candidate explains what it can find and what it needs.</p>
-    <p class="suite-muted">Your description stays in this browser. Export a system file to keep a copy or use it elsewhere. This page suggests tools; it does not run analyses.</p>
+    <p class="catalog-intro">Choose a language and the material you have. Add details to narrow the suggestions for each part of your system.</p>
+    <p class="suite-muted">This page suggests tools; it does not run them. Your system description saves in this browser and can be exported. Tool selections are temporary; bookmark the comparison page to keep them.</p>
+    <details class="suggestion-scope"><summary>Suggestion scope: {data.tools.length} of {data.totalTools} catalog tools</summary>
+      <p>Suggestions use reviewed workflows. These tools still have catalog notes but are not included in matching yet; their absence does not mean they are unsuitable:</p>
+      <ul>{tools.filter(tool => !tool.analysisWorkflows.length).map(tool => <li><a href={`${base}/${tool.id}/`}>{tool.title}</a></li>)}</ul>
+    </details>
   </div>
   <div data-builder-root><p>Loading your system editor...</p></div>
   <noscript><p>Enable JavaScript to describe and save a system. You can also <a href={`${base}/`}>browse the tool catalog</a> and read the tool notes.</p></noscript>

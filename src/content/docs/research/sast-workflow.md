@@ -3,6 +3,8 @@ title: SAST in CI/CD
 description: Automating the transfer of SAST findings into developers' existing issue-tracking software.
 ---
 
+**When planning an integration:** make findings understandable where developers already work, and decide how reviews and duplicate reports will be handled.
+
 In our [CI/CD paper](https://arxiv.org/abs/2609.00676), we presented a process for connecting SAST output with existing issue-tracking software. We wanted to make findings accessible within the development environment and support remediation.
 
 ## Process

@@ -1,38 +1,74 @@
 ---
 import MarkdownContent from '@astrojs/starlight/components/MarkdownContent.astro';
+import { getCollection } from 'astro:content';
 import ToolCatalog from './ToolCatalog.astro';
 import ToolComparison from './ToolComparison.astro';
 import SystemBuilder from './SystemBuilder.astro';
 import EditionComparison from './EditionComparison.astro';
+import { toolChoices } from '../data/tool-choices';
 const { entry } = Astro.locals.starlightRoute;
 const tool = entry.data.tool;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const contexts = tool?.targets.filter((target) => !tool.inputTypes.some((input) => input === target)) || [];
+const choices = toolChoices.filter(choice => choice.tools.includes(entry.id));
+const titles = choices.length ? new Map((await getCollection('docs')).map(doc => [doc.id, doc.data.title])) : new Map();
 ---
-{tool && <section class="tool-profile" aria-label="Tool facts">
-  <div class="profile-heading"><span class="mode-badge">{tool.modes.join(' / ')} analysis</span><a href={tool.website}>Official website</a></div>
-  <p>{entry.data.description}</p>
+{tool && <section class="tool-profile tool-decision" aria-label="Is this tool a fit?">
+  <div class="profile-heading" data-pagefind-ignore><span class="mode-badge">{tool.modes.join(' / ')} analysis</span><a href={tool.website}>Official website</a></div>
+  <p class="tool-purpose">{tool.decision?.useWhen || entry.data.description}</p>
+  <nav class="profile-jumps" aria-label="Tool page sections" data-pagefind-ignore>
+    <a href={`${base}/`} data-back-to-catalog hidden>Return to filtered results</a>
+    {tool.decision && <a href="#first-try">First try</a>}
+    <a href="#technical-details">Compatibility and scope</a>
+    <a href="#cost-and-editions">Cost and editions</a>
+    <a href="#tool-sources">Sources and evidence</a>
+  </nav>
+  <dl class="decision-facts">
+    <div><dt>What you need</dt>{' '}<dd>{tool.setup}</dd></div>
+    {tool.decision && <div><dt>What you get</dt>{' '}<dd>{tool.decision.result}</dd></div>}
+    <div><dt>Checks and limits</dt>{' '}<dd>{tool.decision?.limit || tool.findingNote}</dd></div>
+  </dl>
+  <p class="profile-meta" data-pagefind-ignore><a href="#cost-and-editions">{tool.cost.join(' / ')}</a> <span>Docs checked {tool.verified}</span></p>
+</section>}
+{entry.data.systemBuilder ? <SystemBuilder /> : entry.data.catalog ? <div class="catalog-content"><slot /><ToolCatalog mode={entry.data.catalogMode} /></div> : entry.data.comparison ? <div class="catalog-content"><slot /><ToolComparison /></div> : <MarkdownContent><slot /></MarkdownContent>}
+{tool && choices.length > 0 && <section class="related-choices" aria-labelledby="compare-for-this-task">
+  <h2 id="compare-for-this-task">Compare for this task</h2>
+  <ul>{choices.map(choice => <li><a href={`${base}/compare/?tools=${encodeURIComponent(choice.tools.join(','))}`}>{choice.tools.map(id => titles.get(id)).join(' + ')}: {choice.title}</a></li>)}</ul>
+</section>}
+{tool && <section class="tool-profile technical-profile" aria-labelledby="technical-details">
+  <h2 id="technical-details">Compatibility and scope</h2>
   {tool.aliases.length > 0 && <p class="profile-aliases">Also known as: {tool.aliases.join(', ')}</p>}
   <dl class="profile-facts">
-    <div><dt>Input type</dt><dd>{tool.inputTypes.join(', ')}</dd></div>
-    {contexts.length > 0 && <div><dt>Context</dt><dd>{contexts.join(', ')}</dd></div>}
-    <div><dt>Techniques</dt><dd>{tool.techniques.join(', ')}</dd></div>
-    <div><dt>What can it find?</dt><dd>{tool.findings.join(', ')}</dd></div>
-    <div><dt>Where it runs</dt><dd>{tool.environment}</dd></div>
-    <div><dt>Build / harness requirements</dt><dd>{tool.setup}</dd></div>
-    <div><dt>Languages / ecosystem</dt><dd>{tool.languages.join(', ')}</dd></div>
-    <div><dt>License</dt><dd>{tool.license}</dd></div>
-    <div><dt>Cost</dt><dd><a href="#cost-and-editions">{tool.cost.join(' / ')}</a></dd></div>
-    <div><dt>Documentation verified</dt><dd>{tool.verified}</dd></div>
-    <div><dt>Entry scope</dt><dd>{tool.scope}</dd></div>
+    <div><dt>What it examines</dt>{' '}<dd>{tool.inputTypes.join(', ')}</dd></div>
+    {contexts.length > 0 && <div><dt>Context</dt>{' '}<dd>{contexts.join(', ')}</dd></div>}
+    <div><dt>Techniques</dt>{' '}<dd>{tool.techniques.join(', ')}</dd></div>
+    <div><dt>Finding categories</dt>{' '}<dd>{tool.findings.join(', ')}</dd></div>
+    <div><dt>Where it runs</dt>{' '}<dd>{tool.environment}</dd></div>
+    <div><dt>Languages / ecosystem</dt>{' '}<dd>{tool.languages.join(', ')}</dd></div>
+    <div><dt>Edition and scope</dt>{' '}<dd>{tool.scope}</dd></div>
   </dl>
   <p class="profile-note">{tool.languageNote}</p>
-  <p class="profile-note"><strong>Finding scope:</strong> {tool.findingNote}</p>
 </section>}
 {tool && <section class="edition-section" aria-labelledby="cost-and-editions">
   <h2 id="cost-and-editions">Cost and editions</h2>
   <p>{tool.costNote}</p>
+  <p><strong>License:</strong> {tool.license}</p>
   {tool.editionGroup && <EditionComparison group={tool.editionGroup} />}
-  <p class="edition-note">Cost information checked {tool.verified}; any verification limits are noted above. Required runtimes, hosting, and compute can have separate costs. Trials are not treated as free editions.</p>
+  <p class="edition-note">Cost information checked {tool.verified}. Runtimes, hosting, and compute may cost extra. Free trials are not counted as free editions.</p>
 </section>}
-{entry.data.systemBuilder ? <SystemBuilder /> : entry.data.catalog ? <div class="catalog-content"><slot /><ToolCatalog mode={entry.data.catalogMode} /></div> : entry.data.comparison ? <div class="catalog-content"><slot /><ToolComparison /></div> : <MarkdownContent><slot /></MarkdownContent>}
-{tool && <section class="profile-sources" aria-labelledby="tool-sources"><h2 id="tool-sources">Sources</h2><ul>{tool.sources.map((source) => <li><a href={source.url}>{source.label}</a></li>)}</ul><p>Checked against documentation on {tool.verified}. This is a documentation review, not a hands-on benchmark.</p></section>}
+{tool && <section class="profile-sources" aria-labelledby="tool-sources"><h2 id="tool-sources">Sources and evidence</h2><p>Docs checked {tool.verified}. This date records a documentation review. Example execution status is labeled separately; no benchmark is implied.</p><ul>{tool.sources.map((source) => <li><a href={source.url}>{source.label}</a></li>)}</ul></section>}
+<script>
+  import { catalogParams, catalogHref } from '../lib/comparison.mjs';
+  const context = catalogParams(new URLSearchParams(location.search).get('catalog') || '').toString();
+  if (context) {
+    const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+    const back = document.querySelector<HTMLAnchorElement>('[data-back-to-catalog]');
+    if (back) { back.href = catalogHref(base, [], context); back.hidden = false; }
+    document.querySelectorAll<HTMLAnchorElement>('.sl-markdown-content a, .related-choices a').forEach(anchor => {
+      const url = new URL(anchor.href);
+      if (url.origin !== location.origin || !['tools/', 'compare/', 'guides/'].some(path => url.pathname.startsWith(`${base}/${path}`))) return;
+      url.searchParams.set('catalog', context);
+      anchor.href = url.pathname + url.search + url.hash;
+    });
+  }
+</script>

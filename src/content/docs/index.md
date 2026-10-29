@@ -5,6 +5,4 @@ catalog: true
 tableOfContents: false
 editUrl: false
 ---
-<p class="catalog-intro">Tools and techniques for understanding, testing, and verifying software. Find tools by their inputs and findings, then compare capabilities, costs, and setup.</p>
-
-<p class="catalog-intro">Explore the <a href="./research/">research notes</a> for practical takeaways from papers on choosing tools and interpreting their results.</p>
+<p class="catalog-intro">Find a tool for the software you have and the problem you want to investigate. Compare what it checks, what it needs, and what its results mean.</p>

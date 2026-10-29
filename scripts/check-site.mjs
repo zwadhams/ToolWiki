@@ -3,6 +3,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import { selectTools, suggestTools } from '../src/lib/catalog.mjs';
 import { analyzeSystem, newComponent, newConnection, newProfile } from '../src/lib/system-builder.mjs';
+import { normalizeSelection } from '../src/lib/comparison.mjs';
 
 const root = path.resolve('dist');
 const base = '/ToolWiki/';
@@ -13,6 +14,7 @@ async function walk(dir) {
 }
 const pages = (await walk(root)).filter((file) => file.endsWith('.html'));
 const errors = [];
+const comparisonLinks = [];
 const contents = new Map(await Promise.all(pages.map(async (file) => [file, await readFile(file, 'utf8')])));
 for (const [file, html] of contents) {
   const route = '/' + path.relative(root, file).replaceAll(path.sep, '/').replace(/index\.html$/, '');
@@ -26,6 +28,7 @@ for (const [file, html] of contents) {
     if (/^(mailto:|tel:|data:|javascript:)/.test(raw)) continue;
     const url = new URL(raw, current);
     if (url.origin !== origin || !url.pathname.startsWith(base)) continue;
+    if (url.pathname === `${base}compare/` && url.searchParams.has('tools')) comparisonLinks.push({ route, url });
     const relative = decodeURIComponent(url.pathname.slice(base.length));
     let target = path.join(root, relative);
     if (!target.startsWith(root + path.sep) && target !== root) { errors.push(`Invalid target: ${raw}`); continue; }
@@ -44,6 +47,22 @@ assert.equal(errors.length, 0, errors.join('\n'));
 await stat(path.join(root, 'pagefind', 'pagefind.js'));
 const catalogHtml = contents.get(path.join(root, 'index.html'));
 const catalog = JSON.parse(catalogHtml.match(/<script[^>]*data-catalog-data[^>]*>([\s\S]*?)<\/script>/)[1]);
+const allowedIds = catalog.map(tool => tool.id);
+for (const { route, url } of comparisonLinks) {
+  const requested = url.searchParams.get('tools').split(',');
+  assert.deepEqual(normalizeSelection(requested, allowedIds), requested, `${route}: comparison link drops an invalid or repeated tool: ${url}`);
+}
+const comparisonHtml = contents.get(path.join(root, 'compare', 'index.html'));
+const choices = JSON.parse(comparisonHtml.match(/<script[^>]*data-choice-data[^>]*>([\s\S]*?)<\/script>/)[1]);
+for (const choice of choices) {
+  assert.deepEqual(normalizeSelection(choice.tools, allowedIds), choice.tools, `Unknown tool in comparison guidance: ${choice.title}`);
+  const url = new URL(choice.href, origin + base);
+  assert.ok(url.origin === origin && url.pathname.startsWith(base), `Comparison guidance must link to a local explanation: ${choice.href}`);
+  const target = path.join(root, url.pathname.slice(base.length), 'index.html');
+  const html = contents.get(target);
+  assert.ok(html, `Missing comparison explanation: ${choice.href}`);
+  if (url.hash) assert.ok(html.includes(`id="${decodeURIComponent(url.hash.slice(1))}"`), `Missing comparison explanation section: ${choice.href}`);
+}
 for (const tool of catalog) {
   for (const q of [tool.title, ...(tool.aliases || [])]) {
     assert.ok(selectTools(catalog, { q }).some(({ id }) => id === tool.id), `${q} must find ${tool.id}`);

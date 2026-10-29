@@ -18,7 +18,7 @@ Memory errors can be investigated before execution or while tests exercise a pro
 
 [Compare Infer, AddressSanitizer, and Memcheck](../../compare/?tools=tools%2Finfer%2Ctools%2Faddress-sanitizer%2Ctools%2Fvalgrind-memcheck).
 
-For a Windows executable, consider [Dr. Memory's documented Windows workflow](../../tools/dr-memory/). It instruments execution without requiring a sanitizer build. Check the selected release's architecture and application limitations, and keep symbols for useful diagnostic locations. [Compare Dr. Memory, Memcheck, and AddressSanitizer](../../compare/?tools=tools%2Fdr-memory%2Ctools%2Fvalgrind-memcheck%2Ctools%2Faddress-sanitizer/) before choosing a setup.
+For a Windows executable, consider [Dr. Memory's documented Windows workflow](../../tools/dr-memory/). It instruments execution without requiring a sanitizer build. Check the selected release's architecture and application limitations, and keep symbols for useful diagnostic locations. [Compare Dr. Memory, Memcheck, and AddressSanitizer](../../compare/?tools=tools%2Fdr-memory%2Ctools%2Fvalgrind-memcheck%2Ctools%2Faddress-sanitizer) before choosing a setup.
 
 ## A useful first experiment
 

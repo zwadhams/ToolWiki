@@ -2,6 +2,10 @@
 title: Ruff
 description: Find Python lint violations, common mistakes, and selected security patterns with configurable built-in rules.
 tool:
+  decision:
+    useWhen: Use Ruff to check Python files for unused imports, common mistakes, and coding conventions.
+    result: Diagnostics with a rule code and file location. Some rules offer fixes you can review.
+    limit: Checks depend on the rules you enable. Security rules need deliberate selection; use a separate type checker for type consistency.
   analysisWorkflows:
     - id: source
       label: Source analysis
@@ -33,7 +37,7 @@ tool:
   inputTypes: [Source code]
   techniques: [Linting, Bug finding]
   languages: [Python]
-  languageNote: Ruff analyzes Python source. Its implementation in Rust does not make it a Rust analyzer. Supported syntax and modernization suggestions depend on the configured Python target version.
+  languageNote: Supported syntax and modernization suggestions depend on the configured Python target version. Notebook rules have additional restrictions.
   targets: [Source code, Notebooks]
   licenseCategory: Open source
   license: MIT, with third-party notices in the project license file
@@ -41,12 +45,14 @@ tool:
   costNote: Free open-source linter and formatter, with no paid analyzer edition required. Editor integration and local checks do not require a hosted account.
   website: https://docs.astral.sh/ruff/
   verified: '2026-09-22'
-  scope: Ruff's Python linter, including documented notebook support. The formatter is separate functionality; Ruff is not a type checker.
+  scope: Ruff's Python linter, including documented notebook support. Formatting is a separate operation.
   findings: ["Logic errors","Coding conventions","Unsafe API use"]
   findingNote: "Selected lint families; security-related rules require configuration. Ruff is not a Python type checker."
   environment: "Windows, Linux, and macOS through supported binary distributions or Python packages."
-  setup: "Python source or supported notebooks plus configuration. No target build or runtime harness; linting and formatting are separate operations."
+  setup: "Python files or supported notebooks and an installed Ruff command. Choose the target Python version and rules for your project."
   sources:
+    - label: First lint check tutorial
+      url: https://docs.astral.sh/ruff/tutorial/
     - label: Installation platforms
       url: https://docs.astral.sh/ruff/installation/
     - label: Ruff overview
@@ -61,30 +67,47 @@ tool:
       url: https://github.com/astral-sh/ruff/blob/main/LICENSE
 ---
 
-## What it does
+<span id="what-it-does"></span>
+<span id="a-useful-first-evaluation"></span>
 
-Ruff checks Python files and supported notebook cells against selected lint rules. Its rule families include unused imports, suspicious constructs, import organization, modernization, and selected security patterns. It implements many checks associated with other Python linting tools.
+## First try
 
-The `check` operation performs linting. The formatter is a separate operation; formatting a file does not mean you have run its lint rules.
+**Illustrative example; not executed in this review.** [Install Ruff](https://docs.astral.sh/ruff/installation/), then save this as `sample.py`:
 
-## What it does not replace
+```python
+import math
 
-Ruff is not a Python type checker. Its documentation recommends combining linting with a type checker such as [mypy](../mypy/) for deeper type errors. It also does not provide arbitrary third-party lint plugins in the same way as Flake8; a rule you used elsewhere may not have a Ruff equivalent.
+print("Ready")
+```
 
-Security-related rules must be selected deliberately. Their presence in the rule catalog does not mean they run by default or that Ruff provides whole-application security coverage. Compare [Bandit](../bandit/) for a dedicated Python security-rule workflow.
+Run this in the directory containing the file. It checks for unused imports without changing the file or loading project configuration:
 
-## Inputs and workflow
+```sh
+ruff check --isolated --select F401 sample.py
+```
 
-Provide Python source or supported notebooks and configure the target Python version, file exclusions, and rule selection in the project's Ruff configuration. Findings carry rule identifiers and locations. The tool supports editor, command-line, and CI use.
+Representative diagnostic excerpt, not captured output (formatting varies by version):
 
-Avoid assuming that every notebook cell has the same behavior as a standalone Python file; consult the documented notebook and rule restrictions when results differ.
+```text
+sample.py:1:8: F401 `math` imported but unused
+```
+
+The location identifies the import; `F401` identifies the unused-import rule. Remove that line and repeat the check. A clean result means this selected rule found no violation in this file.
+
+<span id="inputs-and-workflow"></span>
+
+## Use it on your project
+
+Follow the [Ruff tutorial](https://docs.astral.sh/ruff/tutorial/) to configure rule selection, file exclusions, and the target Python version. Run `ruff check` for linting; `ruff format` only formats code. Start without automatic fixes so you can inspect the diagnostics.
 
 ## Fixes and limitations
 
-Ruff distinguishes fixes intended to preserve behavior from unsafe fixes that can change it. Review proposed changes and run the project's tests when applying fixes. Preview rules and defaults may change, so record whether preview mode is enabled and pin the tool version for repeatable results.
+Ruff distinguishes safe and unsafe fixes. Review proposed changes and run your tests after applying them. Record the tool version, configuration, and preview setting for repeatable results.
 
-## A useful first evaluation
+<span id="what-it-does-not-replace"></span>
 
-Run the linter without applying fixes, inspect a few diagnostics, and select the rule families you want. Compare the result with your existing lint and type-checking configuration before replacing any part of that workflow.
+## Alternatives and complements
 
-Related options include [Pylint](../pylint/) for a separate linting workflow and [Pyright](../pyright/) for type checking. [Compare Ruff, Pylint, and Pyright](../../compare/?tools=tools%2Fruff%2Ctools%2Fpylint%2Ctools%2Fpyright) to review their roles and setup requirements.
+Pair Ruff with [mypy](../mypy/) or [Pyright](../pyright/) when you also need type checking. Consider [Bandit](../bandit/) for a dedicated Python security-rule workflow.
+
+[Pylint](../pylint/) uses inference and supports plugins; Ruff provides built-in rule families. Their rules overlap but are not interchangeable. Before switching, compare the diagnostics and plugin requirements of your project. The [official comparison](https://docs.astral.sh/ruff/faq/#how-does-ruffs-linter-compare-to-pylint) explains these differences.

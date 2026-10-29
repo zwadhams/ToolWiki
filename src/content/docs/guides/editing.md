@@ -3,7 +3,9 @@ title: Add or update a tool
 description: Maintain one Markdown file per tool and let the catalog update itself.
 ---
 
-Each tool has one Markdown file in `src/content/docs/tools/`. Its metadata supplies the catalog filters and facts panel. The rest of the file contains your notes.
+Each tool has one Markdown file in `src/content/docs/tools/`. Its metadata supplies the catalog filters, decision summary, and comparison. The body explains how to use and interpret the tool.
+
+Start with the reader's decision and first useful result. Put detailed compatibility, editions, and sources after the practical explanation. Keep one clear limitation beside the claim it qualifies instead of repeating it throughout the page.
 
 ## Update an existing entry
 
@@ -30,13 +32,15 @@ Link the relevant official guides and license evidence, and record the review da
 2. Replace its title, description, metadata, sources, and notes.
 3. Use existing tag spellings where possible. New tags in filterable fields automatically appear in the filters.
 
-The entry automatically appears in the catalog, the matching analysis section, the tool sidebar, and the published site's search index. A tool can use both `Static` and `Dynamic` in `modes`.
+The entry automatically appears in the catalog, the matching analysis section, and the published site's search index. The sidebar provides routes into the catalog rather than repeating the full tool list. A tool can use both `Static` and `Dynamic` in `modes`.
 
 ## Metadata fields
 
 | Field | What to record |
 | --- | --- |
 | `title`, `description` | Tool name and a short factual description. |
+| `tool.cardRequirement` | Optional short prerequisite that changes the reader's choice, shown on the catalog card. State it explicitly; do not infer product-wide requirements from the subset of reviewed builder workflows. |
+| `tool.decision` | Optional object with `useWhen`, `result`, and `limit`. Describe the task, the result and its meaning, and the main limit. These appear in the profile and comparison. When supplied, include a `## First try` section with prerequisites, an example or official tutorial, expected result, and execution status. |
 | `tool.aliases` | Optional list of common names or abbreviations, such as `[ASan, Address Sanitizer]`. Used for catalog matching and shown on the tool page. Defaults to an empty list. |
 | `tool.searchTerms` | Optional list of additional, source-supported capability phrases, such as `[buffer overflow]`. Used only by catalog search. Defaults to an empty list. |
 | `tool.modes` | A list containing `Static`, `Dynamic`, or both. |
@@ -107,7 +111,7 @@ Keep controlled choices in `src/lib/system-schema.mjs` consistent with metadata.
 
 Add component cards, select their languages and available material, then optionally describe connections. Language and ecosystem choices open by default and can be collapsed. All matching candidates appear automatically from the system description, and each card explains what it can help find. There is no shortlist limit or investigation-goal selection. Unchecked material is unknown until you select **Only these materials are available**. Names, component types, deployment context, and free-text notes describe the system; they are not searched for inferred capabilities.
 
-The optional **System parts and gaps** summary reports candidates, missing information, unmet requirements, or no verified catalog match for each described part. Blank parts prompt for a description instead of suggesting every tool. At least one selected language, ecosystem, material, or interface must support each suggested workflow. A catalog gap does not establish that no suitable tool exists, and a candidate does not represent completed testing or full coverage.
+The optional **Match status by component and connection** summary reports candidates, missing information, unmet requirements, or no reviewed catalog match for each described part. Blank parts prompt for a description instead of suggesting every tool. At least one selected language, ecosystem, material, or interface must support each suggested workflow. An absent match does not establish that no suitable tool exists, and a candidate does not represent completed testing or full coverage.
 
 Existing version 1 system files remain supported. Their legacy `goals` fields are optional and no longer filter recommendations, including after restoring browser storage or importing a file.
 

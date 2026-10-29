@@ -65,12 +65,13 @@ const knownLanguages = subject => (subject.languages || []).filter(l => !['Other
 
 function evaluateWorkflow(subject, type, workflow, preferences, tool) {
   if (workflow.subject !== type) return null;
-  const reasons = [], unresolved = [], blocked = [];
-  const checkChoice = (value, allowed, label, excluded = []) => {
+  const reasons = [], unresolved = [], questions = [], blocked = [];
+  const ask = (field, message) => { unresolved.push(message); questions.push({ field, message }); };
+  const checkChoice = (value, allowed, label, field, excluded = []) => {
     if (!allowed.length && !excluded.length) return;
-    if (!value) unresolved.push(`Specify ${label}.`);
+    if (!value) ask(field, `Specify ${label}.`);
     else if (excluded.includes(value)) blocked.push(`${label}: ${value} is outside this workflow's documented support.`);
-    else if (allowed.length && !allowed.includes(value)) unresolved.push(`Verify ${label}: ${value} is not in this workflow's documented examples.`);
+    else if (allowed.length && !allowed.includes(value)) ask(field, `Verify ${label}: ${value} is not in this workflow's documented examples.`);
     else reasons.push(`${label}: ${value}`);
   };
   if (type === 'component') {
@@ -84,7 +85,7 @@ function evaluateWorkflow(subject, type, workflow, preferences, tool) {
       if (!matches.length && languages.length) return null;
       if (!matches.length && subject.languages.includes('Other') && !subject.languages.includes('Not sure')) return null;
       if (matches.length) hasEvidence = true;
-      if (!matches.length) unresolved.push(`Specify a supported ${workflow.languageScope === 'configuration' ? 'configuration format' : 'language or ecosystem'}: ${workflow.languages.join(', ')}.`);
+      if (!matches.length) ask(workflow.languageScope === 'configuration' ? 'technologies' : 'languages', `Specify a supported ${workflow.languageScope === 'configuration' ? 'configuration format' : 'language or ecosystem'}: ${workflow.languages.join(', ')}.`);
       else reasons.push(`${workflow.languageScope === 'ecosystem' ? 'Dependency ecosystem' : 'Language or format'}: ${matches.join(', ')}`);
     }
     // Unknown answers qualify a plausible match; they do not make every tool
@@ -93,45 +94,45 @@ function evaluateWorkflow(subject, type, workflow, preferences, tool) {
     for (const input of workflow.inputs) {
       if (subject.inputs.includes(input)) reasons.push(`Available input: ${input}`);
       else if (subject.inputsComplete) blocked.push(`Requires ${input.toLowerCase()}, which is not available.`);
-      else unresolved.push(`Can you provide ${input.toLowerCase()}?`);
+      else ask('inputs', `Can you provide ${input.toLowerCase()}?`);
     }
     if (workflow.binaryFormats.length) {
-      if (!subject.binaryFormat) unresolved.push(`Specify the binary format: ${workflow.binaryFormats.join(' or ')}.`);
+      if (!subject.binaryFormat) ask('binaryFormat', `Specify the binary format: ${workflow.binaryFormats.join(' or ')}.`);
       else if (!workflow.binaryFormats.includes(subject.binaryFormat)) return null;
       else reasons.push(`Binary format: ${subject.binaryFormat}`);
     }
-    if (workflow.technologies.length && !workflow.technologies.some(t => subject.technologies.includes(t))) unresolved.push(`Confirm the required technology: ${workflow.technologies.join(' or ')}.`);
-    checkChoice(subject.targetPlatform, workflow.targetPlatforms, 'target OS', workflow.excludedTargets);
+    if (workflow.technologies.length && !workflow.technologies.some(t => subject.technologies.includes(t))) ask('technologies', `Confirm the required technology: ${workflow.technologies.join(' or ')}.`);
+    checkChoice(subject.targetPlatform, workflow.targetPlatforms, 'target OS', 'targetPlatform', workflow.excludedTargets);
   } else {
     // A TCP transport is never evidence of MQTT, HTTP, or another application protocol.
     if (subject.interface && !workflow.interfaces.includes(subject.interface)) return null;
     if (!workflow.interfaces.includes(subject.interface)
       && !workflow.transports.includes(subject.transport)
       && !workflow.definitions.includes(subject.definition)) return null;
-    if (!subject.interface) unresolved.push(`Specify the interface: ${workflow.interfaces.join(' or ')}.`);
+    if (!subject.interface) ask('interface', `Specify the interface: ${workflow.interfaces.join(' or ')}.`);
     else reasons.push(`Interface: ${subject.interface}`);
-    if (!subject.from || !subject.to) unresolved.push('Choose both connection endpoints.');
+    if (!subject.from || !subject.to) ask(!subject.from ? 'from' : 'to', 'Choose both connection endpoints.');
     if (workflow.transports.length) {
-      if (!subject.transport) unresolved.push(`Specify the transport: ${workflow.transports.join(' or ')}.`);
+      if (!subject.transport) ask('transport', `Specify the transport: ${workflow.transports.join(' or ')}.`);
       else if (!workflow.transports.includes(subject.transport)) return null;
       else reasons.push(`Transport: ${subject.transport}`);
     }
     if (workflow.definitions.length) {
-      if (!subject.definition) unresolved.push(`Can you provide ${workflow.definitions.join(' or ')}?`);
+      if (!subject.definition) ask('definition', `Can you provide ${workflow.definitions.join(' or ')}?`);
       else if (!workflow.definitions.includes(subject.definition)) blocked.push(`Requires ${workflow.definitions.join(' or ')}; selected definition: ${subject.definition}.`);
       else reasons.push(`Definition: ${subject.definition}`);
     }
   }
-  checkChoice(subject.hostPlatform, workflow.hostPlatforms, 'analysis host OS', workflow.excludedHosts);
+  checkChoice(subject.hostPlatform, workflow.hostPlatforms, 'analysis host OS', 'hostPlatform', workflow.excludedHosts);
   for (const requirement of workflow.requires) {
     const answer = type === 'component' ? subject.access[requirement] : subject[requirement];
     if (answer === 'no') blocked.push(`Requires the ability to ${ACCESS[requirement].toLowerCase()}.`);
-    else if (answer !== 'yes') unresolved.push(`Can you ${ACCESS[requirement].toLowerCase()}?`);
+    else if (answer !== 'yes') ask(requirement, `Can you ${ACCESS[requirement].toLowerCase()}?`);
     else reasons.push(`You can ${ACCESS[requirement].toLowerCase()}.`);
   }
   if (preferences.license && preferences.license !== tool.licenseCategory) blocked.push(`This edition uses a ${tool.licenseCategory.toLowerCase()} license.`);
   if (preferences.cost && !(preferences.cost === 'any-free' ? tool.cost.some(c => c === 'Free' || c === 'Free with limits') : tool.cost.includes(preferences.cost))) blocked.push(`This edition does not match your cost preference (${tool.cost.join(' / ')}).`);
-  return { reasons, unresolved, blocked, status: blocked.length ? 'blocked' : unresolved.length ? 'details' : 'candidate' };
+  return { reasons, unresolved, questions, blocked, status: blocked.length ? 'blocked' : unresolved.length ? 'details' : 'candidate' };
 }
 
 export function analyzeSystem(profile, tools) {

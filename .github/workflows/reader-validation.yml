@@ -1,0 +1,47 @@
+name: Validate reader workflows
+
+on:
+  push:
+    branches: [codex/reader-workflows]
+    paths:
+      - '.github/workflows/reader-validation.yml'
+      - 'examples/windows-memory/**'
+      - 'src/content/docs/guides/windows-memory-check.md'
+      - 'src/content/docs/guides/memory-error-detection.md'
+      - 'src/content/docs/guides/get-examples.md'
+      - 'src/content/docs/tools/address-sanitizer.md'
+      - 'src/content/docs/tools/dr-memory.md'
+  pull_request:
+    paths:
+      - '.github/workflows/reader-validation.yml'
+      - 'examples/windows-memory/**'
+      - 'src/content/docs/guides/windows-memory-check.md'
+      - 'src/content/docs/guides/memory-error-detection.md'
+      - 'src/content/docs/guides/get-examples.md'
+      - 'src/content/docs/tools/address-sanitizer.md'
+      - 'src/content/docs/tools/dr-memory.md'
+
+permissions:
+  contents: read
+
+jobs:
+  windows-memory:
+    runs-on: windows-2022
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Diagnose and correct the x64 memory error
+        shell: pwsh
+        run: ./examples/windows-memory/verify.ps1 -OutputPath "$env:RUNNER_TEMP/windows-memory-evidence"
+      - name: Upload memory-check evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: windows-memory-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/windows-memory-evidence/*.json
+            ${{ runner.temp }}/windows-memory-evidence/*.txt
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,121 @@
+{
+  "date": "2026-11-06",
+  "scope": "Coordinator checks of changes before fresh-reader results; this does not establish all claims on a tool profile.",
+  "source_revision": "46be6de2a5fbb2c9e9472b8c18d9e043625e4991",
+  "checks": [
+    {
+      "id": "DOC-01",
+      "result": "pass",
+      "detail": "Existing tool metadata unchanged; MSVC setup is separate from Clang/LLVM catalog scope. No new tool entries or saved-system changes."
+    },
+    {
+      "id": "DOC-02",
+      "result": "pass",
+      "detail": "Public source snapshot contains Python/API/memory fixtures; working-directory instructions match the snapshot layout. Fresh download execution remains the reader gate."
+    },
+    {
+      "id": "DOC-03",
+      "result": "pass",
+      "detail": "API primary runtime is checked Python 3.13. Historical 3.12 evidence remains separate and unchanged. Combined all-mode command is labeled untested."
+    },
+    {
+      "id": "DOC-04",
+      "result": "pass",
+      "detail": "Python project instructions preserve existing configuration, select the analyzer interpreter, require dependencies/stubs, and retain separate reports. Pylint first-use commands select one warning and show exit meanings."
+    },
+    {
+      "id": "DOC-05",
+      "result": "pass",
+      "detail": "Native Windows guide distinguishes OS architecture, compiler host/target, runtime presence, sourced diagnostic, and corrected exit; ARM64 and fresh VS installation remain unvalidated."
+    },
+    {
+      "id": "DOC-06",
+      "result": "pass",
+      "detail": "133 built pages, local links, fragments, assets, search index and navigation passed check-site; original 101 tests passed. Final verification is pending reader outcomes."
+    }
+  ],
+  "primary_sources": [
+    {
+      "url": "https://drmemory.org/page_install_windows.html",
+      "checked": "2026-11-06",
+      "finding": "Windows-specific MSI/ZIP installation and PATH instructions, without an exact compatibility matrix."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/cpp/sanitizers/asan-runtime?view=msvc-170",
+      "checked": "2026-11-06",
+      "finding": "VS 17.7 and later x64 runtimes require the dynamic ASan DLL for the documented CRT configurations."
+    },
+    {
+      "url": "https://schemathesis.readthedocs.io/en/stable/reference/checks/",
+      "checked": "2026-11-06",
+      "finding": "negative_data_rejection accepts specified error statuses including 5xx; not_a_server_error is a separate check. The guide explains the distinction."
+    }
+  ],
+  "prior_evidence": {
+    "files": 236,
+    "all_original_digests_match": true,
+    "manifest": "prior-audit-digests.json"
+  },
+  "files": [
+    {
+      "path": "astro.config.mjs",
+      "sha256": "6d6b1debfdbe734397fe857f98e163e1afdff520689c82e3bc6b058ec8a518bd"
+    },
+    {
+      "path": ".github/workflows/reader-validation.yml",
+      "sha256": "93e1227af7468cbe30e96f05536a653a62e340f9ba96b721560fa0f80798f621"
+    },
+    {
+      "path": "examples/windows-memory/README.md",
+      "sha256": "e6e11dbd7bcb75abdbe0872d2326bd276bc7d184336b8981cf66953ea9d4b2b9"
+    },
+    {
+      "path": "examples/windows-memory/verify.ps1",
+      "sha256": "72fb2a0e0ae5693569a550b972d63901e00438dc37ee841b24e19548b74491fc"
+    },
+    {
+      "path": "examples/windows-memory/bad/bounds.c",
+      "sha256": "f01c2e0e14b3438bf14357cc940990dbdffd03d68967d5bdc656ba2323884ac7"
+    },
+    {
+      "path": "examples/windows-memory/good/bounds.c",
+      "sha256": "85cc90c157fc6f7c7b76efc6acdd84b5feeb44ae3766f44d3ce370c0e09ccc34"
+    },
+    {
+      "path": "src/content/docs/guides/get-examples.md",
+      "sha256": "b3c3f28c02c869fb36e7ffe064e2dfd9e60f8e800a8440cd044c3c51d8f54fb5"
+    },
+    {
+      "path": "src/content/docs/guides/python-checks.md",
+      "sha256": "7ef07af4118c7f1f6f54a45019b4754d3f2aa1290845fc1b0e5c286fc70e9d52"
+    },
+    {
+      "path": "src/content/docs/guides/api-testing.md",
+      "sha256": "8e64c6f48a80e2bba3a7d3e5c8509589e3a2d230351f978f2377d23bb07bd1a5"
+    },
+    {
+      "path": "src/content/docs/guides/windows-memory-check.md",
+      "sha256": "d462c7558c442e9706f287ddc7f4665aa60eb748e380f1431a798bf315045e7f"
+    },
+    {
+      "path": "src/content/docs/guides/memory-error-detection.md",
+      "sha256": "75636cf454d876e4ec18a6f9c40ec9ac5e477e585e8ee48d21675cf264c2568f"
+    },
+    {
+      "path": "src/content/docs/tools/pylint.md",
+      "sha256": "6941048a4203352aab4f81e40092724d5c55dd1df8b1a1dfc614328e7ad79496"
+    },
+    {
+      "path": "src/content/docs/tools/schemathesis.md",
+      "sha256": "ef271f426b81bc96e523e8510b8c7080bc451d87cd4c5fe520aef85e3ae55a58"
+    },
+    {
+      "path": "src/content/docs/tools/address-sanitizer.md",
+      "sha256": "1ede806e947feef5d1bbffeffd4af600a5fec8f28ec611635bf8da8c5b32e19d"
+    },
+    {
+      "path": "src/content/docs/tools/dr-memory.md",
+      "sha256": "01899c1d9fe4837ab9cee14367a8de2b7c17228d021a771f3426186b8ec67d9c"
+    }
+  ]
+}

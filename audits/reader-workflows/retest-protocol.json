@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-06",
+  "source_revision": "46be6de",
+  "method": "Three new agents with no inherited conversation start at the built home page. They discover tools and instructions through the visible wiki and explicit links. Each has an isolated working directory and new environments.",
+  "audience": "Basic programming and terminal familiarity.",
+  "scenarios": [
+    {
+      "id": "python",
+      "agent": "retest_reader_python",
+      "goal": "Check a small Python project for coding and type mistakes on Windows.",
+      "origin": "http://127.0.0.1:4361/ToolWiki/",
+      "extra_input": "A separate invoice project with different source names and no analyzer configuration.",
+      "required": "Public example acquisition, demo fault and correction, separate project fault and correction using the documented adaptation commands."
+    },
+    {
+      "id": "api",
+      "agent": "retest_reader_api",
+      "goal": "Find and test a disposable HTTP API, including invalid inputs or server errors.",
+      "origin": "http://127.0.0.1:4362/ToolWiki/",
+      "extra_input": "A disposable shipment service with a different route, port and schema filename.",
+      "required": "Public example acquisition, demo fault and correction, separate API fault and correction, selected invalid-input check."
+    },
+    {
+      "id": "memory",
+      "agent": "retest_reader_memory",
+      "goal": "Investigate a crashing native C/C++ program on Windows with source and rebuild access.",
+      "origin": "http://127.0.0.1:4363/ToolWiki/",
+      "execution_environment": "User-approved native Windows x64 CI, with installed Visual Studio tools; local development host is ARM64.",
+      "required": "Independent commands derived from public instructions, acquisition into an empty directory, native fault diagnostic and correction, then interpretation of new CI evidence by the reader agent."
+    }
+  ],
+  "constraints": [
+    "Do not consult product source, old audits, implementation notes or another reader's reports to discover a route.",
+    "Use only the visible wiki and its explicit links for instructions. Record any outside knowledge or recovery.",
+    "Source examples and supplied synthetic inputs can be read after discovery. Work on copies.",
+    "Install dependencies only into isolated environments. No global installs or host configuration changes.",
+    "Keep product source and historical audits unchanged. Root coordinates any fixes and repeats affected tests with fresh agents.",
+    "Retain exact commands, versions, input digests, outputs and exit statuses. ASCII text only."
+  ],
+  "limits": [
+    "Expert-agent walkthroughs do not establish human completion times, emotions or population-wide usability.",
+    "Native CI validates an installed Windows toolchain, not the Visual Studio installation procedure or ARM64 execution.",
+    "The shipment service changes the interface of the original synthetic service; it is not an independently designed real API.",
+    "Three scenarios do not validate all catalog tools, operating systems or accessibility conformance."
+  ],
+  "coordinator_boundary": "Root reviews the memory replay script for safety and command fidelity, commits it, triggers CI, retains outputs and sends those new outputs to the same reader for interpretation. No previous execution result substitutes for that replay.",
+  "status": "in-progress",
+  "build_index_sha256": "1a6161b12ff962bbd922c8cc13c337e477bb03cd4c71dd3d8042ee3163dcedd0"
+}

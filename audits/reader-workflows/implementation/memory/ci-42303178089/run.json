@@ -1,0 +1,129 @@
+{
+  "status": "passed",
+  "startedUtc": "2026-11-06T22:14:45.5198599Z",
+  "os": "Microsoft Windows 10.0.20348",
+  "osArchitecture": "X64",
+  "processArchitecture": "X64",
+  "powershell": "7.6.9",
+  "runnerImage": "win22",
+  "runnerImageVersion": "20261101.353.1",
+  "commit": "506c522ca86fd8c9d7b688f35a4d37f842d04cc9",
+  "runId": "42303178089",
+  "runAttempt": "1",
+  "sources": [
+    {
+      "path": "bad/bounds.c",
+      "sha256": "F01C2E0E14B3438BF14357CC940990DBDFFD03D68967D5BDC656BA2323884AC7"
+    },
+    {
+      "path": "good/bounds.c",
+      "sha256": "85CC90C157FC6F7C7B76EFC6ACDD84B5FEEB44AE3766F44D3CE370C0E09CCC34"
+    }
+  ],
+  "commands": [
+    {
+      "name": "vswhere",
+      "executable": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vswhere.exe",
+      "arguments": [
+        "-latest",
+        "-products",
+        "*",
+        "-version",
+        "[17.7,18.0)",
+        "-requires",
+        "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
+        "-property",
+        "installationPath"
+      ],
+      "directory": "D:\\a\\ToolWiki\\ToolWiki\\examples\\windows-memory",
+      "exitCode": 0,
+      "timedOut": false,
+      "stdout": "vswhere.stdout.txt",
+      "stderr": "vswhere.stderr.txt"
+    },
+    {
+      "name": "bad-build",
+      "executable": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe",
+      "arguments": [
+        "/nologo",
+        "/Od",
+        "/Zi",
+        "/fsanitize=address",
+        "D:\\a\\ToolWiki\\ToolWiki\\examples\\windows-memory\\bad\\bounds.c",
+        "/Fe:bad.exe",
+        "/Fo:bad.obj",
+        "/Fd:bad-compile.pdb",
+        "/link",
+        "/DEBUG",
+        "/INCREMENTAL:NO"
+      ],
+      "directory": "D:\\a\\_temp\\windows-memory-evidence\\build",
+      "exitCode": 0,
+      "timedOut": false,
+      "stdout": "bad-build.stdout.txt",
+      "stderr": "bad-build.stderr.txt"
+    },
+    {
+      "name": "good-build",
+      "executable": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe",
+      "arguments": [
+        "/nologo",
+        "/Od",
+        "/Zi",
+        "/fsanitize=address",
+        "D:\\a\\ToolWiki\\ToolWiki\\examples\\windows-memory\\good\\bounds.c",
+        "/Fe:good.exe",
+        "/Fo:good.obj",
+        "/Fd:good-compile.pdb",
+        "/link",
+        "/DEBUG",
+        "/INCREMENTAL:NO"
+      ],
+      "directory": "D:\\a\\_temp\\windows-memory-evidence\\build",
+      "exitCode": 0,
+      "timedOut": false,
+      "stdout": "good-build.stdout.txt",
+      "stderr": "good-build.stderr.txt"
+    },
+    {
+      "name": "bad-run",
+      "executable": "D:\\a\\_temp\\windows-memory-evidence\\build\\bad.exe",
+      "arguments": [],
+      "directory": "D:\\a\\_temp\\windows-memory-evidence\\build",
+      "exitCode": 1,
+      "timedOut": false,
+      "stdout": "bad-run.stdout.txt",
+      "stderr": "bad-run.stderr.txt"
+    },
+    {
+      "name": "good-run",
+      "executable": "D:\\a\\_temp\\windows-memory-evidence\\build\\good.exe",
+      "arguments": [],
+      "directory": "D:\\a\\_temp\\windows-memory-evidence\\build",
+      "exitCode": 0,
+      "timedOut": false,
+      "stdout": "good-run.stdout.txt",
+      "stderr": "good-run.stderr.txt"
+    }
+  ],
+  "asanOptions": "symbolize=1",
+  "visualStudioPath": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise",
+  "developerShellCommand": "& Launch-VsDevShell.ps1 -Arch amd64 -HostArch amd64 -SkipAutomaticLocation",
+  "visualStudioVersion": "17.14.44",
+  "compilerHost": "x64",
+  "compilerTarget": "x64",
+  "toolsetVersion": "14.44.35207",
+  "compilerPath": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe",
+  "compilerVersion": "19.44.35229.0",
+  "runtimePath": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\clang_rt.asan_dynamic-x86_64.dll",
+  "runtimeVersion": null,
+  "checks": {
+    "badNonzero": true,
+    "badHeapOverflow": true,
+    "badWriteSize": true,
+    "badSourceLine": true,
+    "goodZero": true,
+    "goodNoAsanError": true
+  },
+  "finishedUtc": "2026-11-06T22:14:54.2234134Z"
+}

@@ -1,0 +1,131 @@
+{
+  "audit_id": "reader-memory-2026-11-06",
+  "method": "Expert-agent simulated first-time reader walkthrough; not a human usability study.",
+  "scope": "Audit only. Native C/C++ memory-error diagnosis on Windows PowerShell. No product edits, implementation source reads, old audits, web searches, installations, or external targets.",
+  "tested_commit": "21d14974c0498960cc2929900a58c1f27b60cd70",
+  "scenario": {
+    "reader": "Knows basic C/C++, uses Windows PowerShell, has source and rebuild access for a small native program that occasionally crashes.",
+    "goal": "Select an appropriate memory-error check, identify setup and exact input, get a useful diagnosis/correction if practical, interpret output and clean-run limits, retain the procedure.",
+    "initial_assumptions": "No Linux, WSL, Docker, or compiler installation assumed. No prescribed tool choice."
+  },
+  "environment": {
+    "assigned_start": "http://127.0.0.1:4349/ToolWiki/",
+    "actual_start": "http://127.0.0.1:4353/ToolWiki/",
+    "start_change_authority": "Parent supplied replacement after fixing preview infrastructure; same unchanged production dist.",
+    "browser": "Own temporary background IAB tab, binding readerMemoryTab, tab 3.",
+    "shell": "PowerShell 7.6.9",
+    "os_reported": "Microsoft Windows NT 10.0.26300.0; 64-bit OS",
+    "available_compiler": "C:/msys64/ucrt64/bin/g++.exe; MSYS2 GCC 16.2.0; x86_64-w64-mingw32",
+    "not_on_path": ["drmemory.exe", "clang", "clang++", "clang-cl", "cl"],
+    "availability_limit": "PATH probes only; no claim that tools are absent from the whole device. Existing .preview tool setups were not inspected.",
+    "synthetic_directory": "C:/Users/zwadh/Repos/ToolWiki/.preview/reader-usability/memory",
+    "evidence": "evidence/memory/environment.txt"
+  },
+  "overall_result": {
+    "status": "partial",
+    "summary": "The wiki quickly supports a sensible tool shortlist and explains limits. The initial Windows Dr. Memory route delegates preparation and output detail to official documentation and assumes an existing test executable. The visible AddressSanitizer alternative supplies an exact test, PowerShell command, sample interpretation and correction. No diagnostic was executed because the required tools were not available on PATH and no toolchain was installed.",
+    "primary_choice": "Dr. Memory, selected from the guide's explicit Windows executable recommendation; suitability remains conditional on exact release/architecture support.",
+    "recovery_choice": "Clang AddressSanitizer, discovered in the guide and Dr. Memory page; rebuild access fits, but no supported Clang/runtime environment was established."
+  },
+  "navigation": [
+    {"step": 0, "action": "Open assigned starting URL in background IAB.", "url": "http://127.0.0.1:4349/ToolWiki/", "observation": "ERR_CONNECTION_REFUSED. Retried once after runtime recovery; still refused. Classified as harness setup, not a product finding."},
+    {"step": 1, "action": "Open parent-provided replacement starting URL.", "url": "http://127.0.0.1:4353/ToolWiki/", "observation": "Browse tools; Start with a task contains Investigate memory errors."},
+    {"step": 2, "action": "Click Investigate memory errors.", "url": "http://127.0.0.1:4353/ToolWiki/guides/memory-error-detection/", "observation": "Choosing memory-error checks table distinguishes source analysis, instrumented builds and existing executables; explicit Windows Dr. Memory link and ASan first-experiment suggestion."},
+    {"step": 3, "action": "Click Dr. Memory's documented Windows workflow.", "url": "http://127.0.0.1:4353/ToolWiki/tools/dr-memory/", "observation": "Runtime requirements and limits; illustrative command with placeholder executable; results.txt and stack-reading guidance."},
+    {"step": 4, "action": "Click Windows installation guide.", "url": "https://drmemory.org/page_install.html", "external_handoff": true, "observation": "General platform selector; choose Installing on Windows."},
+    {"step": 5, "action": "Click Installing on Windows.", "url": "https://drmemory.org/page_install_windows.html", "observation": "System and local install instructions, ZIP/full-path option and PATH instructions. No compatibility matrix on this page."},
+    {"step": 6, "action": "Use shell availability probes, then follow visible Preparing Your Application in official sidebar.", "url": "https://drmemory.org/page_prep.html", "observation": "Tool not on PATH; MinGW compiler exists. Official docs explain PDB/DWARF symbols and compiler flags. No install or target run attempted; stop execution route here."},
+    {"step": 7, "action": "Back three times to Dr. Memory; click Copy to clipboard for its command.", "url": "http://127.0.0.1:4353/ToolWiki/tools/dr-memory/", "observation": "UI reports Copied! Browser clipboard read returned empty; this was not attributed to the site without further evidence."},
+    {"step": 8, "action": "Click official report guide.", "url": "https://drmemory.org/page_running.html", "external_handoff": true, "observation": "Explains report location, logs, -logdir, -batch, and potential_errors.txt."},
+    {"step": 9, "action": "Click Error Reports in official sidebar.", "url": "https://drmemory.org/page_reports.html", "observation": "Landing page links to suppressions, replaced routines and system symbols rather than a diagnostic example."},
+    {"step": 10, "action": "Click Error Types Reported by Dr. Memory in official sidebar.", "url": "https://drmemory.org/page_types.html", "observation": "Explains diagnostic fields, application callstack and -brief. This is output-reading research only, not a completed run."},
+    {"step": 11, "action": "Back three times to Dr. Memory and click AddressSanitizer.", "url": "http://127.0.0.1:4353/ToolWiki/tools/address-sanitizer/", "recovery": true, "observation": "Concrete bounds.c, distinct Unix and PowerShell commands, explicit clang rather than clang-cl, representative report with line references and correction."},
+    {"step": 12, "action": "Probe clang specifically and inspect existing g++ version/target.", "url": "http://127.0.0.1:4353/ToolWiki/tools/address-sanitizer/", "observation": "clang not found on PATH. GCC MinGW is not the Clang workflow covered by the page; no substitution attempted."},
+    {"step": 13, "action": "Click Clang AddressSanitizer guide.", "url": "https://clang.llvm.org/docs/AddressSanitizer.html", "external_handoff": true, "observation": "Generic CMake/compiler-rt build instructions, usage, symbolizer and platform limits. No short Windows package/environment preflight sequence for the wiki command. Stop execution recovery without installing a toolchain."},
+    {"step": 14, "action": "Back to ASan; inspect rendered DOM to retain exact source/commands; click First try in On this page.", "url": "http://127.0.0.1:4353/ToolWiki/tools/address-sanitizer/#first-try", "observation": "Stable section URL observed. Saved the visible synthetic example and a one-index correction in the authorized temporary directory; neither was compiled or executed."}
+  ],
+  "criteria": [
+    {"criterion": "Select tool appropriate to host/target and rebuild access", "status": "partial", "evidence": "Windows recommendation makes Dr. Memory easy to find; ASan clearly requires rebuild access and supported Clang/runtime. Exact release/architecture compatibility was not established by the reached installation pages."},
+    {"criterion": "Identify prerequisites and exact input/example", "status": "partial", "evidence": "General prerequisites are named. Dr. Memory assumes test-program.exe and external build setup. Recovery ASan page fully specifies bounds.c and PowerShell invocation, but Windows compiler/runtime assembly remains external and unverified."},
+    {"criterion": "Perform first diagnostic and correction if practical", "status": "blocked", "cause": "environment boundary and unresolved setup", "evidence": "No drmemory.exe or clang on PATH. A workspace-local ZIP install was not categorically prohibited; the agent chose to stop before acquiring tooling because exact release/architecture compatibility remained unresolved and this exercise allowed documenting a setup boundary. Global/system installs and large toolchains were prohibited. The existing GCC toolchain was not silently substituted. Prepared bounds.c and bounds-fixed.c only; no diagnostic output claimed."},
+    {"criterion": "Explain error type and source location", "status": "success", "evidence": "ASan's labeled representative report identifies heap-buffer-overflow, WRITE of size 4, access at bounds.c:5 and allocation at bounds.c:3. Two elements admit indices 0 and 1, so change values[2] to values[1]. Understanding is based on the documented example, not an observed run."},
+    {"criterion": "Explain limits of a clean run", "status": "success", "evidence": "Both pages and the guide explicitly limit runtime checking to exercised behavior; ASan adds instrumentation and defect-class limits. A clean run does not prove all paths or memory defect categories safe."},
+    {"criterion": "Retain and reuse the procedure", "status": "partial", "evidence": "First-try anchor is stable; source/commands and flags/workload/suppression retention advice are present. Copy UI showed Copied!, but clipboard contents could not be verified through this tool. No successful run or report to reuse yet."}
+  ],
+  "documented_commands_not_run": [
+    {"source": "Dr. Memory example", "command": "drmemory.exe -batch -- 'C:/path/to/test-program.exe'", "requires": "Replace path and append normal test arguments; available launcher and compatible executable."},
+    {"source": "AddressSanitizer Windows PowerShell first try", "commands": ["clang -O0 -g -fsanitize=address -fno-omit-frame-pointer bounds.c -o bounds.exe", ".\\bounds.exe"], "requires": "clang driver, C linker/libraries and matching ASan runtime in a compatible compiler environment."}
+  ],
+  "diagnostic_outputs": [],
+  "prepared_artifacts": [
+    {"path": "C:/Users/zwadh/Repos/ToolWiki/.preview/reader-usability/memory/bounds.c", "provenance": "Visible ASan first-try source; whitespace formatted without changing lines or behavior.", "execution_status": "not compiled or run"},
+    {"path": "C:/Users/zwadh/Repos/ToolWiki/.preview/reader-usability/memory/bounds-fixed.c", "provenance": "Same source with values[2] changed to values[1], following page explanation.", "execution_status": "not compiled or run"}
+  ],
+  "findings": [
+    {
+      "id": "MEM-01",
+      "priority": "medium",
+      "kind": "instructional gap",
+      "title": "Windows compatibility check is delegated to an installation page that does not answer it",
+      "url": "http://127.0.0.1:4353/ToolWiki/tools/dr-memory/#example",
+      "evidence": "The wiki says to use the Windows installation guide to check Windows version and executable architecture, but its link opens the platform selector. The selected Windows page describes MSI/ZIP/PATH steps without the requested compatibility matrix.",
+      "consequence": "The reader still cannot decide whether a particular release supports this Windows/target combination before setup, although the page correctly warns that compatibility matters.",
+      "minimal_fix": "Link directly to the Windows installation page and separately to the precise supported OS/architecture/release limitations. Add a short statement of the combination covered by the example.",
+      "boundary": "This does not assert Dr. Memory is incompatible; exact compatibility was unresolved. Missing installed tool is not the finding."
+    },
+    {
+      "id": "MEM-02",
+      "priority": "medium",
+      "kind": "instructional gap",
+      "title": "The ASan Windows command lacks a concrete compiler/runtime readiness path",
+      "url": "http://127.0.0.1:4353/ToolWiki/tools/address-sanitizer/#first-try",
+      "evidence": "The page requires a compiler environment with clang, its C linker/libraries and matching runtime, and asks to confirm target architecture. Its setup link lands on the general ASan guide whose How to build begins with LLVM/Clang CMake and compiler-rt.",
+      "consequence": "A reader who can edit C but starts in ordinary PowerShell has a usable command only after solving toolchain assembly and target checks elsewhere. Availability probes in this audit came from agent expertise.",
+      "minimal_fix": "Provide one verified Windows environment route, link its exact setup instructions, and include a concise preflight showing the expected compiler target and a successful runtime smoke check. Keep the current distinction between clang and clang-cl.",
+      "boundary": "The compiler being unavailable here is an environment limitation. The finding concerns how to establish the explicitly required environment, not a demand that the wiki install it."
+    },
+    {
+      "id": "MEM-03",
+      "priority": "low",
+      "kind": "usability opportunity",
+      "title": "Windows Dr. Memory route has no controlled diagnose-and-correct example",
+      "url": "http://127.0.0.1:4353/ToolWiki/tools/dr-memory/#example",
+      "evidence": "The first command uses C:/path/to/test-program.exe. There is no source, build command, representative Dr. Memory error or corrected variant on that page. The choosing guide recommends ASan's bounds example, but the Windows route does not directly carry it through Dr. Memory.",
+      "consequence": "The reader must supply the workload and interpret an unfamiliar first real report without a small known-positive check on the recommended Windows path.",
+      "minimal_fix": "Link the existing bounds example directly and show a compatible debug build, a short representative Dr. Memory report, and the single-index correction. Label tested versus illustrative status as the current pages already do.",
+      "boundary": "The scenario's real program could be used instead. This is onboarding friction, not a demonstrated inability of the documented command to run."
+    }
+  ],
+  "successful_design_elements": [
+    "Home task link matches the reader's problem exactly and reaches the relevant guide in one click.",
+    "Workflow table distinguishes source analysis, instrumented builds and existing executables by prerequisites rather than only tool names.",
+    "Explicit Windows Dr. Memory recommendation avoids silently assuming Linux or WSL.",
+    "Tool summaries prominently state what is needed and the limits of exercised-code coverage.",
+    "ASan page includes a concrete C source, PowerShell-specific command, explicit compiler-driver distinction, report line numbers and an understandable fix.",
+    "Examples and report outlines are honestly labeled illustrative, while documentation review date is separately explained.",
+    "Sections have usable anchors, code has copy controls, and retention guidance names flags, workloads and suppressions."
+  ],
+  "expertise_used": [
+    "Used PowerShell Get-Command and compiler version/target probes; these readiness checks were not supplied by the reached wiki pages.",
+    "Recognized existing GCC MinGW as a different compiler integration and declined to substitute it for documented Clang.",
+    "Followed official sidebar links to application preparation and diagnostic field explanations when the direct installation/report handoffs did not cover all needed detail.",
+    "Selected values[1] as the correction using the wiki's explicit valid-index explanation, not outside technical research."
+  ],
+  "agent_and_tool_errors_not_site_findings": [
+    "Initial assigned preview refused connections; parent replaced it with port 4353 serving unchanged dist.",
+    "Subagent IAB rejected explicit visible:false; default background creation worked after omitting the option.",
+    "A failed creation left readerMemoryTab undefined; rebinding the returned tab fixed the audit harness.",
+    "Attempt to bind the initial browser-generated data URL failed URL policy; no bypass was attempted.",
+    "Copy control visibly showed Copied!, but browser clipboard read returned empty. Kept as unverified tool/browser behavior, not a clipboard defect claim."
+  ],
+  "limitations": [
+    "One expert-agent task walkthrough, not representative novice behavior or measured human timing/emotion.",
+    "No installed diagnostic tools were found on PATH; no global changes, downloads, driver installs or native diagnostic execution occurred.",
+    "Availability checks were bounded; no search of existing preview tool setups or the whole device.",
+    "No successful crash diagnosis, corrected execution or clean-run output was observed; sample diagnostic is visibly labeled documentation.",
+    "Exact host/target support remains conditional; only linked official documentation was followed, with no search-engine rescue.",
+    "No comparison-page, whole-catalog, accessibility or responsive-layout audit was attempted.",
+    "Visible text observations were normalized to ASCII in saved evidence; no non-ASCII console glyphs required replacement."
+  ],
+  "evidence_files": ["evidence/memory/visible-evidence.txt", "evidence/memory/environment.txt"]
+}

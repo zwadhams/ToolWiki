@@ -1,0 +1,62 @@
+Schemathesis v4.33.1
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+
+ \u2705  Loaded specification from http://127.0.0.1:8771/openapi.json (in 0.64s)
+
+     Base URL:         http://127.0.0.1:8771/
+     Specification:    Open API 3.0.3
+     Operations:       3 selected / 3 total
+
+ \u2705  API capabilities:
+
+     Supports NULL byte in headers:                            \u2713
+     Accepts backslash and control characters in URL paths:    \u2713
+
+ \u274c  Coverage (in 0.17s)
+
+     \u274c 1 failed
+
+=================================== FAILURES ===================================
+_________________________________ POST /orders _________________________________
+1. Test Case ID: UyxNCN
+
+- ST101 Server error
+
+[500] Internal Server Error:
+
+    `{"error": "Zero-quantity unit-price defect"}`
+
+Reproduce with:
+
+    curl -X POST -H 'Content-Type: application/json' -d '{"quantity": 0}' http://127.0.0.1:8771/orders
+
+    st replay UyxNCN
+
+=================================== SUMMARY ====================================
+
+API Operations:
+  Selected: 3/3
+  Tested: 1
+  Skipped: 2
+    - Failure limit reached
+
+Test Phases:
+  \u23ed  Examples (disabled)
+  \u274c Coverage
+  \u23ed  Fuzzing (failure limit reached)
+  \u23ed  Stateful (failure limit reached)
+
+Failures:
+  \u274c ST101 Server error: 1
+
+For more information, run `st explain ST101`.
+
+Test cases:
+  3 generated, 1 found 1 unique failure
+
+Reports:
+  - JUnit: C:\Users\zwadh\Repos\ToolWiki\.preview\reader-usability\api\.preview\api-faulty\junit.xml
+
+Seed: 20261106
+
+============================== 1 failure in 0.30s ==============================

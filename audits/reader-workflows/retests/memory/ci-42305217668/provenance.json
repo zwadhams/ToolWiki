@@ -1,0 +1,172 @@
+{
+  "run_url": "https://github.com/zwadhams/ToolWiki/actions/runs/42305217668",
+  "run_id": 42305217668,
+  "job_id": 128192739649,
+  "commit": "56bc97faa43a0448ee5fbe73d293c3b0ce291b9d",
+  "artifact_id": 13546391430,
+  "artifact_sha256": "b3dea816c4eae263bf2e804e2568c20b96e892201393e6272be59b1e47f7f3e1",
+  "job_conclusion": "success",
+  "normalization": "Removed optional UTF-8 BOM; non-ASCII output escaped visibly; no substantive output removed. Raw archive retained in ignored .preview/reader-ci.",
+  "files": [
+    {
+      "path": "02-extract-snapshot-stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "01-download-snapshot-stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "01-download-snapshot-stdout.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "02-extract-snapshot-stdout.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03-enter-repository-stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "04-enter-example-stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "03-enter-repository-stdout.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "04-enter-example-stdout.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "05-host-architecture-stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "05-host-architecture-stdout.txt",
+      "raw_sha256": "73dda8b8522642fa58af9ccc3951517d3f8bdc3c77915034de13ee53fc2f475d",
+      "retained_sha256": "73dda8b8522642fa58af9ccc3951517d3f8bdc3c77915034de13ee53fc2f475d"
+    },
+    {
+      "path": "06-initialize-developer-shell-stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "06-initialize-developer-shell-stdout.txt",
+      "raw_sha256": "f4bd59d98a14339dbd1b25ad80ec5cfbced84164ccb818b886068e040220360f",
+      "retained_sha256": "f4bd59d98a14339dbd1b25ad80ec5cfbced84164ccb818b886068e040220360f"
+    },
+    {
+      "path": "07-compiler-banner-stderr.txt",
+      "raw_sha256": "8e29834a4f5a5cbf82a6436414d68d51c3bdeb68d2dff0023409cdedc21e862c",
+      "retained_sha256": "8e29834a4f5a5cbf82a6436414d68d51c3bdeb68d2dff0023409cdedc21e862c"
+    },
+    {
+      "path": "07-compiler-banner-stdout.txt",
+      "raw_sha256": "ed6ca56a976bc0dd695904a59a423f36064632694b947125ff73cb68f125f840",
+      "retained_sha256": "ed6ca56a976bc0dd695904a59a423f36064632694b947125ff73cb68f125f840"
+    },
+    {
+      "path": "08-target-and-runtime-stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "08-target-and-runtime-stdout.txt",
+      "raw_sha256": "7848242b2a297ada3a0ec3b149cbd74f860e2f50056175fb4b9deffe6c6065a6",
+      "retained_sha256": "7848242b2a297ada3a0ec3b149cbd74f860e2f50056175fb4b9deffe6c6065a6"
+    },
+    {
+      "path": "09-version-metadata-stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "09-version-metadata-stdout.txt",
+      "raw_sha256": "58206a2223237c622455cb4cd4f13e81ca26b041b3ddb5a9ed45c29cf0b93bee",
+      "retained_sha256": "58206a2223237c622455cb4cd4f13e81ca26b041b3ddb5a9ed45c29cf0b93bee"
+    },
+    {
+      "path": "10-build-bad-stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "10-build-bad-stdout.txt",
+      "raw_sha256": "d77f5b2ba17bdc364bac04cb7e27b40ef36283f09264a7a049a4b48a119e0678",
+      "retained_sha256": "d77f5b2ba17bdc364bac04cb7e27b40ef36283f09264a7a049a4b48a119e0678"
+    },
+    {
+      "path": "11-run-bad-stderr.txt",
+      "raw_sha256": "27e191aabda1ce59b2e757ffe70e362a718c16d22dc79fd931ed285fc6263308",
+      "retained_sha256": "27e191aabda1ce59b2e757ffe70e362a718c16d22dc79fd931ed285fc6263308"
+    },
+    {
+      "path": "11-run-bad-stdout.txt",
+      "raw_sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "retained_sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+    },
+    {
+      "path": "12-build-good-stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "12-build-good-stdout.txt",
+      "raw_sha256": "d77f5b2ba17bdc364bac04cb7e27b40ef36283f09264a7a049a4b48a119e0678",
+      "retained_sha256": "d77f5b2ba17bdc364bac04cb7e27b40ef36283f09264a7a049a4b48a119e0678"
+    },
+    {
+      "path": "13-run-good-stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "13-run-good-stdout.txt",
+      "raw_sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "retained_sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "path": "bad-source.txt",
+      "raw_sha256": "e4d27749c1721ac8d79d2ec22c608f8ee8fe9cf2093ce80c50d94ede6fa0b6c2",
+      "retained_sha256": "e4d27749c1721ac8d79d2ec22c608f8ee8fe9cf2093ce80c50d94ede6fa0b6c2"
+    },
+    {
+      "path": "good-source.txt",
+      "raw_sha256": "def02230a4fb08699e8ea939e04e4a5b7330143fcae82f654724b1024c26b087",
+      "retained_sha256": "def02230a4fb08699e8ea939e04e4a5b7330143fcae82f654724b1024c26b087"
+    },
+    {
+      "path": "reader-commands.txt",
+      "raw_sha256": "f74d4d8a5cb3364c17d7c1d238a60903ee42f5a1b59eacd635295b68a6a2a245",
+      "retained_sha256": "f74d4d8a5cb3364c17d7c1d238a60903ee42f5a1b59eacd635295b68a6a2a245"
+    },
+    {
+      "path": "reader-digests.json",
+      "raw_sha256": "fc70edebd0ccb12da97281919032841cc441f7d791ad77e0c5c48f3b6dc8e5f9",
+      "retained_sha256": "fc70edebd0ccb12da97281919032841cc441f7d791ad77e0c5c48f3b6dc8e5f9"
+    },
+    {
+      "path": "reader-environment.json",
+      "raw_sha256": "b1eccd4711391bdc454fc21ed3e3df318bf8b130ce48a97b82f15dca2a8f3f0e",
+      "retained_sha256": "b1eccd4711391bdc454fc21ed3e3df318bf8b130ce48a97b82f15dca2a8f3f0e"
+    },
+    {
+      "path": "reader-run.json",
+      "raw_sha256": "8c5460832fb5fcf243de466c1a4f912181927f7cd7089cd2b5a349fc208fbecf",
+      "retained_sha256": "8c5460832fb5fcf243de466c1a4f912181927f7cd7089cd2b5a349fc208fbecf"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+Operator: independent reader agent retest_reader_python
+Date: 2026-11-06
+Site build supplied by coordinator: 46be6de (not inspected in source).
+
+Before executing:
+Pylint inline: W0611 unused-import for math in bad/greeting.py; exit 4.
+Pylint correction: no diagnostic in good/greeting.py; exit 0.
+Combined demo bad: Ruff F401 math; mypy arg-type greeting("three"); runner exit 1.
+Combined demo good: no findings from either checker; runner exit 0.
+Invoice project copy: unused pathlib.Path import; amount is annotated str but total returns int.
+Expected correction based on supplied README: remove unused Path import and annotate amount as int.
+Project scope: src only, Python 3.13, no dependencies, no plugins, documented Ruff E4/E7/E9/F and strict mypy settings.
+Gate chosen: both checkers must complete without diagnostics after correction. A setup failure is not a pass.
+Report directories are new and unique per run.

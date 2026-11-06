@@ -1,0 +1,12 @@
+{
+  "OS": "Microsoft Windows 10.0.20348",
+  "OSArchitecture": "X64",
+  "ProcessArchitecture": "X64",
+  "PowerShellVersion": "7.6.9",
+  "PowerShellEdition": "Core",
+  "RunnerOS": "Windows",
+  "RunnerArchitecture": "X64",
+  "ImageOS": "win22",
+  "ImageVersion": "20261101.353.1",
+  "ASAN_OPTIONS": null
+}

@@ -1,0 +1,69 @@
+{
+  "run_url": "https://github.com/zwadhams/ToolWiki/actions/runs/42303178089",
+  "commit": "506c522ca86fd8c9d7b688f35a4d37f842d04cc9",
+  "artifact_id": 13545251137,
+  "archive_sha256": "a27bad64a3fca31e2a6af9e914503d461ae7622d6e8f4bac878d9d620883146f",
+  "normalization": "Removed optional UTF-8 BOM; non-ASCII characters escaped visibly; no substantive output removed. Raw archive retained under .preview/reader-ci.",
+  "files": [
+    {
+      "path": "bad-build.stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "bad-run.stderr.txt",
+      "raw_sha256": "f7a8e70305b277e0e03e3810aefbac0d6f4cc99a5eecaac2f34dc465b3fb0fd0",
+      "retained_sha256": "f7a8e70305b277e0e03e3810aefbac0d6f4cc99a5eecaac2f34dc465b3fb0fd0"
+    },
+    {
+      "path": "bad-build.stdout.txt",
+      "raw_sha256": "d77f5b2ba17bdc364bac04cb7e27b40ef36283f09264a7a049a4b48a119e0678",
+      "retained_sha256": "d77f5b2ba17bdc364bac04cb7e27b40ef36283f09264a7a049a4b48a119e0678"
+    },
+    {
+      "path": "bad-run.stdout.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "developer-shell.txt",
+      "raw_sha256": "f4bd59d98a14339dbd1b25ad80ec5cfbced84164ccb818b886068e040220360f",
+      "retained_sha256": "f4bd59d98a14339dbd1b25ad80ec5cfbced84164ccb818b886068e040220360f"
+    },
+    {
+      "path": "good-build.stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "good-build.stdout.txt",
+      "raw_sha256": "d77f5b2ba17bdc364bac04cb7e27b40ef36283f09264a7a049a4b48a119e0678",
+      "retained_sha256": "d77f5b2ba17bdc364bac04cb7e27b40ef36283f09264a7a049a4b48a119e0678"
+    },
+    {
+      "path": "good-run.stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "good-run.stdout.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run.json",
+      "raw_sha256": "8e2ff31b72fa7405be0daff8c1af5998eff567400423c0752fd5f4c850c28253",
+      "retained_sha256": "8e2ff31b72fa7405be0daff8c1af5998eff567400423c0752fd5f4c850c28253"
+    },
+    {
+      "path": "vswhere.stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "vswhere.stdout.txt",
+      "raw_sha256": "7889cf20064288061cad9c1983f1febeb96837fe461a0422f1205c17dbebafeb",
+      "retained_sha256": "7889cf20064288061cad9c1983f1febeb96837fe461a0422f1205c17dbebafeb"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "date": "2026-11-06",
+  "status": "passed",
+  "product_revision": "f9308424ca218959b10a6ecb5860bd637c8fc025",
+  "native_reader_revision": "f7e6eec324057646915c0688715ba0e69e9fce71",
+  "repository_checks": {
+    "command": "pnpm verify",
+    "exit_code": 0,
+    "astro_files": 43,
+    "astro_errors": 0,
+    "astro_warnings": 0,
+    "tests_passed": 101,
+    "tests_failed": 0,
+    "pages_checked": 133,
+    "catalog_tools": 98,
+    "builder_tools": 86,
+    "output": "verification-final.txt",
+    "build_note": "Pagefind needed normal user permissions; the final complete verification succeeded after the initial sandbox permission failure."
+  },
+  "reader_gates": {
+    "python": "passed",
+    "api": "passed",
+    "memory_initial": "passed with minor wording mismatch",
+    "memory_confirmation": "passed after wording correction"
+  },
+  "evidence_checks": {
+    "ascii_files": 301,
+    "json_documents": 51,
+    "xml_reports": 11,
+    "retained_provenance_hashes_verified": 61,
+    "reader_artifact_archives_verified": 2,
+    "snapshot_source_hashes_verified": 2,
+    "final_reader_script_hash_verified": true,
+    "api_raw_base64_roundtrip": "passed",
+    "input_and_exit_checks": "evidence-checks.json",
+    "manifest": "evidence-manifest.json",
+    "manifest_sha256": "1635dbcd026acd0c90333a5f8bb0e9a9db960d3634de5441679e68a9e3ec5e74",
+    "git_staged_bytes_preserved": true,
+    "git_unique_paths_verified": 317
+  },
+  "history_checks": {
+    "original_files": 236,
+    "unchanged_files": 233,
+    "permitted_changed_files": [
+      "audits/review-status/current.json",
+      "audits/review-status/current.md",
+      "audits/review-status/reviews.json"
+    ],
+    "original_review_entries": 8,
+    "preserved_original_entries": true,
+    "appended_scoped_entries": 4
+  },
+  "cleanup": {
+    "preview_session_stopped": 40738,
+    "verified_closed_loopback_ports": [
+      4361,
+      4362,
+      4363,
+      8771,
+      8785
+    ],
+    "global_installs_or_host_settings_changed": false
+  },
+  "delivery": {
+    "branch": "codex/reader-workflows",
+    "merged_to_main": false,
+    "pages_deployed": false
+  },
+  "limits": "See README.md and the individual reader reports. Native CI validates an installed x64 toolchain; fresh installation and ARM64 remain untested.",
+  "post_verification_changes": "Evidence packaging, scoped review records, and a narrowly scoped Git newline rule only. Public source blobs match the verified product revision."
+}

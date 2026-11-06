@@ -1,0 +1,29 @@
+Ready on http://127.0.0.1:8781; mode=fixed. Ctrl+C stops the server.
+{"method": "GET", "path": "/health", "status": 200, "request_body": ""}
+{"method": "GET", "path": "/", "status": 404, "request_body": ""}
+{"method": "GET", "path": "/schemathesis-probe%5C%1B%01", "status": 404, "request_body": ""}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": ""}
+{"method": "TRACE", "path": "/widgets", "status": 501, "request_body": ""}
+{"method": "QUERY", "path": "/widgets", "status": 501, "request_body": ""}
+{"method": "PUT", "path": "/widgets", "status": 501, "request_body": ""}
+{"method": "PATCH", "path": "/widgets", "status": 501, "request_body": ""}
+{"method": "OPTIONS", "path": "/widgets", "status": 501, "request_body": ""}
+{"method": "GET", "path": "/widgets", "status": 404, "request_body": ""}
+{"method": "DELETE", "path": "/widgets", "status": 404, "request_body": ""}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "{\"quantity\": 101}"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "{\"quantity\": -1}"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "{\"quantity\": {}}"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "{\"quantity\": [null, null]}"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "{\"quantity\": \"AAA\"}"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "{\"quantity\": null}"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "{\"quantity\": false}"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "{\"quantity\": 2.5890419884777833e-42}"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "{}"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "{\"quantity\": 1, \"x-schemathesis-unknown-property\": 42}"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "[null, null]"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "\"AAA\""}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "null"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "false"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "0"}
+{"method": "POST", "path": "/widgets", "status": 201, "request_body": "{\"quantity\": 1}"}
+{"method": "POST", "path": "/widgets", "status": 201, "request_body": "{\"quantity\": 1}"}

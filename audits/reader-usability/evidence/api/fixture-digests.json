@@ -1,0 +1,22 @@
+[
+  {
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\examples\\http-api\\server.py",
+    "Hash": "B419C1974730330D7E9B9956F01317755AB50BCD4909C909D32019A99E077867"
+  },
+  {
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\examples\\http-api\\replay.py",
+    "Hash": "752FB43FE26EA76FD722BF446F1F808FFCDE7C9F4D460AEFBDAAF99F702CA89B"
+  },
+  {
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\examples\\http-api\\openapi.json",
+    "Hash": "13AB784C1177AC2BA0F133FB4201772BB7EB5A576688F1A26D8B4D0DEDD7674B"
+  },
+  {
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\examples\\http-api\\requirements-lock.txt",
+    "Hash": "FDB2378681DF6901FB028DB02A4FFDB5514D3C5630C001E62644552F496D0FBA"
+  },
+  {
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\examples\\http-api\\run_schemathesis.py",
+    "Hash": "BF1BCE7EB0449ECA59F7985D1FF94731653F1519838F69909B26C4F048E00ECD"
+  }
+]

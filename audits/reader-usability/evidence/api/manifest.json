@@ -1,0 +1,142 @@
+{
+  "normalization": "UTF-8 decoded; optional BOM and terminal control sequences removed; non-ASCII code points escaped visibly. Reports retain their original semantics, but normalized file hashes can differ. Raw reports remain in the isolated execution root.",
+  "files": [
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\replay-faulty.txt",
+      "retained": "replay-faulty.txt",
+      "raw_sha256": "7dbaab2b50efa29e1b39dd37331094258a932a06805e1230e91eb7a3c0650db1",
+      "retained_sha256": "7dbaab2b50efa29e1b39dd37331094258a932a06805e1230e91eb7a3c0650db1",
+      "raw_bytes": 227,
+      "retained_bytes": 227
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\replay-fixed.txt",
+      "retained": "replay-fixed.txt",
+      "raw_sha256": "5c5963b6a1a47c731fcfa900f677ecea0d9ca959f2c035fe0df577050b9853a1",
+      "retained_sha256": "5c5963b6a1a47c731fcfa900f677ecea0d9ca959f2c035fe0df577050b9853a1",
+      "raw_bytes": 295,
+      "retained_bytes": 295
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\installed-versions.txt",
+      "retained": "installed-versions.txt",
+      "raw_sha256": "4898801dec8204765e97491ecbf50a7df92cd4aa40dd0dbaed2ddebffa58737b",
+      "retained_sha256": "4898801dec8204765e97491ecbf50a7df92cd4aa40dd0dbaed2ddebffa58737b",
+      "raw_bytes": 532,
+      "retained_bytes": 532
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\fixture-digests.json",
+      "retained": "fixture-digests.json",
+      "raw_sha256": "c455785924b7c46673f793ee091ff8123c5625e3bea0326101e56084ca8d2a67",
+      "retained_sha256": "c455785924b7c46673f793ee091ff8123c5625e3bea0326101e56084ca8d2a67",
+      "raw_bytes": 1055,
+      "retained_bytes": 1055
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\.preview\\api-faulty\\stdout.txt",
+      "retained": "faulty/stdout-ascii.txt",
+      "raw_sha256": "7883c695f8177333b50d2ad3f52085748beed645d53be035e9afd1c975b898ae",
+      "retained_sha256": "ae4b74aa8bbc8662484c40453b57d3efd073ad1efb0d2e26f2e3aca28c649bd1",
+      "raw_bytes": 1643,
+      "retained_bytes": 1736
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\.preview\\api-faulty\\stderr.txt",
+      "retained": "faulty/stderr-ascii.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\.preview\\api-faulty\\junit.xml",
+      "retained": "faulty/junit.xml",
+      "raw_sha256": "96ff6ac70b390e2e47d43d1ac84ea53ba1a73fca7a7cd9f0925922903fa61eab",
+      "retained_sha256": "96ff6ac70b390e2e47d43d1ac84ea53ba1a73fca7a7cd9f0925922903fa61eab",
+      "raw_bytes": 651,
+      "retained_bytes": 651
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\.preview\\api-faulty\\run.json",
+      "retained": "faulty/run.json",
+      "raw_sha256": "c79f58b8215d6e11c6636889d35285875e3d2989f21f37d23e1ca71f07781cfe",
+      "retained_sha256": "c79f58b8215d6e11c6636889d35285875e3d2989f21f37d23e1ca71f07781cfe",
+      "raw_bytes": 841,
+      "retained_bytes": 841
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\.preview\\api-fixed\\stdout.txt",
+      "retained": "fixed/stdout-ascii.txt",
+      "raw_sha256": "dd7b647bffd66be52b8ef85f12f4dc6cdc229e94c267b3b43700702d102cccba",
+      "retained_sha256": "65e1fc50bcaaee3954197dd2b1b81bd2b3c22d27c41f91e7407541667dcca94f",
+      "raw_bytes": 1016,
+      "retained_bytes": 1106
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\.preview\\api-fixed\\stderr.txt",
+      "retained": "fixed/stderr-ascii.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\.preview\\api-fixed\\junit.xml",
+      "retained": "fixed/junit.xml",
+      "raw_sha256": "7dfd8438d15a58d185a6664254840ef2a75273087dc6a91c1b44fae97fb8d860",
+      "retained_sha256": "7dfd8438d15a58d185a6664254840ef2a75273087dc6a91c1b44fae97fb8d860",
+      "raw_bytes": 449,
+      "retained_bytes": 449
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\.preview\\api-fixed\\run.json",
+      "retained": "fixed/run.json",
+      "raw_sha256": "fc1613b070c2329354e9f64e15c2468589d475cbb95e836ebbf0adfd54ea4985",
+      "retained_sha256": "fc1613b070c2329354e9f64e15c2468589d475cbb95e836ebbf0adfd54ea4985",
+      "raw_bytes": 840,
+      "retained_bytes": 840
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\examples\\http-api\\server.py",
+      "retained": "inputs/server.py",
+      "raw_sha256": "b419c1974730330d7e9b9956f01317755ab50bcd4909c909d32019a99e077867",
+      "retained_sha256": "b419c1974730330d7e9b9956f01317755ab50bcd4909c909d32019a99e077867",
+      "raw_bytes": 4503,
+      "retained_bytes": 4503
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\examples\\http-api\\replay.py",
+      "retained": "inputs/replay.py",
+      "raw_sha256": "752fb43fe26ea76fd722bf446f1f808ffcde7c9f4d460aefbdaaf99f702ca89b",
+      "retained_sha256": "752fb43fe26ea76fd722bf446f1f808ffcde7c9f4d460aefbdaaf99f702ca89b",
+      "raw_bytes": 1887,
+      "retained_bytes": 1887
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\examples\\http-api\\openapi.json",
+      "retained": "inputs/openapi.json",
+      "raw_sha256": "13ab784c1177ac2ba0f133fb4201772bb7eb5a576688f1a26d8b4d0dedd7674b",
+      "retained_sha256": "13ab784c1177ac2ba0f133fb4201772bb7eb5a576688f1a26d8b4d0dedd7674b",
+      "raw_bytes": 2666,
+      "retained_bytes": 2666
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\examples\\http-api\\requirements-lock.txt",
+      "retained": "inputs/requirements-lock.txt",
+      "raw_sha256": "fdb2378681df6901fb028db02a4ffdb5514d3c5630c001e62644552f496d0fba",
+      "retained_sha256": "fdb2378681df6901fb028db02a4ffdb5514d3c5630c001e62644552f496d0fba",
+      "raw_bytes": 532,
+      "retained_bytes": 532
+    },
+    {
+      "source": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-usability\\api\\examples\\http-api\\run_schemathesis.py",
+      "retained": "inputs/run_schemathesis.py",
+      "raw_sha256": "bf1bce7eb0449eca59f7985d1ff94731653f1519838f69909b26c4f048e00ecd",
+      "retained_sha256": "bf1bce7eb0449eca59f7985d1ff94731653f1519838f69909b26c4f048e00ecd",
+      "raw_bytes": 2766,
+      "retained_bytes": 2766
+    }
+  ],
+  "cleanup": "All own service sessions stopped with Ctrl+C. Get-NetTCPConnection found no listener on port 8771 afterward."
+}

@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/orders",
+    "body": {
+      "quantity": 0
+    }
+  },
+  "status": 500,
+  "response": {
+    "error": "Zero-quantity unit-price defect"
+  },
+  "mode": "faulty"
+}

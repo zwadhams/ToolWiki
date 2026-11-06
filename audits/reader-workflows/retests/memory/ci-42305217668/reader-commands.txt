@@ -1,0 +1,68 @@
+### 01-download-snapshot
+Working directory: D:\a\_temp\reader-memory-evidence\memory-reader-work-c73e14cafc89406686a663bd10c98684
+Invoke-WebRequest 'https://github.com/zwadhams/ToolWiki/archive/506c522ca86fd8c9d7b688f35a4d37f842d04cc9.zip' -OutFile examples.zip
+
+### 02-extract-snapshot
+Working directory: D:\a\_temp\reader-memory-evidence\memory-reader-work-c73e14cafc89406686a663bd10c98684
+Expand-Archive -LiteralPath examples.zip -DestinationPath .
+
+### 03-enter-repository
+Working directory: D:\a\_temp\reader-memory-evidence\memory-reader-work-c73e14cafc89406686a663bd10c98684
+Set-Location '.\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9'
+
+### 04-enter-example
+Working directory: D:\a\_temp\reader-memory-evidence\memory-reader-work-c73e14cafc89406686a663bd10c98684\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9
+Set-Location ./examples/windows-memory
+
+### 05-host-architecture
+Working directory: D:\a\_temp\reader-memory-evidence\memory-reader-work-c73e14cafc89406686a663bd10c98684\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\examples\windows-memory
+[System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture
+
+### 06-initialize-developer-shell
+Working directory: D:\a\_temp\reader-memory-evidence\memory-reader-work-c73e14cafc89406686a663bd10c98684\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\examples\windows-memory
+$vswhere = "${env:ProgramFiles(x86)}/Microsoft Visual Studio/Installer/vswhere.exe"
+        if (-not (Test-Path $vswhere)) { throw 'Install Visual Studio 2022 C++ tools first.' }
+        $vs = & $vswhere -latest -products * -version '[17.7,18.0)' -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+        if (-not $vs) { throw 'VS 2022 17.7+ with x64 C++ tools was not found.' }
+        & "$vs/Common7/Tools/Launch-VsDevShell.ps1" -Arch amd64 -HostArch amd64 -SkipAutomaticLocation
+
+### 07-compiler-banner
+Working directory: D:\a\_temp\reader-memory-evidence\memory-reader-work-c73e14cafc89406686a663bd10c98684\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\examples\windows-memory
+cl
+
+### 08-target-and-runtime
+Working directory: D:\a\_temp\reader-memory-evidence\memory-reader-work-c73e14cafc89406686a663bd10c98684\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\examples\windows-memory
+$env:VSCMD_ARG_HOST_ARCH
+        $env:VSCMD_ARG_TGT_ARCH
+        $compiler = (Get-Command cl.exe -ErrorAction Stop).Source
+        $runtime = Join-Path (Split-Path $compiler) 'clang_rt.asan_dynamic-x86_64.dll'
+        if (-not (Test-Path $runtime)) { throw 'Add C++ AddressSanitizer in the VS 2022 Installer.' }
+
+### 09-version-metadata
+Working directory: D:\a\_temp\reader-memory-evidence\memory-reader-work-c73e14cafc89406686a663bd10c98684\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\examples\windows-memory
+$vswhere = "${env:ProgramFiles(x86)}/Microsoft Visual Studio/Installer/vswhere.exe"
+        & $vswhere -latest -products * -version '[17.7,18.0)' -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -format json
+        $compiler = (Get-Command cl.exe -ErrorAction Stop).Source
+        $runtime = Join-Path (Split-Path $compiler) 'clang_rt.asan_dynamic-x86_64.dll'
+        Get-Item -LiteralPath $compiler, $runtime | Select-Object FullName, @{Name='FileVersion';Expression={$_.VersionInfo.FileVersion}}, @{Name='ProductVersion';Expression={$_.VersionInfo.ProductVersion}} | ConvertTo-Json -Depth 4
+
+### 10-build-bad
+Working directory: D:\a\_temp\reader-memory-evidence\memory-reader-work-c73e14cafc89406686a663bd10c98684\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\examples\windows-memory
+New-Item -ItemType Directory -Path build -Force | Out-Null
+        cl /nologo /Od /Zi /fsanitize=address ./bad/bounds.c /Fe:build/bad.exe /Fo:build/bad.obj /Fd:build/bad-compile.pdb /link /DEBUG /INCREMENTAL:NO
+        if ($LASTEXITCODE -ne 0) { throw 'Build failed; resolve the compiler or linker error before running.' }
+
+### 11-run-bad
+Working directory: D:\a\_temp\reader-memory-evidence\memory-reader-work-c73e14cafc89406686a663bd10c98684\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\examples\windows-memory
+./build/bad.exe
+        $LASTEXITCODE
+
+### 12-build-good
+Working directory: D:\a\_temp\reader-memory-evidence\memory-reader-work-c73e14cafc89406686a663bd10c98684\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\examples\windows-memory
+cl /nologo /Od /Zi /fsanitize=address ./good/bounds.c /Fe:build/good.exe /Fo:build/good.obj /Fd:build/good-compile.pdb /link /DEBUG /INCREMENTAL:NO
+        if ($LASTEXITCODE -ne 0) { throw 'Corrected build failed.' }
+
+### 13-run-good
+Working directory: D:\a\_temp\reader-memory-evidence\memory-reader-work-c73e14cafc89406686a663bd10c98684\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\examples\windows-memory
+./build/good.exe
+        $LASTEXITCODE

@@ -1,0 +1,96 @@
+{
+  "objective": "Implement the five reader-workflow improvements and pass independent fresh-reader retests for Python, API and native Windows x64 memory checking.",
+  "base_revision": "21d14974c0498960cc2929900a58c1f27b60cd70",
+  "baseline_commit": "1c1e7ed",
+  "branch": "codex/reader-workflows",
+  "audience": "Basic programming/terminal familiarity; concise setup, commands and expected results without excessive handholding.",
+  "items": [
+    {
+      "id": "RU-01",
+      "title": "Add concrete own-project and own-API next steps",
+      "acceptance": "Starting after the successful demo, a reader can identify exactly what to replace and run a bounded check on a second synthetic project/API without designing the command from a reference manual.",
+      "status": "passed",
+      "evidence": [
+        "retests/python/report.md",
+        "retests/api/report.md"
+      ]
+    },
+    {
+      "id": "RU-02",
+      "title": "Complete one Windows memory-checking first-run path",
+      "acceptance": "A fresh reader can verify prerequisites, run the known failure and correction, locate the report, and explain its limits. If setup is unavailable, the next action and support boundary are explicit.",
+      "status": "passed",
+      "evidence": [
+        "retests/memory-confirmation/report.md"
+      ]
+    },
+    {
+      "id": "RU-03",
+      "title": "Clarify and verify the API interpreter requirement",
+      "acceptance": "The prose and command select the same intended runtime; a reader with a different default Python can tell whether to proceed or install/select another interpreter.",
+      "status": "passed",
+      "evidence": [
+        "retests/api/report.md"
+      ]
+    },
+    {
+      "id": "RU-04",
+      "title": "Make Pylint first steps easier to reach",
+      "acceptance": "The reader can reach an installation command, file-check invocation, and output explanation from the start section without locating multiple source citations.",
+      "status": "passed",
+      "evidence": [
+        "retests/python/report.md"
+      ]
+    },
+    {
+      "id": "RU-05",
+      "title": "Explain how to obtain and enter the example directory",
+      "acceptance": "Test acquisition from the published site in a directory without an existing checkout; keep this opportunity provisional until that test.",
+      "status": "passed",
+      "evidence": [
+        "retests/python/report.md",
+        "retests/api/report.md",
+        "retests/memory-confirmation/report.md"
+      ]
+    }
+  ],
+  "gates": {
+    "local_verification": "passed-final-pnpm-verify:101-tests;133-pages;no-Astro-errors-or-warnings",
+    "windows_ci_fault_and_correction": "passed-implementation-and-two-independent-reader-replays",
+    "fresh_python_reader": "passed-demo-pylint-and-invoice-adaptation",
+    "fresh_api_reader": "passed-demo-and-shipment-adaptation-with-negative-input-check",
+    "fresh_memory_reader": "passed-initial-replay-and-new-reader-confirmation-after-wording-correction",
+    "fresh_example_acquisition": "passed-public-ZIP-in-new-empty-directories",
+    "held_out_project_and_api": "passed-invoice-and-shipment-adaptations",
+    "review_provenance": "scoped-entries-appended;derived-reports-regenerated"
+  },
+  "source_snapshot": "506c522ca86fd8c9d7b688f35a4d37f842d04cc9",
+  "limits": [
+    "No merge to main or Pages publication.",
+    "No global toolchain installations or host settings changes.",
+    "Windows memory execution is native x64 CI; this ARM64 host is not validated.",
+    "Keep baseline audits immutable."
+  ],
+  "windows_ci": {
+    "run_id": 42303178089,
+    "url": "https://github.com/zwadhams/ToolWiki/actions/runs/42303178089",
+    "record": "implementation/memory/ci-42303178089/run.json",
+    "commit": "506c522ca86fd8c9d7b688f35a4d37f842d04cc9"
+  },
+  "fresh_windows_ci": {
+    "run_id": 42305217668,
+    "url": "https://github.com/zwadhams/ToolWiki/actions/runs/42305217668",
+    "commit": "56bc97faa43a0448ee5fbe73d293c3b0ce291b9d",
+    "record": "retests/memory/ci-42305217668/reader-run.json",
+    "artifact_sha256": "b3dea816c4eae263bf2e804e2568c20b96e892201393e6272be59b1e47f7f3e1"
+  },
+  "status": "complete",
+  "confirmation_windows_ci": {
+    "run_id": 42306409445,
+    "url": "https://github.com/zwadhams/ToolWiki/actions/runs/42306409445",
+    "commit": "f7e6eec324057646915c0688715ba0e69e9fce71",
+    "record": "retests/memory-confirmation/ci-42306409445/reader-run.json",
+    "artifact_sha256": "af292bf963ca5f0825dd806d6f83dadc3a7998acfd143c1ea0b86173cd663885"
+  },
+  "final_verification": "verification-final.txt"
+}

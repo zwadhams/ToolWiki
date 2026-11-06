@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.3",
+  "info": {"title": "ToolWiki disposable widgets API", "version": "1.0.0"},
+  "servers": [{"url": "http://127.0.0.1:8781"}],
+  "paths": {
+    "/widgets": {
+      "post": {
+        "operationId": "createWidget",
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"type": "object", "additionalProperties": false, "required": ["quantity"], "properties": {"quantity": {"type": "integer", "minimum": 0, "maximum": 100, "example": 1}}}}}},
+        "responses": {
+          "201": {
+            "description": "Created widget, including zero-quantity widgets",
+            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Widget"}}},
+            "links": {
+              "ReadWidget": {"operationId": "getWidget", "parameters": {"widgetId": "$response.body#/id"}},
+              "DeleteWidget": {"operationId": "deleteWidget", "parameters": {"widgetId": "$response.body#/id"}}
+            }
+          },
+          "400": {"$ref": "#/components/responses/BadRequest"},
+          "429": {"description": "Fixture storage full; reset the service", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Error"}}}}
+        }
+      }
+    },
+    "/widgets/{widgetId}": {
+      "parameters": [{"name": "widgetId", "in": "path", "required": true, "schema": {"type": "string", "pattern": "^[0-9]+$"}}],
+      "get": {
+        "operationId": "getWidget",
+        "responses": {
+          "200": {"description": "Stored widget", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Widget"}}}},
+          "404": {"$ref": "#/components/responses/NotFound"}
+        }
+      },
+      "delete": {
+        "operationId": "deleteWidget",
+        "responses": {"204": {"description": "Widget removed"}, "404": {"$ref": "#/components/responses/NotFound"}}
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Widget": {"type": "object", "additionalProperties": false, "required": ["id", "quantity", "total", "unitPrice"], "properties": {
+        "id": {"type": "string", "pattern": "^[0-9]+$"}, "quantity": {"type": "integer", "minimum": 0, "maximum": 100},
+        "total": {"type": "integer", "minimum": 0}, "unitPrice": {"type": "integer", "minimum": 0}
+      }},
+      "Error": {"type": "object", "required": ["error"], "properties": {"error": {"type": "string"}}}
+    },
+    "responses": {
+      "BadRequest": {"description": "Invalid input", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Error"}}}},
+      "NotFound": {"description": "No such widget", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Error"}}}}
+    }
+  }
+}

@@ -1,0 +1,100 @@
+**********************
+PowerShell transcript start
+Start time: 20261106152736
+Username: ZACH-SURFACE\zwadh
+RunAs User: ZACH-SURFACE\zwadh
+Configuration Name: 
+Machine: ZACH-SURFACE (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Program Files\WindowsApps\OpenAI.CodexPrimaryRuntime.v26-1104-709-0_26.1104.709.0_arm64__3k8sg7r9htsxt\dependencies\native\powershell\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+& 'C:\Users\zwadh\Repos\ToolWiki\audits\reader-workflows\retests\python\combined-demo.ps1'
+Process ID: 54556
+PSVersion: 7.6.9
+PSEdition: Core
+GitCommitId: 7.6.9
+OS: Microsoft Windows 10.0.26300
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is C:\Users\zwadh\Repos\ToolWiki\audits\reader-workflows\retests\python/combined-demo.txt
+
+
+
+
+bad runner exit: 1
+[
+  {
+    "cell": null,
+    "code": "F401",
+    "end_location": {
+      "column": 12,
+      "row": 1
+    },
+    "filename": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\python\\combined-download\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\python-checks\\bad\\greeting.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 1,
+            "row": 2
+          },
+          "location": {
+            "column": 1,
+            "row": 1
+          }
+        }
+      ],
+      "message": "Remove unused import: `math`"
+    },
+    "location": {
+      "column": 8,
+      "row": 1
+    },
+    "message": "`math` imported but unused",
+    "noqa_row": 1,
+    "url": "https://docs.astral.sh/ruff/rules/unused-import"
+  }
+]
+bad\greeting.py:8: error: Argument 1 to "greeting" has incompatible type "str"; expected "int"  [arg-type]
+Found 1 error in 1 file (checked 1 source file)
+
+good runner exit: 0
+[]
+Success: no issues found in 1 source file
+import math
+
+
+def greeting(count: int) -> str:
+    return "Hello " * count
+
+
+message = greeting("three")
+def greeting(count: int) -> str:
+    return "Hello " * count
+
+
+message = greeting(3)
+[tool.ruff]
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["F401"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+show_error_codes = true
+pretty = false
+ruff==0.14.3
+mypy==1.18.2
+mypy-extensions==1.1.0
+pathspec==0.12.1
+typing-extensions==4.15.0
+**********************
+PowerShell transcript end
+End time: 20261106152846
+**********************

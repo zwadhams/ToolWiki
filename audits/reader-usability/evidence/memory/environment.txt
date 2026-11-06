@@ -1,0 +1,49 @@
+Memory reader walkthrough, 2026-11-06
+Environment probes only. No target executable or diagnostic tool was run.
+These commands are agent-supplied availability checks, not wiki instructions.
+
+Commands:
+$readerMemoryNames = @('drmemory.exe','clang++','clang-cl','cl','g++')
+foreach ($readerMemoryName in $readerMemoryNames) {
+    $readerMemoryCommand = Get-Command $readerMemoryName -ErrorAction SilentlyContinue
+    if ($readerMemoryCommand) {
+        $readerMemoryCommand | Select-Object Name,Source
+    } else {
+        Write-Output "$readerMemoryName : not found on PATH"
+    }
+}
+Write-Output "PowerShell $($PSVersionTable.PSVersion)"
+Write-Output "OS $([System.Environment]::OSVersion.VersionString)"
+Write-Output "64-bit OS $([Environment]::Is64BitOperatingSystem)"
+
+Observed output:
+drmemory.exe : not found on PATH
+clang++ : not found on PATH
+clang-cl : not found on PATH
+cl : not found on PATH
+g++.exe C:\msys64\ucrt64\bin\g++.exe
+PowerShell 7.6.9
+OS Microsoft Windows NT 10.0.26300.0
+64-bit OS True
+
+Additional commands:
+$readerMemoryClang = Get-Command clang -ErrorAction SilentlyContinue
+if ($readerMemoryClang) {
+    $readerMemoryClang | Select-Object Name,Source
+} else {
+    Write-Output 'clang : not found on PATH'
+}
+& 'C:\msys64\ucrt64\bin\g++.exe' -dumpmachine
+& 'C:\msys64\ucrt64\bin\g++.exe' --version
+
+Observed output:
+clang : not found on PATH
+x86_64-w64-mingw32
+g++.exe (Rev4, Built by MSYS2 project) 16.2.0
+Copyright (C) 2026 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions. There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+No non-ASCII console glyphs were present in these outputs. Whitespace and the
+PowerShell table layout have been normalized; text and values are unchanged.
+PATH absence does not establish that a tool is absent from the whole device.

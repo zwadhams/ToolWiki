@@ -1,0 +1,120 @@
+{
+  "date_utc": "2026-11-06T22:14:30.2621035Z",
+  "purpose": "Implementation check, not final reader acceptance",
+  "powershell": "7.6.9",
+  "check_python": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\python\\example\\.venv\\Scripts\\python.exe",
+  "setup": [
+    {
+      "command": "$Python = \"python\"; & $Python --version",
+      "exit_code": 0,
+      "observed": "Python 3.13.15"
+    },
+    {
+      "command": "& $Python -m venv .venv",
+      "exit_code": 0,
+      "fresh_environment": true
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pip install -r requirements.txt",
+      "exit_code": 0
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pip install pylint==4.1.3",
+      "exit_code": 0
+    }
+  ],
+  "checks": [
+    {
+      "command": ".\\.venv\\Scripts\\python.exe run_checks.py bad --output reports/bad",
+      "working_directory": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\python\\example",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe run_checks.py good --output reports/good",
+      "working_directory": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\python\\example",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pylint --rcfile=pyproject.toml --disable=all --enable=unused-import --score=n --persistent=n bad/greeting.py",
+      "working_directory": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\python\\example",
+      "exit_code": 4,
+      "expected_exit_code": 4
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pylint --rcfile=pyproject.toml --disable=all --enable=unused-import --score=n --persistent=n good/greeting.py",
+      "working_directory": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\python\\example",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "command": "& $CheckPython -m ruff check --no-fix --no-cache --config pyproject.toml --output-format json $Target",
+      "working_directory": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\python\\project",
+      "target": ".\\src\\receipt",
+      "reports": ".\\check-reports\\first-run",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "command": "& $CheckPython -m mypy --no-incremental --cache-dir \"$Reports\\mypy-cache\" --config-file pyproject.toml $Target",
+      "working_directory": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\python\\project",
+      "target": ".\\src\\receipt",
+      "reports": ".\\check-reports\\first-run",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "command": "& $CheckPython -m ruff check --no-fix --no-cache --config pyproject.toml --output-format json $Target",
+      "working_directory": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\python\\project",
+      "target": ".\\src\\receipt",
+      "reports": ".\\check-reports\\corrected",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "command": "& $CheckPython -m mypy --no-incremental --cache-dir \"$Reports\\mypy-cache\" --config-file pyproject.toml $Target",
+      "working_directory": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\python\\project",
+      "target": ".\\src\\receipt",
+      "reports": ".\\check-reports\\corrected",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    }
+  ],
+  "bad_source_unchanged": true,
+  "good_source_unchanged": true,
+  "report_directory_reuse_rejected": true,
+  "fixture_copy_hashes": [
+    {
+      "path": "bad/greeting.py",
+      "original_sha256": "ae2a8d14259cb9d2b87df0fa5d9886bb380ea17ab8753e76c8683ab7090ae4a3",
+      "tested_sha256": "ae2a8d14259cb9d2b87df0fa5d9886bb380ea17ab8753e76c8683ab7090ae4a3"
+    },
+    {
+      "path": "good/greeting.py",
+      "original_sha256": "ec88bf30da24ef6bda3a0b696145015055e8037ee5d25dcf6a1d05f1149cf46b",
+      "tested_sha256": "ec88bf30da24ef6bda3a0b696145015055e8037ee5d25dcf6a1d05f1149cf46b"
+    },
+    {
+      "path": "pyproject.toml",
+      "original_sha256": "995758050d891bfb9ca75bb3820446b0f82353727efaffb87344c8fea48407d9",
+      "tested_sha256": "995758050d891bfb9ca75bb3820446b0f82353727efaffb87344c8fea48407d9"
+    },
+    {
+      "path": "requirements.txt",
+      "original_sha256": "7fc660f71e47412548c51dc4c9eb982af3c4bdd52ce91634ad9e373cff7f87cd",
+      "tested_sha256": "7fc660f71e47412548c51dc4c9eb982af3c4bdd52ce91634ad9e373cff7f87cd"
+    },
+    {
+      "path": "run_checks.py",
+      "original_sha256": "e251b3267934feb80724af9d2ee60145059a7259a36210458ee4e6a08d8c150c",
+      "tested_sha256": "e251b3267934feb80724af9d2ee60145059a7259a36210458ee4e6a08d8c150c"
+    }
+  ],
+  "explicit_interpreter_check": {
+    "interpreter": "C:\\Users\\zwadh\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "command": "& $Python --version",
+    "stdout": "Python 3.13.15",
+    "exit_code": 0
+  }
+}

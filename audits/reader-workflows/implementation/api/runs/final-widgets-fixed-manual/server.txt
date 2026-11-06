@@ -1,0 +1,8 @@
+Ready on http://127.0.0.1:8781; mode=fixed. Ctrl+C stops the server.
+{"method": "GET", "path": "/health", "status": 200, "request_body": ""}
+{"method": "POST", "path": "/widgets", "status": 201, "request_body": "{\"quantity\": 0}"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "{\"quantity\": -1}"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "{\"quantity\": 101}"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "{\"quantity\": \"1\"}"}
+{"method": "POST", "path": "/widgets", "status": 400, "request_body": "{}"}
+{"method": "GET", "path": "/orders", "status": 404, "request_body": ""}

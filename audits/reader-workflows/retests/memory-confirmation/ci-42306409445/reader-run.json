@@ -1,0 +1,226 @@
+{
+  "status": "completed",
+  "startedUtc": "2026-11-06T22:40:14.4918994Z",
+  "guide": "http://127.0.0.1:4363/ToolWiki/guides/windows-memory-check/",
+  "acquisitionGuide": "http://127.0.0.1:4363/ToolWiki/guides/get-examples/",
+  "exampleRevision": "506c522ca86fd8c9d7b688f35a4d37f842d04cc9",
+  "workPath": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849",
+  "powershellVersion": "7.6.9",
+  "osArchitecture": "X64",
+  "processArchitecture": "X64",
+  "osDescription": "Microsoft Windows 10.0.20348",
+  "runnerImageOS": "win22",
+  "runnerImageVersion": "20261101.353.1",
+  "githubSha": "f7e6eec324057646915c0688715ba0e69e9fce71",
+  "githubRunId": "42306409445",
+  "asanOptions": null,
+  "steps": [
+    {
+      "name": "download",
+      "command": "Invoke-WebRequest 'https://github.com/zwadhams/ToolWiki/archive/506c522ca86fd8c9d7b688f35a4d37f842d04cc9.zip' -OutFile examples.zip",
+      "workingDirectory": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849",
+      "startedUtc": "2026-11-06T22:40:14.5086685Z",
+      "status": "completed",
+      "nativeExitCode": null,
+      "completedUtc": "2026-11-06T22:40:15.2519725Z"
+    },
+    {
+      "name": "extract",
+      "command": "Expand-Archive -LiteralPath examples.zip -DestinationPath .",
+      "workingDirectory": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849",
+      "startedUtc": "2026-11-06T22:40:15.2590111Z",
+      "status": "completed",
+      "nativeExitCode": null,
+      "completedUtc": "2026-11-06T22:40:16.6805968Z"
+    },
+    {
+      "name": "repository-directory",
+      "command": "Set-Location '.\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9'",
+      "workingDirectory": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849",
+      "startedUtc": "2026-11-06T22:40:16.6807685Z",
+      "status": "completed",
+      "nativeExitCode": null,
+      "completedUtc": "2026-11-06T22:40:16.6816787Z"
+    },
+    {
+      "name": "example-directory",
+      "command": "Set-Location ./examples/windows-memory",
+      "workingDirectory": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9",
+      "startedUtc": "2026-11-06T22:40:16.6818154Z",
+      "status": "completed",
+      "nativeExitCode": null,
+      "completedUtc": "2026-11-06T22:40:16.6828388Z"
+    },
+    {
+      "name": "host-preflight",
+      "command": "[System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture",
+      "workingDirectory": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory",
+      "startedUtc": "2026-11-06T22:40:16.6829717Z",
+      "status": "completed",
+      "nativeExitCode": null,
+      "completedUtc": "2026-11-06T22:40:16.6914888Z"
+    },
+    {
+      "name": "developer-shell",
+      "command": "$vswhere = \"${env:ProgramFiles(x86)}/Microsoft Visual Studio/Installer/vswhere.exe\"\nif (-not (Test-Path $vswhere)) { throw 'Install Visual Studio 2022 C++ tools first.' }\n$vs = & $vswhere -latest -products * -version '[17.7,18.0)' -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath\nif (-not $vs) { throw 'VS 2022 17.7+ with x64 C++ tools was not found.' }\n& \"$vs/Common7/Tools/Launch-VsDevShell.ps1\" -Arch amd64 -HostArch amd64 -SkipAutomaticLocation",
+      "workingDirectory": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory",
+      "startedUtc": "2026-11-06T22:40:16.6916297Z",
+      "status": "completed",
+      "nativeExitCode": null,
+      "completedUtc": "2026-11-06T22:40:18.1472539Z"
+    },
+    {
+      "name": "visual-studio-version-metadata",
+      "command": "& $vswhere -latest -products * -version '[17.7,18.0)' -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationVersion",
+      "workingDirectory": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory",
+      "startedUtc": "2026-11-06T22:40:18.1474978Z",
+      "status": "completed",
+      "nativeExitCode": 0,
+      "completedUtc": "2026-11-06T22:40:18.1824645Z"
+    },
+    {
+      "name": "compiler-banner",
+      "command": "cl",
+      "workingDirectory": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory",
+      "startedUtc": "2026-11-06T22:40:18.1827500Z",
+      "status": "completed",
+      "nativeExitCode": 0,
+      "completedUtc": "2026-11-06T22:40:18.2780429Z"
+    },
+    {
+      "name": "compiler-runtime-preflight",
+      "command": "$env:VSCMD_ARG_HOST_ARCH\n$env:VSCMD_ARG_TGT_ARCH\n$compiler = (Get-Command cl.exe -ErrorAction Stop).Source\n$runtime = Join-Path (Split-Path $compiler) 'clang_rt.asan_dynamic-x86_64.dll'\nif (-not (Test-Path $runtime)) { throw 'Add C++ AddressSanitizer in the VS 2022 Installer.' }",
+      "workingDirectory": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory",
+      "startedUtc": "2026-11-06T22:40:18.2782423Z",
+      "status": "completed",
+      "nativeExitCode": null,
+      "completedUtc": "2026-11-06T22:40:18.3003252Z"
+    },
+    {
+      "name": "build-directory",
+      "command": "New-Item -ItemType Directory -Path build -Force | Out-Null",
+      "workingDirectory": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory",
+      "startedUtc": "2026-11-06T22:40:18.3004945Z",
+      "status": "completed",
+      "nativeExitCode": null,
+      "completedUtc": "2026-11-06T22:40:18.3012857Z"
+    },
+    {
+      "name": "bad-build",
+      "command": "cl /nologo /Od /Zi /fsanitize=address ./bad/bounds.c /Fe:build/bad.exe /Fo:build/bad.obj /Fd:build/bad-compile.pdb /link /DEBUG /INCREMENTAL:NO",
+      "workingDirectory": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory",
+      "startedUtc": "2026-11-06T22:40:18.3014316Z",
+      "status": "completed",
+      "nativeExitCode": 0,
+      "completedUtc": "2026-11-06T22:40:18.4591017Z"
+    },
+    {
+      "name": "bad-run",
+      "command": "./build/bad.exe\n$LASTEXITCODE",
+      "workingDirectory": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory",
+      "startedUtc": "2026-11-06T22:40:18.4593571Z",
+      "status": "completed",
+      "nativeExitCode": 1,
+      "completedUtc": "2026-11-06T22:40:18.5791716Z"
+    },
+    {
+      "name": "good-build",
+      "command": "cl /nologo /Od /Zi /fsanitize=address ./good/bounds.c /Fe:build/good.exe /Fo:build/good.obj /Fd:build/good-compile.pdb /link /DEBUG /INCREMENTAL:NO",
+      "workingDirectory": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory",
+      "startedUtc": "2026-11-06T22:40:18.5793448Z",
+      "status": "completed",
+      "nativeExitCode": 0,
+      "completedUtc": "2026-11-06T22:40:18.7429791Z"
+    },
+    {
+      "name": "good-run",
+      "command": "./build/good.exe\n$LASTEXITCODE",
+      "workingDirectory": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory",
+      "startedUtc": "2026-11-06T22:40:18.7432159Z",
+      "status": "completed",
+      "nativeExitCode": 0,
+      "completedUtc": "2026-11-06T22:40:18.8315496Z"
+    }
+  ],
+  "archiveSha256": "1EA0D5A28C0BCA15B8C5F1481451FB91B3970F1D9CB1D1475BADD242E1F6713E",
+  "vswhereExit": 0,
+  "visualStudioPath": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise",
+  "visualStudioVersion": "17.14.37827.9",
+  "compiler": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe",
+  "compilerVersion": "19.44.35229.0",
+  "runtime": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\clang_rt.asan_dynamic-x86_64.dll",
+  "runtimeVersion": null,
+  "hostCompilerArchitecture": "x64",
+  "targetArchitecture": "x64",
+  "fileDigests": [
+    {
+      "path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\bad\\bounds.c",
+      "sha256": "F01C2E0E14B3438BF14357CC940990DBDFFD03D68967D5BDC656BA2323884AC7",
+      "bytes": 164
+    },
+    {
+      "path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\good\\bounds.c",
+      "sha256": "85CC90C157FC6F7C7B76EFC6ACDD84B5FEEB44AE3766F44D3CE370C0E09CCC34",
+      "bytes": 164
+    },
+    {
+      "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe",
+      "sha256": "FE251EF50A1545B1B0835EE17B1E785459712B38D79E45B5C1D3D28970A36619",
+      "bytes": 677776
+    },
+    {
+      "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\clang_rt.asan_dynamic-x86_64.dll",
+      "sha256": "3AA742521E8CBD23252F0545AA51D5A15624A3E4430FBE2F81567AFAEB3FC59B",
+      "bytes": 1193496
+    },
+    {
+      "path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\bad-compile.pdb",
+      "sha256": "A2B56E8B1ECF4F884539141B1E355C4C8E29818AB4773968258BB7240FC8610C",
+      "bytes": 69632
+    },
+    {
+      "path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\bad.exe",
+      "sha256": "EBF377D18A884E577E39EC1CFF3270270603CEF31DC9154A41095519F45A7726",
+      "bytes": 538624
+    },
+    {
+      "path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\bad.obj",
+      "sha256": "515C7359528B0B19F3AC771D04301808FD8AA08506AE128DCA2D0E27172632CA",
+      "bytes": 3687
+    },
+    {
+      "path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\bad.pdb",
+      "sha256": "75409C908F33DECE837677D7EAF271F4497C4A2B8A8958AFC22263B75B938C53",
+      "bytes": 6475776
+    },
+    {
+      "path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\good-compile.pdb",
+      "sha256": "860D9F28BF1A4EFCEF939BD0A7A20F394158498A18A9561603ADA4D28C0F326B",
+      "bytes": 69632
+    },
+    {
+      "path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\good.exe",
+      "sha256": "F722EB3910D5668CC48CEDEB1DFD5136A1EB6CF22CB9F0F11D35F8D55EC73820",
+      "bytes": 538624
+    },
+    {
+      "path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\good.obj",
+      "sha256": "D0E251598EFC5D9A05EC43E427A7B4C548EB6A2356061B44FA452E225FB85921",
+      "bytes": 3687
+    },
+    {
+      "path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-14cad0d07e4643018359106cae94e849\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\good.pdb",
+      "sha256": "98656E7646CC7F3E411E30E5D3606FC298C2CC77BD897DB82405570D2DF01EED",
+      "bytes": 6475776
+    }
+  ],
+  "observedChecks": {
+    "badNonzero": true,
+    "heapBufferOverflow": true,
+    "writeSizeFour": true,
+    "sourceLineFive": true,
+    "goodExitZero": true,
+    "goodNoAsanError": true
+  },
+  "finishedUtc": "2026-11-06T22:40:19.0489375Z"
+}

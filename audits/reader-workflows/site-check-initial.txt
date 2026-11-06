@@ -1,0 +1,3 @@
+Verified 98 published source profiles against their loader-resolved catalog identities.
+Verified 133 built pages, local links, fragments, assets, search index, and discovery for 98 tools.
+Verified builder navigation and real-catalog recommendations for 86 reviewed tools.

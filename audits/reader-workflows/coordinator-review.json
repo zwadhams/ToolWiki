@@ -1,0 +1,159 @@
+{
+  "date": "2026-11-06",
+  "scope": "Coordinator checks of changes before fresh-reader results; this does not establish all claims on a tool profile.",
+  "source_revision": "46be6de2a5fbb2c9e9472b8c18d9e043625e4991",
+  "checks": [
+    {
+      "id": "DOC-01",
+      "result": "pass",
+      "detail": "Existing tool metadata unchanged; MSVC setup is separate from Clang/LLVM catalog scope. No new tool entries or saved-system changes."
+    },
+    {
+      "id": "DOC-02",
+      "result": "pass",
+      "detail": "Public source snapshot contains Python/API/memory fixtures; working-directory instructions match the snapshot layout. Fresh download execution remains the reader gate."
+    },
+    {
+      "id": "DOC-03",
+      "result": "pass",
+      "detail": "API primary runtime is checked Python 3.13. Historical 3.12 evidence remains separate and unchanged. Combined all-mode command is labeled untested."
+    },
+    {
+      "id": "DOC-04",
+      "result": "pass",
+      "detail": "Python project instructions preserve existing configuration, select the analyzer interpreter, require dependencies/stubs, and retain separate reports. Pylint first-use commands select one warning and show exit meanings."
+    },
+    {
+      "id": "DOC-05",
+      "result": "pass",
+      "detail": "Native Windows guide distinguishes OS architecture, compiler host/target, runtime presence, sourced diagnostic, and corrected exit; ARM64 and fresh VS installation remain unvalidated."
+    },
+    {
+      "id": "DOC-06",
+      "result": "pass",
+      "detail": "Final pnpm verify passed after the correction: 43 Astro files with no errors or warnings; 101 tests; 133 pages, local links, fragments, assets, search and discovery for 98 tools, and builder recommendations for 86 reviewed tools."
+    }
+  ],
+  "primary_sources": [
+    {
+      "url": "https://drmemory.org/page_install_windows.html",
+      "checked": "2026-11-06",
+      "finding": "Windows-specific MSI/ZIP installation and PATH instructions, without an exact compatibility matrix."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/cpp/sanitizers/asan-runtime?view=msvc-170",
+      "checked": "2026-11-06",
+      "finding": "VS 17.7 and later x64 runtimes require the dynamic ASan DLL for the documented CRT configurations."
+    },
+    {
+      "url": "https://schemathesis.readthedocs.io/en/stable/reference/checks/",
+      "checked": "2026-11-06",
+      "finding": "negative_data_rejection accepts specified error statuses including 5xx; not_a_server_error is a separate check. The guide explains the distinction."
+    }
+  ],
+  "prior_evidence": {
+    "files_in_original_manifest": 236,
+    "historical_reader_audit": "unchanged",
+    "other_historical_evidence": "unchanged",
+    "permitted_updates": [
+      "audits/review-status/reviews.json: append scoped entries only",
+      "audits/review-status/current.json: regenerate derived report",
+      "audits/review-status/current.md: regenerate derived report"
+    ],
+    "original_review_entries": "preserved without modification",
+    "manifest": "prior-audit-digests.json"
+  },
+  "files": [
+    {
+      "path": "astro.config.mjs",
+      "sha256": "6d6b1debfdbe734397fe857f98e163e1afdff520689c82e3bc6b058ec8a518bd"
+    },
+    {
+      "path": ".github/workflows/reader-validation.yml",
+      "sha256": "93e1227af7468cbe30e96f05536a653a62e340f9ba96b721560fa0f80798f621"
+    },
+    {
+      "path": "examples/windows-memory/README.md",
+      "sha256": "e6e11dbd7bcb75abdbe0872d2326bd276bc7d184336b8981cf66953ea9d4b2b9"
+    },
+    {
+      "path": "examples/windows-memory/verify.ps1",
+      "sha256": "72fb2a0e0ae5693569a550b972d63901e00438dc37ee841b24e19548b74491fc"
+    },
+    {
+      "path": "examples/windows-memory/bad/bounds.c",
+      "sha256": "f01c2e0e14b3438bf14357cc940990dbdffd03d68967d5bdc656ba2323884ac7"
+    },
+    {
+      "path": "examples/windows-memory/good/bounds.c",
+      "sha256": "85cc90c157fc6f7c7b76efc6acdd84b5feeb44ae3766f44d3ce370c0e09ccc34"
+    },
+    {
+      "path": "src/content/docs/guides/get-examples.md",
+      "sha256": "b3c3f28c02c869fb36e7ffe064e2dfd9e60f8e800a8440cd044c3c51d8f54fb5"
+    },
+    {
+      "path": "src/content/docs/guides/python-checks.md",
+      "sha256": "50f29c68bd711f39a823ceb30811f61e06014493494fb4d9596f86ac41838fee"
+    },
+    {
+      "path": "src/content/docs/guides/api-testing.md",
+      "sha256": "8e64c6f48a80e2bba3a7d3e5c8509589e3a2d230351f978f2377d23bb07bd1a5"
+    },
+    {
+      "path": "src/content/docs/guides/windows-memory-check.md",
+      "sha256": "aff703d9d4b4e356d4b63afe3f0010f8eca2d0a340428f5d17489ead7cbedfd9"
+    },
+    {
+      "path": "src/content/docs/guides/memory-error-detection.md",
+      "sha256": "75636cf454d876e4ec18a6f9c40ec9ac5e477e585e8ee48d21675cf264c2568f"
+    },
+    {
+      "path": "src/content/docs/tools/pylint.md",
+      "sha256": "6941048a4203352aab4f81e40092724d5c55dd1df8b1a1dfc614328e7ad79496"
+    },
+    {
+      "path": "src/content/docs/tools/schemathesis.md",
+      "sha256": "af6e22c94c67bafb9db362bc3db22b8ceaf12c046fe638c8738ed72bf0f2b3b1"
+    },
+    {
+      "path": "src/content/docs/tools/address-sanitizer.md",
+      "sha256": "1ede806e947feef5d1bbffeffd4af600a5fec8f28ec611635bf8da8c5b32e19d"
+    },
+    {
+      "path": "src/content/docs/tools/dr-memory.md",
+      "sha256": "01899c1d9fe4837ab9cee14367a8de2b7c17228d021a771f3426186b8ec67d9c"
+    },
+    {
+      "path": "audits/reader-workflows/retests/memory/reader-commands-initial.ps1",
+      "sha256": "e7c47cc0bc6ebaab6253c48accbc56db7c53849c7b93f88ae80cc40d9897925d"
+    },
+    {
+      "path": "audits/reader-workflows/retests/memory/reader-commands.ps1",
+      "sha256": "c606bece41caffc794df8b9994a01bfabe66ece8417a7d3b283d56938ccb1769"
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "b02e9fa51c1698da6b0765d84364833449a17da916dde6a3e85f9426ec727304"
+    }
+  ],
+  "reader_findings": [
+    {
+      "id": "MEM-RETEST-01",
+      "source": "retests/memory/reader-report.md",
+      "severity": "minor-nonblocking",
+      "observation": "Bare cl printed usage and returned zero, while the guide said a missing-source diagnostic would appear. Both actual builds and runtime outcomes passed.",
+      "disposition": "Corrected the banner-check sentence in f930842. No build or run command changed. A new independent reader repeated the entire affected scenario and passed in CI run 42306409445.",
+      "affected_file": "src/content/docs/guides/windows-memory-check.md"
+    }
+  ],
+  "readers": {
+    "python": "Passed demo, Pylint and held-out invoice adaptation without a documentation blocker.",
+    "api": "Passed demo and held-out shipment positive/negative adaptation without a documentation blocker.",
+    "memory": "Initial native replay passed; one minor preflight wording mismatch was corrected and independently confirmed by a fresh reader and CI replay."
+  },
+  "final_product_revision": "f9308424ca218959b10a6ecb5860bd637c8fc025",
+  "status": "complete",
+  "script_review": "Coordinator checked isolated file operations, literal guide commands, expected-failure continuation, output capture and native CI assertions. Reader agents retained independent discovery and interpretation.",
+  "evidence_packaging": "A scoped .gitattributes -text rule preserves exact audit bytes and SHA-256 digests across checkouts. Public source and historical audit paths retain their existing newline policy. Review digests use the repository LF form of source documents; two working copies were aligned with their unchanged committed LF blobs before final hashing."
+}

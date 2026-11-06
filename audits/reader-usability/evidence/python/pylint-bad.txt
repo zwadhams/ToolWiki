@@ -1,0 +1,8 @@
+************* Module greeting
+bad\greeting.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+bad\greeting.py:4:0: C0116: Missing function or method docstring (missing-function-docstring)
+bad\greeting.py:1:0: W0611: Unused import math (unused-import)
+
+-----------------------------------
+Your code has been rated at 2.50/10
+

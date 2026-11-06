@@ -1,0 +1,53 @@
+**********************
+PowerShell transcript start
+Start time: 20261106153209
+Username: ZACH-SURFACE\zwadh
+RunAs User: ZACH-SURFACE\zwadh
+Configuration Name: 
+Machine: ZACH-SURFACE (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Program Files\WindowsApps\OpenAI.CodexPrimaryRuntime.v26-1104-709-0_26.1104.709.0_arm64__3k8sg7r9htsxt\dependencies\native\powershell\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+Start-Transcript -LiteralPath 'C:\Users\zwadh\Repos\ToolWiki\audits\reader-workflows\retests\api\shipment-fixed-replay.txt'
+Invoke-RestMethod 'http://127.0.0.1:8785/reset' -Method Post | ConvertTo-Json
+$r = Invoke-WebRequest 'http://127.0.0.1:8785/shipments' -Method Post -ContentType 'application/json' -Body '{"quantity":0}' -SkipHttpErrorCheck
+$r.StatusCode
+$r.Content
+$orderId = ($r.Content | ConvertFrom-Json).id
+Invoke-RestMethod "http://127.0.0.1:8785/shipments/$orderId" | ConvertTo-Json
+$r = Invoke-WebRequest 'http://127.0.0.1:8785/shipments' -Method Post -ContentType 'application/json' -Body '{"quantity":-1}' -SkipHttpErrorCheck
+$r.StatusCode
+$r.Content
+Invoke-RestMethod 'http://127.0.0.1:8785/reset' -Method Post | ConvertTo-Json
+Stop-Transcript
+& 'C:\Users\zwadh\Repos\ToolWiki\audits\reader-workflows\retests\api\adapt-run.ps1' -Run negative-fixed
+Process ID: 52800
+PSVersion: 7.6.9
+PSEdition: Core
+GitCommitId: 7.6.9
+OS: Microsoft Windows 10.0.26300
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is C:\Users\zwadh\Repos\ToolWiki\audits\reader-workflows\retests\api\shipment-fixed-replay.txt
+{
+  "reset": true
+}
+201
+{"id": "1", "quantity": 0, "total": 0, "unitPrice": 10}
+{
+  "id": "1",
+  "quantity": 0,
+  "total": 0,
+  "unitPrice": 10
+}
+400
+{"error": "quantity must be an integer from 0 through 100"}
+{
+  "reset": true
+}
+**********************
+PowerShell transcript end
+End time: 20261106153209
+**********************

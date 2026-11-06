@@ -1,0 +1,27 @@
+{
+  "status": "failed",
+  "startedUtc": "2026-11-06T22:13:24.8240427Z",
+  "os": "Microsoft Windows 10.0.26300",
+  "osArchitecture": "Arm64",
+  "processArchitecture": "Arm64",
+  "powershell": "7.6.9",
+  "runnerImage": null,
+  "runnerImageVersion": null,
+  "commit": null,
+  "runId": null,
+  "runAttempt": null,
+  "sources": [
+    {
+      "path": "bad/bounds.c",
+      "sha256": "F01C2E0E14B3438BF14357CC940990DBDFFD03D68967D5BDC656BA2323884AC7"
+    },
+    {
+      "path": "good/bounds.c",
+      "sha256": "85CC90C157FC6F7C7B76EFC6ACDD84B5FEEB44AE3766F44D3CE370C0E09CCC34"
+    }
+  ],
+  "commands": [],
+  "asanOptions": "symbolize=1",
+  "failure": "This check requires native Windows x64 and x64 PowerShell 7. Use a native x64 machine or the windows-2022 validation job; ARM64 emulation is outside this route.",
+  "finishedUtc": "2026-11-06T22:13:24.8680587Z"
+}

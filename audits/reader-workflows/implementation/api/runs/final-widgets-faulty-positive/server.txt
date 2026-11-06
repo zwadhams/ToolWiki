@@ -1,0 +1,7 @@
+Ready on http://127.0.0.1:8781; mode=faulty. Ctrl+C stops the server.
+{"method": "GET", "path": "/health", "status": 200, "request_body": ""}
+{"method": "GET", "path": "/", "status": 404, "request_body": ""}
+{"method": "GET", "path": "/schemathesis-probe%5C%1B%01", "status": 404, "request_body": ""}
+{"method": "POST", "path": "/widgets", "status": 201, "request_body": "{\"quantity\": 99}"}
+{"method": "POST", "path": "/widgets", "status": 201, "request_body": "{\"quantity\": 100}"}
+{"method": "POST", "path": "/widgets", "status": 500, "request_body": "{\"quantity\": 0}"}

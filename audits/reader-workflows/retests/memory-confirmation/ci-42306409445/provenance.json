@@ -1,0 +1,97 @@
+{
+  "run_url": "https://github.com/zwadhams/ToolWiki/actions/runs/42306409445",
+  "run_id": 42306409445,
+  "job_id": 128196748279,
+  "commit": "f7e6eec324057646915c0688715ba0e69e9fce71",
+  "artifact_id": 13546342951,
+  "artifact_sha256": "af292bf963ca5f0825dd806d6f83dadc3a7998acfd143c1ea0b86173cd663885",
+  "job_conclusion": "success",
+  "normalization": "Removed optional UTF-8 BOM; non-ASCII output escaped visibly; no substantive output removed. Raw archive retained in ignored .preview/reader-ci.",
+  "files": [
+    {
+      "path": "bad-build-stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "bad-build-stdout.txt",
+      "raw_sha256": "d77f5b2ba17bdc364bac04cb7e27b40ef36283f09264a7a049a4b48a119e0678",
+      "retained_sha256": "d77f5b2ba17bdc364bac04cb7e27b40ef36283f09264a7a049a4b48a119e0678"
+    },
+    {
+      "path": "bad-run-exit.txt",
+      "raw_sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "retained_sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+    },
+    {
+      "path": "bad-run-stderr.txt",
+      "raw_sha256": "cbd7468e79246ef81ebb1737220a372fea608a6dfaf6f22ce9cb0a8928444a82",
+      "retained_sha256": "cbd7468e79246ef81ebb1737220a372fea608a6dfaf6f22ce9cb0a8928444a82"
+    },
+    {
+      "path": "bad-run-stdout.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "compiler-host-architecture.txt",
+      "raw_sha256": "039a52737ae4610f2fd391aeee98aba55e4df77dc8f7819045cf6e1d66b99def",
+      "retained_sha256": "039a52737ae4610f2fd391aeee98aba55e4df77dc8f7819045cf6e1d66b99def"
+    },
+    {
+      "path": "compiler-stderr.txt",
+      "raw_sha256": "8e29834a4f5a5cbf82a6436414d68d51c3bdeb68d2dff0023409cdedc21e862c",
+      "retained_sha256": "8e29834a4f5a5cbf82a6436414d68d51c3bdeb68d2dff0023409cdedc21e862c"
+    },
+    {
+      "path": "compiler-stdout.txt",
+      "raw_sha256": "ed6ca56a976bc0dd695904a59a423f36064632694b947125ff73cb68f125f840",
+      "retained_sha256": "ed6ca56a976bc0dd695904a59a423f36064632694b947125ff73cb68f125f840"
+    },
+    {
+      "path": "compiler-target-architecture.txt",
+      "raw_sha256": "039a52737ae4610f2fd391aeee98aba55e4df77dc8f7819045cf6e1d66b99def",
+      "retained_sha256": "039a52737ae4610f2fd391aeee98aba55e4df77dc8f7819045cf6e1d66b99def"
+    },
+    {
+      "path": "developer-shell.txt",
+      "raw_sha256": "f4bd59d98a14339dbd1b25ad80ec5cfbced84164ccb818b886068e040220360f",
+      "retained_sha256": "f4bd59d98a14339dbd1b25ad80ec5cfbced84164ccb818b886068e040220360f"
+    },
+    {
+      "path": "good-build-stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "good-build-stdout.txt",
+      "raw_sha256": "d77f5b2ba17bdc364bac04cb7e27b40ef36283f09264a7a049a4b48a119e0678",
+      "retained_sha256": "d77f5b2ba17bdc364bac04cb7e27b40ef36283f09264a7a049a4b48a119e0678"
+    },
+    {
+      "path": "good-run-exit.txt",
+      "raw_sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "retained_sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "path": "good-run-stderr.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "good-run-stdout.txt",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "host-architecture.txt",
+      "raw_sha256": "73dda8b8522642fa58af9ccc3951517d3f8bdc3c77915034de13ee53fc2f475d",
+      "retained_sha256": "73dda8b8522642fa58af9ccc3951517d3f8bdc3c77915034de13ee53fc2f475d"
+    },
+    {
+      "path": "reader-run.json",
+      "raw_sha256": "5754bcd5ef0b0fd1b749cc44a62e0b573072d37e3aac37e6364904874995ad7f",
+      "retained_sha256": "5754bcd5ef0b0fd1b749cc44a62e0b573072d37e3aac37e6364904874995ad7f"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "evidence": "executed",
+  "date_utc": "2026-11-06T22:14:22.738552+00:00",
+  "host": "Windows-11-10.0.26300-SP0",
+  "python": "3.13.15",
+  "variant": "bad",
+  "scope": "One fixture file; Ruff F401 and mypy strict type checking. Target not executed.",
+  "inputs_sha256": {
+    "bad/greeting.py": "ae2a8d14259cb9d2b87df0fa5d9886bb380ea17ab8753e76c8683ab7090ae4a3",
+    "pyproject.toml": "995758050d891bfb9ca75bb3820446b0f82353727efaffb87344c8fea48407d9",
+    "requirements.txt": "7fc660f71e47412548c51dc4c9eb982af3c4bdd52ce91634ad9e373cff7f87cd",
+    "run_checks.py": "e251b3267934feb80724af9d2ee60145059a7259a36210458ee4e6a08d8c150c"
+  },
+  "results": [
+    {
+      "tool": "ruff",
+      "command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\python\\example\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "--no-fix",
+        "--no-cache",
+        "--config",
+        "pyproject.toml",
+        "--output-format",
+        "json",
+        "bad/greeting.py"
+      ],
+      "target": "bad/greeting.py",
+      "version": "0.14.3",
+      "return_code": 1,
+      "artifacts": [
+        "ruff.json",
+        "ruff.stderr.txt"
+      ],
+      "status": "completed-findings"
+    },
+    {
+      "tool": "mypy",
+      "command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\python\\example\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "--no-incremental",
+        "--cache-dir",
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\python\\example\\reports\\bad\\mypy-cache",
+        "--config-file",
+        "pyproject.toml",
+        "bad/greeting.py"
+      ],
+      "target": "bad/greeting.py",
+      "version": "1.18.2",
+      "return_code": 1,
+      "artifacts": [
+        "mypy.txt",
+        "mypy.stderr.txt"
+      ],
+      "status": "completed-findings"
+    }
+  ]
+}

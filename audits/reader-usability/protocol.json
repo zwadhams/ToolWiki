@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-06",
+  "source_revision": "21d14974c0498960cc2929900a58c1f27b60cd70",
+  "purpose": "Test whether a reader can choose an appropriate tool, reach a first useful result, and interpret it using the visible wiki and its linked instructions.",
+  "user_priority": "Useful and easy to work with.",
+  "method": "Three fresh-context subagents independently simulate one reader task each. The coordinator checks actionable findings after their first walkthrough.",
+  "scenarios": [
+    {
+      "id": "python",
+      "task": "Check a small Python project for coding and type mistakes on Windows.",
+      "origin": "http://127.0.0.1:4347/ToolWiki/",
+      "report": "python.json"
+    },
+    {
+      "id": "api",
+      "task": "Find and test a disposable HTTP API, including invalid inputs or server errors.",
+      "origin": "http://127.0.0.1:4352/ToolWiki/",
+      "report": "api.json"
+    },
+    {
+      "id": "memory",
+      "task": "Investigate a crashing native C/C++ program on Windows with source and rebuild access.",
+      "origin": "http://127.0.0.1:4353/ToolWiki/",
+      "report": "memory.json"
+    }
+  ],
+  "constraints": [
+    "Start at the home page without prescribed tool choices.",
+    "Do not read source, previous audits, or other reports to discover the route.",
+    "Use visible wiki text and its explicit links before relying on outside knowledge.",
+    "Record exact navigation, commands, output and missing instructions.",
+    "Use synthetic inputs and isolated local environments only.",
+    "Keep product files and existing audit records unchanged."
+  ],
+  "success_criteria": [
+    "Select suitable tools and explain their scope.",
+    "Find prerequisites, inputs and a complete procedure.",
+    "Obtain a first meaningful result where the environment permits.",
+    "Interpret findings, setup failure and clean results separately.",
+    "Find a correction or next action and a way to retain/reuse the procedure."
+  ],
+  "classification": [
+    "Completed",
+    "Completed with documented recovery or outside knowledge",
+    "Partially completed",
+    "Blocked by documentation/interface",
+    "Blocked by environment or testing infrastructure"
+  ],
+  "limitations": [
+    "These are expert-agent walkthroughs, not observations of human readers.",
+    "No claims about human completion times, emotions or population-wide usability.",
+    "Three scenarios do not cover the whole catalog or accessibility conformance."
+  ],
+  "initial_harness_issues": "Background preview processes ended unexpectedly; the coordinator restored isolated loopback servers serving unchanged dist. Initial connection failures are not product findings. One agent retained its original origin after an automatic navigation approval rejection; no rejection was bypassed.",
+  "build": {
+    "index_sha256": "2ae49ea271afb944afa469d99bf5b5a10325088712daf5a60e619050f9ca3f7e",
+    "index_modified_utc": "2026-11-06T21:04:31.168274+00:00"
+  },
+  "status": "complete",
+  "product_changes_authorized_in_this_test": false,
+  "method_corrections": [
+    "A pinned-only dependency restriction was removed during the Python walkthrough. Explicitly linked official install commands are allowed in a fresh local environment; actual versions must be recorded. Lack of a version pin alone is not a usability failure.",
+    "The initial preview startup failure and one rejected origin change are testing infrastructure events, not product findings."
+  ],
+  "reports": [
+    "python.json",
+    "api.json",
+    "memory.json",
+    "coordinator-review.json"
+  ],
+  "result_summary": {
+    "python": "Demonstration completed; actual project adaptation not executed.",
+    "api": "Demonstration completed in a labeled Python 3.13 recovery; exact 3.12 setup and own-API adaptation remain untested.",
+    "memory": "Selection and interpretation assessed; no diagnostic run because readiness/compatibility was unresolved and tools were unavailable on PATH."
+  },
+  "cleanup": {
+    "status": "complete",
+    "local_test_services": "Stopped; loopback ports verified closed.",
+    "retained_execution_roots": "Ignored .preview/reader-usability contains the fresh environments and raw evidence; no global tools were installed."
+  }
+}

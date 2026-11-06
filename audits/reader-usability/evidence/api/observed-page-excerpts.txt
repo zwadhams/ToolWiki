@@ -1,0 +1,64 @@
+Observed browser text and links, 2026-11-06.
+ASCII transcription of relevant excerpts. Navigation order is in ../../api.json.
+
+Home: http://127.0.0.1:4352/ToolWiki/
+Start with a task: Test an API
+Target: /ToolWiki/?q=HTTP&input=Running+applications#tool-results
+Observed filter result: 6 of 98 entries.
+Schemathesis: Generate API tests from OpenAPI or GraphQL definitions and check observed responses.
+Finds: Specification violations, Server errors, Input validation.
+
+Tool: http://127.0.0.1:4352/ToolWiki/tools/schemathesis/
+What you need: Provide an API definition and reachable test service. Configure server location, authentication, state, and selected checks for the intended operations.
+First try links to disposable HTTP API.
+Where it runs: A compatible Python environment; the pinned 4.33.1 example requires Python 3.11 or newer. Container and uv-based workflows are also documented.
+
+Guide: http://127.0.0.1:4352/ToolWiki/guides/api-testing/
+Work from a local copy of the ToolWiki repository.
+Fixture link: https://github.com/zwadhams/ToolWiki/tree/main/examples/http-api
+You need Python 3.12 for the pinned Schemathesis environment below. The service itself uses only the Python standard library.
+From the repository root:
+python examples/http-api/server.py
+Wait for Ready on http://127.0.0.1:8771.
+python examples/http-api/replay.py
+The replay command exits successfully when it reproduces this expected fault; its exit status is not an API health verdict.
+python examples/http-api/replay.py --reset
+python examples/http-api/server.py --fixed
+python examples/http-api/replay.py --expect-fixed
+A refused connection means the service is not ready or the port is wrong, not that a test passed.
+
+Run Schemathesis:
+Executed on 2026-11-06: Schemathesis 4.33.1 on Windows/Python 3.12.16, using the coverage phase, positive generation, and not_a_server_error check.
+python -m venv .preview/api-demo-env
+.preview/api-demo-env/Scripts/python -m pip install -r examples/http-api/requirements-lock.txt
+.preview/api-demo-env/Scripts/python examples/http-api/run_schemathesis.py --output .preview/api-faulty
+Start faulty service before that command; repeat with --fixed and .preview/api-fixed output.
+Use a fresh directory for each run. The wrapper retains stdout, stderr, JUnit, the exact CLI command, and process status.
+Failure to load a schema or complete setup is different from a failing API response.
+Linked CLI reference: https://schemathesis.readthedocs.io/en/stable/reference/cli/
+
+Record guide: http://127.0.0.1:4352/ToolWiki/guides/run-record/
+Before: tool/version, target digest, host/runtime/dependencies, inputs/configuration/working directory, command, scope/exclusions, expected signal, artifact destination, gate.
+After: actual actions/deviations, status/exit code, analyzed and skipped scope, diagnostics, reports, interpretation, correction and comparable rerun.
+
+Review guide: http://127.0.0.1:4352/ToolWiki/guides/reviewing-findings/
+Confirm that the intended analysis completed before interpreting findings.
+An empty report can also result from missing input, skipped checks, or a failed run.
+Worked examples were a source warning and an advisory match.
+
+External official CLI reference, reached only through the wiki's explicit link:
+https://schemathesis.readthedocs.io/en/stable/reference/cli/
+run LOCATION takes a definition path or URL.
+--url sets the API base URL and is required for file-based schemas.
+--include-TYPE / --exclude-TYPE filter operations.
+--mode positive, negative, all controls valid/invalid generation.
+--checks selects checks; --max-time/--max-failures bound work; --report and --report-junit-path retain reports.
+Exit 0: all configured checks passed. Exit 1: at least one check failed or bug reported. Exit 2: tool could not do its job. Exit 130: interrupted.
+
+External official Checks reference, reached through the CLI's Checks reference link:
+https://schemathesis.readthedocs.io/en/stable/reference/checks/
+negative_data_rejection checks that schema-invalid input gets rejected; needs --mode negative or all.
+not_a_server_error checks server-side failures including 5xx.
+Stateful checks need links between operations and multi-step scenarios.
+
+No search engine was used. Historical execution-record links were intentionally not opened.

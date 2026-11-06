@@ -1,0 +1,17 @@
+Post-test evidence packaging, 2026-11-06:
+
+Moved four generated mypy-cache directories out of retained audit evidence to:
+C:/Users/zwadh/Repos/ToolWiki/.preview/reader-retests/python/packaged-mypy-caches
+
+The relative paths are demo-reports/bad/mypy-cache, demo-reports/good/mypy-cache,
+project-reports/first-run/mypy-cache, and project-reports/corrected-run/mypy-cache.
+They contain 514 files totaling 33,327,672 bytes. No cache files were deleted.
+Resolved source and destination containment was checked before each native
+PowerShell Move-Item. Hash comparison verified all 46 retained evidence files
+were unchanged by the moves. Analyzer reports and supplied inputs were preserved.
+Historical command records retain the cache paths used at execution time.
+
+The packaging script, move manifest, and pre-packaging evidence hashes are in
+the python scratch directory. No retest or product edit was performed.
+The earlier 551-text-file ASCII check described the pre-packaging scan; the
+current retained-evidence check is recorded in ascii-verification.txt.

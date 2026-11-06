@@ -1,0 +1,17 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "3F703C4BB251FF7AF8497CA4DAE92E0F899284B929F7967F961D505C198F133A",
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\python\\Invoice sample\\src\\invoice.py"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F6FE0AA199EFE25AD794EC1633A98B5E6854E196AFAA9F1BD8889A372FE191F5",
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\python\\Invoice sample\\README.txt"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "917EABE90041909232DE42956D573FE07878B46F79DD5D0744A2AAE1F2DEC139",
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\python\\Invoice sample\\pyproject.toml"
+  }
+]

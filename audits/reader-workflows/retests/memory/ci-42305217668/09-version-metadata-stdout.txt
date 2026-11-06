@@ -1,0 +1,65 @@
+[
+  {
+    "instanceId": "4d04731e",
+    "installDate": "2026-11-01T21:54:29Z",
+    "installationName": "VisualStudio/17.14.44+37827.9",
+    "installationPath": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise",
+    "installationVersion": "17.14.37827.9",
+    "productId": "Microsoft.VisualStudio.Product.Enterprise",
+    "productPath": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\devenv.exe",
+    "state": 4294967295,
+    "isComplete": true,
+    "isLaunchable": true,
+    "isPrerelease": false,
+    "isRebootRequired": false,
+    "displayName": "Visual Studio Enterprise 2022",
+    "description": "Scalable, end-to-end solution for teams of any size",
+    "channelId": "VisualStudio.17.Release",
+    "channelUri": "https://aka.ms/vs/17/release/channel",
+    "enginePath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\resources\\app\\ServiceHub\\Services\\Microsoft.VisualStudio.Setup.Service",
+    "installChannelUri": "https://aka.ms/vs/17/release/channel",
+    "installedChannelId": "VisualStudio.17.Release",
+    "installedChannelUri": "https://aka.ms/vs/17/release/channel",
+    "releaseNotes": "https://docs.microsoft.com/en-us/visualstudio/releases/2022/release-notes-v17.14#17.14.44",
+    "resolvedInstallationPath": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise",
+    "thirdPartyNotices": "https://go.microsoft.com/fwlink/?LinkId=661288",
+    "updateDate": "2026-11-01T21:54:29.222124Z",
+    "catalog": {
+      "buildBranch": "d17.14",
+      "buildVersion": "17.14.37827.9",
+      "id": "VisualStudio/17.14.44+37827.9",
+      "localBuild": "build-lab",
+      "manifestName": "VisualStudio",
+      "manifestType": "installer",
+      "productDisplayVersion": "17.14.44",
+      "productLine": "Dev17",
+      "productLineVersion": "2022",
+      "productMilestone": "RTW",
+      "productMilestoneIsPreRelease": "False",
+      "productName": "Visual Studio",
+      "productPatchVersion": "44",
+      "productPreReleaseMilestoneSuffix": "1.0",
+      "productSemanticVersion": "17.14.44+37827.9",
+      "requiredEngineVersion": "3.14.2094.42856"
+    },
+    "properties": {
+      "campaignId": "",
+      "channelManifestId": "VisualStudio.17.Release/17.14.44+37827.9",
+      "includeRecommended": "1",
+      "nickname": "",
+      "setupEngineFilePath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\setup.exe"
+    }
+  }
+]
+[
+  {
+    "FullName": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe",
+    "FileVersion": "19.44.35229.0",
+    "ProductVersion": "14.44.35229.0"
+  },
+  {
+    "FullName": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\clang_rt.asan_dynamic-x86_64.dll",
+    "FileVersion": null,
+    "ProductVersion": null
+  }
+]

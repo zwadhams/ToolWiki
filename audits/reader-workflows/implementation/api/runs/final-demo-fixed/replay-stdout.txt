@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/orders",
+    "body": {
+      "quantity": 0
+    }
+  },
+  "status": 201,
+  "response": {
+    "id": "1",
+    "quantity": 0,
+    "total": 0,
+    "unitPrice": 10
+  },
+  "mode": "fixed"
+}
+Created order was read back successfully.

@@ -1,0 +1,27 @@
+{
+  "status": "complete",
+  "objective": "Implement the five approved reader-workflow improvements and validate them with fresh independent readers.",
+  "branch": "codex/reader-workflows",
+  "main_base": "21d14974c0498960cc2929900a58c1f27b60cd70",
+  "product_revision": "f9308424ca218959b10a6ecb5860bd637c8fc025",
+  "source_snapshot": "506c522ca86fd8c9d7b688f35a4d37f842d04cc9",
+  "initial_reader_site_revision": "46be6de2a5fbb2c9e9472b8c18d9e043625e4991",
+  "final_native_reader_ci": {
+    "run_id": 42306409445,
+    "url": "https://github.com/zwadhams/ToolWiki/actions/runs/42306409445",
+    "commit": "f7e6eec324057646915c0688715ba0e69e9fce71",
+    "record": "retests/memory-confirmation/ci-42306409445/reader-run.json",
+    "artifact_sha256": "af292bf963ca5f0825dd806d6f83dadc3a7998acfd143c1ea0b86173cd663885"
+  },
+  "results": "Python, API and native Windows memory fault/correction passed. Python and API adaptation passed. A minor compiler-banner wording mismatch was corrected and the memory scenario passed a new independent retest.",
+  "verification": "Final pnpm verify passed; see verification-final.txt and validation.json.",
+  "evidence": "Original reader audits preserved; separate new reports and scoped review entries retained.",
+  "cleanup": "Preview and API servers stopped. Test environments and caches retained under ignored scratch.",
+  "remaining_in_approved_scope": [],
+  "not_performed": [
+    "Merge into main",
+    "GitHub Pages publication",
+    "Global toolchain installation",
+    "ARM64 memory runtime validation"
+  ]
+}

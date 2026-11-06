@@ -1,0 +1,32 @@
+{
+  "command": [
+    "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\api\\fresh-20261106\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\.preview\\api-demo-env\\Scripts\\schemathesis.exe",
+    "--no-color",
+    "run",
+    "http://127.0.0.1:8771/openapi.json",
+    "--phases",
+    "coverage",
+    "--mode",
+    "positive",
+    "--checks",
+    "not_a_server_error",
+    "--max-failures",
+    "1",
+    "--max-time",
+    "20",
+    "--seed",
+    "20261106",
+    "--workers",
+    "1",
+    "--report",
+    "junit",
+    "--report-junit-path",
+    "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\api\\fresh-20261106\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\.preview\\api-fixed\\junit.xml"
+  ],
+  "environment_overrides": {
+    "PYTHONIOENCODING": "utf-8"
+  },
+  "exit_code": 0,
+  "scope": "Coverage phase, positive generation, server-error check. Read reports for skipped work.",
+  "version": "4.33.1"
+}

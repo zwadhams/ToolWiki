@@ -1,0 +1,13 @@
+{
+  "reversible_api_captures_verified": 5,
+  "python_and_api_exit_codes_findings_and_corrections": "passed",
+  "supplied_inputs_unchanged": "passed",
+  "api_services_stopped": "passed",
+  "source_and_structured_evidence_whitespace_check": {
+    "status": "passed",
+    "command": "git -c core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol diff --cached --check -- . :(glob,exclude)audits/**/*.txt",
+    "scope": "Source and structured evidence. CRLF captures are recognized as deliberate; raw TXT output retains original whitespace. Frozen original audits were not modified."
+  },
+  "git_staged_bytes_match_manifest": true,
+  "git_staged_unique_paths_verified": 317
+}

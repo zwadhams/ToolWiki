@@ -34,6 +34,7 @@ export default defineConfig({
         { label: 'Coverage and mutation results', slug: 'guides/test-evidence' },
       ] },
       { label: 'Workflows', collapsed: true, items: [
+        { label: 'Get the examples', slug: 'guides/get-examples' },
         { label: 'Python linting and types', slug: 'guides/python-checks' },
         { label: 'Test a disposable HTTP API', slug: 'guides/api-testing' },
         { label: 'Review findings', slug: 'guides/reviewing-findings' },
@@ -41,6 +42,7 @@ export default defineConfig({
         { label: 'Execution and data boundaries', slug: 'guides/execution-and-data' },
         { label: 'Java source and bytecode', slug: 'guides/java-analysis' },
         { label: 'Memory-error checks', slug: 'guides/memory-error-detection' },
+        { label: 'Windows memory example', slug: 'guides/windows-memory-check' },
         { label: 'Temporal monitoring and falsification', slug: 'guides/temporal-monitoring-and-falsification' },
       ] },
       { label: 'Research notes', collapsed: true, items: [

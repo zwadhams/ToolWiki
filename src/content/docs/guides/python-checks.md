@@ -8,10 +8,15 @@ This recipe gives both the same fixture: an unused import and a call that passes
 text to an integer parameter. Ruff checks only `F401`; mypy checks the annotated
 call. Neither runs the target program.
 
-The fixture is in
-[`examples/python-checks`](https://github.com/zwadhams/ToolWiki/tree/main/examples/python-checks).
-Use a checkout of the repository and run the commands from that directory.
-It contains `bad/greeting.py`, the corrected `good/greeting.py`, a shared
+Start with [Get the examples](../get-examples/) to download or clone the
+repository. From the downloaded repository's root, enter the fixture directory:
+
+```powershell
+Set-Location examples/python-checks
+```
+
+[`examples/python-checks`](https://github.com/zwadhams/ToolWiki/tree/main/examples/python-checks)
+contains `bad/greeting.py`, the corrected `good/greeting.py`, a shared
 `pyproject.toml`, pinned requirements, and `run_checks.py`.
 
 **Executed on Windows with Python 3.13.15.** Both expected findings appeared in
@@ -26,10 +31,20 @@ Use Python 3.13 and the pinned Ruff 0.14.3 and mypy 1.18.2 releases. These versi
 are a reproducible example, not a recommendation to downgrade an existing project.
 The target Python version is also set to 3.13 in `pyproject.toml`.
 
-On Windows, create the environment and install the requirements:
+On Windows, select an interpreter and check it before creating the environment:
 
 ```powershell
-python -m venv .venv
+$Python = "python"
+& $Python --version
+```
+
+Expect `Python 3.13.x`. If that command is missing or reports another version,
+set `$Python` to your Python 3.13 executable, such as
+`$Python = "C:\path\to\Python313\python.exe"`, and repeat the check.
+Continue from `examples/python-checks` once the version matches:
+
+```powershell
+& $Python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
@@ -76,18 +91,88 @@ Both reports should be clean for this fixture. The known defects and correction
 show that the selected checks are active. They do not measure general defect
 coverage or prove that the program meets every requirement.
 
-## Adapt the recipe
+<a id="adapt-the-recipe"></a>
 
-Start with a small package in your project. Choose Ruff rules deliberately and
-provide mypy with the correct imports and stubs. Record the source revision,
-configuration, exclusions, and environment using the [run record](../run-record/).
-Keep diagnostics separate; do not compare raw issue counts as measures of quality.
+## Use it on your project
+
+`run_checks.py` accepts only `bad` and `good`; it is a demonstration runner.
+For your code, run the tools directly. From `examples/python-checks`, keep the
+checker interpreter's absolute path, then enter your project's root:
+
+```powershell
+$CheckPython = (Resolve-Path .\.venv\Scripts\python.exe).Path
+Set-Location "C:\path\to\YOUR_PROJECT"
+```
+
+Replace `C:\path\to\YOUR_PROJECT` with your project directory. Use its existing
+analyzer configuration. If it has none, add these tables to its root
+`pyproject.toml`, creating the file only if absent. Merge settings into any
+existing tables instead of replacing the file:
+
+```toml
+[tool.ruff]
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+show_error_codes = true
+pretty = false
+```
+
+Match both target-version settings to the Python version your project supports.
+The fixture selects only `F401`; this starting selection adds other Pyflakes
+and selected pycodestyle checks. Review the
+[Ruff configuration](https://docs.astral.sh/ruff/configuration/) for your project.
+If your settings live in `ruff.toml` or `mypy.ini`, use those paths in the
+corresponding config arguments below.
+
+The checker environment needs access to your project's dependencies and type
+stubs. Install the project's declared dependencies and needed stub packages in
+that environment, or use a project environment with the checkers installed by
+setting `$CheckPython` to its interpreter. Resolve
+[missing imports and stubs](https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports)
+before treating a clean result as useful type coverage.
+
+Choose one small source directory and a new report directory for this run:
+
+```powershell
+$Target = ".\src\YOUR_PACKAGE"
+$Reports = ".\check-reports\first-run"
+New-Item -ItemType Directory -Path $Reports -ErrorAction Stop | Out-Null
+
+& $CheckPython -m ruff check --no-fix --no-cache --config pyproject.toml `
+  --output-format json $Target > "$Reports\ruff.json" 2> "$Reports\ruff.stderr.txt"
+$RuffExit = $LASTEXITCODE
+$RuffExit | Set-Content "$Reports\ruff.exit.txt"
+
+& $CheckPython -m mypy --no-incremental --cache-dir "$Reports\mypy-cache" `
+  --config-file pyproject.toml $Target > "$Reports\mypy.txt" 2> "$Reports\mypy.stderr.txt"
+$MypyExit = $LASTEXITCODE
+$MypyExit | Set-Content "$Reports\mypy.exit.txt"
+```
+
+Replace `src\YOUR_PACKAGE` with the directory you want checked. Use a different
+`$Reports` path for every run; stop if directory creation fails. These commands
+make no automatic source fixes. Read `ruff.json`, `mypy.txt`, and both stderr
+files with their separate exit codes. Ruff returns `0` for no findings, `1` for
+findings, and `2` for a failed run. A completed mypy run reports either success
+or a diagnostic summary; an empty report or a setup error is not a clean result.
+
+Review and correct findings, then repeat with a new report directory. Record
+the source revision, selected configuration, exclusions, and environment using
+the [run record](../run-record/). Keep diagnostics separate; do not compare raw
+issue counts as measures of quality.
 
 Use the [CI result-handling guide](../ci-checks/) to decide which completed
 findings block a change and how to retain failed or incomplete runs.
 
 ## Sources
 
+- [Python virtual environments](https://docs.python.org/3.13/library/venv.html)
 - [Ruff rule selection and exit behavior](https://docs.astral.sh/ruff/linter/)
 - [Ruff 0.14.3 distribution](https://pypi.org/project/ruff/0.14.3/)
 - [mypy 1.18.2 distribution](https://pypi.org/project/mypy/1.18.2/)

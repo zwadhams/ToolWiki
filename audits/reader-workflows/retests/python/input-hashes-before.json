@@ -1,0 +1,12 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F6FE0AA199EFE25AD794EC1633A98B5E6854E196AFAA9F1BD8889A372FE191F5",
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\inputs\\python\\Invoice sample\\README.txt"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "87449E3AA6EB59A0EF192296E8D54462F18B2F82405E99B9717C9254DD7C6723",
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\inputs\\python\\Invoice sample\\src\\invoice.py"
+  }
+]

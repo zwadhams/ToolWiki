@@ -1,0 +1,1 @@
+This check requires native Windows x64 and x64 PowerShell 7. Use a native x64 machine or the windows-2022 validation job; ARM64 emulation is outside this route.

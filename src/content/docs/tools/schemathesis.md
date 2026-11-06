@@ -87,8 +87,11 @@ Use the [disposable HTTP API](../../guides/api-testing/) for a supplied service,
 OpenAPI schema, reset procedure, and known failing/corrected request. It includes
 create/read/delete resource dependencies and separate instructions for this tool.
 
-The Schemathesis 4.33.1 run was executed on 2026-11-06 with selected server-error
-checks. The guide retains the environment, inputs, reports, and observed results.
+The guide uses a checked Python 3.13 environment and retains separate historical
+Python 3.12.16 and new Python 3.13.15 execution records for Schemathesis 4.33.1.
+Its [adaptation section](../../guides/api-testing/#adapt-to-your-api) shows a bounded
+CLI command for your schema, test URL, and selected operation, plus an explicit
+invalid-input variant.
 
 ## Limits
 

@@ -1,0 +1,21 @@
+{
+  "python": {
+    "root": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\inputs\\python\\Invoice sample",
+    "expected_checks": [
+      "unused import",
+      "inconsistent amount annotation"
+    ],
+    "source_sha256": "87449e3aa6eb59a0ef192296e8d54462f18b2f82405e99b9717c9254dd7c6723"
+  },
+  "api": {
+    "root": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\inputs\\api",
+    "url": "http://127.0.0.1:8785",
+    "operation": "POST /shipments",
+    "schema": "service-schema.json",
+    "sources": {
+      "README.txt": "c67c73b16b7359e7b78476354ff03f6119f1630e5bd154da6c99e3cd372f6d07",
+      "server.py": "91b2981f9babb256cce5d6d205dbc87833388b3c632dddc8282b631e168a7a3d",
+      "service-schema.json": "479422373815a1331cb9f0b28690d00ea2a2f60e45b9afd8cd3589848279a21a"
+    }
+  }
+}

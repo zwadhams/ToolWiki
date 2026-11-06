@@ -61,7 +61,9 @@ It executes the program. The Binaries input tag therefore describes a runtime wo
 
 ## Example
 
-**Illustrative Windows workflow, not run here.** Use the [Windows installation guide](https://drmemory.org/page_install.html) to check the selected release against your Windows version and executable architecture. Keep any debug symbols available, put the launcher on PATH, and run a local test program:
+**Illustrative Windows workflow, not run here. No exact Windows version, architecture, and Dr. Memory release combination has been validated for this example.** The [Windows installation guide](https://drmemory.org/page_install_windows.html) covers MSI/ZIP installation and PATH setup; it does not establish an exact compatibility matrix. Check the [release information](https://github.com/DynamoRIO/drmemory/releases) and the selected package's documentation for your OS, architecture, and application before relying on this route.
+
+Keep any debug symbols available, put the launcher on PATH, and run a local test program:
 
 ```powershell
 drmemory.exe -batch -- 'C:/path/to/test-program.exe'
@@ -70,6 +72,8 @@ drmemory.exe -batch -- 'C:/path/to/test-program.exe'
 Replace the path with your executable and add its normal test arguments after it. The `-batch` option avoids automatically opening the report in a text editor. Inspect the reported results location and `results.txt`.
 
 Reproduce a finding with the same workload. Symbols and a diagnostic-friendly build make it easier to connect a reported access to source code.
+
+If you have source and can rebuild on native Windows x64, [Find a memory error on Windows](../../guides/windows-memory-check/) provides a controlled MSVC AddressSanitizer experiment with a correction and an explicit validation status. It does not validate Dr. Memory compatibility.
 
 When reading `results.txt`, identify the error category first, then the stack for the access. Where provided, compare the allocation or free stack to learn how the affected memory was created or released. Keep the report with the workload that triggered it. The [official report guide](https://drmemory.org/page_running.html) explains the output files and how to inspect a finding.
 

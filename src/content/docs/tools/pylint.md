@@ -56,7 +56,60 @@ Use Pylint when reviewing Python conventions and inferred code behavior. Compare
 
 ## Start with a small package
 
-Run the documented module or package check in the project's Python environment. Inspect import resolution before suppressing diagnostics. Add configuration for conventions the project intentionally follows, and keep plugin choices explicit.
+The official [installation guide](https://pylint.readthedocs.io/en/stable/user_guide/installation/command_line_installation.html)
+and [run instructions](https://pylint.readthedocs.io/en/stable/user_guide/usage/run.html)
+cover setup and configuration. For a first result on Windows, use Python 3.13
+and Pylint 4.1.3 with the shared greeting example.
+
+[Get the examples](../../guides/get-examples/), then enter the example directory
+from the downloaded repository's root and check your interpreter:
+
+```powershell
+Set-Location examples/python-checks
+$Python = "python"
+& $Python --version
+```
+
+Expect `Python 3.13.x`. If needed, set `$Python` to your installed Python 3.13
+executable, such as `$Python = "C:\path\to\Python313\python.exe"`, and repeat
+the check. Create the environment if you have not already created it for this
+example, then install the pinned release:
+
+```powershell
+& $Python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install pylint==4.1.3
+```
+
+Check only `unused-import` (`W0611`) so the correction has one clear result:
+
+```powershell
+.\.venv\Scripts\python.exe -m pylint --rcfile=pyproject.toml --disable=all `
+  --enable=unused-import --score=n --persistent=n bad/greeting.py
+$LASTEXITCODE
+```
+
+Expect `W0611: Unused import math (unused-import)` and exit code `4`, indicating
+a warning. The supplied correction removes that import. Check it with the same
+options:
+
+```powershell
+.\.venv\Scripts\python.exe -m pylint --rcfile=pyproject.toml --disable=all `
+  --enable=unused-import --score=n --persistent=n good/greeting.py
+$LASTEXITCODE
+```
+
+Expect no diagnostics and exit code `0`. This is an isolated message check;
+the explicit fixture config and command options keep its scope small. Normal
+project configuration can enable other messages, including convention findings
+on these same files. Pylint uses
+[bit-encoded exit codes](https://pylint.readthedocs.io/en/stable/user_guide/usage/run.html#exit-codes),
+so inspect the diagnostics before classifying a nonzero result.
+
+For your project, run a chosen module or package in an environment with its
+dependencies and reviewed Pylint configuration. Inspect import resolution before
+suppressing diagnostics, and keep plugin choices explicit. For complementary
+lint and type checks with retained reports, follow
+[Check Python linting and types together](../../guides/python-checks/).
 
 ## Interpret the result
 

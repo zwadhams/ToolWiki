@@ -11,6 +11,7 @@ on:
       - 'src/content/docs/guides/get-examples.md'
       - 'src/content/docs/tools/address-sanitizer.md'
       - 'src/content/docs/tools/dr-memory.md'
+      - 'audits/reader-workflows/retests/memory/reader-commands.ps1'
   pull_request:
     paths:
       - '.github/workflows/reader-validation.yml'
@@ -20,6 +21,7 @@ on:
       - 'src/content/docs/guides/get-examples.md'
       - 'src/content/docs/tools/address-sanitizer.md'
       - 'src/content/docs/tools/dr-memory.md'
+      - 'audits/reader-workflows/retests/memory/reader-commands.ps1'
 
 permissions:
   contents: read
@@ -43,5 +45,19 @@ jobs:
           path: |
             ${{ runner.temp }}/windows-memory-evidence/*.json
             ${{ runner.temp }}/windows-memory-evidence/*.txt
+          if-no-files-found: error
+          retention-days: 30
+      - name: Replay independently prepared reader commands
+        if: hashFiles('audits/reader-workflows/retests/memory/reader-commands.ps1') != ''
+        shell: pwsh
+        run: ./audits/reader-workflows/retests/memory/reader-commands.ps1 -OutputPath "$env:RUNNER_TEMP/reader-memory-evidence"
+      - name: Upload reader replay evidence
+        if: always() && hashFiles('audits/reader-workflows/retests/memory/reader-commands.ps1') != ''
+        uses: actions/upload-artifact@v7
+        with:
+          name: reader-memory-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/reader-memory-evidence/*.json
+            ${{ runner.temp }}/reader-memory-evidence/*.txt
           if-no-files-found: error
           retention-days: 30

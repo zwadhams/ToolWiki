@@ -1,0 +1,2 @@
+************* Module greeting
+bad\greeting.py:1:0: W0611: Unused import math (unused-import)

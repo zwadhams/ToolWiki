@@ -6,7 +6,8 @@ description: Reproduce a known API failure, correct it, and inspect generated te
 Use this small orders service to try [Schemathesis](../../tools/schemathesis/)
 and [RESTler](../../tools/restler/) against a known fault. The service, schema,
 and replay script are maintained in [examples/http-api](https://github.com/zwadhams/ToolWiki/tree/main/examples/http-api).
-Work from a local copy of the ToolWiki repository.
+[Get the examples](../get-examples/) first. Run the commands from the extracted
+repository root unless a step names another working directory.
 
 The service binds to `127.0.0.1:8771`. It has no credentials or external services.
 Requests create and delete in-memory orders; reset or restart clears them.
@@ -14,18 +15,40 @@ The HTTP fixture is separate from boofuzz's custom-protocol harness.
 
 ## Start and reproduce the fault
 
-You need Python 3.12 for the pinned Schemathesis environment below. The service
-itself uses only the Python standard library. From the repository root, start
-it in one terminal:
+Use **Python 3.13** for this walkthrough. Check the interpreter in PowerShell
+before creating an environment:
 
-```sh
-python examples/http-api/server.py
+```powershell
+$apiPython = (Get-Command python).Source
+& $apiPython --version
+```
+
+Expect `Python 3.13.x`; the new execution record uses **3.13.15**. If the command
+is missing or reports another version, install/select Python 3.13 and set its
+full executable path, then repeat the check:
+
+```powershell
+$apiPython = 'C:/PATH/TO/Python313/python.exe'
+& $apiPython --version
+```
+
+Replace `C:/PATH/TO/Python313/python.exe` with your installed interpreter. Optional:
+see [Python on Windows](https://docs.python.org/3.13/using/windows.html) for setup.
+Schemathesis 4.33.1 declares [Python 3.11 or newer](https://github.com/schemathesis/schemathesis/blob/v4.33.1/pyproject.toml)
+as its minimum; that is separate from the versions tested here.
+
+The service uses only the Python standard library. Create the environment once
+and start the faulty service in this terminal:
+
+```powershell
+& $apiPython -m venv .preview/api-demo-env
+.preview/api-demo-env/Scripts/python examples/http-api/server.py
 ```
 
 Wait for `Ready on http://127.0.0.1:8771`. In a second terminal, run:
 
-```sh
-python examples/http-api/replay.py
+```powershell
+.preview/api-demo-env/Scripts/python examples/http-api/replay.py
 ```
 
 This sends `POST /orders` with `{"quantity": 0}`. Zero is valid in the schema,
@@ -39,18 +62,18 @@ these producer/consumer links. Deleting an order makes later reads return 404.
 
 Reset between independent runs:
 
-```sh
-python examples/http-api/replay.py --reset
+```powershell
+.preview/api-demo-env/Scripts/python examples/http-api/replay.py --reset
 ```
 
 Stop the server with Ctrl+C. Restart in corrected mode and check the same input:
 
-```sh
-python examples/http-api/server.py --fixed
+```powershell
+.preview/api-demo-env/Scripts/python examples/http-api/server.py --fixed
 ```
 
-```sh
-python examples/http-api/replay.py --expect-fixed
+```powershell
+.preview/api-demo-env/Scripts/python examples/http-api/replay.py --expect-fixed
 ```
 
 The corrected implementation uses the known unit price. The observed response
@@ -60,36 +83,101 @@ the service is not ready or the port is wrong, not that a test passed.
 
 ## Run Schemathesis
 
-**Executed on 2026-11-06:** Schemathesis 4.33.1 on Windows/Python 3.12.16,
-using the coverage phase, positive generation, and `not_a_server_error` check.
-The faulty service produced a server-error finding. The corrected service
-completed the selected checks without a finding. This does not cover every
-possible request, business rule, or security property.
+The demo selects the coverage phase, positive generation, and
+`not_a_server_error`. It asks whether generated schema-valid inputs trigger a
+server error. This does not cover every request, business rule, or security
+property.
 
-Create the pinned environment in PowerShell from the repository root:
+Install the pinned dependencies into the environment you created. Start the
+faulty service, then run the check in the second terminal:
 
 ```powershell
-python -m venv .preview/api-demo-env
 .preview/api-demo-env/Scripts/python -m pip install -r examples/http-api/requirements-lock.txt
 .preview/api-demo-env/Scripts/python examples/http-api/run_schemathesis.py --output .preview/api-faulty
 ```
 
-Start the faulty service before that command. Then stop it, start `--fixed`,
-and repeat the command with `.preview/api-fixed` as the output directory. On
-Linux or macOS, replace `Scripts` with `bin`; those hosts were not used for this
-record. Use a fresh directory for each run. The wrapper retains stdout, stderr,
+Then stop the service, start `--fixed`, and repeat the wrapper command with
+`.preview/api-fixed` as the output directory. Use a fresh directory for each
+run. The wrapper retains stdout, stderr,
 JUnit, the exact CLI command, and process status. It sets UTF-8 only for the
-child process so captured output also works on Windows.
+child process so captured output also works on Windows. Stop the service with
+Ctrl+C when finished. Linux/macOS execution was not tested; the environment's
+executables live under `bin` instead of `Scripts` on those hosts.
 
-The faulty run exited 1 and stopped after its first failure, leaving other
-operations untested. The corrected run exited 0 after testing all three
-operations in the selected phase. The [execution record](https://github.com/zwadhams/ToolWiki/blob/main/audits/remaining-work/executions/http-api/record.json)
-records those outcomes and input digests. A later short run need not discover
-the fault; `replay.py` is the deterministic check.
+**Historical execution, 2026-11-06:** Schemathesis 4.33.1 on Windows/Python
+3.12.16 exited 1 against the faulty service and 0 against the corrected service.
+The [original execution record](https://github.com/zwadhams/ToolWiki/blob/main/audits/remaining-work/executions/http-api/record.json)
+retains those results and input digests.
+
+**New execution, 2026-11-06:** A fresh Windows/Python 3.13.15 environment installed
+the same lockfile and reproduced both results. The faulty run stopped at its
+first server-error finding, leaving two operations untested. The corrected run
+tested all three operations in the selected phase without a finding. See the
+[new execution record](https://github.com/zwadhams/ToolWiki/blob/7fce8e2cf1903a98cade96865bb383036f200e13/audits/reader-workflows/implementation/api/record.json).
+A later short run need not discover the fault; `replay.py` is the deterministic
+check.
 
 See the [CLI reference](https://schemathesis.readthedocs.io/en/stable/reference/cli/)
 for check selection, limits, reports, and exit-code meanings. Failure to load a
 schema or complete setup is different from a failing API response.
+
+## Adapt to your API
+
+Use the pinned CLI directly with your API's OpenAPI file and a disposable local
+service. In this example, `./widgets.json` is your saved schema in the repository
+root, `http://127.0.0.1:8781` is the running test API's base URL, and the exact
+path/method filters select only `POST /widgets`. Replace those three values to
+match your service; include any API base path in `--url`. Filters select schema
+operations; capability probes and negative method cases can send other requests.
+
+From the repository root in **PowerShell 7**, run a bounded positive check:
+
+```powershell
+$out = '.preview/api-custom-positive'
+if (Test-Path $out) { throw 'Choose a new report directory.' }
+New-Item -ItemType Directory -Path $out | Out-Null
+$priorEncoding = $env:PYTHONIOENCODING
+try {
+    $env:PYTHONIOENCODING = 'utf-8'
+    & .preview/api-demo-env/Scripts/schemathesis.exe --no-color run ./widgets.json `
+        --url http://127.0.0.1:8781 --include-path /widgets --include-method POST `
+        --phases coverage --mode positive --checks not_a_server_error `
+        --max-time 20 --workers 1 --max-failures 1 --request-timeout 3 `
+        --seed 20261106 --report junit --report-junit-path "$out/junit.xml" `
+        1> "$out/stdout.txt" 2> "$out/stderr.txt"
+    $LASTEXITCODE | Set-Content "$out/exit-code.txt"
+} finally {
+    $env:PYTHONIOENCODING = $priorEncoding
+}
+```
+
+This gives the run a 20-second budget, one worker, a stop after one failure/error,
+and a three-second request timeout; the budget is not a hard process deadline.
+Inspect `stdout.txt`, `stderr.txt`,
+`exit-code.txt`, and `junit.xml` for findings and skipped work. The shell restores
+its previous output encoding setting afterward. Keep this command with your
+[run record](../run-record/); choose a fresh `$out` for every run.
+
+To ask whether the API rejects **schema-invalid input**, repeat the block with
+`$out = '.preview/api-custom-negative'` and replace its generation/check line:
+
+```powershell
+        --phases coverage --mode negative --checks negative_data_rejection `
+```
+
+The positive server-error check does not test invalid-input rejection.
+`negative_data_rejection` evaluates rejection of invalid generated inputs; it
+accepts certain error statuses, including 5xx, so use `not_a_server_error` too
+when checking that rejection avoids server errors. For both kinds of input in one run,
+use `--mode all --checks not_a_server_error,negative_data_rejection`. See the
+[check definitions](https://schemathesis.readthedocs.io/en/stable/reference/checks/).
+
+The new execution record tests the two separate commands against a scratch
+variant of the supplied fixture: `/orders` became `/widgets`, with a saved
+`widgets.json` and port 8781. Positive testing found the faulty zero-quantity
+500 and passed after correction; negative testing exercised invalid requests.
+The record lists the actual requests, results, and limitations. The combined
+`all` variant, authentication, and real services were not tested.
 
 ## Use the same service with RESTler
 

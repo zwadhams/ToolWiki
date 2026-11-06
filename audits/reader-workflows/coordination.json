@@ -1,0 +1,53 @@
+{
+  "objective": "Implement approved reader-workflow plan; all five usability fixes and all three fresh reader retests must pass actual fault/correction. No main merge or Pages deployment.",
+  "audience": "Intermediate programmer/terminal user; concise instructions, not excessive handholding.",
+  "branch": "codex/reader-workflows",
+  "main_base": "21d14974c0498960cc2929900a58c1f27b60cd70",
+  "baseline_audit_commit": "1c1e7ed",
+  "source_snapshot": "506c522ca86fd8c9d7b688f35a4d37f842d04cc9",
+  "memory_evidence_commit": "a81760a9f74ed6d94eb33f80ab03f8bd6fc42362",
+  "api_evidence_commit": "7fce8e2cf1903a98cade96865bb383036f200e13",
+  "implementation_agents": "implement_reader_python, implement_reader_api, implement_reader_memory all completed; no active edits. Their evidence is under implementation/.",
+  "status": "All implementation lanes complete. Docs and integration edits still uncommitted; fresh reader retests not started.",
+  "verification": "verification-initial.txt: Astro43files0errors,101tests passed; Pagefind PermissionDenied caused missing sitemap. Escalated pnpm build succeeded: build-retry.txt + site-check-initial.txt validates133pages/98profiles/86buildertools. Latest API evidence permalink edit postdates build; rebuild before reader tests.",
+  "windows_ci": {
+    "run": 42303178089,
+    "job": 128185838969,
+    "artifact": 13545251137,
+    "status": "passed-all-six-asserts",
+    "source_commit": "506c522ca86fd8c9d7b688f35a4d37f842d04cc9",
+    "record": "implementation/memory/ci-42303178089/run.json",
+    "raw_zip": ".preview/reader-ci/windows-memory-42303178089.zip",
+    "archive_sha256": "a27bad64a3fca31e2a6af9e914503d461ae7622d6e8f4bac878d9d620883146f"
+  },
+  "site_changes": [
+    "get-examples guide pins source snapshot ZIP/Git and correct cd paths",
+    "python guide own-project commands;Pylint W0611 example",
+    "api guide Python3.13 primary+versioncheck;positive/negative adaptation,encodingrestore",
+    "new MSVC Windows memory guide;Clang profile scope intact;DrMemory setup link corrected",
+    "nav Workflows adds Getexamples andWindowsmemory"
+  ],
+  "pending": [
+    "Review/stage/commit/push all docs/integration artifacts on validation branch. Keep prior audits frozen.",
+    "Rebuild latest docs and check site (use escalation for known Pagefind permissions failure).",
+    "Start server via python -u audits/reader-workflows/serve-preview.py --port4361 --port4362 --port4363; execsession must stay alive. Verify200 BEFORE freshagents. Do not use Start-Process/astro-background, which previously died.",
+    "Spawn three NEW fork_turns=none agents: Python/API/Memory. Same novice-intermediate scenarios, home-page start, no previous audits/implementation knowledge. Fresh ZIP acquisition and environments; only visible wiki+explicitlinks. Omit visible:false in subagentIAB ifunsupported.",
+    "Python heldout input at .preview/reader-retests/inputs/python/Invoice sample (F401 + annotation mismatch). API heldout at .preview/reader-retests/inputs/api (POST/shipments, port8785, service-schema.json; server.py --fixed). Agents can read these supplied synthetic targets but not hiddenaudit expectations. Retain fresh evidence/reports under audits/reader-workflows/retests/<scenario>.",
+    "Memory agent uses nativeWindowsx64 CI as user-approved executionenvironment, not this ARM64 PC. Have freshagent read guide then prepare literal publiccommands in retests/memory/reader-commands.ps1 param OutputPath, safe synthetic files only. Workflow already has optional hook and upload reader-memory artifact; root reviews, commits/pushes script, fetches fresh artifacts/logs and lets agent interpret. Do not substitute old verifier run for fresh reader execution.",
+    "Fix actionable retest findings and repeat affected task fresh as needed. All3 must actualfault+correction; Python/API must adaptation on separatetarget.",
+    "Append scoped review provenance to audits/review-status/reviews.json and regenerate reports after finalreviews. Run finalpnpmverify appropriate once afterfixes. ValidateASCII JSON XML evidencehashes prior-audit-digests236files.",
+    "Write completionREADME, updateledgergates onlyafterpassed, commit/push validationbranch final clean. Stop own previewservers via write_stdin CtrlC. No mainmerge."
+  ],
+  "technical_limits": [
+    "Local hostARM64 existingMSVC x64ASan bothbad/good crash0xc0000005 evennormalpermissions; never claimlocalruntime validated.",
+    "NativeCI windows-2022 image20261101.353.1 VS17.14.44 MSVC19.44.35229.0 badheapoverflowWRITE4 bounds.c5 goodexit0.",
+    "CI contentsread only checkoutv7 uploadartifactv7, noPagesdeploy.",
+    "API invalid-input negative_data_rejection alone permits some5xx; docs explain pair withnot_a_server_error if needed. Combinedallmode notexecuted byimplementationagent.",
+    "Baseline audits/reader-usability committed immutable;236prioraudits hashed. Reviewstatusledger mayappend but historicalentries unchanged.",
+    "ASCII all; no globaltoolchain installs."
+  ],
+  "tool_notes": [
+    "GitHub plugin github_fetch structuredContent.content holdsJSONstring. specific runjobs/artifactstools structuredContent directobjects. downloadartifactreturns signedURL; IWR inbounddownload to .preview, validateSHA, safelyextractonlyflatjson/txt and recordnormalization. Avoid printingfulljoblogs.",
+    "No active goaltool for this request; ordinary implementation authorization."
+  ]
+}

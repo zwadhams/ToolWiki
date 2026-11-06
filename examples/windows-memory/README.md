@@ -16,4 +16,4 @@ The output directory must not exist. The script discovers VS 2022, initializes i
 
 A pass requires the bad program to exit nonzero with `heap-buffer-overflow`, `WRITE of size 4`, and `bounds.c:5` attribution, followed by exit 0 and no ASan error from the correction. Unsupported architecture, missing tooling, compilation failure, unsymbolized errors, and two crashing programs fail the check. The script accepts only an output path; it does not install software.
 
-Native execution evidence is pending until the `reader-validation.yml` workflow completes. The ARM64 development machine is only used to verify that the setup boundary fails clearly.
+The [native execution record](https://github.com/zwadhams/ToolWiki/blob/a81760a9f74ed6d94eb33f80ab03f8bd6fc42362/audits/reader-workflows/implementation/memory/ci-42303178089/run.json) passed on Windows Server 2022 x64 with VS 2022 17.14.44 and MSVC 19.44.35229. The ARM64 development machine was used only to verify that the setup boundary fails clearly.

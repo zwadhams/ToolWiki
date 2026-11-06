@@ -1,0 +1,20 @@
+{
+  "checkedUtc": "2026-11-06T22:14:38.3522060Z",
+  "nativeExecution": "not attempted on ARM64",
+  "asciiFiles": [
+    "src/content/docs/guides/windows-memory-check.md",
+    "src/content/docs/guides/memory-error-detection.md",
+    "src/content/docs/tools/address-sanitizer.md",
+    "src/content/docs/tools/dr-memory.md",
+    "examples/windows-memory/README.md",
+    "examples/windows-memory/verify.ps1",
+    "examples/windows-memory/bad/bounds.c",
+    "examples/windows-memory/good/bounds.c",
+    ".github/workflows/reader-validation.yml"
+  ],
+  "asciiPassed": true,
+  "guidePowerShellBlocksParsed": 7,
+  "outputOverwriteRefused": true,
+  "outputUnchanged": true,
+  "note": "The setup failure is expected on this ARM64 development host. Native x64 success must come from CI."
+}

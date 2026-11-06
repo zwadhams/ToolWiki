@@ -18,11 +18,13 @@ Memory errors can be investigated before execution or while tests exercise a pro
 
 [Compare Infer, AddressSanitizer, and Memcheck](../../compare/?tools=tools%2Finfer%2Ctools%2Faddress-sanitizer%2Ctools%2Fvalgrind-memcheck).
 
-For a Windows executable, consider [Dr. Memory's documented Windows workflow](../../tools/dr-memory/). It instruments execution without requiring a sanitizer build. Check the selected release's architecture and application limitations, and keep symbols for useful diagnostic locations. [Compare Dr. Memory, Memcheck, and AddressSanitizer](../../compare/?tools=tools%2Fdr-memory%2Ctools%2Fvalgrind-memcheck%2Ctools%2Faddress-sanitizer) before choosing a setup.
+On native Windows x64 with source and rebuild access, start with [Find a memory error on Windows](../windows-memory-check/). It gives one MSVC AddressSanitizer setup, a faulty program, and a corrected run; its validation status is stated on that page. This is separate from the Clang/LLVM catalog entry.
+
+If you only have an executable, consider [Dr. Memory's Windows example](../../tools/dr-memory/). It instruments execution without requiring a sanitizer build. Installation alone does not establish compatibility: check the selected release against the actual OS, architecture, and application, and keep symbols for useful diagnostic locations. [Compare Dr. Memory, Memcheck, and AddressSanitizer](../../compare/?tools=tools%2Fdr-memory%2Ctools%2Fvalgrind-memcheck%2Ctools%2Faddress-sanitizer) before choosing a setup.
 
 ## A useful first experiment
 
-Use the out-of-bounds example on the AddressSanitizer page as a controlled starting point. Keep two revisions: the invalid index and a corrected index.
+Use the [Windows MSVC experiment](../windows-memory-check/) or the illustrative [Clang AddressSanitizer example](../../tools/address-sanitizer/#first-try) as a controlled starting point. Keep two revisions: the invalid index and a corrected index.
 
 For a static tool, verify that the intended function was included in analysis. For a runtime tool, verify that the test actually reaches the access. Record build flags and the exercised input with each report.
 

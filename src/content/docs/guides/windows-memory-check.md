@@ -48,7 +48,7 @@ You need native Windows x64, PowerShell, and Visual Studio 2022 with **Desktop d
    if (-not (Test-Path $runtime)) { throw 'Add C++ AddressSanitizer in the VS 2022 Installer.' }
    ```
 
-   The compiler banner must say `for x64`, and both architecture values must be `x64`. Calling `cl` alone also reports that a source filename is missing; that is expected in this preflight. The runtime DLL check verifies presence, while the corrected run below checks that it actually loads and runs.
+   The compiler banner must say `for x64`, and both architecture values must be `x64`. Bare `cl` may also print usage; no source is compiled in this preflight. The runtime DLL check verifies presence, while the corrected run below checks that it actually loads and runs.
 
 ## Diagnose the faulty write
 

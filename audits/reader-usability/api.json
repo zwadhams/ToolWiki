@@ -1,0 +1,523 @@
+{
+  "schema_version": 1,
+  "audit_kind": "expert-agent first-time-reader walkthrough; not a human usability study",
+  "audit_date": "2026-11-06",
+  "scenario": {
+    "reader": "Understands HTTP and JSON and uses Windows PowerShell; has no disposable API or chosen tool.",
+    "goal": "Choose an API tool, obtain a bounded local target, run a finding and correction, interpret results, and learn how to adapt the workflow and retain evidence.",
+    "priority": "Useful and easy to work with",
+    "constraints": "Audit only. No product changes. No external scans or credentials. Follow visible wiki links first. No web-search rescue. Synthetic execution confined to a fresh .preview/reader-usability/api tree."
+  },
+  "environment": {
+    "preview_commit": "21d14974c0498960cc2929900a58c1f27b60cd70 (supplied by audit coordinator; not independently source-inspected)",
+    "original_start_url": "http://127.0.0.1:4348/ToolWiki/",
+    "working_start_url": "http://127.0.0.1:4352/ToolWiki/",
+    "browser": "Codex in-app browser, own tab 2; default visibility because subagent visibility control is unsupported",
+    "os": "Microsoft Windows NT 10.0.26300.0",
+    "shell": "PowerShell 7.6.9",
+    "available_python": "Python 3.13.15; C:/Users/zwadh/AppData/Local/Programs/Python/Python313/python.exe",
+    "python_launcher": "py -0p returned No installed Pythons found!",
+    "documented_example_python": "Python 3.12; recorded example states 3.12.16",
+    "execution_root": "C:/Users/zwadh/Repos/ToolWiki/.preview/reader-usability/api",
+    "target": "http://127.0.0.1:8771",
+    "freshness": "Test-Path on execution root returned False before creation; no listener was found on port 8771; new venv and copied fixture created.",
+    "deviations": [
+      "An already available local ToolWiki checkout supplied the linked fixture files. Repository acquisition was not tested.",
+      "Copied only linked fixture files into a new directory that preserves examples/http-api paths; used that as the working root.",
+      "The exact Python 3.12 route stopped because its interpreter was unavailable. A labeled recovery uses fresh Python 3.13.15 venv, based on tool-page statement that pinned 4.33.1 requires Python 3.11 or newer.",
+      "Retained textual console evidence escapes non-ASCII glyphs and removes terminal control sequences; this is an audit presentation transform, not a changed tool invocation."
+    ],
+    "installed_tool": "Schemathesis 4.33.1 and all supplied lockfile pins installed successfully on Python 3.13.15."
+  },
+  "tool_choice": {
+    "tool": "Schemathesis",
+    "decision_basis": "Home Test an API link yielded six cards. Schemathesis explicitly lists Specification violations, Server errors, Input validation, Free, and Language independent. That matched the scenario more directly than performance or general security cards.",
+    "scope_understood": "Generated tests derive from an OpenAPI or GraphQL definition and exercise a running service. Findings are failures of enabled checks, not automatic security vulnerabilities. The fixture's selected run uses positive coverage and not_a_server_error only.",
+    "other_tools_seen": [
+      "Burp Suite Community Edition",
+      "Grafana k6 OSS",
+      "Burp Suite Professional",
+      "RESTler",
+      "ZAP"
+    ],
+    "other_tools_run": []
+  },
+  "harness_and_automation_errors": [
+    {
+      "order": 1,
+      "action": "Open original required URL",
+      "observed": "net::ERR_CONNECTION_REFUSED",
+      "classification": "Preview harness unavailable, not a wiki defect",
+      "resolution": "Coordinator independently verified replacement origin and authorized 4352."
+    },
+    {
+      "order": 2,
+      "action": "Rebind failed IAB tab 1",
+      "observed": "Browser URL policy rejected the generated data: error page",
+      "classification": "Automation error; not product behavior",
+      "resolution": "Fresh tab after preview repaired."
+    },
+    {
+      "order": 3,
+      "action": "Create 4352 tab with visible:false",
+      "observed": "IAB visibility is not supported in a subagent thread",
+      "classification": "Automation capability limitation",
+      "resolution": "Omitted visibility option."
+    },
+    {
+      "order": 4,
+      "action": "Assign newly created tab to failed earlier binding",
+      "observed": "readerApiTab is not defined; tab 2 nevertheless created and home page loaded",
+      "classification": "Agent binding error",
+      "resolution": "Bound observed tab 2 with var readerApiTab."
+    },
+    {
+      "order": 5,
+      "action": "Create fixture directory using a not-yet-existing working directory",
+      "observed": "Failed to create unified exec process: The directory name is invalid. (os error 267)",
+      "classification": "Agent command ordering error; no fixture or product change occurred",
+      "resolution": "Created and copied from repository root, then created venv from existing execution root."
+    }
+  ],
+  "chronological_route_log": [
+    {
+      "step": 1,
+      "url": "http://127.0.0.1:4352/ToolWiki/",
+      "action": "Read home page",
+      "visible": "Browse tools; Start with a task: Test an API; 98 of 98 entries",
+      "decision": "Use the task shortcut rather than search by a tool name."
+    },
+    {
+      "step": 2,
+      "url": "http://127.0.0.1:4352/ToolWiki/?q=HTTP&input=Running+applications#tool-results",
+      "action": "Click Test an API",
+      "visible": "HTTP search; Running applications filter; 6 of 98 entries",
+      "decision": "Choose Schemathesis from capability labels."
+    },
+    {
+      "step": 3,
+      "url": "http://127.0.0.1:4352/ToolWiki/tools/schemathesis/?catalog=q%3DHTTP%26input%3DRunning%2Bapplications%26category%3Dall",
+      "action": "Click Schemathesis",
+      "visible": "What you need: Provide an API definition and reachable test service. First try: disposable HTTP API. Where it runs: pinned 4.33.1 example requires Python 3.11 or newer.",
+      "decision": "Follow supplied fixture; no need to invent a service."
+    },
+    {
+      "step": 4,
+      "url": "http://127.0.0.1:4352/ToolWiki/guides/api-testing/?catalog=q%3DHTTP%26input%3DRunning%2Bapplications%26category%3Dall",
+      "action": "Click disposable HTTP API",
+      "visible": "Test a disposable HTTP API; examples/http-api; Work from a local copy of the ToolWiki repository; loopback 127.0.0.1:8771; Python 3.12; start/replay/reset/fixed commands; pinned PowerShell environment.",
+      "decision": "Follow examples directory link before reading/copying files. Do not follow historical execution record because this audit excludes old audits."
+    },
+    {
+      "step": 5,
+      "url": "https://github.com/zwadhams/ToolWiki/tree/main/examples/http-api",
+      "action": "Click examples/http-api",
+      "visible": "README lists server.py, openapi.json, replay.py, run_schemathesis.py, requirements-lock.txt and their roles.",
+      "decision": "Use existing local checkout copies of these linked files only."
+    },
+    {
+      "step": 6,
+      "action": "Read linked fixture scripts/requirements; inspect available Python",
+      "visible": "python --version is 3.13.15; py -0p finds no registered Python; fixture supports --port; wrapper hardcodes loopback /openapi.json, positive coverage, not_a_server_error.",
+      "decision": "Exact documented Python 3.12 route unavailable. Proceed with stdlib replay and labeled compatible-Python recovery."
+    },
+    {
+      "step": 7,
+      "action": "Check unused port and fresh work area; copy fixture; create venv",
+      "visible": "Root absent; no listener on 8771; copied five files unchanged; venv creation exit 0.",
+      "decision": "Preserve examples/http-api relative paths in isolated root."
+    },
+    {
+      "step": 8,
+      "action": "Install pinned requirements and start faulty server in separate terminal session",
+      "visible": "Ready on http://127.0.0.1:8771; mode=faulty. Ctrl+C stops the server.",
+      "decision": "Wait for Ready message before replay."
+    },
+    {
+      "step": 9,
+      "action": "Run replay.py then replay.py --reset",
+      "visible": "POST /orders with quantity 0 returns HTTP 500 and Zero-quantity unit-price defect; replay exit 0; reset HTTP 200.",
+      "decision": "Interpret exit 0 as successful fault reproduction, not API health."
+    },
+    {
+      "step": 10,
+      "url": "http://127.0.0.1:4352/ToolWiki/guides/run-record/?catalog=q%3DHTTP%26input%3DRunning%2Bapplications%26category%3Dall",
+      "action": "Browser back to API guide, then click run record",
+      "visible": "Before/after fields, exact command/deviations, target digest, scope, expected signal, evidence paths, completed-findings vs failed/incomplete.",
+      "decision": "Retain commands, inputs, reports, runtime change, and skipped scope."
+    },
+    {
+      "step": 11,
+      "url": "http://127.0.0.1:4352/ToolWiki/guides/reviewing-findings/?catalog=q%3DHTTP%26input%3DRunning%2Bapplications%26category%3Dall",
+      "action": "Back to API guide, click finding review guide",
+      "visible": "Confirm intended analysis completed before interpreting; blank report can mean failure; gather evidence and rerun comparably.",
+      "decision": "Generic review guidance supports separating setup failure from observed finding, but contains no worked API-specific schema-vs-implementation example."
+    },
+    {
+      "step": 12,
+      "url": "https://schemathesis.readthedocs.io/en/stable/reference/cli/",
+      "action": "Back to API guide, click CLI reference",
+      "visible": "run LOCATION; --url for base URL, required for file schemas; filtering; --checks; --mode; bounds; reports; exit codes 0, 1, 2, 130.",
+      "decision": "Use linked official reference to learn own-API adaptation; do not execute external targets."
+    },
+    {
+      "step": 13,
+      "url": "https://schemathesis.readthedocs.io/en/stable/reference/checks/",
+      "action": "Click Checks reference from CLI reference",
+      "visible": "negative_data_rejection needs --mode negative or all; not_a_server_error catches 5xx; stateful checks require operation links and multi-step stateful scenarios.",
+      "decision": "The supplied positive-only fixture run does not exercise invalid-input rejection or stateful resource checks. Adapt scope deliberately."
+    },
+    {
+      "step": 14,
+      "action": "Stop faulty service with Ctrl+C, start --fixed, run replay.py --expect-fixed",
+      "visible": "HTTP 201; quantity 0, total 0, unitPrice 10; order read back successfully; replay exit 0.",
+      "decision": "Correction changes observed behavior as explained by guide."
+    },
+    {
+      "step": 15,
+      "action": "Stop fixed service with Ctrl+C; restart faulty service",
+      "visible": "Ready on loopback with mode=faulty.",
+      "decision": "Prepare for the guide's selected Schemathesis run after dependency installation."
+    },
+    {
+      "step": 16,
+      "action": "Observe pinned package install completion",
+      "visible": "Successfully installed all requirements-lock.txt pins, including schemathesis-4.33.1; install exit 0.",
+      "decision": "Compatible-Python recovery can proceed; exact documented environment remains untested."
+    },
+    {
+      "step": 17,
+      "action": "Run selected Schemathesis wrapper against faulty service in fresh .preview/api-faulty",
+      "visible": "Wrapper exit 1; ST101 Server error; POST /orders quantity 0; HTTP 500; 1 tested, 2 skipped because failure limit reached; 3 generated cases.",
+      "decision": "Confirmed server-error finding with partial operation coverage, not setup failure or exhaustive test."
+    },
+    {
+      "step": 18,
+      "action": "Stop faulty service, start --fixed, run wrapper in fresh .preview/api-fixed",
+      "visible": "Wrapper exit 0; 3 selected and tested operations; 6 generated cases passed; examples/fuzzing/stateful disabled.",
+      "decision": "The selected server-error scope passed against corrected service; invalid-input/stateful/security checks remain outside this run."
+    },
+    {
+      "step": 19,
+      "action": "Stop fixed service and verify cleanup",
+      "visible": "No listener on port 8771 after cleanup.",
+      "decision": "No test target left running."
+    },
+    {
+      "step": 20,
+      "action": "Retain inputs, runtime/package versions, digests, replay output, wrapper run records and JUnit/ASCII console evidence",
+      "visible": "Evidence under audits/reader-usability/evidence/api; original temporary reports remain in isolated execution root.",
+      "decision": "Separate observed behavior, deviations and interpretation in api.json."
+    }
+  ],
+  "success_criteria": [
+    {
+      "id": "choose_tool_and_scope",
+      "status": "pass",
+      "evidence": "Task shortcut and Schemathesis card match server errors/input validation. Tool page distinguishes required definition plus running target, enabled checks and limits.",
+      "steps": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "bounded_local_target_input",
+      "status": "pass",
+      "evidence": "Linked examples provide loopback-only stdlib service and OpenAPI schema; deterministic faulty/fixed replay, reset and stop commands worked.",
+      "steps": [
+        4,
+        5,
+        7,
+        8,
+        9,
+        14
+      ]
+    },
+    {
+      "id": "complete_prerequisites_and_commands",
+      "status": "partial",
+      "evidence": "Start/replay/install/run commands work in isolated copied layout. Exact Python 3.12 interpreter unavailable; generic python command used installed 3.13 in labeled recovery. Already available repository bypassed acquisition.",
+      "steps": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        16
+      ]
+    },
+    {
+      "id": "finding_and_correction",
+      "status": "pass",
+      "qualification": "Pass in compatible-Python recovery, not exact recorded environment.",
+      "evidence": "Replay 500 then 201/read-back; Schemathesis ST101 exit 1 then selected checks pass exit 0.",
+      "steps": [
+        9,
+        14,
+        17,
+        18
+      ]
+    },
+    {
+      "id": "distinguish_findings_setup_service_failure",
+      "status": "pass",
+      "evidence": "Guide explicitly explains replay exit 0, readiness, connection refusal and schema/setup failure. Actual scanner reports loaded schema, failing API response, and skipped operations; linked official reference defines exit 0/1/2/130.",
+      "steps": [
+        4,
+        9,
+        10,
+        11,
+        12,
+        17,
+        18
+      ]
+    },
+    {
+      "id": "adapt_to_own_api",
+      "status": "partial",
+      "evidence": "Tool page names schema, server, authentication, state and checks. Fixture wrapper only exposes port/output. Linked CLI/Checks references supplied LOCATION, --url, filtering, --mode negative/all, negative_data_rejection, bounds and reports. No own-API run attempted.",
+      "steps": [
+        3,
+        6,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "retain_evidence",
+      "status": "pass",
+      "evidence": "Wrapper retained stdout, stderr, JUnit and exact CLI/exit status. Run-record template identifies versions, hashes, scope, deviations, skipped work and comparable correction.",
+      "steps": [
+        10,
+        17,
+        18,
+        20
+      ]
+    }
+  ],
+  "commands_and_results": [
+    {
+      "phase": "environment",
+      "commands": [
+        "$PSVersionTable.PSVersion.ToString()",
+        "[System.Environment]::OSVersion.VersionString",
+        "Get-Command python, py, uv -ErrorAction SilentlyContinue | Select-Object Name, Source",
+        "py -0p",
+        "python --version"
+      ],
+      "result": "PowerShell 7.6.9, Windows 10.0.26300.0, Python 3.13.15; py launcher has no registered Python; uv was not found."
+    },
+    {
+      "phase": "isolation",
+      "working_directory": "C:/Users/zwadh/Repos/ToolWiki",
+      "commands": [
+        "Test-Path -LiteralPath '.preview/reader-usability/api'",
+        "Get-NetTCPConnection -LocalPort 8771 -State Listen -ErrorAction SilentlyContinue | Select-Object LocalAddress, LocalPort, OwningProcess",
+        "New-Item -ItemType Directory -Path '.preview/reader-usability/api/examples/http-api' -Force | Out-Null",
+        "Copy-Item -LiteralPath 'examples/http-api/server.py','examples/http-api/replay.py','examples/http-api/openapi.json','examples/http-api/requirements-lock.txt','examples/http-api/run_schemathesis.py' -Destination '.preview/reader-usability/api/examples/http-api'"
+      ],
+      "result": "Fresh root and unused port confirmed; fixture copied unchanged after following website link."
+    },
+    {
+      "phase": "setup_recovery",
+      "working_directory": "C:/Users/zwadh/Repos/ToolWiki/.preview/reader-usability/api",
+      "commands": [
+        "python -m venv .preview/api-demo-env",
+        ".preview/api-demo-env/Scripts/python -m pip install -r examples/http-api/requirements-lock.txt *> install-log.txt"
+      ],
+      "observed_exit_code": 0,
+      "result": "Pinned dependencies installed on Python 3.13.15. Generic command does not select documented Python 3.12. No global install or pip update performed."
+    },
+    {
+      "phase": "faulty_replay",
+      "working_directory": "C:/Users/zwadh/Repos/ToolWiki/.preview/reader-usability/api",
+      "commands": [
+        "python examples/http-api/server.py",
+        "python examples/http-api/replay.py > replay-faulty.txt",
+        "python examples/http-api/replay.py --reset"
+      ],
+      "observed_exit_code": 0,
+      "result": "Ready on loopback; POST /orders quantity 0 returns 500 with defect error; replay exit 0; reset returns 200."
+    },
+    {
+      "phase": "corrected_replay",
+      "working_directory": "C:/Users/zwadh/Repos/ToolWiki/.preview/reader-usability/api",
+      "commands": [
+        "Ctrl+C in own server session",
+        "python examples/http-api/server.py --fixed",
+        "python examples/http-api/replay.py --expect-fixed > replay-fixed.txt"
+      ],
+      "observed_exit_code": 0,
+      "result": "HTTP 201, total 0, unitPrice 10; created order read back."
+    },
+    {
+      "phase": "faulty_scanner",
+      "working_directory": "C:/Users/zwadh/Repos/ToolWiki/.preview/reader-usability/api",
+      "commands": [
+        "Ctrl+C in own server session",
+        "python examples/http-api/server.py",
+        ".preview/api-demo-env/Scripts/python examples/http-api/run_schemathesis.py --output .preview/api-faulty"
+      ],
+      "observed_exit_code": 1,
+      "result": "ST101 Server error for quantity 0; 1 operation tested, 2 skipped at first failure; 3 generated cases. The shell reporting command itself exited 0 after printing $LASTEXITCODE, but wrapper/tool status was 1.",
+      "exact_cli_record": "evidence/api/faulty/run.json",
+      "reports": [
+        "evidence/api/faulty/stdout-ascii.txt",
+        "evidence/api/faulty/stderr-ascii.txt",
+        "evidence/api/faulty/junit.xml"
+      ]
+    },
+    {
+      "phase": "corrected_scanner",
+      "working_directory": "C:/Users/zwadh/Repos/ToolWiki/.preview/reader-usability/api",
+      "commands": [
+        "Ctrl+C in own server session",
+        "python examples/http-api/server.py --fixed",
+        ".preview/api-demo-env/Scripts/python examples/http-api/run_schemathesis.py --output .preview/api-fixed"
+      ],
+      "observed_exit_code": 0,
+      "result": "3 operations tested; 6 generated cases passed; only positive coverage/server-error checks enabled.",
+      "exact_cli_record": "evidence/api/fixed/run.json",
+      "reports": [
+        "evidence/api/fixed/stdout-ascii.txt",
+        "evidence/api/fixed/stderr-ascii.txt",
+        "evidence/api/fixed/junit.xml"
+      ]
+    },
+    {
+      "phase": "cleanup_and_retention",
+      "working_directory": "C:/Users/zwadh/Repos/ToolWiki/.preview/reader-usability/api",
+      "commands": [
+        "Ctrl+C in own server session",
+        "Get-NetTCPConnection -LocalPort 8771 -State Listen -ErrorAction SilentlyContinue",
+        ".preview/api-demo-env/Scripts/python --version",
+        ".preview/api-demo-env/Scripts/python -m pip freeze > installed-versions.txt",
+        "Get-FileHash -Algorithm SHA256 -LiteralPath 'examples/http-api/server.py','examples/http-api/replay.py','examples/http-api/openapi.json','examples/http-api/requirements-lock.txt','examples/http-api/run_schemathesis.py' | Select-Object Path, Hash | ConvertTo-Json > fixture-digests.json",
+        "python retain_evidence.py"
+      ],
+      "result": "No remaining listener. Versions, inputs, hashes and normalized reports retained; raw temporary files remain under execution root."
+    }
+  ],
+  "findings": [
+    {
+      "id": "API-01",
+      "classification": "documentation clarity; unavailable prerequisite separately recorded",
+      "severity": "moderate friction",
+      "title": "Required Python version and setup command do not line up",
+      "urls": [
+        "http://127.0.0.1:4352/ToolWiki/guides/api-testing/",
+        "http://127.0.0.1:4352/ToolWiki/tools/schemathesis/"
+      ],
+      "observed": "Guide says You need Python 3.12 for the pinned Schemathesis environment below, then uses python -m venv. Tool page says the pinned 4.33.1 example requires Python 3.11 or newer. On this machine python is 3.13.15, so the literal venv command creates a different runtime without checking it.",
+      "impact": "Reader cannot tell whether 3.12 is a strict requirement or only the recorded runtime. A successful generic command does not establish the advertised environment. This walkthrough needed an explicitly labeled compatibility decision before proceeding.",
+      "smallest_useful_fix": "Distinguish supported Python versions from the tested 3.12 environment. If 3.12 is required, show an interpreter-selection/version-check step before venv creation and state what to do when it is missing.",
+      "evidence": [
+        "evidence/api/observed-page-excerpts.txt",
+        "evidence/api/installed-versions.txt"
+      ],
+      "confidence": "high for wording and observed interpreter behavior; no claim that Python 3.13 is unsupported"
+    },
+    {
+      "id": "API-02",
+      "classification": "usability improvement, recovered through linked official documentation",
+      "severity": "moderate friction",
+      "title": "The first exercise lacks a short transition to the reader's API",
+      "urls": [
+        "http://127.0.0.1:4352/ToolWiki/guides/api-testing/",
+        "https://schemathesis.readthedocs.io/en/stable/reference/cli/",
+        "https://schemathesis.readthedocs.io/en/stable/reference/checks/"
+      ],
+      "observed": "Wiki shows a fixture wrapper invocation whose exposed inputs are only --port and --output. It describes selected positive server-error checks, then links a broad CLI reference. To address the scenario's invalid-input testing or a different API, this walkthrough read the wrapper and combined LOCATION/--url/filters/--mode/--checks/report options from two external reference pages.",
+      "impact": "The toy finding is easy to reproduce, but the reader must design the next command and realize positive-only not_a_server_error does not check invalid-input rejection. The linked references do provide the missing mechanics, so this is recoverable friction, not a dead-end or broken command.",
+      "smallest_useful_fix": "Add a compact Adapt to your API section with a PowerShell command using a reader-supplied schema location and loopback test URL, one explicit operation filter, budget/report settings, and a sentence explaining when to use negative/all generation plus negative_data_rejection.",
+      "evidence": [
+        "evidence/api/observed-page-excerpts.txt",
+        "evidence/api/inputs/run_schemathesis.py"
+      ],
+      "confidence": "high for missing on-page command and wrapper interface; severity is an expert usability judgment"
+    }
+  ],
+  "things_that_work_well": [
+    "Home task shortcut supplies a small relevant result set without knowing a tool name.",
+    "Card and tool-page descriptions explain target, required schema, cost and checks well enough to choose an appropriate tool.",
+    "First try links directly to a complete small service instead of asking the reader to bring a real API.",
+    "Fixture needs no credentials or external services, binds loopback, caps data, and provides explicit reset, ready signal, stop and fixed-mode steps.",
+    "Guide explicitly distinguishes replay success from API success, refused connection from a passing test, schema/setup failure from API findings, and selected-check success from absence of defects.",
+    "Wrapper retains command, exit status, stdout/stderr and JUnit; fresh output directories prevent overwriting earlier reports.",
+    "Official CLI and shared run-record links provide useful onward paths."
+  ],
+  "external_dependencies": [
+    {
+      "url": "https://github.com/zwadhams/ToolWiki/tree/main/examples/http-api",
+      "purpose": "Fixture source and README via explicit guide link",
+      "used": true
+    },
+    {
+      "url": "https://schemathesis.readthedocs.io/en/stable/reference/cli/",
+      "purpose": "Own-API schema/base-URL selection, operations, bounds, reports, exit codes",
+      "used": true
+    },
+    {
+      "url": "https://schemathesis.readthedocs.io/en/stable/reference/checks/",
+      "purpose": "Invalid-input and stateful check semantics, followed from linked CLI",
+      "used": true
+    },
+    {
+      "kind": "Package registry",
+      "purpose": "Fresh install of all supplied requirements-lock.txt pins",
+      "used": true
+    }
+  ],
+  "knowledge_supplied_by_agent": [
+    "Use an already available checkout and copy only linked fixture files to an isolated synthetic root; this bypasses repository acquisition.",
+    "Inspect available executables and port occupancy, preserve relative paths, create the audit root, use PowerShell redirection and capture $LASTEXITCODE.",
+    "Interpret the tool-page 3.11+ compatibility statement as grounds for a labeled Python 3.13 recovery, rather than silently claiming the recorded 3.12 environment.",
+    "Read the linked Python wrapper to learn its exact fixed scope and schema endpoint; the on-page command itself does not show the CLI.",
+    "Combine external CLI and Checks options into an own-API adaptation plan; no real API was used."
+  ],
+  "limitations": [
+    "Expert-agent walkthrough, not a human study; no invented emotions, human timing or statistical claims.",
+    "Only one selected API route was assessed; no whole-catalog or RESTler comparison.",
+    "Browser accessibility text and semantic links were used; no visual-layout or assistive-technology conformance audit.",
+    "The preview's supplied commit identity was not independently source-inspected.",
+    "Repository acquisition and exact Python 3.12 environment were not exercised.",
+    "No real API, authentication, external scanner target, stateful run or invalid-input run was executed.",
+    "Historical audits and execution records were not opened.",
+    "Linked stable upstream documentation can change independently from the local preview."
+  ],
+  "overall_outcome": {
+    "status": "partial",
+    "summary": "The wiki selected an appropriate tool and supplied a usable bounded exercise. Both replay and Schemathesis finding/correction succeeded in a labeled Python 3.13 recovery. The exact documented Python 3.12 route was unavailable, repository acquisition was bypassed using the provided checkout, and own-API adaptation required linked external references.",
+    "first_attempt": "Tool selection and fixture discovery passed; exact Python 3.12 scanner setup blocked by unavailable interpreter.",
+    "recovery": "Tool-page Python 3.11+ compatibility justified a fresh Python 3.13.15 venv. All supplied pins installed; faulty run produced expected ST101; corrected run completed selected scope.",
+    "cleanup": "All own target sessions stopped with Ctrl+C; no listener on 8771 afterward."
+  },
+  "unavailable_prerequisites": [
+    {
+      "item": "Python 3.12 interpreter",
+      "observed": "PATH python is 3.13.15; py -0p reports no installed Pythons.",
+      "handling": "Stopped exact documented-environment route; did not install a system runtime. Completed labeled Python 3.13 recovery based on tool-page compatibility.",
+      "product_defect": false
+    }
+  ],
+  "unverified_or_lower_confidence_observations": [
+    "Guide says Work from a local copy of the ToolWiki repository and links GitHub, but does not include a clone/download-and-cd command. Existing checkout was an audit shortcut, so acquisition difficulty was not actually tested and is not a confirmed blocker.",
+    "API guide says finding review guide explains implementation/schema/setup decisions; destination is generic and its worked examples concern source warnings and advisories. The existing general guidance plus fixture explanation was sufficient for this result; no separate defect is asserted."
+  ],
+  "result_interpretation": {
+    "faulty": "Schema permits quantity 0, so HTTP 500 is an implementation failure for a valid input, not evidence of invalid-input acceptance. Replay and scanner independently reproduce the same response.",
+    "corrected": "The fixed service accepts that same input, returns 201 with total 0/unitPrice 10, and passes six generated positive server-error cases across three operations.",
+    "coverage": "Faulty scanner stopped after first failure with two operations skipped. Corrected scanner tested all selected operations, but examples, fuzzing and stateful phases were disabled. These outcomes do not establish full API correctness or security.",
+    "failure_classes": "A refused connection concerns service readiness/port; schema-load/configuration failure concerns scanner setup; ST101 after successful schema loading and an observed 500 is a finding. Replay exit 0 and scanner exit 1 mean different things, as documented.",
+    "own_api_adaptation": "Obtain an accurate definition and reachable disposable service, choose schema LOCATION and explicit test base URL, limit operations and budget, choose checks and positive/negative generation intentionally, configure auth/state if needed, and retain comparable reports. Linked official docs supplied command option details. No credential or real-service adaptation was executed."
+  },
+  "evidence": {
+    "directory": "audits/reader-usability/evidence/api",
+    "manifest": "evidence/api/manifest.json",
+    "page_excerpts": "evidence/api/observed-page-excerpts.txt",
+    "raw_execution_root": "C:/Users/zwadh/Repos/ToolWiki/.preview/reader-usability/api",
+    "sanitization": "Human-authored report and retained text are ASCII. Non-ASCII scanner glyphs are represented as literal backslash-u escapes; terminal controls are removed. Manifest preserves hashes of original and retained content. Tool-generated temporary raw reports were not edited."
+  }
+}
+

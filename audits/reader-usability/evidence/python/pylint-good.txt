@@ -1,0 +1,8 @@
+************* Module greeting
+good\greeting.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+good\greeting.py:1:0: C0116: Missing function or method docstring (missing-function-docstring)
+good\greeting.py:5:0: C0103: Constant name "message" doesn't conform to UPPER_CASE naming style (invalid-name)
+
+------------------------------------------------------------------
+Your code has been rated at 0.00/10 (previous run: 2.50/10, -2.50)
+

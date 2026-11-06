@@ -1,0 +1,158 @@
+{
+  "audit": "Python first-time reader walkthrough",
+  "date": "2026-11-06",
+  "method": "Expert-agent walkthrough, not a human study. Visible site text and links determined navigation and choices. No source or old audits were read to discover routes. No search engine was used. Only explicitly linked example files were read locally after the site exposed them.",
+  "scenario": {
+    "reader": "Knows basic Python and uses Windows PowerShell",
+    "task": "Choose checks for everyday coding mistakes and type mistakes in a small Python project; obtain and interpret a first useful result, correct it, and know how to retain and reuse the procedure.",
+    "initial_choice": ["Pylint", "mypy"],
+    "initial_reason": "The filtered cards described Pylint as checking programming mistakes and conventions, and mypy as checking incompatible arguments, returns, and operations. The comparison confirmed complementary roles.",
+    "executed_recipe": ["Ruff 0.14.3", "mypy 1.18.2"],
+    "recipe_reason": "Pylint linked Ruff as an alternative. Ruff linked a combined recipe that provides both checks, concrete faulty and corrected files, Windows setup commands, and retained reports. Ruff was deliberately limited to F401; this is a first result, not broad everyday-mistake coverage."
+  },
+  "environment": {
+    "start_url": "http://127.0.0.1:4347/ToolWiki/",
+    "preview_commit_as_supplied": "21d14974c0498960cc2929900a58c1f27b60cd70",
+    "preview_provenance": "The coordinating agent supplied the unchanged local production preview; this agent did not inspect product source or independently verify the commit.",
+    "browser": "Microsoft Edge through cua_repl, own audit tab 1382128988",
+    "background_limitation": "IAB was unavailable and Edge rejected the visibility option. Used the permitted Edge fallback with visibility omitted; a background state was not verified.",
+    "host": "Windows-11-10.0.26300-SP0",
+    "powershell": "7.6.9",
+    "python": "3.13.15",
+    "execution_root": "C:/Users/zwadh/Repos/ToolWiki/.preview/reader-usability/python",
+    "environment_setup": "Created a new directory only after asserting it did not exist. Created a new .venv with python -m venv. No old tool installation was reused. Installed recipe requirements, then Pylint into that venv after the recipe runs.",
+    "data_and_scope": "Only the linked synthetic greeting fixtures were analyzed. No target program was executed, no credentials were used, and no external service was scanned. Product files and historical evidence were not modified."
+  },
+  "route_context": {
+    "catalog_query": "catalog=input%3DSource%2Bcode%26language%3DPython%26category%3Dall%26compare%3Dtools%252Fpylint%252Ctools%252Fmypy",
+    "note": "After comparison, tool and guide links carried this catalog query. Routes below use the exact path and note query preservation rather than repeating the same long query on every step."
+  },
+  "ordered_actions": [
+    {"step": 1, "action": "Loaded the authorized homepage after preview readiness was restored", "route": "/ToolWiki/", "observed": "Browse tools; Start with a task; Check source code; language and finding filters; 98 entries."},
+    {"step": 2, "action": "Clicked Check source code", "route": "/ToolWiki/?input=Source+code#tool-results", "observed": "Input type became Source code; 50 of 98 entries."},
+    {"step": 3, "action": "Selected Python in Language / ecosystem", "route": "/ToolWiki/?input=Source+code&language=Python#tool-results", "observed": "13 of 98 entries. Pylint, Ruff, mypy, and Pyright had relevant plain-language descriptions."},
+    {"step": 4, "action": "Checked Compare Pylint, then Compare mypy", "route": "/ToolWiki/?input=Source+code&language=Python&compare=tools%2Fpylint%2Ctools%2Fmypy#tool-results", "observed": "2 of 3 selected; Compare 2 tools became available."},
+    {"step": 5, "action": "Clicked Compare 2 tools", "route": "/ToolWiki/compare/?tools=tools%2Fpylint%2Ctools%2Fmypy&catalog=input%3DSource%2Bcode%26language%3DPython%26category%3Dall%26compare%3Dtools%252Fpylint%252Ctools%252Fmypy", "observed": "Comparison explained purpose, needed inputs, limits, runtime, cost, and bookmarking to save selection."},
+    {"step": 6, "action": "Opened Pylint from the comparison", "route": "/ToolWiki/tools/pylint/", "catalog_query_preserved": true, "observed": "Start with a small package contained prose but no executable command or worked input. Sources supplied Purpose and installation and Running Pylint links. Recorded this dependency before following those sources."},
+    {"step": 7, "action": "Followed Purpose and installation", "route": "https://raw.githubusercontent.com/pylint-dev/pylint/main/README.rst", "observed": "Raw reStructuredText rather than rendered documentation. It provided pip install pylint, a current Python 3.11+ requirement, and an errors-only adoption suggestion."},
+    {"step": 8, "action": "Returned with Back, then followed Running Pylint", "route": "https://pylint.readthedocs.io/en/stable/user_guide/usage/run.html", "observed": "Pylint 4.1.3 docs supplied pylint mymodule.py, file/package scope, configuration discovery, version option, and the bit-encoded exit-code table."},
+    {"step": 9, "action": "Stopped Pylint execution temporarily under the original audit constraint requiring a documented pinned install", "classification": "Harness-induced stop, not a website blocker", "observed": "The linked install command was unpinned. This restriction was subsequently withdrawn by the coordinating agent and the Pylint route was executed in step 20."},
+    {"step": 10, "action": "Returned to Pylint with Back and clicked its Ruff alternative", "route": "/ToolWiki/tools/ruff/", "catalog_query_preserved": true, "recovery": true, "observed": "Ruff had a small illustrative unused-import example, a run command, expected F401, a correction, and a link to the Ruff and mypy recipe."},
+    {"step": 11, "action": "Clicked Ruff and mypy recipe", "route": "/ToolWiki/guides/python-checks/", "catalog_query_preserved": true, "observed": "The recipe supplied Python 3.13, pinned tool versions, Windows venv commands, bad/good variants, output destinations, expected findings, runner statuses, correction, and reuse guidance."},
+    {"step": 12, "action": "Clicked examples/python-checks", "route": "https://github.com/zwadhams/ToolWiki/tree/main/examples/python-checks", "observed": "Directory contained bad, good, pyproject.toml, requirements.txt, and run_checks.py. The page did not contain a README. Historical evidence files were visible but not opened."},
+    {"step": 13, "action": "Read only the named linked example files from the existing local checkout, inspected the runner for safe execution, and copied five fixture/configuration/runner files into the fresh execution root", "local_inputs": ["examples/python-checks/bad/greeting.py", "examples/python-checks/good/greeting.py", "examples/python-checks/pyproject.toml", "examples/python-checks/requirements.txt", "examples/python-checks/run_checks.py"], "deviation": "Used the already available checkout rather than performing a new repository checkout. No cloning or download experience was validated."},
+    {"step": 14, "action": "Verified python --version, created .venv, and installed the documented requirements", "observed": "Python 3.13.15 matched the recipe; install succeeded. Exact commands are recorded below."},
+    {"step": 15, "action": "Returned to the recipe with Back and followed run record", "route": "/ToolWiki/guides/run-record/", "catalog_query_preserved": true, "observed": "Copyable before/after templates and explicit completed-findings, completed-no-findings, failed, skipped, cancelled, and incomplete statuses. A blank report after a crash was explicitly distinguished from a clean result."},
+    {"step": 16, "action": "Returned to the recipe with Back and opened mypy", "route": "/ToolWiki/tools/mypy/", "catalog_query_preserved": true, "observed": "The illustrative annotated example, command, expected arg-type, and correction were understandable. It warned about unannotated functions, Any, missing stubs, suppressions, and runtime limits, and linked back to the recipe."},
+    {"step": 17, "action": "Completed the browser portion; executed the recipe's bad command and read ruff.json, mypy.txt, and run.json", "observed": "Exit 1; both completed-findings. F401 identified unused math at line 1, column 8. mypy identified text passed to an int parameter at line 8."},
+    {"step": 18, "action": "Executed the documented good command and read both reports and run.json", "observed": "Exit 0; both completed-no-findings. Ruff report was []; mypy reported no issues in 1 source file. This used the supplied corrected file rather than editing the faulty file in place."},
+    {"step": 19, "action": "Checked runner --help to understand reuse scope", "observed": "Only bad and good are accepted targets; --output is required. An arbitrary project path is not an exposed runner argument."},
+    {"step": 20, "action": "Resolved the harness-induced Pylint stop using its linked official install and file-check instructions", "observed": "Installed Pylint in the same isolated venv, recorded resolved version 4.1.3, then checked the supplied bad and good fixtures. Used the explicit venv executable and a process-local cache directory. Details below."},
+    {"step": 21, "action": "Retained small reports and wrote this audit", "observed": "No caches or venv contents were copied into the audit evidence. All retained text was ASCII-checked/sanitized."}
+  ],
+  "commands": [
+    {"command": "python --version", "exit_code": 0, "result": "Python 3.13.15"},
+    {"command": "python -m venv .venv", "working_directory": "execution_root", "exit_code": 0},
+    {"command": ".\\.venv\\Scripts\\python.exe -m pip install -r requirements.txt", "working_directory": "execution_root", "exit_code": 0, "installed": ["ruff==0.14.3", "mypy==1.18.2", "mypy-extensions==1.1.0", "pathspec==0.12.1", "typing-extensions==4.15.0"]},
+    {"command": ".\\.venv\\Scripts\\python.exe run_checks.py bad --output reports/bad", "working_directory": "execution_root", "exit_code": 1, "tool_statuses": {"ruff": "completed-findings", "mypy": "completed-findings"}, "interpretation": "Successful check execution with expected findings; not setup failure."},
+    {"command": ".\\.venv\\Scripts\\python.exe run_checks.py good --output reports/good", "working_directory": "execution_root", "exit_code": 0, "tool_statuses": {"ruff": "completed-no-findings", "mypy": "completed-no-findings"}, "interpretation": "The selected checks found no findings in the supplied corrected fixture. This does not prove runtime behavior or broader code quality."},
+    {"command": ".\\.venv\\Scripts\\python.exe -m pip install pylint", "working_directory": "execution_root", "exit_code": 0, "deviation": "Used the isolated interpreter's pip rather than bare pip to keep installation local.", "installed": ["pylint==4.1.3", "astroid==4.3.4", "colorama==0.4.6", "dill==0.4.1", "isort==9.0.2", "mccabe==0.7.0", "platformdirs==4.14.5", "tomlkit==0.15.2"]},
+    {"command": ".\\.venv\\Scripts\\python.exe run_checks.py --help", "working_directory": "execution_root", "exit_code": 0, "result": "usage: run_checks.py [-h] --output OUTPUT {bad,good}"},
+    {"command": ".\\.venv\\Scripts\\pylint.exe --version", "working_directory": "execution_root", "exit_code": 0, "result": "pylint 4.1.3; astroid 4.3.4; Python 3.13.15"},
+    {"command": ".\\.venv\\Scripts\\pylint.exe bad/greeting.py", "working_directory": "execution_root", "process_environment": {"PYLINTHOME": "execution_root/.pylint-cache"}, "exit_code": 20, "result": ["C0114 missing module docstring", "C0116 missing function or method docstring", "W0611 unused import math"], "status": "completed-findings", "interpretation": "The linked official exit-code table identifies 20 as warning plus convention findings. No setup failure was observed. No type mismatch was reported for this fixture; no general coverage conclusion is drawn."},
+    {"command": ".\\.venv\\Scripts\\pylint.exe good/greeting.py", "working_directory": "execution_root", "process_environment": {"PYLINTHOME": "execution_root/.pylint-cache"}, "exit_code": 16, "result": ["C0114 missing module docstring", "C0116 missing function or method docstring", "C0103 constant name message is not UPPER_CASE"], "status": "completed-findings", "interpretation": "The unused-import finding disappeared. Convention findings remained, so this was not a clean Pylint result. The fixture's correction was specified for Ruff and mypy. The score decreased from 2.50/10 to 0.00/10, reinforcing the wiki's advice to inspect diagnostics rather than equate score with correctness."}
+  ],
+  "success_criteria": {
+    "choose_appropriate_checks": {"status": "complete", "evidence": "Catalog descriptions and comparison supported Pylint plus mypy; the alternative Ruff plus mypy recipe fit the same complementary lint/type need."},
+    "explain_fit": {"status": "complete", "evidence": "The pages explain lint rules versus consistency of annotations and calls. They do not imply a clean lint result is a type-checking result."},
+    "prerequisites_and_actual_inputs": {"status": "complete_with_dependencies", "evidence": "The combined recipe specifies Python 3.13 and package pins, links the input directory, identifies its working directory, and includes requirements/configuration. A repository checkout and package-index access are needed. Pylint required linked official documentation."},
+    "documented_first_run_and_correction": {"status": "complete", "evidence": "The recipe's exact Windows bad/good commands succeeded. Pylint's external documented file-check syntax also succeeded after the harness constraint was corrected."},
+    "interpret_findings_setup_failure_clean": {"status": "complete", "evidence": "Recipe statuses and saved reports matched expectations. Exit 1 meant completed findings, 0 clean; 2 setup/incomplete was explained but not deliberately induced. Run-record guidance distinguishes failed or blank output from clean output. Pylint statuses were interpreted using the linked official exit table."},
+    "save_and_reuse": {"status": "partial", "evidence": "Comparison bookmarking, new report directories, run.json, and the copyable run record made retention clear. Applying the checks to an arbitrary existing project remains prose plus a linked Ruff tutorial; the supplied runner only accepts bad/good. No arbitrary project adaptation was executed."}
+  },
+  "website_findings": [
+    {
+      "id": "PY-01",
+      "severity": "medium",
+      "type": "first-run friction",
+      "route": "/ToolWiki/tools/pylint/#start-with-a-small-package",
+      "evidence": "The section tells the reader to run the documented module or package check, but contains no command, example file, expected output, or direct inline link to the run instructions. The useful installation and usage links are in Sources and evidence.",
+      "observed_impact": "Had to open two external sources before knowing installation requirements, file command syntax, and exit status meaning. One source was raw reStructuredText. External guidance was sufficient to run Pylint once the audit constraint was corrected.",
+      "minimal_fix": "Add a short isolated Windows example with one file, the install and file-check command, one diagnostic and correction, plus inline official setup/run links. Link the combined lint/type recipe from this page for readers who need both.",
+      "not_claimed": "This is not a broken Pylint workflow and the lack of a version pin is not counted as a defect."
+    },
+    {
+      "id": "PY-02",
+      "severity": "medium",
+      "type": "input acquisition friction",
+      "route": "/ToolWiki/guides/python-checks/#prepare-an-isolated-environment",
+      "evidence": "The recipe says to use a checkout and run commands from examples/python-checks, then begins with python -m venv .venv. It does not show a checkout/download step or a PowerShell command to enter that directory.",
+      "observed_impact": "This walkthrough used its preexisting local checkout and copied the exact named files for isolation. That supplies Git/file-acquisition knowledge the basic-Python scenario does not establish. The first-run success therefore does not validate obtaining a fresh copy from the public site.",
+      "minimal_fix": "Provide a short obtain-the-example step with a repository download or clone option and an explicit PowerShell working-directory command, ideally identifying the tested revision.",
+      "not_claimed": "GitHub was reachable and the linked files were present; no download failure was observed."
+    },
+    {
+      "id": "PY-03",
+      "severity": "medium",
+      "type": "own-project adaptation friction",
+      "route": "/ToolWiki/guides/python-checks/#adapt-the-recipe",
+      "evidence": "Adaptation says to start with a small package, choose Ruff rules, and supply imports/stubs. The only runnable wiki commands use run_checks.py bad or good. Its help accepts only {bad,good}; Ruff's recipe configuration selects only F401.",
+      "observed_impact": "The toy first result and stored record are clear, but the same runner cannot be pointed at an arbitrary project path. The reader must follow further docs or derive commands and rule configuration to get everyday checks on their own package.",
+      "minimal_fix": "Add one concrete Windows example for checking a user-named project directory with both tools, explaining where to put configuration and reports and that the fixture's F401-only selection is intentionally narrow. Keep the existing fixture runner clearly labeled as a demonstration.",
+      "not_claimed": "The page explicitly limits its fixture coverage and links a Ruff tutorial. This is an incomplete handoff for this scenario, not a claim that adaptation is impossible."
+    }
+  ],
+  "successful_design_elements": [
+    "The task entry and visible language filter narrowed source candidates without requiring the reader to know a tool name.",
+    "Cards and comparison use concrete purpose, input, cost, and limitation fields. Pylint and mypy were distinguishable without prior product selection.",
+    "Filtered results and comparison state survived into tool pages through return links and URL parameters; bookmarking instructions made selection retention explicit.",
+    "Ruff and mypy pages distinguish linting from type checking and include small diagnostics with specific corrections.",
+    "The combined recipe is executable on Windows without activation-policy changes. Interpreter paths are explicit and the tested Python version matched this machine.",
+    "The combined recipe produced exactly the documented faulty and corrected results, retained per-tool reports, and protected earlier output directories.",
+    "The recipe and run record distinguish tool completion, findings, setup failure, and gate outcome. They also explain that clean results are bounded by selected checks.",
+    "Pylint's warning against interpreting its score as security or accuracy was useful when the corrected fixture received a lower score but lost the unused-import finding."
+  ],
+  "external_dependencies": [
+    {"url": "https://raw.githubusercontent.com/pylint-dev/pylint/main/README.rst", "discovered_at": "/ToolWiki/tools/pylint/", "used_for": "Installation command and runtime prerequisite", "visited": true},
+    {"url": "https://pylint.readthedocs.io/en/stable/user_guide/usage/run.html", "discovered_at": "/ToolWiki/tools/pylint/", "used_for": "File command, version option, configuration discovery, and exit-code interpretation", "visited": true},
+    {"url": "https://github.com/zwadhams/ToolWiki/tree/main/examples/python-checks", "discovered_at": "/ToolWiki/guides/python-checks/", "used_for": "Actual synthetic input, configuration, pinned requirements, and runner location", "visited": true, "local_copy_used": "C:/Users/zwadh/Repos/ToolWiki/examples/python-checks"},
+    {"url": "https://pypi.org/", "used_for": "Official Python package registry for venv installation", "visited_in_browser": false, "network_dependency": true},
+    {"url": "https://docs.astral.sh/ruff/tutorial/", "discovered_at": "/ToolWiki/tools/ruff/#use-it-on-your-project", "used_for": "Visible next-step link for project configuration", "visited": false},
+    {"url": "https://mypy.readthedocs.io/en/stable/getting_started.html", "discovered_at": "/ToolWiki/tools/mypy/#first-try", "used_for": "Visible installation link; combined recipe supplied installation for the executed run", "visited": false}
+  ],
+  "expertise_and_harness_support": [
+    "Used an existing repository checkout after the site linked the example directory; this avoided learning checkout/download steps from scratch.",
+    "Used PowerShell filesystem operations to copy the five named synthetic files into the authorized isolated folder. This safety copy is not part of the documented reader workflow.",
+    "Read the linked runner to confirm it invoked only local analyzers on synthetic files. No product source was read.",
+    "Used python --version to verify the recipe prerequisite; the guide specified the required version but did not provide that verification command.",
+    "Selected explicit .venv executables for Pylint installation and invocation based on environment knowledge; the linked official instructions used bare pip and pylint.",
+    "Set PYLINTHOME only in the check process to keep Pylint cache writes inside the authorized example directory. This was harness isolation knowledge, not a wiki instruction.",
+    "Used the site's supplied corrected file to test the correction. This demonstrates the documented corrected variant, not a novice independently editing a project.",
+    "Read JSON/text reports with PowerShell. The wiki named the files and explained them but did not prescribe a report-opening command."
+  ],
+  "tool_and_harness_failures": [
+    {"issue": "IAB unavailable; Edge did not support visible:false", "resolution": "Used own Edge audit tab with visibility omitted", "product_problem": false},
+    {"issue": "Initial authorized preview origin refused connections", "resolution": "Coordinator restored the original 4347 origin; successful page load preceded the walkthrough", "product_problem": false},
+    {"issue": "Automatic approval review rejected proposed replacement origin 4351", "reason": "Review treated the explicitly assigned 4347 origin as the authorization boundary", "resolution": "Did not bypass the rejection. Coordinator withdrew the alternative and restored 4347. No unresolved approval is needed.", "product_problem": false},
+    {"issue": "Original audit instruction allowed only explicitly documented pinned installs", "impact": "Temporarily stopped Pylint execution and motivated the labeled Ruff recovery route", "resolution": "Coordinator removed this overly restrictive harness condition. Pylint's official unpinned install was then run in the isolated venv, resolving 4.1.3; the original route was executable.", "product_problem": false}
+  ],
+  "evidence": {
+    "directory": "C:/Users/zwadh/Repos/ToolWiki/audits/reader-usability/evidence/python",
+    "recipe_bad": ["bad/run.json", "bad/ruff.json", "bad/ruff.stderr.txt", "bad/mypy.txt", "bad/mypy.stderr.txt"],
+    "recipe_good": ["good/run.json", "good/ruff.json", "good/ruff.stderr.txt", "good/mypy.txt", "good/mypy.stderr.txt"],
+    "pylint": ["pylint-bad.txt", "pylint-bad.stderr.txt", "pylint-good.txt", "pylint-good.stderr.txt"],
+    "text_policy": "Retained reports were sanitized by replacing any non-ASCII character with ?. The retained analyzer reports contained no non-ASCII characters requiring semantic interpretation. Browser UI punctuation was paraphrased into ASCII. No screenshots were retained.",
+    "inputs_and_configuration": "Copied fixture and configuration files remain in the execution root; run.json records their SHA-256 hashes. No existing historical evidence was reused."
+  },
+  "limitations": [
+    "This is one expert-agent route, not measured human usability. It contains no invented emotions, task timings, or population-level claims.",
+    "The initial Pylint stop and move to Ruff were affected by a subsequently corrected harness constraint. They must not be used as evidence that the website blocked an unpinned install.",
+    "The browser used accessibility text rather than a systematic visual-layout evaluation. Viewport, keyboard accessibility, mobile behavior, and all alternative routes were not tested.",
+    "The ready local checkout, installed Python 3.13.15, and available package registry reduced setup work. Fresh Git acquisition and Python installation were not tested.",
+    "The GitHub link points to main. The actual executed files came from the local checkout after the site linked them; their hashes are retained. Remote main was not independently compared against the preview commit.",
+    "Only the documented synthetic files were checked. No real project, third-party imports, missing stubs, setup failure, timeout, or application runtime behavior was tested.",
+    "The Pylint follow-up reused the newly created audit venv after the pinned recipe completed; it did not reuse an old preview install. No additional recipe rerun was needed after adding Pylint.",
+    "Project adaptation was assessed from the visible handoff and the linked runner help, not by exhausting the linked official tutorials."
+  ],
+  "overall_result": "Completed a useful first run and correction with the documented Ruff/mypy recipe. The original Pylint route also executed successfully using its official links. The site supports selection, bounded interpretation, and report retention well. Main friction is the uneven first-run detail across tools, obtaining the example checkout, and the final handoff from a fixed fixture to an existing project. No unresolved website blocker was observed on the executed recipe."
+}

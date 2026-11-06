@@ -1,0 +1,107 @@
+Memory walkthrough: selected visible UI evidence, 2026-11-06
+Source is browser accessibility/DOM observations, not implementation files.
+ASCII normalization: curly quotes/apostrophes and Unicode bullets in UI output
+are rendered as ordinary ASCII punctuation or omitted. Syntax highlighting
+spaces in accessibility output are resolved against the rendered DOM snapshot.
+
+1. Home
+http://127.0.0.1:4353/ToolWiki/
+Visible task link: Investigate memory errors
+
+2. Choosing memory-error checks
+http://127.0.0.1:4353/ToolWiki/guides/memory-error-detection/
+Table row: Source plus an instrumentable build -> AddressSanitizer
+Preparation: Compile and link with instrumentation, then run tests or fuzzing.
+Limit: It checks executed behavior and does not diagnose every class of memory defect.
+Visible Windows-specific link: Dr. Memory's documented Windows workflow
+Its surrounding text says it instruments execution without a sanitizer build,
+asks the reader to check the selected release's architecture/application limits,
+and recommends retaining symbols.
+A useful first experiment sends the reader to the AddressSanitizer out-of-bounds
+example, asks for invalid and corrected revisions, and says to record build flags
+and the exercised input with each report.
+
+3. Dr. Memory
+http://127.0.0.1:4353/ToolWiki/tools/dr-memory/
+Example label: Illustrative Windows workflow, not run here.
+Windows installation guide -> https://drmemory.org/page_install.html
+Exact wiki sentence, with its inline link represented by the label above:
+"Use the Windows installation guide to check the selected release against your Windows version and executable architecture."
+Instruction: check selected release against Windows version and executable
+architecture, keep debug symbols, put launcher on PATH, run a local test program.
+Command:
+drmemory.exe -batch -- 'C:/path/to/test-program.exe'
+Instruction: replace the executable path and append normal test arguments.
+The page identifies results.txt, error category, access stack, and allocation or
+free stack. It says to retain the report with the triggering workload.
+Official report guide -> https://drmemory.org/page_running.html
+Limits: workload-dependent path coverage; runtime overhead; unsupported program
+features; review stacks and suppressions before attributing a report.
+
+4. Dr. Memory official installation handoff
+https://drmemory.org/page_install.html
+Title: Installing Dr. Memory
+Contains a platform selector including Installing on Windows.
+https://drmemory.org/page_install_windows.html
+Title: Installing on Windows
+Sections: System Install; Local Install.
+Describes MSI installation, ZIP extraction, PATH setup, or full-path invocation.
+These pages did not supply a Windows version/CPU architecture support matrix.
+Preparing Your Application is a visible official-doc navigation link.
+https://drmemory.org/page_prep.html
+Describes PDB and MinGW DWARF symbols, disabling inlining, compiler-specific
+flags, and unsupported Cygwin-built applications. The Windows MinGW sample uses
+the i686-w64-mingw32-g++.exe compiler, not the x86_64 compiler found in this test.
+
+5. Dr. Memory official output handoff
+https://drmemory.org/page_running.html
+Explains results.txt in a per-invocation DrMemory-<appname>.<pid>.NNN directory,
+the logs default, -logdir, and -batch. Windows potential_errors.txt may contain
+suspected system-library false positives. Error Reports was followed from the
+sidebar but led to links about suppression, replaced routines and symbols.
+https://drmemory.org/page_types.html
+Reached through Error Types Reported by Dr. Memory in that sidebar. Explains
+error number/type, memory access address/size, timestamp/thread, application
+callstack, and the novice-oriented -brief option. No actual run was performed.
+
+6. AddressSanitizer recovery
+http://127.0.0.1:4353/ToolWiki/tools/address-sanitizer/
+What you need: C or C++ source, a supported Clang toolchain, permission to rebuild
+and run tests; compile and link with instrumentation.
+Example label: Illustrative example, not run here.
+Visible bounds.c:
+#include <stdlib.h>
+int main(void) {
+    int *values = malloc(2 * sizeof(*values));
+    if (!values) return 1;
+    values[2] = 7;
+    free(values);
+    return 0;
+}
+PowerShell instructions identify clang, its C linker/libraries and matching
+AddressSanitizer runtime; explicitly distinguish clang from clang-cl.
+Command:
+clang -O0 -g -fsanitize=address -fno-omit-frame-pointer bounds.c -o bounds.exe
+.\bounds.exe
+The page asks the reader to confirm target/runtime architecture compatibility.
+Representative report outline, explicitly not captured output:
+ERROR: AddressSanitizer: heap-buffer-overflow
+WRITE of size 4
+#0 main ... bounds.c:5
+... allocated ...
+#0 ... malloc ...
+#1 main ... bounds.c:3
+Explanation: access stack points to the write, allocation stack to the two-element
+allocation; index 2 is outside it; indices 0 and 1 are valid; correct and repeat.
+Clean-run limit: it checks instrumented code that runs; unexecuted paths remain
+unchecked and not every memory error is covered. Retain flags/workload/suppressions.
+Clicked First try in On this page; observed retained URL:
+http://127.0.0.1:4353/ToolWiki/tools/address-sanitizer/#first-try
+
+7. Clang setup handoff
+https://clang.llvm.org/docs/AddressSanitizer.html
+How to build points to building LLVM/Clang with CMake and compiler-rt.
+Supported Platforms lists Windows 8.1+; Current Status qualifies Windows support.
+Symbolizing the Reports documents llvm-symbolizer/ASAN_SYMBOLIZER_PATH.
+The linked page does not provide a small, ready-to-use Windows PowerShell
+installation and preflight sequence for the wiki's exact compiler/runtime command.

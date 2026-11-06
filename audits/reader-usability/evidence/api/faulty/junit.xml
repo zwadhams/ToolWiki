@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites errors="0" failures="1" skipped="0" tests="1" time="0.160342">
+  <testsuite name="schemathesis" hostname="Zach-Surface" errors="0" failures="1" skipped="0" tests="1" time="0.160342">
+    <testcase name="POST /orders" time="0.160342">
+      <failure type="failure" message="ST101">1. Test Case ID: UyxNCN
+
+- ST101 Server error
+
+[500] Internal Server Error:
+
+    `{"error": "Zero-quantity unit-price defect"}`
+
+Reproduce with:
+
+    curl -X POST -H 'Content-Type: application/json' -d '{"quantity": 0}' http://127.0.0.1:8771/orders</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

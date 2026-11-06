@@ -1,0 +1,153 @@
+{
+  "date": "2026-11-06",
+  "status": "complete",
+  "method": "Check reported reader obstacles against current source and reached official pages. No product edits.",
+  "checks": [
+    {
+      "source": "memory.json",
+      "finding": "MEM-01",
+      "disposition": "confirmed",
+      "evidence": [
+        "src/content/docs/tools/dr-memory.md:64 labels https://drmemory.org/page_install.html as Windows installation guide and asks for release/architecture verification.",
+        "The linked page is a platform selector. Its Windows destination explains MSI/ZIP/PATH setup but does not answer the requested compatibility check."
+      ],
+      "scope": "Instructional handoff issue; no claim that Dr. Memory is incompatible with Windows or the target."
+    },
+    {
+      "source": "memory.json",
+      "finding": "MEM-02",
+      "disposition": "confirmed-onboarding-opportunity",
+      "evidence": [
+        "src/content/docs/tools/address-sanitizer.md requires clang, linker/libraries, matching runtime and architecture but supplies no environment preflight.",
+        "The linked LLVM guide is a compiler/runtime reference; the rendered Windows command is already labeled illustrative."
+      ],
+      "scope": "A concrete supported Windows setup would make the exercise easier. Missing installed tools is an environment boundary, not a failed product command."
+    },
+    {
+      "source": "memory.json",
+      "finding": "MEM-03",
+      "disposition": "confirmed-low-priority-opportunity",
+      "evidence": [
+        "Dr. Memory uses a placeholder executable. The memory guide already links the ASan bounds example with a correction."
+      ],
+      "scope": "Merge with the complete Windows first-run path; do not duplicate every tool tutorial."
+    },
+    {
+      "source": "api.json",
+      "finding": "API-01",
+      "disposition": "confirmed",
+      "evidence": [
+        "src/content/docs/guides/api-testing.md:17 requires Python 3.12 but line 72 uses the unqualified python interpreter.",
+        "src/content/docs/tools/schemathesis.md:60 identifies Python 3.11+ for 4.33.1. The fresh recorded run succeeded on Python 3.13.15."
+      ],
+      "scope": "Clarify tested runtime versus supported prerequisites and select/check the interpreter. No claim that all compatible versions were tested."
+    },
+    {
+      "source": "api.json",
+      "finding": "API-02",
+      "disposition": "confirmed-onboarding-opportunity",
+      "evidence": [
+        "The API guide supplies fixture commands and an external CLI reference but no own-API command.",
+        "examples/http-api/run_schemathesis.py exposes port/output and fixes the schema URL to loopback /openapi.json with selected positive server-error checks."
+      ],
+      "scope": "The fixture works. Add a small adaptation example while preserving its deliberately narrow scope; no requirement to turn the demo wrapper into a general scanner."
+    },
+    {
+      "source": "python.json",
+      "finding": "PY-01",
+      "disposition": "confirmed-low-priority-opportunity",
+      "evidence": [
+        "src/content/docs/tools/pylint.md:59 gives prose instructions; install and run links are in the sources list.",
+        "The agent successfully used those official links and installed Pylint 4.1.3."
+      ],
+      "scope": "Recoverable external-documentation handoff, not a broken tool or unavailable installer. A direct inline next action and link to the shared combined recipe can address much of the friction."
+    },
+    {
+      "source": "python.json",
+      "finding": "PY-02",
+      "disposition": "plausible-opportunity-not-execution-tested",
+      "evidence": [
+        "The Python guide names a checkout and working directory but has no clone/download or cd command.",
+        "Both successful execution scenarios used the already available checkout after discovering the site link. Fresh file acquisition was not exercised."
+      ],
+      "scope": "Confirmed instruction omission, untested impact. Add a short shared get-the-example step if retaining the basic-reader audience; do not claim that GitHub downloads failed."
+    },
+    {
+      "source": "python.json",
+      "finding": "PY-03",
+      "disposition": "confirmed-onboarding-opportunity",
+      "evidence": [
+        "src/content/docs/guides/python-checks.md:79 supplies adaptation prose but no command targeting a reader-selected directory.",
+        "examples/python-checks/run_checks.py:74 only accepts bad/good; the fixture deliberately selects Ruff F401."
+      ],
+      "scope": "The documented demo succeeds. Make the next real-project invocation explicit without implying the two-check fixture supplies a complete project configuration."
+    }
+  ],
+  "excluded_as_product_defects": [
+    "Initial loopback preview startup failures.",
+    "Browser automation visibility and clipboard-read limitations.",
+    "The initial pinned-packages-only test constraint.",
+    "Unavailable locally installed analyzers or compilers by themselves."
+  ],
+  "grouped_recommendations": [
+    {
+      "id": "RU-01",
+      "priority": 1,
+      "title": "Add concrete own-project and own-API next steps",
+      "observations": [
+        "PY-03",
+        "API-02"
+      ],
+      "change": "Add a short command example to each existing guide, naming working directory, target path or schema/test URL, configuration, report location, and selected scope. Link deeper options instead of copying full references.",
+      "acceptance": "Starting after the successful demo, a reader can identify exactly what to replace and run a bounded check on a second synthetic project/API without designing the command from a reference manual."
+    },
+    {
+      "id": "RU-02",
+      "priority": 2,
+      "title": "Complete one Windows memory-checking first-run path",
+      "observations": [
+        "MEM-01",
+        "MEM-02",
+        "MEM-03"
+      ],
+      "change": "Choose one supported host/toolchain/target combination; link exact setup and compatibility evidence, add a short readiness check, and carry one existing faulty/corrected example through the tool.",
+      "acceptance": "A fresh reader can verify prerequisites, run the known failure and correction, locate the report, and explain its limits. If setup is unavailable, the next action and support boundary are explicit."
+    },
+    {
+      "id": "RU-03",
+      "priority": 3,
+      "title": "Clarify and verify the API interpreter requirement",
+      "observations": [
+        "API-01"
+      ],
+      "change": "Distinguish supported versions from the recorded environment, and show how to check/select the intended Python before creating the venv.",
+      "acceptance": "The prose and command select the same intended runtime; a reader with a different default Python can tell whether to proceed or install/select another interpreter."
+    },
+    {
+      "id": "RU-04",
+      "priority": 4,
+      "title": "Make Pylint first steps easier to reach",
+      "observations": [
+        "PY-01"
+      ],
+      "change": "Put direct setup/run links and a minimal invocation near Start with a small package; point combined lint/type readers to the maintained shared recipe.",
+      "acceptance": "The reader can reach an installation command, file-check invocation, and output explanation from the start section without locating multiple source citations."
+    },
+    {
+      "id": "RU-05",
+      "priority": 5,
+      "title": "Explain how to obtain and enter the example directory",
+      "observations": [
+        "PY-02"
+      ],
+      "change": "Add one shared get-the-example instruction with a clone or download route and explicit working-directory command, linked from recipes.",
+      "acceptance": "Test acquisition from the published site in a directory without an existing checkout; keep this opportunity provisional until that test."
+    }
+  ],
+  "positive_results": [
+    "Home task shortcuts and catalog summaries enabled relevant tool selection.",
+    "The Ruff/mypy faulty and corrected runs matched the documented findings and statuses.",
+    "The API service supplied a useful target, reset/correction steps and retained reports; the compatible-runtime recovery reproduced the selected scanner outcomes.",
+    "The ASan example explained error type, access/allocation location, correction and exercised-path limits clearly."
+  ]
+}

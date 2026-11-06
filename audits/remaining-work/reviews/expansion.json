@@ -1,0 +1,367 @@
+{
+  "status": "complete-findings-resolved",
+  "reviewer": "remaining_recipes",
+  "review_kind": "independent-expansion-content-and-matching-review",
+  "review_date": "2026-11-06",
+  "requirements": [
+    "COV-01",
+    "COV-02",
+    "COV-03",
+    "COV-04",
+    "COV-05",
+    "ADJ-03",
+    "MAT-03"
+  ],
+  "independence": "Reviewed expansions authored by other agents. The review did not modify product pages, fixtures, matching logic, or historical audits.",
+  "findings": [
+    {
+      "id": "ER-01",
+      "severity": "medium",
+      "status": "resolved-and-rechecked",
+      "paths": [
+        "src/content/docs/tools/semgrep-ce.md"
+      ],
+      "summary": "Semgrep's host summary omits the architecture cutoff for current macOS releases.",
+      "evidence": "The profile pins Semgrep 1.184.0 but its environment field says Linux and macOS without qualification. Official prerequisites say 1.182.x is the last Intel macOS release; 1.183.0 and later support native Apple silicon, not x86_64 Python under Rosetta. This does not affect the admitted Linux builder workflow.",
+      "source": "https://docs.semgrep.dev/prerequisites",
+      "requested_change": "Qualify the macOS architecture/version boundary and Python requirement in the visible host summary. Preserve Windows beta and the narrow Linux workflow.",
+      "resolution_owner": "root",
+      "resolution": "The coordinator qualified the 1.184.0 host summary to Linux and Apple silicon macOS, preserved Windows beta, and named 1.182.x for Intel macOS. Independently rechecked against the official prerequisites; Linux workflow scope is unchanged."
+    }
+  ],
+  "checked_requirements": [
+    {
+      "id": "COV-01",
+      "status": "pass",
+      "coverage": "TypeScript/source/type-error discovery, explicit strict/noEmit project invocation, exact compiler version and host, separate JavaScript qualification, complementary ESLint role, and diagnostic interpretation are present. Independent tests reproduced TS2345/status 2 for the faulty input and status 0 for the correction without emitted files. No target runtime or framework-file claim is made."
+    },
+    {
+      "id": "COV-02",
+      "status": "pass",
+      "coverage": "PowerShell discovery excludes ShellCheck. PSScriptAnalyzer 1.25.0 and its Core 7.4.6 minimum are scoped separately from target compatibility. The path-based PSAvoidUsingWriteHost check omits Fix, reports DiagnosticRecord fields, and explains ordinary completion versus EnableExit. An independent local invocation reproduced one line-2 warning and zero corrected warnings without running target scripts."
+    },
+    {
+      "id": "COV-03",
+      "status": "pass",
+      "coverage": "The history profile and secret-scanning guide distinguish current-file baselines from Git patches. The synthetic two-commit procedure selects HEAD, one original rule, no baseline, and a scratch directory without ignore files. Ref availability, shallow history, redaction, report review, credential rotation, and baseline limits are explicit. The versioned CLI license and current maintenance notice remain separate from Action and successor terms. History availability is not inferred by matching."
+    },
+    {
+      "id": "COV-04",
+      "status": "pass",
+      "coverage": "The profile is static APK-only, discoverable as APK/mobile material, with analysis host distinct from Android target. It pins MobSF 4.6.4, records the pulled digest, binds the local UI explicitly to loopback, names Docker 28/default bridge assumptions, and disables domain enrichment while retaining the network qualification. Report sections are conditional examples, completion is checked, and scores are not proof. No APK support is inferred from Native executable or Other in matching."
+    },
+    {
+      "id": "COV-05",
+      "status": "pass",
+      "coverage": "HDL discovery covers Verilog/SystemVerilog and excludes C++ as source language or search term. Version 5.054 and matching manuals support lint-only, explicit top/source/language/warning options, WIDTHTRUNC, and the part-select correction. Includes and defines are explicitly absent for the fixture and required for adaptation. Unsupported constructs remain incomplete analysis; no simulation, coverage, or proof claim is admitted. Missing or unreviewed hosts retain details questions, while explicitly unavailable source is blocked."
+    },
+    {
+      "id": "ADJ-03",
+      "status": "pass",
+      "coverage": "py-spy 0.4.3 is scoped to Linux x86_64 and CPython 3.12. The bounded local workload, duration/rate, process-memory permission, and error/completion distinction are explicit. Record, top, and dump have separate output interpretations. Flame-graph samples are not exact counts or production guarantees. Native, containers, subprocesses, production attachment, and automatic matching remain outside the entry. The profiling procedure stays illustrative; the separate workload smoke check is not presented as a recording."
+    },
+    {
+      "id": "MAT-03",
+      "status": "pass",
+      "coverage": "CodeQL pins CLI 2.27.4, python-queries 1.9.0, immutable query/library revision, py/sql-injection, Python 3.12, Ubuntu 22.04 x86-64, Django request/SQL model assumptions, and extraction prerequisites. CLI eligibility remains separate from the MIT query library. Semgrep CE pins engine 1.184.0 and an original MIT local rule with input/rule digests; only literal shell=True patterns are admitted, with constant propagation disabled and no taint/Pro/cross-file inference. Candidate/details/blocked/no-match and cost/license/edition cases pass production-schema tests. Source URLs are validated by the profile schema. Other languages, query/rule families, and deferred products remain omitted. Executed Windows Semgrep fixture evidence remains separate from the unexecuted Linux route."
+    }
+  ],
+  "tests": [
+    {
+      "name": "Expansion discovery, matching, and TypeScript fixture",
+      "command": "node --test tests/expansion-workflows.test.mjs tests/specialist-expansion.test.mjs",
+      "result": "8 passed, 0 failed. Includes TypeScript execution and catalog/matching assertions."
+    },
+    {
+      "name": "Independent PSScriptAnalyzer reproduction",
+      "command": "Import local PSScriptAnalyzer 1.25.0; Invoke-ScriptAnalyzer -Path examples/powershell-check/{bad,good}.ps1 -IncludeRule PSAvoidUsingWriteHost",
+      "result": "PowerShell 7.6.9: bad input returns one Warning at line 2; good input returns zero records. Target scripts were not run."
+    },
+    {
+      "name": "Independent Verilator metadata boundary cases",
+      "result": "Production analyzeSystem: absent host => answer question/details; Windows => compatibility question/details; Linux with source => candidate; explicitly unavailable source => blocked. Host examples are deliberately not exhaustive exclusions. This is metadata testing, not Verilator execution."
+    },
+    {
+      "name": "Retained expansion evidence integrity",
+      "result": "All 12 input digests in the TypeScript, PowerShell, and Semgrep records match current fixture bytes. Semgrep JSON reports have 1/0/0 findings, no scan errors, and the expected scanned path for bad/good/not-covered. No independent Semgrep rerun was claimed."
+    }
+  ],
+  "source_checks": [
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/TypeScript/v6.0.3/package.json",
+      "supports": "Compiler version, supported Node range, and Apache-2.0 declaration."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PowerShell/PSScriptAnalyzer/1.25.0/Engine/PSScriptAnalyzer.psm1",
+      "supports": "Release-specific minimum PowerShell Core 7.4.6."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PowerShell/PSScriptAnalyzer/1.25.0/LICENSE",
+      "supports": "MIT module license."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/gitleaks/gitleaks/v8.30.1/README.md",
+      "supports": "Git patches, custom-only rules, log options, redaction, finding exit code, baselines, and separate Action terms."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/gitleaks/gitleaks/master/README.md",
+      "supports": "Current security-patches-only maintenance notice."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/gitleaks/gitleaks/v8.30.1/LICENSE",
+      "supports": "MIT CLI license."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MobSF/Mobile-Security-Framework-MobSF/v4.6.4/README.md",
+      "supports": "APK static scope, distinct dynamic modes, and GPL-3.0-only declaration."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MobSF/Mobile-Security-Framework-MobSF/v4.6.4/mobsf/MobSF/settings.py",
+      "supports": "MOBSF_DOMAIN_MALWARE_SCAN=0 disables the named enrichment setting."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/verilator/verilator/v5.054/README.rst",
+      "supports": "HDL inputs, distinct generated simulation models, and LGPL-3.0-only OR Artistic-2.0."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/verilator/verilator/v5.054/docs/guide/warnings.rst",
+      "supports": "Diagnostic fields, unsupported-construct errors, WIDTHTRUNC and explicit part-select narrowing."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benfred/py-spy/v0.4.3/README.md",
+      "supports": "CPython support, record/top/dump distinction, child-process launch permissions, and sampling/filter limitations."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benfred/py-spy/v0.4.3/LICENSE",
+      "supports": "MIT profiler license."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/github/codeql/1be292a1e54696ca543b4ad0f9b4537b9687caa7/python/ql/src/qlpack.yml",
+      "supports": "Pinned python-queries pack 1.9.0."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/github/codeql/1be292a1e54696ca543b4ad0f9b4537b9687caa7/python/ql/src/Security/CWE-089/SqlInjection.ql",
+      "supports": "Selected query ID, path result, and SQL-injection flow semantics."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/github/codeql/1be292a1e54696ca543b4ad0f9b4537b9687caa7/LICENSE",
+      "supports": "MIT query-library license, separate from CLI terms."
+    },
+    {
+      "url": "https://docs.github.com/en/code-security/concepts/code-scanning/codeql/codeql-cli",
+      "supports": "Public/eligible private availability, CLI/database analysis workflow, and separate SARIF upload operation."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/semgrep/semgrep/v1.184.0/LICENSE",
+      "supports": "LGPL-2.1 engine license, separate from the fixture's original MIT rule."
+    },
+    {
+      "url": "https://docs.semgrep.dev/prerequisites",
+      "supports": "Python minimum, Windows beta, and current macOS architecture/version boundary; source of ER-01."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/verilator/verilator/v5.054/docs/guide/exe_verilator.rst",
+      "supports": "Selected lint-only invocation, language, top module, and warning controls."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/benfred/py-spy/v0.4.3/src/config.rs",
+      "supports": "CLI record duration/rate/format and child interpreter arguments."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MobSF/Mobile-Security-Framework-MobSF/v4.6.4/.github/workflows/docker-release.yml",
+      "supports": "Versioned image tag construction and Linux AMD64/ARM64 publication targets."
+    },
+    {
+      "url": "https://docs.github.com/en/code-security/reference/code-scanning/codeql/codeql-cli-manual/database-analyze",
+      "supports": "Exact scope/name@range:path query selection and SARIF output semantics."
+    }
+  ],
+  "limitations": [
+    "No CodeQL, Gitleaks, MobSF, Verilator, or py-spy analyzer/profiler execution was performed in this independent review. Their procedures are documentation-reviewed and remain labeled illustrative or not executed.",
+    "Semgrep retained evidence was parsed and input hashes were checked; the review did not rerun its engine.",
+    "No APK, real credential, or user project was uploaded or analyzed. No full site build, browser acceptance pass, or language/style changes were performed.",
+    "The coordinator owns final generated-site verification, browser acceptance, and the later independent language pass. ER-01 is resolved and independently rechecked."
+  ],
+  "reviewed_files": [
+    {
+      "path": "audits/remaining-work/expansion-runs/powershell.json",
+      "sha256": "87a3cf9c896babeda70bb333f6ff18b1186699f1d0f22c5cf592ef1127fa436f",
+      "scope": "Recorded outcome, input identity, and execution scope."
+    },
+    {
+      "path": "audits/remaining-work/expansion-runs/semgrep-bad.json",
+      "sha256": "64efe5c6bab3414af072f93ae3458902af54a07898bbc2c4789f889b860c2947",
+      "scope": "Recorded outcome, input identity, and execution scope."
+    },
+    {
+      "path": "audits/remaining-work/expansion-runs/semgrep-good.json",
+      "sha256": "f4f7e9f424ed9d4d5895a42f61bb5abf2052d66ed92351a88b0e56b5f68518da",
+      "scope": "Recorded outcome, input identity, and execution scope."
+    },
+    {
+      "path": "audits/remaining-work/expansion-runs/semgrep-not-covered.json",
+      "sha256": "a3ca8e7b8c5e4746c6fdd4a3422643c147f93111cb5a6d584b09e59339047ad0",
+      "scope": "Recorded outcome, input identity, and execution scope."
+    },
+    {
+      "path": "audits/remaining-work/expansion-runs/semgrep.json",
+      "sha256": "6a478690aa26bd3060a32f24735fae90fd2e3943b3c92cb10168b255539dbd2e",
+      "scope": "Recorded outcome, input identity, and execution scope."
+    },
+    {
+      "path": "audits/remaining-work/expansion-runs/typescript.json",
+      "sha256": "a72f687eb8fa29ca5cf2051925885f2e21e7a41082426f19409a4ec07b3d44b3",
+      "scope": "Recorded outcome, input identity, and execution scope."
+    },
+    {
+      "path": "audits/remaining-work/expansion-source-checks.md",
+      "sha256": "9e61fd5e71f1b348232aea1febb41ca89636576e41ba60e7c37e3b47b09c0dc8",
+      "scope": "Implementation evidence and documentation/execution boundary."
+    },
+    {
+      "path": "audits/remaining-work/expansion-specialist-sources.md",
+      "sha256": "854d0ba96c914c9534179f573ac5b0bd0103d4ca66f8075171ea44b2362f3953",
+      "scope": "Implementation evidence and documentation/execution boundary."
+    },
+    {
+      "path": "examples/powershell-check/bad.ps1",
+      "sha256": "4bbbb2c20ef1548714eb72f6fd59c8fa947b580f72fa4aa7045483b1a28cc092",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/powershell-check/good.ps1",
+      "sha256": "09cc22849a55e4acfda11fc52cda5a5dca32ccde69a91e8d0189023ca5e6e2ce",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/py-spy/workload.py",
+      "sha256": "e67c0c82bc8695f2058155cafbc2d04d09e51304ff298ec6fc1c61780c617384",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/semgrep-ce-check/LICENSE",
+      "sha256": "718d5a1b9d380b4e67294d65e1add2a95cfbbca646f76e9b0ed69629ab724c5f",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/semgrep-ce-check/bad.py",
+      "sha256": "445bc06c788c46a5ad5272588bf08aa96a14d8dd7d09dc33bc277977894c0d45",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/semgrep-ce-check/evidence.md",
+      "sha256": "5d126ba716a350f32fda83860b2aa179efa4a9aad9658246da06264c35dbc8b1",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/semgrep-ce-check/good.py",
+      "sha256": "4337a54450b3a9c3202c0af2e0f0a4f54a5879b2b24cae594082881a9b9d477b",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/semgrep-ce-check/not-covered.py",
+      "sha256": "965f433ce0f30a1c6d6f32977ad9ce54a1c53ae803ddab023652cc28c377060e",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/semgrep-ce-check/rule.yml",
+      "sha256": "19c9ac0d0d70e3b751930e178254e672e8c003d35a64aa394d264fa742c3338f",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/typescript-check/bad/greeting.ts",
+      "sha256": "6c5b83a615c5223a89d9fa3f9341ef8a60d74073df386bd9fdfc327cf82f5be1",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/typescript-check/good/greeting.ts",
+      "sha256": "3e55187a621621997b34523145e54e4f085c71f02abbcb2ff3da382a52d4eb68",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/typescript-check/package.json",
+      "sha256": "cc053c35ee7fe06bc6d494c48e676cdc328870a8c2da216d77bac0957b108175",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/typescript-check/tsconfig.bad.json",
+      "sha256": "f1a7f3502737f9de77695c1fe7a8f19e8a4b46fe092087b0da583506bf413f3f",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/typescript-check/tsconfig.good.json",
+      "sha256": "fde7f986b9de3f5110f002bd8bf7a011c227301c911aae1058634702c9c8a51d",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/typescript-check/tsconfig.json",
+      "sha256": "586d15849884799a6f92de6b1240c147ec08a30ad8854acb55b2cc552b71ae4b",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/verilator/bad/width_demo.sv",
+      "sha256": "233e9e4c2835276a925573ed908954e02f8484f48ad807265acc93785114c811",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "examples/verilator/good/width_demo.sv",
+      "sha256": "dc2a82b807dfbb0524581043ab19097b137486a066f471cd055ccb5d20da5a52",
+      "scope": "Fixture configuration/source and execution-label consistency."
+    },
+    {
+      "path": "src/content/docs/guides/secret-scanning.md",
+      "sha256": "64ecc1c6f3a24a64a819877a52eb2807e9a9fe415b4604357aa37dd8624c3a86",
+      "scope": "History/current-file workflow and remediation distinctions."
+    },
+    {
+      "path": "src/content/docs/tools/codeql.md",
+      "sha256": "a302986125fde6f6cca9b46a0806d8782f247acb999492c5b7434f73945d260b",
+      "scope": "Expansion profile, prerequisites, result interpretation, scope, sources, and matching metadata."
+    },
+    {
+      "path": "src/content/docs/tools/gitleaks.md",
+      "sha256": "3f82c4f167e79756e67c1e1223704b2498a8d96c477579d47757881b35346781",
+      "scope": "Expansion profile, prerequisites, result interpretation, scope, sources, and matching metadata."
+    },
+    {
+      "path": "src/content/docs/tools/mobsf.md",
+      "sha256": "8b4603e9f9f7f47ce1821935abd78711f06a5d4944a5e037cb30ad0245146a1d",
+      "scope": "Expansion profile, prerequisites, result interpretation, scope, sources, and matching metadata."
+    },
+    {
+      "path": "src/content/docs/tools/psscriptanalyzer.md",
+      "sha256": "372fb2f889fd142282da7a91234bfdc782eefbf0dc8645c6d6b69863d3837fdc",
+      "scope": "Expansion profile, prerequisites, result interpretation, scope, sources, and matching metadata."
+    },
+    {
+      "path": "src/content/docs/tools/py-spy.md",
+      "sha256": "3297579eae6eab7c06f82cc93236199f99bb7f4e40446f8815d8d912067b6c9c",
+      "scope": "Expansion profile, prerequisites, result interpretation, scope, sources, and matching metadata."
+    },
+    {
+      "path": "src/content/docs/tools/semgrep-ce.md",
+      "sha256": "2b44aa41dc133d68c1daeeea5a34826d842660e6b724aedaf7f68fe2fa486ccf",
+      "scope": "Expansion profile, prerequisites, result interpretation, scope, sources, and matching metadata."
+    },
+    {
+      "path": "src/content/docs/tools/typescript.md",
+      "sha256": "4d91363093cf9f4e9befa18fa5d463a1df573ab46f25b88479f240d0dcf08e5f",
+      "scope": "Expansion profile, prerequisites, result interpretation, scope, sources, and matching metadata."
+    },
+    {
+      "path": "src/content/docs/tools/verilator.md",
+      "sha256": "cd85fb11b15bb892b4b178f0847f1899d7b978af7b950fbaea41fea76d6bd7a4",
+      "scope": "Expansion profile, prerequisites, result interpretation, scope, sources, and matching metadata."
+    },
+    {
+      "path": "tests/expansion-workflows.test.mjs",
+      "sha256": "374f6d4c1e967a02e8ec0418056e1c72bab794630ceaec41224c161280265fbe",
+      "scope": "Production-schema discovery/matching tests and TypeScript fixture execution."
+    },
+    {
+      "path": "tests/specialist-expansion.test.mjs",
+      "sha256": "9ab4048d57b0c7be852696c3c35ffde2d9eda64a451f02e757333f283ca77ea3",
+      "scope": "Production-schema discovery/matching tests and TypeScript fixture execution."
+    }
+  ]
+}

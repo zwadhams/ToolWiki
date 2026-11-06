@@ -1,0 +1,501 @@
+{
+  "reviewer": "remaining_concepts",
+  "date": "2026-11-06",
+  "phase": "Separate final language review after implementation and independent technical review",
+  "status": "complete-recommendations-only",
+  "scope": "UI wording in src/components, src/lib and src/data, plus README.md and src/content/docs/index.md.",
+  "product_files_changed": false,
+  "recommendations": [
+    {
+      "id": "UI-L01",
+      "priority": "high",
+      "path": "src/lib/system-builder.mjs",
+      "source_text": "const sizeLabel = '1 MiB (1,048,576 bytes)';",
+      "replacement": "const sizeLabel = '1 MiB';",
+      "reason": "The byte-count expansion repeats the meaning of MiB in every size error and distracts from the recovery action.",
+      "preserve": "Leave MAX_IMPORT_BYTES = 1024 * 1024 and all UTF-8/canonical-size checks unchanged.",
+      "line": 5
+    },
+    {
+      "id": "UI-L02",
+      "priority": "high",
+      "path": "src/lib/system-builder-ui.mjs",
+      "source_text": "System files can be up to 1 MiB (1,048,576 bytes). Your current system has been kept.",
+      "replacement": "System files can be up to 1 MiB. Your current system has been kept.",
+      "reason": "Use the same concise size limit in the browser file preflight.",
+      "preserve": "Keep the size check and current-system preservation message.",
+      "line": 504
+    },
+    {
+      "id": "UI-L03",
+      "priority": "high",
+      "path": "README.md",
+      "source_text": "1 MiB (1,048,576 UTF-8 bytes)",
+      "replacement": "1 MiB",
+      "reason": "The exact byte expansion adds no useful action to this overview.",
+      "preserve": "Keep the saved-format qualification, over-limit edit handling, and recovery guidance. Detailed implementation remains byte-based.",
+      "line": 99
+    },
+    {
+      "id": "UI-L04",
+      "priority": "medium",
+      "path": "README.md",
+      "source_text": "and a verification date.",
+      "replacement": "and a documentation review date.",
+      "reason": "Use the actual meaning of the date instead of the broader word verification.",
+      "preserve": "Execution status and documentation review remain distinct.",
+      "line": 5
+    },
+    {
+      "id": "UI-L05",
+      "priority": "medium",
+      "path": "README.md",
+      "source_text": "automatically explore candidates that explain what they can find.",
+      "replacement": "see candidates and their documented checks.",
+      "reason": "Remove indirect wording while retaining the source of the candidate claims.",
+      "preserve": "The surrounding paragraph still explains inputs, optional details, persistence and workflow limits.",
+      "line": 91
+    },
+    {
+      "id": "UI-L06",
+      "priority": "medium",
+      "path": "src/components/SystemBuilder.astro",
+      "source_text": "Suggestions use reviewed workflows. These tools still have catalog notes but are not included in matching yet; their absence does not mean they are unsuitable:",
+      "replacement": "Suggestions use reviewed workflows. These tools are not matched yet but may still be suitable:",
+      "reason": "Shorten the omission explanation; the linked list already provides access to catalog notes.",
+      "preserve": "Omission must not imply incompatibility or unsuitability.",
+      "line": 14
+    },
+    {
+      "id": "UI-L07",
+      "priority": "medium",
+      "path": "src/lib/system-builder-ui.mjs",
+      "source_text": "Export system downloads a JSON file with the system name, components, connections, notes, and cost/license preferences. It excludes tool candidates, match explanations, comparison selections, and analysis results. Import restores the description and recalculates suggestions.",
+      "replacement": "Export saves your system name, components, connections, notes, and cost/license preferences as JSON. It excludes candidates, match explanations, comparison selections, and analysis results. Import restores the description and recalculates suggestions.",
+      "reason": "Lead with the action and remove repeated system/file wording.",
+      "preserve": "Retain the complete saved-field list, exclusions, and current-catalog recalculation behavior.",
+      "line": 135
+    },
+    {
+      "id": "UI-L08",
+      "priority": "medium",
+      "path": "src/lib/system-builder-ui.mjs",
+      "source_text": "These fields help you organize your system. They do not change suggestions.",
+      "replacement": "These fields organize your description and do not affect suggestions.",
+      "reason": "Combine the two short explanations without dropping the matching limitation.",
+      "preserve": "Optional descriptive fields must not appear to influence recommendations.",
+      "line": 250
+    },
+    {
+      "id": "UI-L09",
+      "priority": "medium",
+      "path": "src/lib/system-builder-ui.mjs",
+      "source_text": "Download recovery data to keep the existing saved copy. It may need correction or reduction before importing; it is not a normal system export. Importing another description or undoing an edit will keep this copy protected.",
+      "replacement": "Download recovery data to keep the saved copy. This is not a normal export; it may need correction or reduction before import. Imports and undo keep the saved copy protected.",
+      "reason": "Reduce repeated wording while preserving the recovery warning and overwrite protection.",
+      "preserve": "Keep the distinction from a normal export, possible repair/reduction, and protection through import/undo.",
+      "line": 446
+    },
+    {
+      "id": "UI-L10",
+      "priority": "medium",
+      "path": "src/lib/system-builder-ui.mjs",
+      "source_text": "Replace the saved system with the current description? Download recovery data first if you want to keep the existing saved copy.",
+      "replacement": "Replace the saved system with this description? Download recovery data first to keep the saved copy.",
+      "reason": "Make the confirmation shorter while retaining the explicit replacement and recovery action.",
+      "preserve": "The saved copy is replaced only through the existing explicit action.",
+      "line": 469
+    },
+    {
+      "id": "UI-L11",
+      "priority": "medium",
+      "path": "src/lib/system-builder.mjs",
+      "source_text": "Automatic saving is paused because saved data could not be read. Retry reading saved data before saving. Current edits remain in memory.",
+      "replacement": "Saved data could not be read. Automatic saving is paused; current edits remain in memory. Retry reading saved data.",
+      "reason": "State the problem, protection and next action once each.",
+      "preserve": "Do not imply edits are saved or permit replacement before a successful storage read.",
+      "line": 48
+    },
+    {
+      "id": "UI-L12",
+      "priority": "medium",
+      "path": "src/lib/system-builder.mjs",
+      "source_text": "Automatic saving is paused to protect the existing saved data. Download recovery data, then use Replace saved system if you want to save the current description instead.",
+      "replacement": "Automatic saving is paused to protect saved data. Download recovery data before choosing Replace saved system to save this description.",
+      "reason": "Remove repeated qualifiers and use the exact action label.",
+      "preserve": "Keep saving paused, recovery-download guidance, and explicit replacement semantics.",
+      "line": 49
+    },
+    {
+      "id": "UI-L13",
+      "priority": "medium",
+      "path": "src/data/tool-choices.ts",
+      "source_text": "Ruff checks lint rules. Pyright checks types and imports. Choose the checks you need; these tools can complement each other rather than replace one another.",
+      "replacement": "Ruff checks lint rules. Pyright checks types and imports. They provide complementary checks.",
+      "reason": "The specific tool roles already explain why both may be useful; the generic decision sentence repeats that point.",
+      "preserve": "Do not imply equal coverage or that either tool replaces runtime tests.",
+      "line": 24
+    },
+    {
+      "id": "UI-L14",
+      "priority": "medium",
+      "path": "src/data/tool-choices.ts",
+      "source_text": "Choose based on the question you need to answer and how much modeling you can provide.",
+      "replacement": "Choose based on your question and modeling effort.",
+      "reason": "Remove an indirect phrase without changing the decision factors.",
+      "preserve": "The surrounding CodeQL/JBMC summary retains query versus bounded-property distinctions.",
+      "line": 48
+    },
+    {
+      "id": "UI-L15",
+      "priority": "low",
+      "path": "src/data/editions.ts",
+      "source_text": "These are related products with distinct jobs. The catalog entry covers Code Prover; a trial does not count as a permanent free edition.",
+      "replacement": "This entry covers Code Prover. Its trial does not count as a free edition.",
+      "reason": "The product rows explain the different jobs; the introduction only needs to identify the entry and trial qualification.",
+      "preserve": "Keep the product-specific rows, required-products source and paid/trial distinction.",
+      "line": 16
+    }
+  ],
+  "retained": [
+    "1 MiB enforcement, UTF-8 byte accounting and canonical saved-size checks.",
+    "Recovery warnings, explicit saved-data replacement, unsaved-edit status and import/undo protection.",
+    "Unknown-value versus compatibility-evidence actions and non-exhaustive support limits.",
+    "Accessible control names, live announcements and keyboard-focus instructions.",
+    "Docs checked meaning, execution labels, trial/eligibility qualifications, distinct analysis results and source evidence.",
+    "Catalog versus full-page search distinction and unchanged-filter notices."
+  ],
+  "no_change_notes": [
+    "The catalog entry-point text is already brief and explains both tool choice and result interpretation.",
+    "Pagefind failure/development messages and scope caveats contain useful distinctions; no reductions recommended.",
+    "Avoid shortening Recorded requirements matched to Ready or Compatible; it would broaden the claim.",
+    "No changes recommended to schema values, stored v1 strings, URLs, commands, counts, date fields, or historical audit records."
+  ],
+  "validation": "Every suggested source_text occurs exactly once in its recorded file; all replacements are ASCII. No product edits, build, browser or analyzer runs were performed.",
+  "reviewed_files": [
+    {
+      "path": "README.md",
+      "sha256": "0bf2e3faa0cc031948cad547a0b1b166eb180c2bb603b7aa695c07990404e38a",
+      "scope": "Language-only review of UI text or document prose. Technical claims, dates, links, edition boundaries and execution labels were retained; no factual re-verification."
+    },
+    {
+      "path": "src/components/ArticleContent.astro",
+      "sha256": "a22ab59bf669fd0b020b37433af69c5529a47f4fcb90db995fb539e25aea61e8",
+      "scope": "Language-only review of UI text or document prose. Technical claims, dates, links, edition boundaries and execution labels were retained; no factual re-verification."
+    },
+    {
+      "path": "src/components/EditionComparison.astro",
+      "sha256": "8334deb146e29a9fa20b2c923242b352321df86736748f7486c98180541a9db9",
+      "scope": "Language-only review of UI text or document prose. Technical claims, dates, links, edition boundaries and execution labels were retained; no factual re-verification."
+    },
+    {
+      "path": "src/components/SystemBuilder.astro",
+      "sha256": "c1e638fc24bbb73bcbb683fb6d1aba00145958d2be904db87e133c64e8344725",
+      "scope": "Language-only review of UI text or document prose. Technical claims, dates, links, edition boundaries and execution labels were retained; no factual re-verification."
+    },
+    {
+      "path": "src/components/ToolCatalog.astro",
+      "sha256": "7c0d092516a422b88da3d428cba25f5a95fac4965c5297173e9adc7423ea5db0",
+      "scope": "Language-only review of UI text or document prose. Technical claims, dates, links, edition boundaries and execution labels were retained; no factual re-verification."
+    },
+    {
+      "path": "src/components/ToolComparison.astro",
+      "sha256": "6c30702c4297c3dbf78e776aca16dd3fe9ba66ebea8c9817120458fc0e299adb",
+      "scope": "Language-only review of UI text or document prose. Technical claims, dates, links, edition boundaries and execution labels were retained; no factual re-verification."
+    },
+    {
+      "path": "src/content/docs/index.md",
+      "sha256": "4facb0ab2196873596dc955220b5d27b0dcd74e43aab35b958c56acf660a7160",
+      "scope": "Language-only review of UI text or document prose. Technical claims, dates, links, edition boundaries and execution labels were retained; no factual re-verification."
+    },
+    {
+      "path": "src/data/editions.ts",
+      "sha256": "b2fdccfc11c3017b2bbeac69ad5561aa1006fd5f6b22adf8d13a65dce7ec8278",
+      "scope": "Language-only review of UI text or document prose. Technical claims, dates, links, edition boundaries and execution labels were retained; no factual re-verification."
+    },
+    {
+      "path": "src/data/tool-choices.ts",
+      "sha256": "ee700e88fafc53fd0103a21d90a1d4cb897d13958bedeb5f1ecac571b10a68a6",
+      "scope": "Language-only review of UI text or document prose. Technical claims, dates, links, edition boundaries and execution labels were retained; no factual re-verification."
+    },
+    {
+      "path": "src/lib/catalog.mjs",
+      "sha256": "e57d11ea16b00f1629872e038629cd2b7b1d23274d0d6c2d43200ae4a6c345da",
+      "scope": "Language-only review of displayed status/error/control text and associated vocabulary. No new behavior or schema review; non-display comments and implementation identifiers excluded."
+    },
+    {
+      "path": "src/lib/comparison.mjs",
+      "sha256": "d926714b84fa1286213fa7d5b4c11d5495c461a9db1313417b0163ccd14b7709",
+      "scope": "Language-only review of displayed status/error/control text and associated vocabulary. No new behavior or schema review; non-display comments and implementation identifiers excluded."
+    },
+    {
+      "path": "src/lib/page-search.mjs",
+      "sha256": "5a968bfde0f784c32edf547ec29c6306da01d9302e06146e0a38007fa6e1d50d",
+      "scope": "Language-only review of displayed status/error/control text and associated vocabulary. No new behavior or schema review; non-display comments and implementation identifiers excluded."
+    },
+    {
+      "path": "src/lib/system-builder-ui.mjs",
+      "sha256": "210f9c0aba1f5b46c9379fbc29452a15078cd61dd039e627aa99c085c94ebdf9",
+      "scope": "Language-only review of displayed status/error/control text and associated vocabulary. No new behavior or schema review; non-display comments and implementation identifiers excluded."
+    },
+    {
+      "path": "src/lib/system-builder.mjs",
+      "sha256": "ce1c69fd31b4c179f088d9dd300e2546d2fe766a914fce8f07983e4de773ee88",
+      "scope": "Language-only review of displayed status/error/control text and associated vocabulary. No new behavior or schema review; non-display comments and implementation identifiers excluded."
+    },
+    {
+      "path": "src/lib/system-schema.mjs",
+      "sha256": "3fff652d5fde66fc987071f5a92f1feb0f43c8f39a8325368152c311059d778b",
+      "scope": "Language-only review of displayed status/error/control text and associated vocabulary. No new behavior or schema review; non-display comments and implementation identifiers excluded."
+    },
+    {
+      "path": "src/lib/tool-data.mjs",
+      "sha256": "92b7443f368b8154eb204dd4fa0cfc53edf99b5a971c8ba446e6287663106c81",
+      "scope": "Language-only review of displayed status/error/control text and associated vocabulary. No new behavior or schema review; non-display comments and implementation identifiers excluded."
+    },
+    {
+      "path": "src/lib/tool-inventory.mjs",
+      "sha256": "1558cd557ec3f584654ff70b1d69f22485590f177e9b338ff5fa15c4f5f7f9f5",
+      "scope": "Language-only review of displayed status/error/control text and associated vocabulary. No new behavior or schema review; non-display comments and implementation identifiers excluded."
+    },
+    {
+      "path": "src/lib/tool-schema.mjs",
+      "sha256": "9aa74f06de045050862ce47ce2201c044ddd41a3354bfa249e8714f4f8f6d064",
+      "scope": "Language-only review of displayed status/error/control text and associated vocabulary. No new behavior or schema review; non-display comments and implementation identifiers excluded."
+    },
+    {
+      "path": "src/lib/tool-vocabulary.mjs",
+      "sha256": "50564adae494edaa4cd2ed6dd06193c34029b085c4fe21e9831945fe784c0696",
+      "scope": "Language-only review of displayed status/error/control text and associated vocabulary. No new behavior or schema review; non-display comments and implementation identifiers excluded."
+    }
+  ],
+  "applied_verification": {
+    "date": "2026-11-06",
+    "reviewer": "remaining_concepts",
+    "status": "passed",
+    "summary": "All 15 replacements occur exactly once, and every superseded source string is absent. Surrounding copy retains its intended meaning and warnings. Reversing the replacements reproduces all 19 original file hashes after normalizing changed CRLF line endings back to LF; no additional textual changes were found.",
+    "line_endings": {
+      "change": "Files rewritten by the application step use CRLF where the reviewed snapshot used LF. This does not alter wording.",
+      "files": [
+        "README.md",
+        "src/components/SystemBuilder.astro",
+        "src/data/editions.ts",
+        "src/data/tool-choices.ts",
+        "src/lib/system-builder-ui.mjs",
+        "src/lib/system-builder.mjs"
+      ]
+    },
+    "preserved_meaning": [
+      "The label remains 1 MiB while MAX_IMPORT_BYTES remains 1024 * 1024; no limit or byte-counting logic changed.",
+      "Export field/exclusion lists and import recalculation remain explicit.",
+      "Paused saving, in-memory edits, saved-copy recovery and explicit replacement remain clear.",
+      "Workflow omission, descriptive-only fields and complementary tool roles retain their limits.",
+      "Documentation review dates, bounded checking, trial exclusions and linked evidence retain their meaning."
+    ],
+    "checks": [
+      {
+        "id": "UI-L01",
+        "path": "src/lib/system-builder.mjs",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      },
+      {
+        "id": "UI-L02",
+        "path": "src/lib/system-builder-ui.mjs",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      },
+      {
+        "id": "UI-L03",
+        "path": "README.md",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      },
+      {
+        "id": "UI-L04",
+        "path": "README.md",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      },
+      {
+        "id": "UI-L05",
+        "path": "README.md",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      },
+      {
+        "id": "UI-L06",
+        "path": "src/components/SystemBuilder.astro",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      },
+      {
+        "id": "UI-L07",
+        "path": "src/lib/system-builder-ui.mjs",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      },
+      {
+        "id": "UI-L08",
+        "path": "src/lib/system-builder-ui.mjs",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      },
+      {
+        "id": "UI-L09",
+        "path": "src/lib/system-builder-ui.mjs",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      },
+      {
+        "id": "UI-L10",
+        "path": "src/lib/system-builder-ui.mjs",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      },
+      {
+        "id": "UI-L11",
+        "path": "src/lib/system-builder.mjs",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      },
+      {
+        "id": "UI-L12",
+        "path": "src/lib/system-builder.mjs",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      },
+      {
+        "id": "UI-L13",
+        "path": "src/data/tool-choices.ts",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      },
+      {
+        "id": "UI-L14",
+        "path": "src/data/tool-choices.ts",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      },
+      {
+        "id": "UI-L15",
+        "path": "src/data/editions.ts",
+        "old_matches": 0,
+        "replacement_matches": 1,
+        "meaning": "Preserved in current surrounding text."
+      }
+    ],
+    "reviewed_files": [
+      {
+        "path": "README.md",
+        "sha256": "b9b5c0f9c769c849f922a5b0f57d0b60274bb3b8151ec02db6a8cbc2def8b062",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/components/ArticleContent.astro",
+        "sha256": "a22ab59bf669fd0b020b37433af69c5529a47f4fcb90db995fb539e25aea61e8",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/components/EditionComparison.astro",
+        "sha256": "8334deb146e29a9fa20b2c923242b352321df86736748f7486c98180541a9db9",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/components/SystemBuilder.astro",
+        "sha256": "dc4f74fd8e36a13e6d50da1de8fce2ba8063610b2249fb2691ab6d88dfe70bfb",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/components/ToolCatalog.astro",
+        "sha256": "7c0d092516a422b88da3d428cba25f5a95fac4965c5297173e9adc7423ea5db0",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/components/ToolComparison.astro",
+        "sha256": "6c30702c4297c3dbf78e776aca16dd3fe9ba66ebea8c9817120458fc0e299adb",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/content/docs/index.md",
+        "sha256": "4facb0ab2196873596dc955220b5d27b0dcd74e43aab35b958c56acf660a7160",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/data/editions.ts",
+        "sha256": "9e4b6bbeae6de8ceb35f1af01f82414805874f6203f8b1843029162d4b809f08",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/data/tool-choices.ts",
+        "sha256": "95acc821e1e54d82ed433e3c7193aad07df77ac9cd52da1f0c0736aa3cd7a0b6",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/lib/catalog.mjs",
+        "sha256": "e57d11ea16b00f1629872e038629cd2b7b1d23274d0d6c2d43200ae4a6c345da",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/lib/comparison.mjs",
+        "sha256": "d926714b84fa1286213fa7d5b4c11d5495c461a9db1313417b0163ccd14b7709",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/lib/page-search.mjs",
+        "sha256": "5a968bfde0f784c32edf547ec29c6306da01d9302e06146e0a38007fa6e1d50d",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/lib/system-builder-ui.mjs",
+        "sha256": "e02c6de5dcd40d32443467c6a70cd101fd9d9ce93c271035048eda2c047cf747",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/lib/system-builder.mjs",
+        "sha256": "c732d02ba659a60f9321ded44f8bfcafed41bfbe6c5baf0e8fbe4b50383c7793",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/lib/system-schema.mjs",
+        "sha256": "3fff652d5fde66fc987071f5a92f1feb0f43c8f39a8325368152c311059d778b",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/lib/tool-data.mjs",
+        "sha256": "92b7443f368b8154eb204dd4fa0cfc53edf99b5a971c8ba446e6287663106c81",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/lib/tool-inventory.mjs",
+        "sha256": "1558cd557ec3f584654ff70b1d69f22485590f177e9b338ff5fa15c4f5f7f9f5",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/lib/tool-schema.mjs",
+        "sha256": "9aa74f06de045050862ce47ce2201c044ddd41a3354bfa249e8714f4f8f6d064",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      },
+      {
+        "path": "src/lib/tool-vocabulary.mjs",
+        "sha256": "50564adae494edaa4cd2ed6dd06193c34029b085c4fe21e9831945fe784c0696",
+        "scope": "Applied language-review verification only: exact replacements and surrounding meaning checked; all other text matches the original reviewed snapshot after accounting for line endings."
+      }
+    ],
+    "limits": "No new broad review, build, browser actions or product edits. Verification was limited to applied wording, surrounding meaning and file snapshots."
+  }
+}

@@ -58,6 +58,6 @@ A counterexample also needs interpretation: replay it, check that the input is a
 
 Web DAST usually tests a running application's security behavior through its interfaces. Model falsification tests explicit behavioral requirements and may have no security focus. Both fit under [dynamic analysis](../static-vs-dynamic/).
 
-Model checking aims to establish whether a model satisfies a property under its stated assumptions and may also return counterexamples. The simulation searches covered here are aimed at finding violations; a successful search can refute a property, while an unsuccessful search alone cannot prove it.
+Model checking asks whether a model satisfies a property under stated assumptions and may return a counterexample. Simulation falsification searches for violations.
 
 [Verification and generated tests](../verification-and-generated-tests/) compares these results with bounded model checking, deductive verification, fuzzing, and property-based testing.

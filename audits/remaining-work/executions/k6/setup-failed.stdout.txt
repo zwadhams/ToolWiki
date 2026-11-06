@@ -1,0 +1,18 @@
+
+         /\      Grafana   /\u203e\u203e/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   \u203e\u203e\ 
+  /          \   |   (  |  (\u203e)  |
+ / __________ \  |_|\_\  \_____/ 
+
+     execution: local
+        script: load.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 2 max VUs, 12s max duration (incl. graceful stop):
+              * health: 2 looping VUs for 10s (gracefulStop: 2s)
+
+Completed 0 load iterations. Inspect the summary and process status for threshold results.
+
+Run      [ 100% ] setup()
+health   [   0% ]

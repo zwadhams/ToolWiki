@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: MIT
+rules:
+  - id: toolwiki.python.subprocess-shell-true
+    languages: [python]
+    severity: WARNING
+    message: Review shell=True; prefer an argument list with shell=False when shell features are unnecessary.
+    options:
+      constant_propagation: false
+    metadata:
+      license: MIT
+      category: security
+      technology: [python]
+      confidence: LOW
+    pattern-either:
+      - pattern: subprocess.run(..., shell=True, ...)
+      - pattern: subprocess.Popen(..., shell=True, ...)

@@ -3,7 +3,7 @@ title: Ways to do DAST
 description: Separate scanning behavior, authentication, and application interfaces from related dynamic techniques.
 ---
 
-DAST does not have one universal list of mutually exclusive types. It is more useful to describe a test along several dimensions. A single scan can be active, authenticated, and API-focused at the same time.
+Describe a DAST test along several dimensions: a scan can be active, authenticated, and API-focused at the same time.
 
 ## Passive and active checks
 

@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-06",
+  "module": "1.25.0",
+  "hostVersion": "7.6.9",
+  "platform": "Microsoft Windows 10.0.26300",
+  "selectedRule": "PSAvoidUsingWriteHost",
+  "targetExecuted": false,
+  "bad": [
+    {
+      "RuleName": "PSAvoidUsingWriteHost",
+      "Severity": 1,
+      "Line": 2,
+      "Message": "File 'bad.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information.",
+      "ScriptName": "bad.ps1"
+    }
+  ],
+  "good": [],
+  "inputs_sha256": {
+    "examples/powershell-check/bad.ps1": "4bbbb2c20ef1548714eb72f6fd59c8fa947b580f72fa4aa7045483b1a28cc092",
+    "examples/powershell-check/good.ps1": "09cc22849a55e4acfda11fc52cda5a5dca32ccde69a91e8d0189023ca5e6e2ce"
+  },
+  "package_sha256": "14e634c828eb98efb9f40b2918ba90f139ed5eccdf663a2a747736d996995d60",
+  "commands": [
+    "Invoke-ScriptAnalyzer -Path examples/powershell-check/bad.ps1 -IncludeRule PSAvoidUsingWriteHost",
+    "Invoke-ScriptAnalyzer -Path examples/powershell-check/good.ps1 -IncludeRule PSAvoidUsingWriteHost"
+  ]
+}

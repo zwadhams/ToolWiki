@@ -69,4 +69,4 @@ For predefined weakness checks, see [cwe-checker](../cwe-checker/). For a progra
 
 ## Related research
 
-In our [malware sophistication paper](https://www.cs.montana.edu/izurieta/pubs/iETC_Porcella_2026.pdf), we discuss Ghidra in the context of binary analysis and obfuscation. We did not benchmark its detection performance. I connect this entry to [Malware sophistication](../../research/binary-analysis/) because recovered structure affects how software quality can be interpreted.
+In our [malware sophistication paper](https://www.cs.montana.edu/izurieta/pubs/iETC_Porcella_2026.pdf), we discuss Ghidra in the context of binary analysis and obfuscation. We did not benchmark its detection performance. [Malware sophistication](../../research/binary-analysis/) explains how recovered structure affects the interpretation of software quality.

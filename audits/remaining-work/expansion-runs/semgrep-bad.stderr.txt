@@ -1,0 +1,19 @@
+               
+               
+\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510
+\u2502 Scan Status \u2502
+\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518
+  Scanning 1 file tracked by git with 1 Code rule:
+  Scanning 1 file.
+                
+                
+\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510
+\u2502 Scan Summary \u2502
+\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518
+\u2705 Scan completed successfully.
+ \u2022 Findings: 1 (1 blocking)
+ \u2022 Rules run: 1
+ \u2022 Targets scanned: 1
+ \u2022 Parsed lines: ~100.0%
+ \u2022 No ignore information available
+Ran 1 rule on 1 file: 1 finding.

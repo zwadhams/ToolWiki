@@ -60,17 +60,15 @@ RESTler uses relationships between API operations to generate request sequences.
 
 Its compiler prepares the grammar; the testing and fuzzing stages send requests to the running service. Compiling an API definition alone is not a dynamic test result.
 
-## Example
+## First try
 
-**Illustrative workflow, not run here.** Build RESTler according to its repository instructions. From the repository root, with a disposable test API already running and a specification configured for that target:
+Use the [disposable HTTP API](../../guides/api-testing/) for a supplied service,
+OpenAPI schema, reset procedure, and known failing/corrected request. It includes
+create/read/delete resource dependencies and separate instructions for this tool.
 
-```sh
-python restler-quick-start.py --api_spec_path path/to/openapi.json --restler_drop_dir path/to/restler_bin
-```
-
-Replace both paths with your files. This quickstart compiles the specification and runs requests; it is not a compile-only preview. Configure authentication and a resettable resource namespace for the test service first.
-
-Inspect `restler_working_dir` and the testing summary. Requests blocked by missing prerequisites or failed authentication are coverage gaps. Review replayable failures before expanding to a longer fuzzing campaign.
+The RESTler 9.3.1 procedure is illustrative. The fixture and its deterministic
+replay were tested, but RESTler compilation and fuzzing were not executed.
+Verify request coverage and inferred dependencies before expanding a run.
 
 ## Limits
 

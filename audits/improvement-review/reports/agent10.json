@@ -1,0 +1,131 @@
+{
+  "agent": "audit10_accessibility",
+  "date": "2026-11-06",
+  "lane": "Accessibility and responsive UI",
+  "status": "complete",
+  "method": [
+    "Live production IAB browser at http://127.0.0.1:4331/ToolWiki/. Inspected rendered DOM, screenshots, keyboard focus and scroll behavior, then corroborated source.",
+    "Temporary viewport sizes 390x844 and 768x1024; default 1280x720. Also 640x360 catalog reflow proxy, explicitly not 200% browser zoom.",
+    "Light and dark themes inspected; restored Auto and cleared viewport override before releasing browser.",
+    "No repository edits, analyzer installation/execution, automated accessibility scanner, or real-user data changes. A disposable Accessibility focus check component was added and removed from the audit-origin description; original three components and connection retained."
+  ],
+  "findings": [
+    {
+      "id": "A11Y-01",
+      "kind": "confirmed_defect",
+      "priority": "P2",
+      "title": "Removing the final shortlisted tool loses keyboard focus",
+      "reader_task": "Remove the last comparison choice and continue keyboard navigation near the same catalog or system result.",
+      "locations": [
+        {
+          "path": "src/components/ToolCatalog.astro",
+          "line": 147
+        },
+        {
+          "path": "src/components/ToolCatalog.astro",
+          "line": 61
+        },
+        {
+          "path": "src/styles/custom.css",
+          "line": 287
+        },
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 399
+        },
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 407
+        }
+      ],
+      "evidence": [
+        "Catalog: open /ToolWiki/?q=Ruff, select Compare Ruff, keyboard-activate Remove Ruff. The tray is display:none; document.activeElement becomes BODY. The next Tab focuses Skip to content at the page start.",
+        "Builder: with the existing audit Python component producing a Ruff candidate, select only Compare Ruff, keyboard-activate Remove Ruff. document.activeElement becomes BODY; the next Tab again focuses Skip to content.",
+        "Catalog removal calls updateSelection() then selectionStatus.focus(); updateSelection hides the entire tray at zero selections. Builder removal rebuilds the tray then attempts to focus a remaining button/link, but none exists at zero."
+      ],
+      "impact": "Keyboard readers lose their place after a routine action and must traverse the header/navigation/form again. A focused control should not disappear without moving focus to a stable, visible target.",
+      "confidence": "high: reproduced live on both surfaces and corroborated in source; no screen-reader speech test was performed.",
+      "recommendation": "Keep existing focus behavior when choices remain, and supply a visible fallback when the final choice is removed. Catalog can focus its existing result-count element; builder can focus the still-visible candidate checkbox or a persistent, programmatically focusable results heading/status. Keep a concise removal announcement.",
+      "acceptance_criteria": [
+        "From one selected tool, activating its Remove action by keyboard leaves focus on an intentional visible target near the current results, never BODY.",
+        "The next Tab proceeds from that target rather than restarting at Skip to content.",
+        "Removal from two or three choices retains useful focus on remaining controls.",
+        "The fallback works when the removed selected tool is no longer in current filtered results.",
+        "Existing selection state and documented temporary builder-shortlist semantics remain unchanged."
+      ],
+      "effort": "small",
+      "dependencies": [],
+      "compatibility": "Focus management only; no URL or saved-system format changes."
+    }
+  ],
+  "checks": [
+    {
+      "area": "Catalog labels and updates",
+      "result": "pass",
+      "details": "Search/filter controls have labels; filter help is associated; search Ruff changes count to 1 of 89 in role=status aria-live=polite. Tab from search reaches Sort by with a 2px visible accent outline."
+    },
+    {
+      "area": "Comparison semantics and keyboard scroll",
+      "result": "pass",
+      "details": "Tables have captions and scoped row/column headers; named regions tabindex 0. ArrowRight moved comparison scrollLeft from 0 to 40, then 71.5. Focus outline visible."
+    },
+    {
+      "area": "Profile code blocks",
+      "result": "pass with initial concern rejected",
+      "details": "ASan code blocks initially appeared without tabindex, but keyboard traversal enhanced pre elements to tabindex 0 role=region and reached them before copy buttons. Long code remained within local overflow regions. No keyboard-inaccessible code finding."
+    },
+    {
+      "area": "Builder focus after add/edit/remove component",
+      "result": "pass",
+      "details": "Add component via Enter focused its summary and announced addition. Keyboard Space on Python retained focus on the recreated checkbox. Removing the disposable component focused Undo removal or import and announced removal."
+    },
+    {
+      "area": "Status and headings",
+      "result": "pass for inspected DOM",
+      "details": "Catalog, comparison, ASan profile, and builder each had one h1. Catalog/comparison/builder expose status elements; builder candidate count has role=status. Actual assistive-technology announcements were not tested."
+    },
+    {
+      "area": "Responsive layout",
+      "result": "pass for sampled pages",
+      "details": "Catalog/comparison/ASan profile/builder at 390x844 and 768x1024 had document scrollWidth 375 or 753 respectively, below viewport width. Default 1280x720 catalog/comparison/builder had no page-wide horizontal overflow. Comparison scrolled locally;390px region width 341 versus table 1040. ASan long commands scrolled locally up to 664px within 341px pre region."
+    },
+    {
+      "area": "640px reflow proxy",
+      "result": "pass, not zoom verification",
+      "details": "Catalog at 640x360 had scrollWidth 625. This is a narrow viewport check only."
+    },
+    {
+      "area": "Themes and sampled contrast",
+      "result": "pass for selected palette pairs",
+      "details": "Rendered light and dark samples inspected. Relative luminance calculations from configured colors: dark muted/surface 6.49, dark body/background 13.04, dark accent/surface 8.31; light muted/surface 5.54, light body/background 13.79, light accent/surface 5.46. Control border/background samples 3.94 (dark) and 3.49 (light). This is not an exhaustive contrast/conformance audit; syntax colors and every state were not measured."
+    },
+    {
+      "area": "Settings restoration",
+      "result": "pass",
+      "details": "Viewport override reset; observed 1280x720. Theme selector restored to Auto; actual theme dark. Browser lease released after CUA completion summary."
+    }
+  ],
+  "limitations": [
+    "No human participant or screen-reader study; no formal WCAG compliance claim.",
+    "True 200% browser zoom was not verified. An initial Ctrl+Equal attempt on body timed out; a second attempt using the focusable theme control completed but viewport dimensions/devicePixelRatio/visualViewport scale did not change. Ctrl+0 was issued before restoration. No product zoom defect inferred.",
+    "No exhaustive mobile hardware/touch test, color-vision simulation, OS high-contrast mode, all 89 profile visual scan, or every keyboard path.",
+    "Arrow-scroll observations are asynchronous; immediate zero scrollLeft was followed by the expected movement and is not a failure.",
+    "The browser source of system state was the explicitly disposable audit origin, not the user's regular preview origin."
+  ],
+  "rejected_leads": [
+    {
+      "lead": "Scrollable ASan code blocks appear to lack keyboard access",
+      "resolution": "Rejected after live Tab sequence: the page enhances pre elements to tabindex 0 role=region on keyboard traversal."
+    },
+    {
+      "lead": "Missing builder result status",
+      "resolution": "Rejected: source line 300 and rendered DOM expose candidate count with role=status."
+    }
+  ],
+  "evidence_urls": [
+    "http://127.0.0.1:4331/ToolWiki/?q=Ruff",
+    "http://127.0.0.1:4331/ToolWiki/compare/?tools=tools%2Fruff%2Ctools%2Fmypy%2Ctools%2Fpyright",
+    "http://127.0.0.1:4331/ToolWiki/tools/address-sanitizer/",
+    "http://127.0.0.1:4331/ToolWiki/analysis-suite/"
+  ]
+}

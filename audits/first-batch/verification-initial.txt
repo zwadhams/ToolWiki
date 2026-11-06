@@ -1,0 +1,236 @@
+$ pnpm check && pnpm test && pnpm build && node scripts/check-site.mjs
+$ astro check
+12:21:53 [content] Syncing content
+12:21:53 [content] Content config changed
+12:21:53 [content] Clearing content store
+12:21:54 [content] Synced content
+12:21:54 [types] Generated 1.46s
+12:21:54 [check] Getting diagnostics for Astro files in C:\Users\zwadh\Repos\ToolWiki...
+Result (34 files):
+- 0 errors
+- 0 warnings
+- 0 hints
+
+$ node --test tests/*.test.mjs
+? every authored tool validates against the production strict schema (56.0606ms)
+? optional-field typos fail with their file and unknown key instead of becoming empty defaults (9.3741ms)
+? intentionally absent optionals and supported Starlight frontmatter remain valid (2.0363ms)
+? published tool paths require metadata while drafts and ordinary docs may omit it (2.0745ms)
+? source inventory uses actual Starlight IDs for slugs, nested MDX and Markdown extensions (32.4715ms)
+? source preflight catches metadata previously stripped into a cached entry (7.2081ms)
+? duplicate resolved source IDs fail even when identical contents could reuse a cached digest (8.4144ms)
+? dev changes and additions validate raw tool metadata before changing the store (10.2156ms)
+? catalog reconciliation uses identity sets rather than matching counts (0.3391ms)
+? combines filters and all search terms instead of returning their union (2.4304ms)
+? multi-mode tools appear in either relevant category (0.8892ms)
+? finding categories combine with input, language, and cost filters (0.1321ms)
+? finding descriptions are searchable and clearing the filter restores results (6.4411ms)
+? input types support multiple workflows and combine with other filters (0.2535ms)
+? dependency ecosystem tags do not imply source analysis (0.129ms)
+? language-independent HTTP tools are not falsely tagged for source languages (0.2155ms)
+? sorts without mutating input and breaks date ties by name (0.18ms)
+? empty searches restore the full catalog and impossible filters return nothing (0.1527ms)
+? free options include restricted free use but exclude paid trials (0.2122ms)
+? free proprietary manual tools do not inherit automated scanning from paid editions (0.1322ms)
+? cost and language filters must match the same edition (0.1146ms)
+? ranks names and aliases before descriptive mentions while retaining explicit sorts (0.3547ms)
+? language names stay distinct and common abbreviations find the same candidates (1.5544ms)
+? punctuation and partial names work without requiring exact formatting (0.1841ms)
+? cost caveats and unsupported platform notes do not become capabilities (0.0914ms)
+? typo suggestions are explicit and obey cost, language, and mode filters (0.3783ms)
+? comparison URLs ignore unknown IDs and repeated tools (1.7777ms)
+? comparisons preserve order and cap selection at three valid tools (0.0984ms)
+? empty and single selections are supported without inventing a comparison (0.0766ms)
+? normalizing checkbox state leaves its input unchanged (0.0804ms)
+? bookmark URLs round-trip tool IDs and the configured base path (0.6226ms)
+? a comparison returns to the originating filtered catalog with its current selection (1.0128ms)
+? catalog context cannot redirect navigation or retain nested context (0.1418ms)
+? profile return round-trips category, filters and zero to three known selections (0.8513ms)
+? selection-only profile context has a return path and explicit clearing never restores stale IDs (0.1577ms)
+? comparison choices replace inherited selection while preserving the catalog origin (0.2534ms)
+? URL builders normalize context IDs against the full catalog rather than current results (0.1723ms)
+? invalid categories cannot change the destination and nested or foreign context is discarded (0.2505ms)
+? mixed-language components get their own tools with automatically described findings (8.2318ms)
+? dependency tags do not imply source inspection (0.225ms)
+? capabilities from different workflows are never combined (0.2639ms)
+? native binaries, JVM bytecode, and LLVM bitcode remain distinct (0.2475ms)
+? protocol support cannot be inferred from TCP transport (0.1814ms)
+? API definitions and test endpoints are separate prerequisites (0.1197ms)
+? a connection question targets its own host field rather than a component host (0.2868ms)
+? rebuild access and supported target OS affect instrumented workflows (0.146ms)
+? host support examples do not become exhaustive exclusions (0.1728ms)
+? unknown inputs differ from explicitly unavailable inputs (0.2179ms)
+? unknown language can request detail but Other does not promise supported syntax (0.1015ms)
+? cost and license stay attached to the same edition (0.1893ms)
+? deduplicated tool cards retain findings and requirement statuses per workflow (0.1815ms)
+? ready candidates precede conditional candidates with alphabetical tie-breaking (6.1938ms)
+? excluded parts remain in the profile and connections are independently selectable (0.1414ms)
+? removing a component removes incident connections without mutating the undo snapshot (2.6312ms)
+? export/import round-trips descriptions without saving derived recommendations (0.5268ms)
+? undo removal preserves later edits and restores incident connections in order (0.5964ms)
+? malformed, oversized, unsupported and structurally invalid imports are rejected (1.4411ms)
+? local saving restores the latest profile and storage failures remain recoverable (0.3824ms)
+? candidates appear without goals and old saved goal selections do not narrow them (0.2639ms)
+? blank components and connections ask for a description instead of listing every tool (0.0859ms)
+? language selection alone suggests related tools without inventing unrelated inputs (0.1769ms)
+? connection candidates also ignore legacy goals and explain their full finding scope (0.1901ms)
+? workflow metadata requires explicit interface, artifact and language scope (0.4014ms)
+? normal and legacy v1 descriptions keep the storage key and round-trip (10.5301ms)
+? exact serialized UTF-8 limit is accepted and one byte over is rejected (57.7112ms)
+? size enforcement counts UTF-8 bytes rather than characters (18.0409ms)
+? growing the audited import keeps the last restorable save and can recover by reduction (38.6041ms)
+? imports preflight compact-to-formatted growth before they can be committed (27.0011ms)
+? imports include schema defaults in the normalized size preflight (23.1522ms)
+? schema rejection and browser-write failures have distinct errors without replacing prior data (0.3814ms)
+? unreadable raw data stays protected through edits, removal, undo and valid imports (7.8291ms)
+? explicit replacement rejects invalid data and failed writes while retaining recovery (13.518ms)
+? read failures prohibit writes and replacement until storage can be read (0.9003ms)
+? a successful read retry protects an existing valid copy without replacing in-memory edits (0.6161ms)
+? read retry distinguishes an absent key from an unreadable saved value (0.3799ms)
+? tests 75
+? suites 0
+? pass 75
+? fail 0
+? cancelled 0
+? skipped 0
+? todo 0
+? duration_ms 455.1684
+$ astro build
+12:22:02 [content] Syncing content
+12:22:02 [content] Synced content
+12:22:02 [types] Generated 634ms
+12:22:02 [build] output: "static"
+12:22:02 [build] mode: "static"
+12:22:02 [build] directory: C:\Users\zwadh\Repos\ToolWiki\dist\
+12:22:02 [build] Collecting build info...
+12:22:02 [build] ? Completed in 812ms.
+12:22:02 [build] Building static entrypoints...
+12:22:02 [vite] ? built in 532ms
+12:22:02 [vite] ? built in 81ms
+12:22:02 [build] Rearranging server assets...
+
+ generating static routes
+12:22:03 [WARN] [build] Could not render `/404` from route `/[...slug]` as it conflicts with higher priority route `/404`.
+12:22:03   ?? /404.html (+16ms)
+12:22:03   ?? /analysis-suite/index.html (+7ms)
+12:22:03   ?? /compare/index.html (+6ms)
+12:22:03   ?? /concepts/dast-approaches/index.html (+4ms)
+12:22:03   ?? /concepts/model-falsification/index.html (+4ms)
+12:22:03   ?? /concepts/sast-vs-dast/index.html (+3ms)
+12:22:03   ?? /concepts/static-approaches/index.html (+3ms)
+12:22:03   ?? /concepts/static-vs-dynamic/index.html (+3ms)
+12:22:03   ?? /concepts/verification-and-generated-tests/index.html (+4ms)
+12:22:03   ?? /dynamic/index.html (+7ms)
+12:22:03   ?? /guides/editing/index.html (+3ms)
+12:22:03   ?? /guides/java-analysis/index.html (+3ms)
+12:22:03   ?? /guides/memory-error-detection/index.html (+3ms)
+12:22:03   ?? /guides/temporal-monitoring-and-falsification/index.html (+3ms)
+12:22:03   ?? /index.html (+6ms)
+12:22:03   ?? /research/index.html (+2ms)
+12:22:03   ?? /research/binary-analysis/index.html (+3ms)
+12:22:03   ?? /research/comparing-tools/index.html (+3ms)
+12:22:03   ?? /research/sast-adoption/index.html (+3ms)
+12:22:03   ?? /research/sast-workflow/index.html (+3ms)
+12:22:03   ?? /research/software-quality/index.html (+3ms)
+12:22:03   ?? /static/index.html (+5ms)
+12:22:03   ?? /tools/actionlint/index.html (+3ms)
+12:22:03   ?? /tools/address-sanitizer/index.html (+2ms)
+12:22:03   ?? /tools/afl-plus-plus/index.html (+2ms)
+12:22:03   ?? /tools/angr/index.html (+3ms)
+12:22:03   ?? /tools/atheris/index.html (+3ms)
+12:22:03   ?? /tools/bandit/index.html (+2ms)
+12:22:03   ?? /tools/binwalk/index.html (+2ms)
+12:22:03   ?? /tools/boofuzz/index.html (+2ms)
+12:22:03   ?? /tools/brakeman/index.html (+10ms)
+12:22:03   ?? /tools/breach/index.html (+2ms)
+12:22:03   ?? /tools/burp-suite-community/index.html (+2ms)
+12:22:03   ?? /tools/burp-suite-professional/index.html (+2ms)
+12:22:03   ?? /tools/capa/index.html (+2ms)
+12:22:03   ?? /tools/cargo-audit/index.html (+2ms)
+12:22:03   ?? /tools/cbmc/index.html (+2ms)
+12:22:03   ?? /tools/checkov/index.html (+2ms)
+12:22:03   ?? /tools/checkstyle/index.html (+2ms)
+12:22:03   ?? /tools/clang-static-analyzer/index.html (+2ms)
+12:22:03   ?? /tools/clang-tidy/index.html (+3ms)
+12:22:03   ?? /tools/clippy/index.html (+2ms)
+12:22:03   ?? /tools/codeql/index.html (+2ms)
+12:22:03   ?? /tools/coverity/index.html (+2ms)
+12:22:03   ?? /tools/coverity-scan/index.html (+2ms)
+12:22:03   ?? /tools/cpachecker/index.html (+2ms)
+12:22:03   ?? /tools/cppcheck/index.html (+2ms)
+12:22:03   ?? /tools/cve-bin-tool/index.html (+2ms)
+12:22:03   ?? /tools/cwe-checker/index.html (+2ms)
+12:22:03   ?? /tools/dafny/index.html (+2ms)
+12:22:03   ?? /tools/dependency-check/index.html (+2ms)
+12:22:03   ?? /tools/detect-secrets/index.html (+2ms)
+12:22:03   ?? /tools/detekt/index.html (+2ms)
+12:22:03   ?? /tools/dotnet-analyzers/index.html (+2ms)
+12:22:03   ?? /tools/dr-memory/index.html (+2ms)
+12:22:03   ?? /tools/esbmc/index.html (+2ms)
+12:22:03   ?? /tools/eslint/index.html (+2ms)
+12:22:03   ?? /tools/fast-check/index.html (+2ms)
+12:22:03   ?? /tools/floss/index.html (+2ms)
+12:22:03   ?? /tools/frama-c/index.html (+1ms)
+12:22:03   ?? /tools/ghidra/index.html (+1ms)
+12:22:03   ?? /tools/go-race-detector/index.html (+2ms)
+12:22:03   ?? /tools/go-vet/index.html (+1ms)
+12:22:03   ?? /tools/gosec/index.html (+1ms)
+12:22:03   ?? /tools/govulncheck/index.html (+2ms)
+12:22:03   ?? /tools/grype/index.html (+2ms)
+12:22:03   ?? /tools/hadolint/index.html (+1ms)
+12:22:03   ?? /tools/hypothesis/index.html (+2ms)
+12:22:03   ?? /tools/infer/index.html (+2ms)
+12:22:03   ?? /tools/jazzer/index.html (+2ms)
+12:22:03   ?? /tools/jbmc/index.html (+2ms)
+12:22:03   ?? /tools/kani/index.html (+2ms)
+12:22:03   ?? /tools/klee/index.html (+2ms)
+12:22:03   ?? /tools/libfuzzer/index.html (+2ms)
+12:22:03   ?? /tools/memory-sanitizer/index.html (+2ms)
+12:22:03   ?? /tools/miri/index.html (+2ms)
+12:22:03   ?? /tools/mypy/index.html (+8ms)
+12:22:03   ?? /tools/osv-scanner/index.html (+2ms)
+12:22:03   ?? /tools/phpstan/index.html (+2ms)
+12:22:03   ?? /tools/pmd/index.html (+2ms)
+12:22:03   ?? /tools/polyspace-code-prover/index.html (+2ms)
+12:22:03   ?? /tools/psalm/index.html (+2ms)
+12:22:03   ?? /tools/psy-taliro/index.html (+2ms)
+12:22:03   ?? /tools/pvs-studio/index.html (+2ms)
+12:22:03   ?? /tools/pylint/index.html (+2ms)
+12:22:03   ?? /tools/pyright/index.html (+2ms)
+12:22:03   ?? /tools/restler/index.html (+2ms)
+12:22:03   ?? /tools/rtamt/index.html (+2ms)
+12:22:03   ?? /tools/rubocop/index.html (+1ms)
+12:22:03   ?? /tools/ruff/index.html (+2ms)
+12:22:03   ?? /tools/s-taliro/index.html (+1ms)
+12:22:03   ?? /tools/schemathesis/index.html (+1ms)
+12:22:03   ?? /tools/semgrep-ce/index.html (+2ms)
+12:22:03   ?? /tools/semgrep-code/index.html (+1ms)
+12:22:03   ?? /tools/shellcheck/index.html (+1ms)
+12:22:03   ?? /tools/sonarqube/index.html (+1ms)
+12:22:03   ?? /tools/sonarqube-community/index.html (+2ms)
+12:22:03   ?? /tools/spotbugs/index.html (+2ms)
+12:22:03   ?? /tools/sqlfluff/index.html (+2ms)
+12:22:03   ?? /tools/staticcheck/index.html (+2ms)
+12:22:03   ?? /tools/stylelint/index.html (+2ms)
+12:22:03   ?? /tools/swiftlint/index.html (+2ms)
+12:22:03   ?? /tools/thread-sanitizer/index.html (+2ms)
+12:22:03   ?? /tools/trivy/index.html (+2ms)
+12:22:03   ?? /tools/undefined-behavior-sanitizer/index.html (+2ms)
+12:22:03   ?? /tools/valgrind-helgrind/index.html (+2ms)
+12:22:03   ?? /tools/valgrind-memcheck/index.html (+2ms)
+12:22:03   ?? /tools/verifai/index.html (+2ms)
+12:22:03   ?? /tools/wartremover/index.html (+2ms)
+12:22:03   ?? /tools/yara-x/index.html (+1ms)
+12:22:03   ?? /tools/zap/index.html (+2ms)
+12:22:03 ? Completed in 341ms.
+
+12:22:03 [build] ? Completed in 1.03s.
+12:22:03 [starlight:pagefind] Building search index with Pagefind...
+12:22:05 [starlight:pagefind] Found 111 HTML files.
+12:22:05 [starlight:pagefind] Finished building search index in 1.93s.
+12:22:05 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+12:22:05 [build] 111 page(s) built in 3.82s
+12:22:05 [build] Complete!
+Verified 89 published source profiles against their loader-resolved catalog identities.
+Verified 111 built pages, local links, fragments, assets, search index, and discovery for 89 tools.
+Verified builder navigation and real-catalog recommendations for 80 reviewed tools.

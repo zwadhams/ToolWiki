@@ -82,4 +82,6 @@ Dynamic behavior and missing models can affect results. Suppressions and baselin
 
 ## Related research
 
-We used Psalm for the PHP implementation in our [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf). The paper does not establish that we enabled its separate taint-analysis mode. I keep that current capability distinct from the reported study configuration in [Comparing SAST tools](../../research/comparing-tools/).
+We used Psalm for the PHP implementation in our [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf). The paper does not establish that we enabled its separate taint-analysis mode. See [Comparing SAST tools](../../research/comparing-tools/) for the distinction between current capabilities and the reported study configuration.
+
+See [static method results](../../concepts/advanced-static-methods/) for data-flow and taint interpretation.

@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\zwadh\Repos\ToolWiki\.preview\semgrep-ce-1.184.0\Scripts\pysemgrep.exe\__main__.py", line 5, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\zwadh\Repos\ToolWiki\.preview\semgrep-ce-1.184.0\Lib\site-packages\semgrep\console_scripts\pysemgrep.py", line 64, in main
+    sys.exit(semgrep.main.main())
+             ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\zwadh\Repos\ToolWiki\.preview\semgrep-ce-1.184.0\Lib\site-packages\semgrep\main.py", line 146, in main
+    cli(prog_name="semgrep")
+    ~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zwadh\Repos\ToolWiki\.preview\semgrep-ce-1.184.0\Lib\site-packages\click\core.py", line 1569, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\zwadh\Repos\ToolWiki\.preview\semgrep-ce-1.184.0\Lib\site-packages\click\core.py", line 1490, in main
+    rv = self.invoke(ctx)
+  File "C:\Users\zwadh\Repos\ToolWiki\.preview\semgrep-ce-1.184.0\Lib\site-packages\click\core.py", line 1967, in invoke
+    super().invoke(ctx)
+    ~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\zwadh\Repos\ToolWiki\.preview\semgrep-ce-1.184.0\Lib\site-packages\click\core.py", line 1353, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zwadh\Repos\ToolWiki\.preview\semgrep-ce-1.184.0\Lib\site-packages\click\core.py", line 907, in invoke
+    return callback(*args, **kwargs)
+  File "C:\Users\zwadh\Repos\ToolWiki\.preview\semgrep-ce-1.184.0\Lib\site-packages\click\decorators.py", line 34, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "C:\Users\zwadh\Repos\ToolWiki\.preview\semgrep-ce-1.184.0\Lib\site-packages\semgrep\cli.py", line 74, in cli
+    state = get_state()
+  File "C:\Users\zwadh\Repos\ToolWiki\.preview\semgrep-ce-1.184.0\Lib\site-packages\semgrep\state.py", line 170, in get_state
+    return ctx.ensure_object(SemgrepState)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\zwadh\Repos\ToolWiki\.preview\semgrep-ce-1.184.0\Lib\site-packages\click\core.py", line 754, in ensure_object
+    self.obj = rv = object_type()
+                    ~~~~~~~~~~~^^
+  File "<attrs generated methods semgrep.state.SemgrepState>", line 67, in __init__
+    _setattr('terminal', __attr_factory_terminal())
+                         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "<attrs generated methods semgrep.terminal.Terminal>", line 28, in __init__
+    self.__attrs_post_init__()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\zwadh\Repos\ToolWiki\.preview\semgrep-ce-1.184.0\Lib\site-packages\semgrep\terminal.py", line 39, in __attrs_post_init__
+    self.configure()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\zwadh\Repos\ToolWiki\.preview\semgrep-ce-1.184.0\Lib\site-packages\semgrep\terminal.py", line 92, in configure
+    env.user_log_file.parent.mkdir(parents=True, exist_ok=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zwadh\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py", line 722, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+PermissionError: [WinError 5] Access is denied: 'C:\\Users\\zwadh\\.semgrep'

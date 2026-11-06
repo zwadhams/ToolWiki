@@ -1,11 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
+import { publishedTools, catalogTools } from '../lib/tool-data.mjs';
+import { COSTS } from '../lib/tool-vocabulary.mjs';
 interface Props { mode?: 'Static' | 'Dynamic' }
 const { mode = '' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const entries = (await getCollection('docs', ({ data }) => !!data.tool && !data.draft));
-const allTools = entries.map(({ id, data }) => ({ id, title: data.title, description: data.description || '', ...data.tool! }))
-  .sort((a, b) => a.title.localeCompare(b.title, 'en'));
+const allTools = publishedTools(await getCollection('docs'));
 const tools = allTools.filter((tool) => !mode || tool.modes.includes(mode));
 const options = (key: 'inputTypes' | 'findings' | 'languages' | 'techniques') => [...new Set(allTools.flatMap((tool) => tool[key]))].sort();
 const groups = [
@@ -26,7 +26,7 @@ const filterHelp: Record<string, string> = {
     <span>Start with a task:</span>
     <a href={`${base}/?input=Source+code#tool-results`}>Check source code</a>
     <a href={`${base}/?finding=Known+vulnerable+dependencies#tool-results`}>Find vulnerable dependencies</a>
-    <a href={`${base}/?q=API+testing#tool-results`}>Test an API</a>
+    <a data-task-api href={`${base}/?q=HTTP&input=Running+applications#tool-results`}>Test an API</a>
     <a href={`${base}/guides/memory-error-detection/`}>Investigate memory errors</a>
   </nav>}
   <nav class="catalog-tabs" aria-label="Analysis category">
@@ -42,7 +42,7 @@ const filterHelp: Record<string, string> = {
     <p id="catalog-search-help" class="sr-only">Search tool names and capabilities. Use filters to narrow the results.</p>
     <div class="filter-row">
       {groups.slice(0, 3).map(({ name, label, values }) => <label><span>{label}</span><select name={name} aria-label={label} aria-describedby={`help-${name}`}><option value="">All</option>{values.map((value) => <option value={value}>{value}</option>)}</select><small id={`help-${name}`}>{filterHelp[name]}</small></label>)}
-      <label class="catalog-cost"><span>Cost</span><select name="cost" aria-label="Cost" aria-describedby="help-cost"><option value="">All</option><option value="any-free">Any free option</option><option value="Free">Free</option><option value="Free with limits">Free with limits</option><option value="Paid">Paid</option></select><small id="help-cost">Free with limits has conditions. Trials are excluded.</small></label>
+      <label class="catalog-cost"><span>Cost</span><select name="cost" aria-label="Cost" aria-describedby="help-cost"><option value="">All</option><option value="any-free">Any free option</option>{COSTS.map(cost => <option value={cost}>{cost}</option>)}</select><small id="help-cost">Free with limits has conditions. Trials are excluded.</small></label>
     </div>
     <details class="more-filters"><summary>More filters<span data-extra-filter-count></span></summary><div class="filter-row">
       {groups.slice(3).map(({ name, label, values }) => <label><span>{label}</span><select name={name}><option value="">All</option>{values.map((value) => <option value={value}>{value}</option>)}</select></label>)}
@@ -62,6 +62,7 @@ const filterHelp: Record<string, string> = {
     <div class="selected-tools" data-selected-tools></div>
   </section>
   <div class="results-bar" id="tool-results"><p role="status" aria-live="polite" aria-atomic="true" tabindex="-1" data-result-count>{tools.length} entries</p><button type="button" class="reset-filters">Reset search</button></div>
+  <p class="sr-only" data-selection-announcement role="status" aria-live="polite" aria-atomic="true"></p>
   <div class="tool-grid">
     {tools.map((tool) => <article class="tool-card" data-tool-id={tool.id}>
       <div class="card-meta"><span class:list={['mode-badge', { dynamic: tool.modes.includes('Dynamic') }]}>{tool.modes.join(' / ')}</span><span>{tool.licenseCategory}</span></div>
@@ -69,6 +70,7 @@ const filterHelp: Record<string, string> = {
       <p class="tool-summary">{tool.description}</p>
       <dl class="card-facts"><div><dt>Finds</dt><dd>{tool.findings.join(', ')}</dd></div><div><dt>Examines</dt><dd>{tool.inputTypes.join(', ')}</dd></div><div><dt>Cost</dt><dd><a class="cost-link" href={`${base}/${tool.id}/#cost-and-editions`}>{tool.cost.join(' / ')}</a></dd></div><div><dt>Languages</dt><dd>{tool.languages.slice(0, 4).join(', ')}{tool.languages.length > 4 ? ` +${tool.languages.length - 4}` : ''}</dd></div></dl>
       {tool.cardRequirement && <p class="card-prerequisite">{tool.cardRequirement}</p>}
+      <p data-matched-language class="card-prerequisite" hidden></p>
       <div class="card-footer"><label class="compare-choice"><input type="checkbox" data-compare-id={tool.id} aria-label={`Compare ${tool.title}`} /> Compare</label><a href={`${base}/${tool.id}/`} aria-label={`Read notes on ${tool.title}`}>Read notes</a></div>
       <p class="card-reviewed">Docs checked {tool.verified}</p>
     </article>)}
@@ -79,16 +81,19 @@ const filterHelp: Record<string, string> = {
     <div class="search-suggestions" data-suggestions hidden></div>
     <button type="button" data-clear-filters hidden>Clear filters, keep search</button>
     <a data-search-all hidden href={`${base}/`}>Search all tools</a>
+    <button type="button" data-search-pages hidden>Search all pages for this query</button>
+    <p data-page-search-status role="status" hidden>Full-page search includes the tool notes and guides.</p>
     <p>This catalog is a starting collection, not a complete inventory.</p>
     <button type="button" class="reset-filters">Reset search</button>
   </div>
   <p class="catalog-note">Docs checked means reviewed against documentation. Example execution status is recorded separately in the tool notes. Explore <a href={`${base}/research/`}>research on choosing tools and interpreting results</a>.</p>
   <noscript><p>All tools are listed below. Enable JavaScript to search, filter, and sort.</p></noscript>
-  <script type="application/json" data-catalog-data set:html={JSON.stringify(allTools).replace(/</g, '\u003c')} />
+  <script type="application/json" data-catalog-data set:html={JSON.stringify(catalogTools(allTools)).replace(/</g, '\u003c')} />
   <script type="application/json" data-selection-data set:html={JSON.stringify(allTools.map(({ id, title }) => ({ id, title }))).replace(/</g, '\u003c')} />
 </tool-catalog>
 <script>
   import { selectTools, suggestTools } from '../lib/catalog.mjs';
+  import { openPageSearch } from '../lib/page-search.mjs';
   import { normalizeSelection, comparisonHref, catalogParams, CATALOG_FILTERS } from '../lib/comparison.mjs';
   class ToolCatalog extends HTMLElement {
     connectedCallback() {
@@ -105,7 +110,12 @@ const filterHelp: Record<string, string> = {
       const selectionTools: { id: string; title: string }[] = JSON.parse(this.querySelector('[data-selection-data]')!.textContent!);
       const allowedIds = selectionTools.map((tool) => tool.id);
       let selected: string[] = [];
-      const catalogContext = () => catalogParams(new URLSearchParams(Object.fromEntries(new FormData(form).entries()) as Record<string, string>)).toString();
+      const catalogContext = () => {
+        const params = new URLSearchParams(Object.fromEntries(new FormData(form).entries()) as Record<string, string>);
+        params.set('category', this.dataset.mode?.toLowerCase() || 'all');
+        if (selected.length) params.set('compare', selected.join(','));
+        return catalogParams(params, allowedIds).toString();
+      };
       const syncCategoryLinks = () => {
         const filters = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
         this.querySelectorAll<HTMLAnchorElement>('[data-catalog-category], [data-search-all]').forEach((anchor) => {
@@ -118,7 +128,7 @@ const filterHelp: Record<string, string> = {
           anchor.href = url.pathname + url.search;
         });
         const context = catalogContext();
-        this.querySelector<HTMLAnchorElement>('[data-open-comparison]')!.href = comparisonHref(this.dataset.base!, selected, context);
+        this.querySelector<HTMLAnchorElement>('[data-open-comparison]')!.href = comparisonHref(this.dataset.base!, selected, context, allowedIds);
         this.querySelectorAll<HTMLAnchorElement>('.tool-card a').forEach(anchor => {
           const url = new URL(anchor.href);
           if (context) url.searchParams.set('catalog', context); else url.searchParams.delete('catalog');
@@ -126,6 +136,7 @@ const filterHelp: Record<string, string> = {
         });
       };
       const selectionStatus = this.querySelector<HTMLElement>('[data-selection-status]')!;
+      const selectionAnnouncement = this.querySelector<HTMLElement>('[data-selection-announcement]')!;
       const checkboxes = [...this.querySelectorAll<HTMLInputElement>('[data-compare-id]')];
       const updateSelection = (save = true) => {
         selected = normalizeSelection(selected, allowedIds);
@@ -136,15 +147,20 @@ const filterHelp: Record<string, string> = {
         const selectionHint = selected.length === 3 ? 'Remove a tool to choose another.' : selected.length === 2 ? 'Ready to compare, or choose a third tool.' : 'Select one more tool to compare.';
         selectionStatus.textContent = selected.length ? `${selected.length} of 3 selected. ${selectionHint}` : 'Select two or three tools to compare.';
         const link = this.querySelector<HTMLAnchorElement>('[data-open-comparison]')!;
-        link.href = comparisonHref(this.dataset.base!, selected, catalogContext());
+        link.href = comparisonHref(this.dataset.base!, selected, catalogContext(), allowedIds);
         link.textContent = selected.length >= 2 ? `Compare ${selected.length} tools` : 'Open comparison';
         this.querySelector<HTMLButtonElement>('[data-clear-selection]')!.hidden = !selected.length;
         const list = this.querySelector('[data-selected-tools]')!; list.replaceChildren();
         this.querySelector('.compare-tray')!.classList.toggle('has-selection', selected.length > 0);
         selected.forEach((id) => {
           const button = document.createElement('button'); button.type = 'button';
-          button.textContent = `Remove ${selectionTools.find((tool) => tool.id === id)!.title}`;
-          button.addEventListener('click', () => { selected = selected.filter((value) => value !== id); updateSelection(); selectionStatus.focus(); });
+          const title = selectionTools.find((tool) => tool.id === id)!.title;
+          button.textContent = `Remove ${title}`;
+          button.addEventListener('click', () => {
+            selected = selected.filter((value) => value !== id); updateSelection();
+            selectionAnnouncement.textContent = `${title} removed from comparison.`;
+            (selected.length ? selectionStatus : count).focus();
+          });
           list.append(button);
         });
         syncCategoryLinks();
@@ -174,7 +190,12 @@ const filterHelp: Record<string, string> = {
         const filters = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
         const results = selectTools(tools, filters);
         const visible = new Set(results.map((tool) => tool.id));
-        cards.forEach((card, id) => { card.hidden = !visible.has(id!); });
+        cards.forEach((card, id) => {
+          card.hidden = !visible.has(id!);
+          const language = card.querySelector<HTMLElement>('[data-matched-language]')!;
+          language.hidden = !filters.language;
+          language.textContent = filters.language ? `Matches ${filters.language}` : '';
+        });
         results.forEach((tool) => grid.append(cards.get(tool.id)!));
         count.textContent = `${results.length} of ${tools.length} entries`;
         empty.hidden = results.length !== 0;
@@ -202,6 +223,10 @@ const filterHelp: Record<string, string> = {
         clearFilters.hidden = activeNames.length === 0;
         const allLink = this.querySelector<HTMLAnchorElement>('[data-search-all]')!;
         allLink.hidden = true;
+        this.querySelector<HTMLButtonElement>('[data-search-pages]')!.hidden = results.length > 0 || !filters.q.trim();
+        const pageSearchStatus = this.querySelector<HTMLElement>('[data-page-search-status]')!;
+        pageSearchStatus.hidden = results.length > 0 || !filters.q.trim();
+        pageSearchStatus.textContent = 'Full-page search includes the tool notes and guides.';
         if (!results.length) {
           const withoutFilters = selectTools(tools, { q: filters.q }).length;
           this.querySelector('[data-empty-message]')!.textContent = withoutFilters && activeNames.length
@@ -231,6 +256,12 @@ const filterHelp: Record<string, string> = {
       form.addEventListener('input', () => update());
       form.addEventListener('change', () => update());
       form.addEventListener('submit', (event) => { event.preventDefault(); update(); });
+      this.querySelector<HTMLButtonElement>('[data-search-pages]')!.addEventListener('click', async (event) => {
+        event.stopPropagation();
+        const trigger = event.currentTarget as HTMLButtonElement;
+        const message = await openPageSearch(query.value, trigger);
+        this.querySelector<HTMLElement>('[data-page-search-status]')!.textContent = message;
+      });
       checkboxes.forEach((checkbox) => checkbox.addEventListener('change', () => {
         const id = checkbox.dataset.compareId!;
         selected = checkbox.checked ? [...selected, id] : selected.filter((value) => value !== id);

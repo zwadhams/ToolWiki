@@ -57,7 +57,7 @@ tool:
 
 FLOSS extracts ordinary strings, strings assembled on the stack, and strings recovered from selected decoding routines. It also supports specialized extraction for Go and Rust binaries.
 
-The project describes an advanced static-analysis workflow, but part of that workflow emulates instructions. Its [deobfuscation algorithm](https://github.com/mandiant/flare-floss/blob/master/doc/theory.md) identifies likely decoder functions, reconstructs arguments, and inspects emulator memory changes. I expose both modes in the catalog to make that distinction visible.
+The project describes an advanced static-analysis workflow, but part of that workflow emulates instructions. Its [deobfuscation algorithm](https://github.com/mandiant/flare-floss/blob/master/doc/theory.md) identifies likely decoder functions, reconstructs arguments, and inspects emulator memory changes. The catalog's Static and Dynamic tags reflect these two modes.
 
 ## Example
 

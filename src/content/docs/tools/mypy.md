@@ -2,6 +2,10 @@
 title: mypy
 description: Check Python types to find incompatible arguments, return values, and operations without running the program.
 tool:
+  decision:
+    useWhen: Check whether Python annotations, calls, and return values agree in a configured project.
+    result: Diagnostics name the file, line, type mismatch, and error code, such as arg-type for an incompatible argument.
+    limit: Any, missing stubs, untyped code, and suppressions can hide mistakes. A clean check does not validate runtime input or behavior.
   analysisWorkflows:
     - id: source
       label: Source analysis
@@ -52,6 +56,8 @@ tool:
       url: https://mypy.readthedocs.io/en/stable/common_issues.html
     - label: License and bundled notices
       url: https://github.com/python/mypy/blob/master/LICENSE
+    - label: Pyright configuration for comparable checks
+      url: https://github.com/microsoft/pyright/blob/main/docs/configuration.md
 ---
 
 ## Where it fits
@@ -60,7 +66,9 @@ Use mypy to check whether code uses the types described by annotations and stubs
 
 Gradual typing lets a project adopt annotations in stages. By default, bodies of functions without annotations receive limited checking. `Any` and ignored imports can also let type mistakes pass unnoticed.
 
-## Worked example: an incompatible argument
+<span id="worked-example-an-incompatible-argument"></span>
+
+## First try
 
 **Illustrative example, not run here.** Follow the [mypy installation instructions](https://mypy.readthedocs.io/en/stable/getting_started.html) in your selected Python environment, then save this as `sample.py`:
 
@@ -85,6 +93,8 @@ sample.py:4: error: Argument 1 to "next_count" has incompatible type "str"; expe
 
 `sample.py:4` locates the call. `arg-type` identifies an incompatible argument type: text was passed to an integer parameter. Replace the argument with `3` and check again. This example exercises one mismatch, not the entire type system. See the [argument-type diagnostic reference](https://mypy.readthedocs.io/en/stable/error_code_list.html#check-argument-types-arg-type) for details.
 
+Use the [shared Ruff and mypy recipe](../../guides/python-checks/) for a pinned environment, faulty/corrected files, and separate reports.
+
 ## Configure a useful check
 
 Supply the project's imports and any required third-party stubs. Start with a small annotated area, inspect errors, and tighten the configuration deliberately. `--check-untyped-defs` can inspect unannotated bodies, while `--strict` enables a broader set of checks.
@@ -93,4 +103,8 @@ Record the mypy version, configuration, target Python version, and suppressions.
 
 [Compare mypy, Ruff, and Bandit](../../compare/?tools=tools%2Fmypy%2Ctools%2Fruff%2Ctools%2Fbandit) to see their different roles.
 
-[Pyright](../pyright/) provides another Python type-checking workflow. [Compare mypy and Pyright](../../compare/?tools=tools%2Fmypy%2Ctools%2Fpyright) using the same project and intended type-checking scope.
+## Compare Python type checkers
+
+[Pyright](../pyright/) is another Python type checker. Both use annotations and stubs, but configuration, inference, diagnostics, and plugin support differ. For a useful trial, check the same revision with matching Python version, platform, imports, and intended strictness. Investigate disagreements instead of comparing diagnostic counts. Keep [mypy import and stub settings](https://mypy.readthedocs.io/en/stable/running_mypy.html) and [Pyright settings](https://github.com/microsoft/pyright/blob/main/docs/configuration.md) with the reports.
+
+[Compare mypy and Pyright](../../compare/?tools=tools%2Fmypy%2Ctools%2Fpyright). Ruff remains complementary for lint rules; running two type checkers is a deliberate evaluation choice, not a requirement of the Python recipe.

@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-06T20:46:33.752502+00:00",
+  "tool": "boofuzz",
+  "version": "0.4.2",
+  "python": "3.12.16",
+  "host": "Windows-11-10.0.26300-SP0",
+  "port": 64076,
+  "scope": "Two selected PING values; response contract only, no process-crash or memory monitor.",
+  "inputs_sha256": {
+    "server.py": "7366e45e416d9ede93ae9c99a2b41d37ea2c578b73826bf1ca593348d3a5060d",
+    "check.py": "03f3493c30a0a9e5ae0a8bfdb518dfdf7498937430acb1d6dfcb212b430766ca"
+  },
+  "status": "completed-no-findings",
+  "observations": [
+    {
+      "request_hex": "50494e4720545249474745520d0a",
+      "reply_hex": "504f4e4720545249474745520d0a",
+      "expected_hex": "504f4e4720545249474745520d0a",
+      "passed": true
+    },
+    {
+      "request_hex": "50494e4720776f726c640d0a",
+      "reply_hex": "504f4e4720776f726c640d0a",
+      "expected_hex": "504f4e4720776f726c640d0a",
+      "passed": true
+    }
+  ],
+  "command": [
+    "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\boofuzz-env\\Scripts\\python.exe",
+    "C:\\Users\\zwadh\\Repos\\ToolWiki\\examples\\protocol-ping\\check.py",
+    "--port",
+    "64076",
+    "--output",
+    "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\boofuzz-fixed-recheck"
+  ],
+  "exit_code": 0,
+  "dependencies": {
+    "attrs": "26.1.0",
+    "blinker": "1.9.0",
+    "boofuzz": "0.4.2",
+    "click": "8.5.1",
+    "colorama": "0.4.6",
+    "Flask": "3.1.3",
+    "funcy": "2.1",
+    "itsdangerous": "2.2.0",
+    "Jinja2": "3.1.6",
+    "MarkupSafe": "3.0.4",
+    "psutil": "7.2.2",
+    "pydot": "4.0.1",
+    "pyparsing": "3.3.3",
+    "pyserial": "3.5",
+    "tornado": "6.6",
+    "Werkzeug": "3.1.9"
+  },
+  "requirements_sha256": "45c982bb7209c326f6f8941cc5bf20ffa99f2040e48a36b9a8c0fcdba67ba04c",
+  "recheck": "Rerun after readiness socket errors were converted to BoofuzzRestartFailedError. A separate regression verifies that a readiness timeout returns 2."
+}

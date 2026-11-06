@@ -79,4 +79,4 @@ A warning can enforce a team convention even when the particular call is safe un
 
 ## Related research
 
-We used WartRemover for the Scala implementation in our [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf). I retain the distinction between a reported tool name and its enabled checks when interpreting those findings. See [Comparing SAST tools](../../research/comparing-tools/).
+We used WartRemover for the Scala implementation in our [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf). The reported tool name alone does not establish which checks were enabled; see [Comparing SAST tools](../../research/comparing-tools/).

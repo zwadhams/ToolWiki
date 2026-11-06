@@ -47,15 +47,51 @@ tool:
       url: https://raw.githubusercontent.com/rhysd/actionlint/main/docs/usage.md
     - label: "License"
       url: https://raw.githubusercontent.com/rhysd/actionlint/main/LICENSE.txt
+    - label: Workflow-key diagnostic examples
+      url: https://github.com/rhysd/actionlint/blob/main/docs/checks.md#check-unexpected-keys
 ---
 
 ## Where it fits
 
 actionlint can catch workflow problems before a CI run. It understands workflow keys and expression types, giving it a more specific role than a general YAML parser.
 
-## Check a workflow first
+<span id="check-a-workflow-first"></span>
 
-Use the documented installation, then select an existing workflow file. Confirm whether optional script linters are enabled. [ShellCheck](../shellcheck/) findings inside a workflow still depend on its shell context.
+## First try
+
+**Illustrative example; not executed here.** Use the
+[actionlint 1.7.7 release](https://github.com/rhysd/actionlint/releases/tag/v1.7.7)
+archive matching your host OS and CPU, and record `actionlint -version`.
+Save this local file as `workflow.yml`; there is no
+need to upload it to GitHub:
+
+```yaml
+name: Example
+on: push
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ready
+        unexpected-key: true
+```
+
+Check the workflow structure with the optional script linters disabled:
+
+```sh
+actionlint -shellcheck= -pyflakes= workflow.yml
+```
+
+Expect an unexpected-key diagnostic for the step. Remove `unexpected-key: true`
+and rerun; that diagnostic should disappear. This exercises actionlint's own
+workflow checks without installing ShellCheck or Pyflakes. The
+[check reference](https://github.com/rhysd/actionlint/blob/main/docs/checks.md#check-unexpected-keys)
+and [usage guide](https://github.com/rhysd/actionlint/blob/main/docs/usage.md)
+describe the diagnostic and integration flags.
+
+For a real repository, check its `.github/workflows` files and configure custom
+runner labels when needed. Enable external script linters deliberately;
+[ShellCheck](../shellcheck/) findings still depend on the selected shell context.
 
 ## Read the diagnostic context
 

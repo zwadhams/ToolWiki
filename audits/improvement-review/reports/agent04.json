@@ -1,0 +1,309 @@
+{
+  "agent": 4,
+  "lane": "Search and navigation",
+  "date": "2026-11-06",
+  "scope": "Production UI, repository source, previous audits, and pure catalog-function tests. No analyzer installation or example execution. No repository files changed.",
+  "preview": "http://127.0.0.1:4331/ToolWiki/",
+  "summary": "Confirmed one category-return defect and four bounded discovery/navigation opportunities. Existing names, aliases, edition-constrained typo recovery, filter recovery, and bookmark restoration work.",
+  "findings": [
+    {
+      "id": "SEA-01",
+      "title": "Returning from a profile or comparison loses the analysis category",
+      "kind": "confirmed defect",
+      "priority": "P2",
+      "confidence": "high",
+      "duplicate_of": "ARC-01",
+      "reader_task": "Inspect or compare tools while retaining a Static/C++ shortlist.",
+      "locations": [
+        {
+          "path": "src/lib/comparison.mjs",
+          "line": 14
+        },
+        {
+          "path": "src/lib/comparison.mjs",
+          "line": 38
+        },
+        {
+          "path": "src/components/ToolCatalog.astro",
+          "line": 108
+        }
+      ],
+      "evidence": [
+        "Live Static analysis + C++ displays 15 of 63 entries at /ToolWiki/static/?language=C%2B%2B.",
+        "Open CBMC Read notes. Return to filtered results points to /ToolWiki/?language=C%2B%2B and displays 24 of 89 entries.",
+        "Repeat via CBMC and Clang Static Analyzer comparison. Return restores language and both selections but displays 24 of 89 at catalog root.",
+        "Category is held in pathname, omitted from allowlisted context, and catalogHref always generates the root route."
+      ],
+      "impact": "The explicit return action silently broadens the shortlist, adding dynamic-only candidates to a static-analysis task.",
+      "recommended_change": "Carry an allowlisted category in catalog context and map it to the corresponding local category route. Keep existing URL safety constraints.",
+      "acceptance_criteria": [
+        "Round-trip All/Static/Dynamic through profiles and comparisons without losing query, form filters, sort or selection.",
+        "Legacy URLs continue working.",
+        "Unknown category defaults safely; arbitrary URLs and nested context cannot redirect offsite."
+      ],
+      "effort": "small",
+      "dependencies": [],
+      "compatibility": "Additive URL context only; no saved-system format change."
+    },
+    {
+      "id": "SEA-02",
+      "title": "The Test an API preset omits existing HTTP API options",
+      "kind": "content/discovery gap",
+      "priority": "P2",
+      "confidence": "high",
+      "reader_task": "Use the task shortcut to explore tools for an HTTP API.",
+      "locations": [
+        {
+          "path": "src/components/ToolCatalog.astro",
+          "line": 29
+        },
+        {
+          "path": "src/content/docs/tools/zap.md",
+          "line": 37
+        },
+        {
+          "path": "src/content/docs/tools/burp-suite-professional.md",
+          "line": 36
+        }
+      ],
+      "evidence": [
+        "Live Test an API shortcut runs q=API testing and displays three entries: RESTler, Schemathesis and Burp Suite Community Edition.",
+        "Changing only the query to HTTP displays five: those three plus Burp Suite Professional and ZAP.",
+        "Both omitted profiles already declare HTTP APIs as their target. This finding concerns internal discoverability, not independently reverified product capabilities.",
+        "The keyword conjunction matches the literal testing vocabulary unevenly; the shortcut is not an authored task membership set."
+      ],
+      "impact": "Readers using the prominent shortcut miss two already-cataloged HTTP API tools, including the paid counterpart of the displayed manual edition.",
+      "recommended_change": "Use the existing HTTP context plus Running applications input for the broad preset, and explain schema-generated tests versus manual/security scanning in linked decision guidance. Preserve edition boundaries.",
+      "acceptance_criteria": [
+        "The broad API shortcut includes the five current explicitly HTTP-tagged running-application profiles.",
+        "It does not imply that those tools provide equivalent capabilities.",
+        "Boofuzz is not automatically included based only on TCP/custom-protocol support.",
+        "Add a real-catalog regression for preset membership, avoiding fragile result order assertions."
+      ],
+      "effort": "small",
+      "dependencies": [],
+      "compatibility": "Existing bookmark queries remain valid; the shortcut destination changes."
+    },
+    {
+      "id": "SEA-03",
+      "title": "Common taxonomy and documented capability phrases remain absent from catalog vocabulary",
+      "kind": "content/discovery gap",
+      "priority": "P2",
+      "confidence": "high",
+      "reader_task": "Find tools by the wiki's own category names or a concrete failure type.",
+      "locations": [
+        {
+          "path": "src/lib/catalog.mjs",
+          "line": 31
+        },
+        {
+          "path": "src/lib/catalog.mjs",
+          "line": 34
+        },
+        {
+          "path": "src/lib/catalog.mjs",
+          "line": 38
+        },
+        {
+          "path": "src/content/docs/tools/cppcheck.md",
+          "line": 62
+        },
+        {
+          "path": "src/content/docs/tools/cwe-checker.md",
+          "line": 58
+        }
+      ],
+      "evidence": [
+        "Live catalog query dynamic analysis returns only capa and FLOSS (2), while the Dynamic category contains 28 entries.",
+        "Pure-function query static analysis returns29 while Static category contains63.",
+        "Live catalog query null pointer returns0. Full-page search returns4 relevant pages, including Cppcheck and cwe-checker, whose bodies explicitly discuss null pointer findings.",
+        "All 132 title/alias queries across89 profiles remain discoverable; the gap is task vocabulary rather than tool names."
+      ],
+      "impact": "A reader can interpret an empty or sparse keyword result as missing tool coverage even when relevant entries already exist.",
+      "recommended_change": "Index the displayed Static analysis/Dynamic analysis taxonomy labels and add a reviewed, positive capability vocabulary to affected profiles. Retain AND matching and the exclusion of caveats, unsupported features and other-edition claims.",
+      "acceptance_criteria": [
+        "static analysis and dynamic analysis retrieve their corresponding mode populations before other filters.",
+        "null pointer retrieves at least the existing profiles whose reviewed positive claims support that term.",
+        "Negative scope text and unrelated editions do not become searchable capabilities.",
+        "Keep the132 existing title/alias queries and short-language distinctions passing."
+      ],
+      "effort": "medium, mostly content review",
+      "dependencies": [
+        "Primary-source recheck before adding new capability phrases beyond already-supported scope."
+      ],
+      "compatibility": "No URL/schema migration needed; existing optional searchTerms can support profile-specific additions."
+    },
+    {
+      "id": "SEA-04",
+      "title": "Empty catalog results do not direct readers to the full-page index",
+      "kind": "usability opportunity",
+      "priority": "P3",
+      "confidence": "high",
+      "reader_task": "Recover when a concept is present in tool notes but not in catalog metadata.",
+      "locations": [
+        {
+          "path": "src/components/ToolCatalog.astro",
+          "line": 78
+        },
+        {
+          "path": "src/components/ToolCatalog.astro",
+          "line": 203
+        },
+        {
+          "path": "src/components/ToolCatalog.astro",
+          "line": 207
+        }
+      ],
+      "evidence": [
+        "For null pointer with no filters, the empty state offers fewer search terms and Reset search, but no local action to search full pages.",
+        "The separate header Search all pages does find4 pages for the same query.",
+        "Search all tools in the empty state only appears to escape an analysis category; it does not invoke Pagefind."
+      ],
+      "impact": "The two-index design is accurate but the recovery path is distant and requires users to know why one search can fail while another succeeds.",
+      "recommended_change": "Offer an explicit Search all pages for this query action in zero-result recovery, keeping the index distinction visible and preserving the catalog query/filters.",
+      "acceptance_criteria": [
+        "A zero-result capability query can be handed to full-page search without retyping.",
+        "Returning to the catalog preserves the original query and filters.",
+        "The action is labeled separately from Search all tools, which broadens catalog categories.",
+        "Full-page search failure or unavailable development index is explained without silently relaxing catalog filters."
+      ],
+      "effort": "small to medium",
+      "dependencies": [
+        "Use the existing Starlight/Pagefind search entry point rather than introducing a third search service."
+      ],
+      "compatibility": "No public data-format changes."
+    },
+    {
+      "id": "SEA-05",
+      "title": "Sidebar and in-page category links handle current filters differently",
+      "kind": "usability opportunity",
+      "priority": "P3",
+      "confidence": "high",
+      "reader_task": "Switch from All tools to Static analysis while retaining a current search.",
+      "locations": [
+        {
+          "path": "astro.config.mjs",
+          "line": 19
+        },
+        {
+          "path": "src/components/ToolCatalog.astro",
+          "line": 109
+        },
+        {
+          "path": "src/components/ToolCatalog.astro",
+          "line": 111
+        }
+      ],
+      "evidence": [
+        "After restoring q=python type checker, input=Source code, cost=Free and sort=za, the catalog displays2 results (Pyright, mypy).",
+        "The in-page Analysis category links carry those query fields.",
+        "Clicking the sidebar Static analysis link instead navigates to /ToolWiki/static/ and displays63 of63, clearing all fields.",
+        "This is an observed inconsistency, not proof that the site's intended global-navigation convention is wrong."
+      ],
+      "impact": "Two visible links with the same category label produce different search continuity, requiring users to reconstruct constraints.",
+      "recommended_change": "On catalog pages, synchronize sidebar category links with the same allowlisted filter and comparison context used by in-page tabs. Keep explicit Reset search available.",
+      "acceptance_criteria": [
+        "Within a catalog page, sidebar and in-page links to the same category preserve the same query, filters, sort and selection.",
+        "Sidebar navigation from noncatalog pages remains a normal category entry point unless a supported context is available.",
+        "Unknown or nested context cannot create an external redirect."
+      ],
+      "effort": "small",
+      "dependencies": [
+        "Coordinate with SEA-01 category context design."
+      ],
+      "compatibility": "Preserve existing category paths and bookmark URLs."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Real-catalog title and alias coverage",
+      "method": "Node selectTools over production data",
+      "result": "pass",
+      "details": "132 queries across89 tool titles and aliases; zero missing originating tools."
+    },
+    {
+      "name": "Representative query regression",
+      "method": "Node catalog functions",
+      "result": "pass with vocabulary gaps recorded",
+      "details": "ASan, C sharp, cpp, go, java, python type checker, memory leaks, use after free, race conditions, SBOM, secrets, CVE, symbolic execution exercised. go did not include cargo-audit by substring; java did not include ESLint via JavaScript."
+    },
+    {
+      "name": "Edition-constrained typo correction",
+      "method": "live UI",
+      "result": "pass",
+      "details": "semgerp + Cost Free offered only Semgrep CE; choosing it retained cost and returned one entry."
+    },
+    {
+      "name": "Filter recovery",
+      "method": "live UI",
+      "result": "pass",
+      "details": "CodeQL + Free returned no matches and explained one match without filters. Clear filters, keep search retained CodeQL and recovered one result."
+    },
+    {
+      "name": "Full-page search",
+      "method": "live UI",
+      "result": "pass",
+      "details": "ASan returned4 pages including AddressSanitizer; null pointer returned4 pages. Catalog cards were not returned as a repeated bulk catalog result."
+    },
+    {
+      "name": "Bookmark restoration",
+      "method": "live reload",
+      "result": "pass",
+      "details": "q=python type checker, input=Source code, cost=Free, sort=za restored two results ordered Pyright then mypy and matching active chips."
+    },
+    {
+      "name": "Cross-category zero-result recovery",
+      "method": "live UI",
+      "result": "pass",
+      "details": "Static category with HTTP query displayed Search all tools (5 matches)."
+    },
+    {
+      "name": "Category return continuity",
+      "method": "live profile and comparison round trips",
+      "result": "fail",
+      "details": "SEA-01 reproduces ARC-01 independently."
+    }
+  ],
+  "prior_audit_reconciliation": [
+    {
+      "prior": "Name/alias ranking and language normalization",
+      "status": "resolved for checked cases",
+      "evidence": "132 title/alias checks plus representative language queries."
+    },
+    {
+      "prior": "Typo and empty-result recovery",
+      "status": "mostly resolved",
+      "evidence": "Live Free-constrained Semgrep correction and CodeQL filter recovery pass; Pagefind handoff remains an opportunity."
+    },
+    {
+      "prior": "Task-based starting points",
+      "status": "implemented with remaining gap",
+      "evidence": "Four task links exist; API shortcut has SEA-02 membership gap."
+    },
+    {
+      "prior": "Broader vocabulary",
+      "status": "still open in part",
+      "evidence": "SEA-03 shows taxonomy/capability phrases missing despite title/alias completeness."
+    },
+    {
+      "prior": "Filter preservation through comparison/profile browsing",
+      "status": "partially resolved",
+      "evidence": "Form fields survive; pathname category does not. No historical regression timing established."
+    },
+    {
+      "prior": "Useful filter counts, compact list view, platform/integration filters",
+      "status": "still open at catalog surface",
+      "evidence": "Current catalog controls/cards contain no facet counts, list toggle or host/integration filter. Not automatically defects; prioritize by user need."
+    }
+  ],
+  "rejected_leads": [
+    "Windows, Linux and SARIF return zero catalog results, but the documented index intentionally excludes platform/cost caveats. This is a reviewed metadata/feature opportunity, not a reason to index all prose.",
+    "One getByLabel Sort by automation locator timed out; getByRole combobox Sort by succeeded. No product defect inferred."
+  ],
+  "limitations": [
+    "Heuristic agent walkthrough, not human usability research.",
+    "No external tool capabilities independently reverified; discovery findings compare current metadata and page content.",
+    "No performance benchmarks or full accessibility review; dedicated agents cover those areas.",
+    "Browser local state only on dedicated audit origin."
+  ]
+}

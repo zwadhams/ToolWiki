@@ -85,4 +85,4 @@ An analyzer's finding is different from a compiler error or an IDE style suggest
 
 ## Related research
 
-Our [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf) identifies the C# analyzer as Roslyn. That label does not establish the exact package, SDK, or rule set used. I link this related implementation in [Comparing SAST tools](../../research/comparing-tools/) without assigning the historical findings to today's SDK defaults.
+Our [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf) identifies the C# analyzer as Roslyn. That label does not establish the exact package, SDK, or rule set used. See [Comparing SAST tools](../../research/comparing-tools/) for why those historical findings cannot be attributed to today's SDK defaults.

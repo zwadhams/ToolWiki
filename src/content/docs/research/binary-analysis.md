@@ -15,7 +15,7 @@ We adapt selected ISO/IEC 25010 characteristics: reliability, security, maintain
 
 Source-dependent metrics may be unavailable, and obfuscation can distort recovered structure. Apparent code complexity therefore requires interpretation. We discuss cwe-checker as a tool that can identify selected reliability-related weaknesses in binaries.
 
-We propose a measurement approach. In the paper, we identify applying it to malware samples and validating the resulting assessments as future work.
+Applying the proposed approach to malware samples and validating the assessments remain future work.
 
 ## Interpreting findings
 

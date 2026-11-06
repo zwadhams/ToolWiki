@@ -1,0 +1,85 @@
+{
+  "evidence": "executed",
+  "date": "2026-11-06",
+  "host": "Windows-11-10.0.26300-SP0",
+  "python": "3.13.15",
+  "engine": "Semgrep CE 1.184.0",
+  "target_executed": false,
+  "results": [
+    {
+      "input": "bad.py",
+      "command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\semgrep-ce-1.184.0\\Scripts\\python.exe",
+        "-m",
+        "semgrep",
+        "scan",
+        "--oss-only",
+        "--config",
+        "rule.yml",
+        "--no-rewrite-rule-ids",
+        "--metrics",
+        "off",
+        "--disable-version-check",
+        "--error",
+        "--json",
+        "bad.py"
+      ],
+      "return_code": 2,
+      "stdout": "semgrep-bad.stdout.txt",
+      "stderr": "semgrep-bad.stderr.txt",
+      "output_error": "Expected JSON was not returned"
+    },
+    {
+      "input": "good.py",
+      "command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\semgrep-ce-1.184.0\\Scripts\\python.exe",
+        "-m",
+        "semgrep",
+        "scan",
+        "--oss-only",
+        "--config",
+        "rule.yml",
+        "--no-rewrite-rule-ids",
+        "--metrics",
+        "off",
+        "--disable-version-check",
+        "--error",
+        "--json",
+        "good.py"
+      ],
+      "return_code": 2,
+      "stdout": "semgrep-good.stdout.txt",
+      "stderr": "semgrep-good.stderr.txt",
+      "output_error": "Expected JSON was not returned"
+    },
+    {
+      "input": "not-covered.py",
+      "command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\semgrep-ce-1.184.0\\Scripts\\python.exe",
+        "-m",
+        "semgrep",
+        "scan",
+        "--oss-only",
+        "--config",
+        "rule.yml",
+        "--no-rewrite-rule-ids",
+        "--metrics",
+        "off",
+        "--disable-version-check",
+        "--error",
+        "--json",
+        "not-covered.py"
+      ],
+      "return_code": 2,
+      "stdout": "semgrep-not-covered.stdout.txt",
+      "stderr": "semgrep-not-covered.stderr.txt",
+      "output_error": "Expected JSON was not returned"
+    }
+  ],
+  "inputs_sha256": {
+    "bad.py": "445bc06c788c46a5ad5272588bf08aa96a14d8dd7d09dc33bc277977894c0d45",
+    "good.py": "4337a54450b3a9c3202c0af2e0f0a4f54a5879b2b24cae594082881a9b9d477b",
+    "not-covered.py": "965f433ce0f30a1c6d6f32977ad9ce54a1c53ae803ddab023652cc28c377060e",
+    "rule.yml": "19c9ac0d0d70e3b751930e178254e672e8c003d35a64aa394d264fa742c3338f"
+  }
+}

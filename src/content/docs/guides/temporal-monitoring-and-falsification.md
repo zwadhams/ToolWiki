@@ -3,7 +3,7 @@ title: "Temporal monitoring and falsification"
 description: "Separate trace evaluation, simulation search, and formal proof when checking time-dependent requirements."
 ---
 
-A temporal requirement describes behavior over time. The distinction to make first is whether you already have a trace to evaluate or need to generate executions that might violate the requirement.
+A temporal requirement describes behavior over time. First decide whether to evaluate an existing trace or generate executions that might violate it.
 
 ## Separate the jobs
 
@@ -33,7 +33,7 @@ For quantitative monitors, negative robustness commonly identifies a violation a
 
 ## Interpret the search outcome
 
-A counterexample is useful evidence to replay against the same simulator and configuration. No counterexample within a budget means only that this search did not find one.
+Replay a counterexample with the same simulator and configuration. No counterexample within a budget means only that this search did not find one.
 
 Keep scenario bounds, random seeds where applicable, simulator settings, formulas, and search budgets with the results. A simulator's behavior is also an assumption about the real system.
 

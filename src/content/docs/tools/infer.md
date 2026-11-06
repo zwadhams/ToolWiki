@@ -2,6 +2,7 @@
 title: "Infer (Pulse)"
 description: "Find memory and value errors across function calls using Infer's Pulse analysis."
 tool:
+  searchTerms: [null pointer dereference]
   analysisWorkflows:
     - id: source
       label: Source analysis

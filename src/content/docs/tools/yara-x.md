@@ -94,4 +94,4 @@ Rules can match benign files or miss changed and encoded content. Preserve the r
 
 ## Related research
 
-Our [malware sophistication paper](https://www.cs.montana.edu/izurieta/pubs/iETC_Porcella_2026.pdf) discusses the original YARA, not YARA-X. I include its successor here as a related tool; we did not evaluate YARA-X. See [Malware sophistication](../../research/binary-analysis/).
+Our [malware sophistication paper](https://www.cs.montana.edu/izurieta/pubs/iETC_Porcella_2026.pdf) discusses the original YARA, not YARA-X. We did not evaluate YARA-X. See [Malware sophistication](../../research/binary-analysis/).

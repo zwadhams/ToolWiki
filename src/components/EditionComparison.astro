@@ -1,6 +1,6 @@
 ---
-import { editionComparisons } from '../data/editions';
-interface Props { group: string }
+import { editionComparisons, type EditionGroup } from '../data/editions';
+interface Props { group: EditionGroup }
 const comparison = editionComparisons[Astro.props.group];
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
@@ -15,4 +15,4 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </tr>)}</tbody>
   </table>
 </div>
-{comparison.note && <p>{comparison.note} {comparison.source && <a href={comparison.source.url}>{comparison.source.label}</a>}</p>}
+{(comparison.note || comparison.source) && <p class="edition-evidence">{comparison.note}{comparison.note && comparison.source && ' '}{comparison.source && <a href={comparison.source.url}>{comparison.source.label}</a>}</p>}

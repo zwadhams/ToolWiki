@@ -120,3 +120,5 @@ Prefer recording its immutable digest with the result.
 A resolved lockfile is generally more precise about selected versions than an unpinned manifest. Missing inventories or unsupported extractors can leave dependencies invisible. Updating advisory data can change results without changing your software.
 
 Compare [CVE Binary Tool](../cve-bin-tool/) when your starting point is embedded component identification. Keep component detection accuracy separate from advisory matching, and distinguish a scan error from a clean report.
+
+Use the [finding review workflow](../../guides/reviewing-findings/) to investigate advisory matches. Check the [execution and data boundaries](../../guides/execution-and-data/) before choosing local, connected, or offline use.

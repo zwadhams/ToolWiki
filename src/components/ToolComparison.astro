@@ -1,15 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
 import { toolChoices } from '../data/tool-choices';
+import { publishedTools, comparisonTools } from '../lib/tool-data.mjs';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const tools = (await getCollection('docs', ({ data }) => !!data.tool && !data.draft))
-  .map(({ id, data }) => ({ id, title: data.title, description: data.description || '', ...data.tool! }))
-  .sort((a, b) => a.title.localeCompare(b.title, 'en'));
+const tools = comparisonTools(publishedTools(await getCollection('docs')));
 ---
 <tool-comparison data-base={base}>
   <nav class="comparison-starts" data-common-comparisons aria-label="Common comparisons">
     <span>Try a comparison:</span>
-    {toolChoices.filter((_, index) => [0, 1, 3, 4, 6].includes(index)).map(choice => <a href={`${base}/compare/?tools=${encodeURIComponent(choice.tools.join(','))}`}>{choice.tools.map(id => tools.find(tool => tool.id === id)!.title).join(' + ')}</a>)}
+    {toolChoices.filter(choice => choice.featured).map(choice => <a href={`${base}/compare/?tools=${encodeURIComponent(choice.tools.join(','))}`}>{choice.tools.map(id => tools.find(tool => tool.id === id)!.title).join(' + ')}</a>)}
   </nav>
   <form class="comparison-picker" aria-label="Choose tools to compare">
     {[1, 2, 3].map((n) => <label for={`compare-tool-${n}`}>Tool {n}{n === 3 ? ' (optional)' : ''}<select id={`compare-tool-${n}`} name={`tool-${n}`}><option value="">Choose a tool</option>{tools.map((tool) => <option value={tool.id}>{tool.title}</option>)}</select></label>)}
@@ -54,7 +53,13 @@ const tools = (await getCollection('docs', ({ data }) => !!data.tool && !data.dr
         ['Edition and scope', 'scope'], ['Docs checked', 'verified'],
       ];
       const render = (save = true) => {
-        const context = catalogParams(new URLSearchParams(location.search).get('catalog') || '').toString();
+        const selected = normalizeSelection(controls.map((control) => control.value), ids);
+        const origin = catalogParams(new URLSearchParams(location.search).get('catalog'), ids);
+        if (origin.size || selected.length) {
+          if (!origin.has('category')) origin.set('category', 'all');
+          if (selected.length) origin.set('compare', selected.join(',')); else origin.delete('compare');
+        }
+        const context = origin.toString();
         const contextualHref = (path: string) => {
           const url = new URL(`${base}/${path}`, location.origin);
           if (context) url.searchParams.set('catalog', context);
@@ -65,13 +70,12 @@ const tools = (await getCollection('docs', ({ data }) => !!data.tool && !data.dr
           if (context) url.searchParams.set('catalog', context); else url.searchParams.delete('catalog');
           anchor.href = url.pathname + url.search;
         });
-        const selected = normalizeSelection(controls.map((control) => control.value), ids);
         controls.forEach((control) => [...control.options].forEach((option) => {
           option.disabled = !!option.value && option.value !== control.value && selected.includes(option.value);
         }));
         const chosen = selected.map((id) => {
           const tool = tools.find((tool: { id: string }) => tool.id === id)!;
-          return { ...tool, useWhen: tool.decision?.useWhen || tool.description, result: tool.decision?.result || tool.findings, limit: tool.decision?.limit || tool.findingNote };
+          return tool;
         });
         status.textContent = chosen.length < 2 ? `Choose ${2 - chosen.length} more tool${chosen.length ? '' : 's'} to compare.` : `Comparing ${chosen.length} tools.`;
         empty.hidden = chosen.length >= 2;
@@ -105,6 +109,11 @@ const tools = (await getCollection('docs', ({ data }) => !!data.tool && !data.dr
             chosen.forEach((tool) => {
               const cell = document.createElement('td');
               cell.textContent = Array.isArray(tool[key]) ? tool[key].join(', ') : tool[key];
+              if (key === 'cost') {
+                const link = document.createElement('a'); link.href = contextualHref(`${tool.id}/#cost-and-editions`);
+                link.textContent = tool.cost.join(' / '); cell.replaceChildren(link);
+                if (tool.cost.includes('Free with limits')) cell.append(document.createElement('br'), document.createTextNode('Check eligibility and limits.'));
+              }
               if (key === 'costNote') {
                 const link = document.createElement('a'); link.href = contextualHref(`${tool.id}/#cost-and-editions`); link.textContent = 'See edition details'; cell.append(document.createElement('br'), link);
               }
@@ -129,11 +138,12 @@ const tools = (await getCollection('docs', ({ data }) => !!data.tool && !data.dr
           renderTable(details.querySelector('table')!, detailRows, true);
         }
         const browse = this.querySelector<HTMLAnchorElement>('[data-browse-tools]')!;
-        browse.href = catalogHref(base, selected, context);
+        browse.href = catalogHref(base, selected, context, ids);
         browse.textContent = context ? 'Return to filtered results' : 'Browse tools';
         if (save) {
           const url = new URL(location.href);
           if (selected.length) url.searchParams.set('tools', selected.join(',')); else url.searchParams.delete('tools');
+          if (context) url.searchParams.set('catalog', context); else url.searchParams.delete('catalog');
           history.replaceState(null, '', url);
         }
       };

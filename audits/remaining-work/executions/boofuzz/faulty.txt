@@ -1,0 +1,48 @@
+[2026-11-06 13:46:29,350] Test Case: 1: ping:[ping.value:0]
+[2026-11-06 13:46:29,350]     Info: Type: Group
+[2026-11-06 13:46:29,350]     Info: Opening target connection (127.0.0.1:64071)...
+[2026-11-06 13:46:29,350]     Info: Connection opened.
+[2026-11-06 13:46:29,350]   Test Step: Monitor CallbackMonitor#2108849882368[pre=[],post=[inspect_reply],restart=[reset_connection],post_start_target=[]].pre_send()
+[2026-11-06 13:46:29,350]   Test Step: Fuzzing Node 'ping'
+[2026-11-06 13:46:29,350]     Info: Sending 14 bytes...
+[2026-11-06 13:46:29,350]     Transmitted 14 bytes: 50 49 4e 47 20 54 52 49 47 47 45 52 0d 0a b'PING TRIGGER\r\n'
+[2026-11-06 13:46:29,350]     Info: Receiving...
+[2026-11-06 13:46:29,350]     Received: 
+[2026-11-06 13:46:29,350]   Test Step: Contact target monitors
+[2026-11-06 13:46:29,350]   Test Step: Post-test case callback: "inspect_reply"
+[2026-11-06 13:46:29,350]       Check Failed: Valid PING request did not receive its PONG reply.
+[2026-11-06 13:46:29,350]   Test Step: Cleaning up connections from callbacks
+[2026-11-06 13:46:29,350]       Check OK: No crash detected.
+[2026-11-06 13:46:29,350]     Info: Closing target connection...
+[2026-11-06 13:46:29,350]     Info: Connection closed.
+[2026-11-06 13:46:29,350]   Test Step: Failure summary
+[2026-11-06 13:46:29,350]     Info: Valid PING request did not receive its PONG reply.
+[2026-11-06 13:46:29,350]   Test Step: Restarting target
+[2026-11-06 13:46:29,350]     Info: Restarting target process using CallbackMonitor
+[2026-11-06 13:46:29,350]   Test Step: Target restart callback: "reset_connection"
+[2026-11-06 13:46:29,366]     Info: Target ready; the next connection starts a fresh request.
+[2026-11-06 13:46:29,366]   Test Step: Cleaning up connections from callbacks
+[2026-11-06 13:46:29,366]     Info: Closing target connection...
+[2026-11-06 13:46:29,366]     Info: Connection closed.
+[2026-11-06 13:46:29,366]     Info: Giving the process 3 seconds to settle in
+[2026-11-06 13:46:32,377] Test Case: 2: ping:[ping.value:1]
+[2026-11-06 13:46:32,377]     Info: Type: Group
+[2026-11-06 13:46:32,377]     Info: Opening target connection (127.0.0.1:64071)...
+[2026-11-06 13:46:32,377]     Info: Connection opened.
+[2026-11-06 13:46:32,377]   Test Step: Monitor CallbackMonitor#2108849882368[pre=[],post=[inspect_reply],restart=[reset_connection],post_start_target=[]].pre_send()
+[2026-11-06 13:46:32,377]   Test Step: Fuzzing Node 'ping'
+[2026-11-06 13:46:32,377]     Info: Sending 12 bytes...
+[2026-11-06 13:46:32,377]     Transmitted 12 bytes: 50 49 4e 47 20 77 6f 72 6c 64 0d 0a b'PING world\r\n'
+[2026-11-06 13:46:32,378]     Info: Receiving...
+[2026-11-06 13:46:32,378]     Received: 50 4f 4e 47 20 77 6f 72 6c 64 0d 0a b'PONG world\r\n'
+[2026-11-06 13:46:32,378]   Test Step: Contact target monitors
+[2026-11-06 13:46:32,378]   Test Step: Post-test case callback: "inspect_reply"
+[2026-11-06 13:46:32,378]       Check OK: Expected PONG reply received.
+[2026-11-06 13:46:32,378]   Test Step: Cleaning up connections from callbacks
+[2026-11-06 13:46:32,378]       Check OK: No crash detected.
+[2026-11-06 13:46:32,378]     Info: Closing target connection...
+[2026-11-06 13:46:32,378]     Info: Connection closed.
+completed-findings
+
+C:\Users\zwadh\Repos\ToolWiki\.preview\boofuzz-env\Lib\site-packages\boofuzz\fuzz_logger_curses.py:12: UserWarning: Importing curses failed. Optional console GUI features will not be available.
+  warnings.warn("Importing curses failed. Optional console GUI features will not be available.", UserWarning)

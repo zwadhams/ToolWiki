@@ -1,0 +1,5 @@
+.venv/
+.coverage*
+reports/
+htmlcov/
+__pycache__/

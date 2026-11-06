@@ -1,0 +1,10 @@
+
+PASS tests/strong.test.js
+  ? values away from the threshold (1 ms)
+  ? the threshold qualifies (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.275 s
+Ran all test suites.

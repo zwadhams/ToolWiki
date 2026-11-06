@@ -1,0 +1,399 @@
+{
+  "agent": "audit12_adjacent",
+  "lane": "Adjacent testing, profiling and runtime diagnostics",
+  "status": "complete",
+  "reviewed_on": "2026-11-06",
+  "baseline_commit": "27c229bd7079ede31cd30ce500e999461eb97eef",
+  "method": [
+    "Read the 89-profile inventory, searched all authored docs for coverage/profiling/mutation/load terminology, and inspected existing generated-testing, runtime and API profiles.",
+    "Read content and builder schemas to distinguish additive catalog vocabulary from evidence needed for automated matching.",
+    "Checked only official project/vendor documentation and repository license files for proposed capabilities, setup, outputs and limitations.",
+    "No browser interaction, installations, analyzer/example execution, product edits or performance measurements."
+  ],
+  "summary": "Four bounded candidates add execution coverage, mutation testing, Python sampling and HTTP load testing. These are expansion opportunities, not defects in the existing scoped catalog. Prioritize foundation/example improvements and existing-domain gaps before admitting all four.",
+  "coverage_matrix": [
+    {
+      "family": "Execution coverage measurement",
+      "current": "Coverage-guided fuzzers use execution feedback, and profiles repeatedly qualify exercised behavior. There is no dedicated line/branch coverage measurement profile.",
+      "gap": "Which application lines/branches did an existing test run exercise?",
+      "candidate": "coverage.py",
+      "finding_id": "ADJ-01",
+      "scope": "One Python test suite, explicit source scope and statement/branch report."
+    },
+    {
+      "family": "Mutation testing",
+      "current": "Hypothesis and fast-check generate inputs for user-supplied properties. Mutation-based fuzzing is present, but no source-mutation test-quality workflow is documented.",
+      "gap": "Do existing assertions detect selected injected changes to program behavior?",
+      "candidate": "StrykerJS",
+      "finding_id": "ADJ-02",
+      "scope": "One JavaScript project with the documented Jest runner; other languages/runners require separate review."
+    },
+    {
+      "family": "Runtime profiling",
+      "current": "Memory/race tools detect selected correctness problems; Staticcheck explicitly says its performance-related diagnostics are not runtime measurements.",
+      "gap": "Where does a Python process spend sampled execution time under a chosen workload?",
+      "candidate": "py-spy",
+      "finding_id": "ADJ-03",
+      "scope": "Local CPython stack sampling; exclude native-extension, container and remote deployment claims from first admission."
+    },
+    {
+      "family": "HTTP load and performance thresholds",
+      "current": "Schemathesis and RESTler focus on generated requests, response/specification violations and configured failures; no load-testing profile or latency/throughput finding category exists.",
+      "gap": "Does a test endpoint meet stated response-time/error thresholds under a defined load?",
+      "candidate": "Grafana k6 OSS",
+      "finding_id": "ADJ-04",
+      "scope": "Local CLI HTTP scenario with an explicit workload and thresholds; exclude cloud, browser and distributed execution from first admission."
+    }
+  ],
+  "findings": [
+    {
+      "id": "ADJ-01",
+      "kind": "opportunity",
+      "priority": "P3",
+      "title": "Add an execution-coverage workflow before treating test reach as understood",
+      "reader_task": "Find unexecuted Python lines and branches in an existing test run.",
+      "locations": [
+        {
+          "path": "src/content/docs/concepts/verification-and-generated-tests.md",
+          "line": 8
+        },
+        {
+          "path": "src/content/docs/tools/libfuzzer.md",
+          "line": 3
+        },
+        {
+          "path": "src/content.config.ts",
+          "line": 20
+        },
+        {
+          "path": "src/content.config.ts",
+          "line": 24
+        }
+      ],
+      "evidence": "The inventory contains coverage-guided fuzzers but no coverage-measurement profile or test-coverage finding category. The generated-tests concept explains failure detectors without a separate route for measuring which code an existing suite exercised. Fuzzer guidance does not substitute for a coverage report over a chosen test suite.",
+      "impact": "A reader can choose input generators but lacks a direct path to inspect test reach and its denominator.",
+      "confidence": "High for the local coverage gap; prioritization is reviewer judgment.",
+      "recommendation": "Add coverage.py as a scoped Python execution-coverage profile and link it from Hypothesis and the generated-tests concept. Start with an existing small test suite, declared source scope and branch measurement. Include a short explanation of execution coverage versus assertion strength.",
+      "candidate": {
+        "name": "coverage.py",
+        "admission_readiness": "Primary documentation supports a catalog profile. Pin a package release and matching Python/runtime requirements when authoring; no execution verified.",
+        "purpose_input": "Python code exercised through an existing test runner or program invocation, with configured source selection.",
+        "setup": "Install the official coverage package into the selected environment; run the test command under coverage with branch collection, then produce text/HTML or machine-readable reports.",
+        "findings": "Reports measured and missing lines/branches. Source/include/omit settings change the measured denominator.",
+        "limitations": "Branch coverage and statement coverage differ. Subprocesses need deliberate collection/combination. Process termination can prevent data from being written. Our interpretation: execution alone does not establish that assertions are adequate or behavior is correct.",
+        "license": "Apache-2.0 except where otherwise noted, per the project's NOTICE.txt.",
+        "overlap": "Complements Hypothesis and ordinary test suites; it does not replace the failure oracle or provide automatic bug discovery.",
+        "unresolved": "No runtime/environment combination was exercised. Keep advanced concurrency/process modes outside the initial single-process recipe."
+      },
+      "sources": [
+        {
+          "url": "https://coverage.readthedocs.io/en/latest/",
+          "accessed": "2026-11-06",
+          "supports": "Official supported runtimes, installation and test-runner invocation/reporting."
+        },
+        {
+          "url": "https://coverage.readthedocs.io/en/latest/branch.html",
+          "accessed": "2026-11-06",
+          "supports": "Branch measurement and report meaning."
+        },
+        {
+          "url": "https://coverage.readthedocs.io/en/latest/source.html",
+          "accessed": "2026-11-06",
+          "supports": "Source selection and omitted/unexecuted files affect reported scope."
+        },
+        {
+          "url": "https://coverage.readthedocs.io/en/latest/subprocess.html",
+          "accessed": "2026-11-06",
+          "supports": "Process startup, termination and combination requirements."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/nedbat/coveragepy/master/NOTICE.txt",
+          "accessed": "2026-11-06",
+          "supports": "Apache-2.0 qualification."
+        }
+      ],
+      "acceptance": [
+        "Reader can identify the measured source scope, an unexecuted line and a missing branch in illustrative output.",
+        "The example distinguishes full line coverage from full branch coverage and from effective assertions.",
+        "State whether data covers one process or a configured process tree, and whether the run completed.",
+        "Link a single reusable test fixture/run record; retain an unexecuted label until later hands-on validation.",
+        "Add a precise coverage-measurement technique/result label without relabeling existing fuzzers as coverage-report tools."
+      ],
+      "effort": "medium",
+      "dependencies": [
+        "Reusable test fixture and run-record guidance"
+      ],
+      "compatibility": "Finding and technique values are extensible strings, so a scoped catalog entry need not migrate existing data. Source/test execution preparation must be explicit. Existing harness/testInstance access flags express broad preparation, but runner/version/scope evidence still needs review before adding a builder workflow; catalog-only admission is acceptable."
+    },
+    {
+      "id": "ADJ-02",
+      "kind": "opportunity",
+      "priority": "P3",
+      "title": "Separate mutation testing from input mutation and coverage counts",
+      "reader_task": "Evaluate whether an existing JavaScript test suite detects selected source-code changes.",
+      "locations": [
+        {
+          "path": "src/content/docs/tools/fast-check.md",
+          "line": 36
+        },
+        {
+          "path": "src/content/docs/concepts/verification-and-generated-tests.md",
+          "line": 8
+        },
+        {
+          "path": "src/content.config.ts",
+          "line": 24
+        }
+      ],
+      "evidence": "The catalog has property-based input generation and a Mutation-based fuzzing technique, but no mutation-testing profile. The concept comparison does not distinguish changing test inputs from injecting changes into application code and rerunning its tests.",
+      "impact": "Readers lack a way to investigate assertion sensitivity and may confuse two workflows that both use the word mutation.",
+      "confidence": "High for the local gap; no comparative effectiveness benchmark performed.",
+      "recommendation": "Pilot StrykerJS on one JavaScript/Jest project with an already working suite. Add a concise distinction between execution coverage, source mutation and input mutation. Keep other runners and TypeScript-specific handling outside the first workflow until reviewed.",
+      "candidate": {
+        "name": "StrykerJS",
+        "admission_readiness": "Ready for a narrowly scoped documentation-led profile after selecting compatible Stryker/Node/Jest versions. Initial scope is JavaScript with the official Jest runner.",
+        "purpose_input": "Selected application source files and their existing tests/configuration.",
+        "setup": "Use official initializer/configuration guidance, install the matching runner, define mutation scope and confirm the initial test run. Retain default temporary-copy execution rather than introducing in-place mutation in a first example.",
+        "findings": "Reports killed, survived, uncovered, timed-out, erroneous or ignored mutants and a score derived from the tool's status rules.",
+        "limitations": "Equivalent mutants can survive without representing a missing behavioral test. Exclusions, selected operators, test setup and timeouts affect interpretation. Runtime or compile errors are not equivalent to killed mutants.",
+        "license": "Apache-2.0 for StrykerJS.",
+        "overlap": "Complements fast-check and existing tests by assessing their response to selected code mutations; it is not input fuzzing, compiler type checking or a proof of test completeness.",
+        "unresolved": "No integration executed. Broader runner/framework compatibility and TypeScript checker behavior require separate scoped evidence."
+      },
+      "sources": [
+        {
+          "url": "https://stryker-mutator.io/docs/stryker-js/getting-started/",
+          "accessed": "2026-11-06",
+          "supports": "Initializer, configuration and invocation."
+        },
+        {
+          "url": "https://stryker-mutator.io/docs/stryker-js/jest-runner/",
+          "accessed": "2026-11-06",
+          "supports": "Official Jest runner installation and integration."
+        },
+        {
+          "url": "https://stryker-mutator.io/docs/stryker-js/configuration/",
+          "accessed": "2026-11-06",
+          "supports": "Mutation scope, dry run, temporary sandbox, report choices and excluded files."
+        },
+        {
+          "url": "https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/",
+          "accessed": "2026-11-06",
+          "supports": "Distinct mutant statuses and metric interpretation."
+        },
+        {
+          "url": "https://stryker-mutator.io/docs/mutation-testing-elements/equivalent-mutants/",
+          "accessed": "2026-11-06",
+          "supports": "Survival does not always mean an observable behavior difference can be asserted."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/stryker-mutator/stryker-js/master/LICENSE",
+          "accessed": "2026-11-06",
+          "supports": "Apache-2.0 license."
+        }
+      ],
+      "acceptance": [
+        "Explain source mutation separately from changing fuzz inputs.",
+        "The first workflow uses an explicit small source subset and a working test runner.",
+        "Show how one meaningful surviving mutation can motivate a stronger assertion without demanding an arbitrary score of 100%.",
+        "Explain the treatment of errors/timeouts/exclusions and equivalent mutants.",
+        "Record tool, runner, target revision and mutation configuration; do not claim an illustrative run occurred."
+      ],
+      "effort": "medium",
+      "dependencies": [
+        "Reusable runnable JavaScript test fixture",
+        "Coverage/measurement terminology from ADJ-01"
+      ],
+      "compatibility": "A new Mutation testing technique and carefully worded test-sensitivity result category are additive. Do not reuse Mutation-based fuzzing as if equivalent. Existing source/callable inputs and harness/testInstance requirements can express broad preparation, but use catalog-only admission until the chosen runner workflow is independently scoped; preserve v1 imports."
+    },
+    {
+      "id": "ADJ-03",
+      "kind": "opportunity",
+      "priority": "P3",
+      "title": "Add a scoped Python runtime-profiling path",
+      "reader_task": "Investigate sampled hot paths in a local Python workload.",
+      "locations": [
+        {
+          "path": "src/content/docs/tools/staticcheck.md",
+          "line": 63
+        },
+        {
+          "path": "src/content/docs/dynamic.md",
+          "line": 9
+        },
+        {
+          "path": "src/lib/system-schema.mjs",
+          "line": 10
+        }
+      ],
+      "evidence": "No profile has a profiling technique or runtime-performance result category. Staticcheck correctly distinguishes its code-pattern findings from actual latency/profiling; memory and race entries answer different questions.",
+      "impact": "The wiki has a clear correctness-analysis boundary but no next step for investigating observed runtime cost.",
+      "confidence": "High for local absence; no overhead or accuracy measurements performed.",
+      "recommendation": "Add py-spy for local CPython sampling, with a launch-under-profiler route as the first documented path. Explain the chosen sampling window/workload and how to investigate a hot path. Avoid a blanket production-safety or zero-overhead claim.",
+      "candidate": {
+        "name": "py-spy",
+        "admission_readiness": "Official documentation supports a local CPython profile. Select a release/host/interpreter combination during authoring; no execution verified.",
+        "purpose_input": "A local CPython process or a command launched under the sampler.",
+        "setup": "Install the project release and record a reproducible workload to a flame graph or profile file. Attach permissions depend on host and process relationship.",
+        "findings": "Sampled Python stacks, live function summaries, or a thread-stack snapshot.",
+        "limitations": "Sampling and idle/GIL filtering affect interpretation. Native-extension support is platform-specific; omit it from first scope. Inference: sampled hot paths do not establish correctness or a complete execution trace.",
+        "license": "MIT.",
+        "overlap": "Complements correctness checkers; it does not replace memory/race detection or controlled load testing.",
+        "unresolved": "No compatibility or overhead measured. Container, native-extension and production-attachment workflows remain outside initial scope."
+      },
+      "sources": [
+        {
+          "url": "https://github.com/benfred/py-spy",
+          "accessed": "2026-11-06",
+          "supports": "Official README: install, record/top/dump, host/CPython support, attach permissions and sampling qualifications."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/benfred/py-spy/master/LICENSE",
+          "accessed": "2026-11-06",
+          "supports": "MIT license."
+        }
+      ],
+      "acceptance": [
+        "Profile explains what a sampled stack means for the selected workload and interval.",
+        "Installation/setup link identifies release-specific interpreter/host scope.",
+        "Permission/setup failure is distinguished from successful recording.",
+        "Native, container and production claims are absent unless separately supported.",
+        "Label all sample profiles illustrative unless execution evidence is later retained."
+      ],
+      "effort": "medium",
+      "dependencies": [
+        "Reusable run-record format"
+      ],
+      "compatibility": "Running applications can describe the artifact, but current builder access flags do not explicitly capture process inspection/attach permission. Begin catalog-only rather than marking all Python processes ready. Any later access-model extension must preserve existing v1 descriptions and default absent access information to unknown."
+    },
+    {
+      "id": "ADJ-04",
+      "kind": "opportunity",
+      "priority": "P3",
+      "title": "Add HTTP load testing with explicit workload and threshold semantics",
+      "reader_task": "Check a test service against stated latency/error goals under a defined workload.",
+      "locations": [
+        {
+          "path": "src/content/docs/tools/schemathesis.md",
+          "line": 82
+        },
+        {
+          "path": "src/content/docs/tools/schemathesis.md",
+          "line": 92
+        },
+        {
+          "path": "src/content/docs/tools/restler.md",
+          "line": 73
+        },
+        {
+          "path": "src/lib/system-schema.mjs",
+          "line": 64
+        }
+      ],
+      "evidence": "Current API tools emphasize schema/stateful input generation and configured failures. The inventory has no dedicated load-testing entry or latency/throughput result category, so existing HTTP scope does not answer the performance question.",
+      "impact": "Readers seeking API reliability/performance have no route that distinguishes service behavior under chosen demand from functional/security checks.",
+      "confidence": "High for the gap; no load tests or service-capacity measurements performed.",
+      "recommendation": "Add a local Grafana k6 OSS HTTP workflow and link it as complementary to Schemathesis/RESTler. Start with a disposable endpoint, a stated load model, a short bounded test and explicit thresholds; keep cloud, distributed and browser paths outside the first profile.",
+      "candidate": {
+        "name": "Grafana k6 OSS",
+        "admission_readiness": "Official docs support local HTTP CLI use. Pin the selected release and script semantics before authoring; this review did not execute a load.",
+        "purpose_input": "A reachable test HTTP service and a user-authored workload script.",
+        "setup": "Install the local k6 CLI, prepare test data/authentication/reset behavior and define scenario duration/load plus thresholds. The local run does not require choosing the cloud execution product.",
+        "findings": "Request/error and timing measurements, plus pass/fail outcomes against configured metric thresholds.",
+        "limitations": "Boolean checks alone do not fail the whole test; thresholds provide failure criteria. Closed and open workload models produce different arrival behavior. Inference: measured results describe the workload/environment, not universal capacity or security.",
+        "license": "AGPL-3.0 license text for the open-source k6 repository; cloud service terms are outside this profile.",
+        "overlap": "Complements schema fuzzing and security testing. JavaScript used for the driver does not restrict the target's implementation language.",
+        "unresolved": "No host/network/load-generator adequacy or endpoint behavior was benchmarked. Browser, cloud, distributed execution and extensions require separate reviews."
+      },
+      "sources": [
+        {
+          "url": "https://grafana.com/docs/k6/latest/set-up/install-k6/",
+          "accessed": "2026-11-06",
+          "supports": "Official local CLI installation paths."
+        },
+        {
+          "url": "https://grafana.com/docs/k6/latest/get-started/running-k6/",
+          "accessed": "2026-11-06",
+          "supports": "Local runs, virtual users, duration and execution-mode separation."
+        },
+        {
+          "url": "https://grafana.com/docs/k6/latest/using-k6/metrics/",
+          "accessed": "2026-11-06",
+          "supports": "Measurements and metric types."
+        },
+        {
+          "url": "https://grafana.com/docs/k6/latest/using-k6/thresholds/",
+          "accessed": "2026-11-06",
+          "supports": "Configured metric criteria and failed test status."
+        },
+        {
+          "url": "https://grafana.com/docs/k6/latest/using-k6/checks/",
+          "accessed": "2026-11-06",
+          "supports": "A failed check does not itself give the entire test a failed status."
+        },
+        {
+          "url": "https://grafana.com/docs/k6/latest/using-k6/scenarios/concepts/open-vs-closed/",
+          "accessed": "2026-11-06",
+          "supports": "Arrival model and response-time coupling limitations."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/grafana/k6/master/LICENSE.md",
+          "accessed": "2026-11-06",
+          "supports": "AGPL version 3 license text."
+        }
+      ],
+      "acceptance": [
+        "Reader can identify the endpoint, test-data/reset assumptions, workload, duration and pass/fail criteria.",
+        "Explain check versus threshold behavior and distinguish missing/failed setup from a passed measurement.",
+        "Record target revision/environment and load-generator conditions without claiming results transfer unchanged to production.",
+        "Comparison with Schemathesis/RESTler explains different questions rather than ranking generic API coverage.",
+        "Initial example uses a local disposable service or clearly bounded official tutorial, labeled unexecuted until validated."
+      ],
+      "effort": "medium",
+      "dependencies": [
+        "Reusable API fixture/reset instructions from REX-02",
+        "Run-record and result-handling guidance"
+      ],
+      "compatibility": "An HTTP connection workflow can use existing Running applications, HTTP API, harness and testInstance fields, with a reviewed threshold-specific result category. Keep target language independent. New optional catalog labels do not require changing v1 files; do not add browser/cloud/other protocol matches from the aggregate product scope."
+    }
+  ],
+  "recommended_order": [
+    "ADJ-01",
+    "ADJ-02",
+    "ADJ-03",
+    "ADJ-04"
+  ],
+  "ordering_rationale": "Execution measurement and assertion sensitivity deepen the existing generated-testing explanation; sampling and load tests then extend runtime diagnosis. All remain later expansion work after concrete navigation, authoring and recipe fixes.",
+  "deferred_categories": [
+    {
+      "category": "Generic unit-test frameworks",
+      "reason": "The first need is reusable test fixtures and interpretation, not a broad framework directory. Existing Hypothesis/fast-check docs can link compatible runners."
+    },
+    {
+      "category": "Distributed tracing/observability platforms",
+      "reason": "Instrumentation, data pipelines and service topology would broaden setup substantially; no bounded candidate selected in this pass."
+    },
+    {
+      "category": "Additional load/profiling products",
+      "reason": "One documented entry per missing question establishes the decision model before comparison breadth."
+    },
+    {
+      "category": "Browser automation/accessibility test runners",
+      "reason": "Useful adjacent area, but not selected ahead of the four gaps and existing frontend-audit findings."
+    }
+  ],
+  "limits": [
+    "Catalog absence is not proof that no existing product offers an undocumented ancillary capability.",
+    "Recommended labels and builder boundaries are proposals; no metadata/schema changes were made.",
+    "Current official docs were read as of 2026-11-06. Moving latest/master links should be pinned to the chosen release when authoring version-specific examples.",
+    "The unreachable coverage.py license.html route was replaced by the official repository NOTICE.txt; no candidate license depends on that failed lookup.",
+    "No benchmark, production-safety certification or measured compatibility claim is made."
+  ],
+  "validation": {
+    "json": "passed",
+    "ascii": "passed",
+    "repository_locations": 14,
+    "source_references": 20,
+    "analyzers_executed": 0
+  }
+}

@@ -1,0 +1,336 @@
+$ pnpm check && pnpm test && pnpm build && node scripts/check-site.mjs
+$ astro check
+10:59:28 [vite] Re-optimizing dependencies because vite config has changed
+10:59:29 [content] Syncing content
+10:59:29 [content] Synced content
+10:59:29 [types] Generated 994ms
+10:59:29 [check] Getting diagnostics for Astro files in C:\Users\zwadh\Repos\ToolWiki...
+Result (29 files):
+- 0 errors
+- 0 warnings
+- 0 hints
+
+$ node --test tests/*.test.mjs
+? combines filters and all search terms instead of returning their union (2.3259ms)
+? multi-mode tools appear in either relevant category (0.6566ms)
+? finding categories combine with input, language, and cost filters (0.1277ms)
+? finding descriptions are searchable and clearing the filter restores results (6.4788ms)
+? input types support multiple workflows and combine with other filters (0.2757ms)
+? dependency ecosystem tags do not imply source analysis (0.1313ms)
+? language-independent HTTP tools are not falsely tagged for source languages (0.1777ms)
+? sorts without mutating input and breaks date ties by name (0.1524ms)
+? empty searches restore the full catalog and impossible filters return nothing (0.1375ms)
+? free options include restricted free use but exclude paid trials (0.1982ms)
+? free proprietary manual tools do not inherit automated scanning from paid editions (0.1045ms)
+? cost and language filters must match the same edition (0.0904ms)
+? ranks names and aliases before descriptive mentions while retaining explicit sorts (0.3107ms)
+? language names stay distinct and common abbreviations find the same candidates (1.7057ms)
+? punctuation and partial names work without requiring exact formatting (0.1932ms)
+? cost caveats and unsupported platform notes do not become capabilities (0.0915ms)
+? typo suggestions are explicit and obey cost, language, and mode filters (0.3806ms)
+? comparison URLs ignore unknown IDs and repeated tools (1.7517ms)
+? comparisons preserve order and cap selection at three valid tools (0.0929ms)
+? empty and single selections are supported without inventing a comparison (0.4799ms)
+? normalizing checkbox state leaves its input unchanged (0.1334ms)
+? bookmark URLs round-trip tool IDs and the configured base path (0.9621ms)
+? a comparison returns to the originating filtered catalog with its current selection (0.6627ms)
+? catalog context cannot redirect navigation or retain nested context (0.4373ms)
+? mixed-language components get their own tools with automatically described findings (6.6188ms)
+? dependency tags do not imply source inspection (0.1881ms)
+? capabilities from different workflows are never combined (0.2265ms)
+? native binaries, JVM bytecode, and LLVM bitcode remain distinct (0.2128ms)
+? protocol support cannot be inferred from TCP transport (0.1439ms)
+? API definitions and test endpoints are separate prerequisites (0.1014ms)
+? a connection question targets its own host field rather than a component host (0.2378ms)
+? rebuild access and supported target OS affect instrumented workflows (0.1687ms)
+? host support examples do not become exhaustive exclusions (0.1423ms)
+? unknown inputs differ from explicitly unavailable inputs (0.1704ms)
+? unknown language can request detail but Other does not promise supported syntax (0.0891ms)
+? cost and license stay attached to the same edition (0.1571ms)
+? deduplicated tool cards retain findings and requirement statuses per workflow (0.1563ms)
+? ready candidates precede conditional candidates with alphabetical tie-breaking (5.5211ms)
+? excluded parts remain in the profile and connections are independently selectable (0.132ms)
+? removing a component removes incident connections without mutating the undo snapshot (2.3226ms)
+? export/import round-trips descriptions without saving derived recommendations (0.4338ms)
+? undo removal preserves later edits and restores incident connections in order (1.016ms)
+? malformed, oversized, unsupported and structurally invalid imports are rejected (1.2162ms)
+? local saving restores the latest profile and storage failures remain recoverable (0.4328ms)
+? candidates appear without goals and old saved goal selections do not narrow them (0.2219ms)
+? blank components and connections ask for a description instead of listing every tool (0.0674ms)
+? language selection alone suggests related tools without inventing unrelated inputs (0.14ms)
+? connection candidates also ignore legacy goals and explain their full finding scope (0.1746ms)
+? workflow metadata requires explicit interface, artifact and language scope (0.362ms)
+? tests 49
+? suites 0
+? pass 49
+? fail 0
+? cancelled 0
+? skipped 0
+? todo 0
+? duration_ms 277.3552
+$ astro build
+10:59:40 [content] Syncing content
+10:59:40 [content] Synced content
+10:59:40 [types] Generated 649ms
+10:59:40 [build] output: "static"
+10:59:40 [build] mode: "static"
+10:59:40 [build] directory: C:\Users\zwadh\Repos\ToolWiki\dist\
+10:59:40 [build] Collecting build info...
+10:59:40 [build] ? Completed in 896ms.
+10:59:40 [build] Building static entrypoints...
+10:59:41 [vite] ? built in 759ms
+10:59:41 [vite] ? built in 106ms
+10:59:41 [build] Rearranging server assets...
+
+ generating static routes
+10:59:41 [WARN] [build] Could not render `/404` from route `/[...slug]` as it conflicts with higher priority route `/404`.
+10:59:41   ?? /404.html (+21ms)
+10:59:41   ?? /analysis-suite/index.html (+8ms)
+10:59:41   ?? /compare/index.html (+8ms)
+10:59:41   ?? /concepts/dast-approaches/index.html (+4ms)
+10:59:41   ?? /concepts/model-falsification/index.html (+3ms)
+10:59:41   ?? /concepts/sast-vs-dast/index.html (+3ms)
+10:59:41   ?? /concepts/static-approaches/index.html (+5ms)
+10:59:41   ?? /concepts/static-vs-dynamic/index.html (+4ms)
+10:59:41   ?? /concepts/verification-and-generated-tests/index.html (+5ms)
+10:59:41   ?? /dynamic/index.html (+10ms)
+10:59:41   ?? /guides/editing/index.html (+5ms)
+10:59:41   ?? /guides/java-analysis/index.html (+3ms)
+10:59:41   ?? /guides/memory-error-detection/index.html (+3ms)
+10:59:41   ?? /guides/temporal-monitoring-and-falsification/index.html (+3ms)
+10:59:41   ?? /index.html (+7ms)
+10:59:41   ?? /research/index.html (+3ms)
+10:59:41   ?? /research/binary-analysis/index.html (+3ms)
+10:59:41   ?? /research/comparing-tools/index.html (+3ms)
+10:59:41   ?? /research/sast-adoption/index.html (+3ms)
+10:59:41   ?? /research/sast-workflow/index.html (+2ms)
+10:59:41   ?? /research/software-quality/index.html (+3ms)
+10:59:41   ?? /static/index.html (+6ms)
+10:59:41   ?? /tools/actionlint/index.html (+4ms)
+10:59:41   ?? /tools/address-sanitizer/index.html (+3ms)
+10:59:41   ?? /tools/afl-plus-plus/index.html (+4ms)
+10:59:41   ?? /tools/angr/index.html (+3ms)
+10:59:41   ?? /tools/atheris/index.html (+3ms)
+10:59:41   ?? /tools/bandit/index.html (+3ms)
+10:59:41   ?? /tools/binwalk/index.html (+3ms)
+10:59:41   ?? /tools/boofuzz/index.html (+3ms)
+10:59:41   ?? /tools/brakeman/index.html (+2ms)
+10:59:41   ?? /tools/breach/index.html (+3ms)
+10:59:41   ?? /tools/burp-suite-community/index.html (+3ms)
+10:59:41   ?? /tools/burp-suite-professional/index.html (+2ms)
+10:59:41   ?? /tools/capa/index.html (+2ms)
+10:59:41   ?? /tools/cargo-audit/index.html (+2ms)
+10:59:41   ?? /tools/cbmc/index.html (+2ms)
+10:59:41   ?? /tools/checkov/index.html (+3ms)
+10:59:41   ?? /tools/checkstyle/index.html (+10ms)
+10:59:41   ?? /tools/clang-static-analyzer/index.html (+3ms)
+10:59:41   ?? /tools/clang-tidy/index.html (+3ms)
+10:59:41   ?? /tools/clippy/index.html (+3ms)
+10:59:41   ?? /tools/codeql/index.html (+3ms)
+10:59:41   ?? /tools/coverity/index.html (+3ms)
+10:59:41   ?? /tools/coverity-scan/index.html (+3ms)
+10:59:41   ?? /tools/cpachecker/index.html (+2ms)
+10:59:41   ?? /tools/cppcheck/index.html (+2ms)
+10:59:41   ?? /tools/cve-bin-tool/index.html (+3ms)
+10:59:41   ?? /tools/cwe-checker/index.html (+2ms)
+10:59:41   ?? /tools/dafny/index.html (+3ms)
+10:59:41   ?? /tools/dependency-check/index.html (+2ms)
+10:59:41   ?? /tools/detect-secrets/index.html (+3ms)
+10:59:41   ?? /tools/detekt/index.html (+3ms)
+10:59:41   ?? /tools/dotnet-analyzers/index.html (+3ms)
+10:59:41   ?? /tools/dr-memory/index.html (+3ms)
+10:59:41   ?? /tools/esbmc/index.html (+2ms)
+10:59:41   ?? /tools/eslint/index.html (+2ms)
+10:59:41   ?? /tools/fast-check/index.html (+2ms)
+10:59:41   ?? /tools/floss/index.html (+2ms)
+10:59:41   ?? /tools/frama-c/index.html (+2ms)
+10:59:41   ?? /tools/ghidra/index.html (+2ms)
+10:59:41   ?? /tools/go-race-detector/index.html (+2ms)
+10:59:41   ?? /tools/go-vet/index.html (+2ms)
+10:59:41   ?? /tools/gosec/index.html (+2ms)
+10:59:41   ?? /tools/govulncheck/index.html (+2ms)
+10:59:41   ?? /tools/grype/index.html (+2ms)
+10:59:41   ?? /tools/hadolint/index.html (+2ms)
+10:59:41   ?? /tools/hypothesis/index.html (+2ms)
+10:59:41   ?? /tools/infer/index.html (+2ms)
+10:59:41   ?? /tools/jazzer/index.html (+2ms)
+10:59:41   ?? /tools/jbmc/index.html (+2ms)
+10:59:41   ?? /tools/kani/index.html (+3ms)
+10:59:41   ?? /tools/klee/index.html (+3ms)
+10:59:41   ?? /tools/libfuzzer/index.html (+2ms)
+10:59:41   ?? /tools/memory-sanitizer/index.html (+2ms)
+10:59:41   ?? /tools/miri/index.html (+3ms)
+10:59:41   ?? /tools/mypy/index.html (+2ms)
+10:59:41   ?? /tools/osv-scanner/index.html (+2ms)
+10:59:41   ?? /tools/phpstan/index.html (+2ms)
+10:59:41   ?? /tools/pmd/index.html (+2ms)
+10:59:41   ?? /tools/polyspace-code-prover/index.html (+2ms)
+10:59:41   ?? /tools/psalm/index.html (+2ms)
+10:59:41   ?? /tools/psy-taliro/index.html (+2ms)
+10:59:41   ?? /tools/pvs-studio/index.html (+2ms)
+10:59:41   ?? /tools/pylint/index.html (+2ms)
+10:59:41   ?? /tools/pyright/index.html (+2ms)
+10:59:41   ?? /tools/restler/index.html (+2ms)
+10:59:41   ?? /tools/rtamt/index.html (+3ms)
+10:59:41   ?? /tools/rubocop/index.html (+7ms)
+10:59:41   ?? /tools/ruff/index.html (+2ms)
+10:59:41   ?? /tools/s-taliro/index.html (+2ms)
+10:59:41   ?? /tools/schemathesis/index.html (+2ms)
+10:59:41   ?? /tools/semgrep-ce/index.html (+2ms)
+10:59:41   ?? /tools/semgrep-code/index.html (+2ms)
+10:59:41   ?? /tools/shellcheck/index.html (+2ms)
+10:59:41   ?? /tools/sonarqube/index.html (+2ms)
+10:59:41   ?? /tools/sonarqube-community/index.html (+2ms)
+10:59:41   ?? /tools/spotbugs/index.html (+2ms)
+10:59:41   ?? /tools/sqlfluff/index.html (+2ms)
+10:59:41   ?? /tools/staticcheck/index.html (+2ms)
+10:59:41   ?? /tools/stylelint/index.html (+2ms)
+10:59:41   ?? /tools/swiftlint/index.html (+2ms)
+10:59:41   ?? /tools/thread-sanitizer/index.html (+2ms)
+10:59:41   ?? /tools/trivy/index.html (+3ms)
+10:59:41   ?? /tools/undefined-behavior-sanitizer/index.html (+2ms)
+10:59:41   ?? /tools/valgrind-helgrind/index.html (+2ms)
+10:59:41   ?? /tools/valgrind-memcheck/index.html (+2ms)
+10:59:41   ?? /tools/verifai/index.html (+3ms)
+10:59:41   ?? /tools/wartremover/index.html (+2ms)
+10:59:41   ?? /tools/yara-x/index.html (+2ms)
+10:59:41   ?? /tools/zap/index.html (+2ms)
+10:59:41 ? Completed in 423ms.
+
+10:59:41 [build] ? Completed in 1.34s.
+10:59:41 [starlight:pagefind] Building search index with Pagefind...
+10:59:42 [starlight:pagefind] Found 111 HTML files.
+
+thread 'main' (36352) panicked at pagefind\src\output\mod.rs:422:46:
+called `Result::unwrap()` on an `Err` value: Os { code: 5, kind: PermissionDenied, message: "Access is denied." }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+10:59:44 [build] Waiting for integration "@astrojs/starlight", hook "astro:build:done"...
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: /404.html: missing /ToolWiki/sitemap-index.xml
+/analysis-suite/: missing /ToolWiki/sitemap-index.xml
+/compare/: missing /ToolWiki/sitemap-index.xml
+/concepts/dast-approaches/: missing /ToolWiki/sitemap-index.xml
+/concepts/model-falsification/: missing /ToolWiki/sitemap-index.xml
+/concepts/sast-vs-dast/: missing /ToolWiki/sitemap-index.xml
+/concepts/static-approaches/: missing /ToolWiki/sitemap-index.xml
+/concepts/static-vs-dynamic/: missing /ToolWiki/sitemap-index.xml
+/concepts/verification-and-generated-tests/: missing /ToolWiki/sitemap-index.xml
+/dynamic/: missing /ToolWiki/sitemap-index.xml
+/guides/editing/: missing /ToolWiki/sitemap-index.xml
+/guides/java-analysis/: missing /ToolWiki/sitemap-index.xml
+/guides/memory-error-detection/: missing /ToolWiki/sitemap-index.xml
+/guides/temporal-monitoring-and-falsification/: missing /ToolWiki/sitemap-index.xml
+/: missing /ToolWiki/sitemap-index.xml
+/research/binary-analysis/: missing /ToolWiki/sitemap-index.xml
+/research/comparing-tools/: missing /ToolWiki/sitemap-index.xml
+/research/: missing /ToolWiki/sitemap-index.xml
+/research/sast-adoption/: missing /ToolWiki/sitemap-index.xml
+/research/sast-workflow/: missing /ToolWiki/sitemap-index.xml
+/research/software-quality/: missing /ToolWiki/sitemap-index.xml
+/static/: missing /ToolWiki/sitemap-index.xml
+/tools/actionlint/: missing /ToolWiki/sitemap-index.xml
+/tools/address-sanitizer/: missing /ToolWiki/sitemap-index.xml
+/tools/afl-plus-plus/: missing /ToolWiki/sitemap-index.xml
+/tools/angr/: missing /ToolWiki/sitemap-index.xml
+/tools/atheris/: missing /ToolWiki/sitemap-index.xml
+/tools/bandit/: missing /ToolWiki/sitemap-index.xml
+/tools/binwalk/: missing /ToolWiki/sitemap-index.xml
+/tools/boofuzz/: missing /ToolWiki/sitemap-index.xml
+/tools/brakeman/: missing /ToolWiki/sitemap-index.xml
+/tools/breach/: missing /ToolWiki/sitemap-index.xml
+/tools/burp-suite-community/: missing /ToolWiki/sitemap-index.xml
+/tools/burp-suite-professional/: missing /ToolWiki/sitemap-index.xml
+/tools/capa/: missing /ToolWiki/sitemap-index.xml
+/tools/cargo-audit/: missing /ToolWiki/sitemap-index.xml
+/tools/cbmc/: missing /ToolWiki/sitemap-index.xml
+/tools/checkov/: missing /ToolWiki/sitemap-index.xml
+/tools/checkstyle/: missing /ToolWiki/sitemap-index.xml
+/tools/clang-static-analyzer/: missing /ToolWiki/sitemap-index.xml
+/tools/clang-tidy/: missing /ToolWiki/sitemap-index.xml
+/tools/clippy/: missing /ToolWiki/sitemap-index.xml
+/tools/codeql/: missing /ToolWiki/sitemap-index.xml
+/tools/coverity/: missing /ToolWiki/sitemap-index.xml
+/tools/coverity-scan/: missing /ToolWiki/sitemap-index.xml
+/tools/cpachecker/: missing /ToolWiki/sitemap-index.xml
+/tools/cppcheck/: missing /ToolWiki/sitemap-index.xml
+/tools/cve-bin-tool/: missing /ToolWiki/sitemap-index.xml
+/tools/cwe-checker/: missing /ToolWiki/sitemap-index.xml
+/tools/dafny/: missing /ToolWiki/sitemap-index.xml
+/tools/dependency-check/: missing /ToolWiki/sitemap-index.xml
+/tools/detect-secrets/: missing /ToolWiki/sitemap-index.xml
+/tools/detekt/: missing /ToolWiki/sitemap-index.xml
+/tools/dotnet-analyzers/: missing /ToolWiki/sitemap-index.xml
+/tools/dr-memory/: missing /ToolWiki/sitemap-index.xml
+/tools/esbmc/: missing /ToolWiki/sitemap-index.xml
+/tools/eslint/: missing /ToolWiki/sitemap-index.xml
+/tools/fast-check/: missing /ToolWiki/sitemap-index.xml
+/tools/floss/: missing /ToolWiki/sitemap-index.xml
+/tools/frama-c/: missing /ToolWiki/sitemap-index.xml
+/tools/ghidra/: missing /ToolWiki/sitemap-index.xml
+/tools/go-race-detector/: missing /ToolWiki/sitemap-index.xml
+/tools/go-vet/: missing /ToolWiki/sitemap-index.xml
+/tools/gosec/: missing /ToolWiki/sitemap-index.xml
+/tools/govulncheck/: missing /ToolWiki/sitemap-index.xml
+/tools/grype/: missing /ToolWiki/sitemap-index.xml
+/tools/hadolint/: missing /ToolWiki/sitemap-index.xml
+/tools/hypothesis/: missing /ToolWiki/sitemap-index.xml
+/tools/infer/: missing /ToolWiki/sitemap-index.xml
+/tools/jazzer/: missing /ToolWiki/sitemap-index.xml
+/tools/jbmc/: missing /ToolWiki/sitemap-index.xml
+/tools/kani/: missing /ToolWiki/sitemap-index.xml
+/tools/klee/: missing /ToolWiki/sitemap-index.xml
+/tools/libfuzzer/: missing /ToolWiki/sitemap-index.xml
+/tools/memory-sanitizer/: missing /ToolWiki/sitemap-index.xml
+/tools/miri/: missing /ToolWiki/sitemap-index.xml
+/tools/mypy/: missing /ToolWiki/sitemap-index.xml
+/tools/osv-scanner/: missing /ToolWiki/sitemap-index.xml
+/tools/phpstan/: missing /ToolWiki/sitemap-index.xml
+/tools/pmd/: missing /ToolWiki/sitemap-index.xml
+/tools/polyspace-code-prover/: missing /ToolWiki/sitemap-index.xml
+/tools/psalm/: missing /ToolWiki/sitemap-index.xml
+/tools/psy-taliro/: missing /ToolWiki/sitemap-index.xml
+/tools/pvs-studio/: missing /ToolWiki/sitemap-index.xml
+/tools/pylint/: missing /ToolWiki/sitemap-index.xml
+/tools/pyright/: missing /ToolWiki/sitemap-index.xml
+/tools/restler/: missing /ToolWiki/sitemap-index.xml
+/tools/rtamt/: missing /ToolWiki/sitemap-index.xml
+/tools/rubocop/: missing /ToolWiki/sitemap-index.xml
+/tools/ruff/: missing /ToolWiki/sitemap-index.xml
+/tools/s-taliro/: missing /ToolWiki/sitemap-index.xml
+/tools/schemathesis/: missing /ToolWiki/sitemap-index.xml
+/tools/semgrep-ce/: missing /ToolWiki/sitemap-index.xml
+/tools/semgrep-code/: missing /ToolWiki/sitemap-index.xml
+/tools/shellcheck/: missing /ToolWiki/sitemap-index.xml
+/tools/sonarqube/: missing /ToolWiki/sitemap-index.xml
+/tools/sonarqube-community/: missing /ToolWiki/sitemap-index.xml
+/tools/spotbugs/: missing /ToolWiki/sitemap-index.xml
+/tools/sqlfluff/: missing /ToolWiki/sitemap-index.xml
+/tools/staticcheck/: missing /ToolWiki/sitemap-index.xml
+/tools/stylelint/: missing /ToolWiki/sitemap-index.xml
+/tools/swiftlint/: missing /ToolWiki/sitemap-index.xml
+/tools/thread-sanitizer/: missing /ToolWiki/sitemap-index.xml
+/tools/trivy/: missing /ToolWiki/sitemap-index.xml
+/tools/undefined-behavior-sanitizer/: missing /ToolWiki/sitemap-index.xml
+/tools/valgrind-helgrind/: missing /ToolWiki/sitemap-index.xml
+/tools/valgrind-memcheck/: missing /ToolWiki/sitemap-index.xml
+/tools/verifai/: missing /ToolWiki/sitemap-index.xml
+/tools/wartremover/: missing /ToolWiki/sitemap-index.xml
+/tools/yara-x/: missing /ToolWiki/sitemap-index.xml
+/tools/zap/: missing /ToolWiki/sitemap-index.xml
+
+111 !== 0
+
+    at file:///C:/Users/zwadh/Repos/ToolWiki/scripts/check-site.mjs:46:8 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 111,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
+[ELIFECYCLE] Command failed with exit code 1.

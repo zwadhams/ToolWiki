@@ -72,3 +72,5 @@ Use the official function tutorial to connect symbolic inputs, a compatible bitc
 ## Separate completed and interrupted paths
 
 Retain warnings and exploration statistics with generated cases. Replay useful inputs where practical and verify the modeled environment against the real program. Time or memory limits can leave paths unexplored, so an unfinished search does not establish their safety.
+
+See [static method results](../../concepts/advanced-static-methods/) for path constraints, assumptions, and counterexamples.

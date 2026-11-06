@@ -1,9 +1,9 @@
 ---
 title: Static analysis approaches
-description: Distinguish source analysis, binary analysis, and known-vulnerability matching before comparing tools.
+description: Distinguish source, binary, dependency, configuration, and secret-scanning workflows before comparing tools.
 ---
 
-**Start with what you have: source code, a compiled binary, or a dependency inventory.** Tools can inspect each without exercising the target application's runtime behavior, but they answer different questions.
+**Start with what you have: source code, a binary, a dependency inventory, or configuration files.** Tools can inspect each without exercising the target application's runtime behavior, but they answer different questions.
 
 ## Source code versus binaries
 
@@ -13,8 +13,9 @@ description: Distinguish source analysis, binary analysis, and known-vulnerabili
 | Binaries | Compiled artifacts. A tool might recover code for weakness analysis or identify embedded components. | [cwe-checker](../../tools/cwe-checker/), [CVE Binary Tool](../../tools/cve-bin-tool/) |
 | Dependency metadata | Package manifests, lockfiles, or software bills of materials (SBOMs). | [cargo-audit](../../tools/cargo-audit/), [OSV-Scanner](../../tools/osv-scanner/), [CVE Binary Tool](../../tools/cve-bin-tool/) |
 | Container images | Installed artifacts extracted from an image without running its application. | [OSV-Scanner](../../tools/osv-scanner/) |
+| Configuration files | Infrastructure definitions, Dockerfiles, or other supported configuration formats. | [Checkov](../../tools/checkov/), [Trivy](../../tools/trivy/), [Hadolint](../../tools/hadolint/) |
 
-Use the catalog's **Input type** filter to browse [source analyzers](../../static/?input=Source%20code), [binary tools](../../static/?input=Binaries), or [dependency tools](../../static/?input=Dependency%20metadata). A tool with multiple input types has more than one documented workflow.
+Use the catalog's **Input type** filter to browse [source analyzers](../../static/?input=Source%20code), [binary tools](../../static/?input=Binaries), [dependency tools](../../static/?input=Dependency%20metadata), or [configuration checks](../../static/?input=Configuration%20files). A tool with multiple input types has more than one documented workflow.
 
 Input type and analysis mode are independent. [Memcheck](../../tools/valgrind-memcheck/) also takes a compiled program, but observes it executing and therefore belongs under dynamic analysis. A source analyzer can run build steps to prepare its input without dynamically testing the application.
 
@@ -29,9 +30,23 @@ For JVM class files, see [Java source and bytecode analysis](../../guides/java-a
 | Bug finding and security analysis | Can the analyzer identify a defect or potential weakness from code behavior? | [Cppcheck](../../tools/cppcheck/), [PVS-Studio](../../tools/pvs-studio/), [CodeQL](../../tools/codeql/) |
 | Binary weakness analysis | Does the recovered code show a potentially vulnerable pattern? | [cwe-checker](../../tools/cwe-checker/) |
 | Software composition analysis (SCA) | Do identified components match known vulnerability records? | [CVE Binary Tool](../../tools/cve-bin-tool/) |
+| Infrastructure policy checks | Do selected resource definitions satisfy the configured policies? | [Checkov](../../tools/checkov/), [Trivy](../../tools/trivy/) |
+| Secret scanning | Do selected files contain candidate credentials or secret-like strings? | [detect-secrets](../../tools/detect-secrets/) |
 | Formal verification | Can a stated property be established under the model and assumptions? | [CBMC](../../tools/cbmc/), [Frama-C](../../tools/frama-c/), [Dafny](../../tools/dafny/) |
 
 These categories overlap. For example, a linter can find real bugs, and an SCA tool can inspect binaries. The label describes the workflow, not a ranking of effectiveness.
+
+[Understand static analysis methods](../advanced-static-methods/) explains value approximations, symbolic paths, proof obligations, and data flow through one bounds-check example.
+
+## Configuration and secret checks
+
+For Terraform or Kubernetes definitions, start with [configuration checks](../../static/?input=Configuration%20files) and read the supported format and policy list. For a Dockerfile, [Hadolint](../../tools/hadolint/) examines Dockerfile instructions and embedded shell usage; an image vulnerability scan instead examines packages in the built image.
+
+A policy report describes the supplied definitions under the selected checks. Passed, failed, and skipped checks are distinct; a passed scan does not establish that a deployed environment matches those definitions. [Checkov's quickstart](https://www.checkov.io/1.Welcome/Quick%20Start.html) shows this distinction in its resource-policy output.
+
+[detect-secrets](../../tools/detect-secrets/) identifies candidate strings for review and tracks a baseline. A match is not automatically a valid credential, and a baseline is not remediation. Its current-file workflow also does not establish that Git history is clear. If an actual credential was exposed, follow the issuing service's revocation or rotation procedure; deleting a line does not invalidate it. See the [project's baseline and audit workflow](https://github.com/Yelp/detect-secrets).
+
+These checks inspect different evidence from application-source semantics and package/advisory matching. Keep the input, selected method, and resulting claim separate when [reviewing findings](../../guides/reviewing-findings/).
 
 ## Binary analysis questions
 
@@ -55,7 +70,7 @@ Use **What can it find?** to filter by the kind of problem, such as memory safet
 
 A **CWE** describes a weakness class, such as an out-of-bounds write. A **CVE** identifies a specific publicly disclosed vulnerability. See the [CWE overview](https://cwe.mitre.org/about/index.html) and [CVE Program overview](https://www.cve.org/About/Overview).
 
-The similar names of cwe-checker and CVE Binary Tool conceal different jobs. One looks for weakness patterns in recovered code; the other identifies components and matches vulnerability records. A weakness warning does not need an existing CVE, and a component-to-CVE match does not prove exploitability in your application.
+cwe-checker looks for weakness patterns in recovered code; CVE Binary Tool identifies components and matches vulnerability records. A weakness warning does not need an existing CVE, and a component-to-CVE match does not prove exploitability in your application.
 
 ## Read language filters with the input type
 

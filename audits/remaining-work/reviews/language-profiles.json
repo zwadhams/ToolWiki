@@ -1,0 +1,855 @@
+{
+  "status": "complete-applied-and-verified",
+  "reviewer": "remaining_recipes",
+  "review_kind": "separate-final-language-review",
+  "review_date": "2026-11-06",
+  "scope": "All tool-profile metadata prose and narrative text; exact technical qualifiers, licenses, limits, execution labels, code, and evidence links are retained.",
+  "product_changes": false,
+  "recommendations": [
+    {
+      "id": "LP-01",
+      "file": "src/content/docs/tools/bandit.md",
+      "source": "Use it as a focused check in a Python development workflow. Its narrow language scope makes it a useful entry point for learning how rule-based security analysis works.",
+      "replacement": "Use it as a focused security check in a Python development workflow.",
+      "reason": "Removes a generic learning-benefit claim while retaining the concrete role in a Python workflow."
+    },
+    {
+      "id": "LP-02",
+      "file": "src/content/docs/tools/cargo-audit.md",
+      "source": "We used Cargo-audit for Rust in our [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf). Its dependency-advisory scope is important when interpreting the Rust findings alongside source analyzers. I make that distinction explicit in [Comparing SAST tools](../../research/comparing-tools/).",
+      "replacement": "We used Cargo-audit for Rust in our [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf). Its dependency-advisory results differ in scope from source-analyzer results; see [Comparing SAST tools](../../research/comparing-tools/).",
+      "reason": "States the relevant comparison directly and removes commentary about the author explaining it."
+    },
+    {
+      "id": "LP-03",
+      "file": "src/content/docs/tools/codeql.md",
+      "source": "**Documentation-reviewed on November 6, 2026; not executed here.** This route selects Python SQL injection only. It adds a scoped builder workflow without re-verifying all of CodeQL's catalog capabilities.",
+      "replacement": "**Documentation reviewed on November 6, 2026; not executed here.** This builder workflow covers only Python SQL injection. Other catalog capabilities were not re-reviewed.",
+      "reason": "States the limited review scope directly instead of narrating the addition to the catalog; preserves the date and unexecuted status."
+    },
+    {
+      "id": "LP-04",
+      "file": "src/content/docs/tools/coverage-py.md",
+      "source": "Missing lines and branches show unexecuted opportunities in the selected source. A coverage percentage is not a measure of assertion quality or correctness.",
+      "replacement": "Missing lines and branches identify statements and branch destinations not executed in the selected source. A coverage percentage is not a measure of assertion quality or correctness.",
+      "reason": "Replaces the vague phrase 'unexecuted opportunities' with the measured units already defined by the profile."
+    },
+    {
+      "id": "LP-05",
+      "file": "src/content/docs/tools/dotnet-analyzers.md",
+      "source": "I link this related implementation in [Comparing SAST tools](../../research/comparing-tools/) without assigning the historical findings to today's SDK defaults.",
+      "replacement": "See [Comparing SAST tools](../../research/comparing-tools/) for why those historical findings cannot be attributed to today's SDK defaults.",
+      "reason": "Removes commentary about adding a link while preserving the historical attribution limit and destination."
+    },
+    {
+      "id": "LP-06",
+      "file": "src/content/docs/tools/floss.md",
+      "source": "I expose both modes in the catalog to make that distinction visible.",
+      "replacement": "The catalog's Static and Dynamic tags reflect these two modes.",
+      "reason": "Explains the tags directly instead of describing the author's editorial choice."
+    },
+    {
+      "id": "LP-07",
+      "file": "src/content/docs/tools/ghidra.md",
+      "source": "I connect this entry to [Malware sophistication](../../research/binary-analysis/) because recovered structure affects how software quality can be interpreted.",
+      "replacement": "[Malware sophistication](../../research/binary-analysis/) explains how recovered structure affects the interpretation of software quality.",
+      "reason": "Retains the link and its purpose without narrating the act of linking."
+    },
+    {
+      "id": "LP-08",
+      "file": "src/content/docs/tools/k6.md",
+      "source": "These answer different questions rather than ranking\ngeneric API coverage.",
+      "replacement": "These tools answer different questions.",
+      "reason": "Removes an abstract ranking contrast after the paragraph already states each tool's distinct task."
+    },
+    {
+      "id": "LP-09",
+      "file": "src/content/docs/tools/mobsf.md",
+      "source": "Neither comparison implies that this static scan runs the\nAndroid app.",
+      "replacement": "This static scan does not run the Android app.",
+      "reason": "States the execution boundary directly instead of describing what the preceding comparisons imply."
+    },
+    {
+      "id": "LP-10",
+      "file": "src/content/docs/tools/psalm.md",
+      "source": "I keep that current capability distinct from the reported study configuration in [Comparing SAST tools](../../research/comparing-tools/).",
+      "replacement": "See [Comparing SAST tools](../../research/comparing-tools/) for the distinction between current capabilities and the reported study configuration.",
+      "reason": "Removes author commentary while retaining the current-versus-historical scope distinction and link."
+    },
+    {
+      "id": "LP-11",
+      "file": "src/content/docs/tools/psscriptanalyzer.md",
+      "source": "For this function's intended job of returning a greeting through the pipeline, replace `Write-Host` with `Write-Output` and repeat the check.",
+      "replacement": "To return this function's greeting through the pipeline, replace `Write-Host` with `Write-Output` and repeat the check.",
+      "reason": "Shortens the condition for the correction without changing the intended pipeline behavior or the surrounding caveat about deliberate display functions."
+    },
+    {
+      "id": "LP-12",
+      "file": "src/content/docs/tools/pyright.md",
+      "source": "The [pinned package metadata](https://github.com/microsoft/pyright/blob/1.1.407/packages/pyright/package.json)\nand [CLI reference](https://github.com/microsoft/pyright/blob/main/docs/command-line.md)\ndescribe installation requirements and invocation. This minimal file has no\nthird-party imports. For a real project, set the intended interpreter, platform,\ndependencies, and stubs before interpreting missing-import diagnostics.\n\n## Start with the project environment\n\nUse the documented CLI installation and point Pyright at a small package. Configure the intended Python interpreter, target version, and import paths before interpreting missing-import or unknown-type messages. Choose a diagnostic mode deliberately and review its defaults.",
+      "replacement": "The [pinned package metadata](https://github.com/microsoft/pyright/blob/1.1.407/packages/pyright/package.json)\nand [CLI reference](https://github.com/microsoft/pyright/blob/main/docs/command-line.md)\ndescribe installation requirements and invocation. This minimal file has no\nthird-party imports.\n\n## Start with the project environment\n\nPoint Pyright at a small package. Configure the intended Python interpreter, target version and platform, dependencies, stubs, and import paths before interpreting missing-import or unknown-type messages. Choose a diagnostic mode deliberately and review its defaults.",
+      "reason": "Consolidates repeated project-environment advice into one paragraph, preserving every named setting and both reference links."
+    },
+    {
+      "id": "LP-13",
+      "file": "src/content/docs/tools/wartremover.md",
+      "source": "I retain the distinction between a reported tool name and its enabled checks when interpreting those findings. See [Comparing SAST tools](../../research/comparing-tools/).",
+      "replacement": "The reported tool name alone does not establish which checks were enabled; see [Comparing SAST tools](../../research/comparing-tools/).",
+      "reason": "States the evidence limit directly instead of describing the author's interpretive approach."
+    },
+    {
+      "id": "LP-14",
+      "file": "src/content/docs/tools/yara-x.md",
+      "source": "I include its successor here as a related tool; we did not evaluate YARA-X.",
+      "replacement": "We did not evaluate YARA-X.",
+      "reason": "Removes the editorial reason for including the entry while preserving the explicit non-evaluation statement and surrounding original-YARA distinction."
+    },
+    {
+      "id": "LP-15",
+      "file": "src/content/docs/tools/typescript.md",
+      "source": "The faulty file calls a string parameter with a number:",
+      "replacement": "The faulty file passes a number to a string parameter:",
+      "reason": "Uses the precise verb for an argument/parameter mismatch; the file calls a function and passes an argument."
+    }
+  ],
+  "reviewed_files": [
+    {
+      "path": "src/content/docs/tools/actionlint.md",
+      "sha256": "6dd41b8d2348db8f991e0654b685ecf7a2da453098cfe99f4f2ebba473f3edfe",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/address-sanitizer.md",
+      "sha256": "c78c4711b4b305f497ad530c3115b32e12f974d1920646eba0234a2164e79657",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/afl-plus-plus.md",
+      "sha256": "38ff9ba0f6187519efe9d4ae47aa9c2f8d83b1a2cecbd4cb023b31543653ed94",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/angr.md",
+      "sha256": "74a2d801806c9571e6d9aec67110b2cd56022a83241b0d28a0d286fcc14265ed",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/atheris.md",
+      "sha256": "7af4569ec0ebfc31744c79b552e656b18169dd4da83ba89740ce76e7a9055c38",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/bandit.md",
+      "sha256": "446a39d1b8ca04278fc97a8edbdf4394a601234b4b4cfe26057800867111e4d7",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/binwalk.md",
+      "sha256": "6ab4278d4a074dc01b0df0b2b20f4e8703969fa6392243e4e3d00cdc2a0e5629",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/boofuzz.md",
+      "sha256": "79158c0a123328d2828e21c1d3ff108c88425ff27ca4e321458c829a21f20c20",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/brakeman.md",
+      "sha256": "8b861934fc4b4507c452e58466c1b53d757e47f39740a4932368e2f1c9ce3580",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/breach.md",
+      "sha256": "af388cc200278e576315066a226f0d42da3bf0b983d8c457149f8697cbb0ee38",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/burp-suite-community.md",
+      "sha256": "1a48ea7887a432152aead35c6d7cd2d9623671787158d63b4d4fb872fc45d4f3",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/burp-suite-professional.md",
+      "sha256": "b7324723ad6c0ea852aea27ccdfdd0bf35985083e55b258ca1907f71c8611893",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/capa.md",
+      "sha256": "822faaaee3e4b0da3b11d0a9927a28bf2e11af2bf3f1bf2e5452145e17fd2687",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/cargo-audit.md",
+      "sha256": "0ced3ba6da10b693113c7ef5dc8b5e85a9dfff4be7f3eb8e280773b0a4786071",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/cbmc.md",
+      "sha256": "ee12b34a6831c13deaa280992e2ac3e8b8b404b677267d3cc46a07f71c2d1031",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/checkov.md",
+      "sha256": "75d1d19e101c73d5e29e069c9d83adcfebcb712ddd2c1acdd5b65cc9c1cebb81",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/checkstyle.md",
+      "sha256": "7ab8afbc43f4b3f1e790ab2e890a35ae8f6000b6799182e860ea6cf375b12508",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/clang-static-analyzer.md",
+      "sha256": "f16083ef96d6915ab6474719d6aca1dfcf44d8aefd084440a8d0e3ce15a651dc",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/clang-tidy.md",
+      "sha256": "16bd0c2546132f33f72d3021cfc5bb48a5049b5f88acb32ad7c2448e834ce342",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/clippy.md",
+      "sha256": "edcf76c8b9cc565efff273bdd11c95021d5dcc94c177a08fad99e5880dbf0a21",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/codeql.md",
+      "sha256": "a302986125fde6f6cca9b46a0806d8782f247acb999492c5b7434f73945d260b",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/coverage-py.md",
+      "sha256": "fae6e7daf4fd02e8575d3986f00b062545f6d7258b94a7f7671f8e0e9772eb2a",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/coverity-scan.md",
+      "sha256": "2926447856ba03f97914a5e066ec0c3f577e3248ba032bf5a8d00b246ffc3d05",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/coverity.md",
+      "sha256": "f035862c58bbd8d237a4156409a46e0a441e10836141a35c4b0953338b90ba2c",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/cpachecker.md",
+      "sha256": "d9b945e6d90f653661a2f89a97d61ac6655325bba9abdf96f558aed212ac0bf5",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/cppcheck.md",
+      "sha256": "c2a513506632d3c3198dc6a34e6c72418666631d06e1f67a6c6b7445509a4f8f",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/cve-bin-tool.md",
+      "sha256": "463b9adfe6bb947bad598b47a292361ca34e5f372173827d0d54fb085abd2abe",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/cwe-checker.md",
+      "sha256": "888781077a0d87ee18f926549afc316e1e0001edfe0f80841f54b3be4f7ab085",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/dafny.md",
+      "sha256": "f0b07c87290d0bc47716e5b7a777a2e76b8734e6ada12c6c37da8040253fa5f5",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/dependency-check.md",
+      "sha256": "10efa59933c2875808e2b26758146e73c2be724cace218a17f13c16eff4bebb8",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/detect-secrets.md",
+      "sha256": "e81497c42787b660874b15aca8a538758741f1dc2fec72e8e93cf5657c6a5acb",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/detekt.md",
+      "sha256": "fa4d3ef37c9e555b55e795eac5af5ac3e7afac4947abb0a643df309bebcca27e",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/dotnet-analyzers.md",
+      "sha256": "8408454273885e66525fc4c0994e717f3172d317b0e240550c8eff0d879ae730",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/dr-memory.md",
+      "sha256": "45ae1f59d2a7960e4673b64859fdab90e1b29e9567e2e48274f0eb793ca4f46d",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/esbmc.md",
+      "sha256": "5332a3d46a91bafca40469f72f2f9bfc1618eec14fca59e07e71d4e9a6b426c8",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/eslint.md",
+      "sha256": "c90755107b23a6022b69450a9504953b8f24b44e83104ee2ad545dcac4616a28",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/fast-check.md",
+      "sha256": "7fd168088c4839dc36a719d25990e6b440bf4348e3c0e1d39a2a8d7ab291131f",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/floss.md",
+      "sha256": "3ad6752ffe6a0ed7bfaafc018c2ed543e0988b48b70d9b6b797ea14d2c83d0f0",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/frama-c.md",
+      "sha256": "fdc77e25f18708008e7f4de0372cb73f6dbecc83b11c9eba28829c5ff2ab5690",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/ghidra.md",
+      "sha256": "0e93e67819ea068110468a2bd11d6b57afd577e38a3d7d88d144223043c85716",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/gitleaks.md",
+      "sha256": "3f82c4f167e79756e67c1e1223704b2498a8d96c477579d47757881b35346781",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/go-race-detector.md",
+      "sha256": "1c077b14116af88796f310b1c064754975e4eed7ec6cfc0faca28d4307b12c2e",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/go-vet.md",
+      "sha256": "04d3a5c922eace116331fca670dfe9b9011556806e6d529ef965ebe67314d195",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/gosec.md",
+      "sha256": "5f3ef0797f3a45ddf68933c4eecf7a34432fab6fbd06051ad60086f8c1533beb",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/govulncheck.md",
+      "sha256": "806e1ea452cd86da5db4a713d84b2401ec3b9d751fb285b1f442a1c5ce1e117e",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/grype.md",
+      "sha256": "99bf27901674f1c9324b637b97d0ebd0e00bb59854309142ecb8f840383ebe45",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/hadolint.md",
+      "sha256": "a5ed0ff0aa41154a1709dc5211a0928fb9c4f8fdc634f8cae98b1d7ab2b26cfa",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/hypothesis.md",
+      "sha256": "4ebf2d421aa3380b195cf91d7fd783ba0729e69ef6f75d7f19e295e6f0472f35",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/infer.md",
+      "sha256": "d4b96904291ba86a6c7e8efd8ba10aeb7b666d5ef558faebe798d79327f0143b",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/jazzer.md",
+      "sha256": "c0e8fc1af51efb654197a7706bf12f72533b73cb37a51550834d90b36e481482",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/jbmc.md",
+      "sha256": "c788a241a806f1cac7d3a18ebfeefd8c128fee1f1a3ffbfdfee642c2cd4803a6",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/k6.md",
+      "sha256": "02ae7835f0ede54dbc57afa41d98dffb5a48b5603fc4f474b6c6979660ff1a09",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/kani.md",
+      "sha256": "773dac26e7812488eac7822e2c27ddef6088ca44d3ddf74cf231bfa5a34bbc94",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/klee.md",
+      "sha256": "3f5f7fde7290cbfbf204acaf247c91b0d83627f178b147ba0b4dc9d4b8d8b3a5",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/libfuzzer.md",
+      "sha256": "b8b60bbec9b9965e046db2dc6dcca1ab8c7ba78aa1ae3c15159cb27619b585a0",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/memory-sanitizer.md",
+      "sha256": "3c0f07827bb8f395c821fe63863ad495128bf0ee042a67e14cc8f57df8dad529",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/miri.md",
+      "sha256": "fa2ef683fd65c7faa35b54bd9273c9db76a4ce1d4122818ea5853272c070060d",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/mobsf.md",
+      "sha256": "8b4603e9f9f7f47ce1821935abd78711f06a5d4944a5e037cb30ad0245146a1d",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/mypy.md",
+      "sha256": "5abedf890d4a0cfd841ae9eb33f2f3c89651a561cd844d1daf62f23056f29d80",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/osv-scanner.md",
+      "sha256": "ec42f9137163cb1afd75e391b888b9f9d532e33532bb8b9e72b1ce89b0272bb3",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/phpstan.md",
+      "sha256": "fb0f3cc91d2e652424a4f27b63d032019a7e0ec37f92a22fe3574bc13d1ec19d",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/pmd.md",
+      "sha256": "0cc9d237d1ad754c6b88bf5e1d1c3fcc8e4deb24c393ee396d880fba92efbfc0",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/polyspace-code-prover.md",
+      "sha256": "b0ee431326ece225ce1a290d50e0ab98b127b8e4a85844deed420cb46cf45dec",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/psalm.md",
+      "sha256": "b58b2d73b5e58b0f7369969149fd0f570d880ab0d137e7a7229f02af772e4fea",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/psscriptanalyzer.md",
+      "sha256": "372fb2f889fd142282da7a91234bfdc782eefbf0dc8645c6d6b69863d3837fdc",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/psy-taliro.md",
+      "sha256": "821ff60aea227a4c7033b15b0ea74baef8f8706133b92048b4958b2948fc2e24",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/pvs-studio.md",
+      "sha256": "f4b38d99fdc20114a7230ad56a4515d485691d4c18f360d5d4e5c3c994292204",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/py-spy.md",
+      "sha256": "3297579eae6eab7c06f82cc93236199f99bb7f4e40446f8815d8d912067b6c9c",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/pylint.md",
+      "sha256": "f46e1cf03775f773c15848b2015ce62ec2850fd54f8e98663a6074a1b85312e3",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/pyright.md",
+      "sha256": "ac0f58e10e101c4d15a71b2debea67d7195a6c11f708317ae33d5c948c4df9b7",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/restler.md",
+      "sha256": "be244896ea21c5953b001840befd7fcc3ff8a66df97add97c5aef28a55b54e93",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/rtamt.md",
+      "sha256": "4d5eb2cd51c4d6e6bda41613c5e33f6c9feb01fcf714b02b93469894dd7b9509",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/rubocop.md",
+      "sha256": "4f6522f25382324870bfb4374158a21090426dae1e1be00db649ee32da86c258",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/ruff.md",
+      "sha256": "5a87512fc60addc023249f1734ae95d5dbd04ce8ff8678c5b98fe9c3c1bf89eb",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/s-taliro.md",
+      "sha256": "639c2c612a13a7fdea8ef4649118b589ee469f395881e30cd8046ff1c9ce8e83",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/schemathesis.md",
+      "sha256": "8fb0cf91993f2d55feae6c6b03ca66e77fef975f2972aba0ab007a543d67fe9a",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/semgrep-ce.md",
+      "sha256": "2b44aa41dc133d68c1daeeea5a34826d842660e6b724aedaf7f68fe2fa486ccf",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/semgrep-code.md",
+      "sha256": "f7f48aa8e72d7aa7d0acb9285b53ff3aa211ae6fb16bc31c4a52b9c2cc9e7033",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/shellcheck.md",
+      "sha256": "507cb53305783f114a87eddbf3a0a5e8083c00d05d0c3a16b7340392aee7992e",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/sonarqube-community.md",
+      "sha256": "5372e9645c097d94788b0ad56616ff4299dcce472cfccbf86b18a9dbc4beda08",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/sonarqube.md",
+      "sha256": "121506bcee08bb0e39b0070c433f162e51f359d8c1987bf693ca2a424dd7e95b",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/spotbugs.md",
+      "sha256": "dbd8f0f59b2c85e3142e225e8191c345989bc3c9a3418f9b52ce6e86e83e487c",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/sqlfluff.md",
+      "sha256": "c74461c6c0bddc18b427cda682c7d119806c1151881a89d78c46d72b3dd02438",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/staticcheck.md",
+      "sha256": "a4ab007467a95ed83c088a7f7a1618afbb05c92bc4bc15c7b88388a680b8d230",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/strykerjs.md",
+      "sha256": "ebc550a1620e9b495a2df26d3a4ec2c3fd34ad3dc1106520cc304b1eb81e2cd5",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/stylelint.md",
+      "sha256": "020152cca944b961c4bd128eea26a07dfcfcda527e4b8c04ddeec1a3e08517a0",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/swiftlint.md",
+      "sha256": "c2837df7066de1b2f27200f495599af0d778d4e0f76061046f858de679a8ba9b",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/thread-sanitizer.md",
+      "sha256": "01cfd31965fde54c589be51d07ad02a01e2028a3add1d4e69214e046b9a1af84",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/trivy.md",
+      "sha256": "9fb0e6d02e391fbfdb632f4a5aca7ffe6fd24801825c1bd8e2d421ae296adc35",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/typescript.md",
+      "sha256": "4d91363093cf9f4e9befa18fa5d463a1df573ab46f25b88479f240d0dcf08e5f",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/undefined-behavior-sanitizer.md",
+      "sha256": "fa302c388644feffe2d5ff06296ee4bfc4ad95ad304115059db87e946a3b8e42",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/valgrind-helgrind.md",
+      "sha256": "5f42262cb8e841d93173b3d265bace92e3a7d1c43d1694f4267dd95a7c0a863c",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/valgrind-memcheck.md",
+      "sha256": "fb724a9d87cd91eb9f3c05aa864d019c5e1549b604356ee45af586d13a31a83d",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/verifai.md",
+      "sha256": "6b5ec86752f3b5ed5765858e72906e77dcc1b8802ff5f77efb22df547c901014",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/verilator.md",
+      "sha256": "cd85fb11b15bb892b4b178f0847f1899d7b978af7b950fbaea41fea76d6bd7a4",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/wartremover.md",
+      "sha256": "e8937c1516842e5209e7a31e13d71af732cfcf94f8147bfbeff22e2649d47227",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/yara-x.md",
+      "sha256": "4a6368698a0dc19c22e88d058e3f3d3a03feda836e39c21755e01c03f7d713b0",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    },
+    {
+      "path": "src/content/docs/tools/zap.md",
+      "sha256": "1e77400bb3861ea2631a5c295a079568a9ccd8186af758999505d17d14b47e97",
+      "scope": "Language scan of narrative text and prose metadata; technical meaning and evidence labels preserved."
+    }
+  ],
+  "limitations": [
+    "No product changes, build, browser pass, or new technical validation is part of this language review."
+  ],
+  "coverage": {
+    "profiles_reviewed": 98,
+    "recommendations": 15,
+    "profiles_with_recommendations": 15,
+    "method": "Read narrative text and prose metadata across the full catalog, then checked for repeated author commentary, vague benefits, and wordy phrasing. Code blocks and source lists were retained unchanged. Long technical qualifiers were preserved when they define scope or interpretation."
+  },
+  "validation": [
+    "Every source string matches exactly once in its stated file.",
+    "Every replacement preserves the source snippet's Markdown link targets and inline code spans.",
+    "All suggested replacement text is ASCII.",
+    "No commands, license declarations, version pins, execution outcomes, or code blocks are changed by the recommendations."
+  ],
+  "coordinator_consistency_fix": "The broader Semgrep Code local/CI host sentence was flagged to the coordinator as a technical consistency observation outside these wording recommendations. The coordinator updated it; the updated host sentence was reread before this file digest was captured. Separate technical provenance remains with the coordinator.",
+  "no_recommendation_files": [
+    "src/content/docs/tools/actionlint.md",
+    "src/content/docs/tools/address-sanitizer.md",
+    "src/content/docs/tools/afl-plus-plus.md",
+    "src/content/docs/tools/angr.md",
+    "src/content/docs/tools/atheris.md",
+    "src/content/docs/tools/binwalk.md",
+    "src/content/docs/tools/boofuzz.md",
+    "src/content/docs/tools/brakeman.md",
+    "src/content/docs/tools/breach.md",
+    "src/content/docs/tools/burp-suite-community.md",
+    "src/content/docs/tools/burp-suite-professional.md",
+    "src/content/docs/tools/capa.md",
+    "src/content/docs/tools/cbmc.md",
+    "src/content/docs/tools/checkov.md",
+    "src/content/docs/tools/checkstyle.md",
+    "src/content/docs/tools/clang-static-analyzer.md",
+    "src/content/docs/tools/clang-tidy.md",
+    "src/content/docs/tools/clippy.md",
+    "src/content/docs/tools/coverity-scan.md",
+    "src/content/docs/tools/coverity.md",
+    "src/content/docs/tools/cpachecker.md",
+    "src/content/docs/tools/cppcheck.md",
+    "src/content/docs/tools/cve-bin-tool.md",
+    "src/content/docs/tools/cwe-checker.md",
+    "src/content/docs/tools/dafny.md",
+    "src/content/docs/tools/dependency-check.md",
+    "src/content/docs/tools/detect-secrets.md",
+    "src/content/docs/tools/detekt.md",
+    "src/content/docs/tools/dr-memory.md",
+    "src/content/docs/tools/esbmc.md",
+    "src/content/docs/tools/eslint.md",
+    "src/content/docs/tools/fast-check.md",
+    "src/content/docs/tools/frama-c.md",
+    "src/content/docs/tools/gitleaks.md",
+    "src/content/docs/tools/go-race-detector.md",
+    "src/content/docs/tools/go-vet.md",
+    "src/content/docs/tools/gosec.md",
+    "src/content/docs/tools/govulncheck.md",
+    "src/content/docs/tools/grype.md",
+    "src/content/docs/tools/hadolint.md",
+    "src/content/docs/tools/hypothesis.md",
+    "src/content/docs/tools/infer.md",
+    "src/content/docs/tools/jazzer.md",
+    "src/content/docs/tools/jbmc.md",
+    "src/content/docs/tools/kani.md",
+    "src/content/docs/tools/klee.md",
+    "src/content/docs/tools/libfuzzer.md",
+    "src/content/docs/tools/memory-sanitizer.md",
+    "src/content/docs/tools/miri.md",
+    "src/content/docs/tools/mypy.md",
+    "src/content/docs/tools/osv-scanner.md",
+    "src/content/docs/tools/phpstan.md",
+    "src/content/docs/tools/pmd.md",
+    "src/content/docs/tools/polyspace-code-prover.md",
+    "src/content/docs/tools/psy-taliro.md",
+    "src/content/docs/tools/pvs-studio.md",
+    "src/content/docs/tools/py-spy.md",
+    "src/content/docs/tools/pylint.md",
+    "src/content/docs/tools/restler.md",
+    "src/content/docs/tools/rtamt.md",
+    "src/content/docs/tools/rubocop.md",
+    "src/content/docs/tools/ruff.md",
+    "src/content/docs/tools/s-taliro.md",
+    "src/content/docs/tools/schemathesis.md",
+    "src/content/docs/tools/semgrep-ce.md",
+    "src/content/docs/tools/semgrep-code.md",
+    "src/content/docs/tools/shellcheck.md",
+    "src/content/docs/tools/sonarqube-community.md",
+    "src/content/docs/tools/sonarqube.md",
+    "src/content/docs/tools/spotbugs.md",
+    "src/content/docs/tools/sqlfluff.md",
+    "src/content/docs/tools/staticcheck.md",
+    "src/content/docs/tools/strykerjs.md",
+    "src/content/docs/tools/stylelint.md",
+    "src/content/docs/tools/swiftlint.md",
+    "src/content/docs/tools/thread-sanitizer.md",
+    "src/content/docs/tools/trivy.md",
+    "src/content/docs/tools/undefined-behavior-sanitizer.md",
+    "src/content/docs/tools/valgrind-helgrind.md",
+    "src/content/docs/tools/valgrind-memcheck.md",
+    "src/content/docs/tools/verifai.md",
+    "src/content/docs/tools/verilator.md",
+    "src/content/docs/tools/zap.md"
+  ],
+  "applied_verification": {
+    "status": "passed",
+    "date": "2026-11-06",
+    "reviewer": "remaining_recipes",
+    "recommendations_verified": 15,
+    "method": "Each exact replacement is present once and its original source is absent, comparing text with normalized line endings. Reversing the replacement restores the original reviewed digest directly for Psalm and after CRLF-to-LF normalization for the other 14 files. This verifies that no other text changed. Rechecked source/replacement meaning, Markdown link targets, and inline code spans.",
+    "result": "All 15 recommendations landed and retain their intended meaning. Scope limits, licenses, version pins, execution status, outputs, and evidence links remain intact.",
+    "line_ending_note": "The current affected files use CRLF. Fourteen original reviewed files used LF; Psalm already used CRLF. This does not change the wording verification.",
+    "reviewed_files": [
+      {
+        "recommendation_id": "LP-01",
+        "path": "src/content/docs/tools/bandit.md",
+        "sha256": "0c19a7c91f2d796009f5be0836ed07e09c54120cb3864710e5423974493fb578",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "after_LF_normalization",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      },
+      {
+        "recommendation_id": "LP-02",
+        "path": "src/content/docs/tools/cargo-audit.md",
+        "sha256": "99df3ba6b9968e24f4f0d351d845bc553bb4e9ef82a31dea4a7bda9bb60b6d5a",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "after_LF_normalization",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      },
+      {
+        "recommendation_id": "LP-03",
+        "path": "src/content/docs/tools/codeql.md",
+        "sha256": "f6d1fb18432d8c2d45c56b0fb0d948797c84339319c35be22f9afedc891c5182",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "after_LF_normalization",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      },
+      {
+        "recommendation_id": "LP-04",
+        "path": "src/content/docs/tools/coverage-py.md",
+        "sha256": "7624f1431777a4bad4d235781f14b084dba32ed4e2a4f971278cd4a9952e8cdc",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "after_LF_normalization",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      },
+      {
+        "recommendation_id": "LP-05",
+        "path": "src/content/docs/tools/dotnet-analyzers.md",
+        "sha256": "53c05d7308db021eb25cd27ee93e3ab7c58c4eb71316da0fb6573a65eccead4d",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "after_LF_normalization",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      },
+      {
+        "recommendation_id": "LP-06",
+        "path": "src/content/docs/tools/floss.md",
+        "sha256": "ebd778b2562c105de6938aee19881a499ffca4f9497b3d17c70db7ed45720782",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "after_LF_normalization",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      },
+      {
+        "recommendation_id": "LP-07",
+        "path": "src/content/docs/tools/ghidra.md",
+        "sha256": "9822e06f01fc61cfff7bb0f9f05bc39566e52b9886546ac79099ea14a67a6ab1",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "after_LF_normalization",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      },
+      {
+        "recommendation_id": "LP-08",
+        "path": "src/content/docs/tools/k6.md",
+        "sha256": "8a1ac0e90ed92409e68249d85f204fc466e1aff5a3602b9f6c62656483e6bd35",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "after_LF_normalization",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      },
+      {
+        "recommendation_id": "LP-09",
+        "path": "src/content/docs/tools/mobsf.md",
+        "sha256": "7456244f785931700585ffb464ce191e184909db07a90c295f7d58f241285dd3",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "after_LF_normalization",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      },
+      {
+        "recommendation_id": "LP-10",
+        "path": "src/content/docs/tools/psalm.md",
+        "sha256": "3f564b788172cc7454b4a81934c5f0f645bd54395d525050f82f9091f99ee1e1",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "exact_bytes",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      },
+      {
+        "recommendation_id": "LP-11",
+        "path": "src/content/docs/tools/psscriptanalyzer.md",
+        "sha256": "265dae39a2208dca6a117f5b9c5c1edc93f13a8956ef51974d72a94dcb1cc8b9",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "after_LF_normalization",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      },
+      {
+        "recommendation_id": "LP-12",
+        "path": "src/content/docs/tools/pyright.md",
+        "sha256": "b8bfde591a9f184eb9e677f8bb7db96f05ff55808cce12b4bae5af76c4b1c879",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "after_LF_normalization",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      },
+      {
+        "recommendation_id": "LP-13",
+        "path": "src/content/docs/tools/wartremover.md",
+        "sha256": "0046bc2c12bebabf2a03de05298adeb89f432b927dd4bd8e37c68b93b11ae583",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "after_LF_normalization",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      },
+      {
+        "recommendation_id": "LP-14",
+        "path": "src/content/docs/tools/yara-x.md",
+        "sha256": "4df1380d61e617db54d8911ed780f1e1188d14ad495abe2bc6a3ed4247d9897e",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "after_LF_normalization",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      },
+      {
+        "recommendation_id": "LP-15",
+        "path": "src/content/docs/tools/typescript.md",
+        "sha256": "e4c77fefeec18df0bb475ed59d8b908de694d64fece4c9195ebfb62806d32a29",
+        "replacement_present_once": true,
+        "original_source_absent": true,
+        "reverse_match_to_original_sha256": "after_LF_normalization",
+        "meaning": "Intended wording change confirmed; technical context and qualifiers unchanged."
+      }
+    ],
+    "limits": "No new broad review, product edit, build, or browser pass. The Semgrep Code host consistency fix is recorded separately in semgrep-host-followup.json."
+  }
+}

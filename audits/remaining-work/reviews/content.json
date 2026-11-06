@@ -1,0 +1,438 @@
+{
+  "status": "complete",
+  "reviewer": "remaining_discovery",
+  "review_kind": "independent-content-and-recipe-review",
+  "review_date": "2026-11-06",
+  "requirements": [
+    "N01",
+    "N03",
+    "REX-01",
+    "REX-03",
+    "REX-04",
+    "EXP-04",
+    "CMP-02",
+    "KNO-01",
+    "KNO-02",
+    "KNO-03",
+    "KNO-04",
+    "EXP-01",
+    "EXP-02"
+  ],
+  "findings": [],
+  "checked_requirements": [
+    {
+      "ids": [
+        "N01"
+      ],
+      "result": "passed",
+      "evidence": "All three requested result summaries identify output and interpretation. Profile decision fields feed the comparison result; illustrative examples remain labeled."
+    },
+    {
+      "ids": [
+        "N03"
+      ],
+      "result": "passed",
+      "evidence": "Trivy supplies an image command with explicit scanner, digest placeholder, registry/engine/archive assumptions and package-match limits."
+    },
+    {
+      "ids": [
+        "REX-01"
+      ],
+      "result": "passed-documentation-review",
+      "evidence": "Six pilot profiles provide prerequisites, input, action, expected signal, correction and adaptation. Their execution labels remain illustrative; CBMC harness/bounds and detect-secrets synthetic/baseline semantics are explicit."
+    },
+    {
+      "ids": [
+        "REX-03",
+        "REX-04"
+      ],
+      "result": "passed",
+      "evidence": "Pinned Ruff/mypy reruns match the retained evidence and current input digests. Shared run record separates plan, observation, status and gate; cancelled/skipped/incomplete states and illustrative unexecuted material remain distinct."
+    },
+    {
+      "ids": [
+        "EXP-04"
+      ],
+      "result": "passed",
+      "evidence": "Decision record includes component/connection, edition/workflow, rationale, prerequisites, unknowns and evidence. It links to run records after evaluation without changing exported system data."
+    },
+    {
+      "ids": [
+        "CMP-02"
+      ],
+      "result": "passed-source-review",
+      "evidence": "The two authored relationships are shared through toolChoices with profile links and comparison summaries, point to one longer explanation, and avoid diagnostic-count rankings."
+    },
+    {
+      "ids": [
+        "KNO-01",
+        "EXP-01"
+      ],
+      "result": "passed-documentation-review",
+      "evidence": "Triage and CI guides share states and run records, distinguish findings from failed/incomplete runs, retain failure artifacts, and label provider CI setup illustrative."
+    },
+    {
+      "ids": [
+        "KNO-02"
+      ],
+      "result": "passed",
+      "evidence": "Static primer links configuration checks, Hadolint, Checkov/Trivy and detect-secrets; distinguishes deployed behavior, secret validity, history and remediation."
+    },
+    {
+      "ids": [
+        "KNO-03"
+      ],
+      "result": "passed-documentation-review",
+      "evidence": "One bounds-check illustration differentiates abstract values/alarms, symbolic conditions and generated inputs, proof obligations, and modeled data-flow paths. Required profile backlinks and Eva/WP primary references are present."
+    },
+    {
+      "ids": [
+        "KNO-04"
+      ],
+      "result": "passed-source-route-walkthrough",
+      "evidence": "Task route: orientation -> catalog/source-language guidance -> profile -> Python recipe -> run record -> triage. Learning route: orientation -> static approaches -> configuration/Hadolint or advanced methods. Browser rendering remains coordinator scope."
+    },
+    {
+      "ids": [
+        "EXP-02"
+      ],
+      "result": "passed-documentation-review",
+      "evidence": "Primary docs support separate rule/database retrieval, metrics, reports, runner location and managed execution. Offline preparation/freshness limits and untested network behavior remain explicit."
+    }
+  ],
+  "tests": [
+    {
+      "name": "Existing Python runner regression tests",
+      "command": "examples/python-checks/.venv/Scripts/python.exe -m unittest -v test_runner.py",
+      "working_directory": "examples/python-checks",
+      "result": "4 passed",
+      "scope": "Controlled doubles cover timeout output, version mismatch and malformed tool result; separate subprocess verifies existing artifacts stay intact."
+    },
+    {
+      "name": "Independent faulty fixture rerun",
+      "command": ".venv/Scripts/python.exe run_checks.py bad --output reports/independent-content-bad",
+      "working_directory": "examples/python-checks",
+      "result": "Expected runner exit 1; Ruff 0.14.3 F401 at line 1 and mypy 1.18.2 arg-type at line 8; both completed-findings."
+    },
+    {
+      "name": "Independent corrected fixture rerun",
+      "command": ".venv/Scripts/python.exe run_checks.py good --output reports/independent-content-good",
+      "working_directory": "examples/python-checks",
+      "result": "Runner exit 0; both completed-no-findings."
+    },
+    {
+      "name": "Original evidence input hashes",
+      "result": "Every original bad/good run record hash equals the current raw file bytes, including runner, requirements and shared configuration."
+    },
+    {
+      "name": "Scoped Markdown route validation",
+      "result": "162 relative links resolve to existing source routes. Fragment rendering and browser interactions remain coordinator scope."
+    },
+    {
+      "name": "Crosslink and shared-content inspection",
+      "result": "Required method-profile/research links exist; comparison consumers use the authored decision and toolChoices content. This is source inspection, not browser acceptance."
+    }
+  ],
+  "source_checks": [
+    {
+      "url": "https://raw.githubusercontent.com/cpslab-asu/psy-taliro/v3.1.0/examples/nonlinear.py",
+      "scope": "First-try source exists; documented result fields and plotting-removal boundary match v3.1.0."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/cpslab-asu/psy-taliro/v3.1.0/pyproject.toml",
+      "scope": "Python 3.12 is within the specified >=3.10,<3.13 runtime requirement."
+    },
+    {
+      "url": "https://spotbugs.readthedocs.io/en/stable/introduction.html",
+      "scope": "Java 11 runtime prerequisite and bytecode-input qualification."
+    },
+    {
+      "url": "https://mypy.readthedocs.io/en/stable/getting_started.html",
+      "scope": "Runtime requirement, gradual typing, and type-checking versus execution boundary."
+    },
+    {
+      "url": "https://docs.semgrep.dev/metrics",
+      "scope": "Registry/login metrics defaults; metrics and explicit platform finding transmissions are separate."
+    },
+    {
+      "url": "https://docs.semgrep.dev/deployment/add-semgrep-to-ci",
+      "scope": "Runner execution, platform account/token, and finding submission."
+    },
+    {
+      "url": "https://docs.semgrep.dev/deployment/managed-scanning/overview#life-cycle-of-a-managed-scan",
+      "scope": "Managed clone, scan and teardown differ from a user-owned runner."
+    },
+    {
+      "url": "https://google.github.io/osv-scanner/usage/offline-mode/",
+      "scope": "Full offline, vulnerability-only offline, explicit database retrieval and missing-database failure."
+    },
+    {
+      "url": "https://trivy.dev/docs/latest/advanced/telemetry/",
+      "scope": "Current documented usage telemetry and disable-telemetry option."
+    },
+    {
+      "url": "https://trivy.dev/docs/latest/advanced/air-gap/",
+      "scope": "Separate databases, checks, remote Java lookups and optional update/telemetry connectivity."
+    },
+    {
+      "url": "https://oss.anchore.com/docs/reference/grype/configuration/",
+      "scope": "0.119.0 reference and disabled-by-default external package lookups."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Yelp/detect-secrets/v1.5.0/detect_secrets/plugins/keyword.py",
+      "scope": "Pinned keyword detector recognizes password assignments; synthetic fixture interpretation remains conditional on filters."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/rhysd/actionlint/v1.7.7/docs/usage.md",
+      "scope": "Explicit YAML arguments and empty-value flags disable optional external linters."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/pyright/1.1.407/packages/pyright/package.json",
+      "scope": "Pinned release exists and Node.js 24 exceeds its declared Node >=14 prerequisite."
+    },
+    {
+      "url": "https://model-checking.github.io/cbmc-training/cbmc/overview/proof-harnesses.html",
+      "scope": "Harness preparation and assumption/property scope."
+    },
+    {
+      "url": "https://www.cprover.org/cprover-manual/modeling/nondeterminism/",
+      "scope": "Named nondet_ functions are the documented explicit nondeterministic-input convention."
+    },
+    {
+      "url": "https://www.frama-c.com/fc-plugins/eva.html",
+      "scope": "Abstract interpretation, inferred values and possible runtime-error alarms."
+    },
+    {
+      "url": "https://www.frama-c.com/fc-plugins/wp.html",
+      "scope": "Deductive ACSL obligations and prover context."
+    },
+    {
+      "url": "https://klee-se.org/tutorials/testing-function/",
+      "scope": "Symbolic harness, LLVM input, generated tests and partial exploration distinction."
+    },
+    {
+      "url": "https://codeql.github.com/docs/writing-codeql-queries/about-data-flow-analysis/",
+      "scope": "Data-flow modeling and value propagation explanation."
+    }
+  ],
+  "limitations": [
+    "This is an independent review of the listed changes and narrow scopes, not a full review of every historical profile claim.",
+    "Ruff/mypy were executed on the existing pinned Windows environment. Pyright, Hypothesis 6.168.0, CBMC, actionlint, detect-secrets, Memcheck, SpotBugs, PSY-TaLiRo and Trivy examples were not executed in this review.",
+    "No full site build, browser acceptance, live hosted CI, or network-traffic capture was performed by this reviewer.",
+    "Other agents review newly added specialist and measurement profiles. Discovery/core implementation by this reviewer is excluded.",
+    "Style review is intentionally separate and has not been performed here."
+  ],
+  "reviewed_files": [
+    {
+      "path": "src/content/docs/tools/mypy.md",
+      "sha256": "5abedf890d4a0cfd841ae9eb33f2f3c89651a561cd844d1daf62f23056f29d80",
+      "scope": "N01 concrete result and illustrative incompatible-argument example; REX-03 shared recipe link; CMP-02 comparison guidance."
+    },
+    {
+      "path": "src/content/docs/tools/spotbugs.md",
+      "sha256": "dbd8f0f59b2c85e3142e225e8191c345989bc3c9a3418f9b52ce6e86e83e487c",
+      "scope": "N01 concrete result and 4.10.x illustrative null-dereference procedure only; existing licensing and research claims not reverified."
+    },
+    {
+      "path": "src/content/docs/tools/psy-taliro.md",
+      "sha256": "821ff60aea227a4c7033b15b0ea74baef8f8706133b92048b4958b2948fc2e24",
+      "scope": "N01 result object, trace and cost explanation; v3.1.0 documentation-led first try and finite-search qualifications only."
+    },
+    {
+      "path": "src/content/docs/tools/pyright.md",
+      "sha256": "ac0f58e10e101c4d15a71b2debea67d7195a6c11f708317ae33d5c948c4df9b7",
+      "scope": "REX-01 pinned first-try input, invocation, correction and interpretation; CMP-02 comparison link."
+    },
+    {
+      "path": "src/content/docs/tools/hypothesis.md",
+      "sha256": "4ebf2d421aa3380b195cf91d7fd783ba0729e69ef6f75d7f19e295e6f0472f35",
+      "scope": "REX-01 first-try property, strategy, faulty/corrected example and assertion limits; coverage crosslink only."
+    },
+    {
+      "path": "src/content/docs/tools/cbmc.md",
+      "sha256": "ee12b34a6831c13deaa280992e2ac3e8b8b404b677267d3cc46a07f71c2d1031",
+      "scope": "REX-01 loop-free harness, nondeterministic input, assumption, asserted property, correction and bounded-proof qualification."
+    },
+    {
+      "path": "src/content/docs/tools/actionlint.md",
+      "sha256": "6dd41b8d2348db8f991e0654b685ecf7a2da453098cfe99f4f2ebba473f3edfe",
+      "scope": "REX-01 explicit file path, external-linter disabling, unexpected-key correction and runtime limits."
+    },
+    {
+      "path": "src/content/docs/tools/detect-secrets.md",
+      "sha256": "e81497c42787b660874b15aca8a538758741f1dc2fec72e8e93cf5657c6a5acb",
+      "scope": "REX-01 synthetic keyword fixture, current-file scan, audit and correction; baseline versus remediation."
+    },
+    {
+      "path": "src/content/docs/tools/valgrind-memcheck.md",
+      "sha256": "fb724a9d87cd91eb9f3c05aa864d019c5e1549b604356ee45af586d13a31a83d",
+      "scope": "REX-01 amd64 Linux first try, invalid write, rebuild/correction, execution scope and allocation failure."
+    },
+    {
+      "path": "src/content/docs/tools/trivy.md",
+      "sha256": "9fb0e6d02e391fbfdb632f4a5aca7ffe6fd24801825c1bd8e2d421ae296adc35",
+      "scope": "N03 image-specific invocation and artifact/access assumptions; CMP-02 package-scanner relationship guidance and execution boundary link."
+    },
+    {
+      "path": "src/content/docs/tools/ruff.md",
+      "sha256": "5a87512fc60addc023249f1734ae95d5dbd04ce8ff8678c5b98fe9c3c1bf89eb",
+      "scope": "REX-03 shared recipe link and existing comparison context only."
+    },
+    {
+      "path": "src/content/docs/tools/osv-scanner.md",
+      "sha256": "ec42f9137163cb1afd75e391b888b9f9d532e33532bb8b9e72b1ce89b0272bb3",
+      "scope": "CMP-02 comparison link and EXP-02 boundary link only; broad profile metadata not reverified."
+    },
+    {
+      "path": "src/content/docs/guides/run-record.md",
+      "sha256": "e9ae2ea6d0361091d0a7665baf0fa64532ee8a934762c6f9d9bc34ef3f5f4651",
+      "scope": "REX-04 reusable planned/observed record, completion/failure states, evidence fields and interpretation."
+    },
+    {
+      "path": "src/content/docs/guides/choosing-and-recording-tools.md",
+      "sha256": "9169bda35db57e3ff03b455cddcbfe555730ef4c8a3f178867b8d1a61b4ede7d",
+      "scope": "EXP-04 component/workflow decision template and rationale, unknowns, evidence, and transition to execution."
+    },
+    {
+      "path": "src/content/docs/guides/python-checks.md",
+      "sha256": "6bdf30444bafc6b62c13d3f04c0ced3a312503b1ec5df87ef92282e514b8ccd9",
+      "scope": "REX-03 shared faulty/corrected procedure, environment, gate statuses and retained evidence."
+    },
+    {
+      "path": "src/content/docs/guides/reviewing-findings.md",
+      "sha256": "700fd7757fe5347395e0d515b573bbfb5f2e06542e363691280898588056f9b2",
+      "scope": "KNO-01 completion states, investigation/disposition, suppression versus repair, source/advisory examples and evidence links."
+    },
+    {
+      "path": "src/content/docs/guides/ci-checks.md",
+      "sha256": "f06eae1dc85acf8f1437317a88aef581fdd3b7ddd581b8ade8e5c94ec70c75a1",
+      "scope": "EXP-01 illustrative CI handoff using the existing runner, explicit nonfixing gate, failure/artifact handling and research boundary."
+    },
+    {
+      "path": "src/content/docs/guides/execution-and-data.md",
+      "sha256": "c09fe5e9365d7898b136f231242cd5c74cda52602714326646cde8b6e565c19c",
+      "scope": "EXP-02 documented execution, retrieval, metrics, platform reporting, account and offline boundaries for the five named workflows."
+    },
+    {
+      "path": "src/content/docs/guides/using-this-wiki.md",
+      "sha256": "606577c872c16026719dc9b1ec3eff41f1a27d56a1d32908a90e8aa805a17858",
+      "scope": "KNO-04 task and learning routes, known-tool route, verification/execution distinction; source-level route walkthrough only."
+    },
+    {
+      "path": "src/content/docs/concepts/static-approaches.md",
+      "sha256": "164b4143da0e0170cd90d30a2e25b86c35a3fb9c1d0f5520a15c830a8f1aeecd",
+      "scope": "KNO-02 configuration/secret routes, definitions versus deployment, current-file versus history and candidate/advisory distinctions."
+    },
+    {
+      "path": "src/content/docs/concepts/advanced-static-methods.md",
+      "sha256": "9785932a106a87dbee16f7d50e93cfcb8e477de5321207cd3455cceb9a3d318c",
+      "scope": "KNO-03 shared bounds example and four method questions, prerequisites, outputs and limits."
+    },
+    {
+      "path": "src/content/docs/concepts/verification-and-generated-tests.md",
+      "sha256": "4188156b262908d5c9967f4b393d10698b3dd61844fe93d4d9df6778eb355b43",
+      "scope": "KNO-03 proof, counterexample and test-evidence distinctions and primary WP link; new measurement profiles are reviewed separately."
+    },
+    {
+      "path": "src/content/docs/research/sast-adoption.md",
+      "sha256": "7b9b5410cfbe57054112aac2bce8e772e3832172798b4576a747d2dcaebc2768",
+      "scope": "KNO-01 added current-procedure links and explicit separation from historical study findings only."
+    },
+    {
+      "path": "src/content/docs/research/sast-workflow.md",
+      "sha256": "500e5a8dbcc9e45d7a406e2bdb92fd20b729c7d51983a2eb8f0a770cc258f326",
+      "scope": "EXP-01 added current-procedure links and explicit separation from historical integration only."
+    },
+    {
+      "path": "src/data/tool-choices.ts",
+      "sha256": "ee700e88fafc53fd0103a21d90a1d4cb897d13958bedeb5f1ecac571b10a68a6",
+      "scope": "CMP-02 two newly authored mypy/Pyright and Trivy/OSV relationship records only; prior discovery implementation excluded."
+    },
+    {
+      "path": "examples/python-checks/run_checks.py",
+      "sha256": "e251b3267934feb80724af9d2ee60145059a7259a36210458ee4e6a08d8c150c",
+      "scope": "REX-03/04 pinned-version checks, separate process results, report validation, timeout preservation, overwrite protection and exit gate."
+    },
+    {
+      "path": "examples/python-checks/test_runner.py",
+      "sha256": "f65896c6404d767777446c496e6c1c5e0968999103d274539d49874fab1320be",
+      "scope": "REX-03/04 four existing tests for incomplete/failed runs and retained artifacts."
+    },
+    {
+      "path": "examples/python-checks/evidence.md",
+      "sha256": "cff8f2d44ae72e7fc6626d03e0349a192073fe3c0b312cee8722ae0dd5ca32c9",
+      "scope": "Executed claims, versions, faulty/corrected outputs and normalized-path disclosure."
+    },
+    {
+      "path": "examples/python-checks/pyproject.toml",
+      "sha256": "995758050d891bfb9ca75bb3820446b0f82353727efaffb87344c8fea48407d9",
+      "scope": "Shared Ruff F401, strict mypy and Python 3.13 target configuration."
+    },
+    {
+      "path": "examples/python-checks/requirements.txt",
+      "sha256": "7fc660f71e47412548c51dc4c9eb982af3c4bdd52ce91634ad9e373cff7f87cd",
+      "scope": "Exact analyzer version pins."
+    },
+    {
+      "path": "examples/python-checks/bad/greeting.py",
+      "sha256": "ae2a8d14259cb9d2b87df0fa5d9886bb380ea17ab8753e76c8683ab7090ae4a3",
+      "scope": "Faulty input used by both checks."
+    },
+    {
+      "path": "examples/python-checks/good/greeting.py",
+      "sha256": "ec88bf30da24ef6bda3a0b696145015055e8037ee5d25dcf6a1d05f1149cf46b",
+      "scope": "Corrected input used by both checks."
+    },
+    {
+      "path": "examples/python-checks/evidence/bad/run.json",
+      "sha256": "4922732980159c92bd5adb0770a923be1d2889e0c58daac5750985ca5092117f",
+      "scope": "Retained execution artifact checked against documented statuses, diagnostics and current source digests."
+    },
+    {
+      "path": "examples/python-checks/evidence/bad/ruff.json",
+      "sha256": "d743c59b55fffc790238412b7ab22f4b24f8659f71d356de01bffc2190fd8b21",
+      "scope": "Retained execution artifact checked against documented statuses, diagnostics and current source digests."
+    },
+    {
+      "path": "examples/python-checks/evidence/bad/ruff.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "Retained execution artifact checked against documented statuses, diagnostics and current source digests."
+    },
+    {
+      "path": "examples/python-checks/evidence/bad/mypy.txt",
+      "sha256": "c98fd266654ae5b328f93956c9e0e631a7ed246c03f06f8af446dbd5403d9573",
+      "scope": "Retained execution artifact checked against documented statuses, diagnostics and current source digests."
+    },
+    {
+      "path": "examples/python-checks/evidence/bad/mypy.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "Retained execution artifact checked against documented statuses, diagnostics and current source digests."
+    },
+    {
+      "path": "examples/python-checks/evidence/good/run.json",
+      "sha256": "24dd334ba0dae9f6466774986c1213c1503d5db2cf832f3b818a1094aa84adba",
+      "scope": "Retained execution artifact checked against documented statuses, diagnostics and current source digests."
+    },
+    {
+      "path": "examples/python-checks/evidence/good/ruff.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "scope": "Retained execution artifact checked against documented statuses, diagnostics and current source digests."
+    },
+    {
+      "path": "examples/python-checks/evidence/good/ruff.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "Retained execution artifact checked against documented statuses, diagnostics and current source digests."
+    },
+    {
+      "path": "examples/python-checks/evidence/good/mypy.txt",
+      "sha256": "5d4b6d285b77932e3d08212c3b4974d0a803f98ec60408ac6ccf6a063fa6c19e",
+      "scope": "Retained execution artifact checked against documented statuses, diagnostics and current source digests."
+    },
+    {
+      "path": "examples/python-checks/evidence/good/mypy.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "Retained execution artifact checked against documented statuses, diagnostics and current source digests."
+    }
+  ],
+  "completed_at_utc": "2026-11-06T20:33:47.652Z"
+}

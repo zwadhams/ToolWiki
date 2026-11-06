@@ -1,0 +1,63 @@
+Schemathesis v4.33.1
+????????????????????
+
+ ?  Loaded specification from http://127.0.0.1:53070/openapi.json (in 0.64s)
+
+     Base URL:         http://127.0.0.1:53070/
+     Specification:    Open API 3.0.3
+     Operations:       3 selected / 3 total
+
+ ?  API capabilities:
+
+     Supports NULL byte in headers:                            ?
+     Accepts backslash and control characters in URL paths:    ?
+
+ ?  Coverage (in 0.11s)
+
+     ? 1 failed
+
+=================================== FAILURES ===================================
+_________________________________ POST /orders _________________________________
+1. Test Case ID: w8L2xG
+
+- ST101 Server error
+
+[500] Internal Server Error:
+
+    `{"error": "Zero-quantity unit-price defect"}`
+
+Reproduce with:
+
+    curl -X POST -H 'Content-Type: application/json' -d '{"quantity": 0}' http://127.0.0.1:53070/orders
+
+    st replay w8L2xG
+
+=================================== SUMMARY ====================================
+
+API Operations:
+  Selected: 3/3
+  Tested: 1
+  Skipped: 2
+    - Failure limit reached
+
+Test Phases:
+  ?  Examples (disabled)
+  ? Coverage
+  ?  Fuzzing (failure limit reached)
+  ?  Stateful (failure limit reached)
+
+Failures:
+  ? ST101 Server error: 1
+
+For more information, run `st explain ST101`.
+
+Test cases:
+  3 generated, 1 found 1 unique failure
+
+Reports:
+  - JUnit: C:\Users\zwadh\Repos\ToolWiki\.preview\api-wrapper-faulty\junit.xml
+
+Seed: 20261106
+
+============================== 1 failure in 0.17s ==============================
+

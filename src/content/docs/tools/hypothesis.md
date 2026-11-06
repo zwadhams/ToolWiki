@@ -73,6 +73,51 @@ A failing example demonstrates that the test failed for that execution. Investig
 
 A passing run covers the examples exercised within its configured budget; it is not a proof over every possible input.
 
-## A useful first evaluation
+[coverage.py](../coverage-py/) can measure which Python lines and branches the
+test run reaches. It does not judge whether the property is strong enough.
+The [test-evidence guide](../../guides/test-evidence/) compares execution
+coverage, source mutation, and generated inputs.
 
-Start with a deterministic function and a meaningful property such as an invariant or round trip. Inspect the reported failing example, preserve a regression case, and refine the strategy when its domain differs from valid production inputs.
+<span id="a-useful-first-evaluation"></span>
+
+## First try
+
+**Illustrative example; not executed here.** Use Python 3.13 with
+[Hypothesis 6.168.0](https://pypi.org/project/hypothesis/6.168.0/) in an isolated
+environment on Windows, Linux, or macOS. Follow the
+[quickstart](https://hypothesis.readthedocs.io/en/latest/quickstart.html), installing
+`hypothesis==6.168.0`. Save this as `test_magnitude.py`:
+
+```python
+from hypothesis import given, strategies as st
+
+
+def magnitude(value: int) -> int:
+    return value
+
+
+@given(st.integers(min_value=-100, max_value=100))
+def test_nonnegative(value: int) -> None:
+    assert magnitude(value) >= 0
+
+
+if __name__ == "__main__":
+    test_nonnegative()
+```
+
+Run the test directly; no separate test runner is needed:
+
+```sh
+python test_magnitude.py
+```
+
+Expect an assertion failure with a negative generated input. Hypothesis attempts
+to simplify the failing example; do not depend on a particular discovery order.
+Replace `return value` with `return abs(value)` and rerun. The selected property
+should then hold for the examples generated in this run.
+
+This property checks only nonnegativity. A function that always returns zero
+would also satisfy it, so add properties that express your actual contract, such
+as agreement with a trusted reference or a round trip. Keep the failing example
+as a regression test, and record the Hypothesis version, strategies, settings,
+and any example database needed for replay in the [run record](../../guides/run-record/).

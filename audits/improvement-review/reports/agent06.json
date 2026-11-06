@@ -1,0 +1,454 @@
+{
+  "agent": "audit06_concepts",
+  "date": "2026-11-06",
+  "role": "Concepts and knowledge structure",
+  "status": "complete",
+  "scope": "Read-only source review of every concept, research note and guide, plus representative profiles. No browser interaction or analyzer execution.",
+  "summary": "No factual contradiction established. The existing material is careful about evidence and limitations. Three substantive knowledge gaps and one lower-confidence learning-path opportunity would make that knowledge more reusable.",
+  "screenedPages": [
+    {
+      "path": "src/content/docs/concepts/static-vs-dynamic.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/concepts/static-approaches.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/concepts/sast-vs-dast.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/concepts/dast-approaches.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/concepts/model-falsification.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/concepts/verification-and-generated-tests.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/research/index.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/research/comparing-tools.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/research/sast-adoption.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/research/sast-workflow.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/research/software-quality.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/research/binary-analysis.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/guides/editing.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/guides/java-analysis.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/guides/memory-error-detection.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/guides/temporal-monitoring-and-falsification.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/index.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/static.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/dynamic.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/analysis-suite.md",
+      "status": "screened_full"
+    },
+    {
+      "path": "src/content/docs/tools/frama-c.md",
+      "status": "representative_deep_read"
+    },
+    {
+      "path": "src/content/docs/tools/klee.md",
+      "status": "representative_deep_read"
+    },
+    {
+      "path": "src/content/docs/tools/rtamt.md",
+      "status": "representative_deep_read"
+    },
+    {
+      "path": "src/content/docs/tools/s-taliro.md",
+      "status": "representative_deep_read"
+    },
+    {
+      "path": "src/content/docs/tools/phpstan.md",
+      "status": "representative_deep_read"
+    },
+    {
+      "path": "src/content/docs/tools/detect-secrets.md",
+      "status": "representative_deep_read"
+    },
+    {
+      "path": "src/content/docs/tools/checkov.md",
+      "status": "representative_deep_read"
+    },
+    {
+      "path": "src/content/docs/tools/codeql.md",
+      "status": "targeted_terminology_spot_check"
+    },
+    {
+      "path": "src/content/docs/tools/psalm.md",
+      "status": "targeted_terminology_spot_check"
+    },
+    {
+      "path": "src/content/docs/tools/angr.md",
+      "status": "targeted_terminology_spot_check"
+    }
+  ],
+  "methods": [
+    "Read all 6 concepts, 6 research notes, and 4 guides including authoring guidance.",
+    "Read navigation and generated-profile source to check discoverability and evidence labels.",
+    "Searched concept/guide/research content for triage, false-positive, suppression, baseline and advanced-method terminology.",
+    "Checked six primary documentation pages to support the proposed explanatory scope, not to recertify all product claims.",
+    "Reviewed prior tool-review and usability records for S-TaLiRo, RTAMT and PHPStan uncertainty."
+  ],
+  "findings": [
+    {
+      "id": "KNO-01",
+      "kind": "content_gap",
+      "priority": "P2",
+      "title": "Turn interpretation caveats into a reusable finding-triage workflow",
+      "readerTask": "Decide what to do with a report after the first analysis run, and keep later runs comparable.",
+      "locations": [
+        {
+          "path": "src/content/docs/research/sast-adoption.md",
+          "line": 24
+        },
+        {
+          "path": "src/content/docs/research/sast-workflow.md",
+          "line": 26
+        },
+        {
+          "path": "src/content/docs/research/comparing-tools.md",
+          "line": 26
+        },
+        {
+          "path": "src/content/docs/concepts/sast-vs-dast.md",
+          "line": 20
+        },
+        {
+          "path": "src/content/docs/tools/phpstan.md",
+          "line": 72
+        },
+        {
+          "path": "src/content/docs/tools/detect-secrets.md",
+          "line": 68
+        }
+      ],
+      "observation": "Research notes ask readers to evaluate false positives, duplicate reports and review effort, and list integration considerations. Concept pages say findings need investigation. Tool pages supply useful local advice, such as preserving baselines, but the reader guides cover Java, memory checks and temporal work only. There is no maintained cross-tool procedure joining completion/scope checks, evidence review, disposition, remediation and rerun.",
+      "evidence": [
+        "SAST adoption lists evaluation questions at lines 28-36 rather than steps for reviewing an individual report.",
+        "SAST in CI/CD lines 28-34 distinguishes analysis completion, duplicate prevention and resolution, and explicitly calls them considerations rather than a tested connector.",
+        "PHPStan lines 74-76 correctly explains that baselined errors remain unresolved; detect-secrets lines 68-74 correctly distinguishes review and remediation. These are reusable ideas currently distributed by tool."
+      ],
+      "impact": "A reader can choose and run a tool yet still lack a consistent way to distinguish incomplete analysis, a reported issue, a confirmed defect, an accepted exception and a repaired issue. Repeated local caveats do not teach that end-to-end decision process.",
+      "confidence": {
+        "observation": "high",
+        "impact": "medium; source-based content assessment, not a failed live-user task"
+      },
+      "recommendation": "Add one practical reviewing-findings guide and link to it from the adoption/integration notes and representative profiles. Cover successful analysis and intended scope first, then location/rule/context review, investigation and disposition, narrowly justified exceptions, a fix or changed assumption, and a comparable rerun. Use one source-warning example and one advisory-match example to show that different evidence needs different investigation.",
+      "acceptanceCriteria": [
+        "The guide distinguishes a clean completed run from a failed, skipped or incomplete analysis.",
+        "A reader can record rule/finding identity, location, project and tool configuration, investigation evidence, decision and next action.",
+        "It distinguishes suppression/baselining from fixing an issue, and links to actual tool-specific controls rather than inventing a universal suppression command.",
+        "Examples distinguish a reported candidate from a confirmed issue and retain illustrative/executed status.",
+        "Existing research pages link to the procedure while preserving the distinction between study findings and current advice."
+      ],
+      "effort": "medium",
+      "dependencies": [],
+      "compatibility": "New reader content and links; no API, metadata or saved-format change.",
+      "primarySources": [
+        {
+          "url": "https://phpstan.org/user-guide/baseline",
+          "accessed": "2026-11-06",
+          "supports": "A baseline changes what is reported in subsequent runs; it is a mechanism for deferring existing errors, not evidence that those errors were repaired."
+        }
+      ]
+    },
+    {
+      "id": "KNO-02",
+      "kind": "content_gap",
+      "priority": "P2",
+      "title": "Bring the static-analysis primer up to the catalog's configuration and secret-scanning scope",
+      "readerTask": "Understand which analysis fits infrastructure files or suspected credentials before comparing tools.",
+      "locations": [
+        {
+          "path": "src/content/docs/concepts/static-approaches.md",
+          "line": 6
+        },
+        {
+          "path": "src/content/docs/concepts/static-approaches.md",
+          "line": 10
+        },
+        {
+          "path": "src/content/docs/concepts/static-approaches.md",
+          "line": 25
+        },
+        {
+          "path": "src/content/docs/tools/checkov.md",
+          "line": 54
+        },
+        {
+          "path": "src/content/docs/tools/detect-secrets.md",
+          "line": 39
+        },
+        {
+          "path": "src/content/docs/guides/editing.md",
+          "line": 140
+        }
+      ],
+      "observation": "The primer's starting inputs and input table cover source, binaries, dependency metadata and container images. Its technique table omits configuration analysis and secret scanning. The catalog already contains five Configuration files profiles and a dedicated detect-secrets profile; the clearest shared distinction between configuration files and application source is in the authoring guide.",
+      "evidence": [
+        "static-approaches lines 10-15 contains four input rows with no Configuration files row.",
+        "static-approaches lines 25-32 contains linting, typing, bug/security checks, binary weaknesses, SCA and verification, but no infrastructure policy or credential-scanning explanation.",
+        "Checkov lines 56-64 explains policy checks over infrastructure definitions and explicitly separates that from live deployment audit.",
+        "detect-secrets lines 39-51 and 68-74 distinguish file-pattern screening, baseline review, exposure response and non-complete Git-history coverage."
+      ],
+      "impact": "The conceptual entry point trails the catalog expansion. Readers may miss these existing workflows or treat configuration, credential and dependency checks as interchangeable application-source security analysis.",
+      "confidence": {
+        "observation": "high",
+        "impact": "medium"
+      },
+      "recommendation": "Add a Configuration files input row and short technique explanations for infrastructure policy checks and secret scanning, with links to existing profiles and filtered catalog routes. Keep input, method and result separate; do not claim that policy checks inspect a deployed environment or that candidate secret strings establish valid exposed credentials.",
+      "acceptanceCriteria": [
+        "A Terraform or Dockerfile reader can find an appropriate existing configuration-analysis route from the primer.",
+        "A reader looking for credentials can find detect-secrets and understand candidate review, baseline scope and exposure-response limits.",
+        "The page distinguishes these workflows from application source semantics and advisory matching.",
+        "No new analyzer profile or automatic capability broadening is required."
+      ],
+      "effort": "small",
+      "dependencies": [],
+      "compatibility": "Extend an existing concept page; preserve existing headings/anchors or add aliases if headings change.",
+      "primarySources": [
+        {
+          "url": "https://www.checkov.io/1.Welcome/Quick%20Start.html",
+          "accessed": "2026-11-06",
+          "supports": "The official quickstart scans infrastructure configuration and reports passed, failed and skipped resource-policy checks."
+        },
+        {
+          "url": "https://github.com/Yelp/detect-secrets",
+          "accessed": "2026-11-06",
+          "supports": "The project documents a baseline and review workflow for candidate secrets, intentionally avoiding a complete historical scan on each run."
+        }
+      ]
+    },
+    {
+      "id": "KNO-03",
+      "kind": "content_gap",
+      "priority": "P2",
+      "title": "Explain advanced method labels using the decisions and outputs readers encounter",
+      "readerTask": "Choose between symbolic execution, abstract interpretation, deductive verification and data-flow or taint analysis without treating their reports as equivalent.",
+      "locations": [
+        {
+          "path": "src/content/docs/concepts/static-approaches.md",
+          "line": 25
+        },
+        {
+          "path": "src/content/docs/concepts/verification-and-generated-tests.md",
+          "line": 10
+        },
+        {
+          "path": "src/content/docs/tools/frama-c.md",
+          "line": 84
+        },
+        {
+          "path": "src/content/docs/tools/klee.md",
+          "line": 64
+        },
+        {
+          "path": "src/content/docs/tools/psalm.md",
+          "line": 34
+        },
+        {
+          "path": "src/components/ArticleContent.astro",
+          "line": 44
+        }
+      ],
+      "observation": "The catalog/profile technique vocabulary includes symbolic execution, abstract interpretation, data flow and taint analysis, but the shared concepts do not explain those terms or connect them to the relevant setup and result differences. The verification comparison covers fuzzing, properties, temporal falsification, bounded checking and a broad static-verification row. Frama-C and KLEE give useful local distinctions that readers must assemble themselves.",
+      "evidence": [
+        "Searching concepts and reader guides for abstract interpretation and symbolic execution yields no explanations.",
+        "verification-and-generated-tests lines 10-16 compares five broad approaches but does not include symbolic path exploration or distinguish abstract interpretation from deductive proof.",
+        "Frama-C's two-plugin table distinguishes inferred possible values/alarms from proof obligations; KLEE lines 68-74 asks for symbolic inputs, constraints, completed and interrupted paths.",
+        "Psalm findingNote requires modeled sources, sinks and sanitization, without a shared concept page defining the analysis relationship."
+      ],
+      "impact": "A reader sees method names in filters and compatibility sections before learning what preparation each method requires or why an alarm, path, generated input and unresolved obligation are different forms of evidence.",
+      "confidence": {
+        "observation": "high",
+        "impact": "medium"
+      },
+      "recommendation": "Add a concise static-methods explanation linked from the existing primer and relevant profiles. Use a small illustrative program or diagram to distinguish value approximations, symbolic path constraints, proof obligations, and propagation of data/taint. Explain each method's assumptions and result interpretation, and clarify why symbolic execution or concrete emulation needs workflow-specific mode labeling.",
+      "acceptanceCriteria": [
+        "Each covered technique has a plain-language question, required preparation, typical output and important limit.",
+        "The explanation distinguishes a possible-error alarm, a modeled counterexample, a generated concrete input and an unresolved proof obligation.",
+        "Data-flow and taint explanations introduce source/sink/model scope without promising complete framework coverage.",
+        "Relevant KLEE, angr, Frama-C, CodeQL and Psalm pages link to one maintained explanation rather than duplicating it.",
+        "No wholesale reclassification of existing Static/Dynamic tags is made without a separate workflow review."
+      ],
+      "effort": "medium",
+      "dependencies": [],
+      "compatibility": "New explanatory content and internal links; existing technique strings and filter URLs remain valid.",
+      "primarySources": [
+        {
+          "url": "https://klee-se.org/tutorials/testing-function/",
+          "accessed": "2026-11-06",
+          "supports": "The official tutorial connects symbolic inputs and LLVM bitcode to explored paths, generated test files and interrupted-path limits."
+        },
+        {
+          "url": "https://www.frama-c.com/fc-plugins/eva.html",
+          "accessed": "2026-11-06",
+          "supports": "Eva documents abstract interpretation, inferred value domains and possible runtime-error alarms."
+        },
+        {
+          "url": "https://codeql.github.com/docs/writing-codeql-queries/about-data-flow-analysis/",
+          "accessed": "2026-11-06",
+          "supports": "The official concept explains data-flow graphs, local/global scope and how taint propagation differs from value-preserving flow."
+        }
+      ]
+    },
+    {
+      "id": "KNO-04",
+      "kind": "opportunity",
+      "priority": "P3",
+      "title": "Offer a short reader orientation that connects the knowledge layers",
+      "readerTask": "Know when to use task shortcuts, concepts, comparisons, profiles, system matching and research notes.",
+      "locations": [
+        {
+          "path": "src/content/docs/index.md",
+          "line": 8
+        },
+        {
+          "path": "src/components/ToolCatalog.astro",
+          "line": 25
+        },
+        {
+          "path": "astro.config.mjs",
+          "line": 25
+        },
+        {
+          "path": "src/content/docs/concepts/static-vs-dynamic.md",
+          "line": 21
+        },
+        {
+          "path": "src/content/docs/research/index.md",
+          "line": 19
+        },
+        {
+          "path": "src/content/docs/guides/editing.md",
+          "line": 110
+        }
+      ],
+      "observation": "The home page starts with tool finding and task filters, and the sidebar lists concepts and workflows by topic. Existing cross-links are useful, but there is no compact reader-facing orientation joining the selection process to the learning/evidence pages. The detailed account of matching status and catalog scope lives mostly in the editing guide and individual UI help.",
+      "evidence": [
+        "Home content is a single tool-finding introduction followed by the catalog.",
+        "Task shortcuts generally lead to filtered candidates; the memory shortcut leads to a workflow guide.",
+        "Concepts are listed in a collapsed topic group with no explicit short learning route; research overview explains paper roles but is not an orientation to the whole wiki."
+      ],
+      "impact": "Readers unfamiliar with analysis terminology must discover how the parts of the wiki fit together. This is a bounded onboarding opportunity, not evidence that the current tasks fail: the independent newcomer agent completed the requested journeys.",
+      "confidence": {
+        "observation": "high",
+        "impact": "medium_to_low; not directly user-tested by this agent"
+      },
+      "recommendation": "Add a short Use this wiki reader page or equivalent compact orientation. Present two routes: choosing a tool for a known task, and learning the distinctions needed to choose. Reuse existing concept, comparison and workflow pages. Explain that system candidates reflect reviewed prerequisites and that documentation dates are not execution or benchmark claims, using the existing language.",
+      "acceptanceCriteria": [
+        "A first-time reader can find a task route and a learning route without reading authoring instructions.",
+        "The orientation links to existing material rather than duplicating tool lists or long definitions.",
+        "Known-tool users retain the direct catalog and comparison paths.",
+        "A short independent walkthrough checks whether the orientation improves route selection before larger navigation restructuring."
+      ],
+      "effort": "small",
+      "dependencies": [
+        "Coordinate with reader-usability findings; do not redesign navigation solely from this heuristic."
+      ],
+      "compatibility": "Additive reader page/link; no current URL, metadata or saved-system changes.",
+      "primarySources": []
+    }
+  ],
+  "positives": [
+    "Static/dynamic distinction explicitly includes recorded traces and separates input format from analysis mode.",
+    "SAST/DAST concepts distinguish discovery, authentication, active/passive checks and non-security dynamic techniques.",
+    "Verification guidance defines harness and oracle, distinguishes tests from proof, and explains incomplete bounded/proof results.",
+    "Temporal guidance explains monitor versus search, finite budgets, replay, timing semantics, zero robustness and model limitations.",
+    "Research notes distinguish observations, recommendations and unvalidated proposals; they separate historical editions and later preprint dates.",
+    "Generated profile Sources and evidence text explicitly defines Docs checked as documentation review and labels example status separately."
+  ],
+  "priorAuditReconciliation": [
+    {
+      "topic": "S-TaLiRo GPL footnote",
+      "status": "resolved_in_current_text",
+      "evidence": "Tool page lines12 and43 and model-falsification line46 no longer infer GPL-3.0 from a footnote."
+    },
+    {
+      "topic": "S-TaLiRo current distribution and compatibility",
+      "status": "still_open_and_disclosed",
+      "evidence": "Tool page lines14-20 and41-45 retains historical scope and unverified current availability. No new upstream availability verification was attempted by this agent."
+    },
+    {
+      "topic": "RTAMT prior execution provenance",
+      "status": "still_open_and_disclosed",
+      "evidence": "Tool page lines61 and83 clearly distinguishes previously reported output from missing saved run provenance and the later Python/parser import failure. This audit did not execute it."
+    },
+    {
+      "topic": "PHPStan Pro current prices",
+      "status": "still_open_and_disclosed",
+      "evidence": "editions.ts retains unverified-current-price caveat; no exact current price is asserted. No account access or pricing verification was attempted by this agent."
+    },
+    {
+      "topic": "Historical research versus current editions",
+      "status": "resolved_in_current_text",
+      "evidence": "research/comparing-tools lines39-43, research/index lines21-23 and related tool notes keep configuration/edition ambiguity visible."
+    }
+  ],
+  "rejectedLeads": [
+    {
+      "lead": "Docs checked is an unqualified hands-on validation claim",
+      "resolution": "Rejected. Catalog note and ArticleContent Sources and evidence explicitly define documentation review and separate execution status."
+    },
+    {
+      "lead": "Research notes establish a universal tool ranking or security score",
+      "resolution": "Rejected. Comparing-tools explicitly disclaims accuracy ranking; software-quality and binary-analysis retain proposal/validation limitations."
+    },
+    {
+      "lead": "Missing advanced-method explanations justify reclassifying symbolic execution as Dynamic",
+      "resolution": "Not established. Existing KLEE/angr scopes deliberately cover model-based/offline workflows. Recommend explaining the taxonomy, not changing tags without review."
+    }
+  ],
+  "limitations": [
+    "No live browser interactions performed in this lane.",
+    "No analyzer installation or example execution.",
+    "Source structure and selected primary docs were checked; research-paper numbers and every product claim were not independently re-audited.",
+    "Absence-of-content findings are based on complete local concept/research/guide reading plus targeted repository search; user impact remains a heuristic.",
+    "The task-orientation recommendation is lower priority and should be tested before broader navigation changes."
+  ]
+}

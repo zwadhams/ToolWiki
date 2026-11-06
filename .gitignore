@@ -2,6 +2,10 @@ node_modules/
 dist/
 .astro/
 .preview/
+.venv/
+__pycache__/
+.hypothesis/
+.schemathesis/
 .env
 .env.*
 !.env.example

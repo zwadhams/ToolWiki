@@ -2,6 +2,11 @@ import { ACCESS, GOALS, profileSchema } from './system-schema.mjs';
 
 export const STORAGE_KEY = 'toolwiki.analysis-suite.v1';
 export const MAX_IMPORT_BYTES = 1024 * 1024;
+const sizeLabel = '1 MiB';
+export class ProfileDataError extends Error {
+  constructor(code, message) { super(message); this.name = 'ProfileDataError'; this.code = code; }
+}
+const byteLength = raw => new TextEncoder().encode(raw).length;
 export function newComponent(id = crypto.randomUUID()) {
   return { id, name: '', included: true, kind: '', languages: [], inputs: [], inputsComplete: false, goals: [], notes: '', binaryFormat: '', hostPlatform: '', targetPlatform: '', deployment: '', technologies: [], access: { rebuild: 'unknown', instrument: 'unknown', harness: 'unknown', testInstance: 'unknown' } };
 }
@@ -12,26 +17,77 @@ export function newProfile() {
   return { version: 1, name: '', preferences: { cost: '', license: '' }, components: [newComponent()], connections: [] };
 }
 export function parseProfile(raw) {
-  if (typeof raw !== 'string' || new TextEncoder().encode(raw).length > MAX_IMPORT_BYTES) throw new Error('Choose a system file smaller than 1 MB.');
+  if (typeof raw !== 'string') throw new ProfileDataError('format', 'This file is not valid JSON. Your current system has been kept.');
+  if (byteLength(raw) > MAX_IMPORT_BYTES) throw new ProfileDataError('size', `System files can be up to ${sizeLabel}. Your current system has been kept.`);
   let value;
-  try { value = JSON.parse(raw); } catch { throw new Error('This file is not valid JSON. Your current system has been kept.'); }
-  if (value?.version !== 1) throw new Error('This system file version is not supported. Your current system has been kept.');
+  try { value = JSON.parse(raw); } catch { throw new ProfileDataError('format', 'This file is not valid JSON. Your current system has been kept.'); }
+  if (value?.version !== 1) throw new ProfileDataError('version', 'This system file version is not supported. Your current system has been kept.');
   const parsed = profileSchema.safeParse(value);
-  if (!parsed.success) throw new Error('This system file contains invalid fields or connections. Your current system has been kept.');
+  if (!parsed.success) throw new ProfileDataError('schema', 'This system file contains invalid fields or connections. Your current system has been kept.');
   return parsed.data;
 }
-export function serializeProfile(profile) { return JSON.stringify(profileSchema.parse(profile), null, 2); }
+export function serializeProfile(profile) {
+  const parsed = profileSchema.safeParse(profile);
+  if (!parsed.success) throw new ProfileDataError('schema', 'This description contains invalid fields or connections. Correct them before saving or exporting.');
+  const raw = JSON.stringify(parsed.data, null, 2);
+  if (byteLength(raw) > MAX_IMPORT_BYTES) throw new ProfileDataError('size', `The formatted description exceeds ${sizeLabel}. Reduce notes, selected languages, or system parts before saving or exporting.`);
+  return raw;
+}
+/** Preflight the representation we will save, before committing any import state. */
+export function prepareProfileImport(raw) {
+  const profile = parseProfile(raw);
+  try { serializeProfile(profile); }
+  catch (error) {
+    if (error instanceof ProfileDataError && error.code === 'size') throw new ProfileDataError('normalized-size', `This file expands beyond ${sizeLabel} when prepared for saving. Reduce its contents before importing. Your current system has been kept.`);
+    throw error;
+  }
+  return profile;
+}
+export function recoveryMessage(recovery) {
+  return recovery?.kind === 'read-error'
+    ? 'Saved data could not be read. Automatic saving is paused; current edits remain in memory. Retry reading saved data.'
+    : 'Automatic saving is paused to protect saved data. Download recovery data before choosing Replace saved system to save this description.';
+}
 export function restoreProfile(storage) {
   let raw;
   try {
     raw = storage.getItem(STORAGE_KEY);
-  } catch { return { profile: newProfile(), error: 'Browser saving is unavailable. You can continue and export your system.' }; }
-  try { return { profile: raw ? parseProfile(raw) : newProfile(), error: '' }; }
-  catch { return { profile: newProfile(), error: 'The saved system could not be read. Import an exported system file or start a new description.' }; }
+  } catch {
+    const recovery = { kind: 'read-error', raw: null, reason: 'Browser storage could not be read.' };
+    return { profile: newProfile(), raw: null, recovery, error: recoveryMessage(recovery) };
+  }
+  try { return { profile: raw === null ? newProfile() : parseProfile(raw), raw, recovery: null, error: '' }; }
+  catch (error) {
+    const recovery = { kind: 'unreadable', raw, reason: error.message };
+    return { profile: newProfile(), raw, recovery, error: recoveryMessage(recovery) };
+  }
 }
-export function saveProfile(storage, profile) {
-  try { storage.setItem(STORAGE_KEY, serializeProfile(profile)); return ''; }
-  catch { return 'Browser saving is unavailable. You can continue and export your system.'; }
+/** A retry reads only. A discovered saved copy stays protected from current in-memory edits. */
+export function retryProfileRead(storage) {
+  const restored = restoreProfile(storage);
+  if (restored.recovery || restored.raw === null) return restored;
+  const recovery = { kind: 'saved-copy', raw: restored.raw, reason: 'Saved data is available again. Your current description has been kept in memory.' };
+  return { ...restored, recovery, error: recoveryMessage(recovery) };
+}
+function writeProfile(storage, profile) {
+  let raw;
+  try { raw = serializeProfile(profile); }
+  catch (error) { return `${error.message} Current edits have not been saved; existing stored data has been kept.`; }
+  try { storage.setItem(STORAGE_KEY, raw); return ''; }
+  catch { return 'Browser saving is unavailable. Current edits remain in memory; export your system before leaving.'; }
+}
+export function saveProfile(storage, profile, recovery = null) {
+  if (recovery) {
+    try { serializeProfile(profile); }
+    catch (error) { return `${error.message} ${recoveryMessage(recovery)}`; }
+    return recoveryMessage(recovery);
+  }
+  return writeProfile(storage, profile);
+}
+/** Called only by the explicit replacement action, never by autosave. */
+export function replaceSavedProfile(storage, profile, recovery) {
+  if (!recovery || recovery.kind === 'read-error') return 'Read the saved data successfully before choosing to replace it.';
+  return writeProfile(storage, profile);
 }
 export function removeComponent(profile, id) {
   return { ...profile, components: profile.components.filter(c => c.id !== id), connections: profile.connections.filter(c => c.from !== id && c.to !== id) };
@@ -66,12 +122,12 @@ const knownLanguages = subject => (subject.languages || []).filter(l => !['Other
 function evaluateWorkflow(subject, type, workflow, preferences, tool) {
   if (workflow.subject !== type) return null;
   const reasons = [], unresolved = [], questions = [], blocked = [];
-  const ask = (field, message) => { unresolved.push(message); questions.push({ field, message }); };
+  const ask = (field, message, kind = 'answer') => { unresolved.push(message); questions.push({ field, message, kind }); };
   const checkChoice = (value, allowed, label, field, excluded = []) => {
     if (!allowed.length && !excluded.length) return;
     if (!value) ask(field, `Specify ${label}.`);
     else if (excluded.includes(value)) blocked.push(`${label}: ${value} is outside this workflow's documented support.`);
-    else if (allowed.length && !allowed.includes(value)) ask(field, `Verify ${label}: ${value} is not in this workflow's documented examples.`);
+    else if (allowed.length && !allowed.includes(value)) ask(field, `Verify ${label}: ${value} is not in this workflow's documented examples.`, 'compatibility');
     else reasons.push(`${label}: ${value}`);
   };
   if (type === 'component') {

@@ -1,0 +1,379 @@
+{
+  "reviewer": "remaining_concepts independent architecture review",
+  "date": "2026-11-06",
+  "status": "complete-no-findings",
+  "independence": "Reviewed implementation from other work lanes; own concept/prose and COV-01/COV-02/MAT-03 expansion work excluded from this independent verdict.",
+  "items": [
+    "N02",
+    "SEA-03",
+    "SEA-04",
+    "CMP-03",
+    "EXP-03",
+    "ARC-03",
+    "ARC-04",
+    "ARC-05",
+    "MNT-03"
+  ],
+  "findings": [],
+  "checks": [
+    {
+      "command": "node --test tests/catalog.test.mjs tests/comparison.test.mjs tests/system-builder.test.mjs tests/system-storage.test.mjs tests/tool-data.test.mjs tests/review-status.test.mjs tests/authoring.test.mjs",
+      "outcome": "90 tests passed; 0 failed; 0 skipped.",
+      "scope": "Targeted architecture and first-batch regression behavior; no analyzer executions or browser validation implied."
+    },
+    {
+      "name": "Independent consumer-field, vocabulary, promoted-pair, mixed-system parity, frozen-audit and current-provenance assertions",
+      "outcome": "All assertions passed.",
+      "data": {
+        "profileCount": 98,
+        "workflowToolCount": 86,
+        "workflowCount": 99,
+        "fullMetadataBytes": 287793,
+        "catalogBytes": 53499,
+        "comparisonBytes": 178094,
+        "builderBytes": 151241,
+        "legacyBuilderBytes": 258300,
+        "projectionParitySystems": 8,
+        "featuredPairs": [
+          "tools/ruff|tools/pylint",
+          "tools/ruff|tools/mypy",
+          "tools/address-sanitizer|tools/valgrind-memcheck",
+          "tools/codeql|tools/spotbugs",
+          "tools/rtamt|tools/psy-taliro"
+        ],
+        "historicalDigestsUnchanged": 116,
+        "reviewStatusCounts": {
+          "unchanged-since-review": 18,
+          "changed-since-review": 64,
+          "reviewed-follow-up": 0,
+          "not-yet-linked-to-review": 50,
+          "removed-since-review": 0
+        },
+        "nullPointerMatches": [
+          "tools/cppcheck",
+          "tools/cwe-checker",
+          "tools/infer"
+        ]
+      },
+      "scope": "Direct Node inspection of current source metadata and production adapters. Comparison/builder consumer fields checked individually. Eight mixed-system descriptions compared with unprojected metadata. No browser or analyzer execution."
+    },
+    {
+      "name": "Schema-valid mixed-system projection parity",
+      "outcome": "24 valid v1 systems passed projection parity.",
+      "scope": "Each profile was parsed through the production v1 schema before comparing complete matcher outputs. Includes four host choices, two input-completeness states, three access states, all current languages/technologies, and all six connection interfaces."
+    },
+    {
+      "name": "Focused integration follow-up",
+      "outcome": "Site/example project separation and Pagefind asset integrity checks passed; see followups entry."
+    }
+  ],
+  "acceptance_coverage": [
+    {
+      "id": "N02",
+      "result": "Source review passed; browser visibility gate remains with root.",
+      "evidence": "Shared card cue reports the active language; result membership uses the existing exact-language filter. Server language order and +N display remain unchanged. Existing projection/filter parity tests pass."
+    },
+    {
+      "id": "SEA-03",
+      "result": "Passed for indexing and current positive terms.",
+      "evidence": "Only positive metadata feeds capability search. The three new null-pointer terms align with existing positive Cppcheck/cwe-checker/Infer passages; current query finds those three. Existing language-distinction and negative-caveat tests pass. No independent upstream re-review of those tool claims was performed."
+    },
+    {
+      "id": "SEA-04",
+      "result": "Source/dependency integration passed; browser interaction gate remains with root.",
+      "evidence": "Separate Search all pages action retains catalog state, opens the installed Starlight dialog, supplies query by input event, handles unavailable/development/delayed UI and close cancellation, and restores the originating button. Actual focus, indexing/network failures and rendered messages need the coordinator browser pass."
+    },
+    {
+      "id": "CMP-03",
+      "result": "Source/context review passed; browser keyboard gate remains with root.",
+      "evidence": "Primary cost cells contain native anchors to the corresponding cost-and-editions section; restricted-free entries add an eligibility cue. Links carry sanitized category/filter/current-selection context. Detailed cost notes and Free/Free with limits/Paid remain separate."
+    },
+    {
+      "id": "EXP-03",
+      "result": "Passed matcher/action distinction; browser focus gate remains with root.",
+      "evidence": "Unknown host produces answer kind; known unlisted host produces compatibility kind and remains details; explicit exclusions stay blocked. Compatibility action links to technical details and workflow sources without changing the profile. Serialized v1 fields are unchanged."
+    },
+    {
+      "id": "ARC-03",
+      "result": "Passed.",
+      "evidence": "Every live catalog/comparison/builder consumed metadata field is retained; nested workflows are passed intact; catalog excludes unused source/workflow/cost-note payload. Draft exclusion and all-catalog language choices pass. Current equivalent-inventory full metadata is 287793 bytes, catalog 53499, comparison 178094, and builder 151241 versus legacy full-metadata builder 258300. These are JSON bytes, not speed measurements."
+    },
+    {
+      "id": "ARC-04",
+      "result": "Passed.",
+      "evidence": "Shared inputs, costs, licenses and mode/edition values are reused; all current profiles validate. Stable v1 values retain their text, with empty/any-free sentinels only in preferences. Edition comparison object keys exactly equal the accepted edition group vocabulary; browser schema does not import edition prose."
+    },
+    {
+      "id": "ARC-05",
+      "result": "Passed.",
+      "evidence": "The five existing promoted pairs are now explicitly featured; adding an unfeatured pair does not alter promotions. Existing generated link, fragment and known-ID assertions are retained."
+    },
+    {
+      "id": "MNT-03",
+      "result": "Passed.",
+      "evidence": "Whole current documentation inventory is returned. Latest scoped reference/digest, changed, unchanged, unlinked, followup and removed states stay distinct. Informational report does not alter verified dates or invoke historical finalization. All 116 frozen historical artifact hashes matched. Initial linked-review list is empty; coordinator will append completed scoped reviews."
+    },
+    {
+      "id": "first-batch-preservation",
+      "result": "Targeted non-browser checks passed; root owns final browser/generated build checks.",
+      "evidence": "Context allowlisting and exact selections, size boundary/UTF-8/canonical growth, failure-preserving storage and recovery, loader-resolved identities/cached metadata checks, actual API shortcut and source-only citation assertions remain intact. Builder expected IDs are derived from raw sources plus loader inventory rather than projected payload self-count."
+    }
+  ],
+  "limits": [
+    "No product edits, full build, generated-site check, or browser actions were performed. Root owns those integration gates.",
+    "No claim that all tool prose or edition capabilities were reverified.",
+    "File digest records exact bytes at review time; scope describes the narrower portions actually inspected."
+  ],
+  "reviewed_files": [
+    {
+      "path": "src/components/ToolCatalog.astro",
+      "sha256": "7c0d092516a422b88da3d428cba25f5a95fac4965c5297173e9adc7423ea5db0",
+      "scope": "Entire component: published/projected data, catalog filters, matched language cue, full-page search handoff, cost/profile and comparison context, selection-removal focus wiring. Browser behavior not executed in this review."
+    },
+    {
+      "path": "src/components/ToolComparison.astro",
+      "sha256": "6c30702c4297c3dbf78e776aca16dd3fe9ba66ebea8c9817120458fc0e299adb",
+      "scope": "Entire component: projection consumer fields, explicit featured comparisons, cost-row links, inherited catalog state, current selection and table rendering. Browser behavior not executed."
+    },
+    {
+      "path": "src/components/SystemBuilder.astro",
+      "sha256": "c1e638fc24bbb73bcbb683fb6d1aba00145958d2be904db87e133c64e8344725",
+      "scope": "Entire component: shared builder projection and omitted-workflow scope list; no claim about prose accuracy."
+    },
+    {
+      "path": "src/components/ArticleContent.astro",
+      "sha256": "a22ab59bf669fd0b020b37433af69c5529a47f4fcb90db995fb539e25aea61e8",
+      "scope": "Changed catalog-ID serialization and context-propagation script; no independent review of unchanged tool-profile prose or fact rendering."
+    },
+    {
+      "path": "src/lib/page-search.mjs",
+      "sha256": "5a968bfde0f784c32edf547ec29c6306da01d9302e06146e0a38007fa6e1d50d",
+      "scope": "Entire handoff helper against installed Starlight Search.astro hooks; input-event, development/failure/cancellation paths and focus-restoration wiring. Real browser behavior remains separate."
+    },
+    {
+      "path": "src/lib/tool-data.mjs",
+      "sha256": "92b7443f368b8154eb204dd4fa0cfc53edf99b5a971c8ba446e6287663106c81",
+      "scope": "Entire adapter: all browser projection fields traced to catalog/comparison/builder consumers, draft filtering, ordering, all-profile language choices, workflow preservation."
+    },
+    {
+      "path": "src/lib/tool-vocabulary.mjs",
+      "sha256": "50564adae494edaa4cd2ed6dd06193c34029b085c4fe21e9831945fe784c0696",
+      "scope": "Entire shared vocabulary: persisted values and preference-sentinel separation."
+    },
+    {
+      "path": "src/lib/tool-schema.mjs",
+      "sha256": "9aa74f06de045050862ce47ce2201c044ddd41a3354bfa249e8714f4f8f6d064",
+      "scope": "Entire tool schema for shared vocabulary, edition group typing, strict outer tool keys and workflow evidence relationships; no new validation policy proposed."
+    },
+    {
+      "path": "src/lib/system-schema.mjs",
+      "sha256": "3fff652d5fde66fc987071f5a92f1feb0f43c8f39a8325368152c311059d778b",
+      "scope": "Shared INPUTS/COSTS/LICENSES declarations and preference schema; unchanged serialized v1 fields inspected for preservation."
+    },
+    {
+      "path": "src/lib/catalog.mjs",
+      "sha256": "e57d11ea16b00f1629872e038629cd2b7b1d23274d0d6c2d43200ae4a6c345da",
+      "scope": "Entire search/filter/suggestion implementation: positive fields, mode-analysis vocabulary, aliases, language distinctions and projected-data compatibility."
+    },
+    {
+      "path": "src/lib/comparison.mjs",
+      "sha256": "d926714b84fa1286213fa7d5b4c11d5495c461a9db1313417b0163ccd14b7709",
+      "scope": "Entire context and selection helper: allowlisted categories, normalized selections, local return routes and inherited versus explicitly cleared context."
+    },
+    {
+      "path": "src/lib/system-builder.mjs",
+      "sha256": "ce1c69fd31b4c179f088d9dd300e2546d2fe766a914fce8f07983e4de773ee88",
+      "scope": "Storage/serialization/recovery functions and workflow question-kind logic; matcher consumer fields checked for projection compatibility. No broader tool-claim audit."
+    },
+    {
+      "path": "src/lib/system-builder-ui.mjs",
+      "sha256": "210f9c0aba1f5b46c9379fbc29452a15078cd61dd039e627aa99c085c94ebdf9",
+      "scope": "Entire UI module source reviewed: projection consumers; component/connection field mapping; missing-value versus compatibility links; selection/context/focus wiring; storage/import/export/recovery behavior. Browser interactions not executed."
+    },
+    {
+      "path": "src/data/tool-choices.ts",
+      "sha256": "ee700e88fafc53fd0103a21d90a1d4cb897d13958bedeb5f1ecac571b10a68a6",
+      "scope": "Featured membership and related-comparison link structures only; summaries not independently fact-checked."
+    },
+    {
+      "path": "src/data/editions.ts",
+      "sha256": "b2fdccfc11c3017b2bbeac69ad5561aa1006fd5f6b22adf8d13a65dce7ec8278",
+      "scope": "Shared EDITION_GROUPS type and object key completeness only; edition factual prose not independently fact-checked."
+    },
+    {
+      "path": "src/content.config.ts",
+      "sha256": "06f61213a9c4ed01710d42d6affc264e1ec79acfd25f29c8360672bc4333838e",
+      "scope": "Entire collection configuration and checked-loader wiring."
+    },
+    {
+      "path": "src/lib/tool-inventory.mjs",
+      "sha256": "1558cd557ec3f584654ff70b1d69f22485590f177e9b338ff5fa15c4f5f7f9f5",
+      "scope": "Entire raw-source validation, loader identity mapping, cache/store ownership and generated inventory verification; targeted existing tests executed."
+    },
+    {
+      "path": "scripts/check-site.mjs",
+      "sha256": "4ec1ef745426dad5c46f958d97d7fd660398290d6eed6c6dce9ec9f32202d95f",
+      "scope": "Prior review scope plus new Pagefind integrity block: rejects every zero-byte emitted search asset, parses language manifest, requires a nonempty language index and positive integer page counts, constrains metadata/module names, and checks referenced metadata/module/JS files. Actual block exercised with in-memory valid and faulty filesystem fixtures; full generated-site run remains coordinator-owned."
+    },
+    {
+      "path": "scripts/review-status.mjs",
+      "sha256": "6266b7c0e596b549999bf3c9c9fdfdbb07ea72528f52e20adca9223bf0d47990",
+      "scope": "Entire informational provenance script: inventory, linked followups, latest scope/digest, statuses, path confinement and output behavior."
+    },
+    {
+      "path": "audits/review-status/README.md",
+      "sha256": "664976e9d9263fbd628f23b3dedc61294db1a7b7d41f5ae831c8f0cf167069bf",
+      "scope": "Append-only scoped review procedure and informational status semantics."
+    },
+    {
+      "path": "audits/review-status/reviews.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "scope": "Empty initial follow-up ledger as read; no review status entries authored by this reviewer."
+    },
+    {
+      "path": "tests/tool-data.test.mjs",
+      "sha256": "3ae8fda7cb19d8b818feeda9bd46a7336e4cf73b455596d5b24ab107b3dec869",
+      "scope": "Entire test file; real-data projection parity, fallback summaries, draft handling, vocabulary and matcher coverage."
+    },
+    {
+      "path": "tests/review-status.test.mjs",
+      "sha256": "aaf4ce2baf11fe6e2a84c84ea91d1800fb7855bd448cab60d4f7c461be29a555",
+      "scope": "Entire test file; status enumeration, latest scope, digest changes, immutable inputs and path protection."
+    },
+    {
+      "path": "tests/catalog.test.mjs",
+      "sha256": "6b48b3f128b9c4877a7c8e7c1ccb790eb085caa3e9cf8a5d9f1b3203e2740c91",
+      "scope": "Executed targeted regression suite; not a complete independent line review."
+    },
+    {
+      "path": "tests/comparison.test.mjs",
+      "sha256": "0334875b3689a2827a2a4485ab4af556f90eaa463fd169671055b5f2add13fd9",
+      "scope": "Executed targeted regression suite; not a complete independent line review."
+    },
+    {
+      "path": "tests/system-builder.test.mjs",
+      "sha256": "da1f63b26ba5d0d385726aa8ebc152007784a734f310b80bd41f280ecf41e321",
+      "scope": "Executed targeted regression suite; not a complete independent line review."
+    },
+    {
+      "path": "tests/system-storage.test.mjs",
+      "sha256": "b75dcc58000906fb2e1db6aed5bb84b5a0410406ce6138c598b7d2fff60b3b15",
+      "scope": "Executed targeted regression suite; not a complete independent line review."
+    },
+    {
+      "path": "tests/authoring.test.mjs",
+      "sha256": "470ecf06cd4dca45e5a1c656e3e124ff0010df2c579364ee0163372a3912756a",
+      "scope": "Executed targeted regression suite; not a complete independent line review."
+    },
+    {
+      "path": "node_modules/@astrojs/starlight/dist/components/Search.astro",
+      "sha256": "30d6549c54409a9e92ec9734901946d409a408635e8876b18940285f21c62062",
+      "scope": "Installed dependency: modal markup and script through SiteSearch definition; CSS not reviewed. Verified integration selectors, stopPropagation, close events and asynchronous Pagefind initialization."
+    },
+    {
+      "path": "src/components/EditionComparison.astro",
+      "sha256": "8334deb146e29a9fa20b2c923242b352321df86736748f7486c98180541a9db9",
+      "scope": "Changed type binding and independent note/source rendering only; historical citation behavior preserved."
+    },
+    {
+      "path": "src/content/docs/tools/cppcheck.md",
+      "sha256": "c2a513506632d3c3198dc6a34e6c72418666631d06e1f67a6c6b7445509a4f8f",
+      "scope": "searchTerms null-pointer addition and existing positive null-pointer paragraph only; no upstream fact re-verification."
+    },
+    {
+      "path": "src/content/docs/tools/cwe-checker.md",
+      "sha256": "888781077a0d87ee18f926549afc316e1e0001edfe0f80841f54b3be4f7ab085",
+      "scope": "searchTerms null-pointer addition and existing positive weakness-category paragraph only; no upstream fact re-verification."
+    },
+    {
+      "path": "src/content/docs/tools/infer.md",
+      "sha256": "d4b96904291ba86a6c7e8efd8ba10aeb7b666d5ef558faebe798d79327f0143b",
+      "scope": "searchTerms null-pointer addition and existing Pulse/null-dereference illustrative example passages only; no analyzer or upstream re-verification."
+    },
+    {
+      "path": "audits/remaining-work/historical-audit-digests.json",
+      "sha256": "4c8e24d8630be650a649d0af5b605bb26bf8b808c964a064024c2002c5cac098",
+      "scope": "Read frozen file-hash map and independently confirmed all 116 recorded files still match. The individual historical documents were not re-reviewed for substantive accuracy."
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "d1abd9a8732960c509d19a8bbfc51a7106abf4658589c29769486e92444e60ba",
+      "scope": "Entire site TypeScript configuration: examples directory excluded from Astro project, while source/include/strict preset remain unchanged. Parsed with installed TypeScript and confirmed zero example files in 38 discovered site project files."
+    },
+    {
+      "path": "README.md",
+      "sha256": "0bf2e3faa0cc031948cad547a0b1b166eb180c2bb603b7aa695c07990404e38a",
+      "scope": "Only newly added standalone-example paragraph explaining intentional faults, site-project exclusion, direct TypeScript regression and separately documented example checks. Other README content is outside this follow-up review."
+    },
+    {
+      "path": "tests/expansion-workflows.test.mjs",
+      "sha256": "374f6d4c1e967a02e8ec0418056e1c72bab794630ceaec41224c161280265fbe",
+      "scope": "Focused TypeScript fixture regression only: explicit bad/good --project invocation, pinned compiler version, bad status 2 with TS2345, good status 0 with no diagnostics, and no emitted files. One selected test executed. This existing test originated in this reviewer own expansion lane; review independence concerns the subsequent site tsconfig exclusion and README explanation from coordinator."
+    },
+    {
+      "path": "examples/typescript-check/tsconfig.bad.json",
+      "sha256": "f1a7f3502737f9de77695c1fe7a8f19e8a4b46fe092087b0da583506bf413f3f",
+      "scope": "Single-file bad fixture project still resolves independently of site excludes."
+    },
+    {
+      "path": "examples/typescript-check/tsconfig.good.json",
+      "sha256": "fde7f986b9de3f5110f002bd8bf7a011c227301c911aae1058634702c9c8a51d",
+      "scope": "Single-file good fixture project still resolves independently of site excludes."
+    },
+    {
+      "path": "examples/typescript-check/package.json",
+      "sha256": "cc053c35ee7fe06bc6d494c48e676cdc328870a8c2da216d77bac0957b108175",
+      "scope": "Pinned compiler/version and separate project commands inspected for exclusion follow-up; no package modifications."
+    }
+  ],
+  "final_snapshot": {
+    "changed_since_recording": []
+  },
+  "followups": [
+    {
+      "date": "2026-11-06",
+      "topic": "Site/example project separation and search-asset integrity",
+      "result": "No confirmed defects. Both coordinator changes are appropriate.",
+      "superseded_reviewed_file_snapshots": [
+        {
+          "path": "scripts/check-site.mjs",
+          "sha256": "69e9c895078a5fe26c18ab1b23c05466241e3f135c4d1292e33246f2e68f0071",
+          "scope": "Changed source-identity/catalog and builder membership assertions, actual API shortcut, edition-section citations, mode-analysis and null-pointer search assertions; generated build was not executed by this reviewer."
+        }
+      ],
+      "checks": [
+        {
+          "command": "node --test --test-name-pattern='TypeScript fixture' tests/expansion-workflows.test.mjs",
+          "outcome": "1 selected regression passed; faulty/corrected compiler behavior and noEmit remain enforced."
+        },
+        {
+          "name": "Installed TypeScript config resolution",
+          "outcome": "Site config resolves 38 files with no examples path. Both standalone fixture configs resolve one intended greeting.ts and retain strict=true/noEmit=true.",
+          "method": "ts.readConfigFile and ts.parseJsonConfigFileContent, followed by path and compiler-option assertions."
+        },
+        {
+          "name": "Actual Pagefind integrity block negative-path check",
+          "outcome": "Valid fixture passed; all 10 fault cases rejected.",
+          "method": "Executed the unchanged production source slice from const searchDirectory through the pagefind.js stat in an AsyncFunction, injecting in-memory stat/readFile/walk implementations. No generated files were mutated.",
+          "rejected_cases": [
+            "zero-byte manifest",
+            "malformed manifest",
+            "no language indexes",
+            "zero indexed pages",
+            "non-local metadata path",
+            "non-local module path",
+            "missing metadata",
+            "missing language module",
+            "empty dependent asset",
+            "missing JS entry point"
+          ]
+        }
+      ],
+      "reasoning": "Intentional analyzer failures belong to standalone example projects and should not fail the website TypeScript project. Direct project invocations preserve the intended validation independently. Manifest and nonempty-asset checks catch the observed silent zero-byte search output and fail before claiming generated-site verification succeeded.",
+      "limits": [
+        "No full build or browser actions performed.",
+        "Integrity assertions establish required generated assets and basic manifest consistency; they do not replace an actual Pagefind query or validate every binary index byte."
+      ]
+    }
+  ]
+}

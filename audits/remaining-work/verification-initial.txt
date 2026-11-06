@@ -1,0 +1,46 @@
+$ pnpm check && pnpm test && pnpm build && node scripts/check-site.mjs
+$ astro check
+13:43:13 [content] Syncing content
+13:43:14 [content] Synced content
+13:43:14 [types] Generated 2.07s
+13:43:14 [check] Getting diagnostics for Astro files in C:\Users\zwadh\Repos\ToolWiki...
+[96mexamples/test-quality/src/discount.js[0m:[93m5[0m:[93m1[0m - [93mwarning[0m[90m ts(80001): [0mFile is a CommonJS module; it may be converted to an ES module.
+
+[7m5[0m module.exports = { qualifiesForDiscount };
+[7m [0m [93m~~~~~~~~~~~~~~[0m
+
+[96mexamples/test-quality/tests/strong.test.js[0m:[93m1[0m:[93m34[0m - [93mwarning[0m[90m ts(80001): [0mFile is a CommonJS module; it may be converted to an ES module.
+
+[7m1[0m const { qualifiesForDiscount } = require('../src/discount');
+[7m [0m [93m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mexamples/test-quality/tests/weak.test.js[0m:[93m1[0m:[93m34[0m - [93mwarning[0m[90m ts(80001): [0mFile is a CommonJS module; it may be converted to an ES module.
+
+[7m1[0m const { qualifiesForDiscount } = require('../src/discount');
+[7m [0m [93m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mexamples/typescript-check/bad/greeting.ts[0m:[93m5[0m:[93m7[0m - [91merror[0m[90m ts(2769): [0mNo overload matches this call.
+  Overload 1 of 2, '(name: string): string', gave the following error.
+    Argument of type 'number' is not assignable to parameter of type 'string'.
+  Overload 2 of 2, '(name: string): string', gave the following error.
+    Argument of type 'number' is not assignable to parameter of type 'string'.
+
+[7m5[0m greet(42);
+[7m [0m [91m      ~~[0m
+[96mexamples/typescript-check/bad/greeting.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m ts(2393): [0mDuplicate function implementation.
+
+[7m1[0m function greet(name: string): string {
+[7m [0m [91m         ~~~~~[0m
+
+[96mexamples/typescript-check/good/greeting.ts[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m ts(2393): [0mDuplicate function implementation.
+
+[7m1[0m function greet(name: string): string {
+[7m [0m [91m         ~~~~~[0m
+
+Result (54 files): 
+- 3 errors
+- 0 warnings
+- 3 hints
+
+[ELIFECYCLE] Command failed with exit code 1.
+[ELIFECYCLE] Command failed with exit code 1.

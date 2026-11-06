@@ -1,0 +1,804 @@
+{
+  "schema_version": 1,
+  "agent": "review14_evidence",
+  "date": "2026-11-06",
+  "status": "complete",
+  "baseline_commit": "27c229bd7079ede31cd30ce500e999461eb97eef",
+  "scope": "Independent evidence and scope review of all nine candidate additions and seven consequential P2 recommendations. Read-only repository inspection and primary-source web checks; audit and roadmap only.",
+  "method": [
+    "Read consolidated findings and raw reports 02,05,06,07,11,12; inspected relevant current source pages/schema/component and inventory.",
+    "Independently opened official documentation and project license sources for the nine additions and recommendation-level sources.",
+    "No browser interaction, installs, analyzer runs, example execution, benchmarking, product edits or repository writes.",
+    "Source links using latest/master/main are evidence checked on the review date, not release-pinned reproducibility records."
+  ],
+  "summary": {
+    "reviewed": 16,
+    "confirmed": [
+      "KNO-02",
+      "REX-05"
+    ],
+    "supported": [
+      "COV-01",
+      "COV-02",
+      "COV-05",
+      "ADJ-01",
+      "KNO-01",
+      "KNO-03",
+      "EXP-01",
+      "EXP-02"
+    ],
+    "qualified": [
+      "COV-03",
+      "COV-04",
+      "ADJ-02",
+      "ADJ-03",
+      "ADJ-04",
+      "MAT-03"
+    ],
+    "rejected": [],
+    "runtime_verified": []
+  },
+  "reviews": [
+    {
+      "finding_id": "COV-01",
+      "disposition": "supported",
+      "priority": "P2",
+      "verification": {
+        "local": "Inventory independently counted: nine TypeScript profiles, zero with Type errors; existing type-checking entries are actionlint, mypy, PHPStan, Psalm and Pyright. ESLint profile already distinguishes typed linting.",
+        "primary": "Opened official TypeScript basics, CLI, noEmit, checkJs, typescript-eslint FAQ and project license.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://www.typescriptlang.org/docs/handbook/2/basic-types.html",
+          "support": "Install/compiler diagnostic examples and erased type annotations support source type checking, not runtime input validation.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://www.typescriptlang.org/tsconfig/noEmit.html",
+          "support": "noEmit suppresses compiler output and supports a type-checking workflow.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://www.typescriptlang.org/docs/handbook/compiler-options",
+          "support": "Supplying files directly bypasses tsconfig.json; use an explicitly configured project route.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://www.typescriptlang.org/tsconfig/checkJs.html",
+          "support": "JavaScript errors require the qualified allowJs/checkJs or per-file checking route.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://typescript-eslint.io/troubleshooting/faqs/eslint/",
+          "support": "ESLint rules and compiler checking can overlap without being interchangeable.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/microsoft/TypeScript/main/LICENSE.txt",
+          "support": "Apache-2.0 license text for TypeScript.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "Purpose, input, documented setup, diagnostic output, limits and license support a plain TypeScript no-emit profile. This is a distinct task despite overlap with ESLint and fast-check. Broad framework and all-version compatibility are unverified.",
+      "acceptance_corrections": [
+        "Use a project invocation with its tsconfig and explicitly selected checking options; do not present a single-file command as equivalent.",
+        "Pin the TypeScript release and supported host/runtime combination when authoring. Keep checkJs a separate qualification.",
+        "A future matching entry may describe a documentation-reviewed TypeScript source workflow; it must not claim tested runtime behavior or framework-file coverage."
+      ],
+      "candidate_readiness": "Ready for narrow documentation-led catalog authoring; matching remains separately scoped."
+    },
+    {
+      "finding_id": "COV-02",
+      "disposition": "supported",
+      "priority": "P2",
+      "verification": {
+        "local": "Search of tool profiles found no PowerShell source-analysis entry. ShellCheck explicitly excludes PowerShell; launcher snippets are not analysis claims.",
+        "primary": "Opened Microsoft overview and Invoke-ScriptAnalyzer reference plus the repository license.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://learn.microsoft.com/en-us/powershell/utility-modules/psscriptanalyzer/overview?view=ps-modules",
+          "support": "Describes static PowerShell checks, module installation, and supported host versions.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/powershell/module/psscriptanalyzer/invoke-scriptanalyzer?view=ps-modules",
+          "support": "Accepts .ps1/.psm1/.psd1 files or script text, selects rules/settings, returns DiagnosticRecord objects; fixes and exit behavior are optional controls.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/PowerShell/PSScriptAnalyzer/main/LICENSE",
+          "support": "MIT license.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "The source-language gap and proposed purpose/input/setup/output are supported. No redundancy with ShellCheck. The analyzer host version and the target script's compatibility are different facts.",
+      "acceptance_corrections": [
+        "Use a path-based read-only example with a named rule and a DiagnosticRecord; keep -Fix out of the first inspection.",
+        "Do not infer a CI success contract from ordinary PowerShell command completion. -EnableExit explicitly terminates the session and uses error-record count.",
+        "Record selected module version and host; claims about every PowerShell/runtime command require additional evidence."
+      ],
+      "candidate_readiness": "Ready for narrow documentation-led catalog authoring."
+    },
+    {
+      "finding_id": "COV-03",
+      "disposition": "qualified",
+      "priority": "P2",
+      "verification": {
+        "local": "Inventory has only detect-secrets for Secret scanning; that profile explicitly limits its scope to file/baseline prevention. Prior deferral is real.",
+        "primary": "Opened Gitleaks README/license and Betterleaks main README. Gitleaks still announces security-patches-only future releases.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/gitleaks/gitleaks/master/README.md",
+          "support": "Documents maintenance status, binary/container installation, git log -p scanning, log-opts, finding context, report formats, redaction, baseline and rule configuration.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/gitleaks/gitleaks/master/LICENSE",
+          "support": "MIT for the Gitleaks CLI.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/betterleaks/betterleaks/main/README.md",
+          "support": "Main says v2 development and warns latest/package-manager distribution can differ; validation and revocation are separate actions.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Yelp/detect-secrets/master/README.md",
+          "support": "Baseline/diff prevention intentionally avoids repeated full-history scans.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "A distinct history-investigation document is supported, but readiness is conditional on a selected Gitleaks v8 release and a visible lifecycle caveat. Do not describe Gitleaks as actively receiving new features or abandoned without patches. Betterleaks is not admitted by this review. Source code availability alone does not establish local Git history.",
+      "acceptance_corrections": [
+        "State the exact repository history/ref/range and scan configuration; an ordinary clone or default command is not evidence of all remote refs.",
+        "Use synthetic credentials and keep report handling/redaction explicit; a match does not establish credential validity or remediation.",
+        "Keep CLI license separate from the GitHub Action and successor tooling.",
+        "Do not add automatic matching until history availability is represented. Recheck maintenance/version documentation when authoring."
+      ],
+      "candidate_readiness": "Conditionally ready for a catalog-only Gitleaks history profile; Betterleaks remains deferred."
+    },
+    {
+      "finding_id": "COV-04",
+      "disposition": "qualified",
+      "priority": "P3",
+      "verification": {
+        "local": "No MobSF or mobile-package profile found. FORMATS lacks APK; Native executable and Other do not establish APK support.",
+        "primary": "Opened MobSF README, static Docker instructions, configuration reference, Android report template and license.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/MobSF/Mobile-Security-Framework-MobSF/master/README.md",
+          "support": "Explicitly includes APK static analysis and declares GPL-3.0-only; broader product formats and dynamic modes are separate.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/MobSF/docs/master/running_mobsf_docker.md",
+          "support": "Documents a Docker static-analysis route and separately lists dynamic device/emulator setup.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/MobSF/Mobile-Security-Framework-MobSF/master/mobsf/templates/pdf/android_report.html",
+          "support": "Template contains certificate, permission, manifest and code-analysis sections; this is source evidence of report structure, not a captured scan.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/MobSF/docs/master/configurations.md",
+          "support": "Static scan components, timeouts and optional analysis settings affect results.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/MobSF/Mobile-Security-Framework-MobSF/master/LICENSE",
+          "support": "GPL version 3 text; README supplies the GPL-3.0-only qualification.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://docs.docker.com/engine/network/port-publishing/",
+          "support": "A published port without a host IP normally maps to all host addresses; loopback binding, release and network configuration matter to a host-only claim.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "Static APK package inspection is supported and distinct from detekt source analysis and the current Ghidra workflow. The MobSF project license is not a blanket license statement for the uploaded app, container runtime, bundled components or a separate related package. Local hosting is not itself an offline/no-egress guarantee.",
+      "acceptance_corrections": [
+        "Specify MobSF release/image identity, APK input, local upload destination and scan settings.",
+        "For a loopback walkthrough, explicitly bind the published port to loopback and qualify Docker release/network assumptions; visiting 127.0.0.1 does not establish the listener boundary.",
+        "Describe template sections as representative and conditional, not proof that every APK yields every section or finding.",
+        "Keep APK artifact support catalog-only pending schema/workflow review. Exclude iOS, dynamic modes and other package formats from this admission."
+      ],
+      "candidate_readiness": "Conditionally ready for catalog-only static Android APK documentation."
+    },
+    {
+      "finding_id": "COV-05",
+      "disposition": "supported",
+      "priority": "P3",
+      "verification": {
+        "local": "No tool profile uses Verilog or SystemVerilog. Existing firmware coverage does not fill HDL linting.",
+        "primary": "Opened Verilator overview, install guide, command reference, warning reference and README license declaration.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://verilator.org/guide/latest/overview.html",
+          "support": "HDL input and generated simulation-model workflow are distinct stages.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://verilator.org/guide/latest/exe_verilator.html",
+          "support": "--lint-only checks lint violations without model output; warning selection and design-context flags are configurable.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://verilator.org/guide/latest/warnings.html",
+          "support": "Documents diagnostic codes/locations, unsupported constructs and suppressions.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://verilator.org/guide/latest/install.html",
+          "support": "Documents package/build installation routes and host prerequisites.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/verilator/verilator/master/README.rst",
+          "support": "Declares LGPL-3.0-only OR Artistic-2.0 and identifies Verilog/SystemVerilog input.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "The proposed lint-only purpose/input/setup/output/license are supported. A clean lint result is not formal proof, simulation coverage, functional correctness, timing analysis or hardware signoff. C++ generated output does not support matching arbitrary C++ input.",
+      "acceptance_corrections": [
+        "Pin a release and matching manual; identify source list, includes, defines, top-level design and warning flags.",
+        "Keep the first example explicitly --lint-only and interpret one warning against the selected rule.",
+        "Do not propagate whole-product simulation/coverage/formal labels into this workflow or treat unsupported constructs as a clean result."
+      ],
+      "candidate_readiness": "Ready for narrow documentation-led HDL lint authoring; lower priority than existing-workflow repairs."
+    },
+    {
+      "finding_id": "ADJ-01",
+      "disposition": "supported",
+      "priority": "P3",
+      "verification": {
+        "local": "No coverage.py profile or dedicated execution-coverage measurement profile found; generated-input tools answer a different question.",
+        "primary": "Opened coverage.py quickstart, branch/source/process documentation and NOTICE.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://coverage.readthedocs.io/en/latest/",
+          "support": "Documents installation and running existing Python tests/programs under coverage before reporting.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://coverage.readthedocs.io/en/latest/branch.html",
+          "support": "Line and branch opportunities differ; reports expose missing branches and combined/separate percentages.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://coverage.readthedocs.io/en/latest/source.html",
+          "support": "Source selection enables unexecuted-file reporting and changes measured scope; include/omit settings constrain measurement.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://coverage.readthedocs.io/en/latest/subprocess.html",
+          "support": "Child processes and orderly termination require deliberate collection and combination.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/nedbat/coveragepy/master/NOTICE.txt",
+          "support": "Apache-2.0 except where otherwise noted.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "Purpose, input, setup, reports, limitations and license support a single-process Python measurement profile. It complements Hypothesis and ordinary tests; execution evidence does not assess assertion adequacy or prove correctness. Latest docs advertise a changing interpreter range, so no blanket compatibility is verified.",
+      "acceptance_corrections": [
+        "Use one existing test runner, explicit source selection and --branch, and distinguish measured lines from possible branch destinations.",
+        "Record whether the run completed and whether only one process was measured.",
+        "Keep coverage threshold success distinct from test success and from effective assertions; advanced process modes remain out of initial scope."
+      ],
+      "candidate_readiness": "Ready for narrow documentation-led catalog authoring after fixture/run-record design."
+    },
+    {
+      "finding_id": "ADJ-02",
+      "disposition": "qualified",
+      "priority": "P3",
+      "verification": {
+        "local": "Existing Mutation-based fuzzing and fast-check entries do not supply source mutation testing.",
+        "primary": "Opened StrykerJS initialization, Jest runner, configuration, mutant metrics/equivalence and license.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://stryker-mutator.io/docs/stryker-js/getting-started/",
+          "support": "Documents Node/npm preparation, initializer and stryker run.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://stryker-mutator.io/docs/stryker-js/jest-runner/",
+          "support": "Requires compatible Jest and Stryker core peer dependencies and testRunner jest configuration.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://stryker-mutator.io/docs/stryker-js/configuration/",
+          "support": "Mutation scope, test setup and reporting are configured; default inPlace false uses a temporary copy.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/",
+          "support": "Defines Killed, Survived, No coverage, Timeout, Runtime error, Compile error, Ignored and Pending, plus score formulas.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://stryker-mutator.io/docs/mutation-testing-elements/equivalent-mutants/",
+          "support": "Equivalent mutations may not change observable behavior, so a surviving mutant is not automatically a missing meaningful test.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/stryker-mutator/stryker-js/master/LICENSE",
+          "support": "Apache-2.0.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "A JavaScript/Jest profile is supported once compatible versions and a working initial suite are selected. 'Erroneous' and 'uncovered' are broad paraphrases; teaching the actual state names matters. No source mutation or runner integration was executed.",
+      "acceptance_corrections": [
+        "Explicitly teach detected = killed + timeout, undetected = survived + no coverage, valid = detected + undetected, and score = detected/valid. Runtime/compile errors, ignored and pending are outside that denominator.",
+        "Distinguish a test failure that kills a mutant from a test-runner runtime error.",
+        "Keep temporary-copy execution, a small mutation scope and a successful baseline suite in the first route.",
+        "Use source mutation testing as a separate technique from input mutation; do not require 100% or infer universal test quality."
+      ],
+      "candidate_readiness": "Conditionally ready for catalog-only JavaScript/Jest authoring; runner/version choice is required."
+    },
+    {
+      "finding_id": "ADJ-03",
+      "disposition": "qualified",
+      "priority": "P3",
+      "verification": {
+        "local": "No profiler profile found. Builder access flags include rebuild, instrument, harness and testInstance, but no process-memory inspection permission.",
+        "primary": "Opened official py-spy README and MIT license; checked launch/attach and sampling caveats.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/benfred/py-spy/master/README.md",
+          "support": "Documents installation, CPython sampling, record/top/dump, launch or PID input, output files, process-memory permissions, idle/GIL filtering and nonblocking sampling tradeoffs.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/benfred/py-spy/master/LICENSE",
+          "support": "MIT.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "Local CPython profiling is supported as a documentation candidate. Launching the workload under py-spy can avoid the default Linux non-child attach restriction, but the README still says macOS requires elevated privileges; launch is not a universal permission-free route. Sampled hot paths are workload/window evidence, not correctness, complete tracing or a measured overhead guarantee.",
+      "acceptance_corrections": [
+        "Choose and document one release/host/interpreter combination; state process-read permissions for that route.",
+        "Show permission/setup failure separately from a completed recording. Do not offer broad security-setting changes as an assumed prerequisite.",
+        "Distinguish record output, live top summaries and dump snapshots rather than describing all as the same sampled artifact.",
+        "Keep native/container/production modes and automatic builder matching deferred."
+      ],
+      "candidate_readiness": "Conditionally ready for catalog-only local CPython documentation with host-specific permission guidance."
+    },
+    {
+      "finding_id": "ADJ-04",
+      "disposition": "qualified",
+      "priority": "P3",
+      "verification": {
+        "local": "No k6 or dedicated HTTP load-testing profile found. Existing HTTP fuzzers do not document the same workload/threshold task. Follow-up source check: analyzeSystem retains evaluations with empty goalIds, groups candidates by status, and the UI renders workflow findings directly; GOALS does not gate current candidate display.",
+        "primary": "Opened k6 local installation/run, metrics, checks, thresholds, workload models and OSS license.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://grafana.com/docs/k6/latest/set-up/install-k6/",
+          "support": "Documents local CLI/binary/container installation; host/package choice must be specified.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://grafana.com/docs/k6/latest/get-started/running-k6/",
+          "support": "Distinguishes local execution from cloud execution and defines script, VUs and duration.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://grafana.com/docs/k6/latest/using-k6/metrics/",
+          "support": "Metrics measure behavior under test conditions.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://grafana.com/docs/k6/latest/using-k6/checks/",
+          "support": "Failed checks record rates and do not alone fail or abort the whole test.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://grafana.com/docs/k6/latest/using-k6/thresholds/",
+          "support": "Threshold expressions provide configured metric pass/fail criteria.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://grafana.com/docs/k6/latest/using-k6/scenarios/concepts/open-vs-closed/",
+          "support": "Closed iteration arrivals depend on completion; open arrival models differ.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/grafana/k6/master/LICENSE.md",
+          "support": "AGPL version 3 for OSS k6; no conclusion about cloud terms.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "Purpose/input/setup/output/license support a bounded local HTTP document. A JavaScript driver is not evidence that the target must be JavaScript: protocol-facing requests are independent of server implementation language. That independence is a workflow inference, not a platform matrix review. No load-generator adequacy, capacity or latency was measured.",
+      "acceptance_corrections": [
+        "Define endpoint, data/reset, load model, duration, functional checks and metric thresholds; include the conditions needed for a meaningful completed test.",
+        "Do not treat a zero process status with only failed checks as meeting the intended service goal.",
+        "Keep target language independent and cloud/browser/distributed/extension modes outside scope.",
+        "A reviewed HTTP workflow with a new performance finding can already be matched and displayed without a GOALS mapping. Adding a performance goal is optional future taxonomy/bookkeeping, not a current admission or discoverability prerequisite. Admission still requires exact workflow evidence and scoped inputs, requirements, findings and host qualifications."
+      ],
+      "candidate_readiness": "Conditionally ready for catalog-only local HTTP authoring after a disposable fixture and result-state design."
+    },
+    {
+      "finding_id": "KNO-01",
+      "disposition": "supported",
+      "priority": "P2",
+      "verification": {
+        "local": "Read sast-adoption.md, sast-workflow.md, comparing-tools.md, PHPStan and detect-secrets. They provide evaluation questions and local caveats, not one reusable finding-review procedure.",
+        "primary": "Rechecked PHPStan baseline documentation and detect-secrets' baseline/prevention rationale.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://phpstan.org/user-guide/baseline",
+          "support": "A baseline suppresses the previously reported error list in later output; it is not a repair.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Yelp/detect-secrets/master/README.md",
+          "support": "Baseline prevention and review/remediation concerns are distinct.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "The proposed guide is supported as synthesis of existing guidance. Do not call the wiki devoid of triage advice: PHPStan, detect-secrets, CodeQL and research pages already contain useful pieces. No study establishes that this proposed guide will improve user outcomes.",
+      "acceptance_corrections": [
+        "Describe this as consolidating scattered guidance, preserve useful tool-specific content and link rather than duplicate it.",
+        "Share the run-status and evidence-record vocabulary with EXP-01 and REX-04.",
+        "Keep finding identity, investigation evidence, disposition, fix/exception and comparable rerun distinct; do not treat suppression, report deletion or baseline acceptance as resolution."
+      ],
+      "candidate_readiness": "Documentation improvement supported; no analyzer/runtime validation needed to identify the gap."
+    },
+    {
+      "finding_id": "KNO-02",
+      "disposition": "confirmed",
+      "priority": "P2",
+      "verification": {
+        "local": "Independently read static-approaches.md: the input table lacks Configuration files and its technique table lacks infrastructure policy/secret scanning. Existing Checkov and detect-secrets profiles explicitly cover both.",
+        "primary": "Opened Checkov quickstart and detect-secrets README.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://www.checkov.io/1.Welcome/Quick%20Start.html",
+          "support": "Shows configuration resources evaluated against policies with passed/failed/skipped results.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Yelp/detect-secrets/master/README.md",
+          "support": "Describes candidate secret detection and baseline/diff prevention rather than routine exhaustive history analysis.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "This is a concrete conceptual coverage mismatch with the existing catalog, so the narrow P2 update is justified. It needs no new analyzer entry or schema expansion. IaC/configuration checks, candidate credentials and dependency advisory matching are distinct questions.",
+      "acceptance_corrections": [
+        "Link to current configuration profiles and appropriate filtered routes without adding unsupported languages or capabilities.",
+        "A passing policy scan concerns selected definitions and policies, not the deployed environment.",
+        "A potential credential string is not automatically a valid credential; history and exposure response need separate explanations."
+      ],
+      "candidate_readiness": "Ready for a small existing-primer update."
+    },
+    {
+      "finding_id": "KNO-03",
+      "disposition": "supported",
+      "priority": "P2",
+      "verification": {
+        "local": "Read both concept pages and searched reader concepts/guides. Shared explanations of abstract interpretation and symbolic execution are absent, while profile-specific distinctions already exist.",
+        "primary": "Opened KLEE tutorial, Frama-C Eva/WP and CodeQL data-flow concepts.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://klee-se.org/tutorials/testing-function/",
+          "support": "Connects symbolic input and LLVM bitcode to path exploration and generated concrete tests.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://www.frama-c.com/fc-plugins/eva.html",
+          "support": "Documents abstract interpretation, inferred value sets and possible runtime-error alarms.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://www.frama-c.com/fc-plugins/wp.html",
+          "support": "Documents ACSL contracts, weakest-precondition reasoning and proof obligations/provers.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://codeql.github.com/docs/writing-codeql-queries/about-data-flow-analysis/",
+          "support": "Explains propagation graphs, local/global scope and taint beyond value-preserving flow.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "The missing shared explanation is supported; the current static-verification row already acknowledges different outputs, so it is not simply incorrect. Preserve method overlap and assumptions. An abstract-interpretation alarm is not necessarily a feasible counterexample; an unresolved proof obligation is not itself a demonstrated defect.",
+      "acceptance_corrections": [
+        "Use one concise example to distinguish value approximation, symbolic path constraints, generated inputs, possible alarms and proof obligations.",
+        "Include the WP primary reference when teaching deductive proof, in addition to Eva.",
+        "Do not impose a universal Static/Dynamic classification or imply every tool with a method label has every capability.",
+        "Link existing profiles to one explanation and retain profile-level configuration limits."
+      ],
+      "candidate_readiness": "Ready for a bounded concept expansion; educational impact remains an inference."
+    },
+    {
+      "finding_id": "EXP-01",
+      "disposition": "supported",
+      "priority": "P2",
+      "verification": {
+        "local": "Read Ruff's first-result/project sections and the CI research note. Existing text acknowledges completion and quality gates, but there is no maintained concrete CI result-state/artifact procedure.",
+        "primary": "Rechecked official Ruff exit codes and OSV-Scanner V2 output controls.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://docs.astral.sh/ruff/linter/#exit-codes",
+          "support": "Default Ruff check codes distinguish no remaining violations, reported violations and abnormal/configuration failure; fixes and exit flags alter interpretation.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://google.github.io/osv-scanner/usage/",
+          "support": "Documents V2 report-file/output controls; it does not establish a universal return-code contract.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "The scoped CI handoff is supported, not an observed broken connector. The model should distinguish analysis completion, findings and chosen gate decision; these are related but separate axes. Ruff's 0/1/2 meanings cannot be copied to PSScriptAnalyzer, k6 or other tools.",
+      "acceptance_corrections": [
+        "State non-fixing Ruff flags in the example or explicitly account for fixes: status 0 can follow successful automatic fixes.",
+        "Include skipped, cancelled and incomplete states alongside the three ordinary completion/failure outcomes.",
+        "Retain tool/config/revision and failure logs even when reports are absent; share REX-04's run record.",
+        "Keep exact provider/pipeline syntax illustrative until separately validated; do not present the research use case as a tested current connector."
+      ],
+      "candidate_readiness": "Supported documentation-first P2 work after selecting the reusable recipe."
+    },
+    {
+      "finding_id": "EXP-02",
+      "disposition": "supported",
+      "priority": "P2",
+      "verification": {
+        "local": "Read comparison rows/schema and Semgrep CE/Code, OSV-Scanner and Grype profiles. There is no consistent network/data-boundary field; existing prose has some useful qualifications.",
+        "primary": "Rechecked Semgrep metrics policy and OSV offline-mode documentation. Trivy/Grype mode-specific network behavior was not independently closed by this review.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://docs.semgrep.dev/metrics",
+          "support": "Distinguishes local rule use, Registry/login metrics, explicit metric settings and separate platform-connected finding metadata.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://google.github.io/osv-scanner/usage/offline-mode/",
+          "support": "Offline mode requires a previously downloaded local database; absent data is an error and the mode does not update the database.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://google.github.io/osv-scanner/usage/",
+          "support": "Separates package extraction and vulnerability matching; version-specific commands/output matter.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "A per-workflow comparison is supported. No false upload claim or actual network/privacy failure was found, and no network capture or air-gap test was done. A local executable, OSS license or local web UI does not establish all retrieval/submission behavior.",
+      "acceptance_corrections": [
+        "Distinguish required retrieval, optional metrics, explicit result submission, execution location and account requirements.",
+        "State installed version, rule/database source and freshness assumptions; retain unknowns.",
+        "Do not turn metrics-off into a blanket no-network claim, or infer Trivy/Grype behavior from OSV-Scanner.",
+        "Start with prose; only add filters after each represented mode has evidence and a stable definition."
+      ],
+      "candidate_readiness": "Supported documentation-first P2 work; broader product-mode facts remain to be reviewed."
+    },
+    {
+      "finding_id": "REX-05",
+      "disposition": "confirmed",
+      "priority": "P2",
+      "verification": {
+        "local": "Read rtamt.md First try and Earlier example evidence. The page labels Windows/Python 3.12.14/RTAMT 0.4.10 outputs previously reported; it records no saved execution record and a later Python 3.13.15 parser import failure before evaluation.",
+        "primary": "No new environment or dependency evidence was obtained that could close the historical run claim.",
+        "execution": "No RTAMT installation, example execution or compatibility experiment was performed."
+      },
+      "evidence": [],
+      "notes": "Confirmed as an unresolved reproducibility item, not confirmation that the historical outputs ran or that RTAMT is universally incompatible. The arithmetic explanation and the historical reported execution have different evidence status. Official setup links alone cannot reproduce the prior environment.",
+      "acceptance_corrections": [
+        "Keep unresolved status prominent and preserve prior dates/status wording.",
+        "A later authorized check must retain exact interpreter, package/parser dependency pins, platform, invocation and both trace outputs.",
+        "Record setup failure separately from a temporal property violation.",
+        "Do not infer a compatible combination from a newer interpreter/package advertisement or advance the example's verification date without execution evidence."
+      ],
+      "candidate_readiness": "Unresolved runtime reproduction; documentation audit does not close it."
+    },
+    {
+      "finding_id": "MAT-03",
+      "disposition": "qualified",
+      "priority": "P2",
+      "verification": {
+        "local": "Inventory independently confirms nine deferred profiles; SystemBuilder filters out empty analysisWorkflows. Read report11 and existing CodeQL/CE profiles. Parent corrected the initial empty consolidated primary_sources list during this review, and I reread the four added sources.",
+        "primary": "Opened py/sql-injection query help, CodeQL database preparation, CE-specific language support and rule syntax.",
+        "execution": "Not installed or executed. Documentation support is not runtime verification."
+      },
+      "evidence": [
+        {
+          "url": "https://codeql.github.com/codeql-query-help/python/py-sql-injection/",
+          "support": "Identifies py/sql-injection, a Python path query and suite membership; supports a specific injection-risk workflow, not all CodeQL findings.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://docs.github.com/en/code-security/tutorials/customize-code-scanning/prepare-code-for-analysis",
+          "support": "Documents CLI/database/extraction prerequisites and distinguishes noncompiled source preparation from compiled builds.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://docs.semgrep.dev/semgrep-ce-languages",
+          "support": "Separates community-supported CE single-function analysis from Code/Pro cross-file and framework features.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://docs.semgrep.dev/writing-rules/rule-syntax",
+          "support": "Rules have explicit IDs, languages, patterns, messages and severities; aggregate syntax support is not a reviewed rule.",
+          "accessed": "2026-11-06"
+        },
+        {
+          "url": "https://codeql.github.com/docs/writing-codeql-queries/about-data-flow-analysis/",
+          "support": "Query models and analysis scope determine what flow evidence means.",
+          "accessed": "2026-11-06"
+        }
+      ],
+      "notes": "CodeQL Python first and Semgrep CE second is a reasonable authoring order, not evidence both workflows are ready to enable. CodeQL has a named candidate query; no exact CE rule has yet been selected. Existing omission is deliberate conservative coverage, not an engine defect. Runtime execution is not required for documentation-led metadata, but the evidence must support each field.",
+      "acceptance_corrections": [
+        "For CodeQL, pin CLI/query pack, selected query/suite and Python/framework/extraction/host scope; preserve CLI eligibility and separate query-library licenses.",
+        "For CE, select and review the exact rule/config revision and rule license before admitting a finding category; do not inherit Pro/cross-file capabilities.",
+        "Test metadata matching with positive, incomplete and incompatible descriptions without treating those tests as analyzer execution.",
+        "Keep other deferred products, S-TaLiRo availability/license and unreviewed language/edition combinations deferred."
+      ],
+      "candidate_readiness": "CodeQL Python is a strong conditional next workflow; Semgrep CE is a later rule-selection investigation, not a ready match."
+    }
+  ],
+  "candidate_readiness_order": [
+    {
+      "order": 1,
+      "finding_id": "COV-01",
+      "candidate": "TypeScript tsc",
+      "readiness": "Ready for narrow catalog documentation",
+      "reason": "Basic language-specific type-checking gap with clear existing labels."
+    },
+    {
+      "order": 2,
+      "finding_id": "COV-02",
+      "candidate": "PSScriptAnalyzer",
+      "readiness": "Ready for narrow catalog documentation",
+      "reason": "Distinct PowerShell gap and bounded rule/output route."
+    },
+    {
+      "order": 3,
+      "finding_id": "COV-03",
+      "candidate": "Gitleaks Git history",
+      "readiness": "Conditional catalog-only",
+      "reason": "Distinct history task; maintenance notice and explicit history scope are prerequisites."
+    },
+    {
+      "order": 4,
+      "finding_id": "ADJ-01",
+      "candidate": "coverage.py",
+      "readiness": "Ready for narrow catalog documentation after fixture selection",
+      "reason": "Clarifies execution evidence needed before mutation-testing explanation."
+    },
+    {
+      "order": 5,
+      "finding_id": "ADJ-02",
+      "candidate": "StrykerJS JavaScript/Jest",
+      "readiness": "Conditional catalog-only",
+      "reason": "Builds on a working test fixture and precise outcome semantics."
+    },
+    {
+      "order": 6,
+      "finding_id": "COV-05",
+      "candidate": "Verilator lint-only",
+      "readiness": "Ready for narrow catalog documentation",
+      "reason": "Bounded HDL expansion; separate from simulation/formal scope."
+    },
+    {
+      "order": 7,
+      "finding_id": "ADJ-03",
+      "candidate": "py-spy local CPython",
+      "readiness": "Conditional catalog-only",
+      "reason": "Requires selected host/interpreter and process-permission explanation."
+    },
+    {
+      "order": 8,
+      "finding_id": "COV-04",
+      "candidate": "MobSF static APK",
+      "readiness": "Conditional catalog-only",
+      "reason": "Adds package/setup dimensions and needs explicit local service and APK boundaries."
+    },
+    {
+      "order": 9,
+      "finding_id": "ADJ-04",
+      "candidate": "k6 OSS local HTTP",
+      "readiness": "Conditional catalog-only",
+      "reason": "Depends on disposable HTTP fixture, bounded workload and result-state design."
+    }
+  ],
+  "ordering_note": "This order is reviewer judgment for authoring effort and conceptual dependencies, not a user-demand or effectiveness ranking. Resolve material existing-workflow defects and shared recipe/result-state guidance before the P3 expansion. A ready catalog document never means ready automatic matching or verified execution.",
+  "unresolved_gaps": [
+    {
+      "item": "All candidate runtime/platform/version claims",
+      "status": "Unverified",
+      "reason": "No tools installed or run. Choose releases and supported environments when authoring; executed labels require retained run evidence."
+    },
+    {
+      "item": "S-TaLiRo distribution/license",
+      "status": "Unresolved",
+      "reason": "No new obtainable distribution, exact GPL-version or installation compatibility evidence. Historical catalog labels remain qualified."
+    },
+    {
+      "item": "PHPStan Pro price",
+      "status": "Unresolved",
+      "reason": "Baseline semantics were reviewed; no current price evidence was obtained. This review does not close price claims."
+    },
+    {
+      "item": "RTAMT historical example",
+      "status": "Unresolved",
+      "reason": "No saved historical run or current successful compatible environment established."
+    },
+    {
+      "item": "Betterleaks",
+      "status": "Deferred",
+      "reason": "Select a stable release and matching docs, and separately review network validation/revocation controls before proposing it."
+    },
+    {
+      "item": "Semgrep CE exact rule",
+      "status": "Not selected",
+      "reason": "Language and rule-schema documents alone do not establish a specific finding match."
+    },
+    {
+      "item": "Catalog and builder separation",
+      "status": "Required",
+      "reason": "History availability, APK format and process-inspection access cannot be inferred from current aggregate tags. New measurement/performance findings need scoped workflow evidence, but current matching and display do not require a new GOALS entry."
+    },
+    {
+      "item": "EXP-02 expanded product matrix",
+      "status": "Partial primary verification",
+      "reason": "Semgrep/OSV examples support the recommendation; Trivy/Grype and other modes still require their own current evidence."
+    }
+  ],
+  "unsupported_claims_to_avoid": [
+    "Any claim that these additions were installed, executed, benchmarked or production validated.",
+    "Any claim of all-history/all-credential coverage from Gitleaks or current-file scanning.",
+    "Any claim that MobSF static APK admission includes all mobile packages or dynamic testing.",
+    "Any claim that Verilator lint establishes formal correctness or simulation coverage.",
+    "Any interpretation of Stryker runtime/compile error as a killed mutant or a failed k6 check as automatic whole-test failure.",
+    "Any universal permission-free py-spy launch or no-overhead claim.",
+    "Any automatic builder capability inherited from a product-wide language/findings list."
+  ],
+  "validation": {
+    "json": "passed",
+    "ascii": "passed",
+    "repository_writes": 0,
+    "analyzers_executed": 0,
+    "browser_interactions": 0
+  },
+  "review_corrections": [
+    {
+      "date": "2026-11-06",
+      "finding_id": "ADJ-04",
+      "disposition": "Earlier goal-mapping prerequisite withdrawn",
+      "evidence": [
+        "src/lib/system-builder.mjs:149-152 evaluates workflows and retains matches even when goalIds is empty.",
+        "src/lib/system-builder.mjs:165-172 groups candidates by evaluation status without goal filtering.",
+        "src/lib/system-builder-ui.mjs:341 and 354 render match findings directly."
+      ],
+      "correction": "A performance GOALS mapping is optional taxonomy/bookkeeping in the present implementation, not required for admission or discoverability. No automatic admission is recommended without scoped evidence.",
+      "execution": "Read-only source inspection; no analyzer or product execution."
+    }
+  ]
+}

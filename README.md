@@ -2,7 +2,7 @@
 
 A personal reference for static and dynamic analysis tools, built with Astro and
 Starlight. Browse by findings, input type, language, technique, license, and cost. Each tool
-has a Markdown page with sources, scope limitations, and a verification date.
+has a Markdown page with sources, scope limitations, and a documentation review date.
 
 ## Preview the wiki
 
@@ -55,6 +55,22 @@ workflow guides, and concepts. Keep language tags
 scoped to verified support; a language match does not promise every framework or
 version is supported. Starter entries are documentation reviews, not benchmarks.
 
+The [reader guide](src/content/docs/guides/using-this-wiki.md) connects the catalog,
+comparisons, and worked examples. Start with [Python linting and types](src/content/docs/guides/python-checks.md)
+or the [disposable HTTP API](src/content/docs/guides/api-testing.md), then use the
+[finding review](src/content/docs/guides/reviewing-findings.md) and
+[CI handling](src/content/docs/guides/ci-checks.md) guides to interpret results.
+
+Keep documentation reviews separate from executed examples. The
+[current review report](audits/review-status/README.md) compares content with
+recorded review digests without changing historical audits or source dates.
+Use the [run record](src/content/docs/guides/run-record.md) for execution evidence.
+
+The standalone projects under `examples/` have their own checks. They include
+intentional faults and are excluded from the site's TypeScript project. The
+Node suite separately verifies the faulty and corrected TypeScript fixture;
+other example checks and retained executions are described in their guides.
+
 The Input type filter separates source code, binaries, dependency metadata, container images, configuration files,
 running applications, callable code, executable models, and execution traces. Tools can accept
 multiple input types. Combine a language with Source code when looking for a
@@ -72,13 +88,20 @@ catalog filtering and category links; comparison URLs can be bookmarked or
 shared. The table uses the same Markdown metadata as the tool profiles.
 
 Use **Find tools for your system** to describe components and connections and
-automatically explore candidates that explain what they can find. Language and
+see candidates and their documented checks. Language and
 ecosystem choices open by default. Optional platform and
 testing-access details refine the suggestions. The latest system saves in this
 browser; export/import a system file to keep a copy. Recommendations come from
 reviewed workflows and do not represent measured test coverage. Some catalog
 entries are intentionally excluded until their workflow scope is verified; see
 the [workflow review](audits/system-builder/README.md).
+
+System descriptions support up to 1 MiB in their saved
+format. Over-limit edits stay in memory while the previous valid save is kept;
+reduce the description before saving or exporting. If saved data cannot be read,
+automatic saving pauses and offers recovery-data download and explicit replacement.
+Importing another description does not overwrite that protected copy. The
+[editing guide](src/content/docs/guides/editing.md#use-and-save-a-system) explains recovery.
 
 Cost is separate from open-source licensing. `Free with limits` covers continuing
 free access with usage or eligibility conditions. Trials do not count as free

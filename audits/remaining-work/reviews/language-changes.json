@@ -1,0 +1,471 @@
+{
+  "date": "2026-11-06",
+  "status": "complete-verified",
+  "reviewer": "root",
+  "changes": [
+    {
+      "id": "UI-L01",
+      "file": "src/lib/system-builder.mjs",
+      "disposition": "applied",
+      "source": "const sizeLabel = '1 MiB (1,048,576 bytes)';",
+      "replacement": "const sizeLabel = '1 MiB';",
+      "reason": "The byte-count expansion repeats the meaning of MiB in every size error and distracts from the recovery action."
+    },
+    {
+      "id": "UI-L02",
+      "file": "src/lib/system-builder-ui.mjs",
+      "disposition": "applied",
+      "source": "System files can be up to 1 MiB (1,048,576 bytes). Your current system has been kept.",
+      "replacement": "System files can be up to 1 MiB. Your current system has been kept.",
+      "reason": "Use the same concise size limit in the browser file preflight."
+    },
+    {
+      "id": "UI-L03",
+      "file": "README.md",
+      "disposition": "applied",
+      "source": "1 MiB (1,048,576 UTF-8 bytes)",
+      "replacement": "1 MiB",
+      "reason": "The exact byte expansion adds no useful action to this overview."
+    },
+    {
+      "id": "UI-L04",
+      "file": "README.md",
+      "disposition": "applied",
+      "source": "and a verification date.",
+      "replacement": "and a documentation review date.",
+      "reason": "Use the actual meaning of the date instead of the broader word verification."
+    },
+    {
+      "id": "UI-L05",
+      "file": "README.md",
+      "disposition": "applied",
+      "source": "automatically explore candidates that explain what they can find.",
+      "replacement": "see candidates and their documented checks.",
+      "reason": "Remove indirect wording while retaining the source of the candidate claims."
+    },
+    {
+      "id": "UI-L06",
+      "file": "src/components/SystemBuilder.astro",
+      "disposition": "applied",
+      "source": "Suggestions use reviewed workflows. These tools still have catalog notes but are not included in matching yet; their absence does not mean they are unsuitable:",
+      "replacement": "Suggestions use reviewed workflows. These tools are not matched yet but may still be suitable:",
+      "reason": "Shorten the omission explanation; the linked list already provides access to catalog notes."
+    },
+    {
+      "id": "UI-L07",
+      "file": "src/lib/system-builder-ui.mjs",
+      "disposition": "applied",
+      "source": "Export system downloads a JSON file with the system name, components, connections, notes, and cost/license preferences. It excludes tool candidates, match explanations, comparison selections, and analysis results. Import restores the description and recalculates suggestions.",
+      "replacement": "Export saves your system name, components, connections, notes, and cost/license preferences as JSON. It excludes candidates, match explanations, comparison selections, and analysis results. Import restores the description and recalculates suggestions.",
+      "reason": "Lead with the action and remove repeated system/file wording."
+    },
+    {
+      "id": "UI-L08",
+      "file": "src/lib/system-builder-ui.mjs",
+      "disposition": "applied",
+      "source": "These fields help you organize your system. They do not change suggestions.",
+      "replacement": "These fields organize your description and do not affect suggestions.",
+      "reason": "Combine the two short explanations without dropping the matching limitation."
+    },
+    {
+      "id": "UI-L09",
+      "file": "src/lib/system-builder-ui.mjs",
+      "disposition": "applied",
+      "source": "Download recovery data to keep the existing saved copy. It may need correction or reduction before importing; it is not a normal system export. Importing another description or undoing an edit will keep this copy protected.",
+      "replacement": "Download recovery data to keep the saved copy. This is not a normal export; it may need correction or reduction before import. Imports and undo keep the saved copy protected.",
+      "reason": "Reduce repeated wording while preserving the recovery warning and overwrite protection."
+    },
+    {
+      "id": "UI-L10",
+      "file": "src/lib/system-builder-ui.mjs",
+      "disposition": "applied",
+      "source": "Replace the saved system with the current description? Download recovery data first if you want to keep the existing saved copy.",
+      "replacement": "Replace the saved system with this description? Download recovery data first to keep the saved copy.",
+      "reason": "Make the confirmation shorter while retaining the explicit replacement and recovery action."
+    },
+    {
+      "id": "UI-L11",
+      "file": "src/lib/system-builder.mjs",
+      "disposition": "applied",
+      "source": "Automatic saving is paused because saved data could not be read. Retry reading saved data before saving. Current edits remain in memory.",
+      "replacement": "Saved data could not be read. Automatic saving is paused; current edits remain in memory. Retry reading saved data.",
+      "reason": "State the problem, protection and next action once each."
+    },
+    {
+      "id": "UI-L12",
+      "file": "src/lib/system-builder.mjs",
+      "disposition": "applied",
+      "source": "Automatic saving is paused to protect the existing saved data. Download recovery data, then use Replace saved system if you want to save the current description instead.",
+      "replacement": "Automatic saving is paused to protect saved data. Download recovery data before choosing Replace saved system to save this description.",
+      "reason": "Remove repeated qualifiers and use the exact action label."
+    },
+    {
+      "id": "UI-L13",
+      "file": "src/data/tool-choices.ts",
+      "disposition": "applied",
+      "source": "Ruff checks lint rules. Pyright checks types and imports. Choose the checks you need; these tools can complement each other rather than replace one another.",
+      "replacement": "Ruff checks lint rules. Pyright checks types and imports. They provide complementary checks.",
+      "reason": "The specific tool roles already explain why both may be useful; the generic decision sentence repeats that point."
+    },
+    {
+      "id": "UI-L14",
+      "file": "src/data/tool-choices.ts",
+      "disposition": "applied",
+      "source": "Choose based on the question you need to answer and how much modeling you can provide.",
+      "replacement": "Choose based on your question and modeling effort.",
+      "reason": "Remove an indirect phrase without changing the decision factors."
+    },
+    {
+      "id": "UI-L15",
+      "file": "src/data/editions.ts",
+      "disposition": "applied",
+      "source": "These are related products with distinct jobs. The catalog entry covers Code Prover; a trial does not count as a permanent free edition.",
+      "replacement": "This entry covers Code Prover. Its trial does not count as a free edition.",
+      "reason": "The product rows explain the different jobs; the introduction only needs to identify the entry and trial qualification."
+    },
+    {
+      "id": "LG-01",
+      "file": "src/content/docs/guides/choosing-and-recording-tools.md",
+      "disposition": "applied",
+      "source": "A shortlist is a starting point. Use this note to turn a candidate into an\nevaluation plan for one component or connection.",
+      "replacement": "Use this note to turn a shortlisted tool into an evaluation plan for one\ncomponent or connection.",
+      "reason": "Remove the generic opening and lead with the task; retain the following export and comparison constraints."
+    },
+    {
+      "id": "LG-02",
+      "file": "src/content/docs/guides/run-record.md",
+      "disposition": "applied",
+      "source": "Write the plan first. Expected output describes what would show that the check\nis active; it is not evidence that the run happened.",
+      "replacement": "Record the expected signal before running. It describes how to confirm the\ncheck is active, not evidence that it ran.",
+      "reason": "Tighten the explanation while retaining the expected-versus-observed distinction."
+    },
+    {
+      "id": "LG-03",
+      "file": "src/content/docs/guides/python-checks.md",
+      "disposition": "applied",
+      "source": "The runner checks the tool versions, runs each tool separately, and records the\ncommands, input hashes, host, versions, and return codes in `run.json`.\n`ruff.json` contains Ruff diagnostics; `mypy.txt` contains mypy's report. Each\ntool also has a separate stderr file. Read both reports even if the first tool\nfinds a problem. Use a new output directory for each rerun; the runner refuses to\noverwrite earlier reports. Setup failures are recorded in `run.json`, and a\ntimeout retains any partial output.",
+      "replacement": "The runner verifies versions, runs each tool separately, and saves commands,\ninput hashes, host details, versions, and return codes in `run.json`. Diagnostics\ngo in `ruff.json` and `mypy.txt`, with separate stderr files. Read both reports.\nUse a new output directory for each rerun; the runner refuses to overwrite\nearlier reports. It records setup failures and retains partial output on timeout.",
+      "reason": "Combine repeated report descriptions without dropping version checks, separate outputs, overwrite protection, or failure evidence."
+    },
+    {
+      "id": "LG-04",
+      "file": "src/content/docs/guides/ci-checks.md",
+      "disposition": "applied",
+      "source": "For this small recipe, every reported diagnostic blocks the gate. For an existing project, introduce a reviewed rule set and scope, then decide whether existing findings need a tracked remediation period. Do not regenerate a baseline on every run to force a passing status.",
+      "replacement": "This recipe blocks on every diagnostic. For an existing project, review the rule set and scope, then decide whether existing findings need a tracked remediation period. Do not regenerate baselines to force a pass.",
+      "reason": "Use direct verbs and remove qualifiers that do not change the gate policy."
+    },
+    {
+      "id": "LG-05",
+      "file": "src/content/docs/guides/reviewing-findings.md",
+      "disposition": "applied",
+      "source": "**Check that the intended analysis completed before deciding what its findings mean.**",
+      "replacement": "**Confirm that the intended analysis completed before interpreting findings.**",
+      "reason": "Shorten the lead without weakening the completion check."
+    },
+    {
+      "id": "LG-06",
+      "file": "src/content/docs/guides/reviewing-findings.md",
+      "disposition": "applied",
+      "source": "Record which interpretation the code supports instead of dismissing all unused-import warnings.",
+      "replacement": "Record the evidence for that interpretation.",
+      "reason": "The preceding sentences already describe the possible interpretations; remove the hypothetical dismissal."
+    },
+    {
+      "id": "LG-07",
+      "file": "src/content/docs/guides/execution-and-data.md",
+      "disposition": "applied",
+      "source": "Managed Scans are a separate execution choice: Semgrep clones the selected repository into its infrastructure for the scan, then removes the clone. Do not describe this as analysis on your own runner.",
+      "replacement": "Managed Scans run on Semgrep's infrastructure: the service clones the selected repository, scans it, then removes the clone.",
+      "reason": "State the execution location directly rather than repeating it as a warning."
+    },
+    {
+      "id": "LG-08",
+      "file": "src/content/docs/guides/test-evidence.md",
+      "disposition": "applied",
+      "source": "A passing suite says that its checks passed for the executions it made. Use\nother evidence to find missing paths and weak checks, while keeping each result's\nscope clear.",
+      "replacement": "A passing suite can leave paths untested or rely on weak assertions. Use the\nevidence below to investigate both, while keeping each result's scope clear.",
+      "reason": "Replace a tautological opening with the specific reason to examine coverage and mutation evidence."
+    },
+    {
+      "id": "LG-09",
+      "file": "src/content/docs/guides/test-evidence.md",
+      "disposition": "applied",
+      "source": "The useful change is the\nboundary assertion; this tiny example does not establish that every project\nshould reach a particular mutation score.",
+      "replacement": "The boundary assertion improved this suite; the result does not set a target\nmutation score for other projects.",
+      "reason": "Tighten the conclusion while retaining the limit on generalizing the measured score."
+    },
+    {
+      "id": "LG-10",
+      "file": "src/content/docs/guides/api-testing.md",
+      "disposition": "applied",
+      "source": "No finding in a short run proves absence of defects, and raw finding\ncounts are not a comparison of RESTler and Schemathesis coverage.",
+      "replacement": "A short run without findings does not prove that defects are absent. Raw\nfinding counts do not compare RESTler and Schemathesis coverage.",
+      "reason": "Remove the ambiguity in \"No finding\" while retaining both interpretation limits."
+    },
+    {
+      "id": "LG-11",
+      "file": "src/content/docs/guides/temporal-monitoring-and-falsification.md",
+      "disposition": "applied",
+      "source": "A temporal requirement describes behavior over time. The distinction to make first is whether you already have a trace to evaluate or need to generate executions that might violate the requirement.",
+      "replacement": "A temporal requirement describes behavior over time. First decide whether to evaluate an existing trace or generate executions that might violate it.",
+      "reason": "Remove the roundabout lead-in and state the choice directly."
+    },
+    {
+      "id": "LG-12",
+      "file": "src/content/docs/guides/temporal-monitoring-and-falsification.md",
+      "disposition": "applied",
+      "source": "A counterexample is useful evidence to replay against the same simulator and configuration.",
+      "replacement": "Replay a counterexample with the same simulator and configuration.",
+      "reason": "Express the required action directly; the following budget limitation remains unchanged."
+    },
+    {
+      "id": "LG-13",
+      "file": "src/content/docs/guides/editing.md",
+      "disposition": "applied",
+      "source": "Link the relevant official guides and license evidence, and record the review date. A detailed official repository guide can qualify; the number of links alone does not establish documentation quality. If a required fact cannot be verified, keep the candidate in research notes until it can be resolved. Limit the entry to documented capabilities instead of filling gaps with assumptions.",
+      "replacement": "Cite official guides and license evidence, and record the review date. A detailed official repository guide can qualify; link counts alone do not establish quality. Keep unverifiable candidates in research notes and limit entries to documented capabilities.",
+      "reason": "Consolidate repeated admission guidance while preserving primary evidence, licensing, date, and unverifiable-candidate requirements."
+    },
+    {
+      "id": "LG-14",
+      "file": "src/content/docs/concepts/dast-approaches.md",
+      "disposition": "applied",
+      "source": "DAST does not have one universal list of mutually exclusive types. It is more useful to describe a test along several dimensions. A single scan can be active, authenticated, and API-focused at the same time.",
+      "replacement": "Describe a DAST test along several dimensions: a scan can be active, authenticated, and API-focused at the same time.",
+      "reason": "Remove the abstract discussion of taxonomies; the example already explains that categories overlap."
+    },
+    {
+      "id": "LG-15",
+      "file": "src/content/docs/concepts/model-falsification.md",
+      "disposition": "applied",
+      "source": "Model checking aims to establish whether a model satisfies a property under its stated assumptions and may also return counterexamples. The simulation searches covered here are aimed at finding violations; a successful search can refute a property, while an unsuccessful search alone cannot prove it.",
+      "replacement": "Model checking asks whether a model satisfies a property under stated assumptions and may return a counterexample. Simulation falsification searches for violations.",
+      "reason": "Remove repetition of the no-proof-from-unsuccessful-search explanation already retained under \"What a result establishes\"."
+    },
+    {
+      "id": "LG-16",
+      "file": "src/content/docs/concepts/static-approaches.md",
+      "disposition": "applied",
+      "source": "The similar names of cwe-checker and CVE Binary Tool conceal different jobs. One looks for weakness patterns in recovered code; the other identifies components and matches vulnerability records.",
+      "replacement": "cwe-checker looks for weakness patterns in recovered code; CVE Binary Tool identifies components and matches vulnerability records.",
+      "reason": "Name each tool directly and remove the figurative lead-in; the CVE and exploitability limits remain."
+    },
+    {
+      "id": "LG-17",
+      "file": "src/content/docs/concepts/advanced-static-methods.md",
+      "disposition": "applied",
+      "source": "A repair to this condition is:",
+      "replacement": "Add an upper-bound check:",
+      "reason": "Name the concrete code change instead of using an abstract transition; pointer/allocation assumptions remain immediately below."
+    },
+    {
+      "id": "LG-18",
+      "file": "src/content/docs/concepts/verification-and-generated-tests.md",
+      "disposition": "applied",
+      "source": "**Start with the claim you want to check and the evidence you need.** Testing tries selected inputs and can reveal failures. Formal verification can establish a stated property when its proof succeeds, under the model's assumptions. These workflows need different inputs and give different kinds of evidence.",
+      "replacement": "**Choose the claim and evidence you need.** Testing can reveal failures on selected inputs. A successful formal proof can establish a stated property under the model's assumptions.",
+      "reason": "Remove repeated introductory framing while retaining selected-input and successful-proof qualifications."
+    },
+    {
+      "id": "LG-19",
+      "file": "src/content/docs/research/index.md",
+      "disposition": "applied",
+      "source": "My research examines how static analysis tools are used to assess software security and quality. In these notes, I summarize work with my collaborators and discuss what our findings mean for developers using these tools.",
+      "replacement": "I summarize research with my collaborators and its implications for developers using static analysis to assess software security and quality.",
+      "reason": "Combine two overlapping introductory sentences while retaining the author's perspective and research scope."
+    },
+    {
+      "id": "LG-20",
+      "file": "src/content/docs/research/index.md",
+      "disposition": "applied",
+      "source": "I cover a literature review, a CI/CD use case, an empirical comparison, and two proposed applications of software quality assessment. I discuss recommendations separately from our reported results.",
+      "replacement": "I distinguish recommendations from our reported results.",
+      "reason": "The Topics list already names all five research areas; retain only the important evidence distinction here."
+    },
+    {
+      "id": "LG-21",
+      "file": "src/content/docs/research/sast-adoption.md",
+      "disposition": "applied",
+      "source": "When evaluating a tool, I would consider the following questions:",
+      "replacement": "I would ask:",
+      "reason": "The section heading and table already establish the evaluation context; retain the personal recommendation voice."
+    },
+    {
+      "id": "LG-22",
+      "file": "src/content/docs/research/binary-analysis.md",
+      "disposition": "applied",
+      "source": "We propose a measurement approach. In the paper, we identify applying it to malware samples and validating the resulting assessments as future work.",
+      "replacement": "Applying the proposed approach to malware samples and validating the assessments remain future work.",
+      "reason": "Say once that application and validation are future work; preserve the proposal-versus-evaluated-results boundary."
+    },
+    {
+      "id": "LG-23",
+      "file": "examples/test-quality/evidence.md",
+      "disposition": "applied",
+      "source": "Independent review found that recursive Jest globs could include tests from an\nold Stryker temporary copy. The configurations now match only the intended\nroot test file and exclude `.stryker-tmp`. Both baselines and mutation runs were\nrepeated with the corrected configurations: one suite per baseline, one weak\ntest and two strong tests, with the same mutant outcomes. The retained hashes\nand reports describe these corrected runs.",
+      "replacement": "The retained runs use Jest configurations that select only the intended test\nfile and exclude `.stryker-tmp`, preventing discovery of old temporary copies.\nBoth baselines and mutation runs were repeated after the fix: one suite each,\none weak test and two strong tests, with the same mutant outcomes.",
+      "reason": "Lead with the configuration represented by the retained evidence; remove repeated assertions that the reports describe the corrected runs."
+    },
+    {
+      "id": "LG-24",
+      "file": "examples/protocol-ping/README.md",
+      "disposition": "applied",
+      "source": "This separate protocol fixture gives boofuzz a target, two selected mutations,\na response check, and a reset/readiness callback. It is not an HTTP API or a\ngeneral fuzzing campaign. The target stores no data between connections.",
+      "replacement": "This boofuzz fixture supplies a target, two selected mutations, a response\ncheck, and a readiness callback. It demonstrates a custom protocol, not HTTP\nor a general fuzzing campaign.",
+      "reason": "Tighten the opening and leave the stateless/reset explanation at its detailed location below; retain the finite custom-protocol scope."
+    },
+    {
+      "id": "LG-25",
+      "file": "examples/rtamt/README.md",
+      "disposition": "applied",
+      "source": "Import or parser errors mean the monitor did not evaluate the trace. A negative\nrobustness value means evaluation completed and the supplied trace violated the\nrequirement. Keep those outcomes separate.",
+      "replacement": "An import or parser error means the trace was not evaluated. Negative\nrobustness means evaluation completed and found a violation.",
+      "reason": "Remove the repeated instruction to distinguish outcomes after stating the distinction directly."
+    },
+    {
+      "id": "LP-01",
+      "file": "src/content/docs/tools/bandit.md",
+      "disposition": "applied",
+      "source": "Use it as a focused check in a Python development workflow. Its narrow language scope makes it a useful entry point for learning how rule-based security analysis works.",
+      "replacement": "Use it as a focused security check in a Python development workflow.",
+      "reason": "Removes a generic learning-benefit claim while retaining the concrete role in a Python workflow."
+    },
+    {
+      "id": "LP-02",
+      "file": "src/content/docs/tools/cargo-audit.md",
+      "disposition": "applied",
+      "source": "We used Cargo-audit for Rust in our [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf). Its dependency-advisory scope is important when interpreting the Rust findings alongside source analyzers. I make that distinction explicit in [Comparing SAST tools](../../research/comparing-tools/).",
+      "replacement": "We used Cargo-audit for Rust in our [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf). Its dependency-advisory results differ in scope from source-analyzer results; see [Comparing SAST tools](../../research/comparing-tools/).",
+      "reason": "States the relevant comparison directly and removes commentary about the author explaining it."
+    },
+    {
+      "id": "LP-03",
+      "file": "src/content/docs/tools/codeql.md",
+      "disposition": "applied",
+      "source": "**Documentation-reviewed on November 6, 2026; not executed here.** This route selects Python SQL injection only. It adds a scoped builder workflow without re-verifying all of CodeQL's catalog capabilities.",
+      "replacement": "**Documentation reviewed on November 6, 2026; not executed here.** This builder workflow covers only Python SQL injection. Other catalog capabilities were not re-reviewed.",
+      "reason": "States the limited review scope directly instead of narrating the addition to the catalog; preserves the date and unexecuted status."
+    },
+    {
+      "id": "LP-04",
+      "file": "src/content/docs/tools/coverage-py.md",
+      "disposition": "applied",
+      "source": "Missing lines and branches show unexecuted opportunities in the selected source. A coverage percentage is not a measure of assertion quality or correctness.",
+      "replacement": "Missing lines and branches identify statements and branch destinations not executed in the selected source. A coverage percentage is not a measure of assertion quality or correctness.",
+      "reason": "Replaces the vague phrase 'unexecuted opportunities' with the measured units already defined by the profile."
+    },
+    {
+      "id": "LP-05",
+      "file": "src/content/docs/tools/dotnet-analyzers.md",
+      "disposition": "applied",
+      "source": "I link this related implementation in [Comparing SAST tools](../../research/comparing-tools/) without assigning the historical findings to today's SDK defaults.",
+      "replacement": "See [Comparing SAST tools](../../research/comparing-tools/) for why those historical findings cannot be attributed to today's SDK defaults.",
+      "reason": "Removes commentary about adding a link while preserving the historical attribution limit and destination."
+    },
+    {
+      "id": "LP-06",
+      "file": "src/content/docs/tools/floss.md",
+      "disposition": "applied",
+      "source": "I expose both modes in the catalog to make that distinction visible.",
+      "replacement": "The catalog's Static and Dynamic tags reflect these two modes.",
+      "reason": "Explains the tags directly instead of describing the author's editorial choice."
+    },
+    {
+      "id": "LP-07",
+      "file": "src/content/docs/tools/ghidra.md",
+      "disposition": "applied",
+      "source": "I connect this entry to [Malware sophistication](../../research/binary-analysis/) because recovered structure affects how software quality can be interpreted.",
+      "replacement": "[Malware sophistication](../../research/binary-analysis/) explains how recovered structure affects the interpretation of software quality.",
+      "reason": "Retains the link and its purpose without narrating the act of linking."
+    },
+    {
+      "id": "LP-08",
+      "file": "src/content/docs/tools/k6.md",
+      "disposition": "applied",
+      "source": "These answer different questions rather than ranking\ngeneric API coverage.",
+      "replacement": "These tools answer different questions.",
+      "reason": "Removes an abstract ranking contrast after the paragraph already states each tool's distinct task."
+    },
+    {
+      "id": "LP-09",
+      "file": "src/content/docs/tools/mobsf.md",
+      "disposition": "applied",
+      "source": "Neither comparison implies that this static scan runs the\nAndroid app.",
+      "replacement": "This static scan does not run the Android app.",
+      "reason": "States the execution boundary directly instead of describing what the preceding comparisons imply."
+    },
+    {
+      "id": "LP-10",
+      "file": "src/content/docs/tools/psalm.md",
+      "disposition": "applied",
+      "source": "I keep that current capability distinct from the reported study configuration in [Comparing SAST tools](../../research/comparing-tools/).",
+      "replacement": "See [Comparing SAST tools](../../research/comparing-tools/) for the distinction between current capabilities and the reported study configuration.",
+      "reason": "Removes author commentary while retaining the current-versus-historical scope distinction and link."
+    },
+    {
+      "id": "LP-11",
+      "file": "src/content/docs/tools/psscriptanalyzer.md",
+      "disposition": "applied",
+      "source": "For this function's intended job of returning a greeting through the pipeline, replace `Write-Host` with `Write-Output` and repeat the check.",
+      "replacement": "To return this function's greeting through the pipeline, replace `Write-Host` with `Write-Output` and repeat the check.",
+      "reason": "Shortens the condition for the correction without changing the intended pipeline behavior or the surrounding caveat about deliberate display functions."
+    },
+    {
+      "id": "LP-12",
+      "file": "src/content/docs/tools/pyright.md",
+      "disposition": "applied",
+      "source": "The [pinned package metadata](https://github.com/microsoft/pyright/blob/1.1.407/packages/pyright/package.json)\nand [CLI reference](https://github.com/microsoft/pyright/blob/main/docs/command-line.md)\ndescribe installation requirements and invocation. This minimal file has no\nthird-party imports. For a real project, set the intended interpreter, platform,\ndependencies, and stubs before interpreting missing-import diagnostics.\n\n## Start with the project environment\n\nUse the documented CLI installation and point Pyright at a small package. Configure the intended Python interpreter, target version, and import paths before interpreting missing-import or unknown-type messages. Choose a diagnostic mode deliberately and review its defaults.",
+      "replacement": "The [pinned package metadata](https://github.com/microsoft/pyright/blob/1.1.407/packages/pyright/package.json)\nand [CLI reference](https://github.com/microsoft/pyright/blob/main/docs/command-line.md)\ndescribe installation requirements and invocation. This minimal file has no\nthird-party imports.\n\n## Start with the project environment\n\nPoint Pyright at a small package. Configure the intended Python interpreter, target version and platform, dependencies, stubs, and import paths before interpreting missing-import or unknown-type messages. Choose a diagnostic mode deliberately and review its defaults.",
+      "reason": "Consolidates repeated project-environment advice into one paragraph, preserving every named setting and both reference links."
+    },
+    {
+      "id": "LP-13",
+      "file": "src/content/docs/tools/wartremover.md",
+      "disposition": "applied",
+      "source": "I retain the distinction between a reported tool name and its enabled checks when interpreting those findings. See [Comparing SAST tools](../../research/comparing-tools/).",
+      "replacement": "The reported tool name alone does not establish which checks were enabled; see [Comparing SAST tools](../../research/comparing-tools/).",
+      "reason": "States the evidence limit directly instead of describing the author's interpretive approach."
+    },
+    {
+      "id": "LP-14",
+      "file": "src/content/docs/tools/yara-x.md",
+      "disposition": "applied",
+      "source": "I include its successor here as a related tool; we did not evaluate YARA-X.",
+      "replacement": "We did not evaluate YARA-X.",
+      "reason": "Removes the editorial reason for including the entry while preserving the explicit non-evaluation statement and surrounding original-YARA distinction."
+    },
+    {
+      "id": "LP-15",
+      "file": "src/content/docs/tools/typescript.md",
+      "disposition": "applied",
+      "source": "The faulty file calls a string parameter with a number:",
+      "replacement": "The faulty file passes a number to a string parameter:",
+      "reason": "Uses the precise verb for an argument/parameter mismatch; the file calls a function and passes an argument."
+    },
+    {
+      "id": "ROOT-L01",
+      "file": "src/content/docs/guides/editing.md",
+      "disposition": "applied",
+      "source": "1 MiB (1,048,576 UTF-8 bytes)",
+      "replacement": "1 MiB",
+      "reason": "Remove the same redundant byte expansion from the editing guide, consistent with the user request and UI review. The following saved-format byte-limit explanation remains."
+    }
+  ],
+  "counts": {
+    "agent_recommendations": 55,
+    "coordinator_followups": 1,
+    "applied": 56,
+    "files_changed": 42
+  },
+  "verification": {
+    "independent_applied_reviews": [
+      "language-ui.json",
+      "language-guides.json",
+      "language-profiles.json"
+    ],
+    "full_suite": "../verification-final.txt",
+    "browser": "../browser-acceptance.json",
+    "result": "All replacements verified; 101 tests and 131-page checks pass after the edits."
+  }
+}

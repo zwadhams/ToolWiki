@@ -57,7 +57,7 @@ tool:
   targets: [HTTP APIs, OpenAPI, GraphQL]
   findings: [Specification violations, Server errors, Input validation]
   findingNote: Finds failures of enabled response and schema checks. An HTTP error or schema mismatch needs investigation and is not automatically a security vulnerability.
-  environment: A compatible Python environment; current package metadata requires Python 3.10 or newer. Container and uv-based workflows are also documented.
+  environment: A compatible Python environment; the pinned 4.33.1 example requires Python 3.11 or newer. Container and uv-based workflows are also documented.
   setup: Provide an API definition and reachable test service. Configure server location, authentication, state, and selected checks for the intended operations.
   licenseCategory: Open source
   license: MIT
@@ -81,17 +81,14 @@ Schemathesis derives test cases from an API definition and checks the responses 
 
 Useful findings include responses that contradict the declared schema and server errors caused by generated inputs. These checks complement a security scanner such as [ZAP](../zap/); they do not imply identical security-rule coverage.
 
-## Example
+## First try
 
-**Illustrative workflow, not run here.** Install the CLI in a compatible environment. Start a disposable local API that serves its OpenAPI definition at the URL below, with its server URL configured for that local instance:
+Use the [disposable HTTP API](../../guides/api-testing/) for a supplied service,
+OpenAPI schema, reset procedure, and known failing/corrected request. It includes
+create/read/delete resource dependencies and separate instructions for this tool.
 
-```sh
-schemathesis run http://127.0.0.1:8000/openapi.json
-```
-
-For an authenticated service, configure test credentials before expecting meaningful endpoint coverage. Generated requests can create or change records, so use test data that can be reset.
-
-Reproduce a reported failure using its supplied request, then decide whether the implementation, schema, or test setup is wrong. Preserve the schema revision and test configuration with the result.
+The Schemathesis 4.33.1 run was executed on 2026-11-06 with selected server-error
+checks. The guide retains the environment, inputs, reports, and observed results.
 
 ## Limits
 

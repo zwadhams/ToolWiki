@@ -58,26 +58,13 @@ tool:
 
 boofuzz separates the protocol description from the target connection and failure monitoring. A request graph can establish a session before mutating a later message. Supported connections include TCP, UDP, and serial interfaces.
 
-## Example
+## First try
 
-**Illustrative harness, not run here.** Install boofuzz in a Python environment. Assume a disposable local test service on port 8021 accepts lines of the form `PING value`:
+Use the [supplied PING target and harness](https://github.com/zwadhams/ToolWiki/tree/main/examples/protocol-ping) for a complete local response check. It includes a loopback server, faulty and corrected modes, two selected mutations, response validation, readiness/reset handling, and stop instructions.
 
-```python
-from boofuzz import Request, Session, Static, String, Target, TCPSocketConnection
+**Executed on 2026-11-06:** boofuzz 0.4.2 on Windows/Python 3.12.16. The faulty target omitted its reply to a valid `PING TRIGGER` request. The response callback reported that violation; the corrected target passed both selected cases. This was a finite protocol demonstration, not a process-crash test or a broad fuzzing campaign.
 
-message = Request("ping", children=(
-    Static("command", b"PING "),
-    String("value", "hello"),
-    Static("end", b"\r\n"),
-))
-session = Session(target=Target(
-    connection=TCPSocketConnection("127.0.0.1", 8021)
-))
-session.connect(message)
-session.fuzz()
-```
-
-This mutates the value and records tests. Add a suitable process monitor, response callback, and restart method before treating it as a complete defect-detection setup.
+Each run retains requests, replies, configuration hashes, console output, and a boofuzz database. The [execution observations](https://github.com/zwadhams/ToolWiki/tree/main/audits/remaining-work/executions/boofuzz) preserve the results separately from expected behavior. Adapt the message model, monitor, and reset procedure to the real target before expanding the mutation set.
 
 ## Limits
 

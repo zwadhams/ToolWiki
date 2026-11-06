@@ -3,7 +3,7 @@ title: Research overview
 description: Research on SAST adoption, pipeline integration, detection patterns, software quality, and static binary analysis.
 ---
 
-My research examines how static analysis tools are used to assess software security and quality. In these notes, I summarize work with my collaborators and discuss what our findings mean for developers using these tools.
+I summarize research with my collaborators and its implications for developers using static analysis to assess software security and quality.
 
 ## Topics
 
@@ -21,7 +21,7 @@ Where a paper does not identify a product edition, the connection is labeled **R
 
 ## Papers
 
-I cover a literature review, a CI/CD use case, an empirical comparison, and two proposed applications of software quality assessment. I discuss recommendations separately from our reported results.
+I distinguish recommendations from our reported results.
 
 My [master's thesis, On Improving the Adoption, Usability, and Retention of Static Application Security Testing (SAST) Tools](https://www.cs.montana.edu/izurieta/thesis/Wadhams.pdf) brings together the adoption review and CI/CD work. Its chapters and the corresponding conference papers describe the same research.
 

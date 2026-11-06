@@ -1,0 +1,93 @@
+{
+  "date": "2026-11-06",
+  "status": "passed",
+  "origin": "http://127.0.0.1:4335/ToolWiki/",
+  "scope": "Built-site acceptance on an isolated loopback origin with a synthetic system description.",
+  "checks": [
+    {
+      "requirements": [
+        "N02"
+      ],
+      "action": "Select Source code and Python in the catalog.",
+      "observed": "Multilingual matches show the selected Python cue. Existing catalog filtering remains active."
+    },
+    {
+      "requirements": [
+        "SEA-04"
+      ],
+      "action": "Enter a query with no matches under the current catalog filters, use Search all pages for this query, then close the search dialog.",
+      "observed": "The query is copied into full-page search; catalog filters remain intact and closing restores focus to the handoff button."
+    },
+    {
+      "requirements": [
+        "SEA-04",
+        "ADJ-01"
+      ],
+      "action": "Search all pages for branch coverage after rebuilding the search assets.",
+      "observed": "Four page results include coverage.py, Understand test evidence, Verification and generated tests, and Hypothesis. The unfiltered catalog finds the coverage.py profile."
+    },
+    {
+      "requirements": [
+        "CMP-03",
+        "ARC-01",
+        "CMP-01"
+      ],
+      "action": "Follow a restricted-free cost link from a comparison and return to filtered results.",
+      "observed": "The profile opens at cost-and-editions; the return URL preserves category, filters and current comparison selections."
+    },
+    {
+      "requirements": [
+        "KNO-04",
+        "SEA-05"
+      ],
+      "action": "Open Use this wiki, follow the static-versus-dynamic concept route, and open the builder from the main navigation.",
+      "observed": "The reader routes render and link to the intended pages. Sidebar category navigation starts a fresh category; in-page category links retain filters as documented."
+    },
+    {
+      "requirements": [
+        "EXP-03"
+      ],
+      "action": "Select Python and Source code with no host answer, then use CodeQL's host-answer action and choose Windows.",
+      "observed": "The missing-answer action focuses Analysis host operating system. The known but unlisted host becomes a compatibility question with profile/source links instead of another missing-answer prompt."
+    },
+    {
+      "requirements": [
+        "A11Y-01",
+        "MNT-04"
+      ],
+      "action": "Select Ruff for comparison in the builder, remove the final selection with Enter, and press Tab.",
+      "observed": "Focus moves to the comparison status, then continues near the candidate controls."
+    },
+    {
+      "requirements": [
+        "MAT-01",
+        "MNT-04"
+      ],
+      "action": "Name the synthetic component Roadmap acceptance sample and reload.",
+      "observed": "The name, Python, Source code and Windows host answer persist. The temporary comparison selection is cleared, as described by the interface."
+    },
+    {
+      "requirements": [
+        "ADJ-01"
+      ],
+      "action": "Open the coverage.py profile from the filtered catalog and inspect its rendering.",
+      "observed": "The overview, first-use link, compatibility and cost links, result description and limitations render without clipping in the inspected desktop viewport."
+    }
+  ],
+  "resolved_integration_issue": "The first build produced empty Pagefind fragments, which caused live search to fail despite successful build output. A clean index rebuild restored search. scripts/check-site.mjs now rejects empty or malformed search assets; the independent architecture review checked ten invalid-asset cases.",
+  "prior_boundary_evidence": "audits/first-batch/README.md#browser-acceptance",
+  "limitations": [
+    "The earlier first-batch browser pass covers exact import/save limits and recovery protection; those destructive-boundary cases were not repeated in this pass.",
+    "This is focused desktop acceptance, not full accessibility or responsive-device certification.",
+    "No real user description, global browser storage, hosted site or external account was modified."
+  ],
+  "after_language_review": {
+    "status": "passed",
+    "observations": [
+      "Reloaded final production build and checked the coverage profile.",
+      "Expanded builder export guidance and confirmed the shortened text retains saved/excluded fields and recalculation behavior.",
+      "Full-page branch coverage search again returned four page results.",
+      "Desktop rendering of the updated builder guidance remained readable."
+    ]
+  }
+}

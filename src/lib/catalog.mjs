@@ -1,4 +1,4 @@
-/** @typedef {{id: string, title: string, description: string, aliases?: string[], searchTerms?: string[], modes: string[], inputTypes: string[], findings: string[], techniques: string[], languages: string[], targets: string[], licenseCategory: string, cost: string[], costNote: string, verified: string}} Tool */
+/** @typedef {{id: string, title: string, description: string, aliases?: string[], searchTerms?: string[], modes: string[], inputTypes: string[], findings: string[], techniques: string[], languages: string[], targets: string[], licenseCategory: string, cost: string[], verified: string}} Tool */
 /** @typedef {{q?: string, mode?: string, finding?: string, input?: string, language?: string, technique?: string, license?: string, cost?: string, sort?: string}} Filters */
 
 const synonyms = new Map([
@@ -31,7 +31,7 @@ function relevance(tool, query) {
   const fields = [
     { text: names.join(' '), weight: 40 },
     { text: [...tool.languages, ...tool.findings, ...tool.techniques, ...(tool.searchTerms || [])].join(' '), weight: 20 },
-    { text: [tool.description, ...tool.modes, ...tool.inputTypes, ...tool.targets, tool.licenseCategory, ...tool.cost].join(' '), weight: 5 },
+    { text: [tool.description, ...tool.modes.map(mode => `${mode} analysis`), ...tool.inputTypes, ...tool.targets, tool.licenseCategory, ...tool.cost].join(' '), weight: 5 },
   ].map(({ text, weight }) => ({ words: normalizeSearch(text).split(' '), weight }));
   const scores = query.split(' ').map((word) => Math.max(0, ...fields.map((field) =>
     field.words.some((token) => matchesWord(token, word)) ? field.weight : 0)));

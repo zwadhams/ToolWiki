@@ -1,0 +1,358 @@
+{
+  "agent": "reviewer13_experience",
+  "date": "2026-11-06",
+  "status": "complete",
+  "baseline_commit": "27c229bd7079ede31cd30ce500e999461eb97eef",
+  "scope": "Independent challenge review of mixed-experience navigation, search, comparison and builder UX. Audit and roadmap only; preserve existing URLs and v1 system descriptions.",
+  "method": {
+    "live_origin": "http://127.0.0.1:4331/ToolWiki/",
+    "browser": "CUA in-app browser, desktop default viewport, production build",
+    "packet": [
+      "findings.json",
+      "reports/agent01.json",
+      "reports/agent04.json",
+      "reports/agent07.json",
+      "reports/agent08.json",
+      "reports/agent10.json",
+      "reports/agent11.json MAT-02"
+    ],
+    "evidence_types": [
+      "Independent rendered DOM and UI interactions",
+      "Keyboard Enter and Tab with read-only active-element inspection",
+      "Read-only product source corroboration",
+      "Reviewer assessment of proportionality, explicitly separated from reproductions"
+    ],
+    "changes": "Only disposable audit-origin browser inputs. No repository edits, analyzer installations or analyzer/example executions. Report is outside the repository.",
+    "checks_policy": "The packet reports passing build and unit checks. They were not rerun here and do not establish the absence of the independently reproduced UI problems."
+  },
+  "summary": {
+    "confirmed_workflow_defects": [
+      "ARC-01",
+      "CMP-01",
+      "A11Y-01"
+    ],
+    "confirmed_discovery_gap": [
+      "SEA-02"
+    ],
+    "priority_change": "EXP-03: recommend P3 rather than P2. The action mismatch is now independently clicked and confirmed, but conditional classification and visible warning remain correct and a profile link is available.",
+    "important_qualifications": [
+      "N01 is a concrete comparison-summary gap, not evidence that the underlying profiles lack result explanations or violate the optional decision-summary schema.",
+      "SEA-03 should guarantee taxonomy recall and reviewed positive capability terms; exact category-equivalent result sets require an explicit search-design decision.",
+      "SEA-05 establishes different global-navigation and local-filter behavior, not that preserving filters in every sidebar navigation is necessarily the correct convention.",
+      "No P1 finding is supported by this lane. Transient shortlist loss is recoverable through the earlier catalog URL and is not saved-system data loss."
+    ]
+  },
+  "reviews": [
+    {
+      "finding_id": "ARC-01",
+      "disposition": "confirmed",
+      "priority": "P2",
+      "verification": "Independent live Static/C++ round trips through a profile and a comparison; source corroboration. Dynamic category population also checked, but its return path was not repeated live.",
+      "evidence": [
+        "Static analysis with Language C++ showed 15 of 63 entries at /ToolWiki/static/?language=C%2B%2B.",
+        "Read notes on CBMC navigated to /ToolWiki/tools/cbmc/?catalog=language%3DC%252B%252B. Return to filtered results led to /ToolWiki/?language=C%2B%2B and 24 of 89 entries.",
+        "Static/C++ with CBMC and Clang Static Analyzer selected opened comparison. Direct return retained both selections but returned to the root catalog and 24 of 89 entries.",
+        "src/lib/comparison.mjs:14 excludes category from CATALOG_FILTERS; catalogHref returns the root catalog. ToolCatalog.astro:108 derives context from the form, which does not contain pathname category."
+      ],
+      "notes": [
+        "This is loss of category context. Do not attribute shortlist loss to this finding: comparison return kept the shortlist, while profile shortlist loss is independently CMP-01.",
+        "P2 is proportional because the supplied explicit return action silently changes the candidate set."
+      ],
+      "acceptance_corrections": [
+        "Remove duplicate acceptance bullets and replace the broad impact wording 'loses selection context' with 'loses category context'.",
+        "Preserve allowlisted category, filters, query, sort and normalized selected IDs across both profile and comparison routes; verify All, Static and Dynamic separately.",
+        "Keep legacy links valid, default invalid categories safely, and do not accept a destination URL as category context."
+      ]
+    },
+    {
+      "finding_id": "CMP-01",
+      "disposition": "confirmed",
+      "priority": "P2",
+      "verification": "Independent live direct-profile and comparison-profile reproductions, plus positive direct-comparison return control.",
+      "evidence": [
+        "At /ToolWiki/?language=Python&compare=tools%2Fruff%2Ctools%2Fmypy, the UI displayed two selected tools.",
+        "Read notes on Ruff omitted selected IDs from its catalog context. Returning from the profile produced /ToolWiki/?language=Python, with both Ruff and mypy unchecked and no selection tray.",
+        "Reselected Ruff and mypy, opened Compare 2 tools, followed the Ruff table-header link, then used Return to filtered results: both checkboxes were again false.",
+        "Positive control: catalog -> Compare 2 tools -> Return to filtered results retained compare=tools%2Fruff%2Ctools%2Fmypy and both checkbox properties were true.",
+        "ArticleContent.astro:66 calls catalogHref(base, [], context). ToolComparison.astro:58-62 passes sanitized filter context to profile links while its direct browse link at line 132 receives selected IDs."
+      ],
+      "notes": [
+        "This reproduces on All/Python, independently of ARC-01.",
+        "Recoverable transient selection loss warrants P2; it is not permanent data loss and is separate from the builder's documented temporary shortlist semantics."
+      ],
+      "acceptance_corrections": [
+        "Cover catalog -> profile -> return and catalog -> comparison -> profile -> return, including zero, one, two and three valid selected IDs.",
+        "Retain the passing direct comparison-return behavior and normalize unknown, duplicate or excessive IDs.",
+        "Coordinate category context with ARC-01 without introducing arbitrary redirects or changing v1 descriptions."
+      ]
+    },
+    {
+      "finding_id": "SEA-02",
+      "disposition": "confirmed",
+      "priority": "P2",
+      "verification": "Independent live shortcut and proposed broader-filter check; internal catalog scope only.",
+      "evidence": [
+        "Clicked Test an API from the homepage. Its q=API+testing destination returned RESTler, Schemathesis and Burp Suite Community Edition: 3 of 89.",
+        "Changed the query to HTTP and selected Running applications. Results were Burp Suite Community Edition, Burp Suite Professional, RESTler, Schemathesis and ZAP: 5 of 89.",
+        "ToolCatalog.astro:29 hardcodes the free-text API testing shortcut; this is not a maintained task-membership set."
+      ],
+      "notes": [
+        "The current result set is incomplete for the broad visible task label, rather than a broken keyword-search implementation.",
+        "A narrower explicitly labeled generated/schema-testing preset could also be defensible, but the present inclusion of the manual Community edition does not express that narrower scope.",
+        "No current external API-testing capabilities were reverified by this reviewer."
+      ],
+      "acceptance_corrections": [
+        "Test the membership of the broad preset against the real catalog, without relying on result order or permanently hardcoding the count five.",
+        "Keep manual testing, automated security scanning and schema-generated tests distinguishable; do not imply equivalent checks or include arbitrary protocol tools merely because they use TCP.",
+        "Keep existing bookmark queries valid."
+      ]
+    },
+    {
+      "finding_id": "A11Y-01",
+      "disposition": "confirmed",
+      "priority": "P2",
+      "verification": "Independent keyboard reproduction on catalog and builder, with active-element and next-Tab checks.",
+      "evidence": [
+        "Catalog /ToolWiki/?q=Ruff: checked Compare Ruff, then keyboard-activated Remove Ruff with Enter. document.activeElement was BODY. The next Tab focused the Skip to content anchor.",
+        "Builder existing Audit Python backend: checked only Compare Ruff, activated Remove Ruff with Enter. document.activeElement was BODY; the next Tab again focused Skip to content.",
+        "The builder's empty comparison region remained visible, but no stable focus target received focus.",
+        "ToolCatalog.astro:147 focuses a status inside the tray that was just hidden. system-builder-ui.mjs:407 tries a remaining tray button/link, which does not exist at zero selections."
+      ],
+      "notes": [
+        "The defect is directly observable focus loss, not a claim about screen-reader speech or formal WCAG conformance.",
+        "P2 is appropriate for loss of place during a routine keyboard task on two primary surfaces."
+      ],
+      "acceptance_corrections": [
+        "Keep an intentional visible target near the current results focused after final removal, and ensure the next Tab continues locally.",
+        "Also check removal from two or three choices and a selected tool hidden by current filters; those variants were not independently rerun in this review.",
+        "A concise announcement should accompany removal, but it does not replace the focus correction."
+      ]
+    },
+    {
+      "finding_id": "EXP-03",
+      "disposition": "qualified",
+      "priority": "P3",
+      "verification": "Actual known-host answer buttons independently clicked for Binwalk and cwe-checker. Genuine unknown-host control tested with Binwalk; both candidate messages observed in that state.",
+      "evidence": [
+        "Existing Audit Windows native component had C++, Native executable, Windows target and Windows analysis host. Both Binwalk and cwe-checker were Needs more information and displayed Verify analysis host OS: Windows is not in this workflow's documented examples.",
+        "Clicked each tool's Answer for Audit Windows native button. Both actions opened the component environment fields and focused a SELECT whose value remained Windows; neither opened compatibility evidence.",
+        "Set the disposable component to Binaries only, rebuild No, instrumentation No, workload Yes. The same known-Windows verification message remained.",
+        "Changed analysis host to Not sure / not specified. After the debounced update, both candidates displayed Specify analysis host OS. Clicking Binwalk's action focused the empty host SELECT, which is appropriate.",
+        "system-builder.mjs:69-74 stores missing and unlisted choices as field/message questions. system-builder-ui.mjs:104-106 always routes Answer to focusAnswer."
+      ],
+      "notes": [
+        "The reported UI action mismatch is now reproduced, strengthening the original source-only click inference.",
+        "Downgrade to P3: existing uncertainty, conditional status, profile links and host explanation are accurate. The action is unhelpful for a known constraint but does not produce a false verified match or block profile access.",
+        "Changing to Linux is legitimate only if that is the intended analysis host, such as an actual Linux container. It must not be presented as a checkbox workaround for Windows compatibility.",
+        "Deduplicate MAT-02 under this finding."
+      ],
+      "acceptance_corrections": [
+        "Add a distinct compatibility-evidence action for a known host outside documented examples while retaining a field action for an unknown host.",
+        "Do not promise that following a link resolves uncertainty; retain conditional status until the reviewed workflow supports the actual intended environment.",
+        "Keep explicit exclusions blocked, preserve v1 fields, and avoid a manual override that invents support.",
+        "Remove duplicate acceptance bullets in the packet."
+      ]
+    },
+    {
+      "finding_id": "SEA-03",
+      "disposition": "qualified",
+      "priority": "P2",
+      "verification": "Independent live catalog queries and Pagefind comparison, with mode-population and source checks.",
+      "evidence": [
+        "dynamic analysis returned only capa and FLOSS: 2 of 89. The Dynamic category itself displayed 28 of 28.",
+        "static analysis returned 29 of 89, while the Static category displayed 63 of 63.",
+        "null pointer returned 0 of 89 with no other filters. Search all pages for the same text returned four pages: clang-tidy, Infer (Pulse), cwe-checker and Cppcheck (Open Source).",
+        "The full-page snippets included explicit null-pointer-dereference/use text for cwe-checker and Cppcheck. The clang-tidy result was a null pointer constant example, illustrating that all Pagefind matches are not equivalent capability evidence.",
+        "catalog.mjs:33-34 indexes raw mode names and selected positive metadata rather than the displayed Static analysis/Dynamic analysis label phrases or full profile bodies."
+      ],
+      "notes": [
+        "The vocabulary mismatch is concrete. It should not be reframed as proof that catalog coverage or the analyzers themselves are absent.",
+        "Retain P2 because the site's own taxonomy and an ordinary documented defect phrase fail expected discovery across substantial existing content.",
+        "The packet's exact corresponding-population acceptance wording is too strong for a general AND-term search unless category-intent interpretation is deliberately added. Positive lexical matches outside a mode may remain legitimate."
+      ],
+      "acceptance_corrections": [
+        "Require all tools tagged with the queried taxonomy mode to be discoverable before other filters. Require exact equality only if explicit category-query semantics are chosen and documented.",
+        "Add null-pointer vocabulary only to reviewed positive capability claims; distinguish pointer-style modernization from dereference detection when presenting results.",
+        "Continue excluding caveats, unsupported capabilities and other-edition claims from capability indexing.",
+        "Retain existing title/alias and short-language checks; their full 132-query sweep was not rerun by this reviewer."
+      ]
+    },
+    {
+      "finding_id": "N01",
+      "disposition": "supported",
+      "priority": "P2",
+      "verification": "All three named common-comparison result rows inspected live; source and mypy profile prose corroborated.",
+      "evidence": [
+        "Ruff/mypy: What it can tell you showed diagnostics with rule code and location for Ruff, but only Type errors for mypy.",
+        "CodeQL/SpotBugs: CodeQL described alerts, locations, path-query routes and SARIF; SpotBugs showed Logic errors, Concurrency issues, Injection risks.",
+        "RTAMT/PSY-TaLiRo: RTAMT described robustness sign and margin on a supplied trace; PSY-TaLiRo showed Temporal requirement violations.",
+        "ToolComparison.astro:74 uses tool.decision.result or falls back to tool.findings. The mypy profile already has an illustrative diagnostic and interpretation at lines 63-86."
+      ],
+      "notes": [
+        "This is a bounded reuse and summary-consistency gap in a decision row. It is not missing all result guidance, a regression, or a schema violation.",
+        "Keep P2 as useful next content work for the common comparisons, behind the confirmed workflow defects. Do not expand it into a mandatory rewrite of all 89 profiles based only on missing fields.",
+        "The novice audit reported successful journeys and no functional defect; those positives remain compatible with this recommendation."
+      ],
+      "acceptance_corrections": [
+        "Require concrete output form, useful fields and interpretation for the three named entries, using shared reviewed content in profiles and comparisons.",
+        "Do not require the entire optional decision object solely to populate one result row unless that is an intentional schema design; avoid forcing unrelated first-try rewrites into this bounded task.",
+        "Preserve illustrative/executed labeling and avoid claims of measured coverage or comprehensive detection. Deduplicate CMP-04 here."
+      ]
+    },
+    {
+      "finding_id": "SEA-04",
+      "disposition": "supported",
+      "priority": "P3",
+      "verification": "Independent live zero-result recovery inspection and successful header full-page search.",
+      "evidence": [
+        "For null pointer, the catalog empty state offered fewer terms, a starting-collection disclaimer and Reset search. It did not offer a local full-page search action.",
+        "The persistent header Search all pages was available and returned four pages after manually retyping the query."
+      ],
+      "notes": [
+        "P3 is proportional. Recovery exists today; the proposed action reduces distance and retyping rather than unblocking search.",
+        "Keep the distinction between metadata search and all-page search visible. Do not silently merge their results or relax filters."
+      ],
+      "acceptance_corrections": [
+        "Prefer handing the query to the existing search dialog while retaining catalog state; no third search service is warranted.",
+        "Verify keyboard focus when opening and closing the search dialog and retain the original catalog query/filters.",
+        "Keep category-broadening Search all tools separate from Search all pages."
+      ]
+    },
+    {
+      "finding_id": "SEA-05",
+      "disposition": "qualified",
+      "priority": "P3",
+      "verification": "Independent live comparison of link destinations and sidebar activation.",
+      "evidence": [
+        "Configured q=python type checker, input=Source code, cost=Free and sort=za: 2 of 89 entries.",
+        "The Analysis category Static analysis link carried all four fields. The Main navigation Static analysis link was /ToolWiki/static/.",
+        "Clicked the sidebar link: URL became /ToolWiki/static/ and the catalog displayed 63 of 63 entries."
+      ],
+      "notes": [
+        "The behavior difference is real, but a global navigation link entering a fresh category is a reasonable convention. The current in-page filter navigation also has a reasonable continuity convention.",
+        "Do not present the proposed sidebar synchronization as an established functional requirement or imply user testing proved confusion.",
+        "P3 only; lower priority than explicit Return to filtered results losing context."
+      ],
+      "acceptance_corrections": [
+        "Make the intended global-versus-local navigation convention explicit before mandating identical URLs. Either preserve supported catalog context or clearly distinguish a fresh-category entry action.",
+        "If synchronization is selected, limit it to catalog pages and use the same safe allowlisted context as local tabs; retain a clear reset path.",
+        "Existing category URLs and noncatalog navigation must remain valid."
+      ]
+    },
+    {
+      "finding_id": "N02",
+      "disposition": "supported",
+      "priority": "P3",
+      "verification": "Independent live Source code/Python CodeQL card inspection, plus general rendering-source check.",
+      "evidence": [
+        "After Check source code -> Python, CodeQL was a valid result but its visible Languages line was C, C++, C#, Go +9.",
+        "ToolCatalog.astro:70 always renders tool.languages.slice(0, 4) plus the hidden count, regardless of the active language."
+      ],
+      "notes": [
+        "A useful confirmation cue for newcomers, but there is no incorrect match or capability claim. P3 is appropriate.",
+        "A short Matches Python cue may be clearer than reordering stable metadata, and either is a reasonable implementation choice."
+      ],
+      "acceptance_corrections": [
+        "When a language filter is active, visibly identify that matched language without implying universal language/version support.",
+        "Keep result membership, existing source-input semantics and unfiltered language order stable.",
+        "Do not require every one of the original report's multilingual cards to be independently verified before accepting this shared-renderer opportunity; only CodeQL was rerun live here."
+      ]
+    },
+    {
+      "finding_id": "N03",
+      "disposition": "supported",
+      "priority": "P3",
+      "verification": "Independent source inspection of the complete Trivy example, interpretation and source-link sections; no new live Trivy walkthrough.",
+      "evidence": [
+        "Trivy frontmatter advertises Container images and describes supported image preparation.",
+        "The Example workflows section shows only trivy fs --scanners vuln . and trivy config .; the body explains image/repository distinctions but provides no image invocation.",
+        "The listed sources include installation, vulnerability scanner, language coverage, misconfiguration, SBOM and license links, rather than a direct image-target setup guide."
+      ],
+      "notes": [
+        "This is a narrow first-step omission for a prominently advertised input, not proof that every supported target requires a local tutorial or that the two existing examples are wrong.",
+        "A precise official image-target guide adjacent to the image discussion is sufficient; a maintained runnable fixture is not required by this P3 item."
+      ],
+      "acceptance_corrections": [
+        "Provide either one clearly illustrative image-specific command with target/access assumptions or a direct maintained image-target guide.",
+        "Retain package/advisory versus exploitability limits, scanner selection and execution-status labels.",
+        "Do not merge a new container fixture, analyzer installation or executed-validation project into this small change."
+      ]
+    },
+    {
+      "finding_id": "CMP-02",
+      "disposition": "supported",
+      "priority": "P3",
+      "verification": "Independent live mypy/Pyright and Trivy/OSV-Scanner comparisons plus authored-choice and existing-profile source review.",
+      "evidence": [
+        "Selected mypy/Pyright in the comparison form: no How these tools relate region rendered.",
+        "Selected Trivy/OSV-Scanner: no relationship region rendered.",
+        "Ruff/mypy positive control did render the explanation that linting and type checking work together.",
+        "tool-choices.ts has seven authored pairs but not these two. Existing profile bodies explicitly link both comparisons."
+      ],
+      "notes": [
+        "A targeted continuation of an existing mechanism is proportional. Missing relationship records do not invalidate the comparison table or justify a complete pairwise matrix.",
+        "The useful decision criteria require content review; the seven-record count alone is not a defect metric."
+      ],
+      "acceptance_corrections": [
+        "Scope new authored guidance to these deliberately linked pairs and maintain one source of content.",
+        "Explain shared tasks, meaningful preparation differences and limits without universal rankings, raw issue-count comparisons or unverified superiority claims.",
+        "Verify new comparative capability claims against primary sources before implementation; this reviewer did not perform that external verification."
+      ]
+    },
+    {
+      "finding_id": "CMP-03",
+      "disposition": "supported",
+      "priority": "P3",
+      "verification": "Independent live CodeQL/PVS-Studio cost row and details disclosure inspection.",
+      "evidence": [
+        "The primary Cost row displayed Free with limits, Paid in each column and contained zero links.",
+        "Show technical details and sources was initially closed. Opening it revealed the Cost and edition limits row, detailed eligibility text and See edition details links.",
+        "ToolComparison.astro:108-109 creates the edition link only for costNote, which is in detailRows."
+      ],
+      "notes": [
+        "This supports easier access to already-present qualifications, not a claim that either tool is falsely labeled free.",
+        "P3 is appropriate. Linking primary Cost cells to existing profile sections is small and consistent with catalog behavior; copying licensing paragraphs into the primary table would be disproportionate.",
+        "Current upstream pricing and entitlements were not independently reverified."
+      ],
+      "acceptance_corrections": [
+        "Expose keyboard-accessible cost/eligibility links from the primary row while retaining detailed notes and their existing scope.",
+        "Preserve Free, Free with limits and Paid distinctions; do not invent entitlement or price claims.",
+        "If implemented with profile links, include the same restored catalog/selection context addressed by CMP-01."
+      ]
+    }
+  ],
+  "tested_journeys": [
+    "Homepage -> Test an API -> HTTP + Running applications broader results",
+    "Static/C++ -> CBMC profile -> explicit return",
+    "Static/C++ -> CBMC and Clang Static Analyzer comparison -> explicit return",
+    "All/Python Ruff+mypy selection -> Ruff profile -> explicit return",
+    "All/Python Ruff+mypy selection -> comparison -> Ruff profile -> explicit return",
+    "Positive control: All/Python selection -> comparison -> direct explicit return",
+    "Catalog Ruff-only final-selection removal by Enter, then Tab",
+    "Builder Ruff-only final-selection removal by Enter, then Tab",
+    "Known Windows Binwalk and cwe-checker compatibility actions, then unknown-host control",
+    "Catalog dynamic analysis, static analysis and null pointer queries; full-page null pointer recovery",
+    "Three common comparison result rows; two missing relationship pairs; cost disclosure",
+    "Source-code/Python CodeQL card language cue",
+    "Filtered catalog local-category links versus sidebar category navigation"
+  ],
+  "restoration": {
+    "browser_lease_released": true,
+    "cua_completion_summary_sent": true,
+    "final_view": "Root catalog, 89 of 89 entries, no filters or shortlist, Auto theme. Final screenshot visually inspected. No viewport override was applied.",
+    "builder_state": "Existing three components and one connection preserved. Temporary Audit Windows native changes restored: Source code plus Binaries, Native executable, Windows target and host, rebuild Yes, instrumentation Yes, workload Yes; candidate count returned to 29. Component disclosure collapsed again; builder shortlist empty.",
+    "untouched_origins": [
+      "http://127.0.0.1:4321",
+      "http://127.0.0.1:4322"
+    ]
+  },
+  "limitations": [
+    "Agent walkthrough and design review, not a human participant study, benchmark or exhaustive accessibility audit.",
+    "No screen-reader speech testing, mobile/touch testing, true browser zoom testing or full cross-browser matrix.",
+    "No analyzer examples executed or analyzers installed. No external upstream claims newly verified.",
+    "No v1 migration, import/export, quota or large-storage edge testing; those belong to other review lanes.",
+    "Builder results are debounced. Immediate stale snapshots were followed by settled observations and were not reported as defects.",
+    "Only Static category return was reproduced live; the shared-source explanation supports Dynamic but does not substitute for a future Dynamic regression test.",
+    "The report records acceptance improvements, not product changes."
+  ]
+}

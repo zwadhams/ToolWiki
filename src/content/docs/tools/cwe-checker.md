@@ -2,6 +2,7 @@
 title: cwe-checker
 description: Find potential weakness patterns in native binaries using Ghidra and static data flow analysis.
 tool:
+  searchTerms: [null pointer dereference]
   analysisWorkflows:
     - id: binary
       label: Inspect a supplied binary

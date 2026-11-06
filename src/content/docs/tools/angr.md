@@ -102,3 +102,5 @@ The intended witness is the byte `K`. This is a reachability exercise; the branc
 Models of library calls, startup state, memory, and system behavior affect the result. Many branches can make exploration expensive. Finding no state does not establish impossibility unless the exploration and model justify that conclusion.
 
 Reproduce a witness against the original program before drawing conclusions about concrete behavior.
+
+See [static method results](../../concepts/advanced-static-methods/) to distinguish symbolic path constraints from concrete execution.

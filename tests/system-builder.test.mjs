@@ -85,7 +85,7 @@ test('a connection question targets its own host field rather than a component h
   const match = analyzeSystem(p, [api]).matches.find(match => match.toolId === api.id);
   assert.equal(match.subjectId, 'wire');
   assert.equal(match.status, 'details');
-  assert.deepEqual(match.questions, [{ field: 'hostPlatform', message: 'Specify analysis host OS.' }]);
+  assert.deepEqual(match.questions, [{ field: 'hostPlatform', message: 'Specify analysis host OS.', kind: 'answer' }]);
   p.connections[0].hostPlatform = 'Linux';
   const resolved = analyzeSystem(p, [api]).matches.find(match => match.toolId === api.id);
   assert.equal(resolved.status, 'candidate');
@@ -107,8 +107,10 @@ test('rebuild access and supported target OS affect instrumented workflows', () 
 test('host support examples do not become exhaustive exclusions', () => {
   const p = makeProfile(); const local = tool('Local', workflow({ hostPlatforms: ['Linux'] }));
   assert.equal(status(analyzeSystem(p, [local])), 'details');
+  assert.equal(analyzeSystem(p, [local]).matches[0].questions.find(question => question.field === 'hostPlatform').kind, 'answer');
   p.components[0].hostPlatform = 'Windows';
   assert.equal(status(analyzeSystem(p, [local])), 'details');
+  assert.equal(analyzeSystem(p, [local]).matches[0].questions.find(question => question.field === 'hostPlatform').kind, 'compatibility');
   p.components[0].hostPlatform = 'Linux'; p.components[0].targetPlatform = 'Windows';
   assert.equal(status(analyzeSystem(p, [local])), 'candidate');
 });

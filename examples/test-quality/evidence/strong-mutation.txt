@@ -1,0 +1,22 @@
+[32m13:41:45 (46828) INFO ProjectReader[39m Found 1 of 10 file(s) to be mutated.
+[32m13:41:45 (46828) INFO Instrumenter[39m Instrumented 1 source file(s) with 6 mutant(s)
+[32m13:41:45 (46828) INFO ConcurrencyTokenProvider[39m Creating 1 test runner process(es).
+[32m13:41:46 (46828) INFO DryRunExecutor[39m Starting initial test run (jest test runner with "perTest" coverage analysis). This may take a while.
+[32m13:41:47 (46828) INFO DryRunExecutor[39m Initial test run succeeded. Ran 2 tests in 0 seconds (net 2 ms, overhead 517 ms).
+
+All tests/strong.test.js
+  ? values away from the threshold [line 3] (killed 5)
+  ? the threshold qualifies [line 8] (killed 1)
+
+Ran 2.00 tests per mutant on average.
+-------------|------------------|----------|-----------|------------|----------|----------|
+             | % Mutation score |          |           |            |          |          |
+File         |  total | covered | # killed | # timeout | # survived | # no cov | # errors |
+-------------|--------|---------|----------|-----------|------------|----------|----------|
+All files    | 100.00 |  100.00 |        6 |         0 |          0 |        0 |        0 |
+ discount.js | 100.00 |  100.00 |        6 |         0 |          0 |        0 |        0 |
+-------------|--------|---------|----------|-----------|------------|----------|----------|
+[32m13:41:48 (46828) INFO MutationTestReportHelper[39m Final mutation score of 100.00 is greater than or equal to break threshold 0
+[32m13:41:48 (46828) INFO JsonReporter[39m Your report can be found at: file:///C:/Users/zwadh/Repos/ToolWiki/examples/test-quality/reports/strong/mutation.json
+[32m13:41:48 (46828) INFO MutationTestExecutor[39m Done in 2 seconds.
+

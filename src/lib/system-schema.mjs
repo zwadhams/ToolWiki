@@ -1,6 +1,7 @@
 import { z } from 'zod';
+import { INPUTS, COSTS, LICENSES } from './tool-vocabulary.mjs';
 
-export const INPUTS = ['Source code', 'Binaries', 'Dependency metadata', 'Container images', 'Configuration files', 'Running applications', 'Callable code', 'Executable models', 'Execution traces'];
+export { INPUTS };
 export const COMPONENT_TYPES = ['Frontend', 'Backend/service', 'Library', 'Command-line application', 'Firmware/device', 'Database', 'Simulator/model', 'Other'];
 export const INTERFACES = ['HTTP API', 'GraphQL', 'gRPC', 'WebSocket', 'MQTT', 'Custom protocol'];
 export const TRANSPORTS = ['TCP', 'UDP', 'Serial', 'Other'];
@@ -47,7 +48,7 @@ export const connectionSchema = z.object({
 }).strict();
 export const profileSchema = z.object({
   version: z.literal(1), name: text,
-  preferences: z.object({ cost: z.enum(['', 'any-free', 'Free', 'Free with limits', 'Paid']), license: z.enum(['', 'Open source', 'Source available', 'Proprietary']) }).strict(),
+  preferences: z.object({ cost: z.enum(['', 'any-free', ...COSTS]), license: z.enum(['', ...LICENSES]) }).strict(),
   components: z.array(componentSchema).max(50), connections: z.array(connectionSchema).max(100),
 }).strict().superRefine((profile, ctx) => {
   const ids = [...profile.components, ...profile.connections].map(s => s.id);

@@ -1,0 +1,336 @@
+{
+  "agent": "audit01_newcomer",
+  "date": "2026-11-06",
+  "role": "Fresh mixed-experience reader",
+  "startUrl": "http://127.0.0.1:4331/ToolWiki/",
+  "method": {
+    "firstPass": "Started from the rendered homepage. Used CUA IAB UI, visible DOM text, links, filters, and comparison pages. No repository or prior-audit files read until all six task journeys were finished.",
+    "browser": "IAB tab 2. One screenshot inspected on memory guide. Most evidence came from rendered DOM. Browser released to coordinator after completion summary.",
+    "limits": [
+      "Agent walkthrough, not a human participant study.",
+      "No analyzer installed or executed. No claims about analyzer accuracy, current upstream compatibility, or real output.",
+      "No system descriptions opened or edited.",
+      "No product or repository files edited.",
+      "Did not audit global search, keyboard accessibility, responsive viewports, or all 89 entries.",
+      "Initial connection refusal preceded preview server startup and is not a site defect.",
+      "IAB visibility option was unsupported in subagent; omitting it worked."
+    ],
+    "corroboration": [
+      "src/components/ToolComparison.astro",
+      "src/components/ArticleContent.astro",
+      "src/components/ToolCatalog.astro",
+      "src/content/docs/tools/trivy.md",
+      "src/content/docs/tools/mypy.md",
+      "src/content/docs/tools/spotbugs.md",
+      "src/content/docs/tools/psy-taliro.md",
+      "src/content/docs/tools/rtamt.md",
+      "audits/usability/README.md",
+      "audits/search-discovery/README.md"
+    ]
+  },
+  "overall": "All six requested distinctions could be explained from the rendered site. No confirmed functional defect. Three low-severity content/presentation opportunities are supported by observed UI and source.",
+  "journeys": [
+    {
+      "task": "Python coding mistakes plus types",
+      "steps": [
+        "Homepage -> Check source code -> Language / ecosystem Python",
+        "12 of 89 entries -> Ruff",
+        "Ruff + mypy task comparison -> See how mypy complements a linter"
+      ],
+      "urls": [
+        "/ToolWiki/?input=Source+code&language=Python",
+        "/ToolWiki/tools/ruff/",
+        "/ToolWiki/compare/?tools=tools%2Fruff%2Ctools%2Fmypy",
+        "/ToolWiki/tools/mypy/"
+      ],
+      "outcome": "Succeeded",
+      "canExplain": {
+        "inputs": "Python source; Ruff also documents supported notebooks. mypy needs annotations, configuration, imports and relevant stubs.",
+        "preparation": "Install commands through linked instructions; choose target version and enabled lint rules; provide type checker dependencies.",
+        "output": "Ruff diagnostics include file location and rule code; mypy example shows incompatible str argument for int parameter and explains arg-type.",
+        "limits": "Selected lint rules are not type checking. Any, ignored imports and untyped functions reduce mypy coverage. Neither clean run proves runtime correctness."
+      },
+      "strengths": [
+        "Prominent source task and language help kept scanners separate.",
+        "Comparison explicitly states the tools complement each other.",
+        "Filtered-result return links preserved source/Python context.",
+        "Illustrative examples distinguish representative diagnostics from executed evidence."
+      ],
+      "frictionIds": [
+        "N01",
+        "N02"
+      ]
+    },
+    {
+      "task": "C/C++ memory errors with existing Windows binary, then rebuild access",
+      "steps": [
+        "Homepage -> Investigate memory errors",
+        "Memory guide -> Dr. Memory documented Windows workflow",
+        "Dr. Memory -> Choosing memory-error checks -> AddressSanitizer"
+      ],
+      "urls": [
+        "/ToolWiki/guides/memory-error-detection/",
+        "/ToolWiki/tools/dr-memory/",
+        "/ToolWiki/tools/address-sanitizer/"
+      ],
+      "outcome": "Succeeded",
+      "canExplain": {
+        "inputs": "A compatible native executable for Dr. Memory; source and a supported instrumentable build for ASan.",
+        "preparation": "Dr. Memory uses runtime instrumentation, a reproducible workload, architecture checks and debug symbols. ASan needs matching compiler/linker/runtime, instrumentation during compile and link, then execution.",
+        "output": "Dr. Memory results.txt contains error and access stack with allocation/free stack where available. ASan report outline identifies heap-buffer-overflow, the write and allocation.",
+        "limits": "Both depend on exercised behavior and compatibility; ASan cannot diagnose an arbitrary uninstrumented existing executable and does not cover every memory-error class."
+      },
+      "strengths": [
+        "Guide explicitly points Windows executable readers to Dr. Memory.",
+        "ASan contains a PowerShell variant and distinguishes clang from clang-cl.",
+        "Guide distinguishes generators such as fuzzers from detectors.",
+        "Native executable, JVM bytecode and static analysis are not conflated."
+      ],
+      "frictionIds": []
+    },
+    {
+      "task": "Java source versus bytecode choices",
+      "steps": [
+        "Workflows -> Java source and bytecode",
+        "Guide -> SpotBugs",
+        "SpotBugs -> CodeQL + SpotBugs comparison"
+      ],
+      "urls": [
+        "/ToolWiki/guides/java-analysis/",
+        "/ToolWiki/tools/spotbugs/",
+        "/ToolWiki/compare/?tools=tools%2Fcodeql%2Ctools%2Fspotbugs"
+      ],
+      "outcome": "Succeeded",
+      "canExplain": {
+        "inputs": "CodeQL source project and extracted database; SpotBugs compiled Java classes or JARs plus dependencies; JBMC bytecode, entry point and models.",
+        "preparation": "Build/extraction and class-file requirements differ. SpotBugs security detectors require the optional Find Security Bugs plugin.",
+        "output": "CodeQL queries give evidence to review; SpotBugs gives defect-pattern findings; JBMC distinguishes counterexample, bounded success and incomplete analysis.",
+        "limits": "Compiled input does not imply dynamic execution. JVM class files are not native executables. Missing classes and rule/model scope affect interpretation."
+      },
+      "strengths": [
+        "Guide explicitly separates static bytecode inspection from Jazzer execution.",
+        "Plugin coverage caveat appears both near the top and in comparison.",
+        "Evaluation advice avoids ranking raw issue counts across different questions."
+      ],
+      "frictionIds": [
+        "N01"
+      ]
+    },
+    {
+      "task": "Dependency/container scans versus source scans",
+      "steps": [
+        "Catalog -> Find vulnerable dependencies",
+        "7 of 89 entries -> Trivy"
+      ],
+      "urls": [
+        "/ToolWiki/?finding=Known+vulnerable+dependencies",
+        "/ToolWiki/tools/trivy/"
+      ],
+      "outcome": "Succeeded, with a small next-step gap for a container-only reader",
+      "canExplain": {
+        "inputs": "Dependency inventories, container image packages and supported infrastructure definitions; programming-language tags refer to ecosystem detection.",
+        "preparation": "Have supported artifacts, vulnerability data, access and credentials where needed; select vulnerability or configuration scanners.",
+        "output": "Inspect package/version/advisory/fix or affected resource/rule; preserve scanner and database state.",
+        "limits": "A repository scan is not general source defect analysis. Package match does not establish reachability/exploitability; deployment runtime behavior is not verified."
+      },
+      "strengths": [
+        "Trivy clearly distinguishes its filesystem vulnerability and configuration commands.",
+        "The page warns that scanner defaults differ by command.",
+        "Dependency and configuration caveats are directly adjacent to setup."
+      ],
+      "frictionIds": [
+        "N03"
+      ]
+    },
+    {
+      "task": "HTTP API testing",
+      "steps": [
+        "Catalog -> Test an API",
+        "3 of 89 entries -> Schemathesis",
+        "Schemathesis -> RESTler"
+      ],
+      "urls": [
+        "/ToolWiki/?q=API+testing",
+        "/ToolWiki/tools/schemathesis/",
+        "/ToolWiki/tools/restler/"
+      ],
+      "outcome": "Succeeded",
+      "canExplain": {
+        "inputs": "API definition plus reachable running test service; the interface can be language-independent.",
+        "preparation": "Configure authentication, server location and resettable state. RESTler compiles a grammar and first verifies test-mode requests.",
+        "output": "Schemathesis failures can be implementation, schema or setup issues and should be reproduced from the request. RESTler summaries expose prerequisite/auth coverage gaps and replayable failures.",
+        "limits": "An HTTP failure is not automatically a security vulnerability. Missing schemas/states/authentication limit coverage; compiling a specification alone is not dynamic testing."
+      },
+      "strengths": [
+        "The task shortcut gives focused choices.",
+        "Disposable state and effect of generated requests are explained without obscuring the workflow.",
+        "Python/.NET runtime requirements are separated from target language."
+      ],
+      "frictionIds": []
+    },
+    {
+      "task": "Temporal monitoring versus falsification",
+      "steps": [
+        "Workflows -> Temporal monitoring and falsification",
+        "Guide -> RTAMT",
+        "RTAMT -> RTAMT + PSY-TaLiRo comparison"
+      ],
+      "urls": [
+        "/ToolWiki/guides/temporal-monitoring-and-falsification/",
+        "/ToolWiki/tools/rtamt/",
+        "/ToolWiki/compare/?tools=tools%2Frtamt%2Ctools%2Fpsy-taliro"
+      ],
+      "outcome": "Succeeded",
+      "canExplain": {
+        "inputs": "RTAMT takes timestamped named signals and STL requirements. Falsification needs executable model, monitor, allowed input ranges and search budget.",
+        "preparation": "Choose timing semantics, units and compatible environment; expose model signals and select search configuration.",
+        "output": "Monitor robustness has sign/margin with boundary semantics. Falsification may yield a scenario/trace to replay.",
+        "limits": "Monitor alone does not generate scenarios. No counterexample within budget does not prove all executions safe. Prior RTAMT result is explicitly not a reproduced current execution."
+      },
+      "strengths": [
+        "Guide uses one temperature requirement to explain two workflows.",
+        "Timing and missing-data issues are explained in plain language.",
+        "Current failed reproduction is disclosed separately from the earlier reported output."
+      ],
+      "frictionIds": [
+        "N01"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "N01",
+      "title": "Complete concrete result summaries in common task comparisons",
+      "classification": "Content consistency / heuristic usability opportunity, not a functional bug",
+      "severity": "Low; could be medium editorial priority because it affects common comparison tasks",
+      "confidence": {
+        "observation": "High",
+        "impact": "Medium, based on reviewer judgment"
+      },
+      "urls": [
+        "http://127.0.0.1:4331/ToolWiki/compare/?tools=tools%2Fruff%2Ctools%2Fmypy",
+        "http://127.0.0.1:4331/ToolWiki/compare/?tools=tools%2Fcodeql%2Ctools%2Fspotbugs",
+        "http://127.0.0.1:4331/ToolWiki/compare/?tools=tools%2Frtamt%2Ctools%2Fpsy-taliro"
+      ],
+      "reproduce": [
+        "Open each linked task comparison from a tool page.",
+        "Read the What it can tell you row and compare its two cells.",
+        "Open the mypy or SpotBugs profile and compare the introductory facts with Ruff or CodeQL."
+      ],
+      "observed": [
+        "Ruff cell describes diagnostics with rule code and location; mypy cell only says Type errors.",
+        "CodeQL cell describes alerts, code locations, paths and SARIF; SpotBugs cell only lists Logic errors, Concurrency issues, Injection risks.",
+        "RTAMT cell explains robustness sign and margin; PSY-TaLiRo cell only says Temporal requirement violations.",
+        "Non-pilot profiles omit a What you get summary even though detailed prose may explain results."
+      ],
+      "impact": "Readers comparing alternatives or complements have to leave the table to learn output form and how to use it. The result row sometimes repeats category labels instead of answering its heading at the same level of detail.",
+      "proposedImprovement": "Add concise reviewed decision.result descriptions to the common-comparison entries, starting with mypy, SpotBugs and PSY-TaLiRo. Describe output artifact, useful fields, and its interpretation without inflating guarantees.",
+      "acceptanceChecks": [
+        "All three comparison rows describe concrete output on both sides.",
+        "mypy explains diagnostic location/code and type inconsistency; SpotBugs describes bug-pattern reports and relevant attribution; PSY-TaLiRo describes scenario/trace/score or run result in documented terms.",
+        "Profile result summary and comparison use the same reviewed content.",
+        "Illustrative or previously reported evidence remains explicitly labeled."
+      ],
+      "effort": "Small for the three high-traffic entries; medium for a catalog-wide content pass.",
+      "sourceEvidence": [
+        {
+          "path": "C:/Users/zwadh/Repos/ToolWiki/src/components/ToolComparison.astro",
+          "line": 74,
+          "evidence": "result falls back from tool.decision.result to tool.findings"
+        },
+        {
+          "path": "C:/Users/zwadh/Repos/ToolWiki/src/components/ArticleContent.astro",
+          "line": 28,
+          "evidence": "What you get rendered only when tool.decision exists"
+        },
+        {
+          "path": "C:/Users/zwadh/Repos/ToolWiki/audits/usability/README.md",
+          "evidence": "Prior work explicitly names only Ruff, CodeQL, ASan and RTAMT as detailed pilot profiles; this is continuation of that rollout, not regression."
+        }
+      ]
+    },
+    {
+      "id": "N02",
+      "title": "Show the selected language in multilingual result cards",
+      "classification": "Presentation / heuristic usability opportunity, not incorrect matching",
+      "severity": "Low",
+      "confidence": {
+        "observation": "High",
+        "impact": "Medium, based on reviewer judgment"
+      },
+      "urls": [
+        "http://127.0.0.1:4331/ToolWiki/?input=Source+code&language=Python"
+      ],
+      "reproduce": [
+        "Homepage -> Check source code.",
+        "Choose Python in Language / ecosystem.",
+        "Read the Languages field on CodeQL, Coverity, Semgrep and SonarQube cards."
+      ],
+      "observed": "The filtered list contains valid Python candidates, but several card language lines hide Python behind +N. CodeQL displays C, C++, C#, Go +9; Coverity displays C, C++, C#, Java +16.",
+      "impact": "A newcomer must infer that the selected language is among hidden languages or open the tool. This weakens visible confirmation of why a result matches, especially next to dedicated Python tools.",
+      "proposedImprovement": "When a language filter is active, place the matched language first or show a concise Matches Python cue while preserving the full languages in details.",
+      "acceptanceChecks": [
+        "Source code + Python results visibly show Python for every card returned because of that language.",
+        "Other selected languages receive the same treatment.",
+        "Counts, matching semantics and unfiltered card order remain stable."
+      ],
+      "effort": "Small",
+      "sourceEvidence": [
+        {
+          "path": "C:/Users/zwadh/Repos/ToolWiki/src/components/ToolCatalog.astro",
+          "line": 70,
+          "evidence": "Card always prints tool.languages.slice(0, 4), then +N; does not prioritize the active filter."
+        }
+      ]
+    },
+    {
+      "id": "N03",
+      "title": "Provide a first container-image step on the Trivy page",
+      "classification": "Content coverage / heuristic usability opportunity, not an incorrect command",
+      "severity": "Low",
+      "confidence": {
+        "observation": "High",
+        "impact": "Medium for readers arriving with an image"
+      },
+      "urls": [
+        "http://127.0.0.1:4331/ToolWiki/tools/trivy/"
+      ],
+      "reproduce": [
+        "Homepage -> Find vulnerable dependencies -> Trivy.",
+        "Read Choose the input and scanner and Example workflows as a reader holding a container image."
+      ],
+      "observed": "Page advertises and explains container image input but example workflows only show trivy fs --scanners vuln . and trivy config .; no adjacent image command or image-target setup link is supplied.",
+      "impact": "The distinction from source scanning is clear, but a container-only reader must find the actual first image workflow elsewhere. The two existing commands operate on a project directory.",
+      "proposedImprovement": "Add a short illustrative image-target example or adjacent official image-target guide with the expected artifact, scanner choice, image identity and local/registry access preparation. Retain the warning that findings are package/advisory matches, not exploitability proof.",
+      "acceptanceChecks": [
+        "A reader with a container image can identify the next image-specific command or direct setup guide without inferring from fs/config examples.",
+        "The example clearly identifies image reference/archive assumptions and needed data/access.",
+        "Output interpretation still names package, version, advisory and fix, and does not imply execution of the target."
+      ],
+      "effort": "Small",
+      "sourceEvidence": [
+        {
+          "path": "C:/Users/zwadh/Repos/ToolWiki/src/content/docs/tools/trivy.md",
+          "line": 126,
+          "evidence": "Example workflows includes only fs and config commands (lines 131 and 137)."
+        }
+      ]
+    }
+  ],
+  "rejectedLeads": [
+    {
+      "lead": "mypy diagnostic line 4 disagrees with apparent line 5 in extracted rendered text",
+      "resolution": "Rejected. Raw source has four lines, and rendered code has exactly four ec-line divs. DOM innerText inserts an additional newline around the blank-line div; it is an inspection serialization artifact. No content change warranted.",
+      "evidence": "Rendered DOM code children: def; return; one blank line; next_count(\"three\"). Diagnostic and explanatory prose correctly name sample.py:4."
+    },
+    {
+      "lead": "Dr. Memory link in memory-guide table did not navigate during first click",
+      "resolution": "Not reported as a product defect. No new tab appeared; the same destination opened immediately using the nearby Windows-workflow link. The table link's resolved href was correct. Wrapped inline link and automation click-point behavior may explain the observation; human reproduction was not established.",
+      "evidence": "href resolved to http://127.0.0.1:4331/ToolWiki/tools/dr-memory/; table link text wrapped over two lines in screenshot."
+    }
+  ],
+  "recommendation": "Preserve the current task shortcuts, input-first guides, requirement summaries and explicit evidence labels. Prioritize finishing concrete result summaries across common comparisons, then selected-language confirmation and the Trivy image entry step.",
+  "coordinatorCorrections": [
+    "Normalized mistyped Java guide URL to /ToolWiki/guides/java-analysis/ after checking the built route."
+  ]
+}

@@ -1,0 +1,378 @@
+{
+  "agent": "audit11_matching",
+  "lane": "System matching",
+  "date": "2026-11-06",
+  "status": "complete",
+  "method": [
+    "Read matching, profile schema, builder UI and all nine deferred tool profiles.",
+    "Ran 25 existing system-builder unit tests, all passed.",
+    "Parsed built builder data: 80 profiles, 93 workflows, 89 total catalog tools.",
+    "Ran synthetic real-catalog and serialization/storage reproductions in memory only.",
+    "Checked official CodeQL, Semgrep, SonarQube and Coverity references; PVS detailed pages could not be retrieved.",
+    "No browser interaction in this lane; agent07's live observations are attributed and corroborated with code/pure functions, not claimed as independent clicks."
+  ],
+  "findings": [
+    {
+      "id": "MAT-01",
+      "kind": "confirmed_defect",
+      "priority": "P2",
+      "title": "A valid imported system can grow into saved and exported data that cannot be restored",
+      "reader_task": "Continue editing an imported system and rely on browser saving or export for recovery.",
+      "locations": [
+        {
+          "path": "src/lib/system-builder.mjs",
+          "line": 15
+        },
+        {
+          "path": "src/lib/system-builder.mjs",
+          "line": 23
+        },
+        {
+          "path": "src/lib/system-builder.mjs",
+          "line": 24
+        },
+        {
+          "path": "src/lib/system-builder.mjs",
+          "line": 32
+        },
+        {
+          "path": "src/lib/system-schema.mjs",
+          "line": 28
+        },
+        {
+          "path": "src/lib/system-schema.mjs",
+          "line": 36
+        },
+        {
+          "path": "src/lib/system-schema.mjs",
+          "line": 51
+        },
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 48
+        },
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 84
+        },
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 413
+        }
+      ],
+      "evidence": "parseProfile enforces 1 MB, including storage restore. serializeProfile validates structure but not bytes, and saveProfile stores its output without a size check. A schema-valid 903365-byte imported system becomes 1203365 bytes after filling existing allowed notes fields. Saving returns success. Restore leaves the raw bytes in storage but returns a blank profile plus an error; importing its exported serialization fails the byte cap. The first subsequent edit/autosave of the blank recovery profile overwrites those raw bytes.",
+      "preconditions": "Rare upper-bound case, requiring an imported system with many long custom language values: 50 components, 100 connections, 80 distinct 200-character language strings per component. Ordinary small systems were not affected by this reproduction. No real browser data was changed.",
+      "reproduction_script": "import { newProfile,newComponent,newConnection,serializeProfile,parseProfile,saveProfile,restoreProfile,STORAGE_KEY } from './src/lib/system-builder.mjs';\nconst p=newProfile();\np.components=Array.from({length:50},(_,i)=>({...newComponent('c'+i),languages:Array.from({length:80},(_,j)=>'L'+String(j).padStart(2,'0')+'x'.repeat(197))}));\np.connections=Array.from({length:100},(_,i)=>newConnection('e'+i,'c0','c1'));\nconst before=serializeProfile(p);\nconst imported=parseProfile(before);\nfor(const part of [...imported.components,...imported.connections])part.notes='n'.repeat(2000);\nconst after=serializeProfile(imported);\nconst values=new Map(); const storage={getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v)};\nconst saved=saveProfile(storage,imported);\nconst raw=values.get(STORAGE_KEY); const restored=restoreProfile(storage);\nlet importError='';try{parseProfile(after)}catch(e){importError=e.message}\nconsole.log({beforeBytes:Buffer.byteLength(before),afterBytes:Buffer.byteLength(after),saved,restoredComponents:restored.profile.components.length,restoredError:restored.error,rawRetained:values.get(STORAGE_KEY)===raw,importError});\nrestored.profile.name='First edit after reload';saveProfile(storage,restored.profile);\nconsole.log({bytesAfterFirstEdit:Buffer.byteLength(values.get(STORAGE_KEY))});",
+      "observed_output": {
+        "beforeBytes": 903365,
+        "afterBytes": 1203365,
+        "saved": "",
+        "restoredComponents": 1,
+        "restoredError": "The saved system could not be read. Import an exported system file or start a new description.",
+        "rawRetained": true,
+        "importError": "Choose a system file smaller than 1 MB.",
+        "bytesAfterFirstEdit": 676
+      },
+      "impact": "An explicitly successful save can later be inaccessible in the UI, and the recovery advice points to an export the same parser rejects. Reload alone does not delete bytes; subsequent editing can replace the retained oversized copy.",
+      "confidence": "high for pure-function reproduction and UI data-flow mapping; not reproduced through 150 manual field edits.",
+      "recommendation": "Share the 1 MB byte policy across import, serialization and persistence, report a size-specific failure before overwriting the last restorable save, and preserve/recover an unreadable stored copy before allowing blank-state autosave to replace it. Provide a clear way to reduce or recover over-limit edits. Do not claim a successful save for a payload the restore parser rejects.",
+      "acceptance_criteria": [
+        "Every successfully saved/exported supported profile round-trips through its corresponding restore/import path.",
+        "Test exact byte boundary, over-limit schema-valid data, and edit growth from an initially importable profile.",
+        "Rejected over-limit saving preserves the previous valid stored value and reports a size-specific message rather than a generic browser-storage failure.",
+        "Existing unreadable raw storage is retained for explicit recovery and is not silently replaced by an initial blank-state edit.",
+        "Normal v1 files and existing size/shape validation remain compatible."
+      ],
+      "effort": "medium",
+      "dependencies": [],
+      "compatibility": "Preserve version 1 structure and existing import limits by default; recovery and persistence behavior change. Any deliberate limit change must be applied consistently and documented."
+    },
+    {
+      "id": "MAT-02",
+      "kind": "usability_opportunity",
+      "priority": "P2",
+      "title": "External compatibility verification uses the missing-field action",
+      "duplicate_of": "EXP-03",
+      "reader_task": "Resolve a known Windows host that is outside a tool workflow's documented examples.",
+      "locations": [
+        {
+          "path": "src/lib/system-builder.mjs",
+          "line": 69
+        },
+        {
+          "path": "src/lib/system-builder.mjs",
+          "line": 70
+        },
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 93
+        },
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 104
+        },
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 343
+        }
+      ],
+      "evidence": "Real-catalog analysis of a Windows native executable creates a conditional Binwalk match with question {field:'hostPlatform', message:'Verify analysis host OS: Windows is not in this workflow\\'s documented examples.'}. ask gives missing and unlisted values the same field/message shape. answerButton always focuses that field; agent07 observed the same message/action in the live UI. Actual click was not performed in this lane.",
+      "impact": "Accurate uncertainty is shown, but the next action revisits an already answered selector rather than guiding the reader to the evidence needed to resolve it.",
+      "confidence": "high for source and real-catalog result; medium for assessed usability impact.",
+      "recommendation": "Keep missing-answer focus actions, but give external-verification questions a distinct action linking the relevant compatibility notes/evidence. Retain conditional status until the reviewed workflow supports the user's actual environment.",
+      "acceptance_criteria": [
+        "Unknown host asks for a host value.",
+        "Known unlisted host points to evidence, rather than suggesting that reselecting the same value resolves uncertainty.",
+        "Explicit exclusions remain blocked and no manual override invents compatibility.",
+        "Existing v1 profile fields remain unchanged."
+      ],
+      "effort": "small to medium",
+      "dependencies": [
+        "Coordinate with EXP-03 and accessibility review"
+      ],
+      "compatibility": "Internal question/action metadata only."
+    },
+    {
+      "id": "MAT-03",
+      "kind": "content_gap",
+      "priority": "P2",
+      "title": "Expand matching through narrow reviewed workflows for existing deferred profiles",
+      "reader_task": "Find major catalog tools for a system without inheriting unsupported cross-language or cross-edition capabilities.",
+      "locations": [
+        {
+          "path": "audits/system-builder/README.md",
+          "line": 11
+        },
+        {
+          "path": "audits/system-builder/README.md",
+          "line": 13
+        },
+        {
+          "path": "src/components/SystemBuilder.astro",
+          "line": 7
+        },
+        {
+          "path": "src/components/SystemBuilder.astro",
+          "line": 13
+        },
+        {
+          "path": "src/content/docs/tools/codeql.md",
+          "line": 23
+        },
+        {
+          "path": "src/content/docs/tools/semgrep-ce.md",
+          "line": 10
+        }
+      ],
+      "evidence": "All nine catalog profiles without analysisWorkflows are deliberately omitted from builder data. Eight are deferred because their aggregate findings span language-specific analyzers/rules; S-TaLiRo is deferred for unverified current distribution/compatibility. Public CodeQL Python query and extraction documentation provides a concrete starting point for a bounded new workflow, while other products still need rule/edition-specific mapping.",
+      "impact": "System recommendations omit well-documented catalog options. The omission is honestly disclosed and conservative; it is a coverage opportunity, not a matching-engine defect.",
+      "confidence": "high for omissions and stated reasons; readiness varies by deferred profile.",
+      "recommendation": "Start with one CodeQL Python source workflow limited to reviewed injection-risk queries and extraction prerequisites. Next investigate one Semgrep CE rule/language workflow. Add each only after exact inputs, findings, source references, setup, edition and host qualifications are documented. Keep remaining profiles deferred rather than copying aggregate tags.",
+      "acceptance_criteria": [
+        "Each new workflow has a particular language/input path and findings supported by named rule or query evidence.",
+        "A positive system, an incomplete system and an incompatible system produce candidate/details/no-match-or-blocked results appropriately.",
+        "Free/paid, CE/Pro and Community/Server capabilities remain separate.",
+        "New evidence URLs are included in tool sources and covered by existing metadata checks.",
+        "Update deferred coverage explanations when a profile gains its first workflow; retain unreviewed modes as omissions."
+      ],
+      "effort": "medium per product family",
+      "dependencies": [
+        "Primary rule/edition review; no tool execution required for documentation-led metadata"
+      ],
+      "compatibility": "Additive analysisWorkflows only; saved v1 systems recompute against current catalog without migration."
+    }
+  ],
+  "deferred_profiles": [
+    {
+      "id": "codeql",
+      "path": "src/content/docs/tools/codeql.md",
+      "status": "reviewed_still_deferred",
+      "reason": "Aggregate Injection risks, Memory safety and Concurrency issues are not attributable to every supported language.",
+      "possible_narrow_route": "Python source extraction plus selected injection-risk queries, beginning with py/sql-injection.",
+      "evidence_needed": "Pin CLI/query scope, Python extraction prerequisites, query-suite membership, relevant framework limits and eligibility. Keep C/C++ memory/concurrency out of this workflow.",
+      "readiness": "Best first documentation-led workflow candidate; exact workflow still requires authoring review, not enabled by this audit.",
+      "primary_sources": [
+        "https://docs.github.com/en/code-security/tutorials/customize-code-scanning/prepare-code-for-analysis",
+        "https://codeql.github.com/codeql-query-help/python/py-sql-injection/"
+      ],
+      "source_check": "Fetched: database preparation distinguishes noncompiled extraction and dependency preparation; the Python query documents py/sql-injection and suite membership."
+    },
+    {
+      "id": "coverity-scan",
+      "path": "src/content/docs/tools/coverity-scan.md",
+      "status": "reviewed_still_deferred",
+      "reason": "Public defect examples and advertised languages do not establish every defect family for every language; Scan has distinct eligibility/upload requirements.",
+      "possible_narrow_route": "One registered eligible C/C++ project's documented build-capture/upload path, once checker scope is available.",
+      "evidence_needed": "Current Scan tooling/setup, language/compiler support, mapped checker findings, submission constraints and service eligibility; do not use commercial entitlements as evidence.",
+      "readiness": "Continue deferred pending specific Scan language/checker evidence.",
+      "primary_sources": [
+        "https://scan.coverity.com/faq"
+      ],
+      "source_check": "Fetched FAQ supports registration, build submission, generic defect examples and eligibility; it is not a per-language checker matrix."
+    },
+    {
+      "id": "coverity",
+      "path": "src/content/docs/tools/coverity.md",
+      "status": "reviewed_still_deferred",
+      "reason": "Public overview aggregates languages and capabilities; release-specific host/compiler/checker details and purchased entitlements remain unverified.",
+      "possible_narrow_route": "A licensed C/C++ source-capture route with a documented checker set.",
+      "evidence_needed": "Release and entitlement-specific capture requirements, OS/compiler support, selected checkers and scope; use actual authorized documentation if available later.",
+      "readiness": "Continue deferred; marketing overview is not sufficient workflow evidence.",
+      "primary_sources": [
+        "https://www.blackduck.com/static-analysis-tools-sast/coverity.html"
+      ],
+      "source_check": "Fetched public overview confirms broad product scope but was not treated as proof of all language/checker/host combinations."
+    },
+    {
+      "id": "pvs-studio",
+      "path": "src/content/docs/tools/pvs-studio.md",
+      "status": "reviewed_still_deferred",
+      "reason": "C/C++, C# and Java analyzers differ; aggregate memory/injection/convention findings require diagnostic-specific mapping.",
+      "possible_narrow_route": "C++ source with a documented compilation-database or capture route and selected C++ diagnostics.",
+      "evidence_needed": "Official analyzer-specific setup, one or more diagnostic references, host/compiler constraints and licensing qualifications.",
+      "readiness": "Continue deferred; detailed manual/diagnostic retrieval failed in this lane, so no new claims admitted.",
+      "primary_sources": [
+        "https://pvs-studio.com/en/docs/"
+      ],
+      "source_check": "Existing repository source list inspected. Attempts at /en/docs/manual/0069/ and /en/docs/warnings/v522/ were not accessible/502; no content inferred from failure."
+    },
+    {
+      "id": "s-taliro",
+      "path": "src/content/docs/tools/s-taliro.md",
+      "status": "reviewed_still_deferred",
+      "reason": "Historical MATLAB toolbox profile explicitly lacks current downloadable distribution and host/release compatibility verification.",
+      "possible_narrow_route": "Only an identifiable historical or current release with matched MATLAB/toolbox/model/monitoring prerequisites.",
+      "evidence_needed": "Obtainable distribution, release identity, license details and setup compatibility; preserve historical research semantics separately.",
+      "readiness": "Blocked on distribution/setup evidence; remain catalog-only historical reference.",
+      "primary_sources": [],
+      "source_check": "Repository's historical evidence and uncertainty labels reviewed; no current release or execution independently verified."
+    },
+    {
+      "id": "semgrep-ce",
+      "path": "src/content/docs/tools/semgrep-ce.md",
+      "status": "reviewed_still_deferred",
+      "reason": "Rule findings and language maturity vary; CE single-function analysis must not inherit Code cross-file capabilities.",
+      "possible_narrow_route": "Python source with a specific reviewed community or authored local rule whose finding maps to the profile.",
+      "evidence_needed": "Exact rule ID/configuration and license, supported syntax/host, local pattern or taint scope, and expected finding meaning.",
+      "readiness": "Good second candidate for a narrow rule-level review; generic language support alone is insufficient.",
+      "primary_sources": [
+        "https://docs.semgrep.dev/semgrep-ce-languages",
+        "https://docs.semgrep.dev/writing-rules/rule-syntax"
+      ],
+      "source_check": "Fetched CE-specific language/analysis limits and rule schema; no new rule capability was assumed."
+    },
+    {
+      "id": "semgrep-code",
+      "path": "src/content/docs/tools/semgrep-code.md",
+      "status": "reviewed_still_deferred",
+      "reason": "Pro language/framework depth and platform feature availability vary; Supply Chain/Secrets are separate products.",
+      "possible_narrow_route": "One Python source scan with selected Code rule family and explicitly stated platform/local/CI configuration.",
+      "evidence_needed": "Specific Pro rules, framework/analysis scope, plan/access requirements, scanner prerequisites and evidence for the selected finding category.",
+      "readiness": "Continue deferred until rule and edition mapping; do not copy the CE workflow or all aggregate findings.",
+      "primary_sources": [
+        "https://docs.semgrep.dev/supported-languages"
+      ],
+      "source_check": "Fetched language-feature table, including Python-specific Code features; it does not itself certify every profile finding for each language."
+    },
+    {
+      "id": "sonarqube-community",
+      "path": "src/content/docs/tools/sonarqube-community.md",
+      "status": "reviewed_still_deferred",
+      "reason": "Community-specific rules, language support and build requirements differ from commercial Server.",
+      "possible_narrow_route": "Python source with a pinned Community Build analyzer/rule profile, initially limited to documented coding/logic checks.",
+      "evidence_needed": "Community edition availability of selected rules, scanner/server prerequisites, target Python version configuration and exact findings mapping.",
+      "readiness": "Language setup is publicly documented; selected rule/edition mapping remains required.",
+      "primary_sources": [
+        "https://docs.sonarsource.com/sonarqube-community-build/analyzing-source-code/languages/python"
+      ],
+      "source_check": "Fetched Community Python page supports language-specific configuration and suppression caveats; no commercial rule transfer."
+    },
+    {
+      "id": "sonarqube",
+      "path": "src/content/docs/tools/sonarqube.md",
+      "status": "reviewed_still_deferred",
+      "reason": "Commercial edition, analyzer version, language and quality profile control findings; shared product language tags are insufficient.",
+      "possible_narrow_route": "One paid Server edition's Python source rule-profile workflow, separately reviewed from Community Build.",
+      "evidence_needed": "Exact edition/version/rules, scanner/server prerequisites and relevant security-analysis features; no Cloud/IDE or Community inference.",
+      "readiness": "Language setup is documented; still requires selected commercial rule/edition mapping.",
+      "primary_sources": [
+        "https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/languages/python"
+      ],
+      "source_check": "Fetched Server Python page with edition/version-specific context; it is not a complete rule entitlement matrix."
+    }
+  ],
+  "checks": [
+    {
+      "check": "Existing unit tests",
+      "command": "node --test tests/system-builder.test.mjs",
+      "result": "25 passed, 0 failed"
+    },
+    {
+      "check": "Built catalog",
+      "result": "89 catalog tools; 80 builder profiles; 93 workflows"
+    },
+    {
+      "check": "Windows native executable, C++, only Binaries, rebuild/instrument/harness=no, testInstance=yes",
+      "result": "Dr. Memory included as candidate; Binwalk and cwe-checker conditional on host evidence; no invented source/instrumented-build route."
+    },
+    {
+      "check": "HTTP API/OpenAPI endpoint with testInstance unknown then no",
+      "result": "Five current API tool workflows request missing endpoint/host details; all five become blocked when testInstance=no."
+    },
+    {
+      "check": "Valid ordinary export/import",
+      "result": "Serialized descriptions round-trip exactly; no derived recommendations stored."
+    },
+    {
+      "check": "Remove component with connection then edit other component and undo",
+      "result": "Restores two components and one connection while preserving later unrelated name edit."
+    },
+    {
+      "check": "1 MB round-trip edge",
+      "result": "Confirmed MAT-01 with in-memory storage; raw retained until next autosave."
+    }
+  ],
+  "positives": [
+    "Per-workflow findings and requirements remain associated; no cross-workflow capability union was found.",
+    "Unknown values and explicit No/unavailable values produce different statuses.",
+    "Host example lists are not treated as exhaustive exclusions.",
+    "Native, JVM and LLVM artifact distinctions and application protocol vs transport distinctions are tested.",
+    "Connections can remain independently included when endpoint components are excluded, as documented.",
+    "Version 1 legacy goals are accepted and do not filter recommendations.",
+    "UI count guards enforce 50 components/100 connections; failed imports and over-limit undo retain current state.",
+    "Temporary builder comparison selection is intentionally excluded from exports and reset on reload; this is not reported as data loss."
+  ],
+  "rejected_leads": [
+    {
+      "lead": "UI might permit 51 components or 101 connections",
+      "resolution": "Rejected after reading explicit disabled controls and callback guards at UI lines147-166."
+    },
+    {
+      "lead": "Deferred profiles imply matcher defects",
+      "resolution": "Rejected; omission is intentional and disclosed. Workflow evidence must be expanded before inclusion."
+    },
+    {
+      "lead": "Known unlisted host should be rejected",
+      "resolution": "Rejected; examples are not exhaustive incompatibility evidence. Keep conditional status."
+    }
+  ],
+  "limitations": [
+    "No live UI performed in this lane; browser lease stayed with accessibility reviewer.",
+    "No analyzers installed or executed, and no illustrative analyzer examples run.",
+    "No complete re-verification of all product claims; current external checks were scoped to deferred-workflow readiness.",
+    "S-TaLiRo current availability and PVS detailed setup/diagnostic evidence remain unverified.",
+    "Synthetic oversized-description reproduction represents an extreme imported-profile edge, not typical usage."
+  ],
+  "primary_sources_reviewed": [
+    "https://docs.github.com/en/code-security/tutorials/customize-code-scanning/prepare-code-for-analysis",
+    "https://codeql.github.com/codeql-query-help/python/",
+    "https://codeql.github.com/codeql-query-help/python/py-sql-injection/",
+    "https://docs.semgrep.dev/semgrep-ce-languages",
+    "https://docs.semgrep.dev/supported-languages",
+    "https://docs.semgrep.dev/writing-rules/rule-syntax",
+    "https://docs.sonarsource.com/sonarqube-community-build/analyzing-source-code/languages/python",
+    "https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/languages/python",
+    "https://scan.coverity.com/faq",
+    "https://www.blackduck.com/static-analysis-tools-sast/coverity.html"
+  ]
+}

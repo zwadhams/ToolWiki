@@ -1,0 +1,600 @@
+{
+  "agent": 15,
+  "lane": "Independent implementation feasibility and proportionality review",
+  "date": "2026-11-06",
+  "status": "complete",
+  "scope": "Read-only product review, static tracing, generated-output inspection and in-memory synthetic checks. No product edits, installs, analyzer runs, tool-example execution, browser interaction or subdelegation.",
+  "method": [
+    "Read the consolidated findings and source reports 02, 03, 09 and 11, plus the relevant EXP-04 and CMP-01 findings from reports 07 and 08.",
+    "Executed agent11 MAT-01 reproduction_script exactly as stored, using only a Map-backed storage object.",
+    "Independently tested compact-import expansion, prior-save replacement, restore write count and exact raw byte boundary.",
+    "Evaluated the existing tool schema from src/content.config.ts in memory; tested four optional-field typos and a candidate strict tool-object boundary without changing source.",
+    "Validated all 89 authored tool metadata objects against both the original schema and that in-memory strict candidate.",
+    "Compared authored source inventory with the existing generated catalog and inspected the Polyspace edition section.",
+    "Evaluated the current and proposed API shortcut queries using the generated catalog and actual selectTools function.",
+    "Reviewed source-level navigation, focus, recipe, architecture, evidence and test proposals. Browser confirmation belongs to reviewer13."
+  ],
+  "reviews": [
+    {
+      "finding_id": "MAT-01",
+      "disposition": "confirmed",
+      "priority": "P2",
+      "verification": "Exact in-memory reproduction plus a separate compact-input normalization case; source-traced UI autosave and export wiring.",
+      "evidence": [
+        "Exact report11 script: beforeBytes=903365, afterBytes=1203365, saved='', restoredComponents=1, rawRetained=true, importError='Choose a system file smaller than 1 MB.', bytesAfterFirstEdit=676.",
+        "Additional case with 1000-character notes on the same 50 components/100 connections: compact input=996723 bytes, pretty serialization=1053365 bytes. Import succeeds, immediate saving returns success and overwrites a previous valid save, then restore fails.",
+        "restoreProfile did not call setItem and retained the oversized raw value. Subsequent saveProfile on the blank fallback replaces it.",
+        "MAX_IMPORT_BYTES is 1048576. A valid raw JSON value padded to exactly that size is accepted; one additional byte is rejected.",
+        "src/lib/system-builder.mjs:14-34; src/lib/system-builder-ui.mjs:33-38,84-90,413-427; src/lib/system-schema.mjs:28-51."
+      ],
+      "notes": [
+        "Retain P2: this is a rare large imported-description edge, not evidence that ordinary descriptions are routinely lost.",
+        "Reload alone does not erase saved data. The subsequent autosave is the overwrite point.",
+        "Growth by editing is sufficient but not necessary: compact input can cross the persisted limit through pretty-printing alone.",
+        "The fix cannot reconstruct a previous valid save that current code already overwrote. Recovery means protecting and offering the raw value that still exists.",
+        "Use the explicit contract below. Do not raise the limit, truncate values or migrate v1 merely to remove the failing test."
+      ],
+      "acceptance_corrections": [
+        "Use the exact UTF-8 byte threshold of 1048576 inclusive on the actual serialized representation, not JavaScript character count.",
+        "Test compact-to-canonical expansion and schema-default insertion before committing an import, as well as edit growth.",
+        "A rejected size write must not invoke setItem, must retain the previous valid stored value, and must have a size-specific unsaved status.",
+        "Ordinary export must never download an over-limit file with a message promising that it can be imported.",
+        "Unreadable stored data must remain protected through rendering, editing, undo and imports until an explicit replacement action succeeds."
+      ]
+    },
+    {
+      "finding_id": "ARC-01",
+      "disposition": "confirmed",
+      "priority": "P2",
+      "verification": "Actual catalogHref call and source trace; live interaction deferred to reviewer13.",
+      "evidence": [
+        "catalogHref('/ToolWiki', [], 'language=C%2B%2B&mode=Static') returns '/ToolWiki/?language=C%2B%2B'.",
+        "src/lib/comparison.mjs:14-41 allowlists form fields and always builds the root route.",
+        "src/components/ToolCatalog.astro:108 captures form state without this.dataset.mode."
+      ],
+      "notes": [
+        "Repair with CMP-01 as one URL-context change, without general routing or state-management replacement."
+      ],
+      "acceptance_corrections": [
+        "Keep form-field iteration separate from category and selection context so adding mode does not try to read a nonexistent form control.",
+        "Allow only All, Static and Dynamic categories, mapped to local known routes.",
+        "Cover originating All/Static/Dynamic routes, changed comparison choices and legacy context URLs."
+      ]
+    },
+    {
+      "finding_id": "CMP-01",
+      "disposition": "supported",
+      "priority": "P2",
+      "verification": "Independent source trace of catalog, comparison and profile link construction; browser reproduction remains reviewer13's evidence.",
+      "evidence": [
+        "ToolCatalog.astro:108,121 builds profile context from form filters, omitting selected IDs.",
+        "ToolComparison.astro:58-61,98 passes only filtered catalog context into profile links.",
+        "ArticleContent.astro:62-66 supplies an empty selection to catalogHref and only reveals the return action when filter context exists."
+      ],
+      "notes": [
+        "This is loss during an explicit navigation flow, not permanent loss of saved system descriptions."
+      ],
+      "acceptance_corrections": [
+        "A selection-only profile visit must still have a return action.",
+        "Carry current normalized IDs after comparison additions/removals, including related notes and cost-anchor links.",
+        "Keep the three-ID cap, deduplication, known-ID validation and local-route allowlist.",
+        "A related comparison's own tools parameter remains authoritative for that comparison; do not overwrite it with stale catalog selection."
+      ]
+    },
+    {
+      "finding_id": "A11Y-01",
+      "disposition": "supported",
+      "priority": "P2",
+      "verification": "Source review supports the reported mechanism; no independent browser or assistive-technology session.",
+      "evidence": [
+        "ToolCatalog.astro:147 focuses selectionStatus after updateSelection hides its containing empty tray.",
+        "system-builder-ui.mjs:399-409 rebuilds an empty tray and then searches it for a button or link to focus.",
+        "The existing catalog result-count node already has tabindex=-1."
+      ],
+      "notes": [
+        "A focused, visible fallback is a small change. No component-framework migration is needed."
+      ],
+      "acceptance_corrections": [
+        "Cover final removal in both surfaces, retained choices, and a removed tool absent from the current results.",
+        "The fallback must exist after rendering and be visible and programmatically focusable.",
+        "Verify the next Tab path in a browser; a helper returning a target selector does not establish correct browser focus."
+      ]
+    },
+    {
+      "finding_id": "SEA-02",
+      "disposition": "confirmed",
+      "priority": "P2",
+      "verification": "Actual selectTools evaluated against the existing generated catalog.",
+      "evidence": [
+        "q='API testing' yields Burp Community, RESTler and Schemathesis.",
+        "q='HTTP' plus input='Running applications' yields Burp Community, Burp Professional, RESTler, Schemathesis and ZAP.",
+        "The proposed query does not include boofuzz."
+      ],
+      "notes": [
+        "The narrow shortcut correction is deliverable without a new task taxonomy or changes to matching workflows."
+      ],
+      "acceptance_corrections": [
+        "Use set membership assertions against current catalog evidence, not a fragile ranking assertion or universal fixed result count.",
+        "Check the actual rendered shortcut destination as well as a manually repeated query.",
+        "Retain manual-versus-automated and free-versus-paid distinctions in guidance; membership is not capability equivalence."
+      ]
+    },
+    {
+      "finding_id": "ARC-02",
+      "disposition": "confirmed",
+      "priority": "P3",
+      "verification": "Source schema/render condition and existing generated Polyspace HTML.",
+      "evidence": [
+        "src/data/editions.ts:2 makes note and source independently optional; Polyspace has source without note.",
+        "src/components/EditionComparison.astro:18 gates the entire paragraph on comparison.note.",
+        "Polyspace's edition section lacks the requirements URL, while the full page contains it in general sources."
+      ],
+      "notes": [
+        "This hides a contextual citation, not every citation for the claim."
+      ],
+      "acceptance_corrections": [
+        "Render the paragraph when note or source exists and render each independently.",
+        "Check source-only, note-only, both and neither; neither must not leave an empty paragraph.",
+        "Assert the link within the edition section rather than anywhere on the page.",
+        "Do not invent a note or alter product claims to work around the renderer."
+      ]
+    },
+    {
+      "finding_id": "REX-06",
+      "disposition": "confirmed",
+      "priority": "P3",
+      "verification": "Static review only; the PowerShell example and Jazzer were not executed.",
+      "evidence": [
+        "src/content/docs/tools/jazzer.md:86 sets JAZZER_FUZZ to 1 and line 88 removes it without retaining prior presence/value.",
+        "A preexisting value is necessarily discarded if the snippet reaches cleanup; an interrupted/terminating command can also bypass the current final line.",
+        "The page explicitly labels the example illustrative and unexecuted."
+      ],
+      "notes": [
+        "A bounded shell-state correction is appropriate; a complete new Maven fixture is outside this finding."
+      ],
+      "acceptance_corrections": [
+        "Capture presence and value before assignment and restore in finally, or use a scoped child process.",
+        "Handle an initially absent variable and an existing value; account for any supported PowerShell version that permits a present empty value.",
+        "Preserve normal command exit/error reporting. A nonzero native-process exit and a terminating exception are distinct cases.",
+        "If testing the wrapper later, substitute a harmless success/failure operation; do not require running Jazzer or claim tool execution from a shell-only test.",
+        "Keep the illustrative/unexecuted label."
+      ]
+    },
+    {
+      "finding_id": "MNT-01",
+      "disposition": "confirmed",
+      "priority": "P2",
+      "verification": "Independent in-memory evaluation of the actual declared schema, followed by all-authored-profile compatibility screening of a strict candidate.",
+      "evidence": [
+        "analysisWorkflowsTypo, aliasesTypo and searchTermsTypo parse successfully and yield empty canonical arrays; decisionTypo parses successfully and yields no decision.",
+        "Candidate tool-object strictness rejects all four with unrecognized_keys.",
+        "All 89 authored tool metadata objects pass both the current and candidate strict schema; intentionally omitted optionals remain valid.",
+        "Nested workflows already use strict validation in system-schema.mjs:82."
+      ],
+      "notes": [
+        "No existing malformed optional field was found. This is a confirmed guard gap."
+      ],
+      "acceptance_corrections": [
+        "Limit strictness to the project-owned tool object; do not make all Starlight frontmatter strict.",
+        "Diagnostics must identify source file and unknown key; the schema issue alone has a root-relative path.",
+        "Test authored tool objects rather than generated records containing title/id/description.",
+        "Tests should import the production schema; a small .mjs schema extraction is acceptable if needed, while duplicated test-only schema definitions are not."
+      ]
+    },
+    {
+      "finding_id": "MNT-02",
+      "disposition": "supported",
+      "priority": "P2",
+      "verification": "Source-level validation gap, in-memory extension parse and independent current inventory reconciliation; no malformed-file production build.",
+      "evidence": [
+        "The current docs extension accepts toolTypo and returns no tool.",
+        "Catalog, comparison and builder filter on data.tool && !data.draft.",
+        "scripts/check-site.mjs:66 iterates the already-derived catalog; lines 121-122 compare the builder to that same catalog and a workflow lower bound.",
+        "Independent source/generated reconciliation: 89 published source profiles, 89 catalog entries, no missing metadata, duplicate catalog IDs or set differences."
+      ],
+      "notes": [
+        "Do not describe a current missing profile or a failing production build. The expected-set construction is the gap."
+      ],
+      "acceptance_corrections": [
+        "Derive expected published profiles from source identities before filtering out missing metadata.",
+        "Require tool metadata for published tool-profile paths and compare framework-resolved IDs with catalog IDs exactly once.",
+        "Respect deliberate drafts and ordinary guide/concept/research pages; preserve catalog-only profiles with zero workflows.",
+        "Use identity-set equality and useful source-path diagnostics, not a fixed 89 count or a larger builder threshold.",
+        "Cover supported content extensions and explicit future folder exceptions without silently excluding them."
+      ]
+    },
+    {
+      "finding_id": "REX-01",
+      "disposition": "supported",
+      "priority": "P2",
+      "verification": "Read selected Pyright, Hypothesis, CBMC, actionlint, detect-secrets and Memcheck body guidance and the authoring policy.",
+      "evidence": [
+        "Selected profiles describe setup and interpretation but ask the reader to supply the package, property, harness, workflow, baseline or reproducible test case.",
+        "The editing guide accepts an example or official tutorial and requires execution-status labeling.",
+        "Existing Ruff and mypy pages already provide distinct illustrative faulty/corrected checks."
+      ],
+      "notes": [
+        "The gap is first-result completeness for particular reader tasks, not absence of fenced blocks or violation of a catalog-wide example quota.",
+        "Six complete new environments would exceed a small first implementation batch. Use one or two pilots before expanding.",
+        "A maintained official walkthrough can satisfy the route when linked to its exact setup/input/result steps."
+      ],
+      "acceptance_corrections": [
+        "A pilot must name prerequisites, target/input, precise action or maintained tutorial, expected evidence, correction and project adaptation.",
+        "Keep execution status separate from documentation review; publishing an illustrative recipe does not require pretending it was executed.",
+        "For CBMC require explicit harness/property/bounds semantics; for detect-secrets use synthetic dummy data and distinguish review/baselining from remediation.",
+        "Do not require CLI commands for GUI, commercial or historical tools merely to meet a numerical target."
+      ]
+    },
+    {
+      "finding_id": "REX-02",
+      "disposition": "qualified",
+      "priority": "P2",
+      "verification": "Read all three API/protocol examples and searched tracked filenames for a supplied fixture/recipe bundle.",
+      "evidence": [
+        "boofuzz assumes a PING service and explicitly states that monitoring/restart must be added.",
+        "RESTler assumes a prepared resettable API/specification and uses placeholder paths.",
+        "Schemathesis assumes a running local OpenAPI endpoint.",
+        "The present snippets honestly identify themselves as illustrative."
+      ],
+      "notes": [
+        "This supports a reusable-example opportunity, not a claim that the stated tool commands fail.",
+        "One shared HTTP fixture is reasonable only after its supported OpenAPI dialect and launch environment are chosen for both tools.",
+        "A boofuzz monitor/restart fixture is a separate deliverable and should not block the HTTP pilot."
+      ],
+      "acceptance_corrections": [
+        "Deliver a small loopback service, schema, named faulty/corrected revisions or mode, deterministic launch/readiness/reset/stop instructions and a known replayable failure.",
+        "If demonstrating RESTler sequences, include an actual producer/consumer resource flow instead of merely a single stateless endpoint.",
+        "Document request side effects, selected credentials if any, bounded runs and artifact locations.",
+        "A known replay request is required; do not promise that a short randomized run always discovers it.",
+        "Keep each tool's outcome interpretation and setup failures separate; do not compare raw finding counts."
+      ]
+    },
+    {
+      "finding_id": "REX-03",
+      "disposition": "supported",
+      "priority": "P2",
+      "verification": "Read the Java, memory and temporal guides, plus Ruff/mypy individual examples.",
+      "evidence": [
+        "Guides explain complementary roles and ask readers to construct their own shared experiment.",
+        "Ruff already shows an unused-import case; mypy already shows an incompatible annotated argument case.",
+        "No tracked filename search result supplied a maintained combined recipe bundle."
+      ],
+      "notes": [
+        "A Ruff-plus-mypy pilot is concrete and proportionate because the underlying first steps already exist.",
+        "Do not make this pilot wait for every REX-01 profile. It depends on the shared recipe/evidence conventions, not completion of all six proposed profile expansions.",
+        "Native fuzzing/sanitizer and model-monitor-search recipes remain later environment-dependent work."
+      ],
+      "acceptance_corrections": [
+        "Use one small named project revision with distinct lint and type mistakes, then its corrected revision.",
+        "Record exact selected rules/configuration, target Python version, tool versions when executed and separate reports/exit outcomes.",
+        "Link one maintained fixture from profiles and guides rather than duplicating it.",
+        "Explain that two clean checks still do not establish runtime correctness or equivalent coverage."
+      ]
+    },
+    {
+      "finding_id": "REX-04",
+      "disposition": "supported",
+      "priority": "P3",
+      "verification": "Reviewed existing evidence-preservation prose and the absence of a reusable run-record filename in the tracked inventory.",
+      "evidence": [
+        "Guides request revisions, configuration, bounds, seeds and retained reports.",
+        "guides/editing.md:150-152 separates documentation review from hands-on output."
+      ],
+      "notes": [
+        "A human-readable template is sufficient initially. No execution service, database or mandatory catalog schema expansion is needed."
+      ],
+      "acceptance_corrections": [
+        "Separate planned command/expected result from actual command/observed result and artifacts.",
+        "Use statuses for not executed, setup failure, incomplete analysis, completed with findings and completed without findings.",
+        "Record tool/version, target digest/revision, environment, scope/configuration and relevant data snapshots; make tool-specific fields optional.",
+        "Link execution records from a later decision record and review-status map without redefining tool.verified."
+      ]
+    },
+    {
+      "finding_id": "ARC-03",
+      "disposition": "qualified",
+      "priority": "P3",
+      "verification": "Read all three collection adapters and catalog consumers; measured current serialized data only.",
+      "evidence": [
+        "ToolCatalog, ToolComparison and SystemBuilder spread full tool metadata into browser payloads.",
+        "Independently measured catalog JSON=252211 bytes and workflow arrays=75190 bytes.",
+        "Catalog search consumes positive metadata, not workflow arrays or primary source lists."
+      ],
+      "notes": [
+        "The payload reduction opportunity is real; no reader latency or performance regression was measured.",
+        "A simple shared build-time adapter/projection module is enough. Do not introduce a store, client framework or generalized data platform.",
+        "The report03 48257-byte projection was not independently recreated in this lane."
+      ],
+      "acceptance_corrections": [
+        "Preserve every consumed search/ranking/filter/suggestion field and the positive-metadata-only search boundary.",
+        "Keep builder languages derived from all catalog tools while matching only reviewed workflows.",
+        "Preserve draft filtering, ordering, per-workflow associations and comparison source details.",
+        "Measure before/after bytes and run existing discovery/matching checks; do not claim a speedup without timing evidence."
+      ]
+    },
+    {
+      "finding_id": "ARC-04",
+      "disposition": "supported",
+      "priority": "P3",
+      "verification": "Compared content-schema enums with system-schema constants and edition record typing.",
+      "evidence": [
+        "The same nine input strings occur in content.config.ts and INPUTS.",
+        "Cost/license values overlap, with additional preference-only sentinels in saved-system preferences.",
+        "editionGroup uses a literal enum while editionComparisons is broadly typed as Record<string, Comparison>."
+      ],
+      "notes": [
+        "Current lists agree. This is maintenance risk, not an existing matching or compatibility defect."
+      ],
+      "acceptance_corrections": [
+        "Reuse only semantically identical values; keep empty/any-free preference sentinels outside tool metadata enums.",
+        "Do not rename or remove serialized v1 values.",
+        "Ensure edition keys and accepted editionGroup values are checked against each other without importing full edition prose into browser-only schema paths.",
+        "Use a small constants/type change; defer broader schema cleanup."
+      ]
+    },
+    {
+      "finding_id": "ARC-05",
+      "disposition": "supported",
+      "priority": "P3",
+      "verification": "Source inspection of the positional filter and authored relationships.",
+      "evidence": [
+        "ToolComparison.astro:12 promotes indices [0,1,3,4,6].",
+        "tool-choices.ts contains authored entries without featured metadata.",
+        "Generated checks validate linked tools and explanation targets, not the intended promoted set."
+      ],
+      "notes": [
+        "A featured boolean retaining authored order is proportionate. A ranking system is unnecessary."
+      ],
+      "acceptance_corrections": [
+        "Preserve the existing five promoted pairs.",
+        "An unfeatured insertion must not change promoted membership.",
+        "Retain link, fragment and valid-tool checks; do not infer featured status from array position."
+      ]
+    },
+    {
+      "finding_id": "MNT-03",
+      "disposition": "qualified",
+      "priority": "P3",
+      "verification": "Read the historical checker and independently recomputed recorded-file hashes.",
+      "evidence": [
+        "82 recorded files, 62 changed; 60 recorded tool profiles, 53 changed; first mismatch is src/content/docs/compare.md.",
+        "The historical checker intentionally stops at a mismatch and describes itself as an audit integrity check.",
+        "Later audit records and current verification dates have different scopes."
+      ],
+      "notes": [
+        "Hash changes are evidence of changed content, not false claims, expired tools or absence of later review.",
+        "A compact current-status report is useful but should remain informational until an explicit review policy exists."
+      ],
+      "acceptance_corrections": [
+        "Preserve historical records unchanged and append new scoped review references.",
+        "Report the whole current inventory and the latest applicable review scope/digest where known.",
+        "Separate unknown provenance, changed-since-review and reviewed follow-up content; do not automatically mark all claims stale.",
+        "Do not update verified or regenerate historical hashes merely to pass CI."
+      ]
+    },
+    {
+      "finding_id": "MNT-04",
+      "disposition": "supported",
+      "priority": "P3",
+      "verification": "Read current test entrypoints, comparison tests, generated assertions and deployment workflow.",
+      "evidence": [
+        "The comparison return test assumes the catalog root and does not start on Static/Dynamic.",
+        "The verification command combines Astro checks, Node tests, a build and generated-site checks.",
+        "Generated tests validate data/link outcomes but do not execute browser event/focus/persistence wiring."
+      ],
+      "notes": [
+        "Fold targeted regressions into the corresponding fixes instead of creating a broad testing-platform project.",
+        "No need to add a browser framework before making the small fixes concrete."
+      ],
+      "acceptance_corrections": [
+        "Use Node tests for byte policy, failure-preserving storage, URL normalization and schema guards.",
+        "Use generated assertions for the actual API shortcut and edition citation location.",
+        "Require a focused isolated-browser acceptance pass for navigation, focus and storage-recovery wiring; a recorded executable checklist is acceptable initially.",
+        "Avoid broad snapshots, mirrored implementation tests and access to real user storage."
+      ]
+    },
+    {
+      "finding_id": "EXP-04",
+      "disposition": "supported",
+      "priority": "P3",
+      "verification": "Read export/selection behavior and the explicit documented export scope.",
+      "evidence": [
+        "system-builder-ui.mjs:29 initializes temporary selections to empty.",
+        "Lines 128 and 413-416 describe/export the system description, not candidates, rationales or results.",
+        "Component notes already allow a manual workaround."
+      ],
+      "notes": [
+        "A lightweight adoption-note template is an optional handoff improvement, not repair of data loss."
+      ],
+      "acceptance_corrections": [
+        "Record component/connection, chosen tool and workflow, purpose, prerequisites, rationale, unresolved evidence and source/review date.",
+        "Distinguish a selected plan from recomputed recommendations and from observed run results.",
+        "Link the REX-04 record only when execution occurs.",
+        "Preserve v1 exports and temporary shortlist behavior; no accounts, automatic persistent selections or comparison-limit expansion."
+      ]
+    }
+  ],
+  "mat01_fix_contract": {
+    "chosen_minimal_policy": "Retain v1 and the current two-space JSON serialization format. Centralize the inclusive 1048576 UTF-8-byte limit and validate the actual normalized serialized string before writes/downloads. Do not silently switch formats, truncate fields or increase limits.",
+    "serialization": [
+      "Validate the profile schema, serialize once using the chosen existing canonical format, then check TextEncoder byte length.",
+      "Expose a size-specific error distinguishable from schema failures and browser-storage errors.",
+      "Every ordinary successful export and successful save must round-trip through parseProfile/restoreProfile with equivalent normalized data."
+    ],
+    "import_transaction": [
+      "Retain the existing raw-file byte, version and shape checks.",
+      "Before changing the live profile, undo state, selection or storage, also run bounded serialization on parsed/defaulted data.",
+      "If raw input fits but the normalized serialization exceeds the limit, reject the import with a normalization-size explanation and retain current state and stored bytes.",
+      "This deliberately adds a preflight at the extreme boundary; normal v1 data and the schema remain compatible. It must be documented instead of described as acceptance of every formerly parseable compact file.",
+      "If serialization passes but storage is unavailable, the imported description may stay in memory with an explicit unsaved status and working ordinary export."
+    ],
+    "save_and_export": [
+      "Over-limit editing keeps the current in-memory description so the user can reduce notes, remove parts or deselect long custom language values.",
+      "Do not call setItem on a size/schema rejection; keep the previous valid saved value byte-for-byte.",
+      "Show that current edits are unsaved and how to reduce them. Do not advise ordinary export as recovery while ordinary export would fail the same limit.",
+      "Catch ordinary-export size errors before creating a Blob/download; emit no successful-export message.",
+      "A successful later reduction can save/export normally. Undo and structural edits must use the same save boundary.",
+      "Storage access/quota errors remain distinct from the size cap. No secondary backup key is required for this minimal fix."
+    ],
+    "unreadable_saved_value": [
+      "Return a recovery state carrying the unreadable raw value and reason; the fallback profile may be edited in memory.",
+      "Pause all automatic writes to the affected key while that recovery state exists, including autosave after edits, undo or importing a valid replacement description.",
+      "Offer a clearly labeled recovery download of the retained raw value. It is evidence for recovery, not a supported system export, and may need external correction/reduction before import.",
+      "Only an explicit Replace saved system action may release protection. Preflight the new description, then write it; release the lock only after a successful write.",
+      "Downloading recovery data alone does not authorize replacement. Cancelling replacement, rejected imports and failed writes keep the raw value.",
+      "On a storage-read failure rather than known malformed raw data, keep saving unavailable until a successful read can establish the saved state; do not assume the key is empty.",
+      "Do not bypass the 1 MiB import policy to silently reinterpret or truncate oversized/unsupported raw data."
+    ],
+    "compatibility": [
+      "Keep STORAGE_KEY='toolwiki.analysis-suite.v1', version=1, schema fields, count limits and legacy goals behavior.",
+      "Keep exact-boundary equality accepted and clarify user-facing wording as 'up to 1 MiB (1,048,576 bytes)' rather than 'smaller than 1 MB'.",
+      "Do not require a storage migration or promise recovery of data already overwritten by old code.",
+      "A valid compact saved raw value can still be restored under the existing raw policy; if its next canonical save would exceed the cap, preserve that valid stored value and report the unsaved normalization limit."
+    ]
+  },
+  "first_batch": [
+    {
+      "order": 1,
+      "finding_ids": [
+        "MAT-01"
+      ],
+      "scope": "Bounded persistence/export plus protected recovery",
+      "behavior": "Implement mat01_fix_contract completely, including import preflight and recovery-lock handling across all writes.",
+      "required_tests": [
+        "Pure-function tests for ordinary/legacy v1 round trips; exact 1048576 serialized-byte acceptance; one-byte rejection; UTF-8 byte counting using ASCII source escapes.",
+        "Run the exact 903365-to-1203365 growth fixture and assert rejected save/export, unchanged prior valid storage, retained in-memory edits and successful save after reduction.",
+        "Run the 996723-byte compact input that pretty-prints to 1053365; reject before replacing the current profile or undo state. Add an omitted-default normalization boundary case.",
+        "For malformed JSON, unsupported version, invalid shape and oversized saved raw: restore must not write; subsequent edit/import/undo must not overwrite while recovery is protected.",
+        "Explicit recovery download and replacement: retained raw is downloadable; cancellation, validation failure and storage-write failure retain it; a successful deliberate replacement unlocks saving.",
+        "Isolated-browser smoke check verifies status text, failed export producing no download, previous save after reload, reduction recovery and correct event wiring. Seed only synthetic data on an isolated origin."
+      ],
+      "dependencies": [
+        "No architecture refactor or analyzer environment is needed.",
+        "Coordinate targeted UI acceptance with the browser owner."
+      ],
+      "compatibility": "v1 format/key and inclusive 1 MiB cap retained; newly explicit normalized-size import rejection at the extreme boundary."
+    },
+    {
+      "order": 2,
+      "finding_ids": [
+        "ARC-01",
+        "CMP-01"
+      ],
+      "scope": "One allowlisted navigation context",
+      "behavior": "Carry category, existing form filters and current normalized selection through catalog, comparison, profiles and supported related notes. Keep category mapping and selection separate from form-control iteration.",
+      "required_tests": [
+        "Node URL tests for All/Static/Dynamic, encoded C++/query punctuation, old context without category/selection, duplicate/unknown IDs, limit-three selection and hostile nested/offsite parameters.",
+        "Browser flow: filtered Static and Dynamic catalog -> profile -> explicit return; catalog -> comparison -> change choices -> profile -> explicit return.",
+        "Selection-only visits must expose a return route; direct comparison return and profile cost anchors must retain correct state.",
+        "Check a related comparison uses its own intended tool IDs while preserving the originating category/filters."
+      ],
+      "dependencies": [
+        "Reviewer13 live confirmation and a shared context representation chosen before editing the three surfaces."
+      ],
+      "compatibility": "Additive URL state; preserve existing bookmarks, local-route safety, three-tool limit and v1 systems."
+    },
+    {
+      "order": 3,
+      "finding_ids": [
+        "A11Y-01"
+      ],
+      "scope": "Stable focus after shortlist removal",
+      "behavior": "Keep useful remaining-choice focus. At zero selections, focus a visible persistent result status/heading or an existing candidate checkbox, with a persistent fallback when that candidate is absent.",
+      "required_tests": [
+        "Browser keyboard checks in catalog and builder for one-to-zero and multiple-to-fewer removal.",
+        "Assert activeElement is visible and intentional, then verify the next Tab continues near results.",
+        "Repeat when the removed selected tool is absent from current filtered results."
+      ],
+      "dependencies": [
+        "Reviewer13 live acceptance; coordinate any concurrent navigation/tray edits."
+      ],
+      "compatibility": "Focus only; retain temporary selection semantics."
+    },
+    {
+      "order": 4,
+      "finding_ids": [
+        "SEA-02"
+      ],
+      "scope": "HTTP API shortcut correction",
+      "behavior": "Point Test an API to the existing HTTP query plus Running applications filter; retain differentiated workflow guidance.",
+      "required_tests": [
+        "Read the actual generated shortcut URL, pass its filters to selectTools and assert the five intended current HTTP profiles are included.",
+        "Assert boofuzz is not added solely through TCP/custom-protocol support.",
+        "Use membership assertions without ranking/count assumptions that block later documented additions."
+      ],
+      "dependencies": [
+        "Existing positive catalog metadata is sufficient; no new workflow declarations or tool execution."
+      ],
+      "compatibility": "Existing q=API testing bookmarks continue to work; only the shortcut destination changes."
+    },
+    {
+      "order": 5,
+      "finding_ids": [
+        "ARC-02"
+      ],
+      "scope": "Independent note/source rendering",
+      "behavior": "Show a contextual citation when source exists without a note, with no empty wrapper when neither exists.",
+      "required_tests": [
+        "Generated HTML assertion finds the Polyspace requirements link inside the edition section.",
+        "Small rendering cases cover source-only, note-only, both and neither."
+      ],
+      "dependencies": [
+        "None beyond the existing build/render path."
+      ],
+      "compatibility": "Rendering only; preserve edition claims and general source list."
+    },
+    {
+      "order": 6,
+      "finding_ids": [
+        "REX-06"
+      ],
+      "scope": "Jazzer example shell-state restoration",
+      "behavior": "Use saved presence/value and finally, or an explicitly scoped child process, while retaining the illustrative label.",
+      "required_tests": [
+        "Static review of the documented wrapper.",
+        "If a wrapper check is added, use harmless stub commands in isolated PowerShell processes to cover absent/present variable and success/nonzero exit/terminating exception; do not execute Maven or Jazzer."
+      ],
+      "dependencies": [
+        "Choose and state the supported shell variant if its empty-environment-value semantics matter."
+      ],
+      "compatibility": "Documentation correction; no analyzer installation or claim of successful fuzzing."
+    },
+    {
+      "order": 7,
+      "finding_ids": [
+        "MNT-01",
+        "MNT-02"
+      ],
+      "scope": "Project-owned metadata strictness and source inventory guards",
+      "behavior": "Reject unknown tool keys and reconcile all published tool-profile source identities with catalog identities before missing metadata can be filtered away.",
+      "required_tests": [
+        "All current authored profiles validate; four optional-field typo cases fail with file/key context; intentionally omitted optionals remain valid.",
+        "Published source without tool metadata fails with path; intentional draft and ordinary guide without metadata are allowed.",
+        "A new valid tool appears exactly once; missing/duplicate published IDs fail independently of aggregate counts.",
+        "A valid catalog-only profile with no analysisWorkflows remains allowed and omitted only from matching.",
+        "Keep existing Astro checks, Node tests and generated-site verification as the normal gate."
+      ],
+      "dependencies": [
+        "Use the same production schema in tests; a small schema-module extraction is sufficient if needed.",
+        "Resolve source-path to generated-ID mapping using the existing content loader conventions."
+      ],
+      "compatibility": "No reader URL or saved-system changes. Previously ignored author typos become build errors; legitimate Starlight frontmatter remains supported."
+    }
+  ],
+  "sequencing_after_first_batch": [
+    "Create one small shared REX-04 run-record convention and EXP-04 adoption-note template without new persistence features.",
+    "Pilot REX-01 for one or two reader tasks and REX-03 with Ruff plus mypy; do not wait for six complete new environments.",
+    "Develop the REX-02 HTTP fixture once its maintained target/schema/launch path and supported tool environments are chosen; keep boofuzz separate.",
+    "Consider ARC-03/04/05 as independent P3 maintenance changes, measured and tested locally rather than bundled into the defect repairs.",
+    "Treat MNT-03 as informational evidence provenance work; fold MNT-04 into each changed workflow's acceptance checks."
+  ],
+  "limitations": [
+    "No browser lease or browser interaction. Navigation/focus UI confirmation is delegated to reviewer13 and is not claimed as this lane's reproduction.",
+    "No production build, dependency installation, analyzer execution or actual documentation-example execution was performed in this lane.",
+    "Generated HTML/catalog inspections used the existing dist output; no fresh build was created.",
+    "MNT-02 malformed-file end-to-end build failure remains prospective; current inventory completeness and source-level filtering behavior were independently checked.",
+    "All synthetic storage checks used in-memory Maps; no real localStorage or user descriptions were read or changed.",
+    "No fresh external verification of tool compatibility, product claims or official tutorial versions was attempted; recipe implementation must validate its chosen scope before claiming execution.",
+    "The audit report is the only output written by this lane, outside the product repository."
+  ]
+}

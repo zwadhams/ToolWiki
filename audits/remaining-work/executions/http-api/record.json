@@ -1,0 +1,155 @@
+{
+  "date": "2026-11-06",
+  "schemathesis": "4.33.1",
+  "fixture_python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "checks": [
+    "not_a_server_error"
+  ],
+  "phase": "coverage",
+  "generation": "positive",
+  "seed": 20261106,
+  "files": {
+    "server.py": "b419c1974730330d7e9b9956f01317755ab50bcd4909c909d32019a99e077867",
+    "openapi.json": "13ab784c1177ac2ba0f133fb4201772bb7eb5a576688f1a26d8b4d0dedd7674b",
+    "replay.py": "752fb43fe26ea76fd722bf446f1f808ffcde7c9f4d460aefbdaaf99f702ca89b",
+    "run_schemathesis.py": "bf1bce7eb0449eca59f7985d1ff94731653f1519838f69909b26c4f048e00ecd",
+    "requirements-lock.txt": "fdb2378681df6901fb028db02a4ffdb5514d3c5630c001e62644552f496d0fba"
+  },
+  "runs": [
+    {
+      "mode": "faulty",
+      "wrapper_command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\schemathesis-env\\Scripts\\python.exe",
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\examples\\http-api\\run_schemathesis.py",
+        "--port",
+        "53070",
+        "--output",
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\api-wrapper-faulty"
+      ],
+      "command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\schemathesis-env\\Scripts\\schemathesis.exe",
+        "--no-color",
+        "run",
+        "http://127.0.0.1:53070/openapi.json",
+        "--phases",
+        "coverage",
+        "--mode",
+        "positive",
+        "--checks",
+        "not_a_server_error",
+        "--max-failures",
+        "1",
+        "--max-time",
+        "20",
+        "--seed",
+        "20261106",
+        "--workers",
+        "1",
+        "--report",
+        "junit",
+        "--report-junit-path",
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\api-wrapper-faulty\\junit.xml"
+      ],
+      "environment_overrides": {
+        "PYTHONIOENCODING": "utf-8"
+      },
+      "exit_code": 1,
+      "scope": "Coverage phase, positive generation, server-error check. Read reports for skipped work.",
+      "version": "4.33.1",
+      "stdout": "faulty.txt",
+      "junit": "faulty.xml"
+    },
+    {
+      "mode": "fixed",
+      "wrapper_command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\schemathesis-env\\Scripts\\python.exe",
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\examples\\http-api\\run_schemathesis.py",
+        "--port",
+        "53079",
+        "--output",
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\api-wrapper-fixed"
+      ],
+      "command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\schemathesis-env\\Scripts\\schemathesis.exe",
+        "--no-color",
+        "run",
+        "http://127.0.0.1:53079/openapi.json",
+        "--phases",
+        "coverage",
+        "--mode",
+        "positive",
+        "--checks",
+        "not_a_server_error",
+        "--max-failures",
+        "1",
+        "--max-time",
+        "20",
+        "--seed",
+        "20261106",
+        "--workers",
+        "1",
+        "--report",
+        "junit",
+        "--report-junit-path",
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\api-wrapper-fixed\\junit.xml"
+      ],
+      "environment_overrides": {
+        "PYTHONIOENCODING": "utf-8"
+      },
+      "exit_code": 0,
+      "scope": "Coverage phase, positive generation, server-error check. Read reports for skipped work.",
+      "version": "4.33.1",
+      "stdout": "fixed.txt",
+      "junit": "fixed.xml"
+    }
+  ],
+  "limits": "Bounded local fixture checks, not a benchmark or a RESTler execution.",
+  "test_environment": {
+    "python": "3.12.16 (main, Oct 26 2026, 14:10:56) [MSC v.1944 64 bit (AMD64)]",
+    "dependencies": {
+      "anyio": "4.16.0",
+      "certifi": "2026.10.23",
+      "charset-normalizer": "3.5.2",
+      "click": "8.5.1",
+      "colorama": "0.4.6",
+      "graphql-core": "3.3.1",
+      "harfile": "0.6.0",
+      "hypothesis": "6.170.15",
+      "hypothesis-graphql": "0.13.6",
+      "idna": "3.20",
+      "iniconfig": "2.3.1",
+      "jsonschema_rs": "0.60.3",
+      "markdown-it-py": "4.2.0",
+      "MarkupSafe": "3.0.4",
+      "mdurl": "0.1.2",
+      "packaging": "26.3",
+      "pluggy": "1.7.0",
+      "Pygments": "2.21.0",
+      "pyrate-limiter": "4.5.1",
+      "pytest": "9.2.0",
+      "PyYAML": "6.0.3",
+      "requests": "2.34.2",
+      "rich": "15.0.0",
+      "schemathesis": "4.33.1",
+      "sortedcontainers": "2.4.0",
+      "typing_extensions": "4.16.0",
+      "urllib3": "2.8.0",
+      "Werkzeug": "3.1.9"
+    }
+  },
+  "recheck_note": "Reran with run_schemathesis.py after independent review found Windows redirected output needs scoped UTF-8. Wrapper preserves that environment override in each run record.",
+  "known_replay_observations": {
+    "faulty": {
+      "quantity": 0,
+      "status": 500
+    },
+    "fixed": {
+      "quantity": 0,
+      "status": 201,
+      "total": 0,
+      "unitPrice": 10
+    },
+    "note": "Deterministic replay and before/after response assertions are also exercised by test_server.py."
+  }
+}

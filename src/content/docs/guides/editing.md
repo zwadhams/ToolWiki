@@ -14,6 +14,11 @@ Start with the reader's decision and first useful result. Put detailed compatibi
 3. Update `verified` only when you have checked the sources. Record an exact version in `scope` when the claim depends on one.
 4. Review the live preview and run the checks described in the repository README.
 
+Record the review's scope and file digest in the repository's
+[current review ledger](https://github.com/zwadhams/ToolWiki/tree/main/audits/review-status).
+Historical audit records stay unchanged. Use a [run record](../run-record/) for
+actual tool execution; a documentation review and an example run are different evidence.
+
 ## Add an entry
 
 Only admit a tool when its primary documentation supports a useful, scoped profile. A directory listing or product landing page can identify a candidate, but is not sufficient evidence by itself.
@@ -26,7 +31,7 @@ Before adding it, verify:
 - The material limits, such as required instrumentation, incomplete language support, exploration bounds, or external data dependencies.
 - Its license and usage terms, including restrictions on required solvers or services.
 
-Link the relevant official guides and license evidence, and record the review date. A detailed official repository guide can qualify; the number of links alone does not establish documentation quality. If a required fact cannot be verified, keep the candidate in research notes until it can be resolved. Limit the entry to documented capabilities instead of filling gaps with assumptions.
+Cite official guides and license evidence, and record the review date. A detailed official repository guide can qualify; link counts alone do not establish quality. Keep unverifiable candidates in research notes and limit entries to documented capabilities.
 
 1. Copy a similar tool file into the same folder using a lowercase, hyphenated filename ending in `.md`.
 2. Replace its title, description, metadata, sources, and notes.
@@ -66,7 +71,7 @@ The entry automatically appears in the catalog, the matching analysis section, a
 
 ## Add a builder workflow
 
-The [analysis suite builder](../../analysis-suite/) matches individual workflows rather than combining a tool's catalog tags. A tool without a reviewed workflow remains in the catalog but does not generate builder recommendations. The matching review is recorded in the repository's `audits/system-builder/README.md`.
+The [analysis suite builder](../../analysis-suite/) matches individual workflows rather than combining a tool's catalog tags. A tool without a reviewed workflow remains in the catalog but does not generate builder recommendations. Historical matching decisions are in `audits/system-builder/README.md`; later additions have scoped records under `audits/remaining-work/`.
 
 1. Check the entry's primary documentation for one concrete workflow, including its language, input, findings, and preparation requirements.
 2. Add an item to `tool.analysisWorkflows`. Keep alternative inputs, plugins, editions, and analysis modes separate whenever their requirements or findings differ.
@@ -115,9 +120,13 @@ The optional **Match status by component and connection** summary reports candid
 
 Existing version 1 system files remain supported. Their legacy `goals` fields are optional and no longer filter recommendations, including after restoring browser storage or importing a file.
 
-The latest description saves in this browser. **Export system** downloads a version 1 JSON file; **Import system** validates it before replacing the description and recomputes candidates from the current catalog. Imports accept up to 1 MB, 50 components, and 100 connections. Invalid imports preserve the current system. **Undo removal or import** restores the most recently removed part and its incident connections while preserving later edits. Undoing an import restores the entire description from before that import.
+The latest description saves in this browser. **Export system** downloads a version 1 JSON file; **Import system** validates it before replacing the description and recomputes candidates from the current catalog. System files support up to 1 MiB, 50 components, and 100 connections. The imported description must also fit the byte limit when formatted for saving; a compact file can expand during that preparation. Rejected imports preserve the current description, selection, undo state, and stored data. **Undo removal or import** restores the most recently removed part and its incident connections while preserving later edits. Undoing an import restores the entire description from before that import.
 
-If browser storage is unavailable, continue editing and export before leaving. Clearing site data removes the local copy. Comparison selections are temporary and open the comparison page in a new tab. System exports contain descriptions and preferences, not tool results.
+If edits exceed the byte limit, the current description stays in memory and the previous valid saved copy is kept. Reduce notes, selected languages, or system parts before saving or exporting. An oversized export produces no download. For a description within the limit, export before leaving if browser storage is unavailable.
+
+If existing saved data cannot be read, automatic saving pauses to protect it. **Download recovery data** keeps the raw saved copy; this file may need correction or reduction before it can be imported and is not a normal system export. Importing a valid description or using Undo does not remove that protection. Only a confirmed **Replace saved system** action writes the current description over the protected copy, and protection remains if validation or the write fails. Downloading recovery data alone does not authorize replacement.
+
+If storage itself could not be read, use **Retry reading saved data**. The retry keeps current in-memory edits. Any existing saved copy found by the retry remains protected until explicitly replaced; an absent saved copy allows normal saving to resume. Clearing site data removes the local copy. Comparison selections are temporary and open the comparison page in a new tab. System exports contain descriptions and preferences, not tool results.
 
 ## Make tools easy to find
 

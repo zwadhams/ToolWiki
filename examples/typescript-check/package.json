@@ -1,0 +1,12 @@
+{
+  "name": "toolwiki-typescript-check",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "check:bad": "tsc --project tsconfig.bad.json --pretty false",
+    "check:good": "tsc --project tsconfig.good.json --pretty false"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3"
+  }
+}

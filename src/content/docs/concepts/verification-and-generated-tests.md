@@ -3,7 +3,7 @@ title: Verification and generated tests
 description: Compare fuzzing, property-based testing, temporal falsification, bounded checking, and deductive verification.
 ---
 
-**Start with the claim you want to check and the evidence you need.** Testing tries selected inputs and can reveal failures. Formal verification can establish a stated property when its proof succeeds, under the model's assumptions. These workflows need different inputs and give different kinds of evidence.
+**Choose the claim and evidence you need.** Testing can reveal failures on selected inputs. A successful formal proof can establish a stated property under the model's assumptions.
 
 ## Compare the approaches
 
@@ -16,6 +16,18 @@ description: Compare fuzzing, property-based testing, temporal falsification, bo
 | Static formal verification | Program models, specifications, annotations, and proof procedures. | Proved properties, possible-error alarms, or unresolved proof obligations, depending on the analysis. | [Frama-C](../../tools/frama-c/), [Dafny](../../tools/dafny/) |
 
 These categories can overlap. A test harness is code that calls the target and checks its behavior. A fuzzing harness can check a property, and property-based testing can use execution feedback to choose inputs. Compare what inputs each method needs, how it recognizes failure, and what its result establishes.
+
+## Measure and challenge the tests
+
+[coverage.py](../../tools/coverage-py/) records which Python statements and
+branches ran. Reaching a line does not show whether an assertion checked its
+result. [StrykerJS](../../tools/strykerjs/) makes selected changes to JavaScript
+source and asks whether a working test suite rejects the changed program.
+This source mutation differs from a fuzzer mutating input bytes.
+
+The [test-evidence guide](../../guides/test-evidence/) supplies small coverage and
+mutation examples, including a test that reaches all code without checking
+return values and a boundary assertion that detects a surviving mutation.
 
 ## One example, several checks
 

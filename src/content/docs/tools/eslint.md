@@ -77,6 +77,8 @@ It is a configurable linting system. Security plugins can add useful checks, but
 
 For example, the typescript-eslint rule set includes checks for incorrectly handled promises. The relevant rules require type information; adding a TypeScript parser alone does not enable them.
 
+Run the [TypeScript compiler](../typescript/) separately for project type diagnostics. Typed lint rules and `tsc --noEmit` complement each other; neither validates arbitrary runtime input.
+
 ## Inputs and results
 
 Provide source files and a compatible Node.js environment, then configure file patterns, language options, plugins, and rules. The current configuration workflow uses an ESLint configuration file; use guidance matching your installed major version.

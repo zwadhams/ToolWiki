@@ -23,7 +23,7 @@ We examined the range and frequency of reported problems. We did not measure the
 
 ## Evaluating usability
 
-When evaluating a tool, I would consider the following questions:
+I would ask:
 
 | Usability concern | Question for an initial evaluation |
 | --- | --- |
@@ -34,6 +34,8 @@ When evaluating a tool, I would consider the following questions:
 | Workflow disruption | When does analysis run, where are results presented, and who addresses them? |
 
 Evaluate these aspects over several analysis runs. Initial setup alone does not account for the ongoing work of maintaining rules and reviewing findings.
+
+For a current procedure, use [Review analysis findings](../../guides/reviewing-findings/) to check completion, investigate a report, record a disposition, and verify a repair. [Repeatable CI checks](../../guides/ci-checks/) covers result handling and gates. These guides are practical follow-up advice, separate from the literature review's findings.
 
 I include **What it examines**, **What you need**, and **Checks and limits** in the tool profiles to help prepare an evaluation. Experience in the intended development environment is still needed to assess usability.
 

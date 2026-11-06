@@ -11,7 +11,9 @@ const tool = entry.data.tool;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const contexts = tool?.targets.filter((target) => !tool.inputTypes.some((input) => input === target)) || [];
 const choices = toolChoices.filter(choice => choice.tools.includes(entry.id));
-const titles = choices.length ? new Map((await getCollection('docs')).map(doc => [doc.id, doc.data.title])) : new Map();
+const docs = await getCollection('docs');
+const catalogIds = docs.filter(doc => doc.data.tool && !doc.data.draft).map(doc => doc.id);
+const titles = choices.length ? new Map(docs.map(doc => [doc.id, doc.data.title])) : new Map();
 ---
 {tool && <section class="tool-profile tool-decision" aria-label="Is this tool a fit?">
   <div class="profile-heading" data-pagefind-ignore><span class="mode-badge">{tool.modes.join(' / ')} analysis</span><a href={tool.website}>Official website</a></div>
@@ -57,14 +59,16 @@ const titles = choices.length ? new Map((await getCollection('docs')).map(doc =>
   <p class="edition-note">Cost information checked {tool.verified}. Runtimes, hosting, and compute may cost extra. Free trials are not counted as free editions.</p>
 </section>}
 {tool && <section class="profile-sources" aria-labelledby="tool-sources"><h2 id="tool-sources">Sources and evidence</h2><p>Docs checked {tool.verified}. This date records a documentation review. Example execution status is labeled separately; no benchmark is implied.</p><ul>{tool.sources.map((source) => <li><a href={source.url}>{source.label}</a></li>)}</ul></section>}
+<script type="application/json" data-catalog-ids set:html={JSON.stringify(catalogIds).replace(/</g, '\\u003c')} />
 <script>
   import { catalogParams, catalogHref } from '../lib/comparison.mjs';
-  const context = catalogParams(new URLSearchParams(location.search).get('catalog') || '').toString();
+  const allowedIds: string[] = JSON.parse(document.querySelector('[data-catalog-ids]')!.textContent!);
+  const context = catalogParams(new URLSearchParams(location.search).get('catalog'), allowedIds).toString();
   if (context) {
     const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     const back = document.querySelector<HTMLAnchorElement>('[data-back-to-catalog]');
-    if (back) { back.href = catalogHref(base, [], context); back.hidden = false; }
-    document.querySelectorAll<HTMLAnchorElement>('.sl-markdown-content a, .related-choices a').forEach(anchor => {
+    if (back) { back.href = catalogHref(base, null, context, allowedIds); back.hidden = false; }
+    document.querySelectorAll<HTMLAnchorElement>('.sl-markdown-content a, .related-choices a, .edition-section a').forEach(anchor => {
       const url = new URL(anchor.href);
       if (url.origin !== location.origin || !['tools/', 'compare/', 'guides/'].some(path => url.pathname.startsWith(`${base}/${path}`))) return;
       url.searchParams.set('catalog', context);

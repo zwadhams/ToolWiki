@@ -97,3 +97,5 @@ Successful proofs apply to the modeled program and stated assumptions. Check the
 Start with a small C routine and a known environment. Use the Eva tutorial to examine value ranges and alarms, or the WP tutorial to state a function contract and inspect its obligations. Add complexity gradually and preserve annotations as part of the code review.
 
 Frama-C also includes dynamic techniques such as E-ACSL. They have different execution requirements and should not be inferred from this entry's static tags.
+
+See [static method results](../../concepts/advanced-static-methods/) for value approximations and proof obligations.

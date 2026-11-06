@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { selectTools, suggestTools } from '../src/lib/catalog.mjs';
 import { analyzeSystem, newComponent, newConnection, newProfile } from '../src/lib/system-builder.mjs';
 import { normalizeSelection } from '../src/lib/comparison.mjs';
+import { readDocumentationSources, verifyCatalogSources } from '../src/lib/tool-inventory.mjs';
 
 const root = path.resolve('dist');
 const base = '/ToolWiki/';
@@ -44,10 +45,59 @@ for (const [file, html] of contents) {
   }
 }
 assert.equal(errors.length, 0, errors.join('\n'));
-await stat(path.join(root, 'pagefind', 'pagefind.js'));
+const searchDirectory = path.join(root, 'pagefind');
+for (const file of await walk(searchDirectory)) {
+  assert.ok((await stat(file)).size > 0, `Empty search asset: ${path.relative(root, file)}. Rebuild with working filesystem permissions.`);
+}
+const searchIndex = JSON.parse(await readFile(path.join(searchDirectory, 'pagefind-entry.json'), 'utf8'));
+assert.ok(searchIndex.languages && Object.keys(searchIndex.languages).length, 'Pagefind needs at least one language index');
+for (const [language, index] of Object.entries(searchIndex.languages)) {
+  assert.ok(Number.isInteger(index.page_count) && index.page_count > 0, `Empty Pagefind language index: ${language}`);
+  assert.match(index.hash, /^[a-zA-Z0-9_-]+$/, 'Pagefind metadata must name a local asset');
+  assert.match(index.wasm, /^[a-zA-Z0-9_-]+$/, 'Pagefind must name a local language module');
+  await stat(path.join(searchDirectory, `pagefind.${index.hash}.pf_meta`));
+  await stat(path.join(searchDirectory, `wasm.${index.wasm}.pagefind`));
+}
+await stat(path.join(searchDirectory, 'pagefind.js'));
 const catalogHtml = contents.get(path.join(root, 'index.html'));
 const catalog = JSON.parse(catalogHtml.match(/<script[^>]*data-catalog-data[^>]*>([\s\S]*?)<\/script>/)[1]);
+const publishedProfiles = await verifyCatalogSources(path.resolve('.'), catalog);
+console.log(`Verified ${publishedProfiles.length} published source profiles against their loader-resolved catalog identities.`);
 const allowedIds = catalog.map(tool => tool.id);
+const sourceProfiles = new Map((await readDocumentationSources(path.resolve('.'))).map(source => [source.filePath, source.data]));
+
+// Exercise the actual generated shortcut, including its input constraint.
+const apiShortcut = [...catalogHtml.matchAll(/<a\b[^>]*>/g)].find(([tag]) => /\bdata-task-api(?:[\s=>])/.test(tag))?.[0];
+assert.ok(apiShortcut, 'The catalog must expose its HTTP API task shortcut');
+const apiHref = apiShortcut.match(/\bhref="([^"]+)"/)?.[1]?.replaceAll('&amp;', '&');
+assert.ok(apiHref, 'The API task shortcut needs a destination');
+const apiUrl = new URL(apiHref, origin + base);
+assert.equal(apiUrl.origin, origin);
+assert.equal(apiUrl.pathname, base);
+const apiTools = new Set(selectTools(catalog, Object.fromEntries(apiUrl.searchParams)).map(tool => tool.id));
+for (const id of ['tools/burp-suite-community', 'tools/burp-suite-professional', 'tools/zap', 'tools/restler', 'tools/schemathesis']) {
+  assert.ok(apiTools.has(id), `The broad HTTP API shortcut must include ${id}`);
+}
+assert.ok(!apiTools.has('tools/boofuzz'), 'TCP/custom-protocol support alone must not qualify for the HTTP API shortcut');
+
+// These authored groups cover all note/source combinations without duplicating renderer logic.
+const editionEvidence = id => {
+  const html = contents.get(path.join(root, 'tools', id, 'index.html'));
+  const section = html?.match(/<section\b[^>]*class="[^"]*\bedition-section\b[^"]*"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(section, `Missing cost and edition section for ${id}`);
+  return section.match(/<p\b[^>]*class="[^"]*\bedition-evidence\b[^"]*"[^>]*>([\s\S]*?)<\/p>/)?.[1];
+};
+const polyspaceEvidence = editionEvidence('polyspace-code-prover');
+assert.ok(polyspaceEvidence?.includes('href="https://www.mathworks.com/support/requirements/polyspace-code-prover.html"'), 'Polyspace needs its source-only citation beside the edition comparison');
+assert.ok(polyspaceEvidence.includes('Required products and platforms'));
+const coverityEvidence = editionEvidence('coverity');
+assert.ok(coverityEvidence?.includes('A publicly visible repository is not by itself proof of Scan eligibility.'));
+assert.ok(!coverityEvidence.includes('<a'), 'The note-only Coverity evidence should not invent a source link');
+const phpstanEvidence = editionEvidence('phpstan');
+assert.ok(phpstanEvidence?.includes('Subscription management requires an account; current prices were not verified.'));
+assert.ok(phpstanEvidence.includes('href="https://account.phpstan.com/"'), 'PHPStan should retain both its note and contextual source');
+assert.equal(editionEvidence('cppcheck'), undefined, 'An edition group with neither note nor source must not render an empty evidence paragraph');
+
 for (const { route, url } of comparisonLinks) {
   const requested = url.searchParams.get('tools').split(',');
   assert.deepEqual(normalizeSelection(requested, allowedIds), requested, `${route}: comparison link drops an invalid or repeated tool: ${url}`);
@@ -68,6 +118,12 @@ for (const tool of catalog) {
     assert.ok(selectTools(catalog, { q }).some(({ id }) => id === tool.id), `${q} must find ${tool.id}`);
   }
 }
+for (const mode of ['Static', 'Dynamic']) {
+  const found = new Set(selectTools(catalog, { q: `${mode} analysis` }).map(tool => tool.id));
+  for (const tool of catalog.filter(tool => tool.modes.includes(mode))) assert.ok(found.has(tool.id), `${mode} analysis must discover ${tool.id}`);
+}
+const nullPointerResults = new Set(selectTools(catalog, { q: 'null pointer dereference' }).map(tool => tool.id));
+for (const id of ['tools/cppcheck', 'tools/cwe-checker', 'tools/infer']) assert.ok(nullPointerResults.has(id), `Documented null-pointer checks must be discoverable for ${id}`);
 for (const [q, id] of [
   ['ASan', 'tools/address-sanitizer'], ['TSan', 'tools/thread-sanitizer'],
   ['AFL plus plus', 'tools/afl-plus-plus'], ['buffer overflow', 'tools/address-sanitizer'],
@@ -119,7 +175,8 @@ assert.ok(builderHtml?.includes('<system-builder'), 'Builder page must render it
 assert.ok(catalogHtml.includes('/ToolWiki/analysis-suite/'), 'Builder must appear in navigation');
 const builder = JSON.parse(builderHtml.match(/<script[^>]*data-builder-data[^>]*>([\s\S]*?)<\/script>/)[1]);
 assert.equal(builder.totalTools, catalog.length);
-assert.ok(builder.tools.length >= 80, 'Keep the reviewed workflow catalog available');
+const expectedWorkflowIds = publishedProfiles.filter(profile => sourceProfiles.get(profile.filePath)?.tool?.analysisWorkflows?.length).map(profile => profile.id).sort();
+assert.deepEqual(builder.tools.map(tool => tool.id).sort(), expectedWorkflowIds, 'Builder membership must match the published source profiles with reviewed workflows');
 assert.ok(builder.tools.every(t => t.analysisWorkflows.length));
 const system = newProfile();
 system.components = [{ ...newComponent('service'), languages: ['Python'], inputs: ['Source code'], inputsComplete: true, hostPlatform: 'Linux' }, { ...newComponent('device'), languages: ['C++'], inputs: ['Binaries'], inputsComplete: true, binaryFormat: 'Native executable', targetPlatform: 'Linux', access: { rebuild: 'no', instrument: 'no', harness: 'no', testInstance: 'yes' } }];

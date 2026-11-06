@@ -1,0 +1,464 @@
+{
+  "agent": 9,
+  "lane": "Authoring and maintenance",
+  "date": "2026-11-06",
+  "status": "complete",
+  "method": [
+    "Read content schema, editing guide, collection adapters, generated-site assertions, unit-test entrypoints, CI workflow, and all five prior audit summaries.",
+    "Ran historical check-records.mjs read-only. Independently compared its 82 recorded file hashes with current files.",
+    "Parsed all 89 tool frontmatters with existing Python YAML support and screened required tool presence, duplicate list members, dates, optional summaries/workflows and sources.",
+    "Transpiled the existing tool-schema declaration in memory and tested misspelled optional fields against generated Ruff metadata. No repository files or fixtures were modified.",
+    "No browser interaction, production build, analyzer installation/execution, or fresh upstream product verification by this agent."
+  ],
+  "metadata_screening": {
+    "profiles": 89,
+    "profiles_missing_tool_metadata": 0,
+    "workflow_profiles": 80,
+    "workflows": 93,
+    "deferred_profiles": 9,
+    "decision_summary_profiles": 4,
+    "source_reference_entries": 347,
+    "profiles_without_aliases": 56,
+    "profiles_without_search_terms": 58,
+    "duplicate_list_members_found": 0,
+    "verification_dates": {
+      "2026-09-21": 3,
+      "2026-09-22": 57,
+      "2026-09-26": 29
+    },
+    "date_interpretation": "Dates alone do not establish stale claims or failed source review. No future-dated entries found.",
+    "ascii_scan": "No non-ASCII or hidden control characters found in inspected tracked authored text extensions; binaries and unrecognized extensions excluded.",
+    "historical_ledger": {
+      "recorded_files": 82,
+      "changed_files": 62,
+      "recorded_tool_profiles": 60,
+      "changed_recorded_tool_profiles": 53,
+      "missing_recorded_files": 0,
+      "new_tool_profiles_outside_20260922_ledger": 29,
+      "check_command": "node audits/tool-review/check-records.mjs",
+      "check_result": "Expected nonzero exit at first mismatch: src/content/docs/compare.md.",
+      "interpretation": "Later workflow/alias/usability changes explain why hashes differ. A mismatch does not prove the factual claims are incorrect or that no later review occurred."
+    }
+  },
+  "findings": [
+    {
+      "id": "MNT-01",
+      "kind": "confirmed_validation_gap",
+      "priority": "P2",
+      "title": "Misspelled optional tool fields are silently discarded",
+      "reader_task": "Author or extend a tool profile without silently losing reviewed workflows or discovery metadata",
+      "locations": [
+        {
+          "path": "src/content.config.ts",
+          "line": 8
+        },
+        {
+          "path": "src/content.config.ts",
+          "line": 14
+        },
+        {
+          "path": "src/content.config.ts",
+          "line": 15
+        },
+        {
+          "path": "src/content.config.ts",
+          "line": 16
+        },
+        {
+          "path": "src/content.config.ts",
+          "line": 17
+        },
+        {
+          "path": "src/lib/system-schema.mjs",
+          "line": 82
+        }
+      ],
+      "evidence": [
+        "The custom tool schema uses z.object without strictness. analysisWorkflows, aliases and searchTerms default to empty lists; decision is optional.",
+        "In-memory tests of the exact existing schema replacing analysisWorkflows with analysisWorkflowsTypo, aliases with aliasesTypo, searchTerms with searchTermsTypo, or decision with decisionTypo all parse successfully. The first three become empty arrays; decision becomes absent.",
+        "Nested workflow objects already reject unknown fields through strict(), so the protection is inconsistent at the custom tool-object boundary.",
+        "No current malformed tool field was identified; this is a reproducible authoring guard gap, not a claim that present profiles lost metadata."
+      ],
+      "impact": "A new profile or newly added optional field can appear valid while omitting the intended builder workflow, alias, search vocabulary, or decision summary.",
+      "confidence": "high",
+      "recommended_change": "Reject unrecognized keys within the custom tool object, with file/field diagnostics. Preserve genuinely absent optional fields. Scope strictness to project-owned tool metadata, not Starlight's entire frontmatter or extension namespace.",
+      "acceptance_criteria": [
+        "Each misspelled optional field fails validation with a useful location/key message.",
+        "All 89 current profiles and 93 workflows still validate unchanged.",
+        "A profile intentionally omitting aliases, searchTerms, decision or workflows remains valid.",
+        "Supported Starlight metadata and future explicit project fields remain usable.",
+        "Add a focused negative schema test using authored tool metadata, not a generated record containing unrelated title/id fields."
+      ],
+      "effort": "small",
+      "dependencies": [],
+      "compatibility": "No saved-system or public URL change; previously ignored misspellings become actionable authoring errors."
+    },
+    {
+      "id": "MNT-02",
+      "kind": "validation_opportunity",
+      "priority": "P2",
+      "title": "Reconcile authored tool profiles against the published catalog",
+      "reader_task": "Add a tool page and know that it was admitted to the catalog or deliberately excluded",
+      "locations": [
+        {
+          "path": "src/content.config.ts",
+          "line": 53
+        },
+        {
+          "path": "src/components/ToolCatalog.astro",
+          "line": 6
+        },
+        {
+          "path": "src/components/SystemBuilder.astro",
+          "line": 4
+        },
+        {
+          "path": "scripts/check-site.mjs",
+          "line": 49
+        },
+        {
+          "path": "scripts/check-site.mjs",
+          "line": 66
+        },
+        {
+          "path": "scripts/check-site.mjs",
+          "line": 121
+        },
+        {
+          "path": "scripts/check-site.mjs",
+          "line": 122
+        }
+      ],
+      "evidence": [
+        "The custom docs extension allows tool to be absent for ordinary docs, and it has no tool-directory-specific requirement. An in-memory safeParse of the extension with toolTypo succeeds.",
+        "Catalog, comparison and builder collections include only entries with data.tool and without data.draft.",
+        "Generated discovery checks iterate the already-rendered catalog, so a new tool page missing metadata is not part of that expected set. builder.totalTools is compared with the same derived catalog and only a lower bound of80 workflow profiles is asserted.",
+        "Current inventory reconciliation found all 89 existing tool files represented. No current missing profile is alleged; full malformed-file build was not performed because this audit is read-only."
+      ],
+      "impact": "A newly added tools page can render as ordinary content and escape catalog membership checks, while validation of the remaining catalog still succeeds.",
+      "confidence": "high for source-level guard gap; end-to-end malformed-file build not attempted",
+      "recommended_change": "Add an authoring inventory check that requires valid tool metadata for published tool-profile files and compares their IDs with the generated catalog. Respect deliberate drafts. Keep workflow omission allowed and explicitly distinguished from accidental metadata omission.",
+      "acceptance_criteria": [
+        "A new published tool-profile file without tool metadata fails with its path.",
+        "Each published profile appears exactly once in the catalog.",
+        "Draft profiles are deliberately excluded rather than treated as errors.",
+        "Ordinary guide/concept/research pages remain valid without tool metadata.",
+        "Catalog-only tools with zero reviewed workflows remain valid and visibly excluded from matching.",
+        "Use source identity sets, not a fixed89 count or an increased builder-count threshold."
+      ],
+      "effort": "small to medium",
+      "dependencies": [
+        "Coordinate with MNT-01 so diagnostics form one authoring validation path."
+      ],
+      "compatibility": "No reader URL or v1 saved-system changes. Folder exceptions, if introduced later, should be explicit rather than silently accepted."
+    },
+    {
+      "id": "MNT-03",
+      "kind": "opportunity",
+      "priority": "P3",
+      "title": "Separate current review status from immutable historical audit ledgers",
+      "reader_task": "Determine which current content still matches reviewed evidence and what needs reassessment",
+      "locations": [
+        {
+          "path": "audits/tool-review/check-records.mjs",
+          "line": 8
+        },
+        {
+          "path": "audits/tool-review/check-records.mjs",
+          "line": 11
+        },
+        {
+          "path": "audits/tool-review/check-records.mjs",
+          "line": 14
+        },
+        {
+          "path": "audits/tool-review/README.md",
+          "line": 17
+        },
+        {
+          "path": "src/content/docs/guides/editing.md",
+          "line": 14
+        },
+        {
+          "path": "src/content/docs/guides/editing.md",
+          "line": 74
+        }
+      ],
+      "evidence": [
+        "Historical checker correctly stops at compare.md's hash mismatch and is scoped to the 2026-09-22 snapshot of 60 profiles/82 files.",
+        "Independent current comparison finds62 of 82 recorded files changed, including53 of 60 tool profiles;29 current profiles were added after that ledger.",
+        "Later audit summaries document substantive follow-up reviews, but there is no single machine-readable map from current profile/claim scope to its latest relevant review and content hash.",
+        "The editing guide correctly tells authors not to advance verified without checking sources; it does not describe how to append or supersede a current review record after later edits.",
+        "The ledger mismatch does not establish inaccurate facts. Existing explicit uncertainty labels remain valuable."
+      ],
+      "impact": "Maintainers must reconstruct review provenance across historical reports and cannot quickly separate unchanged evidence, reviewed follow-up content, unreviewed changes, and new entries.",
+      "confidence": "high",
+      "recommended_change": "Preserve old ledgers and add a separate read-only current review-status report that enumerates unchanged, changed-since-review, newly reviewed, and not-yet-linked-to-review content. Link newer review records and their scope/content digest. Human review decides whether a change affects claims; do not regenerate hashes or dates as a substitute.",
+      "acceptance_criteria": [
+        "Report the whole current inventory rather than stopping at the first mismatch.",
+        "Show each latest applicable review reference and distinguish scope-limited follow-up review from blanket verification.",
+        "A later content change becomes visible without declaring its claims false or automatically changing verified.",
+        "Historical evidence and hashes remain intact.",
+        "A human can append a new review disposition without rerunning historical finalize.mjs.",
+        "Do not gate all CI work on the known old 62-file mismatch; treat the current report as review information until explicit policy is chosen."
+      ],
+      "effort": "medium",
+      "dependencies": [
+        "Coordinate with the reusable run-record proposal; documentation-review evidence and tool-execution records remain different artifacts."
+      ],
+      "compatibility": "Additive audit metadata/reporting; retain tool.verified meaning and existing evidence links."
+    },
+    {
+      "id": "MNT-04",
+      "kind": "opportunity",
+      "priority": "P3",
+      "title": "Add focused cross-surface regressions when fixing confirmed UI problems",
+      "reader_task": "Maintain working navigation and saved-state flows through future changes",
+      "locations": [
+        {
+          "path": "tests/comparison.test.mjs",
+          "line": 32
+        },
+        {
+          "path": "tests/comparison.test.mjs",
+          "line": 36
+        },
+        {
+          "path": "scripts/check-site.mjs",
+          "line": 49
+        },
+        {
+          "path": "scripts/check-site.mjs",
+          "line": 117
+        },
+        {
+          "path": ".github/workflows/deploy.yml",
+          "line": 34
+        },
+        {
+          "path": "audits/usability/README.md",
+          "line": 42
+        }
+      ],
+      "evidence": [
+        "Current tests cover pure catalog/comparison/matching functions plus generated links and selected real-catalog assertions.",
+        "The comparison return test exercises form fields and explicitly expects catalog root; it does not originate from Static/Dynamic routes.",
+        "The coordinator's 49 unit tests and generated-site checks pass while agent04 independently reproduced category loss through both actual profile and comparison return actions.",
+        "Prior browser checks are recorded as audit narratives, while the normal verification entrypoint does not exercise browser event wiring."
+      ],
+      "impact": "Function-level behavior can remain correct relative to its fixture while the rendered navigation drops part of the user's context.",
+      "confidence": "high",
+      "recommended_change": "When implementing confirmed navigation and state fixes, add narrow regressions that include the actual originating route and cross-surface flow. Use generated assertions for static authoring behavior and a small browser smoke suite or maintained executable acceptance checklist for dynamic event/persistence wiring; avoid broad brittle snapshot coverage.",
+      "acceptance_criteria": [
+        "Static/Dynamic -> profile -> return and catalog -> comparison -> return are covered with expected category, query and selection.",
+        "System save/reload and import rejection are tested at the UI boundary when those flows change, using isolated origin/fixtures.",
+        "Confirmed API-preset membership and source-only citation rendering receive the cheapest meaningful generated/content assertions.",
+        "Tests verify reader outcomes rather than copying implementation internals.",
+        "No global browser storage or existing user descriptions are modified by tests."
+      ],
+      "effort": "medium; start with regressions required by the first fixes",
+      "dependencies": [
+        "ARC-01/SEA-01 navigation fix and other independently confirmed findings"
+      ],
+      "compatibility": "Test infrastructure only; preserve behavior and avoid introducing an unrelated framework migration.",
+      "consolidation_note": "May be folded into acceptance criteria of the individual confirmed fixes rather than a separate product backlog item."
+    }
+  ],
+  "prior_audit_reconciliation": [
+    {
+      "source": "audits/search-discovery/README.md",
+      "item": "Task-based starting points",
+      "status": "resolved_with_open_subcase",
+      "evidence": "ToolCatalog has task shortcuts; agent04 identified API-preset membership gap. Preserve source-vs-dependency distinctions.",
+      "finding_ids": [
+        "SEA-02"
+      ]
+    },
+    {
+      "source": "audits/search-discovery/README.md",
+      "item": "Broader aliases and capability vocabulary",
+      "status": "still_open",
+      "evidence": "All titles/aliases checked in generated site;56 profiles have no aliases and58 no extra search terms (not automatic defects). Agent04 demonstrated null-pointer/taxonomy query gaps.",
+      "finding_ids": [
+        "SEA-03"
+      ]
+    },
+    {
+      "source": "audits/search-discovery/README.md",
+      "item": "Related alternatives and companions",
+      "status": "partially_resolved",
+      "evidence": "Seven authored toolChoices relationships and comparison links exist; general expansion remains curated work, not evidence that every profile needs every relation.",
+      "finding_ids": []
+    },
+    {
+      "source": "audits/search-discovery/README.md",
+      "item": "Per-option filter counts",
+      "status": "still_open",
+      "evidence": "ToolCatalog derives unique option values; it displays total results, not counts per option with other filters retained.",
+      "finding_ids": []
+    },
+    {
+      "source": "audits/search-discovery/README.md",
+      "item": "Platform, interface and integration filters",
+      "status": "partially_superseded",
+      "evidence": "System builder now represents host/target, interfaces and prerequisites. Catalog platform/integration/SARIF fields are not implemented; a blanket claim of completion would be wrong.",
+      "finding_ids": []
+    },
+    {
+      "source": "audits/search-discovery/README.md",
+      "item": "Maintenance and evidence status",
+      "status": "partially_resolved",
+      "evidence": "Docs checked and execution-status prose distinguish evidence. Source-backed structured lifecycle/status and current review map remain absent.",
+      "finding_ids": [
+        "MNT-03"
+      ]
+    },
+    {
+      "source": "audits/search-discovery/README.md",
+      "item": "Compact list and saved shortlists",
+      "status": "partially_resolved",
+      "evidence": "Comparison URLs retain selected tools; no compact catalog list view or named persistent shortlist system. No automatic need to add accounts.",
+      "finding_ids": []
+    },
+    {
+      "source": "audits/search-discovery/README.md",
+      "item": "Nine listed candidate tools",
+      "status": "resolved",
+      "evidence": "mypy, ShellCheck, clang-tidy, UBSan, Trivy, Pyright, CPAchecker, KLEE and Grype all have current profiles.",
+      "finding_ids": []
+    },
+    {
+      "source": "audits/search-discovery/README.md",
+      "item": "Secret-scanning candidate research",
+      "status": "partially_resolved",
+      "evidence": "detect-secrets fills file-oriented screening; Git-history scope and Gitleaks/Betterleaks maintenance review remain separate and are covered by agent05.",
+      "finding_ids": [
+        "COV-03"
+      ]
+    },
+    {
+      "source": "audits/catalog-expansion/README.md",
+      "item": "24 admitted profiles",
+      "status": "resolved",
+      "evidence": "All 24 are present within 89 current profiles. Admission and documentation review do not establish locally executed examples.",
+      "finding_ids": [
+        "REX-01"
+      ]
+    },
+    {
+      "source": "audits/catalog-expansion/README.md",
+      "item": "Mobile, HDL, additional language and secret workflows",
+      "status": "still_open",
+      "evidence": "Current agent05 identifies scoped opportunities and primary evidence; absence is not proof of poor tool quality.",
+      "finding_ids": [
+        "COV-01",
+        "COV-02",
+        "COV-03",
+        "COV-04",
+        "COV-05"
+      ]
+    },
+    {
+      "source": "audits/tool-review/README.md",
+      "item": "Historical claim ledger integrity",
+      "status": "historical_snapshot_changed",
+      "evidence": "62 of 82 recorded files changed,53 of 60 tool profiles; do not rewrite old hashes to claim re-verification.",
+      "finding_ids": [
+        "MNT-03"
+      ]
+    },
+    {
+      "source": "audits/tool-review/README.md",
+      "item": "S-TaLiRo availability and exact license",
+      "status": "still_open",
+      "evidence": "Profile retains historical-scope/current-availability caveats. This agent did not check new upstream evidence.",
+      "finding_ids": []
+    },
+    {
+      "source": "audits/tool-review/README.md",
+      "item": "RTAMT historical execution provenance",
+      "status": "still_open",
+      "evidence": "Known missing run record plus later failed setup are explicitly disclosed; no new execution in this audit.",
+      "finding_ids": [
+        "REX-05"
+      ]
+    },
+    {
+      "source": "audits/tool-review/README.md",
+      "item": "PHPStan Pro current pricing",
+      "status": "still_open",
+      "evidence": "Edition note continues to say current price unverified and launch pricing historical. No new account access or price verification.",
+      "finding_ids": []
+    },
+    {
+      "source": "audits/system-builder/README.md",
+      "item": "Conservative reviewed matching workflows",
+      "status": "resolved_for_recorded_subset",
+      "evidence": "Current metadata matches 93 workflows across 80 profiles,9 deliberately deferred. Deferral remains a coverage limitation rather than a matcher defect.",
+      "finding_ids": []
+    },
+    {
+      "source": "audits/usability/README.md",
+      "item": "Shared layout and four detailed pilots",
+      "status": "resolved_for_pilot_scope",
+      "evidence": "All 89 use shared renderer; exactly 4 supply decision metadata. Further first-result depth is an extension, not a failed promise that all 89 were rewritten.",
+      "finding_ids": [
+        "N01",
+        "REX-01"
+      ]
+    },
+    {
+      "source": "audits/usability/README.md",
+      "item": "Filtered catalog return",
+      "status": "still_open_subcase",
+      "evidence": "Form fields are preserved; Static/Dynamic category was not included and remains a confirmed gap. No evidence that this subcase previously worked, so do not label it a regression.",
+      "finding_ids": [
+        "ARC-01",
+        "SEA-01"
+      ]
+    },
+    {
+      "source": "audits/usability/README.md",
+      "item": "Malformed memory comparison and authored guidance link checks",
+      "status": "resolved",
+      "evidence": "Generated validation now rejects dropped invalid/repeated tool IDs and checks authored comparison targets/fragments.",
+      "finding_ids": []
+    },
+    {
+      "source": "audits/usability/README.md",
+      "item": "Blank-system prompts, question targeting and language search",
+      "status": "resolved_for_recorded_cases",
+      "evidence": "Current tests include blank-part behavior, connection question host targeting and language-only candidate boundaries; further UI checks belong to agents07/11.",
+      "finding_ids": []
+    },
+    {
+      "source": "audits/usability/README.md",
+      "item": "Pagefind permission failure",
+      "status": "environment_issue_reproduced_and_resolved",
+      "evidence": "Coordinator retained restricted failure plus successful normal-permission rebuild/checks. Not a product sitemap defect.",
+      "finding_ids": []
+    },
+    {
+      "source": "audits/usability/README.md",
+      "item": "Duplicate 404 build warning",
+      "status": "still_open_low_impact",
+      "evidence": "Baseline retains warning while generating valid 404 and passing site checks. No evidence of reader-facing failure.",
+      "finding_ids": []
+    }
+  ],
+  "strengths": [
+    "Required profile metadata is rich and all 89 current profiles supply it.",
+    "Workflow-specific findings and evidence membership checks prevent aggregate claim inflation.",
+    "Nested workflow and saved-system schemas use strict validation with useful bounds.",
+    "Generated checks validate actual catalog names/aliases, scoped query cases, authored comparison links and representative matching behavior.",
+    "Editing guidance clearly separates documentation review from execution evidence and forbids automatic verification-date updates.",
+    "Historical ledgers preserve source URLs, scope, hashes and caveats rather than replacing evidence with link-health success."
+  ],
+  "rejected_leads": [
+    "No current missing tool metadata, duplicate list member, future verification date or authored non-ASCII text found in the screening.",
+    "A decision summary without a First try heading is already caught indirectly by generated local-fragment validation; no separate missing guard reported.",
+    "An old verification date or historical hash mismatch alone does not establish stale or false facts.",
+    "Initial Pagefind PermissionDenied and missing sitemap were environmental, resolved by coordinator retry.",
+    "Audit packaging *.log ignore was reported to coordinator and corrected to retained .txt logs; not a product finding."
+  ]
+}

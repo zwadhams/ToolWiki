@@ -1,0 +1,106 @@
+{
+  "evidence": "executed",
+  "date": "2026-11-06",
+  "host": "Windows-11-10.0.26300-SP0",
+  "python": "3.13.15",
+  "coverage": "7.10.6",
+  "process_scope": "One Python process per unittest suite; no subprocess collection",
+  "source": "sample",
+  "branch": true,
+  "inputs_sha256": {
+    "sample.py": "5fde79f0582b5add30077e09fcc017a4afc219c77ad77d009bb54dc091e90aed",
+    "requirements.txt": "d9809490cb01b3d4b9d448d6171118996c2a7c2d648e856a50bc9dc77906e02b",
+    "tests/test_partial.py": "9eb54233f350110a5020508510fa8f1417474741dbab7cbb28271fd472cff0ac",
+    "tests/test_reach.py": "1e7df40c60ac0ee5c05e19f7bf470928fe2da0f590233cc043cc1661a306470d",
+    "tests/test_contract.py": "a8dafb752b321fc1b1e6d8a30a08c973c60c627a75672414507a5526fc4c4b95"
+  },
+  "runs": [
+    {
+      "suite": "partial",
+      "command": [
+        "python",
+        "-m",
+        "coverage",
+        "run",
+        "--branch",
+        "--source=sample",
+        "--data-file=reports/partial.coverage",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_partial.py"
+      ],
+      "test_exit_code": 0,
+      "report": "partial.json"
+    },
+    {
+      "suite": "reach",
+      "command": [
+        "python",
+        "-m",
+        "coverage",
+        "run",
+        "--branch",
+        "--source=sample",
+        "--data-file=reports/reach.coverage",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_reach.py"
+      ],
+      "test_exit_code": 0,
+      "report": "reach.json"
+    },
+    {
+      "suite": "contract",
+      "command": [
+        "python",
+        "-m",
+        "coverage",
+        "run",
+        "--branch",
+        "--source=sample",
+        "--data-file=reports/contract.coverage",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_contract.py"
+      ],
+      "test_exit_code": 0,
+      "report": "contract.json"
+    }
+  ],
+  "coverage_gates": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "coverage",
+        "report",
+        "--data-file=reports/partial.coverage",
+        "--fail-under=80"
+      ],
+      "return_code": 2
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "coverage",
+        "report",
+        "--data-file=reports/reach.coverage",
+        "--fail-under=80"
+      ],
+      "return_code": 0
+    }
+  ]
+}

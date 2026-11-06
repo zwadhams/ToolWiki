@@ -108,6 +108,8 @@ Ruff distinguishes safe and unsafe fixes. Review proposed changes and run your t
 
 ## Alternatives and complements
 
-Pair Ruff with [mypy](../mypy/) or [Pyright](../pyright/) when you also need type checking. Consider [Bandit](../bandit/) for a dedicated Python security-rule workflow.
+Follow the [Ruff and mypy recipe](../../guides/python-checks/) to check one project with separate lint and type reports. Pair Ruff with [mypy](../mypy/) or [Pyright](../pyright/) when you also need type checking. Consider [Bandit](../bandit/) for a dedicated Python security-rule workflow.
 
 [Pylint](../pylint/) uses inference and supports plugins; Ruff provides built-in rule families. Their rules overlap but are not interchangeable. Before switching, compare the diagnostics and plugin requirements of your project. The [official comparison](https://docs.astral.sh/ruff/faq/#how-does-ruffs-linter-compare-to-pylint) explains these differences.
+
+Use the [finding review workflow](../../guides/reviewing-findings/) to investigate a diagnostic and verify a correction.

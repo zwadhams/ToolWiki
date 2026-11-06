@@ -1,0 +1,144 @@
+{
+  "agent": 3,
+  "lane": "Architecture and data reuse",
+  "status": "complete",
+  "method": "Source tracing, generated HTML and pure-function/catalog reproduction. No live UI.",
+  "findings": [
+    {
+      "id": "ARC-01",
+      "kind": "confirmed_defect",
+      "priority": "P2",
+      "title": "Catalog return loses Static or Dynamic category",
+      "task": "Return from a profile or comparison to category-filtered results",
+      "locations": [
+        "src/lib/comparison.mjs:14",
+        "src/lib/comparison.mjs:38",
+        "src/components/ToolCatalog.astro:108",
+        "src/components/ArticleContent.astro:66",
+        "tests/comparison.test.mjs:32"
+      ],
+      "evidence": "Category exists in pathname but context captures form fields only; CATALOG_FILTERS excludes mode and catalogHref always returns root. catalogHref('/ToolWiki', [], 'language=C%2B%2B&mode=Static') returns '/ToolWiki/?language=C%2B%2B'. Static/C++ has 15 entries versus All/C++24.",
+      "impact": "Explicit return silently broadens results and loses selection context.",
+      "confidence": "high",
+      "recommendation": "Add allowlisted category context and map it to local catalog routes; retain offsite/nested context protection.",
+      "acceptance": [
+        "All/Static/Dynamic round-trip through profiles and comparisons retaining query, filters, sort and selections",
+        "Old context URLs remain valid",
+        "Unknown category defaults to All; no arbitrary redirects"
+      ],
+      "effort": "small",
+      "dependencies": [],
+      "compatibility": "Additive URL context; no v1 system-format changes."
+    },
+    {
+      "id": "ARC-02",
+      "kind": "confirmed_defect",
+      "priority": "P3",
+      "title": "Edition comparison hides source when note is absent",
+      "task": "Follow evidence beside Polyspace edition comparison",
+      "locations": [
+        "src/components/EditionComparison.astro:18",
+        "src/data/editions.ts:2",
+        "src/data/editions.ts:20"
+      ],
+      "evidence": "note and source are independently optional, but note gates rendering of both. Polyspace supplies a Required products and platforms source without a note; generated comparison omits it. General profile Sources still contains URL.",
+      "impact": "Valid contextual citation metadata is ignored; claim is not wholly uncited.",
+      "confidence": "high",
+      "recommendation": "Render when either exists and render note/source independently.",
+      "acceptance": [
+        "Source-only, note-only, both and neither behave correctly",
+        "Polyspace contextual source appears without invented note"
+      ],
+      "effort": "small",
+      "dependencies": [],
+      "compatibility": "Rendering only."
+    },
+    {
+      "id": "ARC-03",
+      "kind": "opportunity",
+      "priority": "P3",
+      "title": "Project purpose-specific browser data from shared metadata",
+      "task": "Expand profile depth without inflating unrelated browser data",
+      "locations": [
+        "src/components/ToolCatalog.astro:6",
+        "src/components/ToolCatalog.astro:87",
+        "src/components/ToolComparison.astro:5",
+        "src/components/SystemBuilder.astro:4"
+      ],
+      "evidence": "Three transformations spread full tool records. Catalog JSON 252211 uncompressed bytes; consumed-field projection 48257 bytes; workflow arrays75190 bytes. No latency benchmark performed.",
+      "impact": "Content growth inflates catalog payload and repeated adapters can drift.",
+      "confidence": "high",
+      "recommendation": "Use one build-time adapter with explicit catalog/comparison/matching projections; Markdown remains authoritative.",
+      "acceptance": [
+        "Search and scope checks pass",
+        "Catalog excludes unused sources/workflows",
+        "Other surfaces retain consumed fields and draft filtering",
+        "Report size change without claiming measured speedup"
+      ],
+      "effort": "medium",
+      "dependencies": [],
+      "compatibility": "Internal generated data; preserve URLs and v1 imports."
+    },
+    {
+      "id": "ARC-04",
+      "kind": "opportunity",
+      "priority": "P3",
+      "title": "Consolidate identical controlled vocabularies",
+      "task": "Add supported categories without schema drift",
+      "locations": [
+        "src/content.config.ts:19",
+        "src/content.config.ts:32",
+        "src/lib/system-schema.mjs:3",
+        "src/lib/system-schema.mjs:50",
+        "src/data/editions.ts:4"
+      ],
+      "evidence": "Nine input values duplicated between metadata validation and INPUTS; cost/license values repeat; editionGroup enum not type-linked to comparison keys. Current lists agree.",
+      "impact": "Future changes require synchronized edits and can create metadata/workflow incompatibility.",
+      "confidence": "high",
+      "recommendation": "Share identical input/cost/license choices and derive edition validation from typed comparison keys; keep preference-only sentinels separate.",
+      "acceptance": [
+        "89 profiles and93workflows validate unchanged",
+        "Each shared category declared once",
+        "Each accepted edition group resolves",
+        "Existing v1 serialized values remain valid"
+      ],
+      "effort": "small_to_medium",
+      "dependencies": [],
+      "compatibility": "No serialized-value renames or removals without migration."
+    },
+    {
+      "id": "ARC-05",
+      "kind": "opportunity",
+      "priority": "P3",
+      "title": "Make featured comparisons explicit",
+      "task": "Add comparison guidance without changing unrelated promoted choices",
+      "locations": [
+        "src/components/ToolComparison.astro:12",
+        "src/data/tool-choices.ts:3",
+        "scripts/check-site.mjs:57"
+      ],
+      "evidence": "Starting comparisons selected by indexes[0,1,3,4,6]. Insertions/reordering silently change promotion; current checks validate links/tools but not membership.",
+      "impact": "Array ordering becomes hidden navigation configuration.",
+      "confidence": "high",
+      "recommendation": "Add featured boolean while retaining authored order.",
+      "acceptance": [
+        "Current five promotions retained",
+        "Adding unfeatured relationship does not change promotions",
+        "Existing link/tool checks retained"
+      ],
+      "effort": "small",
+      "dependencies": [],
+      "compatibility": "Internal data only."
+    }
+  ],
+  "positives": [
+    "Shared authoritative Markdown",
+    "Workflow-specific source/finding validation",
+    "Edition boundaries and unknown-vs-unavailable distinctions",
+    "Safe URL context",
+    "Shared import serialization"
+  ],
+  "rejected_leads": [
+    "Initial Pagefind PermissionDenied and missing sitemap resolved by normal-permission rebuild; environment limitation, not product defect."
+  ]
+}

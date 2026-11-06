@@ -2,55 +2,13 @@ import { defineCollection } from 'astro:content';
 import { z } from 'zod';
 import { docsLoader, i18nLoader } from '@astrojs/starlight/loaders';
 import { docsSchema, i18nSchema } from '@astrojs/starlight/schema';
-import { workflowSchema } from './lib/system-schema.mjs';
-
-const nonempty = z.array(z.string().min(1)).min(1);
-const tool = z.object({
-  cardRequirement: z.string().min(1).optional(),
-  decision: z.object({
-    useWhen: z.string().min(1),
-    result: z.string().min(1),
-    limit: z.string().min(1),
-  }).optional(),
-  analysisWorkflows: z.array(workflowSchema).default([]),
-  aliases: z.array(z.string().trim().min(1)).default([]),
-  searchTerms: z.array(z.string().trim().min(1)).default([]),
-  modes: z.array(z.enum(['Static', 'Dynamic'])).min(1),
-  inputTypes: z.array(z.enum(['Source code', 'Binaries', 'Dependency metadata', 'Container images', 'Configuration files', 'Running applications', 'Callable code', 'Executable models', 'Execution traces'])).min(1),
-  findings: nonempty,
-  findingNote: z.string().min(1),
-  environment: z.string().min(1),
-  setup: z.string().min(1),
-  techniques: nonempty,
-  languages: nonempty,
-  languageNote: z.string().min(1),
-  targets: nonempty,
-  licenseCategory: z.enum(['Open source', 'Source available', 'Proprietary']),
-  license: z.string().min(1),
-  cost: z.array(z.enum(['Free', 'Free with limits', 'Paid'])).min(1),
-  costNote: z.string().min(1),
-  editionGroup: z.enum(['codeql', 'sonarqube', 'semgrep', 'burp', 'cppcheck', 'pvs-studio', 'phpstan', 'coverity', 'polyspace']).optional(),
-  website: z.url(),
-  verified: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine((value) => {
-    const date = new Date(value);
-    return !Number.isNaN(date.valueOf()) && date.toISOString().slice(0, 10) === value;
-  }, 'Use a valid date in YYYY-MM-DD format.'),
-  scope: z.string().min(1),
-  sources: z.array(z.object({ label: z.string().min(1), url: z.url() })).min(1),
-}).superRefine((tool, ctx) => {
-  const ids = new Set<string>();
-  for (const workflow of tool.analysisWorkflows) {
-    if (ids.has(workflow.id)) ctx.addIssue({ code: 'custom', message: `Repeated workflow ID: ${workflow.id}` });
-    ids.add(workflow.id);
-    if (workflow.findings.some(f => !tool.findings.includes(f))) ctx.addIssue({ code: 'custom', message: 'Workflow findings must be documented in the tool profile.' });
-    if (workflow.sources.some(url => !tool.sources.some(source => source.url === url))) ctx.addIssue({ code: 'custom', message: 'Workflow evidence must reference the tool sources.' });
-  }
-});
+import { toolSchema } from './lib/tool-schema.mjs';
+import { withToolInventory } from './lib/tool-inventory.mjs';
 
 export const collections = {
   docs: defineCollection({
-    loader: docsLoader(),
-    schema: docsSchema({ extend: z.object({ tool: tool.optional(), catalog: z.boolean().default(false), comparison: z.boolean().default(false), systemBuilder: z.boolean().default(false), catalogMode: z.enum(['Static', 'Dynamic']).optional() }) }),
+    loader: withToolInventory(docsLoader()),
+    schema: docsSchema({ extend: z.object({ tool: toolSchema.optional(), catalog: z.boolean().default(false), comparison: z.boolean().default(false), systemBuilder: z.boolean().default(false), catalogMode: z.enum(['Static', 'Dynamic']).optional() }) }),
   }),
   i18n: defineCollection({ loader: i18nLoader(), schema: i18nSchema() }),
 };

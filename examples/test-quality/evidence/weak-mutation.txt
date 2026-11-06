@@ -1,0 +1,29 @@
+[32m13:41:41 (51748) INFO ProjectReader[39m Found 1 of 10 file(s) to be mutated.
+[32m13:41:41 (51748) INFO Instrumenter[39m Instrumented 1 source file(s) with 6 mutant(s)
+[32m13:41:41 (51748) INFO ConcurrencyTokenProvider[39m Creating 1 test runner process(es).
+[32m13:41:42 (51748) INFO DryRunExecutor[39m Starting initial test run (jest test runner with "perTest" coverage analysis). This may take a while.
+[32m13:41:43 (51748) INFO DryRunExecutor[39m Initial test run succeeded. Ran 1 tests in 0 seconds (net 1 ms, overhead 503 ms).
+
+All tests/weak.test.js
+  ? values away from the threshold [line 3] (killed 5)
+
+[Survived] EqualityOperator
+src/discount.js:2:10
+-     return total >= 100;
++     return total > 100;
+Tests ran:
+    values away from the threshold
+
+
+Ran 1.00 tests per mutant on average.
+-------------|------------------|----------|-----------|------------|----------|----------|
+             | % Mutation score |          |           |            |          |          |
+File         |  total | covered | # killed | # timeout | # survived | # no cov | # errors |
+-------------|--------|---------|----------|-----------|------------|----------|----------|
+All files    |  83.33 |   83.33 |        5 |         0 |          1 |        0 |        0 |
+ discount.js |  83.33 |   83.33 |        5 |         0 |          1 |        0 |        0 |
+-------------|--------|---------|----------|-----------|------------|----------|----------|
+[32m13:41:43 (51748) INFO MutationTestReportHelper[39m Final mutation score of 83.33 is greater than or equal to break threshold 0
+[32m13:41:43 (51748) INFO JsonReporter[39m Your report can be found at: file:///C:/Users/zwadh/Repos/ToolWiki/examples/test-quality/reports/weak/mutation.json
+[32m13:41:43 (51748) INFO MutationTestExecutor[39m Done in 2 seconds.
+

@@ -1,0 +1,287 @@
+{
+  "agent": "audit07_expert",
+  "date": "2026-11-06",
+  "baseline_commit": "27c229bd7079ede31cd30ce500e999461eb97eef",
+  "lane": "Experienced-engineer workflows",
+  "method": {
+    "live_site": "http://127.0.0.1:4331/ToolWiki/analysis-suite/",
+    "interaction": "CUA IAB browser; disposable audit-origin description only. Product source inspection and selected official documentation.",
+    "browser_released": true,
+    "limits": [
+      "Agent walkthrough, not a human usability study.",
+      "No analyzers installed or executed; no performance or accuracy benchmark.",
+      "No repository files edited.",
+      "Live checks focused on mixed-language builder and Windows source/binary transition; Java, dependency/container and temporal adoption were inspected in existing profiles/guides rather than re-running the newcomer walkthrough.",
+      "No external privacy behavior was network-captured; upstream statements are documentation evidence only."
+    ]
+  },
+  "scenarios": [
+    {
+      "task": "Python backend, TypeScript client, HTTP API",
+      "inputs": "Backend Python/source-only; client TypeScript/source-only; OpenAPI connection with test endpoint available.",
+      "outcome": "Component and connection results remained separate. Python source produced Bandit/detect-secrets/mypy/Pylint/Pyright/Ruff; client produced detect-secrets/ESLint; API produced Schemathesis, RESTler, ZAP and Burp edition candidates before cost filtering. No unsupported inference from language to API capability observed."
+    },
+    {
+      "task": "Cost and license constraints",
+      "inputs": "Any continuing free option plus Open source.",
+      "outcome": "Burp Professional and Community were removed for the corresponding cost/license restrictions; other reviewed candidates remained. Eligibility caveat is visible. No cross-edition capability mixing observed."
+    },
+    {
+      "task": "Persistence and shortlist",
+      "inputs": "Named system Agent 7 disposable adoption audit; selected Ruff, mypy and Schemathesis for comparison; reloaded.",
+      "outcome": "System components/connections/preferences persisted; temporary comparison choices cleared as the UI explicitly promises. This is not a persistence defect."
+    },
+    {
+      "task": "Windows native binary without rebuild",
+      "inputs": "C++, native executable, Windows host and target, binaries only, rebuild No, instrumentation No, workload Yes.",
+      "outcome": "Dr. Memory remained a recorded match; Valgrind Memcheck/Helgrind were excluded. Binwalk/cwe-checker asked for external host verification. ASan was not offered as a ready binary-only route."
+    },
+    {
+      "task": "Windows native with source and rebuild access",
+      "inputs": "Added source; rebuild Yes; instrumentation Yes; workload Yes.",
+      "outcome": "AddressSanitizer became a recorded match and displayed its instrumentation/rebuild condition. More source analyzers appeared. The result refresh is debounced; an immediate snapshot can precede the settled result."
+    },
+    {
+      "task": "Java, dependency/container and temporal adoption",
+      "inputs": "Read Java source/bytecode guide, OSV/Grype/Trivy profiles, and temporal workflow guide.",
+      "outcome": "Guidance separates artifacts and evidence scope well, but production adoption and persistent decision records remain manual."
+    }
+  ],
+  "findings": [
+    {
+      "id": "EXP-01",
+      "kind": "content_gap",
+      "priority": "P2",
+      "title": "Add the handoff from a local check to repeatable CI result handling",
+      "user_task": "Adopt a shortlisted tool in a project without treating analyzer failure as a clean result.",
+      "locations": [
+        {
+          "path": "src/content/docs/tools/ruff.md",
+          "line": 99
+        },
+        {
+          "path": "src/content/docs/research/sast-workflow.md",
+          "line": 24
+        },
+        {
+          "path": "src/content/docs/guides/java-analysis.md",
+          "line": 20
+        },
+        {
+          "path": "src/components/ToolComparison.astro",
+          "line": 47
+        }
+      ],
+      "evidence": "The Ruff first try and project section explain selected rules and fixes but do not explain exit states or artifact retention. The CI/CD research note deliberately provides considerations, not a tested connector. Existing workflow guides emphasize preserving failures/configuration, but there is no maintained adoption procedure showing how a concrete tool's successful run, detected findings and setup failure are handled differently in CI.",
+      "external_evidence": [
+        {
+          "url": "https://docs.astral.sh/ruff/linter/#exit-codes",
+          "accessed": "2026-11-06",
+          "support": "Official Ruff docs distinguish status 0, finding status 1, and abnormal/configuration failure status 2, and document flags that alter finding/fix exit behavior. This supports a concrete scoped example rather than a universal exit-code rule."
+        },
+        {
+          "url": "https://google.github.io/osv-scanner/usage/",
+          "accessed": "2026-11-06",
+          "support": "Official OSV-Scanner usage documents output-file/format controls and pre-commit integration. The exact integration contract is tool-specific."
+        }
+      ],
+      "impact": "Engineers must reconstruct result/error handling, retention and gating after the wiki has helped them choose tools. A green pipeline alone may conceal disabled checks or mishandled failure states.",
+      "confidence": "High for documented gap; impact is reviewer assessment, not an observed user failure.",
+      "recommendation": "Add a single adoption how-to linked from the existing research note and a representative profile. Start with the planned Python recipe: explicit tool/configuration versions, scope, retained report/log artifacts, differentiated run states and a deliberately chosen gate. Keep each tool's exact return-code and output contract linked to primary documentation. Do not turn the research note into an untested production connector.",
+      "acceptance_criteria": [
+        "A reader can distinguish completed no-findings, completed findings, and execution/configuration failure for the chosen example.",
+        "The example records the analyzed revision, configuration and tool version, and preserves failure logs as well as reports.",
+        "Gate behavior and any baseline/suppression policy are stated rather than inferred from nonzero exit alone.",
+        "Keep the example illustrative until a later authorized hands-on validation records execution evidence.",
+        "Reuse the first-result fixture/run-record work; avoid a second competing recipe system."
+      ],
+      "effort": "medium",
+      "dependencies": [
+        "REX-03 reusable combined recipe",
+        "REX-04 shared run-record format"
+      ],
+      "prior_audit_status": "Extends the existing CI/CD research considerations and prior integration-field proposal; not a regression.",
+      "compatibility": "Documentation first; no saved-system or URL-format changes required."
+    },
+    {
+      "id": "EXP-02",
+      "kind": "content_gap",
+      "priority": "P2",
+      "title": "Make execution, network and data boundaries comparable",
+      "user_task": "Choose a workflow for private code or a network-restricted environment.",
+      "locations": [
+        {
+          "path": "src/content.config.ts",
+          "line": 22
+        },
+        {
+          "path": "src/components/ToolComparison.astro",
+          "line": 48
+        },
+        {
+          "path": "src/content/docs/tools/semgrep-code.md",
+          "line": 21
+        },
+        {
+          "path": "src/content/docs/tools/semgrep-ce.md",
+          "line": 22
+        },
+        {
+          "path": "src/content/docs/tools/osv-scanner.md",
+          "line": 71
+        },
+        {
+          "path": "src/content/docs/tools/grype.md",
+          "line": 61
+        }
+      ],
+      "evidence": "Comparison exposes host environment, cost and licensing but no consistent workflow-specific account/network/data boundary. OSV-Scanner mentions online lookup versus prepared offline data; Semgrep Code says managed or local/CI scanning and CE is separated by license/scope, but those distinctions do not by themselves explain rule retrieval, metrics or platform submission. No incorrect upload assertion was found.",
+      "external_evidence": [
+        {
+          "url": "https://docs.semgrep.dev/metrics",
+          "accessed": "2026-11-06",
+          "support": "The official policy distinguishes Registry/login-dependent metrics, local-rule use, and explicitly platform-connected findings data. Therefore a local scanner label alone does not describe all network behavior."
+        },
+        {
+          "url": "https://google.github.io/osv-scanner/usage/",
+          "accessed": "2026-11-06",
+          "support": "Official usage distinguishes package extraction and vulnerability matching, and links offline mode using prepared cached data."
+        }
+      ],
+      "impact": "An engineer cannot consistently compare adoption fit for restricted environments from free/open-source labels or host OS. They must reconstruct the boundaries independently for each candidate.",
+      "confidence": "High for content inconsistency; no network traffic or privacy failure tested.",
+      "recommendation": "Start with reviewed per-workflow prose for Semgrep CE/Code and OSV-Scanner/Trivy/Grype: execution location, required service/account, rule/database retrieval, optional metrics/result submission, and offline preparation limitations. State unknowns. Consider comparison metadata only after these facts have been reviewed consistently; do not infer confidentiality or offline suitability from licensing.",
+      "acceptance_criteria": [
+        "Separate where analysis runs from what network access or platform submission a chosen workflow uses.",
+        "Separate required operations from optional metrics, reports and remote integrations.",
+        "Link dated official evidence and retain edition/mode qualifications.",
+        "Explain offline preparation and freshness limits without claiming an untested air-gapped configuration works.",
+        "No privacy certification, blanket no-upload claim, or unsupported binary filter is introduced."
+      ],
+      "effort": "medium",
+      "dependencies": [
+        "Workflow-level evidence review before adding structured filters"
+      ],
+      "prior_audit_status": "Extends prior platform/interface/integration proposal with a concrete adoption decision.",
+      "compatibility": "Documentation-first; any later fields should be optional and must not reinterpret existing v1 saved descriptions."
+    },
+    {
+      "id": "EXP-03",
+      "kind": "usability_opportunity",
+      "priority": "P2",
+      "title": "Give external compatibility questions a different next action from missing fields",
+      "user_task": "Resolve a candidate's compatibility caveat when the actual host OS is already supplied.",
+      "locations": [
+        {
+          "path": "src/lib/system-builder.mjs",
+          "line": 69
+        },
+        {
+          "path": "src/lib/system-builder.mjs",
+          "line": 74
+        },
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 93
+        },
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 104
+        },
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 343
+        }
+      ],
+      "reproduce": [
+        "Create a C++ component with Binaries only, Native executable, Windows host/target, no rebuild/instrumentation, and a runnable workload.",
+        "Read Binwalk or cwe-checker candidate's Verify analysis host OS message.",
+        "Observe the Answer for component control even though the Windows selection is already present; source routes that action to the same selector."
+      ],
+      "evidence": "Live UI asks 'Verify analysis host OS: Windows is not in this workflow's documented examples.' The generic question stores only field/message, and answerButton always calls focusAnswer for that field. It offers no direct compatibility evidence action. Source corroborates the focus behavior; clicking that particular button was not performed in this lane.",
+      "impact": "The reader has a real constraint, not a missing answer. Returning them to the unchanged selector does not explain how to verify compatibility, although the general tool-profile link remains available.",
+      "confidence": "High for observed message/action mapping; medium for reader friction.",
+      "recommendation": "Distinguish missing-answer and external-verification questions. Missing-answer actions should keep focusing fields; external verification should link to the tool's relevant compatibility notes/evidence and explain that a documented alternative host can be selected only if it matches the intended environment.",
+      "acceptance_criteria": [
+        "An unknown host still produces an action to supply the host.",
+        "A known host outside documented examples links to compatibility notes and retains conditional status.",
+        "Do not let a user override undocumented compatibility into a verified match.",
+        "Explicit exclusions remain blocked; no widening of workflow support occurs.",
+        "Existing v1 system files remain unchanged."
+      ],
+      "effort": "small to medium",
+      "dependencies": [
+        "Coordinate with system-matching lane"
+      ],
+      "prior_audit_status": "New next-step refinement; current uncertainty and platform rules are correct.",
+      "compatibility": "Internal question/action metadata only; preserve saved profile schema."
+    },
+    {
+      "id": "EXP-04",
+      "kind": "opportunity",
+      "priority": "P3",
+      "title": "Provide a reusable decision record between shortlist and execution",
+      "user_task": "Hand an analysis plan for several components to a teammate and later explain why each tool was selected.",
+      "locations": [
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 29
+        },
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 128
+        },
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 399
+        },
+        {
+          "path": "src/lib/system-builder-ui.mjs",
+          "line": 413
+        },
+        {
+          "path": "src/content/docs/guides/editing.md",
+          "line": 120
+        }
+      ],
+      "evidence": "The UI explicitly states exports contain the system description, not candidates, match explanations, comparison selections or results. Live reload preserved the description and cleared the temporary shortlist. A comparison URL preserves up to three tool IDs, but not component/workflow roles or the rationale for choosing them. Free-text component notes already allow a manual workaround.",
+      "impact": "Reusable project descriptions exist, but the selected analysis approach and outstanding verification work are not captured in a maintained decision format.",
+      "confidence": "High for current behavior; medium for demand. This is intentional scope, not data loss.",
+      "recommendation": "Start with a lightweight human-readable adoption-note template linked from the builder, using component/connection, chosen tool and workflow, purpose, prerequisites, unresolved caveats, rationale, and evidence date. Reuse the run-record format for actual results later. A generated snapshot can follow demonstrated demand; do not increase the comparison-table limit or change existing export semantics merely to implement this.",
+      "acceptance_criteria": [
+        "A multi-component plan can record complementary roles without claiming measured coverage.",
+        "Distinguish selected decisions from recomputed current candidates and executed results.",
+        "Existing description exports continue importing unchanged.",
+        "Do not silently persist currently temporary comparison choices.",
+        "Link source profiles and review dates so decisions can be revisited."
+      ],
+      "effort": "small for template; later UI generation optional and separately scoped",
+      "dependencies": [
+        "Coordinate with REX-04 to share evidence conventions"
+      ],
+      "prior_audit_status": "Related to previously proposed saved shortlists, narrowed to a documentation-first handoff.",
+      "compatibility": "No v1 profile change needed."
+    }
+  ],
+  "strengths": [
+    "Input/access distinctions prevented binary-only scenarios from implying instrumented builds.",
+    "Known incompatible Valgrind Windows route was excluded while unlisted-host examples stayed conditional.",
+    "Free and open-source preferences are distinct and were applied without borrowing paid edition capabilities.",
+    "The builder makes recommendation scope, temporary selections, and description-only exports explicit.",
+    "Java and temporal guides distinguish artifacts, assumptions and result types; dependency profiles distinguish inventory matches from source defects or demonstrated exploitability."
+  ],
+  "rejected_leads": [
+    {
+      "lead": "Comparison selections disappear on builder reload",
+      "disposition": "Not a defect: clearly documented temporary state. EXP-04 is an optional handoff improvement."
+    },
+    {
+      "lead": "Immediate native-host selection did not change candidates",
+      "disposition": "Not a defect: results have a 180 ms debounce; settled UI correctly reflected native Windows and source/rebuild access."
+    },
+    {
+      "lead": "Recorded requirements matched means full compatibility was verified",
+      "disposition": "Rejected as a claim made by the site: the scope text and notes explicitly limit recorded matches and exact OS/CPU/compiler compatibility."
+    }
+  ]
+}

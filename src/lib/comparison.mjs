@@ -12,31 +12,52 @@ export function normalizeSelection(raw, allowedIds, limit = 3) {
 }
 
 export const CATALOG_FILTERS = ['q', 'finding', 'input', 'language', 'technique', 'license', 'cost', 'sort'];
+const CATALOG_CATEGORIES = ['all', 'static', 'dynamic'];
 
-/** Carry only catalog fields, never a destination URL or nested context.
- * @param {string | URLSearchParams} raw
+/** Carry allowlisted catalog state, never a destination URL or nested context.
+ * Selection needs the complete published catalog, not the filtered result set.
+ * @param {string | URLSearchParams | null} raw
+ * @param {string[]} allowedIds
  */
-export function catalogParams(raw = '') {
-  const input = new URLSearchParams(raw), params = new URLSearchParams();
+export function catalogParams(raw = '', allowedIds = []) {
+  const input = new URLSearchParams(raw || ''), params = new URLSearchParams();
   for (const key of CATALOG_FILTERS) {
     const value = input.get(key);
     if (value && !(key === 'sort' && value === 'relevance')) params.set(key, value);
   }
+  const category = input.get('category');
+  if (category !== null) params.set('category', CATALOG_CATEGORIES.includes(category) ? category : 'all');
+  const selected = normalizeSelection(input.get('compare'), allowedIds);
+  if (selected.length) params.set('compare', selected.join(','));
   return params;
 }
 
-/** @param {string} base @param {string[]} ids @param {string | URLSearchParams} context */
-export function comparisonHref(base, ids, context = '') {
+/** @param {string} base @param {string[]} ids @param {string | URLSearchParams | null} context @param {string[]} allowedIds */
+export function comparisonHref(base, ids, context = '', allowedIds = ids) {
   const params = new URLSearchParams();
-  if (ids.length) params.set('tools', ids.join(','));
-  const catalog = catalogParams(context).toString();
+  const selected = normalizeSelection(ids, allowedIds);
+  if (selected.length) params.set('tools', selected.join(','));
+  const origin = catalogParams(context, allowedIds);
+  if (origin.size) {
+    if (selected.length) origin.set('compare', selected.join(',')); else origin.delete('compare');
+  }
+  const catalog = origin.toString();
   if (catalog) params.set('catalog', catalog);
   return `${base.replace(/\/$/, '')}/compare/${params.size ? `?${params}` : ''}`;
 }
 
-/** @param {string} base @param {string[]} ids @param {string | URLSearchParams} context */
-export function catalogHref(base, ids = [], context = '') {
-  const params = catalogParams(context);
-  if (ids.length) params.set('compare', ids.join(','));
-  return `${base.replace(/\/$/, '')}/${params.size ? `?${params}` : ''}`;
+/** A null selection inherits context; an explicit empty list clears it.
+ * @param {string} base
+ * @param {string[] | null} ids
+ * @param {string | URLSearchParams | null} context
+ * @param {string[]} allowedIds
+ */
+export function catalogHref(base, ids = null, context = '', allowedIds = ids || []) {
+  const params = catalogParams(context, allowedIds);
+  const category = params.get('category');
+  params.delete('category');
+  const selected = normalizeSelection(ids === null ? params.get('compare') : ids, allowedIds);
+  if (selected.length) params.set('compare', selected.join(',')); else params.delete('compare');
+  const categoryPath = category === 'static' ? 'static/' : category === 'dynamic' ? 'dynamic/' : '';
+  return `${base.replace(/\/$/, '')}/${categoryPath}${params.size ? `?${params}` : ''}`;
 }

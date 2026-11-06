@@ -91,3 +91,5 @@ Choose the documented target type and retain the image digest or SBOM used for t
 ## Investigate the match
 
 Use package versions, advisory details, and match information to review findings. The result guide explains why CPE-based matches need extra verification. A missing fix version and a fixed version are different outcomes; preserve that distinction in follow-up work.
+
+Check the [execution and data boundaries](../../guides/execution-and-data/) for database retrieval and offline preparation.

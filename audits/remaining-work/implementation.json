@@ -1,0 +1,1472 @@
+{
+  "objective": "Implement all remaining improvement-roadmap items, independently review and test them, resolve defects, then run a separate subagent language review and apply concise wording.",
+  "source": "../improvement-review/findings.json",
+  "historical_audit": "Preserve historical audit files unchanged. This ledger tracks implementation separately.",
+  "items": [
+    {
+      "id": "N01",
+      "title": "Complete concrete result summaries in common task comparisons",
+      "lane": "recipes",
+      "status": "complete",
+      "acceptance_criteria": [
+        "All three comparison rows describe concrete output on both sides.",
+        "mypy explains diagnostic location/code and type inconsistency; SpotBugs describes bug-pattern reports and relevant attribution; PSY-TaLiRo describes scenario/trace/score or run result in documented terms.",
+        "Profile result summary and comparison use the same reviewed content.",
+        "Illustrative or previously reported evidence remains explicitly labeled.",
+        "Common comparison columns describe concrete output and its interpretation at comparable detail",
+        "Profile and comparison share one reviewed summary",
+        "No category list is presented as measured coverage",
+        "Illustrative and executed evidence remain separate",
+        "Require concrete output form, useful fields and interpretation for the three named entries, using shared reviewed content in profiles and comparisons.",
+        "Do not require the entire optional decision object solely to populate one result row unless that is an intentional schema design; avoid forcing unrelated first-try rewrites into this bounded task.",
+        "Preserve illustrative/executed labeling and avoid claims of measured coverage or comprehensive detection. Deduplicate CMP-04 here."
+      ],
+      "evidence": [
+        "reviews/content.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/tools/mypy.md",
+        "src/content/docs/tools/spotbugs.md",
+        "src/content/docs/tools/psy-taliro.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/content.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "N02",
+      "title": "Show the selected language in multilingual result cards",
+      "lane": "discovery",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Source code + Python results visibly show Python for every card returned because of that language.",
+        "Other selected languages receive the same treatment.",
+        "Counts, matching semantics and unfiltered card order remain stable.",
+        "When a language filter is active, visibly identify that matched language without implying universal language/version support.",
+        "Keep result membership, existing source-input semantics and unfiltered language order stable.",
+        "Do not require every one of the original report's multilingual cards to be independently verified before accepting this shared-renderer opportunity; only CodeQL was rerun live here."
+      ],
+      "evidence": [
+        "reviews/architecture.json"
+      ],
+      "implementation_files": [
+        "src/components/ToolCatalog.astro"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/architecture.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "N03",
+      "title": "Provide a first container-image step on the Trivy page",
+      "lane": "recipes",
+      "status": "complete",
+      "acceptance_criteria": [
+        "A reader with a container image can identify the next image-specific command or direct setup guide without inferring from fs/config examples.",
+        "The example clearly identifies image reference/archive assumptions and needed data/access.",
+        "Output interpretation still names package, version, advisory and fix, and does not imply execution of the target.",
+        "Provide either one clearly illustrative image-specific command with target/access assumptions or a direct maintained image-target guide.",
+        "Retain package/advisory versus exploitability limits, scanner selection and execution-status labels.",
+        "Do not merge a new container fixture, analyzer installation or executed-validation project into this small change."
+      ],
+      "evidence": [
+        "reviews/content.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/tools/trivy.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/content.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "REX-01",
+      "title": "First-use procedures remain uneven across the catalog",
+      "lane": "recipes",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Identify prerequisite versions/platform scope without claiming untested compatibility.",
+        "Provide complete input-action-result-interpretation route and execution status.",
+        "Include faulty/corrected pair or equivalent observable state change proving intended check activation.",
+        "Do not require code blocks universally or call illustrative material executed.",
+        "A pilot must name prerequisites, target/input, precise action or maintained tutorial, expected evidence, correction and project adaptation.",
+        "Keep execution status separate from documentation review; publishing an illustrative recipe does not require pretending it was executed.",
+        "For CBMC require explicit harness/property/bounds semantics; for detect-secrets use synthetic dummy data and distinguish review/baselining from remediation.",
+        "Do not require CLI commands for GUI, commercial or historical tools merely to meet a numerical target."
+      ],
+      "evidence": [
+        "reviews/content.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/tools/pyright.md",
+        "src/content/docs/tools/hypothesis.md",
+        "src/content/docs/tools/cbmc.md",
+        "src/content/docs/tools/actionlint.md",
+        "src/content/docs/tools/detect-secrets.md",
+        "src/content/docs/tools/valgrind-memcheck.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/content.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "REX-02",
+      "title": "API and protocol examples assume unavailable test infrastructure",
+      "lane": "coordinator",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Target/schema available at one maintained location with documented supported launch/reset path.",
+        "Demo binds to loopback and documents state changes.",
+        "Show known failing/corrected behavior with tool-specific interpretation rather than raw-count comparison.",
+        "Later validation records target revision, tool version, command, output and execution status.",
+        "Deliver a small loopback service, schema, named faulty/corrected revisions or mode, deterministic launch/readiness/reset/stop instructions and a known replayable failure.",
+        "If demonstrating RESTler sequences, include an actual producer/consumer resource flow instead of merely a single stateless endpoint.",
+        "Document request side effects, selected credentials if any, bounded runs and artifact locations.",
+        "A known replay request is required; do not promise that a short randomized run always discovers it.",
+        "Keep each tool's outcome interpretation and setup failures separate; do not compare raw finding counts."
+      ],
+      "evidence": [
+        "executions/http-api/record.json",
+        "../../examples/http-api/test_server.py",
+        "reviews/measurement-runtime.json"
+      ],
+      "implementation_files": [
+        "examples/http-api/server.py",
+        "examples/http-api/openapi.json",
+        "examples/http-api/replay.py",
+        "examples/http-api/test_server.py",
+        "src/content/docs/guides/api-testing.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "executions/http-api/record.json",
+          "../../examples/http-api/test_server.py",
+          "reviews/measurement-runtime.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "REX-03",
+      "title": "Complementary choices stop before a reusable combined workflow",
+      "lane": "recipes",
+      "status": "complete",
+      "acceptance_criteria": [
+        "One task, required artifacts and each tool role are explicit.",
+        "Commands use the same named revision/configuration and separate reports.",
+        "Explain what combined success still does not establish.",
+        "Faulty/corrected experiment and adaptation share one maintained fixture.",
+        "Use one small named project revision with distinct lint and type mistakes, then its corrected revision.",
+        "Record exact selected rules/configuration, target Python version, tool versions when executed and separate reports/exit outcomes.",
+        "Link one maintained fixture from profiles and guides rather than duplicating it.",
+        "Explain that two clean checks still do not establish runtime correctness or equivalent coverage."
+      ],
+      "evidence": [
+        "reviews/content.json"
+      ],
+      "implementation_files": [
+        "examples/python-checks/run_checks.py",
+        "examples/python-checks/evidence.md",
+        "src/content/docs/guides/python-checks.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/content.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "REX-04",
+      "title": "Evidence-preservation advice lacks a reusable run record",
+      "lane": "recipes",
+      "status": "complete",
+      "acceptance_criteria": [
+        "A sample distinguishes observed from intended output.",
+        "Distinguish clean results, findings, setup failure, incomplete analysis and not executed.",
+        "Connect commands/artifacts to one target without redefining tool.verified.",
+        "Future executed examples retain record and sanitized output.",
+        "Separate planned command/expected result from actual command/observed result and artifacts.",
+        "Use statuses for not executed, setup failure, incomplete analysis, completed with findings and completed without findings.",
+        "Record tool/version, target digest/revision, environment, scope/configuration and relevant data snapshots; make tool-specific fields optional.",
+        "Link execution records from a later decision record and review-status map without redefining tool.verified."
+      ],
+      "evidence": [
+        "reviews/content.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/guides/run-record.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/content.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "REX-05",
+      "title": "RTAMT first try still lacks an established reproducible environment",
+      "lane": "coordinator",
+      "status": "complete",
+      "acceptance_criteria": [
+        "A later successful reproduction saves exact environment/dependencies and both outputs.",
+        "Setup failure remains distinct from temporal evaluation.",
+        "If unavailable, limitation remains prominent and roadmap does not call it resolved.",
+        "Keep unresolved status prominent and preserve prior dates/status wording.",
+        "A later authorized check must retain exact interpreter, package/parser dependency pins, platform, invocation and both trace outputs.",
+        "Record setup failure separately from a temporal property violation.",
+        "Do not infer a compatible combination from a newer interpreter/package advertisement or advance the example's verification date without execution evidence."
+      ],
+      "evidence": [
+        "executions/rtamt.json",
+        "../../examples/rtamt/temperature.py",
+        "reviews/measurement-runtime.json"
+      ],
+      "implementation_files": [
+        "examples/rtamt/temperature.py",
+        "src/content/docs/tools/rtamt.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "executions/rtamt.json",
+          "../../examples/rtamt/temperature.py",
+          "reviews/measurement-runtime.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "REX-06",
+      "title": "Jazzer PowerShell snippet discards an existing fuzz-mode setting",
+      "lane": "first-batch",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Initially absent variable returns to absent.",
+        "Initially present variable returns to original value.",
+        "Cleanup also occurs on command failure.",
+        "Retain unexecuted label until validated.",
+        "Capture presence and value before assignment and restore in finally, or use a scoped child process.",
+        "Handle an initially absent variable and an existing value; account for any supported PowerShell version that permits a present empty value.",
+        "Preserve normal command exit/error reporting. A nonzero native-process exit and a terminating exception are distinct cases.",
+        "If testing the wrapper later, substitute a harmless success/failure operation; do not require running Jazzer or claim tool execution from a shell-only test.",
+        "Keep the illustrative/unexecuted label."
+      ],
+      "evidence": [
+        "../first-batch/README.md"
+      ],
+      "implementation_disposition": "verified-in-first-batch-and-regression-suite",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "../first-batch/README.md"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "ARC-01",
+      "title": "Catalog return loses Static or Dynamic category",
+      "lane": "first-batch",
+      "status": "complete",
+      "acceptance_criteria": [
+        "All/Static/Dynamic round-trip through profiles and comparisons retaining query, filters, sort and selections",
+        "Old context URLs remain valid",
+        "Unknown category defaults to All; no arbitrary redirects",
+        "Round-trip All/Static/Dynamic through profiles and comparisons without losing query, form filters, sort or selection.",
+        "Legacy URLs continue working.",
+        "Unknown category defaults safely; arbitrary URLs and nested context cannot redirect offsite.",
+        "Remove duplicate acceptance bullets and replace the broad impact wording 'loses selection context' with 'loses category context'.",
+        "Preserve allowlisted category, filters, query, sort and normalized selected IDs across both profile and comparison routes; verify All, Static and Dynamic separately.",
+        "Keep legacy links valid, default invalid categories safely, and do not accept a destination URL as category context.",
+        "Keep form-field iteration separate from category and selection context so adding mode does not try to read a nonexistent form control.",
+        "Allow only All, Static and Dynamic categories, mapped to local known routes.",
+        "Cover originating All/Static/Dynamic routes, changed comparison choices and legacy context URLs."
+      ],
+      "evidence": [
+        "../first-batch/README.md"
+      ],
+      "implementation_disposition": "verified-in-first-batch-and-regression-suite",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "../first-batch/README.md"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "ARC-02",
+      "title": "Edition comparison hides source when note is absent",
+      "lane": "first-batch",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Source-only, note-only, both and neither behave correctly",
+        "Polyspace contextual source appears without invented note",
+        "Render the paragraph when note or source exists and render each independently.",
+        "Check source-only, note-only, both and neither; neither must not leave an empty paragraph.",
+        "Assert the link within the edition section rather than anywhere on the page.",
+        "Do not invent a note or alter product claims to work around the renderer."
+      ],
+      "evidence": [
+        "../first-batch/README.md"
+      ],
+      "implementation_disposition": "verified-in-first-batch-and-regression-suite",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "../first-batch/README.md"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "ARC-03",
+      "title": "Project purpose-specific browser data from shared metadata",
+      "lane": "discovery",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Search and scope checks pass",
+        "Catalog excludes unused sources/workflows",
+        "Other surfaces retain consumed fields and draft filtering",
+        "Report size change without claiming measured speedup",
+        "Preserve every consumed search/ranking/filter/suggestion field and the positive-metadata-only search boundary.",
+        "Keep builder languages derived from all catalog tools while matching only reviewed workflows.",
+        "Preserve draft filtering, ordering, per-workflow associations and comparison source details.",
+        "Measure before/after bytes and run existing discovery/matching checks; do not claim a speedup without timing evidence."
+      ],
+      "evidence": [
+        "reviews/architecture.json"
+      ],
+      "implementation_files": [
+        "src/lib/tool-data.mjs",
+        "tests/tool-data.test.mjs"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/architecture.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "ARC-04",
+      "title": "Consolidate identical controlled vocabularies",
+      "lane": "discovery",
+      "status": "complete",
+      "acceptance_criteria": [
+        "89 profiles and93workflows validate unchanged",
+        "Each shared category declared once",
+        "Each accepted edition group resolves",
+        "Existing v1 serialized values remain valid",
+        "Reuse only semantically identical values; keep empty/any-free preference sentinels outside tool metadata enums.",
+        "Do not rename or remove serialized v1 values.",
+        "Ensure edition keys and accepted editionGroup values are checked against each other without importing full edition prose into browser-only schema paths.",
+        "Use a small constants/type change; defer broader schema cleanup."
+      ],
+      "evidence": [
+        "reviews/architecture.json"
+      ],
+      "implementation_files": [
+        "src/lib/tool-vocabulary.mjs",
+        "src/lib/tool-schema.mjs",
+        "src/lib/system-schema.mjs",
+        "src/data/editions.ts"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/architecture.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "ARC-05",
+      "title": "Make featured comparisons explicit",
+      "lane": "recipes",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Current five promotions retained",
+        "Adding unfeatured relationship does not change promotions",
+        "Existing link/tool checks retained",
+        "Preserve the existing five promoted pairs.",
+        "An unfeatured insertion must not change promoted membership.",
+        "Retain link, fragment and valid-tool checks; do not infer featured status from array position."
+      ],
+      "evidence": [
+        "reviews/architecture.json"
+      ],
+      "implementation_files": [
+        "src/data/tool-choices.ts",
+        "src/components/ToolComparison.astro"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/architecture.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "SEA-02",
+      "title": "The Test an API preset omits existing HTTP API options",
+      "lane": "first-batch",
+      "status": "complete",
+      "acceptance_criteria": [
+        "The broad API shortcut includes the five current explicitly HTTP-tagged running-application profiles.",
+        "It does not imply that those tools provide equivalent capabilities.",
+        "Boofuzz is not automatically included based only on TCP/custom-protocol support.",
+        "Add a real-catalog regression for preset membership, avoiding fragile result order assertions.",
+        "Test the membership of the broad preset against the real catalog, without relying on result order or permanently hardcoding the count five.",
+        "Keep manual testing, automated security scanning and schema-generated tests distinguishable; do not imply equivalent checks or include arbitrary protocol tools merely because they use TCP.",
+        "Keep existing bookmark queries valid.",
+        "Use set membership assertions against current catalog evidence, not a fragile ranking assertion or universal fixed result count.",
+        "Check the actual rendered shortcut destination as well as a manually repeated query.",
+        "Retain manual-versus-automated and free-versus-paid distinctions in guidance; membership is not capability equivalence."
+      ],
+      "evidence": [
+        "../first-batch/README.md"
+      ],
+      "implementation_disposition": "verified-in-first-batch-and-regression-suite",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "../first-batch/README.md"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "SEA-03",
+      "title": "Common taxonomy and documented capability phrases remain absent from catalog vocabulary",
+      "lane": "discovery",
+      "status": "complete",
+      "acceptance_criteria": [
+        "null pointer retrieves at least the existing profiles whose reviewed positive claims support that term.",
+        "Negative scope text and unrelated editions do not become searchable capabilities.",
+        "Keep the132 existing title/alias queries and short-language distinctions passing.",
+        "Add null-pointer vocabulary only to reviewed positive capability claims; distinguish pointer-style modernization from dereference detection when presenting results.",
+        "Continue excluding caveats, unsupported capabilities and other-edition claims from capability indexing.",
+        "Retain existing title/alias and short-language checks; their full 132-query sweep was not rerun by this reviewer."
+      ],
+      "evidence": [
+        "reviews/architecture.json"
+      ],
+      "implementation_files": [
+        "src/lib/catalog.mjs",
+        "src/content/docs/tools/cppcheck.md",
+        "src/content/docs/tools/cwe-checker.md",
+        "src/content/docs/tools/infer.md",
+        "tests/tool-data.test.mjs"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/architecture.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "SEA-04",
+      "title": "Empty catalog results do not direct readers to the full-page index",
+      "lane": "discovery",
+      "status": "complete",
+      "acceptance_criteria": [
+        "A zero-result capability query can be handed to full-page search without retyping.",
+        "Returning to the catalog preserves the original query and filters.",
+        "The action is labeled separately from Search all tools, which broadens catalog categories.",
+        "Full-page search failure or unavailable development index is explained without silently relaxing catalog filters.",
+        "Prefer handing the query to the existing search dialog while retaining catalog state; no third search service is warranted.",
+        "Verify keyboard focus when opening and closing the search dialog and retain the original catalog query/filters.",
+        "Keep category-broadening Search all tools separate from Search all pages."
+      ],
+      "evidence": [
+        "reviews/architecture.json"
+      ],
+      "implementation_files": [
+        "src/lib/page-search.mjs",
+        "src/components/ToolCatalog.astro"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/architecture.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "SEA-05",
+      "title": "Sidebar and in-page category links handle current filters differently",
+      "lane": "keep-design",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Preserve existing category paths, ordinary noncatalog navigation and the explicit reset action.",
+        "Any later change must establish its intended global-versus-local navigation convention, then test that behavior and safe URL context."
+      ],
+      "evidence": [
+        "../../src/content/docs/guides/using-this-wiki.md",
+        "browser-acceptance.json"
+      ],
+      "disposition": "Retained the recommended global/fresh versus local/context-preserving navigation distinction and documented it in reader orientation. No sidebar synchronization.",
+      "implementation_files": [
+        "src/content/docs/guides/using-this-wiki.md"
+      ],
+      "implementation_disposition": "retained-design-verified",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "../../src/content/docs/guides/using-this-wiki.md",
+          "browser-acceptance.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "COV-01",
+      "title": "Add a TypeScript compiler type-checking path",
+      "lane": "expansion",
+      "status": "complete",
+      "acceptance_criteria": [
+        "TypeScript + Source code + Type errors finds tsc",
+        "The profile includes installation/configuration prerequisites, an illustrative failing/fixed type example, diagnostic meaning and execution status",
+        "ESLint and tsc are labeled complementary, without implying runtime validation",
+        "Any builder workflow is independently scoped to TypeScript source or the qualified JavaScript-checking route",
+        "Use a project invocation with its tsconfig and explicitly selected checking options; do not present a single-file command as equivalent.",
+        "Pin the TypeScript release and supported host/runtime combination when authoring. Keep checkJs a separate qualification.",
+        "A future matching entry may describe a documentation-reviewed TypeScript source workflow; it must not claim tested runtime behavior or framework-file coverage."
+      ],
+      "evidence": [
+        "reviews/expansion.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/tools/typescript.md",
+        "examples/typescript-check"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/expansion.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "COV-02",
+      "title": "Cover PowerShell source analysis separately from shell linting",
+      "lane": "expansion",
+      "status": "complete",
+      "acceptance_criteria": [
+        "PowerShell + Source code finds the new profile",
+        "ShellCheck remains excluded from PowerShell results",
+        "First try uses an explicit rule and explains a representative DiagnosticRecord without claiming execution",
+        "Host PowerShell requirements and source language are distinct",
+        "Use a path-based read-only example with a named rule and a DiagnosticRecord; keep -Fix out of the first inspection.",
+        "Do not infer a CI success contract from ordinary PowerShell command completion. -EnableExit explicitly terminates the session and uses error-record count.",
+        "Record selected module version and host; claims about every PowerShell/runtime command require additional evidence."
+      ],
+      "evidence": [
+        "reviews/expansion.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/tools/psscriptanalyzer.md",
+        "examples/powershell-check"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/expansion.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "COV-03",
+      "title": "Add a bounded Git-history secret-scanning workflow",
+      "lane": "expansion",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Catalog can distinguish current-file baseline scans from history investigation",
+        "Examples explicitly identify clone/history and ref-range assumptions and use only synthetic credentials",
+        "Profile includes maintenance status and a qualified clean-result interpretation",
+        "Automatic system matching is deferred unless repository/history availability is represented rather than inferred from Source code alone",
+        "State the exact repository history/ref/range and scan configuration; an ordinary clone or default command is not evidence of all remote refs.",
+        "Use synthetic credentials and keep report handling/redaction explicit; a match does not establish credential validity or remediation.",
+        "Keep CLI license separate from the GitHub Action and successor tooling.",
+        "Do not add automatic matching until history availability is represented. Recheck maintenance/version documentation when authoring."
+      ],
+      "evidence": [
+        "expansion-specialist-sources.md",
+        "reviews/expansion.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/tools/gitleaks.md",
+        "src/content/docs/guides/secret-scanning.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "expansion-specialist-sources.md",
+          "reviews/expansion.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "COV-04",
+      "title": "Add mobile-package security coverage with an Android APK starting scope",
+      "lane": "expansion",
+      "status": "complete",
+      "acceptance_criteria": [
+        "APK/mobile package searches reach an explicitly scoped static workflow",
+        "Profile separates analysis host, mobile target and artifact format",
+        "Representative report sections are interpreted without equating scores to proof",
+        "No generic Native executable or Other builder input silently promises APK support",
+        "Specify MobSF release/image identity, APK input, local upload destination and scan settings.",
+        "For a loopback walkthrough, explicitly bind the published port to loopback and qualify Docker release/network assumptions; visiting 127.0.0.1 does not establish the listener boundary.",
+        "Describe template sections as representative and conditional, not proof that every APK yields every section or finding.",
+        "Keep APK artifact support catalog-only pending schema/workflow review. Exclude iOS, dynamic modes and other package formats from this admission."
+      ],
+      "evidence": [
+        "expansion-specialist-sources.md",
+        "reviews/expansion.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/tools/mobsf.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "expansion-specialist-sources.md",
+          "reviews/expansion.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "COV-05",
+      "title": "Pilot HDL linting before broader hardware verification expansion",
+      "lane": "expansion",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Verilog/SystemVerilog + Source code finds the lint-only profile",
+        "C++ searches do not match merely because Verilator emits C++",
+        "A representative warning explains location, rule and limitation",
+        "Static lint scope is kept separate from simulation or formal proof claims",
+        "Pin a release and matching manual; identify source list, includes, defines, top-level design and warning flags.",
+        "Keep the first example explicitly --lint-only and interpret one warning against the selected rule.",
+        "Do not propagate whole-product simulation/coverage/formal labels into this workflow or treat unsupported constructs as a clean result."
+      ],
+      "evidence": [
+        "expansion-specialist-sources.md",
+        "reviews/expansion.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/tools/verilator.md",
+        "examples/verilator"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "expansion-specialist-sources.md",
+          "reviews/expansion.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "KNO-01",
+      "title": "Turn interpretation caveats into a reusable finding-triage workflow",
+      "lane": "concepts",
+      "status": "complete",
+      "acceptance_criteria": [
+        "The guide distinguishes a clean completed run from a failed, skipped or incomplete analysis.",
+        "A reader can record rule/finding identity, location, project and tool configuration, investigation evidence, decision and next action.",
+        "It distinguishes suppression/baselining from fixing an issue, and links to actual tool-specific controls rather than inventing a universal suppression command.",
+        "Examples distinguish a reported candidate from a confirmed issue and retain illustrative/executed status.",
+        "Existing research pages link to the procedure while preserving the distinction between study findings and current advice.",
+        "Describe this as consolidating scattered guidance, preserve useful tool-specific content and link rather than duplicate it.",
+        "Share the run-status and evidence-record vocabulary with EXP-01 and REX-04.",
+        "Keep finding identity, investigation evidence, disposition, fix/exception and comparable rerun distinct; do not treat suppression, report deletion or baseline acceptance as resolution."
+      ],
+      "evidence": [
+        "reviews/content.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/guides/reviewing-findings.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/content.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "KNO-02",
+      "title": "Bring the static-analysis primer up to the catalog's configuration and secret-scanning scope",
+      "lane": "concepts",
+      "status": "complete",
+      "acceptance_criteria": [
+        "A Terraform or Dockerfile reader can find an appropriate existing configuration-analysis route from the primer.",
+        "A reader looking for credentials can find detect-secrets and understand candidate review, baseline scope and exposure-response limits.",
+        "The page distinguishes these workflows from application source semantics and advisory matching.",
+        "No new analyzer profile or automatic capability broadening is required.",
+        "Link to current configuration profiles and appropriate filtered routes without adding unsupported languages or capabilities.",
+        "A passing policy scan concerns selected definitions and policies, not the deployed environment.",
+        "A potential credential string is not automatically a valid credential; history and exposure response need separate explanations."
+      ],
+      "evidence": [
+        "reviews/content.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/concepts/static-approaches.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/content.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "KNO-03",
+      "title": "Explain advanced method labels using the decisions and outputs readers encounter",
+      "lane": "concepts",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Each covered technique has a plain-language question, required preparation, typical output and important limit.",
+        "The explanation distinguishes a possible-error alarm, a modeled counterexample, a generated concrete input and an unresolved proof obligation.",
+        "Data-flow and taint explanations introduce source/sink/model scope without promising complete framework coverage.",
+        "Relevant KLEE, angr, Frama-C, CodeQL and Psalm pages link to one maintained explanation rather than duplicating it.",
+        "No wholesale reclassification of existing Static/Dynamic tags is made without a separate workflow review.",
+        "Use one concise example to distinguish value approximation, symbolic path constraints, generated inputs, possible alarms and proof obligations.",
+        "Include the WP primary reference when teaching deductive proof, in addition to Eva.",
+        "Do not impose a universal Static/Dynamic classification or imply every tool with a method label has every capability.",
+        "Link existing profiles to one explanation and retain profile-level configuration limits."
+      ],
+      "evidence": [
+        "reviews/content.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/concepts/advanced-static-methods.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/content.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "KNO-04",
+      "title": "Offer a short reader orientation that connects the knowledge layers",
+      "lane": "concepts",
+      "status": "complete",
+      "acceptance_criteria": [
+        "A first-time reader can find a task route and a learning route without reading authoring instructions.",
+        "The orientation links to existing material rather than duplicating tool lists or long definitions.",
+        "Known-tool users retain the direct catalog and comparison paths.",
+        "A short independent walkthrough checks whether the orientation improves route selection before larger navigation restructuring."
+      ],
+      "evidence": [
+        "reviews/content.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/guides/using-this-wiki.md",
+        "astro.config.mjs"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/content.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "EXP-01",
+      "title": "Add the handoff from a local check to repeatable CI result handling",
+      "lane": "concepts",
+      "status": "complete",
+      "acceptance_criteria": [
+        "A reader can distinguish completed no-findings, completed findings, and execution/configuration failure for the chosen example.",
+        "The example records the analyzed revision, configuration and tool version, and preserves failure logs as well as reports.",
+        "Gate behavior and any baseline/suppression policy are stated rather than inferred from nonzero exit alone.",
+        "Keep the example illustrative until a later authorized hands-on validation records execution evidence.",
+        "Reuse the first-result fixture/run-record work; avoid a second competing recipe system.",
+        "State non-fixing Ruff flags in the example or explicitly account for fixes: status 0 can follow successful automatic fixes.",
+        "Include skipped, cancelled and incomplete states alongside the three ordinary completion/failure outcomes.",
+        "Retain tool/config/revision and failure logs even when reports are absent; share REX-04's run record.",
+        "Keep exact provider/pipeline syntax illustrative until separately validated; do not present the research use case as a tested current connector."
+      ],
+      "evidence": [
+        "reviews/content.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/guides/ci-checks.md",
+        "examples/python-checks/test_runner.py"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/content.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "EXP-02",
+      "title": "Make execution, network and data boundaries comparable",
+      "lane": "concepts",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Separate where analysis runs from what network access or platform submission a chosen workflow uses.",
+        "Separate required operations from optional metrics, reports and remote integrations.",
+        "Link dated official evidence and retain edition/mode qualifications.",
+        "Explain offline preparation and freshness limits without claiming an untested air-gapped configuration works.",
+        "No privacy certification, blanket no-upload claim, or unsupported binary filter is introduced.",
+        "Distinguish required retrieval, optional metrics, explicit result submission, execution location and account requirements.",
+        "State installed version, rule/database source and freshness assumptions; retain unknowns.",
+        "Do not turn metrics-off into a blanket no-network claim, or infer Trivy/Grype behavior from OSV-Scanner.",
+        "Start with prose; only add filters after each represented mode has evidence and a stable definition."
+      ],
+      "evidence": [
+        "reviews/content.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/guides/execution-and-data.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/content.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "EXP-03",
+      "title": "Give external compatibility questions a different next action from missing fields",
+      "lane": "discovery",
+      "status": "complete",
+      "acceptance_criteria": [
+        "An unknown host still produces an action to supply the host.",
+        "A known host outside documented examples links to compatibility notes and retains conditional status.",
+        "Do not let a user override undocumented compatibility into a verified match.",
+        "Explicit exclusions remain blocked; no widening of workflow support occurs.",
+        "Existing v1 system files remain unchanged.",
+        "Unknown host asks for a host value.",
+        "Known unlisted host points to evidence, rather than suggesting that reselecting the same value resolves uncertainty.",
+        "Explicit exclusions remain blocked and no manual override invents compatibility.",
+        "Existing v1 profile fields remain unchanged.",
+        "Add a distinct compatibility-evidence action for a known host outside documented examples while retaining a field action for an unknown host.",
+        "Do not promise that following a link resolves uncertainty; retain conditional status until the reviewed workflow supports the actual intended environment.",
+        "Keep explicit exclusions blocked, preserve v1 fields, and avoid a manual override that invents support.",
+        "Remove duplicate acceptance bullets in the packet."
+      ],
+      "evidence": [
+        "reviews/architecture.json"
+      ],
+      "implementation_files": [
+        "src/lib/system-builder.mjs",
+        "src/lib/system-builder-ui.mjs",
+        "tests/system-builder.test.mjs"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/architecture.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "EXP-04",
+      "title": "Provide a reusable decision record between shortlist and execution",
+      "lane": "recipes",
+      "status": "complete",
+      "acceptance_criteria": [
+        "A multi-component plan can record complementary roles without claiming measured coverage.",
+        "Distinguish selected decisions from recomputed current candidates and executed results.",
+        "Existing description exports continue importing unchanged.",
+        "Do not silently persist currently temporary comparison choices.",
+        "Link source profiles and review dates so decisions can be revisited.",
+        "Record component/connection, chosen tool and workflow, purpose, prerequisites, rationale, unresolved evidence and source/review date.",
+        "Distinguish a selected plan from recomputed recommendations and from observed run results.",
+        "Link the REX-04 record only when execution occurs.",
+        "Preserve v1 exports and temporary shortlist behavior; no accounts, automatic persistent selections or comparison-limit expansion."
+      ],
+      "evidence": [
+        "reviews/content.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/guides/choosing-and-recording-tools.md",
+        "src/components/SystemBuilder.astro"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/content.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "CMP-01",
+      "title": "Profile return clears the comparison shortlist",
+      "lane": "first-batch",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Catalog -> profile -> explicit return preserves two or three selected IDs and filters.",
+        "Catalog -> comparison -> profile -> explicit return preserves the comparison's current IDs after additions/removals.",
+        "Direct comparison return continues to work.",
+        "Selections alone, without other filters, have a usable return path.",
+        "Unknown/duplicate IDs are normalized against catalog IDs and capped at three; old profile URLs without selection data remain valid.",
+        "Do not introduce arbitrary destination URLs or nested redirect context.",
+        "Cover catalog -> profile -> return and catalog -> comparison -> profile -> return, including zero, one, two and three valid selected IDs.",
+        "Retain the passing direct comparison-return behavior and normalize unknown, duplicate or excessive IDs.",
+        "Coordinate category context with ARC-01 without introducing arbitrary redirects or changing v1 descriptions.",
+        "A selection-only profile visit must still have a return action.",
+        "Carry current normalized IDs after comparison additions/removals, including related notes and cost-anchor links.",
+        "Keep the three-ID cap, deduplication, known-ID validation and local-route allowlist.",
+        "A related comparison's own tools parameter remains authoritative for that comparison; do not overwrite it with stale catalog selection."
+      ],
+      "evidence": [
+        "../first-batch/README.md"
+      ],
+      "implementation_disposition": "verified-in-first-batch-and-regression-suite",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "../first-batch/README.md"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "CMP-02",
+      "title": "Existing comparison links lack authored relationship guidance",
+      "lane": "recipes",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Each of the two existing comparison links renders a concise How these tools relate explanation.",
+        "Explain project/environment/configuration choices for the type checkers and input/scanner/interpretation boundaries for dependency scanners.",
+        "Use shared authored data for profile links and comparison guidance rather than copying a separate procedure.",
+        "Review primary sources before introducing new comparative capability claims; retain source/date scope.",
+        "Scope new authored guidance to these deliberately linked pairs and maintain one source of content.",
+        "Explain shared tasks, meaningful preparation differences and limits without universal rankings, raw issue-count comparisons or unverified superiority claims.",
+        "Verify new comparative capability claims against primary sources before implementation; this reviewer did not perform that external verification."
+      ],
+      "evidence": [
+        "reviews/content.json"
+      ],
+      "implementation_files": [
+        "src/data/tool-choices.ts",
+        "src/content/docs/tools/mypy.md",
+        "src/content/docs/tools/trivy.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/content.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "CMP-03",
+      "title": "Cost qualifications are difficult to reach from the primary comparison row",
+      "lane": "discovery",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Cost/eligibility details can be reached from the primary row without opening technical details.",
+        "CodeQL and PVS restricted-use caveats remain accurately scoped and accessible by keyboard.",
+        "Free, Free with limits, Paid and mixed values remain distinct; trials do not become free options.",
+        "Do not add unverified pricing or entitlement claims.",
+        "Expose keyboard-accessible cost/eligibility links from the primary row while retaining detailed notes and their existing scope.",
+        "Preserve Free, Free with limits and Paid distinctions; do not invent entitlement or price claims.",
+        "If implemented with profile links, include the same restored catalog/selection context addressed by CMP-01."
+      ],
+      "evidence": [
+        "reviews/architecture.json"
+      ],
+      "implementation_files": [
+        "src/components/ToolComparison.astro"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/architecture.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "MNT-01",
+      "title": "Misspelled optional tool fields are silently discarded",
+      "lane": "first-batch",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Each misspelled optional field fails validation with a useful location/key message.",
+        "All 89 current profiles and 93 workflows still validate unchanged.",
+        "A profile intentionally omitting aliases, searchTerms, decision or workflows remains valid.",
+        "Supported Starlight metadata and future explicit project fields remain usable.",
+        "Add a focused negative schema test using authored tool metadata, not a generated record containing unrelated title/id fields.",
+        "Limit strictness to the project-owned tool object; do not make all Starlight frontmatter strict.",
+        "Diagnostics must identify source file and unknown key; the schema issue alone has a root-relative path.",
+        "Test authored tool objects rather than generated records containing title/id/description.",
+        "Tests should import the production schema; a small .mjs schema extraction is acceptable if needed, while duplicated test-only schema definitions are not."
+      ],
+      "evidence": [
+        "../first-batch/README.md"
+      ],
+      "implementation_disposition": "verified-in-first-batch-and-regression-suite",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "../first-batch/README.md"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "MNT-02",
+      "title": "Reconcile authored tool profiles against the published catalog",
+      "lane": "first-batch",
+      "status": "complete",
+      "acceptance_criteria": [
+        "A new published tool-profile file without tool metadata fails with its path.",
+        "Each published profile appears exactly once in the catalog.",
+        "Draft profiles are deliberately excluded rather than treated as errors.",
+        "Ordinary guide/concept/research pages remain valid without tool metadata.",
+        "Catalog-only tools with zero reviewed workflows remain valid and visibly excluded from matching.",
+        "Use source identity sets, not a fixed89 count or an increased builder-count threshold.",
+        "Derive expected published profiles from source identities before filtering out missing metadata.",
+        "Require tool metadata for published tool-profile paths and compare framework-resolved IDs with catalog IDs exactly once.",
+        "Respect deliberate drafts and ordinary guide/concept/research pages; preserve catalog-only profiles with zero workflows.",
+        "Use identity-set equality and useful source-path diagnostics, not a fixed 89 count or a larger builder threshold.",
+        "Cover supported content extensions and explicit future folder exceptions without silently excluding them."
+      ],
+      "evidence": [
+        "../first-batch/README.md"
+      ],
+      "implementation_disposition": "verified-in-first-batch-and-regression-suite",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "../first-batch/README.md"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "MNT-03",
+      "title": "Separate current review status from immutable historical audit ledgers",
+      "lane": "coordinator",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Report the whole current inventory rather than stopping at the first mismatch.",
+        "Show each latest applicable review reference and distinguish scope-limited follow-up review from blanket verification.",
+        "A later content change becomes visible without declaring its claims false or automatically changing verified.",
+        "Historical evidence and hashes remain intact.",
+        "A human can append a new review disposition without rerunning historical finalize.mjs.",
+        "Do not gate all CI work on the known old 62-file mismatch; treat the current report as review information until explicit policy is chosen.",
+        "Preserve historical records unchanged and append new scoped review references.",
+        "Report the whole current inventory and the latest applicable review scope/digest where known.",
+        "Separate unknown provenance, changed-since-review and reviewed follow-up content; do not automatically mark all claims stale.",
+        "Do not update verified or regenerate historical hashes merely to pass CI."
+      ],
+      "evidence": [
+        "../review-status/README.md",
+        "../../tests/review-status.test.mjs",
+        "reviews/architecture.json"
+      ],
+      "implementation_files": [
+        "scripts/review-status.mjs",
+        "tests/review-status.test.mjs",
+        "audits/review-status/README.md"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "../review-status/README.md",
+          "../../tests/review-status.test.mjs",
+          "reviews/architecture.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "A11Y-01",
+      "title": "Removing the final shortlisted tool loses keyboard focus",
+      "lane": "first-batch",
+      "status": "complete",
+      "acceptance_criteria": [
+        "From one selected tool, activating its Remove action by keyboard leaves focus on an intentional visible target near the current results, never BODY.",
+        "The next Tab proceeds from that target rather than restarting at Skip to content.",
+        "Removal from two or three choices retains useful focus on remaining controls.",
+        "The fallback works when the removed selected tool is no longer in current filtered results.",
+        "Existing selection state and documented temporary builder-shortlist semantics remain unchanged.",
+        "Keep an intentional visible target near the current results focused after final removal, and ensure the next Tab continues locally.",
+        "Also check removal from two or three choices and a selected tool hidden by current filters; those variants were not independently rerun in this review.",
+        "A concise announcement should accompany removal, but it does not replace the focus correction.",
+        "Cover final removal in both surfaces, retained choices, and a removed tool absent from the current results.",
+        "The fallback must exist after rendering and be visible and programmatically focusable.",
+        "Verify the next Tab path in a browser; a helper returning a target selector does not establish correct browser focus."
+      ],
+      "evidence": [
+        "../first-batch/README.md"
+      ],
+      "implementation_disposition": "verified-in-first-batch-and-regression-suite",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "../first-batch/README.md"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "MAT-01",
+      "title": "A valid imported system can grow into saved and exported data that cannot be restored",
+      "lane": "first-batch",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Every successfully saved/exported supported profile round-trips through its corresponding restore/import path.",
+        "Test exact byte boundary, over-limit schema-valid data, and edit growth from an initially importable profile.",
+        "Rejected over-limit saving preserves the previous valid stored value and reports a size-specific message rather than a generic browser-storage failure.",
+        "Existing unreadable raw storage is retained for explicit recovery and is not silently replaced by an initial blank-state edit.",
+        "Normal v1 files and existing size/shape validation remain compatible.",
+        "Use the exact UTF-8 byte threshold of 1048576 inclusive on the actual serialized representation, not JavaScript character count.",
+        "Test compact-to-canonical expansion and schema-default insertion before committing an import, as well as edit growth.",
+        "A rejected size write must not invoke setItem, must retain the previous valid stored value, and must have a size-specific unsaved status.",
+        "Ordinary export must never download an over-limit file with a message promising that it can be imported.",
+        "Unreadable stored data must remain protected through rendering, editing, undo and imports until an explicit replacement action succeeds."
+      ],
+      "evidence": [
+        "../first-batch/README.md"
+      ],
+      "implementation_disposition": "verified-in-first-batch-and-regression-suite",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "../first-batch/README.md"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "MAT-03",
+      "title": "Expand matching through narrow reviewed workflows for existing deferred profiles",
+      "lane": "expansion",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Each new workflow has a particular language/input path and findings supported by named rule or query evidence.",
+        "A positive system, an incomplete system and an incompatible system produce candidate/details/no-match-or-blocked results appropriately.",
+        "Free/paid, CE/Pro and Community/Server capabilities remain separate.",
+        "New evidence URLs are included in tool sources and covered by existing metadata checks.",
+        "Update deferred coverage explanations when a profile gains its first workflow; retain unreviewed modes as omissions.",
+        "For CodeQL, pin CLI/query pack, selected query/suite and Python/framework/extraction/host scope; preserve CLI eligibility and separate query-library licenses.",
+        "For CE, select and review the exact rule/config revision and rule license before admitting a finding category; do not inherit Pro/cross-file capabilities.",
+        "Test metadata matching with positive, incomplete and incompatible descriptions without treating those tests as analyzer execution.",
+        "Keep other deferred products, S-TaLiRo availability/license and unreviewed language/edition combinations deferred."
+      ],
+      "evidence": [
+        "reviews/expansion.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/tools/codeql.md",
+        "src/content/docs/tools/semgrep-ce.md",
+        "examples/semgrep-ce-check"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/expansion.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "ADJ-01",
+      "title": "Add an execution-coverage workflow before treating test reach as understood",
+      "lane": "expansion",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Reader can identify the measured source scope, an unexecuted line and a missing branch in illustrative output.",
+        "The example distinguishes full line coverage from full branch coverage and from effective assertions.",
+        "State whether data covers one process or a configured process tree, and whether the run completed.",
+        "Link a single reusable test fixture/run record; retain an unexecuted label until later hands-on validation.",
+        "Add a precise coverage-measurement technique/result label without relabeling existing fuzzers as coverage-report tools.",
+        "Use one existing test runner, explicit source selection and --branch, and distinguish measured lines from possible branch destinations.",
+        "Record whether the run completed and whether only one process was measured.",
+        "Keep coverage threshold success distinct from test success and from effective assertions; advanced process modes remain out of initial scope."
+      ],
+      "evidence": [
+        "reviews/measurement-runtime.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/tools/coverage-py.md",
+        "examples/python-coverage"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/measurement-runtime.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "ADJ-02",
+      "title": "Separate mutation testing from input mutation and coverage counts",
+      "lane": "expansion",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Explain source mutation separately from changing fuzz inputs.",
+        "The first workflow uses an explicit small source subset and a working test runner.",
+        "Show how one meaningful surviving mutation can motivate a stronger assertion without demanding an arbitrary score of 100%.",
+        "Explain the treatment of errors/timeouts/exclusions and equivalent mutants.",
+        "Record tool, runner, target revision and mutation configuration; do not claim an illustrative run occurred.",
+        "Explicitly teach detected = killed + timeout, undetected = survived + no coverage, valid = detected + undetected, and score = detected/valid. Runtime/compile errors, ignored and pending are outside that denominator.",
+        "Distinguish a test failure that kills a mutant from a test-runner runtime error.",
+        "Keep temporary-copy execution, a small mutation scope and a successful baseline suite in the first route.",
+        "Use source mutation testing as a separate technique from input mutation; do not require 100% or infer universal test quality."
+      ],
+      "evidence": [
+        "reviews/measurement-runtime.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/tools/strykerjs.md",
+        "examples/test-quality"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/measurement-runtime.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "ADJ-03",
+      "title": "Add a scoped Python runtime-profiling path",
+      "lane": "expansion",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Profile explains what a sampled stack means for the selected workload and interval.",
+        "Installation/setup link identifies release-specific interpreter/host scope.",
+        "Permission/setup failure is distinguished from successful recording.",
+        "Native, container and production claims are absent unless separately supported.",
+        "Label all sample profiles illustrative unless execution evidence is later retained.",
+        "Choose and document one release/host/interpreter combination; state process-read permissions for that route.",
+        "Show permission/setup failure separately from a completed recording. Do not offer broad security-setting changes as an assumed prerequisite.",
+        "Distinguish record output, live top summaries and dump snapshots rather than describing all as the same sampled artifact.",
+        "Keep native/container/production modes and automatic builder matching deferred."
+      ],
+      "evidence": [
+        "expansion-specialist-sources.md",
+        "reviews/expansion.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/tools/py-spy.md",
+        "examples/py-spy"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "expansion-specialist-sources.md",
+          "reviews/expansion.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "ADJ-04",
+      "title": "Add HTTP load testing with explicit workload and threshold semantics",
+      "lane": "expansion",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Reader can identify the endpoint, test-data/reset assumptions, workload, duration and pass/fail criteria.",
+        "Explain check versus threshold behavior and distinguish missing/failed setup from a passed measurement.",
+        "Record target revision/environment and load-generator conditions without claiming results transfer unchanged to production.",
+        "Comparison with Schemathesis/RESTler explains different questions rather than ranking generic API coverage.",
+        "Initial example uses a local disposable service or clearly bounded official tutorial, labeled unexecuted until validated.",
+        "Define endpoint, data/reset, load model, duration, functional checks and metric thresholds; include the conditions needed for a meaningful completed test.",
+        "Do not treat a zero process status with only failed checks as meeting the intended service goal.",
+        "Keep target language independent and cloud/browser/distributed/extension modes outside scope.",
+        "A reviewed HTTP workflow with a new performance finding can already be matched and displayed without a GOALS mapping. Adding a performance goal is optional future taxonomy/bookkeeping, not a current admission or discoverability prerequisite. Admission still requires exact workflow evidence and scoped inputs, requirements, findings and host qualifications."
+      ],
+      "evidence": [
+        "reviews/measurement-runtime.json"
+      ],
+      "implementation_files": [
+        "src/content/docs/tools/k6.md",
+        "examples/http-api/load.js"
+      ],
+      "implementation_disposition": "implemented-and-independently-reviewed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "reviews/measurement-runtime.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    },
+    {
+      "id": "MNT-04",
+      "title": "Add focused cross-surface regressions when fixing confirmed UI problems",
+      "lane": "cross-cutting",
+      "status": "complete",
+      "acceptance_criteria": [
+        "Static/Dynamic -> profile -> return and catalog -> comparison -> return are covered with expected category, query and selection.",
+        "System save/reload and import rejection are tested at the UI boundary when those flows change, using isolated origin/fixtures.",
+        "Confirmed API-preset membership and source-only citation rendering receive the cheapest meaningful generated/content assertions.",
+        "Tests verify reader outcomes rather than copying implementation internals.",
+        "No global browser storage or existing user descriptions are modified by tests.",
+        "Use Node tests for byte policy, failure-preserving storage, URL normalization and schema guards.",
+        "Use generated assertions for the actual API shortcut and edition citation location.",
+        "Require a focused isolated-browser acceptance pass for navigation, focus and storage-recovery wiring; a recorded executable checklist is acceptable initially.",
+        "Avoid broad snapshots, mirrored implementation tests and access to real user storage."
+      ],
+      "evidence": [
+        "../first-batch/README.md",
+        "reviews/architecture.json",
+        "browser-acceptance.json"
+      ],
+      "implementation_disposition": "regressions-and-browser-acceptance-passed",
+      "completion_review": {
+        "result": "acceptance-criteria-addressed",
+        "basis": [
+          "../first-batch/README.md",
+          "reviews/architecture.json",
+          "browser-acceptance.json"
+        ],
+        "integration": "verification-final.txt",
+        "qualification": "Scope and unexecuted-example limits remain as specified in the acceptance criteria and review evidence."
+      }
+    }
+  ],
+  "final_gates": {
+    "full_verification": "passed",
+    "independent_reviews": "passed",
+    "browser_acceptance": "passed",
+    "language_review_after_implementation": "passed",
+    "language_changes_verified": "passed"
+  },
+  "completed_on": "2026-11-06",
+  "summary": {
+    "tracked_items": 45,
+    "catalog_profiles": 98,
+    "builder_tools": 86,
+    "node_tests": 101,
+    "built_pages": 131,
+    "language_changes": 56,
+    "language_files_changed": 42
+  }
+}

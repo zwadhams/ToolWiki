@@ -79,4 +79,4 @@ An inventory/advisory match is not a source defect diagnosis. For Rust source ch
 
 ## Related research
 
-We used Cargo-audit for Rust in our [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf). Its dependency-advisory scope is important when interpreting the Rust findings alongside source analyzers. I make that distinction explicit in [Comparing SAST tools](../../research/comparing-tools/).
+We used Cargo-audit for Rust in our [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf). Its dependency-advisory results differ in scope from source-analyzer results; see [Comparing SAST tools](../../research/comparing-tools/).

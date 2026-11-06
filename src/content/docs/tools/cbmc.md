@@ -51,6 +51,12 @@ tool:
       url: https://model-checking.github.io/cbmc-training/faq/loop-unwinding.html
     - label: CBMC license
       url: https://github.com/diffblue/cbmc/blob/develop/LICENSE
+    - label: Installation and host setup
+      url: https://model-checking.github.io/cbmc-training/installation.html
+    - label: Verification harnesses and assumptions
+      url: https://model-checking.github.io/cbmc-training/cbmc/overview/proof-harnesses.html
+    - label: Property checking
+      url: https://model-checking.github.io/cbmc-training/cbmc/overview/checking-properties.html
 ---
 
 ## What it does
@@ -65,8 +71,49 @@ Loops are unwound to explore iterations. If a chosen bound cuts off possible beh
 
 The harness also matters. Assumptions restrict inputs, and models of external functions determine which effects the verifier considers. An overly restrictive assumption can exclude the very behavior you intended to check.
 
-## A useful first evaluation
+<span id="a-useful-first-evaluation"></span>
 
-Choose a small function, state a meaningful assertion, and expose the allowed inputs through a harness. Review both property results and unwinding results. Preserve the bounds, assumptions, and external-function models alongside any claim about the outcome.
+## First try
+
+**Illustrative example; not executed here.** Install a CBMC 6.x build for your
+host using the [official setup guide](https://model-checking.github.io/cbmc-training/installation.html).
+Save this as `bounded.c`:
+
+```c
+#include <assert.h>
+
+int nondet_int(void);
+
+int clamp(int value) {
+    return value;
+}
+
+void harness(void) {
+    int value = nondet_int();
+    __CPROVER_assume(value >= 0 && value <= 10);
+    assert(clamp(value) <= 9);
+}
+```
+
+Use `harness` as the entry point and request a counterexample:
+
+```sh
+cbmc bounded.c --function harness --trace
+```
+
+CBMC treats the undefined `nondet_int` return as nondeterministic. The assumption
+restricts it to 0 through 10. Expect the assertion to fail with `value = 10`.
+Change the function to `return value > 9 ? 9 : value;` and rerun. That assertion
+should pass under the stated assumption.
+
+This fixture has no loops, recursion, or external side effects, so it needs no
+loop bound. When adapting it to looping code, supply suitable unwinding bounds
+and inspect unwinding assertions as well as the property. Do not suppress an
+incomplete unwind and call the result an unbounded proof. Keep the harness,
+assumptions, checked properties, and bounds with the [run record](../../guides/run-record/).
+
+The [harness guide](https://model-checking.github.io/cbmc-training/cbmc/overview/proof-harnesses.html)
+and [property-checking guide](https://model-checking.github.io/cbmc-training/cbmc/overview/checking-properties.html)
+explain how these choices define the verification task.
 
 See [verification and generated tests](../../concepts/verification-and-generated-tests/) for the difference between bounded checking, fuzzing, and falsification.

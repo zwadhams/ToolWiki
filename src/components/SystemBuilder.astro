@@ -1,17 +1,17 @@
 ---
 import { getCollection } from 'astro:content';
+import { publishedTools, builderData } from '../lib/tool-data.mjs';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const tools = (await getCollection('docs', ({ data }) => !!data.tool && !data.draft))
-  .map(({ id, data }) => ({ id, title: data.title, description: data.description || '', ...data.tool! }));
-const languages = [...new Set(tools.flatMap(t => t.languages))].filter(l => l !== 'Language independent').sort();
-const data = { tools: tools.filter(t => t.analysisWorkflows.length), languages, totalTools: tools.length };
+const tools = publishedTools(await getCollection('docs'));
+const data = builderData(tools);
 ---
 <system-builder data-base={base} data-pagefind-ignore>
   <div class="suite-intro">
     <p class="catalog-intro">Choose a language and the material you have. Add details to narrow the suggestions for each part of your system.</p>
     <p class="suite-muted">This page suggests tools; it does not run them. Your system description saves in this browser and can be exported. Tool selections are temporary; bookmark the comparison page to keep them.</p>
+    <p><a href={`${base}/guides/choosing-and-recording-tools/`}>Record your choice and unresolved prerequisites</a> before running a tool.</p>
     <details class="suggestion-scope"><summary>Suggestion scope: {data.tools.length} of {data.totalTools} catalog tools</summary>
-      <p>Suggestions use reviewed workflows. These tools still have catalog notes but are not included in matching yet; their absence does not mean they are unsuitable:</p>
+      <p>Suggestions use reviewed workflows. These tools are not matched yet but may still be suitable:</p>
       <ul>{tools.filter(tool => !tool.analysisWorkflows.length).map(tool => <li><a href={`${base}/${tool.id}/`}>{tool.title}</a></li>)}</ul>
     </details>
   </div>

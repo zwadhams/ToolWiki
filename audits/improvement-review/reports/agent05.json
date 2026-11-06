@@ -1,0 +1,499 @@
+{
+  "agent": 5,
+  "lane": "Existing-domain tool coverage",
+  "status": "complete",
+  "reviewed_on": "2026-11-06",
+  "method": [
+    "Read the complete 89-profile metadata inventory and audited family/language/input intersections.",
+    "Inspected current ESLint, ShellCheck, detect-secrets, Ghidra, Binwalk, Trivy and related scope notes.",
+    "Reconciled the September catalog-expansion and search-discovery follow-up recommendations.",
+    "Read official project documentation, source repositories, report templates and license files for five scoped additions."
+  ],
+  "boundaries": {
+    "product_edits": false,
+    "analyzer_installation_or_execution": false,
+    "browser_testing": false,
+    "benchmark_claims": false,
+    "recommendation_basis": "Documented task coverage, not popularity. This is a candidate review, not a complete claim audit or proof of runtime compatibility.",
+    "freshness": "Sources were retrieved on 2026-11-06. Moving main/master/latest documentation should be pinned to a chosen release when authoring a profile."
+  },
+  "inventory": {
+    "profiles": 89,
+    "reviewed_matching_profiles": 80,
+    "workflows": 93,
+    "mode_counts_nonexclusive": {
+      "Static": 63,
+      "Dynamic": 28
+    },
+    "inputs_nonexclusive": {
+      "Source code": 44,
+      "Binaries": 25,
+      "Dependency metadata": 6,
+      "Container images": 3,
+      "Configuration files": 5,
+      "Running applications": 6,
+      "Callable code": 5,
+      "Executable models": 4,
+      "Execution traces": 5
+    },
+    "observed_type_checking_profiles": [
+      "actionlint",
+      "mypy",
+      "phpstan",
+      "psalm",
+      "pyright"
+    ],
+    "typescript_profiles": 9,
+    "typescript_profiles_with_type_errors_finding": 0,
+    "powershell_language_profiles": 0,
+    "verilog_or_systemverilog_language_profiles": 0,
+    "secret_scanning_profiles": [
+      "detect-secrets"
+    ],
+    "qualification": "Counts describe published metadata, not measured capability or user demand. Android is a platform, not a source language; mobile coverage was assessed from profile scopes and package formats rather than language counts."
+  },
+  "coverage_matrix": [
+    {
+      "family": "Language linting and type checks",
+      "current": "18 Linting tags and 5 Type checking tags; Python/PHP type checkers and language-specific linters are present.",
+      "gap": "No TypeScript compiler/type-error path and no PowerShell semantic source analyzer.",
+      "action": "COV-01 and COV-02; preserve the distinction between linting and compiler diagnostics."
+    },
+    {
+      "family": "SAST and data flow",
+      "current": "12 SAST tags and 11 Data flow analysis tags, including commercial/free edition splits.",
+      "gap": "Several rich catalog profiles have deliberately deferred matching workflows.",
+      "action": "Existing-profile workflow review belongs to matching agent; do not add duplicate products just to increase candidate counts."
+    },
+    {
+      "family": "Native memory and concurrency",
+      "current": "Sanitizers, Valgrind, Dr. Memory and Go race detector cover several runtime workflows.",
+      "gap": "Coverage quality depends on platform/build/test requirements.",
+      "action": "Deepen existing workflows and examples before adding equivalent products; no new candidate selected here."
+    },
+    {
+      "family": "Binary analysis",
+      "current": "25 binary-input profiles, including 6 Binary analysis tags, disassembly, decompilation and symbolic execution.",
+      "gap": "Current scopes do not offer a dedicated packaged-mobile-app security report.",
+      "action": "COV-04; generic native executable support cannot stand in for APK security analysis."
+    },
+    {
+      "family": "Dependencies and configuration",
+      "current": "6 dependency-metadata, 3 container-image and 5 configuration-file profiles.",
+      "gap": "A dependency ecosystem label is not proof of source analysis for that language.",
+      "action": "Existing scoped profiles already state this distinction; retain it in future coverage counts."
+    },
+    {
+      "family": "Fuzzing and generated tests",
+      "current": "4 Coverage-guided fuzzing tags and 3 Property-based testing tags, plus API/protocol fuzzers.",
+      "gap": "Recipe/harness depth is more evident than a missing product family in the screened scope.",
+      "action": "Leave reusable examples to the relevant audit; adjacent testing expansion to agent12."
+    },
+    {
+      "family": "Program verification",
+      "current": "8 Formal verification tags and 4 Bounded model checking tags across C/C++, Java, Rust and Dafny workflows.",
+      "gap": "No HDL-language entry.",
+      "action": "COV-05 adds linting only; do not present it as formal proof."
+    },
+    {
+      "family": "Web/API testing",
+      "current": "6 running-application input profiles with proxy, active scanning and generated API testing workflows.",
+      "gap": "Mobile binary/package checks are a different task.",
+      "action": "Retain web/API profiles as complements to COV-04 rather than alternatives with identical coverage."
+    },
+    {
+      "family": "Temporal monitoring and falsification",
+      "current": "4 Temporal logic monitoring and 4 Model falsification tags, plus the dedicated workflow guide.",
+      "gap": "Existing execution provenance and setup limits remain separate from catalog breadth.",
+      "action": "No new product selected; prioritize known workflow/evidence work."
+    },
+    {
+      "family": "Secret detection",
+      "current": "detect-secrets offers file scans and baseline prevention; its profile explicitly does not claim complete history coverage.",
+      "gap": "No dedicated commit-history recovery workflow.",
+      "action": "COV-03."
+    },
+    {
+      "family": "Mobile package security",
+      "current": "detekt targets Android source, selected runtimes mention Android, and generic binary tools are present.",
+      "gap": "No APK/AAB/IPA-specific security-report profile; builder formats lack mobile packages.",
+      "action": "COV-04; start with Android APK static scope."
+    },
+    {
+      "family": "HDL",
+      "current": "No Verilog or SystemVerilog language profiles.",
+      "gap": "No HDL linting starting point despite the prior expansion audit naming this direction.",
+      "action": "COV-05 as a lower-priority bounded expansion."
+    }
+  ],
+  "findings": [
+    {
+      "id": "COV-01",
+      "kind": "content_gap",
+      "priority": "P2",
+      "title": "Add a TypeScript compiler type-checking path",
+      "reader_task": "Check a TypeScript project's type errors without emitting JavaScript, and understand how this complements ESLint.",
+      "locations": [
+        "src/content/docs/tools/eslint.md:33",
+        "src/content/docs/tools/eslint.md:70",
+        "src/content/docs/tools/eslint.md:75",
+        "src/content/docs/tools/eslint.md:88",
+        "audits/improvement-review/inventory.json"
+      ],
+      "evidence": "The inventory has nine TypeScript-tagged profiles but none with the Type errors finding; the five Type checking profiles are actionlint, mypy, PHPStan, Psalm and Pyright. ESLint's profile correctly describes TypeScript lint rules and typed linting, but supplies no linked compiler type-checking profile.",
+      "impact": "A basic TypeScript type-error task has no direct catalog match even though the language appears well represented. Readers can mistake type-aware lint rules for the compiler's diagnostic pass.",
+      "confidence": "high",
+      "recommendation": "Add a scoped TypeScript compiler (tsc) profile and a short companion explanation linked from ESLint. Cover no-emit TypeScript checking first; document JavaScript checkJs as a separately qualified workflow.",
+      "candidate": {
+        "name": "TypeScript compiler (tsc)",
+        "admission_readiness": "Ready for a documentation-led profile; choose/pin the package release and runtime prerequisites during authoring.",
+        "purpose_input": "Source type checking over a configured TypeScript project. JavaScript checking requires allowJs/checkJs or per-file opt-in.",
+        "setup": "Install the TypeScript package using its official npm route, configure the project and run tsc with noEmit. Avoid presenting arbitrary single-file invocation as equivalent to the project's tsconfig.",
+        "findings": "Compiler diagnostics with source locations; strictness, any, suppression and project inclusion affect what is checked.",
+        "limitations": "Type annotations are erased and do not validate arbitrary runtime inputs. Typed linting and compiler checking have overlapping information but distinct diagnostics.",
+        "license": "Apache-2.0 for TypeScript.",
+        "overlap": "Complements the existing ESLint and fast-check profiles. Do not retag ESLint as the compiler or replace runtime/property tests.",
+        "unresolved": "No tool execution performed; framework-specific files and plugins are outside this initial plain TypeScript/JavaScript scope."
+      },
+      "sources": [
+        {
+          "url": "https://www.typescriptlang.org/docs/handbook/2/basic-types.html",
+          "supports": "Official installation, compiler diagnostic examples, strictness and erased-type limitations."
+        },
+        {
+          "url": "https://www.typescriptlang.org/tsconfig/noEmit.html",
+          "supports": "Use TypeScript as a source checker without compiler output."
+        },
+        {
+          "url": "https://www.typescriptlang.org/tsconfig/checkJs.html",
+          "supports": "JavaScript diagnostic checking is conditional on allowJs/checkJs."
+        },
+        {
+          "url": "https://www.typescriptlang.org/docs/handbook/compiler-options",
+          "supports": "Project invocation and compiler option reference."
+        },
+        {
+          "url": "https://typescript-eslint.io/troubleshooting/faqs/eslint/",
+          "supports": "ESLint rule behavior differs from compiler diagnostics; duplicate no-undef checking is specifically discussed."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/microsoft/TypeScript/main/LICENSE.txt",
+          "supports": "Apache License 2.0."
+        }
+      ],
+      "acceptance": [
+        "TypeScript + Source code + Type errors finds tsc",
+        "The profile includes installation/configuration prerequisites, an illustrative failing/fixed type example, diagnostic meaning and execution status",
+        "ESLint and tsc are labeled complementary, without implying runtime validation",
+        "Any builder workflow is independently scoped to TypeScript source or the qualified JavaScript-checking route"
+      ],
+      "effort": "medium",
+      "dependencies": [],
+      "compatibility": "Existing Source code and Type errors values suffice. A new profile and relationship are additive; preserve existing ESLint links."
+    },
+    {
+      "id": "COV-02",
+      "kind": "content_gap",
+      "priority": "P2",
+      "title": "Cover PowerShell source analysis separately from shell linting",
+      "reader_task": "Find a source analyzer for PowerShell automation scripts and modules.",
+      "locations": [
+        "src/content/docs/tools/shellcheck.md:40",
+        "src/content/docs/tools/shellcheck.md:41",
+        "src/content/docs/tools/shellcheck.md:53",
+        "audits/catalog-expansion/README.md:100"
+      ],
+      "evidence": "No profile has PowerShell in its language list. ShellCheck correctly excludes PowerShell at line41. Existing PowerShell code blocks are launcher commands for other analyzers, not claims of PowerShell analysis.",
+      "impact": "Windows and cross-platform automation authors have no specific source-analysis starting point. Treating ShellCheck as a generic shell analyzer would be incorrect.",
+      "confidence": "high",
+      "recommendation": "Add PSScriptAnalyzer with a PowerShell source workflow and a reciprocal distinction on ShellCheck. Keep generic credential scanning as a complement.",
+      "candidate": {
+        "name": "PSScriptAnalyzer",
+        "admission_readiness": "Ready for a documentation-led profile.",
+        "purpose_input": "Rule-based checks for PowerShell .ps1, .psm1 and .psd1 files.",
+        "setup": "Install the official module on a supported PowerShell version, invoke Invoke-ScriptAnalyzer on an explicit path and select rules/settings deliberately.",
+        "findings": "Diagnostic records include rule, severity, location and message; official examples include parser errors and naming-rule warnings.",
+        "limitations": "Enabled rules, suppressions, compatibility targets and configuration determine scope. Formatting/fix options are separate from read-only inspection; no promise that all runtime command behavior is validated.",
+        "license": "MIT.",
+        "overlap": "ShellCheck covers Bourne-style shells; this is a separate language gap. General secret detection remains complementary.",
+        "unresolved": "No installation or analyzer run; exact selected module release remains to be pinned during profile drafting."
+      },
+      "sources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/powershell/utility-modules/psscriptanalyzer/overview?view=ps-modules",
+          "supports": "Purpose, install routes and supported PowerShell/platform combinations."
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/powershell/module/psscriptanalyzer/invoke-scriptanalyzer",
+          "supports": "Input extensions, rule selection, returned records and fix/CI options."
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/powershell/utility-modules/psscriptanalyzer/using-scriptanalyzer?view=ps-modules",
+          "supports": "Representative parse/rule diagnostics and suppression behavior."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/PowerShell/PSScriptAnalyzer/main/LICENSE",
+          "supports": "MIT license."
+        }
+      ],
+      "acceptance": [
+        "PowerShell + Source code finds the new profile",
+        "ShellCheck remains excluded from PowerShell results",
+        "First try uses an explicit rule and explains a representative DiagnosticRecord without claiming execution",
+        "Host PowerShell requirements and source language are distinct"
+      ],
+      "effort": "small_to_medium",
+      "dependencies": [],
+      "compatibility": "PowerShell is an additive language tag, not a new input type; preserve existing shell-language spellings."
+    },
+    {
+      "id": "COV-03",
+      "kind": "content_gap",
+      "priority": "P2",
+      "title": "Add a bounded Git-history secret-scanning workflow",
+      "reader_task": "Investigate a credential removed from the working tree but potentially still present in repository history.",
+      "locations": [
+        "src/content/docs/tools/detect-secrets.md:51",
+        "src/content/docs/tools/detect-secrets.md:66",
+        "src/content/docs/tools/detect-secrets.md:74",
+        "audits/search-discovery/README.md:108",
+        "audits/catalog-expansion/README.md:100"
+      ],
+      "evidence": "The only Secret scanning profile is detect-secrets. Its scope explicitly avoids complete Git-history claims. The prior search audit deferred Gitleaks pending its maintenance notice and Betterleaks review.",
+      "impact": "Baseline prevention does not supply a documented history-investigation route. Users need to know which commits/refs and filters were examined, and that finding/removing text does not itself remediate a credential.",
+      "confidence": "high",
+      "recommendation": "Add a narrowly scoped Gitleaks local Git-history profile with the maintenance-only status explicit and a current-files-versus-history guide linked from detect-secrets. Treat Betterleaks as a separate deferred alternative until the selected stable release and matching documentation are pinned.",
+      "candidate": {
+        "name": "Gitleaks local CLI",
+        "admission_readiness": "Ready for a scoped documentation-led v8 profile with explicit maintenance status; not an endorsement of future feature development.",
+        "purpose_input": "Scans local Git patches through git log -p; commit ranges are configurable. Directory and stdin modes are separate.",
+        "setup": "Use an official release/build or documented container route, supply a local repository with the desired history and an explicit configuration/revision scope.",
+        "findings": "Reports rule, file, line and commit context; JSON/CSV/JUnit/SARIF reports and redaction are documented.",
+        "limitations": "Fetched history, log options, rules, allowlists, baselines and file limits constrain coverage. Do not promise every secret, all refs, or credential validity. CLI licensing is not a claim about the separate GitHub Action's terms.",
+        "license": "MIT for the Gitleaks CLI.",
+        "overlap": "Overlaps current-file detection but adds a distinct history task. Existing detect-secrets scope should remain unchanged.",
+        "maintenance": "The official README still states that future Gitleaks releases are security patches only and directs feature work toward Betterleaks.",
+        "unresolved": "Betterleaks main documents v2 development and warns package managers/latest may supply v1 before stable v2. No generic 'latest' example should mix the two. No candidate was installed or run."
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/gitleaks/gitleaks/master/README.md",
+          "supports": "Maintenance notice, setup, git/log-opts scope, reports, redaction, configuration and baseline limits."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/gitleaks/gitleaks/master/LICENSE",
+          "supports": "MIT license for CLI."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/betterleaks/betterleaks/main/README.md",
+          "supports": "v2 development/v1 distribution caveat and explicit credential-validation behavior."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/betterleaks/betterleaks/main/LICENSE",
+          "supports": "MIT license for the researched alternative."
+        }
+      ],
+      "acceptance": [
+        "Catalog can distinguish current-file baseline scans from history investigation",
+        "Examples explicitly identify clone/history and ref-range assumptions and use only synthetic credentials",
+        "Profile includes maintenance status and a qualified clean-result interpretation",
+        "Automatic system matching is deferred unless repository/history availability is represented rather than inferred from Source code alone"
+      ],
+      "effort": "medium",
+      "dependencies": [
+        "Define the history workflow in prose before deciding whether builder input/access schema needs expansion."
+      ],
+      "compatibility": "Catalog-only addition initially; no silent widening of detect-secrets capabilities. Future builder support must preserve v1 files."
+    },
+    {
+      "id": "COV-04",
+      "kind": "content_gap",
+      "priority": "P3",
+      "title": "Add mobile-package security coverage with an Android APK starting scope",
+      "reader_task": "Inspect a compiled mobile application for package configuration and security findings when app source is unavailable.",
+      "locations": [
+        "audits/catalog-expansion/README.md:99",
+        "src/content/docs/tools/detekt.md:31",
+        "src/content/docs/tools/ghidra.md:20",
+        "src/content/docs/tools/ghidra.md:32",
+        "src/lib/system-schema.mjs:7",
+        "src/lib/system-schema.mjs:8"
+      ],
+      "evidence": "The prior expansion audit calls out mobile-specific checks. Current Android mentions include detekt source context and runtime platform support, but no dedicated APK/AAB/IPA security-report profile. The builder's binary formats lack mobile packages; Native executable is not an equivalent artifact.",
+      "impact": "Readers with a compiled app cannot select a package-specific analysis workflow or distinguish it from source linting and generic reverse engineering.",
+      "confidence": "high for the catalog gap and documented static APK capability; medium for broader platform/version combinations not reviewed",
+      "recommendation": "Add a MobSF profile scoped initially to local static Android APK inspection. Link it as complementary to source analyzers and manual binary inspection. Keep dynamic and iOS paths outside the initial admission until separately reviewed.",
+      "candidate": {
+        "name": "MobSF static Android APK analysis",
+        "admission_readiness": "Ready for a narrow catalog-only documentation profile; builder inclusion needs explicit APK artifact modeling and scoped evidence.",
+        "purpose_input": "Static mobile-package analysis; initial profile should admit APK only even though broader product formats are documented.",
+        "setup": "Use the official Docker-based local static-analysis route and upload an app to the local instance. Record the selected image/release and scan settings.",
+        "findings": "The official Android report template includes permissions, certificate, manifest and code-analysis sections with issue/severity/context fields.",
+        "limitations": "A report, score or permission label is evidence to investigate, not proof of exploitability or absence of vulnerabilities. Configured/suppressed analyses and parsing affect visibility. Dynamic analysis has additional emulator/device requirements and must not inherit static readiness.",
+        "license": "GPL-3.0-only as stated in the project README; license text reviewed.",
+        "overlap": "detekt covers Kotlin source; Ghidra's current profile covers native executable/firmware investigation. Neither current profile provides the proposed APK report workflow.",
+        "unresolved": "No APK executed or uploaded. Broad iOS/dynamic compatibility and product-wide finding coverage were not audited."
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/MobSF/Mobile-Security-Framework-MobSF/master/README.md",
+          "supports": "Supported mobile formats, static/dynamic distinction and GPL-3.0-only declaration."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/MobSF/docs/master/running_mobsf_docker.md",
+          "supports": "Local static Docker setup and separate dynamic prerequisites."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/MobSF/Mobile-Security-Framework-MobSF/master/mobsf/templates/pdf/android_report.html",
+          "supports": "Actual Android report sections and severity/context presentation; source inspection, not execution."
+        },
+        {
+          "url": "https://github.com/MobSF/docs/blob/master/configurations.md",
+          "supports": "Configurable static scan components and settings."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/MobSF/Mobile-Security-Framework-MobSF/master/LICENSE",
+          "supports": "GPL version3 license text."
+        }
+      ],
+      "acceptance": [
+        "APK/mobile package searches reach an explicitly scoped static workflow",
+        "Profile separates analysis host, mobile target and artifact format",
+        "Representative report sections are interpreted without equating scores to proof",
+        "No generic Native executable or Other builder input silently promises APK support"
+      ],
+      "effort": "medium",
+      "dependencies": [
+        "Catalog profile can precede matching support; model mobile artifact compatibility before adding a builder workflow."
+      ],
+      "compatibility": "Keep existing binary-format strings unchanged. Any later additive APK format must preserve current v1 imports and document that older applications may reject newly exported enum values."
+    },
+    {
+      "id": "COV-05",
+      "kind": "opportunity",
+      "priority": "P3",
+      "title": "Pilot HDL linting before broader hardware verification expansion",
+      "reader_task": "Run static checks on Verilog/SystemVerilog source and interpret warnings before simulation.",
+      "locations": [
+        "audits/catalog-expansion/README.md:99",
+        "src/content/docs/concepts/static-approaches.md:1",
+        "src/lib/system-schema.mjs:3",
+        "audits/improvement-review/inventory.json"
+      ],
+      "evidence": "No profile uses Verilog or SystemVerilog language tags, while the previous expansion audit explicitly names HDL. Existing firmware source/binary coverage does not imply hardware-description-language analysis.",
+      "impact": "The catalog has no HDL entry path. This is a bounded new audience opportunity, not a demonstrated current-user blocker.",
+      "confidence": "high for absence/documented capability; reader demand not measured",
+      "recommendation": "Pilot a Verilator lint-only profile using Verilog/SystemVerilog source input. Defer simulation, coverage and formal hardware verification to separate evidence reviews.",
+      "candidate": {
+        "name": "Verilator lint-only",
+        "admission_readiness": "Ready for a documentation-led lint-only profile; choose a versioned manual/release at authoring.",
+        "purpose_input": "Lint checks over Verilog/SystemVerilog designs, including required includes, defines and top-level context.",
+        "setup": "Install through an official documented route and invoke lint-only on a prepared small design; record warning flags and source list.",
+        "findings": "Warnings/errors identify codes and often source locations; the warning reference explains semantics and suppressions.",
+        "limitations": "Language support and enabled warnings constrain checks. A clean lint result is not simulation coverage, formal proof, or timing/signoff verification. Generated C++ is output, not evidence that this workflow analyzes arbitrary C++ source.",
+        "license": "LGPL-3.0-only OR Artistic-2.0 as declared by the official README.",
+        "overlap": "Complements existing software/firmware analyzers; none of their currently documented workflows covers HDL linting.",
+        "unresolved": "No Verilator execution. Full HDL simulation and version-specific standards coverage remain outside the proposed initial profile."
+      },
+      "sources": [
+        {
+          "url": "https://verilator.org/guide/latest/overview.html",
+          "supports": "Verilog/SystemVerilog input and distinct compilation/simulation stages."
+        },
+        {
+          "url": "https://verilator.org/guide/latest/exe_verilator.html",
+          "supports": "lint-only and warning-selection behavior."
+        },
+        {
+          "url": "https://verilator.org/guide/latest/warnings.html",
+          "supports": "Diagnostic structure, examples, suppression and unsupported constructs."
+        },
+        {
+          "url": "https://verilator.org/guide/latest/install.html",
+          "supports": "Documented install routes and host prerequisites."
+        },
+        {
+          "url": "https://verilator.org/guide/latest/languages.html",
+          "supports": "Scoped language/feature support."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/verilator/verilator/master/README.rst",
+          "supports": "Exact dual-license SPDX declaration and distinction between HDL input and generated C++/SystemC."
+        }
+      ],
+      "acceptance": [
+        "Verilog/SystemVerilog + Source code finds the lint-only profile",
+        "C++ searches do not match merely because Verilator emits C++",
+        "A representative warning explains location, rule and limitation",
+        "Static lint scope is kept separate from simulation or formal proof claims"
+      ],
+      "effort": "medium",
+      "dependencies": [],
+      "compatibility": "Existing Source code input and additive language tags suffice for the initial workflow."
+    }
+  ],
+  "prior_audit_reconciliation": [
+    {
+      "prior": "Additional language-specific analyzers",
+      "status": "still_open",
+      "evidence": "PowerShell has no scoped analyzer; TypeScript has nine profiles but no Type errors match.",
+      "finding_ids": [
+        "COV-01",
+        "COV-02"
+      ]
+    },
+    {
+      "prior": "Additional secret-detection workflows",
+      "status": "partly_resolved",
+      "evidence": "detect-secrets now covers baseline prevention. Git-history investigation remains unrepresented; current Gitleaks maintenance notice persists and Betterleaks version distinction is newly checked.",
+      "finding_ids": [
+        "COV-03"
+      ]
+    },
+    {
+      "prior": "Mobile-specific security checks",
+      "status": "still_open",
+      "evidence": "No package-specific APK security-report entry; Android source/runtime mentions are narrower.",
+      "finding_ids": [
+        "COV-04"
+      ]
+    },
+    {
+      "prior": "HDL and embedded-system analysis",
+      "status": "partly_resolved",
+      "evidence": "Firmware/native program coverage exists; HDL-language coverage remains absent.",
+      "finding_ids": [
+        "COV-05"
+      ]
+    },
+    {
+      "prior": "Add mypy, ShellCheck, clang-tidy, UBSan, Trivy, Pyright, CPAchecker, KLEE and Grype",
+      "status": "resolved",
+      "evidence": "All nine prior named candidates are present in the inventory; no duplicate additions recommended.",
+      "finding_ids": []
+    }
+  ],
+  "rejected_or_deferred_leads": [
+    "Do not classify a low raw language count as poor coverage without checking source versus dependency ecosystem scope.",
+    "Do not add another general Python linter or container vulnerability scanner solely for breadth; existing alternatives are already present.",
+    "Do not describe Gitleaks as actively adding features.",
+    "Do not use Betterleaks main-branch v2 commands with an unspecified v1 distribution.",
+    "Do not treat MobSF static support as automatic dynamic-analysis readiness.",
+    "A guessed MobSF docs/static_analysis.md URL returned 404; replaced by official running guide and actual Android report template, not retained as supporting evidence.",
+    "No Dart analyzer candidate was fully admitted in this bounded five-item review; four Dart metadata matches are mostly ecosystem/commercial scope and remain a possible later review."
+  ],
+  "recommended_order": [
+    "COV-01",
+    "COV-02",
+    "COV-03",
+    "COV-04",
+    "COV-05"
+  ],
+  "ordering_rationale": "Common language first-result gaps first, then distinct history investigation, then the previously proposed mobile/HDL expansions. This is an editorial recommendation, not usage analytics.",
+  "review_checks": [
+    "Compared all five candidates against existing profile metadata and relevant body scopes.",
+    "Verified candidate names, setup paths, findings or report references, limitations and license evidence using primary sources.",
+    "Did not execute commands from external documentation.",
+    "No product repository files changed."
+  ]
+}

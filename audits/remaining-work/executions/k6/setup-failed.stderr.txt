@@ -1,0 +1,1 @@
+time="2026-11-06T13:25:37-07:00" level=error msg="Error: Start server.py with --fixed for this example.\n\tat setup (file:///C:/Users/zwadh/Repos/ToolWiki/examples/http-api/load.js:29:11(37))\n" hint="script exception"

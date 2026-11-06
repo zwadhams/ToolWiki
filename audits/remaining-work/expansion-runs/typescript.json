@@ -1,0 +1,47 @@
+{
+  "evidence": "executed",
+  "date": "2026-11-06",
+  "host": "Windows-11-10.0.26300-SP0",
+  "tool": "TypeScript",
+  "version": "6.0.3",
+  "node": "v24.22.1",
+  "target_executed": false,
+  "results": [
+    {
+      "variant": "bad",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        "examples/typescript-check/tsconfig.bad.json",
+        "--pretty",
+        "false"
+      ],
+      "return_code": 2,
+      "report": "typescript-bad.txt",
+      "stderr": "typescript-bad.stderr.txt"
+    },
+    {
+      "variant": "good",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--project",
+        "examples/typescript-check/tsconfig.good.json",
+        "--pretty",
+        "false"
+      ],
+      "return_code": 0,
+      "report": "typescript-good.txt",
+      "stderr": "typescript-good.stderr.txt"
+    }
+  ],
+  "inputs_sha256": {
+    "examples/typescript-check/package.json": "cc053c35ee7fe06bc6d494c48e676cdc328870a8c2da216d77bac0957b108175",
+    "examples/typescript-check/tsconfig.bad.json": "f1a7f3502737f9de77695c1fe7a8f19e8a4b46fe092087b0da583506bf413f3f",
+    "examples/typescript-check/tsconfig.good.json": "fde7f986b9de3f5110f002bd8bf7a011c227301c911aae1058634702c9c8a51d",
+    "examples/typescript-check/tsconfig.json": "586d15849884799a6f92de6b1240c147ec08a30ad8854acb55b2cc552b71ae4b",
+    "examples/typescript-check/bad/greeting.ts": "6c5b83a615c5223a89d9fa3f9341ef8a60d74073df386bd9fdfc327cf82f5be1",
+    "examples/typescript-check/good/greeting.ts": "3e55187a621621997b34523145e54e4f085c71f02abbcb2ff3da382a52d4eb68"
+  }
+}

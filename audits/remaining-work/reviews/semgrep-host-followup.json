@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-06",
+  "reviewer": "root",
+  "status": "resolved",
+  "scope": "Semgrep Code environment field only: clarified local/CI CLI prerequisites while retaining managed scans. No pricing, rules, plan, or analyzer-execution re-review.",
+  "source": "https://docs.semgrep.dev/prerequisites",
+  "evidence": "The official prerequisites apply to both AppSec Platform and CE. Python 3.10+ is required; supported systems are Linux, Apple silicon macOS with arm64 Python, and Windows beta. Intel macOS ends at 1.182.x.",
+  "files": [
+    {
+      "path": "src/content/docs/tools/semgrep-code.md",
+      "sha256": "f7f48aa8e72d7aa7d0acb9285b53ff3aa211ae6fb16bc31c4a52b9c2cc9e7033"
+    }
+  ]
+}

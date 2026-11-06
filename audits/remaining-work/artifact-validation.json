@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-06",
+  "status": "passed",
+  "checks": [
+    {
+      "check": "Frozen historical audits",
+      "result": "passed",
+      "files": 116
+    },
+    {
+      "check": "Completion ledger",
+      "result": "passed",
+      "items": 45,
+      "original_acceptance_criteria_preserved": true
+    },
+    {
+      "check": "Scoped provenance registry",
+      "result": "passed",
+      "reviews": 8
+    },
+    {
+      "check": "Changed and new text artifacts",
+      "result": "passed",
+      "ascii_files": 290,
+      "json_files": 68
+    },
+    {
+      "check": "Standalone Markdown structure and local links",
+      "result": "passed-with-reviewed-validator-false-positive",
+      "files": 14,
+      "notes": [
+        "Validator treated the inline-code formula always[0:2](temperature <= 80) as a link. It is valid inline code; manually reviewed and left unchanged."
+      ]
+    }
+  ],
+  "site_verification": "verification-final.txt",
+  "browser_verification": "browser-acceptance.json"
+}

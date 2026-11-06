@@ -33,6 +33,8 @@ When adapting the process to another environment, I would consider:
 
 I provide these as implementation considerations; this wiki does not supply a tested connector. A passing quality gate means its configured conditions were met.
 
+[Repeatable CI checks](../../guides/ci-checks/) applies these considerations to the wiki's Ruff and mypy recipe, including run states, retained artifacts, and an explicit gate. [Review analysis findings](../../guides/reviewing-findings/) covers investigation and disposition. These procedures do not reproduce the study's SonarQube/GitLab integration.
+
 ## Related tools
 
 We used SonarQube. I list [Server](../../tools/sonarqube/) and [Community Build](../../tools/sonarqube-community/), but our study does not compare those current editions.

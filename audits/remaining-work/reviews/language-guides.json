@@ -1,0 +1,633 @@
+{
+  "status": "complete",
+  "reviewer": "remaining_discovery",
+  "review_kind": "final-language-review-after-implementation",
+  "review_date": "2026-11-06",
+  "scope": "All current guides, concepts, research pages and example Markdown README/evidence files.",
+  "product_edits": false,
+  "text_matching": "Read as UTF-8 and normalize CRLF to LF before matching source_text. Each source_text was verified to occur exactly once in its file.",
+  "summary": {
+    "reviewed_files": 34,
+    "recommendations": 25,
+    "estimated_words_removed": 265
+  },
+  "recommendations": [
+    {
+      "id": "LG-01",
+      "file": "src/content/docs/guides/choosing-and-recording-tools.md",
+      "source_text": "A shortlist is a starting point. Use this note to turn a candidate into an\nevaluation plan for one component or connection.",
+      "replacement": "Use this note to turn a shortlisted tool into an evaluation plan for one\ncomponent or connection.",
+      "reason": "Remove the generic opening and lead with the task; retain the following export and comparison constraints.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-02",
+      "file": "src/content/docs/guides/run-record.md",
+      "source_text": "Write the plan first. Expected output describes what would show that the check\nis active; it is not evidence that the run happened.",
+      "replacement": "Record the expected signal before running. It describes how to confirm the\ncheck is active, not evidence that it ran.",
+      "reason": "Tighten the explanation while retaining the expected-versus-observed distinction.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-03",
+      "file": "src/content/docs/guides/python-checks.md",
+      "source_text": "The runner checks the tool versions, runs each tool separately, and records the\ncommands, input hashes, host, versions, and return codes in `run.json`.\n`ruff.json` contains Ruff diagnostics; `mypy.txt` contains mypy's report. Each\ntool also has a separate stderr file. Read both reports even if the first tool\nfinds a problem. Use a new output directory for each rerun; the runner refuses to\noverwrite earlier reports. Setup failures are recorded in `run.json`, and a\ntimeout retains any partial output.",
+      "replacement": "The runner verifies versions, runs each tool separately, and saves commands,\ninput hashes, host details, versions, and return codes in `run.json`. Diagnostics\ngo in `ruff.json` and `mypy.txt`, with separate stderr files. Read both reports.\nUse a new output directory for each rerun; the runner refuses to overwrite\nearlier reports. It records setup failures and retains partial output on timeout.",
+      "reason": "Combine repeated report descriptions without dropping version checks, separate outputs, overwrite protection, or failure evidence.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-04",
+      "file": "src/content/docs/guides/ci-checks.md",
+      "source_text": "For this small recipe, every reported diagnostic blocks the gate. For an existing project, introduce a reviewed rule set and scope, then decide whether existing findings need a tracked remediation period. Do not regenerate a baseline on every run to force a passing status.",
+      "replacement": "This recipe blocks on every diagnostic. For an existing project, review the rule set and scope, then decide whether existing findings need a tracked remediation period. Do not regenerate baselines to force a pass.",
+      "reason": "Use direct verbs and remove qualifiers that do not change the gate policy.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-05",
+      "file": "src/content/docs/guides/reviewing-findings.md",
+      "source_text": "**Check that the intended analysis completed before deciding what its findings mean.**",
+      "replacement": "**Confirm that the intended analysis completed before interpreting findings.**",
+      "reason": "Shorten the lead without weakening the completion check.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-06",
+      "file": "src/content/docs/guides/reviewing-findings.md",
+      "source_text": "Record which interpretation the code supports instead of dismissing all unused-import warnings.",
+      "replacement": "Record the evidence for that interpretation.",
+      "reason": "The preceding sentences already describe the possible interpretations; remove the hypothetical dismissal.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-07",
+      "file": "src/content/docs/guides/execution-and-data.md",
+      "source_text": "Managed Scans are a separate execution choice: Semgrep clones the selected repository into its infrastructure for the scan, then removes the clone. Do not describe this as analysis on your own runner.",
+      "replacement": "Managed Scans run on Semgrep's infrastructure: the service clones the selected repository, scans it, then removes the clone.",
+      "reason": "State the execution location directly rather than repeating it as a warning.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-08",
+      "file": "src/content/docs/guides/test-evidence.md",
+      "source_text": "A passing suite says that its checks passed for the executions it made. Use\nother evidence to find missing paths and weak checks, while keeping each result's\nscope clear.",
+      "replacement": "A passing suite can leave paths untested or rely on weak assertions. Use the\nevidence below to investigate both, while keeping each result's scope clear.",
+      "reason": "Replace a tautological opening with the specific reason to examine coverage and mutation evidence.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-09",
+      "file": "src/content/docs/guides/test-evidence.md",
+      "source_text": "The useful change is the\nboundary assertion; this tiny example does not establish that every project\nshould reach a particular mutation score.",
+      "replacement": "The boundary assertion improved this suite; the result does not set a target\nmutation score for other projects.",
+      "reason": "Tighten the conclusion while retaining the limit on generalizing the measured score.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-10",
+      "file": "src/content/docs/guides/api-testing.md",
+      "source_text": "No finding in a short run proves absence of defects, and raw finding\ncounts are not a comparison of RESTler and Schemathesis coverage.",
+      "replacement": "A short run without findings does not prove that defects are absent. Raw\nfinding counts do not compare RESTler and Schemathesis coverage.",
+      "reason": "Remove the ambiguity in \"No finding\" while retaining both interpretation limits.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-11",
+      "file": "src/content/docs/guides/temporal-monitoring-and-falsification.md",
+      "source_text": "A temporal requirement describes behavior over time. The distinction to make first is whether you already have a trace to evaluate or need to generate executions that might violate the requirement.",
+      "replacement": "A temporal requirement describes behavior over time. First decide whether to evaluate an existing trace or generate executions that might violate it.",
+      "reason": "Remove the roundabout lead-in and state the choice directly.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-12",
+      "file": "src/content/docs/guides/temporal-monitoring-and-falsification.md",
+      "source_text": "A counterexample is useful evidence to replay against the same simulator and configuration.",
+      "replacement": "Replay a counterexample with the same simulator and configuration.",
+      "reason": "Express the required action directly; the following budget limitation remains unchanged.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-13",
+      "file": "src/content/docs/guides/editing.md",
+      "source_text": "Link the relevant official guides and license evidence, and record the review date. A detailed official repository guide can qualify; the number of links alone does not establish documentation quality. If a required fact cannot be verified, keep the candidate in research notes until it can be resolved. Limit the entry to documented capabilities instead of filling gaps with assumptions.",
+      "replacement": "Cite official guides and license evidence, and record the review date. A detailed official repository guide can qualify; link counts alone do not establish quality. Keep unverifiable candidates in research notes and limit entries to documented capabilities.",
+      "reason": "Consolidate repeated admission guidance while preserving primary evidence, licensing, date, and unverifiable-candidate requirements.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-14",
+      "file": "src/content/docs/concepts/dast-approaches.md",
+      "source_text": "DAST does not have one universal list of mutually exclusive types. It is more useful to describe a test along several dimensions. A single scan can be active, authenticated, and API-focused at the same time.",
+      "replacement": "Describe a DAST test along several dimensions: a scan can be active, authenticated, and API-focused at the same time.",
+      "reason": "Remove the abstract discussion of taxonomies; the example already explains that categories overlap.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-15",
+      "file": "src/content/docs/concepts/model-falsification.md",
+      "source_text": "Model checking aims to establish whether a model satisfies a property under its stated assumptions and may also return counterexamples. The simulation searches covered here are aimed at finding violations; a successful search can refute a property, while an unsuccessful search alone cannot prove it.",
+      "replacement": "Model checking asks whether a model satisfies a property under stated assumptions and may return a counterexample. Simulation falsification searches for violations.",
+      "reason": "Remove repetition of the no-proof-from-unsuccessful-search explanation already retained under \"What a result establishes\".",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-16",
+      "file": "src/content/docs/concepts/static-approaches.md",
+      "source_text": "The similar names of cwe-checker and CVE Binary Tool conceal different jobs. One looks for weakness patterns in recovered code; the other identifies components and matches vulnerability records.",
+      "replacement": "cwe-checker looks for weakness patterns in recovered code; CVE Binary Tool identifies components and matches vulnerability records.",
+      "reason": "Name each tool directly and remove the figurative lead-in; the CVE and exploitability limits remain.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-17",
+      "file": "src/content/docs/concepts/advanced-static-methods.md",
+      "source_text": "A repair to this condition is:",
+      "replacement": "Add an upper-bound check:",
+      "reason": "Name the concrete code change instead of using an abstract transition; pointer/allocation assumptions remain immediately below.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-18",
+      "file": "src/content/docs/concepts/verification-and-generated-tests.md",
+      "source_text": "**Start with the claim you want to check and the evidence you need.** Testing tries selected inputs and can reveal failures. Formal verification can establish a stated property when its proof succeeds, under the model's assumptions. These workflows need different inputs and give different kinds of evidence.",
+      "replacement": "**Choose the claim and evidence you need.** Testing can reveal failures on selected inputs. A successful formal proof can establish a stated property under the model's assumptions.",
+      "reason": "Remove repeated introductory framing while retaining selected-input and successful-proof qualifications.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-19",
+      "file": "src/content/docs/research/index.md",
+      "source_text": "My research examines how static analysis tools are used to assess software security and quality. In these notes, I summarize work with my collaborators and discuss what our findings mean for developers using these tools.",
+      "replacement": "I summarize research with my collaborators and its implications for developers using static analysis to assess software security and quality.",
+      "reason": "Combine two overlapping introductory sentences while retaining the author's perspective and research scope.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-20",
+      "file": "src/content/docs/research/index.md",
+      "source_text": "I cover a literature review, a CI/CD use case, an empirical comparison, and two proposed applications of software quality assessment. I discuss recommendations separately from our reported results.",
+      "replacement": "I distinguish recommendations from our reported results.",
+      "reason": "The Topics list already names all five research areas; retain only the important evidence distinction here.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-21",
+      "file": "src/content/docs/research/sast-adoption.md",
+      "source_text": "When evaluating a tool, I would consider the following questions:",
+      "replacement": "I would ask:",
+      "reason": "The section heading and table already establish the evaluation context; retain the personal recommendation voice.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-22",
+      "file": "src/content/docs/research/binary-analysis.md",
+      "source_text": "We propose a measurement approach. In the paper, we identify applying it to malware samples and validating the resulting assessments as future work.",
+      "replacement": "Applying the proposed approach to malware samples and validating the assessments remain future work.",
+      "reason": "Say once that application and validation are future work; preserve the proposal-versus-evaluated-results boundary.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-23",
+      "file": "examples/test-quality/evidence.md",
+      "source_text": "Independent review found that recursive Jest globs could include tests from an\nold Stryker temporary copy. The configurations now match only the intended\nroot test file and exclude `.stryker-tmp`. Both baselines and mutation runs were\nrepeated with the corrected configurations: one suite per baseline, one weak\ntest and two strong tests, with the same mutant outcomes. The retained hashes\nand reports describe these corrected runs.",
+      "replacement": "The retained runs use Jest configurations that select only the intended test\nfile and exclude `.stryker-tmp`, preventing discovery of old temporary copies.\nBoth baselines and mutation runs were repeated after the fix: one suite each,\none weak test and two strong tests, with the same mutant outcomes.",
+      "reason": "Lead with the configuration represented by the retained evidence; remove repeated assertions that the reports describe the corrected runs.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-24",
+      "file": "examples/protocol-ping/README.md",
+      "source_text": "This separate protocol fixture gives boofuzz a target, two selected mutations,\na response check, and a reset/readiness callback. It is not an HTTP API or a\ngeneral fuzzing campaign. The target stores no data between connections.",
+      "replacement": "This boofuzz fixture supplies a target, two selected mutations, a response\ncheck, and a readiness callback. It demonstrates a custom protocol, not HTTP\nor a general fuzzing campaign.",
+      "reason": "Tighten the opening and leave the stateless/reset explanation at its detailed location below; retain the finite custom-protocol scope.",
+      "source_matches": 1
+    },
+    {
+      "id": "LG-25",
+      "file": "examples/rtamt/README.md",
+      "source_text": "Import or parser errors mean the monitor did not evaluate the trace. A negative\nrobustness value means evaluation completed and the supplied trace violated the\nrequirement. Keep those outcomes separate.",
+      "replacement": "An import or parser error means the trace was not evaluated. Negative\nrobustness means evaluation completed and found a violation.",
+      "reason": "Remove the repeated instruction to distinguish outcomes after stating the distinction directly.",
+      "source_matches": 1
+    }
+  ],
+  "preserved": [
+    "Commands and code blocks",
+    "Versions, environment and model/bounds assumptions",
+    "Measured versus illustrative labels and failure meanings",
+    "Licenses and publication dates",
+    "Mutation-state definitions and exact denominator",
+    "Research proposals versus reported findings and first-person voice"
+  ],
+  "reviewed_files": [
+    {
+      "path": "examples/http-api/README.md",
+      "sha256": "12c3baa40160771d61d224f17fcba0e7035fd42deaec288696c8a6f9c050a86b",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "examples/protocol-ping/README.md",
+      "sha256": "0f45015df31ef2c949c96e4ffe089a6f4210243d49c62d076f1b4bb49ce1e22b",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "examples/python-checks/evidence.md",
+      "sha256": "cff8f2d44ae72e7fc6626d03e0349a192073fe3c0b312cee8722ae0dd5ca32c9",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "examples/python-coverage/evidence.md",
+      "sha256": "0dca6a59aa79659b3db7bcb3a806f83905a12ea20da48cfdc20edf699131a5ac",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "examples/rtamt/README.md",
+      "sha256": "732e411755033d6ee7e5acb0d1d5364b9c41517c50d62cef308d3c3b99d60569",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "examples/semgrep-ce-check/evidence.md",
+      "sha256": "5d126ba716a350f32fda83860b2aa179efa4a9aad9658246da06264c35dbc8b1",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "examples/test-quality/evidence.md",
+      "sha256": "e63cb2dff48bebbf3680fd3ac1d9e86e156ac4df1abdc9cfa297d640a63b5ce2",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/concepts/advanced-static-methods.md",
+      "sha256": "9785932a106a87dbee16f7d50e93cfcb8e477de5321207cd3455cceb9a3d318c",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/concepts/dast-approaches.md",
+      "sha256": "fb00ce568be0c8eabe3bfe30347390caf05edd168a601dc44adfdd814581d4fa",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/concepts/model-falsification.md",
+      "sha256": "8f106e039bdda27eda2fffe63b9fb232b650ab23de2b29539ecef74a606e3cab",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/concepts/sast-vs-dast.md",
+      "sha256": "600bdf352a5bfad022fd5f6ea078c435dd5f75d7aa902ef3562c2d0ddff8d089",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/concepts/static-approaches.md",
+      "sha256": "164b4143da0e0170cd90d30a2e25b86c35a3fb9c1d0f5520a15c830a8f1aeecd",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/concepts/static-vs-dynamic.md",
+      "sha256": "4d4208b9eaf0e0e658c2747b93e36ae49b4e598603037db9560ab6027fef743a",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/concepts/verification-and-generated-tests.md",
+      "sha256": "4188156b262908d5c9967f4b393d10698b3dd61844fe93d4d9df6778eb355b43",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/guides/api-testing.md",
+      "sha256": "d273a7fb488ed64e0d7392fadb3ea91869229bca590ac07587c1f120c5d16fab",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/guides/choosing-and-recording-tools.md",
+      "sha256": "9169bda35db57e3ff03b455cddcbfe555730ef4c8a3f178867b8d1a61b4ede7d",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/guides/ci-checks.md",
+      "sha256": "f06eae1dc85acf8f1437317a88aef581fdd3b7ddd581b8ade8e5c94ec70c75a1",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/guides/editing.md",
+      "sha256": "89bf172bf1e3bd52d41b28bbb72df7ff4a04d39f5b9ba58b71ab9cf90b8b4a56",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/guides/execution-and-data.md",
+      "sha256": "c09fe5e9365d7898b136f231242cd5c74cda52602714326646cde8b6e565c19c",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/guides/java-analysis.md",
+      "sha256": "0323ca73d7e269fa22e9df6974daad43ab7b331ca343669aff19a57ca69b7798",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/guides/memory-error-detection.md",
+      "sha256": "093a1b61b746e94629444c2d65a091fae243793c0e5d20773e571bbd5949b4b4",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/guides/python-checks.md",
+      "sha256": "6bdf30444bafc6b62c13d3f04c0ced3a312503b1ec5df87ef92282e514b8ccd9",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/guides/reviewing-findings.md",
+      "sha256": "700fd7757fe5347395e0d515b573bbfb5f2e06542e363691280898588056f9b2",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/guides/run-record.md",
+      "sha256": "e9ae2ea6d0361091d0a7665baf0fa64532ee8a934762c6f9d9bc34ef3f5f4651",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/guides/secret-scanning.md",
+      "sha256": "64ecc1c6f3a24a64a819877a52eb2807e9a9fe415b4604357aa37dd8624c3a86",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/guides/temporal-monitoring-and-falsification.md",
+      "sha256": "4795cb812d98f1a79794f2e483f15bf3ff63928d76294344323b9ad5886ce2b6",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/guides/test-evidence.md",
+      "sha256": "a4a811e99d796af800e634e266aacc93e091426401a88dc02a5a16e6a4b6aac7",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/guides/using-this-wiki.md",
+      "sha256": "606577c872c16026719dc9b1ec3eff41f1a27d56a1d32908a90e8aa805a17858",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/research/binary-analysis.md",
+      "sha256": "9de9309d0708a49ebda8bed62842eb6d9086e66eba8c37eb9de56421c8183500",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/research/comparing-tools.md",
+      "sha256": "c500bffc5304e81942d6d54b7f8b4d18c83a4bd29b0d2c3aa06c55b31cd071fb",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/research/index.md",
+      "sha256": "2c78748c01fe4a32e5858d4500e6322ba0dfe0f6aa023468b6a4836d6e3a8dff",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/research/sast-adoption.md",
+      "sha256": "7b9b5410cfbe57054112aac2bce8e772e3832172798b4576a747d2dcaebc2768",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/research/sast-workflow.md",
+      "sha256": "500e5a8dbcc9e45d7a406e2bdb92fd20b729c7d51983a2eb8f0a770cc258f326",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    },
+    {
+      "path": "src/content/docs/research/software-quality.md",
+      "sha256": "fa4b461014ea4ebddb26cae523b580385b26c719f3da0dd5433679ec55e76fa8",
+      "scope": "Language, repetition and length only; no new technical fact review."
+    }
+  ],
+  "limitations": [
+    "Recommendations are read-only; coordinator applies accepted edits.",
+    "No build, browser check or analyzer rerun was needed for this prose review.",
+    "Factual qualifications that carry scope or evidence meaning were retained even when they repeat across independent pages."
+  ],
+  "applied_verification": {
+    "status": "passed",
+    "verified_at_utc": "2026-11-06T21:05:09.606883+00:00",
+    "scope": "Language-only verification after coordinator applied suggestions; no broad technical rereview, build, browser pass or product edit.",
+    "recommendations_verified": [
+      "LG-01",
+      "LG-02",
+      "LG-03",
+      "LG-04",
+      "LG-05",
+      "LG-06",
+      "LG-07",
+      "LG-08",
+      "LG-09",
+      "LG-10",
+      "LG-11",
+      "LG-12",
+      "LG-13",
+      "LG-14",
+      "LG-15",
+      "LG-16",
+      "LG-17",
+      "LG-18",
+      "LG-19",
+      "LG-20",
+      "LG-21",
+      "LG-22",
+      "LG-23",
+      "LG-24",
+      "LG-25"
+    ],
+    "additional_edit": {
+      "file": "src/content/docs/guides/editing.md",
+      "source_text": "1 MiB (1,048,576 UTF-8 bytes)",
+      "replacement": "1 MiB",
+      "result": "Meaning preserved; 1 MiB equals 1048576 bytes."
+    },
+    "checks": [
+      {
+        "check": "Exact recommendations",
+        "result": "All 25 replacement texts occur exactly once; all original source texts are absent."
+      },
+      {
+        "check": "Changes accounted for",
+        "result": "Reversing the 25 recommendations and the one 1 MiB consistency edit reconstructs the original reviewed content hashes for all 34 files, allowing only LF/CRLF representation."
+      },
+      {
+        "check": "Commands and code",
+        "result": "Fenced code blocks are unchanged. RTAMT formula, mutation denominator, command arguments, versions, execution labels, license statements and retained result counts remain intact."
+      },
+      {
+        "check": "Meaning",
+        "result": "Replacements retain the reviewed technical scope and evidence qualifications. The RESTler no-findings sentence is clearer; proposal-versus-evaluated research claims remain distinct."
+      },
+      {
+        "check": "1 MiB wording",
+        "result": "Removing the parenthetical byte expansion preserves the same 1 MiB limit. Component/connection counts and the following formatted-for-saving size qualification are unchanged."
+      }
+    ],
+    "current_files": [
+      {
+        "path": "examples/http-api/README.md",
+        "sha256": "12c3baa40160771d61d224f17fcba0e7035fd42deaec288696c8a6f9c050a86b",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "examples/protocol-ping/README.md",
+        "sha256": "f015f377769a72ce4754c107597cfc32b257ffda29755e881f56970a6b57fe0d",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "examples/python-checks/evidence.md",
+        "sha256": "cff8f2d44ae72e7fc6626d03e0349a192073fe3c0b312cee8722ae0dd5ca32c9",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "examples/python-coverage/evidence.md",
+        "sha256": "0dca6a59aa79659b3db7bcb3a806f83905a12ea20da48cfdc20edf699131a5ac",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "examples/rtamt/README.md",
+        "sha256": "d015a28229707ac412be714c4b361a29116588892de01e639b08600ccb25c104",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "examples/semgrep-ce-check/evidence.md",
+        "sha256": "5d126ba716a350f32fda83860b2aa179efa4a9aad9658246da06264c35dbc8b1",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "examples/test-quality/evidence.md",
+        "sha256": "fe85f9c8c3984085b5016d2ff70353adb3c206e5308a7ce9d91775f8dc63cdbb",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/concepts/advanced-static-methods.md",
+        "sha256": "7de8d78691cb198966fecaea690fe6628160c5bf3e9d2a2a695b0d512407e136",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/concepts/dast-approaches.md",
+        "sha256": "0d777db1f401c05e8377c501735cf7b018be018c0f807197eb1e42776fc53b60",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/concepts/model-falsification.md",
+        "sha256": "941ab61158610f17997051bca2afa2167da11d37f2acdd1e502ebc2f6766d3af",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/concepts/sast-vs-dast.md",
+        "sha256": "600bdf352a5bfad022fd5f6ea078c435dd5f75d7aa902ef3562c2d0ddff8d089",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/concepts/static-approaches.md",
+        "sha256": "1a36ed4b0a00e7c2a17de889af5abebc8e510b9740699eda73c64bad65ef4370",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/concepts/static-vs-dynamic.md",
+        "sha256": "4d4208b9eaf0e0e658c2747b93e36ae49b4e598603037db9560ab6027fef743a",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/concepts/verification-and-generated-tests.md",
+        "sha256": "8bb829fb33bb8fef444b1c39f12550af774ed4dd0792605f56da8de334d185b2",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/guides/api-testing.md",
+        "sha256": "79c67f627649a16443745d167c67708435a99b11ec0baacf77f5170a780010ed",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/guides/choosing-and-recording-tools.md",
+        "sha256": "8f43328e6d071a99b72e1a636bb4b92146a22b076eb976808afb319eb9727de5",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/guides/ci-checks.md",
+        "sha256": "c92c26645bab739429312cbd4699506404d3b6055596bf4202b7ddec9a970c97",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/guides/editing.md",
+        "sha256": "dc70c7c01d500b3f9724291488d7c0bbdc177b46b0176dd1960b466f1bbc1cc8",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/guides/execution-and-data.md",
+        "sha256": "b6f0a556886069b1f88af7f624eda7d34ada37c5493a0a480d5dbc5166734eb1",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/guides/java-analysis.md",
+        "sha256": "0323ca73d7e269fa22e9df6974daad43ab7b331ca343669aff19a57ca69b7798",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/guides/memory-error-detection.md",
+        "sha256": "093a1b61b746e94629444c2d65a091fae243793c0e5d20773e571bbd5949b4b4",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/guides/python-checks.md",
+        "sha256": "8ce2809c49e23112a55b4ff1b4db62a5c0a61708d059df7ae1432c4f395ce705",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/guides/reviewing-findings.md",
+        "sha256": "66d6f54e4a351c12d40b2256b0af100c0339c416dad99a86579ecf7447dbe4ee",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/guides/run-record.md",
+        "sha256": "fbe2ee3f630c871516e5785a7ac1fd5a3f68a9aaf327f2e93fb89511b632389c",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/guides/secret-scanning.md",
+        "sha256": "64ecc1c6f3a24a64a819877a52eb2807e9a9fe415b4604357aa37dd8624c3a86",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/guides/temporal-monitoring-and-falsification.md",
+        "sha256": "0604dce350696442c83fd5e83382e255a8f3004c8f798e4a376e7e21f53f5edc",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/guides/test-evidence.md",
+        "sha256": "d5fc217f98add1d68ab60b7debfdc4259f0a344300de707e2e11a3bca9db967e",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/guides/using-this-wiki.md",
+        "sha256": "606577c872c16026719dc9b1ec3eff41f1a27d56a1d32908a90e8aa805a17858",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/research/binary-analysis.md",
+        "sha256": "386d10ad927198fdc47ad02f14474926526c0b037595257c61a98a03389a7d6c",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/research/comparing-tools.md",
+        "sha256": "c500bffc5304e81942d6d54b7f8b4d18c83a4bd29b0d2c3aa06c55b31cd071fb",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/research/index.md",
+        "sha256": "c0677122abe7357d668543eda299b4f57294b90a79a4c321842d948a4c03d677",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/research/sast-adoption.md",
+        "sha256": "2a2981c00476ed491bd5fb32eda421c3543ba5c71f0782ec6ce7928af29839d5",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/research/sast-workflow.md",
+        "sha256": "500e5a8dbcc9e45d7a406e2bdb92fd20b729c7d51983a2eb8f0a770cc258f326",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      },
+      {
+        "path": "src/content/docs/research/software-quality.md",
+        "sha256": "fa4b461014ea4ebddb26cae523b580385b26c719f3da0dd5433679ec55e76fa8",
+        "scope": "Language-only verification of applied recommendations and unchanged prose context; not a new technical or execution review."
+      }
+    ]
+  }
+}

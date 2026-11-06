@@ -18,7 +18,7 @@ tool:
   scope: Semgrep Code on the AppSec Platform, including Free Edition and paid plans. Supply Chain and Secrets are separate products.
   findings: ["Injection risks","Unsafe API use","Security misconfiguration"]
   findingNote: "Selected SAST rules and supported advanced analyses. Known-dependency detection belongs to the separate Supply Chain product."
-  environment: "Managed scans or a supported local/CI scanner host; Linux and macOS, with native Windows documented as beta."
+  environment: "Managed scans or a local/CI host with Python 3.10+: Linux, Apple silicon macOS with arm64 Python, or Windows beta. Intel macOS support ends at Semgrep 1.182.x."
   setup: "Connect a repository and configure scans/rules and platform access. Normal source scans do not require a runtime harness or application build."
   sources:
     - label: Host and platform prerequisites
@@ -48,3 +48,5 @@ Paid plans expand team and organization support. Product modules and additional 
 **Related product family:** The [OCPP study](https://www.cs.montana.edu/izurieta/pubs/CSR_2026_Wadhams.pdf) included Semgrep, but its reported configuration should not be treated as a benchmark of today's Semgrep Code, Pro rules, or plan features.
 
 [Comparing SAST tools](../../research/comparing-tools/) explains how to interpret differences in reported findings. Check the edition and selected rules when applying those lessons to this platform.
+
+Compare the reviewed [execution and data boundaries](../../guides/execution-and-data/) for CE and Code workflows.

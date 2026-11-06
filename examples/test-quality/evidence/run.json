@@ -1,0 +1,75 @@
+{
+  "evidence": "executed",
+  "date": "2026-11-06",
+  "host": "Windows-11-10.0.26300-SP0",
+  "node": "24.22.1",
+  "pnpm": "11.25.0",
+  "stryker": "9.0.1",
+  "jest": "29.7.0",
+  "installation": "pnpm install --ignore-workspace --ignore-scripts --store-dir ../../.preview/measurement-pnpm-store --node-linker hoisted",
+  "path_note": "Absolute fixture paths in the reports are normalized to FIXTURE. Mutant outcomes and test attribution are unchanged.",
+  "inputs_sha256": {
+    "package.json": "c0a7839660a95237e37311b12edb3c2163125c4d0c0309b88173b7253433b086",
+    "pnpm-lock.yaml": "f26f3b9a251a5426d17caf0ef6ea70574e9ef5a9e2244a1f3319c4950871951e",
+    "src/discount.js": "0b2533f1c0ce9d2e310bd2a11cbfa3bf34616a01e0477af097e7fc39ec657c55",
+    "tests/weak.test.js": "19bfcd10deb4b7eebba5680cd70a92454f620d1fd737e96fa6a69e40e0e5d406",
+    "tests/strong.test.js": "747e23bfebbc38b5be11ba6ee6cab10265a1be01367cb2f915aca774c38f1c5c",
+    "jest.weak.config.cjs": "59a472de3c7a081e8e2ac03191a3fdf888703a1d2bc2c092c3d80c6032104003",
+    "jest.strong.config.cjs": "ce01d67a66c487dc8e828240e588b716db19eafa99bc20608184a8dc81ef802b",
+    "stryker.base.mjs": "6f3eb950aa122bfc6cd8b12b2cb502ad523204bc75242619efab9898f5494f6a",
+    "stryker.weak.config.mjs": "d1c3eaf9081fd479e6860d97dbf1dcbfb95f0eeefa10133dd13cb8ce4dce6c1c",
+    "stryker.strong.config.mjs": "318f7403dd990220fd23b3ac17fa1488de4ac7a4baf42cbf00d226f97d74fd63"
+  },
+  "runs": [
+    {
+      "suite": "weak",
+      "baseline_command": [
+        "node",
+        "node_modules/jest/bin/jest.js",
+        "--config",
+        "jest.weak.config.cjs",
+        "--runInBand"
+      ],
+      "baseline_exit_code": 0,
+      "baseline_suites": 1,
+      "baseline_tests": 1,
+      "command": [
+        "node",
+        "node_modules/@stryker-mutator/core/bin/stryker.js",
+        "run",
+        "stryker.weak.config.mjs"
+      ],
+      "mutation_exit_code": 0,
+      "counts": {
+        "Killed": 5,
+        "Survived": 1
+      },
+      "report": "weak.json"
+    },
+    {
+      "suite": "strong",
+      "baseline_command": [
+        "node",
+        "node_modules/jest/bin/jest.js",
+        "--config",
+        "jest.strong.config.cjs",
+        "--runInBand"
+      ],
+      "baseline_exit_code": 0,
+      "baseline_suites": 1,
+      "baseline_tests": 2,
+      "command": [
+        "node",
+        "node_modules/@stryker-mutator/core/bin/stryker.js",
+        "run",
+        "stryker.strong.config.mjs"
+      ],
+      "mutation_exit_code": 0,
+      "counts": {
+        "Killed": 6
+      },
+      "report": "strong.json"
+    }
+  ],
+  "rerun_reason": "Independent review found stale Stryker copies could enter recursive Jest discovery. Root-anchored testMatch and temporary-directory exclusion now isolate the baseline."
+}

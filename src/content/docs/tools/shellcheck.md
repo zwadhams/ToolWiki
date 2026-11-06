@@ -70,6 +70,8 @@ Use ShellCheck on shell scripts in local projects, build steps, or CI jobs. It r
 
 Choose the intended dialect. A script meant for POSIX `sh` can have portability problems even when it happens to run under Bash on your machine.
 
+For PowerShell scripts and modules, use [PSScriptAnalyzer](../psscriptanalyzer/). PowerShell is a separate source language and is outside ShellCheck's dialects.
+
 ## Worked example: an unquoted expansion
 
 **Illustrative example, not run here.** Save this as `sample.sh`:

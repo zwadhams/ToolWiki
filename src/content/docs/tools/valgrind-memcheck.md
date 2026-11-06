@@ -54,6 +54,8 @@ tool:
       url: https://valgrind.org/docs/manual/mc-manual.html
     - label: About Valgrind and licensing
       url: https://valgrind.org/info/
+    - label: First Memcheck run and report structure
+      url: https://valgrind.org/docs/manual/quick-start.html
 ---
 
 ## What it does
@@ -70,6 +72,42 @@ It analyzes the execution you exercise. An untested path can still contain a def
 
 Memcheck is dynamic analysis, but it is not a web DAST scanner.
 
-## Getting started
+<span id="getting-started"></span>
 
-Begin with the Memcheck manual and a reproducible test case. Review error contexts before suppressing reports, and keep suppressions narrow enough to preserve useful findings.
+## First try
+
+**Illustrative example; not executed here.** This path targets
+[Valgrind 3.28.0](https://valgrind.org/downloads/) on amd64 Linux with a C compiler
+such as GCC. Install it through your distribution or the release instructions.
+Native Windows is outside this path. Save `memory.c`:
+
+```c
+#include <stdlib.h>
+
+int main(void) {
+    int *values = malloc(4 * sizeof(*values));
+    if (values == NULL) return 1;
+    values[4] = 7;
+    free(values);
+    return 0;
+}
+```
+
+Build with debug information, then run under Memcheck:
+
+```sh
+cc -g -O0 memory.c -o memory
+valgrind --tool=memcheck --leak-check=full ./memory
+```
+
+Expect an invalid-write report at `values[4]`: the allocation has indices 0
+through 3. Inspect the stack and allocation context, not just the final error
+count. Change the write to `values[3]`, rebuild, and rerun with the same options.
+The invalid write should disappear; a failed allocation is a separate execution
+outcome, not a successful check of that write.
+
+The [official quick start](https://valgrind.org/docs/manual/quick-start.html)
+explains debug builds and report structure. For your application, retain its
+normal input arguments, the binary identity, and any suppressions in a
+[run record](../../guides/run-record/). Memcheck checks the paths actually run;
+use representative tests and review errors before adding narrow suppressions.

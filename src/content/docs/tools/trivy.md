@@ -115,6 +115,10 @@ tool:
       url: https://trivy.dev/docs/latest/guide/target/sbom/
     - label: License
       url: https://github.com/aquasecurity/trivy/blob/main/LICENSE
+    - label: Image targets and access preparation
+      url: https://trivy.dev/docs/latest/guide/target/container_image/
+    - label: OSV-Scanner supported artifacts for comparison
+      url: https://google.github.io/osv-scanner/supported-languages-and-lockfiles/
 ---
 
 ## Choose the input and scanner
@@ -139,6 +143,25 @@ trivy config .
 
 The first command selects vulnerability matching. The second checks supported configuration files. Misconfiguration scanning is not enabled by default in the `image`, `fs`, and `repo` commands; select it explicitly when needed.
 
+## Inspect a container image
+
+**Illustrative command; not executed here.** Replace `IMAGE_REFERENCE` with the
+image you intend to inspect, preferably an immutable registry digest such as
+`REGISTRY/PROJECT/IMAGE@sha256:DIGEST`. Those uppercase terms are placeholders.
+Prepare registry access and Trivy's vulnerability data using the
+[image-target guide](https://trivy.dev/docs/latest/guide/target/container_image/).
+An image in a local container engine needs access to that engine; a private
+registry may require authentication.
+
+```sh
+trivy image --scanners vuln IMAGE_REFERENCE
+```
+
+For an existing image archive, use the guide's `--input` route instead of a
+registry reference. Record the image identity and database state. Inspect the
+package, installed version, advisory, and fixed version in each finding. Trivy
+does not run the image, and a package match does not establish exploitability.
+
 ## Interpret findings
 
 For related workflows, compare [Grype](../grype/) for package vulnerabilities, [Checkov](../checkov/) for infrastructure policies, and [Hadolint](../hadolint/) for Dockerfile linting. Their input and finding categories differ.
@@ -148,3 +171,19 @@ For a vulnerability, inspect the identified package, installed version, advisory
 Different inventories and data sources can produce different reports. Record the scanner version, database state, target identity, selected scanners, and exclusions before comparing runs. A package match is evidence to investigate, not proof that an attacker can reach the vulnerable code.
 
 [Compare Trivy and OSV-Scanner](../../compare/?tools=tools%2Ftrivy%2Ctools%2Fosv-scanner) by inputs, findings, setup, and scope.
+
+## Compare package scanners
+
+Trivy and OSV-Scanner both match identified packages to vulnerability data.
+Compare them on the same image digest or dependency snapshot, checking which
+packages each actually extracted. Their supported artifacts and advisory sources
+can differ, so a larger finding count alone does not establish a better scan.
+Use the [OSV-Scanner artifact table](https://google.github.io/osv-scanner/supported-languages-and-lockfiles/)
+and [Trivy coverage table](https://trivy.dev/docs/latest/guide/coverage/language/)
+for the input in hand.
+
+Trivy's separate configuration checks answer a different question about
+infrastructure definitions. This comparison does not attribute those checks to
+OSV-Scanner or turn either tool into a general source-code analyzer.
+
+Check the [execution and data boundaries](../../guides/execution-and-data/) for database retrieval, telemetry, and offline preparation.

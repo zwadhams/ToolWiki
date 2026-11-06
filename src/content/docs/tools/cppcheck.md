@@ -2,6 +2,7 @@
 title: Cppcheck (Open Source)
 description: Find undefined behavior, memory errors, and other defects in C and C++ source code.
 tool:
+  searchTerms: [null pointer dereference]
   analysisWorkflows:
     - id: source
       label: Source analysis

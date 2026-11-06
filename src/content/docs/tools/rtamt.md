@@ -32,7 +32,7 @@ tool:
   targets: ["Time-series signals","Runtime traces","Simulation traces"]
   findings: ["Temporal requirement violations"]
   findingNote: "Evaluates the supplied trace against the specified formula. It does not generate scenarios or search for counterexamples by itself, and a satisfying trace is not a model-checking proof."
-  environment: "A compatible Python environment for the selected RTAMT and parser versions. Pure-Python monitors avoid the optional compiled backend, which adds CMake, compiler, and Boost.Python requirements."
+  environment: "RTAMT 0.4.10 requires Python 3.8 through 3.12 and antlr4-python3-runtime 4.7. The example uses Python 3.12.16 and the pure-Python backend; the optional compiled backend adds CMake, compiler, and Boost.Python requirements."
   setup: "A compatible Python environment, named signals with timestamps, and a requirement written in Signal Temporal Logic (STL). Choose the timing semantics that match your data."
   licenseCategory: "Open source"
   license: "BSD-3-Clause"
@@ -58,9 +58,9 @@ Use RTAMT when you already have signals to evaluate, or can stream observations 
 
 ## First try
 
-**Previously reported; not reproduced in this review.** The earlier environment was Windows, Python 3.12.14, RTAMT 0.4.10, using the pure-Python backend. The saved parser dependency failed to import on Python 3.13.15 during this review; use a compatible Python/parser combination.
+**Executed on 2026-11-06:** Windows, Python 3.12.16, RTAMT 0.4.10, and antlr4-python3-runtime 4.7, using the pure-Python backend. Both the violating and corrected traces reproduced. Python 3.13 or newer is outside this release's supported range.
 
-Follow the [installation instructions](https://github.com/nickovic/rtamt#installation) for a compatible environment. Save this as `temperature.py`, then run `python temperature.py`. The requirement says that temperature must stay at or below 80 for the next two time units:
+Use the [pinned example and setup steps](https://github.com/zwadhams/ToolWiki/tree/main/examples/rtamt) or the [RTAMT installation guide](https://github.com/nickovic/rtamt#installation). This smaller example evaluates the violating trace; save it as `temperature.py` and run `python temperature.py` in that environment. The requirement says that temperature must stay at or below 80 for the next two time units:
 
 ```python
 import rtamt
@@ -75,12 +75,12 @@ robustness = spec.evaluate(["temperature", trace])
 print(robustness[0])
 ```
 
-The earlier account reported `[0, -5.0]`: at time zero, the two-unit interval includes a temperature of 85, five above the limit. Replacing both 85 values with 79 was reported to produce `[0, 1.0]`, a positive margin for this trace.
+The observed result was `[0, -5.0]`: at time zero, the two-unit interval includes a temperature of 85, five above the limit. Replacing both 85 values with 79 produced `[0, 1.0]`, a positive margin for the corrected trace. The [execution record](https://github.com/zwadhams/ToolWiki/blob/main/audits/remaining-work/executions/rtamt.json) retains the versions, script digest, and both outputs. A parser or import failure is a setup failure, not a temporal evaluation.
 
 <details>
 <summary>Earlier example evidence</summary>
 
-The local check was reported on 2026-09-21. The 2026-09-22 audit did not rerun it or locate a saved execution record. On 2026-10-29, the saved RTAMT 0.4.10 and antlr4-python3-runtime 4.7 packages failed before evaluation on Windows/Python 3.13.15 because the parser imported `typing.io`. The listed trace outputs remain the earlier reported results; the current check did not reproduce them.
+The local check was first reported on 2026-09-21. The 2026-09-22 audit did not rerun it or locate a saved execution record. On 2026-10-29, the saved RTAMT 0.4.10 and antlr4-python3-runtime 4.7 packages failed before evaluation on Windows/Python 3.13.15 because the parser imported `typing.io`. The 2026-11-06 run uses a fresh Python 3.12.16 environment and preserves new execution evidence; it does not alter those historical audit results.
 
 </details>
 

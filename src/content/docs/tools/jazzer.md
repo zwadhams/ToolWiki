@@ -80,12 +80,21 @@ class MarkerFuzzTest {
 }
 ```
 
-In PowerShell, enable input generation for the test run:
+In PowerShell, enable input generation for the test run, then restore the previous environment setting:
 
 ```powershell
-$env:JAZZER_FUZZ = '1'
-mvn '-Dtest=MarkerFuzzTest' test
-Remove-Item Env:JAZZER_FUZZ
+$jazzerFuzzWasSet = Test-Path Env:JAZZER_FUZZ
+$previousJazzerFuzz = $env:JAZZER_FUZZ
+try {
+    $env:JAZZER_FUZZ = '1'
+    mvn '-Dtest=MarkerFuzzTest' test
+} finally {
+    if ($jazzerFuzzWasSet) {
+        $env:JAZZER_FUZZ = $previousJazzerFuzz
+    } else {
+        Remove-Item Env:JAZZER_FUZZ -ErrorAction SilentlyContinue
+    }
+}
 ```
 
 An input beginning with `BUG` is an intended witness. The short time budget does not guarantee discovery. This deliberately failing harness demonstrates the workflow; it is not a real vulnerability.

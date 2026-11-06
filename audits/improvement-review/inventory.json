@@ -1,0 +1,2528 @@
+[
+  {
+    "id": "actionlint",
+    "title": "actionlint",
+    "path": "src/content/docs/tools/actionlint.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Configuration files"
+    ],
+    "techniques": [
+      "Linting",
+      "Type checking"
+    ],
+    "languages": [
+      "GitHub Actions"
+    ],
+    "findings": [
+      "Logic errors",
+      "Type errors"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "address-sanitizer",
+    "title": "AddressSanitizer (Clang)",
+    "path": "src/content/docs/tools/address-sanitizer.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Runtime memory checking",
+      "Sanitizer instrumentation"
+    ],
+    "languages": [
+      "C",
+      "C++"
+    ],
+    "findings": [
+      "Memory safety"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": true,
+    "sources": 3
+  },
+  {
+    "id": "afl-plus-plus",
+    "title": "AFL++",
+    "path": "src/content/docs/tools/afl-plus-plus.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Coverage-guided fuzzing"
+    ],
+    "languages": [
+      "C",
+      "C++",
+      "Language independent"
+    ],
+    "findings": [
+      "Crashes and hangs",
+      "Memory safety",
+      "Specification violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "angr",
+    "title": "angr",
+    "path": "src/content/docs/tools/angr.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Binary analysis",
+      "Symbolic execution"
+    ],
+    "languages": [
+      "Language independent"
+    ],
+    "findings": [
+      "Specification violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 7
+  },
+  {
+    "id": "atheris",
+    "title": "Atheris",
+    "path": "src/content/docs/tools/atheris.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Callable code"
+    ],
+    "techniques": [
+      "Coverage-guided fuzzing"
+    ],
+    "languages": [
+      "Python"
+    ],
+    "findings": [
+      "Crashes and hangs",
+      "Specification violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "bandit",
+    "title": "Bandit",
+    "path": "src/content/docs/tools/bandit.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "SAST",
+      "Pattern matching"
+    ],
+    "languages": [
+      "Python"
+    ],
+    "findings": [
+      "Injection risks",
+      "Unsafe API use",
+      "Security misconfiguration"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "binwalk",
+    "title": "Binwalk",
+    "path": "src/content/docs/tools/binwalk.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Binary analysis",
+      "Signature matching",
+      "Entropy analysis"
+    ],
+    "languages": [
+      "Language independent"
+    ],
+    "findings": [
+      "Embedded file formats"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "boofuzz",
+    "title": "boofuzz",
+    "path": "src/content/docs/tools/boofuzz.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Running applications"
+    ],
+    "techniques": [
+      "Protocol fuzzing",
+      "Mutation-based fuzzing"
+    ],
+    "languages": [
+      "Language independent"
+    ],
+    "findings": [
+      "Crashes and hangs",
+      "Specification violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "brakeman",
+    "title": "Brakeman",
+    "path": "src/content/docs/tools/brakeman.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "SAST",
+      "Data flow analysis"
+    ],
+    "languages": [
+      "Ruby"
+    ],
+    "findings": [
+      "Injection risks",
+      "Unsafe API use",
+      "Security misconfiguration"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 5
+  },
+  {
+    "id": "breach",
+    "title": "Breach",
+    "path": "src/content/docs/tools/breach.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Executable models",
+      "Execution traces"
+    ],
+    "techniques": [
+      "Model falsification",
+      "Temporal logic monitoring"
+    ],
+    "languages": [
+      "MATLAB",
+      "Simulink"
+    ],
+    "findings": [
+      "Temporal requirement violations"
+    ],
+    "workflow_count": 2,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "burp-suite-community",
+    "title": "Burp Suite Community Edition",
+    "path": "src/content/docs/tools/burp-suite-community.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Running applications"
+    ],
+    "techniques": [
+      "Manual web testing",
+      "HTTP interception"
+    ],
+    "languages": [
+      "Language independent"
+    ],
+    "findings": [
+      "Injection risks",
+      "Security misconfiguration"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 2
+  },
+  {
+    "id": "burp-suite-professional",
+    "title": "Burp Suite Professional",
+    "path": "src/content/docs/tools/burp-suite-professional.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Running applications"
+    ],
+    "techniques": [
+      "DAST",
+      "Active scanning",
+      "Passive scanning"
+    ],
+    "languages": [
+      "Language independent"
+    ],
+    "findings": [
+      "Injection risks",
+      "Security misconfiguration"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "capa",
+    "title": "capa",
+    "path": "src/content/docs/tools/capa.md",
+    "modes": [
+      "Static",
+      "Dynamic"
+    ],
+    "inputs": [
+      "Binaries",
+      "Execution traces"
+    ],
+    "techniques": [
+      "Binary analysis",
+      "Rule-based matching",
+      "Trace analysis"
+    ],
+    "languages": [
+      "Language independent"
+    ],
+    "findings": [
+      "Program capabilities"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "cargo-audit",
+    "title": "cargo-audit",
+    "path": "src/content/docs/tools/cargo-audit.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Dependency metadata",
+      "Binaries"
+    ],
+    "techniques": [
+      "Software composition analysis",
+      "Known vulnerability detection"
+    ],
+    "languages": [
+      "Rust"
+    ],
+    "findings": [
+      "Known vulnerable dependencies"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "cbmc",
+    "title": "CBMC",
+    "path": "src/content/docs/tools/cbmc.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Bounded model checking",
+      "Formal verification"
+    ],
+    "languages": [
+      "C",
+      "C++"
+    ],
+    "findings": [
+      "Memory safety",
+      "Specification violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "checkov",
+    "title": "Checkov",
+    "path": "src/content/docs/tools/checkov.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Configuration files"
+    ],
+    "techniques": [
+      "Configuration analysis"
+    ],
+    "languages": [
+      "Terraform",
+      "Kubernetes/Helm",
+      "CloudFormation",
+      "Docker"
+    ],
+    "findings": [
+      "Security misconfiguration"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "checkstyle",
+    "title": "Checkstyle",
+    "path": "src/content/docs/tools/checkstyle.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting"
+    ],
+    "languages": [
+      "Java"
+    ],
+    "findings": [
+      "Coding conventions",
+      "Coding-standard violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "clang-static-analyzer",
+    "title": "Clang Static Analyzer",
+    "path": "src/content/docs/tools/clang-static-analyzer.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Symbolic execution",
+      "Bug finding"
+    ],
+    "languages": [
+      "C",
+      "C++",
+      "Objective-C"
+    ],
+    "findings": [
+      "Memory safety",
+      "Logic errors"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 2
+  },
+  {
+    "id": "clang-tidy",
+    "title": "clang-tidy",
+    "path": "src/content/docs/tools/clang-tidy.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting",
+      "Bug finding"
+    ],
+    "languages": [
+      "C",
+      "C++"
+    ],
+    "findings": [
+      "Logic errors",
+      "Coding conventions",
+      "Unsafe API use"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 5
+  },
+  {
+    "id": "clippy",
+    "title": "Clippy",
+    "path": "src/content/docs/tools/clippy.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting",
+      "Bug finding"
+    ],
+    "languages": [
+      "Rust"
+    ],
+    "findings": [
+      "Logic errors",
+      "Coding conventions"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "codeql",
+    "title": "CodeQL",
+    "path": "src/content/docs/tools/codeql.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "SAST",
+      "Data flow analysis"
+    ],
+    "languages": [
+      "C",
+      "C++",
+      "C#",
+      "Go",
+      "Java",
+      "JavaScript",
+      "Kotlin",
+      "Python",
+      "Ruby",
+      "Rust",
+      "Swift",
+      "TypeScript",
+      "GitHub Actions"
+    ],
+    "findings": [
+      "Injection risks",
+      "Memory safety",
+      "Concurrency issues"
+    ],
+    "workflow_count": 0,
+    "verified": "2026-09-22",
+    "decision_summary": true,
+    "sources": 7
+  },
+  {
+    "id": "coverity-scan",
+    "title": "Coverity Scan",
+    "path": "src/content/docs/tools/coverity-scan.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "SAST",
+      "Data flow analysis",
+      "Bug finding"
+    ],
+    "languages": [
+      "C",
+      "C++",
+      "C#",
+      "Java",
+      "JavaScript",
+      "Ruby",
+      "Python"
+    ],
+    "findings": [
+      "Memory safety",
+      "Logic errors",
+      "Concurrency issues"
+    ],
+    "workflow_count": 0,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "coverity",
+    "title": "Coverity (commercial)",
+    "path": "src/content/docs/tools/coverity.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "SAST",
+      "Data flow analysis",
+      "Bug finding"
+    ],
+    "languages": [
+      "C",
+      "C++",
+      "C#",
+      "Java",
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "Go",
+      "Ruby",
+      "PHP",
+      "Kotlin",
+      "Scala",
+      "Swift",
+      "Objective-C",
+      "Fortran",
+      "Dart",
+      "Apex",
+      "JSP",
+      "VB.NET",
+      "CUDA"
+    ],
+    "findings": [
+      "Injection risks",
+      "Memory safety",
+      "Logic errors",
+      "Concurrency issues"
+    ],
+    "workflow_count": 0,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "cpachecker",
+    "title": "CPAchecker",
+    "path": "src/content/docs/tools/cpachecker.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Model checking",
+      "Abstract interpretation",
+      "Formal verification"
+    ],
+    "languages": [
+      "C"
+    ],
+    "findings": [
+      "Specification violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "cppcheck",
+    "title": "Cppcheck (Open Source)",
+    "path": "src/content/docs/tools/cppcheck.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Bug finding",
+      "Data flow analysis"
+    ],
+    "languages": [
+      "C",
+      "C++"
+    ],
+    "findings": [
+      "Memory safety",
+      "Logic errors",
+      "Coding-standard violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "cve-bin-tool",
+    "title": "CVE Binary Tool (cve-bin-tool)",
+    "path": "src/content/docs/tools/cve-bin-tool.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Binaries",
+      "Dependency metadata"
+    ],
+    "techniques": [
+      "Software composition analysis",
+      "Known vulnerability detection"
+    ],
+    "languages": [
+      "Language independent",
+      "Dart",
+      "Go",
+      "Java",
+      "JavaScript",
+      "Perl",
+      "PHP",
+      "Python",
+      "R",
+      "Ruby",
+      "Rust",
+      "Swift"
+    ],
+    "findings": [
+      "Known vulnerable dependencies"
+    ],
+    "workflow_count": 2,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "cwe-checker",
+    "title": "cwe-checker",
+    "path": "src/content/docs/tools/cwe-checker.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Binary analysis",
+      "Data flow analysis",
+      "Weakness detection"
+    ],
+    "languages": [
+      "Language independent"
+    ],
+    "findings": [
+      "Memory safety",
+      "Concurrency issues",
+      "Unsafe API use"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "dafny",
+    "title": "Dafny",
+    "path": "src/content/docs/tools/dafny.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Deductive verification",
+      "Formal verification"
+    ],
+    "languages": [
+      "Dafny"
+    ],
+    "findings": [
+      "Specification violations",
+      "Type errors"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "dependency-check",
+    "title": "OWASP Dependency-Check",
+    "path": "src/content/docs/tools/dependency-check.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Dependency metadata",
+      "Binaries"
+    ],
+    "techniques": [
+      "Software composition analysis",
+      "Known vulnerability detection"
+    ],
+    "languages": [
+      "Java",
+      ".NET"
+    ],
+    "findings": [
+      "Known vulnerable dependencies"
+    ],
+    "workflow_count": 3,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "detect-secrets",
+    "title": "detect-secrets",
+    "path": "src/content/docs/tools/detect-secrets.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code",
+      "Configuration files"
+    ],
+    "techniques": [
+      "Secret scanning"
+    ],
+    "languages": [
+      "Language independent"
+    ],
+    "findings": [
+      "Exposed secrets"
+    ],
+    "workflow_count": 2,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "detekt",
+    "title": "detekt",
+    "path": "src/content/docs/tools/detekt.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting",
+      "Bug finding"
+    ],
+    "languages": [
+      "Kotlin"
+    ],
+    "findings": [
+      "Coding conventions",
+      "Logic errors",
+      "Code complexity"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "dotnet-analyzers",
+    "title": ".NET analyzers",
+    "path": "src/content/docs/tools/dotnet-analyzers.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting",
+      "Bug finding"
+    ],
+    "languages": [
+      "C#",
+      "VB.NET"
+    ],
+    "findings": [
+      "Logic errors",
+      "Coding conventions",
+      "Unsafe API use"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 5
+  },
+  {
+    "id": "dr-memory",
+    "title": "Dr. Memory",
+    "path": "src/content/docs/tools/dr-memory.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Dynamic instrumentation",
+      "Runtime memory checking"
+    ],
+    "languages": [
+      "C",
+      "C++",
+      "Language independent"
+    ],
+    "findings": [
+      "Memory safety",
+      "Resource leaks"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "esbmc",
+    "title": "ESBMC",
+    "path": "src/content/docs/tools/esbmc.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Bounded model checking",
+      "Formal verification"
+    ],
+    "languages": [
+      "C",
+      "C++"
+    ],
+    "findings": [
+      "Memory safety",
+      "Specification violations",
+      "Undefined behavior"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "eslint",
+    "title": "ESLint",
+    "path": "src/content/docs/tools/eslint.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting",
+      "Bug finding"
+    ],
+    "languages": [
+      "JavaScript",
+      "TypeScript"
+    ],
+    "findings": [
+      "Logic errors",
+      "Coding conventions"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 6
+  },
+  {
+    "id": "fast-check",
+    "title": "fast-check",
+    "path": "src/content/docs/tools/fast-check.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Callable code"
+    ],
+    "techniques": [
+      "Property-based testing"
+    ],
+    "languages": [
+      "JavaScript",
+      "TypeScript"
+    ],
+    "findings": [
+      "Specification violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "floss",
+    "title": "FLOSS",
+    "path": "src/content/docs/tools/floss.md",
+    "modes": [
+      "Static",
+      "Dynamic"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Binary analysis",
+      "String extraction",
+      "Emulation"
+    ],
+    "languages": [
+      "Language independent",
+      "Go",
+      "Rust"
+    ],
+    "findings": [
+      "Recovered strings"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "frama-c",
+    "title": "Frama-C (Eva and WP)",
+    "path": "src/content/docs/tools/frama-c.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Abstract interpretation",
+      "Deductive verification",
+      "Formal verification"
+    ],
+    "languages": [
+      "C"
+    ],
+    "findings": [
+      "Memory safety",
+      "Specification violations"
+    ],
+    "workflow_count": 2,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 5
+  },
+  {
+    "id": "ghidra",
+    "title": "Ghidra",
+    "path": "src/content/docs/tools/ghidra.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Binary analysis",
+      "Disassembly",
+      "Decompilation"
+    ],
+    "languages": [
+      "Language independent"
+    ],
+    "findings": [
+      "Code structure"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "go-race-detector",
+    "title": "Go race detector",
+    "path": "src/content/docs/tools/go-race-detector.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Runtime race detection",
+      "Sanitizer instrumentation"
+    ],
+    "languages": [
+      "Go"
+    ],
+    "findings": [
+      "Concurrency issues"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "go-vet",
+    "title": "go vet",
+    "path": "src/content/docs/tools/go-vet.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Bug finding"
+    ],
+    "languages": [
+      "Go"
+    ],
+    "findings": [
+      "Logic errors"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "gosec",
+    "title": "gosec",
+    "path": "src/content/docs/tools/gosec.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "SAST",
+      "Pattern matching",
+      "Data flow analysis"
+    ],
+    "languages": [
+      "Go"
+    ],
+    "findings": [
+      "Injection risks",
+      "Unsafe API use",
+      "Security misconfiguration"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "govulncheck",
+    "title": "govulncheck",
+    "path": "src/content/docs/tools/govulncheck.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code",
+      "Binaries"
+    ],
+    "techniques": [
+      "Software composition analysis",
+      "Known vulnerability detection"
+    ],
+    "languages": [
+      "Go"
+    ],
+    "findings": [
+      "Known vulnerable dependencies"
+    ],
+    "workflow_count": 2,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "grype",
+    "title": "Grype",
+    "path": "src/content/docs/tools/grype.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Container images",
+      "Dependency metadata"
+    ],
+    "techniques": [
+      "Software composition analysis",
+      "Known vulnerability detection"
+    ],
+    "languages": [
+      "Python",
+      "JavaScript",
+      "Java",
+      "Go",
+      "PHP",
+      ".NET",
+      "Dart",
+      "Ruby",
+      "Rust",
+      "Swift",
+      "GitHub Actions"
+    ],
+    "findings": [
+      "Known vulnerable dependencies"
+    ],
+    "workflow_count": 2,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 5
+  },
+  {
+    "id": "hadolint",
+    "title": "Hadolint",
+    "path": "src/content/docs/tools/hadolint.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Configuration files"
+    ],
+    "techniques": [
+      "Linting"
+    ],
+    "languages": [
+      "Docker"
+    ],
+    "findings": [
+      "Coding conventions",
+      "Logic errors"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "hypothesis",
+    "title": "Hypothesis",
+    "path": "src/content/docs/tools/hypothesis.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Callable code"
+    ],
+    "techniques": [
+      "Property-based testing"
+    ],
+    "languages": [
+      "Python"
+    ],
+    "findings": [
+      "Specification violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "infer",
+    "title": "Infer (Pulse)",
+    "path": "src/content/docs/tools/infer.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "SAST",
+      "Symbolic execution"
+    ],
+    "languages": [
+      "C",
+      "C++",
+      "Objective-C",
+      "Java",
+      "Hack"
+    ],
+    "findings": [
+      "Memory safety",
+      "Specification violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "jazzer",
+    "title": "Jazzer",
+    "path": "src/content/docs/tools/jazzer.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Callable code",
+      "Binaries"
+    ],
+    "techniques": [
+      "Coverage-guided fuzzing"
+    ],
+    "languages": [
+      "Java",
+      "Kotlin"
+    ],
+    "findings": [
+      "Crashes and hangs",
+      "Specification violations",
+      "Injection risks"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "jbmc",
+    "title": "JBMC",
+    "path": "src/content/docs/tools/jbmc.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Bounded model checking",
+      "Formal verification"
+    ],
+    "languages": [
+      "Java"
+    ],
+    "findings": [
+      "Logic errors",
+      "Specification violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "kani",
+    "title": "Kani",
+    "path": "src/content/docs/tools/kani.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Bounded model checking",
+      "Formal verification"
+    ],
+    "languages": [
+      "Rust"
+    ],
+    "findings": [
+      "Memory safety",
+      "Specification violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 5
+  },
+  {
+    "id": "klee",
+    "title": "KLEE",
+    "path": "src/content/docs/tools/klee.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Symbolic execution"
+    ],
+    "languages": [
+      "C"
+    ],
+    "findings": [
+      "Specification violations",
+      "Memory safety"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 6
+  },
+  {
+    "id": "libfuzzer",
+    "title": "libFuzzer",
+    "path": "src/content/docs/tools/libfuzzer.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Coverage-guided fuzzing"
+    ],
+    "languages": [
+      "C",
+      "C++"
+    ],
+    "findings": [
+      "Crashes and hangs",
+      "Memory safety",
+      "Specification violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 2
+  },
+  {
+    "id": "memory-sanitizer",
+    "title": "MemorySanitizer",
+    "path": "src/content/docs/tools/memory-sanitizer.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Runtime memory checking",
+      "Sanitizer instrumentation"
+    ],
+    "languages": [
+      "C",
+      "C++"
+    ],
+    "findings": [
+      "Memory safety"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "miri",
+    "title": "Miri",
+    "path": "src/content/docs/tools/miri.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Callable code"
+    ],
+    "techniques": [
+      "Runtime memory checking",
+      "Runtime race detection"
+    ],
+    "languages": [
+      "Rust"
+    ],
+    "findings": [
+      "Memory safety",
+      "Concurrency issues"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "mypy",
+    "title": "mypy",
+    "path": "src/content/docs/tools/mypy.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Type checking"
+    ],
+    "languages": [
+      "Python"
+    ],
+    "findings": [
+      "Type errors"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 5
+  },
+  {
+    "id": "osv-scanner",
+    "title": "OSV-Scanner",
+    "path": "src/content/docs/tools/osv-scanner.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Dependency metadata",
+      "Container images"
+    ],
+    "techniques": [
+      "Software composition analysis",
+      "Known vulnerability detection"
+    ],
+    "languages": [
+      "C",
+      "C++",
+      "Dart",
+      "Elixir",
+      "Go",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      ".NET",
+      "PHP",
+      "Python",
+      "R",
+      "Ruby",
+      "Rust"
+    ],
+    "findings": [
+      "Known vulnerable dependencies"
+    ],
+    "workflow_count": 2,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 5
+  },
+  {
+    "id": "phpstan",
+    "title": "PHPStan",
+    "path": "src/content/docs/tools/phpstan.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Type checking",
+      "Bug finding"
+    ],
+    "languages": [
+      "PHP"
+    ],
+    "findings": [
+      "Type errors",
+      "Logic errors"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-21",
+    "decision_summary": false,
+    "sources": 6
+  },
+  {
+    "id": "pmd",
+    "title": "PMD",
+    "path": "src/content/docs/tools/pmd.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting",
+      "Bug finding"
+    ],
+    "languages": [
+      "Java",
+      "Apex",
+      "JavaScript",
+      "Kotlin",
+      "Swift",
+      "Modelica",
+      "PL/SQL",
+      "HTML",
+      "XML",
+      "Visualforce",
+      "JSP"
+    ],
+    "findings": [
+      "Logic errors",
+      "Coding conventions"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "polyspace-code-prover",
+    "title": "Polyspace Code Prover",
+    "path": "src/content/docs/tools/polyspace-code-prover.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Abstract interpretation",
+      "Formal verification"
+    ],
+    "languages": [
+      "C",
+      "C++"
+    ],
+    "findings": [
+      "Memory safety",
+      "Logic errors"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "psalm",
+    "title": "Psalm",
+    "path": "src/content/docs/tools/psalm.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Type checking",
+      "Bug finding",
+      "Taint analysis"
+    ],
+    "languages": [
+      "PHP"
+    ],
+    "findings": [
+      "Type errors",
+      "Logic errors",
+      "Injection risks"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "psy-taliro",
+    "title": "PSY-TaLiRo",
+    "path": "src/content/docs/tools/psy-taliro.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Executable models",
+      "Execution traces"
+    ],
+    "techniques": [
+      "Model falsification",
+      "Temporal logic monitoring"
+    ],
+    "languages": [
+      "Python"
+    ],
+    "findings": [
+      "Temporal requirement violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "pvs-studio",
+    "title": "PVS-Studio",
+    "path": "src/content/docs/tools/pvs-studio.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "SAST",
+      "Bug finding",
+      "Data flow analysis"
+    ],
+    "languages": [
+      "C",
+      "C++",
+      "C#",
+      "Java",
+      "JavaScript",
+      "TypeScript",
+      "Go"
+    ],
+    "findings": [
+      "Memory safety",
+      "Injection risks",
+      "Logic errors",
+      "Coding-standard violations"
+    ],
+    "workflow_count": 0,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 6
+  },
+  {
+    "id": "pylint",
+    "title": "Pylint",
+    "path": "src/content/docs/tools/pylint.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting",
+      "Bug finding"
+    ],
+    "languages": [
+      "Python"
+    ],
+    "findings": [
+      "Logic errors",
+      "Coding conventions",
+      "Code complexity"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "pyright",
+    "title": "Pyright",
+    "path": "src/content/docs/tools/pyright.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Type checking"
+    ],
+    "languages": [
+      "Python"
+    ],
+    "findings": [
+      "Type errors"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "restler",
+    "title": "RESTler",
+    "path": "src/content/docs/tools/restler.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Running applications"
+    ],
+    "techniques": [
+      "API testing",
+      "Stateful fuzzing"
+    ],
+    "languages": [
+      "Language independent"
+    ],
+    "findings": [
+      "Server errors",
+      "Specification violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "rtamt",
+    "title": "RTAMT",
+    "path": "src/content/docs/tools/rtamt.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Execution traces"
+    ],
+    "techniques": [
+      "Temporal logic monitoring",
+      "Runtime verification"
+    ],
+    "languages": [
+      "Language independent"
+    ],
+    "findings": [
+      "Temporal requirement violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-21",
+    "decision_summary": true,
+    "sources": 3
+  },
+  {
+    "id": "rubocop",
+    "title": "RuboCop",
+    "path": "src/content/docs/tools/rubocop.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting",
+      "Bug finding"
+    ],
+    "languages": [
+      "Ruby"
+    ],
+    "findings": [
+      "Logic errors",
+      "Coding conventions",
+      "Code complexity"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "ruff",
+    "title": "Ruff",
+    "path": "src/content/docs/tools/ruff.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting",
+      "Bug finding"
+    ],
+    "languages": [
+      "Python"
+    ],
+    "findings": [
+      "Logic errors",
+      "Coding conventions",
+      "Unsafe API use"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": true,
+    "sources": 7
+  },
+  {
+    "id": "s-taliro",
+    "title": "S-TaLiRo",
+    "path": "src/content/docs/tools/s-taliro.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Executable models",
+      "Execution traces"
+    ],
+    "techniques": [
+      "Model falsification",
+      "Temporal logic monitoring"
+    ],
+    "languages": [
+      "MATLAB",
+      "Simulink"
+    ],
+    "findings": [
+      "Temporal requirement violations"
+    ],
+    "workflow_count": 0,
+    "verified": "2026-09-21",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "schemathesis",
+    "title": "Schemathesis",
+    "path": "src/content/docs/tools/schemathesis.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Running applications"
+    ],
+    "techniques": [
+      "API testing",
+      "Property-based testing",
+      "Stateful testing"
+    ],
+    "languages": [
+      "Language independent"
+    ],
+    "findings": [
+      "Specification violations",
+      "Server errors",
+      "Input validation"
+    ],
+    "workflow_count": 2,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "semgrep-ce",
+    "title": "Semgrep CE",
+    "path": "src/content/docs/tools/semgrep-ce.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "SAST",
+      "Pattern matching",
+      "Data flow analysis"
+    ],
+    "languages": [
+      "C",
+      "C++",
+      "C#",
+      "Go",
+      "Java",
+      "JavaScript",
+      "Kotlin",
+      "Python",
+      "Ruby",
+      "Rust",
+      "TypeScript",
+      "PHP"
+    ],
+    "findings": [
+      "Injection risks",
+      "Unsafe API use",
+      "Coding conventions"
+    ],
+    "workflow_count": 0,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 6
+  },
+  {
+    "id": "semgrep-code",
+    "title": "Semgrep Code",
+    "path": "src/content/docs/tools/semgrep-code.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "SAST",
+      "Pattern matching",
+      "Data flow analysis"
+    ],
+    "languages": [
+      "C",
+      "C++",
+      "C#",
+      "Go",
+      "Java",
+      "JavaScript",
+      "Kotlin",
+      "Python",
+      "Ruby",
+      "Rust",
+      "TypeScript",
+      "PHP",
+      "Scala",
+      "Swift",
+      "Terraform"
+    ],
+    "findings": [
+      "Injection risks",
+      "Unsafe API use",
+      "Security misconfiguration"
+    ],
+    "workflow_count": 0,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "shellcheck",
+    "title": "ShellCheck",
+    "path": "src/content/docs/tools/shellcheck.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting",
+      "Bug finding"
+    ],
+    "languages": [
+      "Bash",
+      "POSIX sh",
+      "Dash",
+      "Ksh",
+      "BusyBox sh"
+    ],
+    "findings": [
+      "Logic errors",
+      "Coding conventions",
+      "Portability issues"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 5
+  },
+  {
+    "id": "sonarqube-community",
+    "title": "SonarQube Community Build",
+    "path": "src/content/docs/tools/sonarqube-community.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "SAST",
+      "Bug finding"
+    ],
+    "languages": [
+      "C#",
+      "Java",
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "Go",
+      "Kotlin",
+      "PHP",
+      "Ruby",
+      "Rust",
+      "Scala",
+      "Terraform",
+      "HTML",
+      "CSS",
+      "XML",
+      "VB.NET",
+      "Flex",
+      "Docker",
+      "CloudFormation",
+      "Azure Resource Manager",
+      "Kubernetes/Helm"
+    ],
+    "findings": [
+      "Injection risks",
+      "Logic errors",
+      "Coding conventions"
+    ],
+    "workflow_count": 0,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "sonarqube",
+    "title": "SonarQube Server",
+    "path": "src/content/docs/tools/sonarqube.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "SAST",
+      "Bug finding",
+      "Data flow analysis"
+    ],
+    "languages": [
+      "C",
+      "C++",
+      "C#",
+      "Java",
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "Go",
+      "Kotlin",
+      "PHP",
+      "Ruby",
+      "Rust",
+      "Scala",
+      "Swift",
+      "Objective-C",
+      "Terraform"
+    ],
+    "findings": [
+      "Injection risks",
+      "Logic errors",
+      "Coding conventions"
+    ],
+    "workflow_count": 0,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 5
+  },
+  {
+    "id": "spotbugs",
+    "title": "SpotBugs",
+    "path": "src/content/docs/tools/spotbugs.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Bug finding",
+      "Pattern matching"
+    ],
+    "languages": [
+      "Java"
+    ],
+    "findings": [
+      "Logic errors",
+      "Concurrency issues",
+      "Injection risks"
+    ],
+    "workflow_count": 2,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "sqlfluff",
+    "title": "SQLFluff",
+    "path": "src/content/docs/tools/sqlfluff.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting"
+    ],
+    "languages": [
+      "SQL"
+    ],
+    "findings": [
+      "Coding conventions",
+      "Coding-standard violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "staticcheck",
+    "title": "Staticcheck",
+    "path": "src/content/docs/tools/staticcheck.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting",
+      "Bug finding"
+    ],
+    "languages": [
+      "Go"
+    ],
+    "findings": [
+      "Logic errors",
+      "Coding conventions"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 6
+  },
+  {
+    "id": "stylelint",
+    "title": "Stylelint",
+    "path": "src/content/docs/tools/stylelint.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting"
+    ],
+    "languages": [
+      "CSS"
+    ],
+    "findings": [
+      "Coding conventions"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "swiftlint",
+    "title": "SwiftLint",
+    "path": "src/content/docs/tools/swiftlint.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting"
+    ],
+    "languages": [
+      "Swift"
+    ],
+    "findings": [
+      "Coding conventions",
+      "Logic errors"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "thread-sanitizer",
+    "title": "ThreadSanitizer (Clang)",
+    "path": "src/content/docs/tools/thread-sanitizer.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Runtime race detection",
+      "Sanitizer instrumentation"
+    ],
+    "languages": [
+      "C",
+      "C++"
+    ],
+    "findings": [
+      "Concurrency issues"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "trivy",
+    "title": "Trivy",
+    "path": "src/content/docs/tools/trivy.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Dependency metadata",
+      "Container images",
+      "Configuration files"
+    ],
+    "techniques": [
+      "Software composition analysis",
+      "Known vulnerability detection",
+      "Configuration analysis"
+    ],
+    "languages": [
+      "Python",
+      "JavaScript",
+      "Java",
+      ".NET",
+      "Ruby",
+      "PHP",
+      "Terraform",
+      "Docker",
+      "Kubernetes/Helm",
+      "CloudFormation",
+      "Azure Resource Manager"
+    ],
+    "findings": [
+      "Known vulnerable dependencies",
+      "Security misconfiguration"
+    ],
+    "workflow_count": 3,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 6
+  },
+  {
+    "id": "undefined-behavior-sanitizer",
+    "title": "UndefinedBehaviorSanitizer (Clang)",
+    "path": "src/content/docs/tools/undefined-behavior-sanitizer.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Sanitizer instrumentation",
+      "Runtime undefined behavior checking"
+    ],
+    "languages": [
+      "C",
+      "C++"
+    ],
+    "findings": [
+      "Undefined behavior",
+      "Memory safety"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "valgrind-helgrind",
+    "title": "Valgrind Helgrind",
+    "path": "src/content/docs/tools/valgrind-helgrind.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Runtime race detection",
+      "Dynamic instrumentation"
+    ],
+    "languages": [
+      "C",
+      "C++",
+      "Fortran"
+    ],
+    "findings": [
+      "Concurrency issues"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-26",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "valgrind-memcheck",
+    "title": "Valgrind Memcheck",
+    "path": "src/content/docs/tools/valgrind-memcheck.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Runtime memory checking"
+    ],
+    "languages": [
+      "C",
+      "C++"
+    ],
+    "findings": [
+      "Memory safety"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 3
+  },
+  {
+    "id": "verifai",
+    "title": "VerifAI",
+    "path": "src/content/docs/tools/verifai.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Executable models"
+    ],
+    "techniques": [
+      "Model falsification",
+      "Simulation-based testing"
+    ],
+    "languages": [
+      "Python",
+      "Scenic"
+    ],
+    "findings": [
+      "Temporal requirement violations",
+      "Specification violations"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "wartremover",
+    "title": "WartRemover",
+    "path": "src/content/docs/tools/wartremover.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Source code"
+    ],
+    "techniques": [
+      "Linting",
+      "Bug finding"
+    ],
+    "languages": [
+      "Scala"
+    ],
+    "findings": [
+      "Coding conventions",
+      "Logic errors"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  },
+  {
+    "id": "yara-x",
+    "title": "YARA-X",
+    "path": "src/content/docs/tools/yara-x.md",
+    "modes": [
+      "Static"
+    ],
+    "inputs": [
+      "Binaries"
+    ],
+    "techniques": [
+      "Pattern matching",
+      "Rule-based matching"
+    ],
+    "languages": [
+      "Language independent"
+    ],
+    "findings": [
+      "File pattern matches"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 5
+  },
+  {
+    "id": "zap",
+    "title": "ZAP",
+    "path": "src/content/docs/tools/zap.md",
+    "modes": [
+      "Dynamic"
+    ],
+    "inputs": [
+      "Running applications"
+    ],
+    "techniques": [
+      "DAST",
+      "Passive scanning",
+      "Active scanning"
+    ],
+    "languages": [
+      "Language independent"
+    ],
+    "findings": [
+      "Injection risks",
+      "Security misconfiguration"
+    ],
+    "workflow_count": 1,
+    "verified": "2026-09-22",
+    "decision_summary": false,
+    "sources": 4
+  }
+]

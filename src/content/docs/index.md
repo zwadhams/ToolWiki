@@ -6,3 +6,5 @@ tableOfContents: false
 editUrl: false
 ---
 <p class="catalog-intro">Find a tool for the software you have and the problem you want to investigate. Compare what it checks, what it needs, and what its results mean.</p>
+
+New here? [Use this wiki](./guides/using-this-wiki/) to choose a tool or learn the analysis methods behind it.

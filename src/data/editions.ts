@@ -1,7 +1,9 @@
+import { EDITION_GROUPS } from '../lib/tool-vocabulary.mjs';
+export type EditionGroup = (typeof EDITION_GROUPS)[number];
 type Edition = { name: string; cost: string; difference: string; url: string; slug?: string };
 type Comparison = { intro: string; editions: Edition[]; note?: string; source?: { label: string; url: string } };
 
-export const editionComparisons: Record<string, Comparison> = {
+export const editionComparisons: Record<EditionGroup, Comparison> = {
   coverity: {
     intro: 'Commercial Coverity and the free Scan service have separate eligibility and advertised language coverage. Their catalog entries keep those differences filterable.',
     editions: [
@@ -11,7 +13,7 @@ export const editionComparisons: Record<string, Comparison> = {
     note: 'A publicly visible repository is not by itself proof of Scan eligibility. The service requires registration and acceptance of its terms.',
   },
   polyspace: {
-    intro: 'These are related products with distinct jobs. The catalog entry covers Code Prover; a trial does not count as a permanent free edition.',
+    intro: 'This entry covers Code Prover. Its trial does not count as a free edition.',
     editions: [
       { name: 'Polyspace Bug Finder', cost: 'Paid; confirm entitlements', difference: 'Defect, coding-rule, and code-quality analysis. Listed as a required product for Code Prover.', url: 'https://www.mathworks.com/products/polyspace-bug-finder.html' },
       { name: 'Polyspace Code Prover', cost: 'Paid; trial available', difference: 'Desktop verification of selected C/C++ runtime checks, with proof and unproven-result review.', url: 'https://www.mathworks.com/products/polyspace-code-prover.html', slug: 'tools/polyspace-code-prover' },

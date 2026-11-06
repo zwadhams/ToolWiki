@@ -54,7 +54,7 @@ Bandit parses Python files and runs security checks against their abstract synta
 
 ## When it is useful
 
-Use it as a focused check in a Python development workflow. Its narrow language scope makes it a useful entry point for learning how rule-based security analysis works.
+Use it as a focused security check in a Python development workflow.
 
 ## What to keep in mind
 

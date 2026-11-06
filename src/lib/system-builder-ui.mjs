@@ -1,6 +1,7 @@
 import { ACCESS, COMPONENT_TYPES, FORMATS, INPUTS, INTERFACES, PLATFORMS, STATUS_LABELS, TECHNOLOGIES, TRANSPORTS } from './system-schema.mjs';
-import { analyzeSystem, MAX_IMPORT_BYTES, newComponent, newConnection, parseProfile, removalSnapshot, removeComponent, restoreProfile, saveProfile, serializeProfile, subjectName, undoRemoval } from './system-builder.mjs';
+import { analyzeSystem, MAX_IMPORT_BYTES, newComponent, newConnection, prepareProfileImport, removalSnapshot, removeComponent, replaceSavedProfile, restoreProfile, retryProfileRead, saveProfile, serializeProfile, subjectName, undoRemoval } from './system-builder.mjs';
 import { comparisonHref } from './comparison.mjs';
+import { COSTS, LICENSES } from './tool-vocabulary.mjs';
 
 const el = (tag, text = '', className = '') => {
   const node = document.createElement(tag);
@@ -32,9 +33,10 @@ class SystemBuilder extends HTMLElement {
     this.undo = null;
     let restored;
     try { this.storage = window.localStorage; restored = restoreProfile(this.storage); }
-    catch { restored = restoreProfile(null); }
+    catch { this.storage = null; restored = restoreProfile(null); }
     this.profile = restored.profile;
-    this.initialSaveError = restored.error;
+    this.recovery = restored.recovery;
+    this.saveError = restored.error;
     this.render();
   }
 
@@ -82,9 +84,8 @@ class SystemBuilder extends HTMLElement {
   }
 
   changed(message = '') {
-    const saveError = saveProfile(this.storage, this.profile);
-    if (!saveError) this.initialSaveError = '';
-    this.saveStatus.textContent = saveError || 'Saved in this browser.';
+    this.saveError = saveProfile(this.storage, this.profile, this.recovery);
+    this.saveStatus.textContent = this.saveError || 'Saved in this browser.';
     if (message) this.announce.textContent = message;
     clearTimeout(this.resultTimer);
     this.resultTimer = setTimeout(() => this.renderResults(), 180);
@@ -101,7 +102,13 @@ class SystemBuilder extends HTMLElement {
     target.scrollIntoView({ block: 'center' });
   }
 
-  answerButton(subjectId, question) {
+  answerButton(subjectId, question, tool) {
+    if (question.kind === 'compatibility') {
+      const link = el('a', `Check ${tool.title} compatibility`, 'suite-answer');
+      link.href = `${this.base}/${tool.id}/#technical-details`; link.target = '_blank'; link.rel = 'noopener';
+      link.setAttribute('aria-label', `${question.message} Check ${tool.title} compatibility in a new tab`);
+      return link;
+    }
     const subject = [...this.profile.components, ...this.profile.connections].find(part => part.id === subjectId);
     const control = button(`Answer for ${subjectName(this.profile, subject)}`, () => this.focusAnswer(subjectId, question.field), 'suite-answer');
     control.setAttribute('aria-label', `${question.message} Answer for ${subjectName(this.profile, subject)}`);
@@ -125,15 +132,19 @@ class SystemBuilder extends HTMLElement {
       this.undo = null; this.render(); this.changed('Removed content or previous import restored.'); this.root.querySelector('input')?.focus();
     });
     this.undoButton.hidden = !this.undo; toolbar.append(this.undoButton); header.append(toolbar);
-    header.append(el('p', 'Export system downloads a JSON file with the system name, components, connections, notes, and cost/license preferences. It excludes tool candidates, match explanations, comparison selections, and analysis results. Import restores the description and recalculates suggestions.', 'suite-muted'));
-    this.saveStatus = el('p', this.initialSaveError || '', 'suite-muted');
+    header.append(el('p', 'Export saves your system name, components, connections, notes, and cost/license preferences as JSON. It excludes candidates, match explanations, comparison selections, and analysis results. Import restores the description and recalculates suggestions.', 'suite-muted'));
+    this.saveStatus = el('p', this.saveError || '', 'suite-muted');
     this.saveStatus.setAttribute('role', 'status');
+    this.saveStatus.tabIndex = -1;
+    this.recoveryPanel = el('section', '', 'suite-panel');
+    this.recoveryPanel.setAttribute('aria-label', 'Saved data recovery');
+    this.renderRecovery();
     this.announce = el('p', '', 'suite-notice'); this.announce.setAttribute('role', 'status'); this.announce.setAttribute('aria-live', 'polite');
     const prefs = el('div', '', 'suite-field-grid');
-    this.field(prefs, 'Cost preference', this.profile.preferences.cost, value => { this.profile.preferences.cost = value; this.changed(); }, [choice('', 'Any cost'), choice('any-free', 'Any continuing free option'), 'Free', 'Free with limits', 'Paid']);
-    this.field(prefs, 'License preference', this.profile.preferences.license, value => { this.profile.preferences.license = value; this.changed(); }, [choice('', 'Any license'), 'Open source', 'Source available', 'Proprietary']);
+    this.field(prefs, 'Cost preference', this.profile.preferences.cost, value => { this.profile.preferences.cost = value; this.changed(); }, [choice('', 'Any cost'), choice('any-free', 'Any continuing free option'), ...COSTS]);
+    this.field(prefs, 'License preference', this.profile.preferences.license, value => { this.profile.preferences.license = value; this.changed(); }, [choice('', 'Any license'), ...LICENSES]);
     header.append(prefs, el('p', 'Free with limits can include eligibility conditions. Trial access does not count as a free edition.', 'suite-muted'));
-    this.root.append(this.saveStatus, this.announce);
+    this.root.append(this.saveStatus, this.recoveryPanel, this.announce);
     const jump = el('nav', '', 'suite-actions'); jump.setAttribute('aria-label', 'Builder sections');
     for (const [id, text] of [['suite-components', 'Components'], ['suite-connections', 'Connections'], ['suite-results', 'Tool candidates']]) {
       const link = el('a', text); link.href = `#${id}`; jump.append(link);
@@ -236,7 +247,7 @@ class SystemBuilder extends HTMLElement {
     for (const [key, label] of Object.entries(ACCESS)) this.field(access, `Can you ${label.toLowerCase()}?`, part.access[key], value => { part.access[key] = value; this.changed(); }, tri).dataset.answer = key;
     advanced.append(access, el('p', 'A test harness is code that calls the target and checks its behavior. Instrumentation adds checks to a program when it is built or run.', 'suite-muted'));
     const description = this.disclosure(content, `${part.id}-description`, 'Optional description');
-    description.append(el('p', 'These fields help you organize your system. They do not change suggestions.', 'suite-muted'));
+    description.append(el('p', 'These fields organize your description and do not affect suggestions.', 'suite-muted'));
     const fields = el('div', '', 'suite-field-grid');
     this.field(fields, 'Component type', part.kind, value => { part.kind = value; this.changed(); }, [unknown, ...COMPONENT_TYPES]);
     this.field(fields, 'Deployment context', part.deployment, value => { part.deployment = value; this.changed(); }, [unknown, 'Local/desktop', 'Server/cloud', 'Browser', 'Container', 'Kubernetes', 'Embedded device', 'Simulation', 'Other']);
@@ -345,7 +356,7 @@ class SystemBuilder extends HTMLElement {
     if (unresolved.length) {
       const next = el('p', '', 'suite-next-step'); next.append(el('strong', 'To narrow this match: '), document.createTextNode(unresolved[0])); card.append(next);
       const firstQuestion = entry.matches.flatMap(match => match.questions)[0];
-      if (firstQuestion) card.append(this.answerButton(entry.matches[0].subjectId, firstQuestion));
+      if (firstQuestion) card.append(this.answerButton(entry.matches[0].subjectId, firstQuestion, tool));
     }
     const evidence = el('details'); evidence.append(el('summary', 'Why this tool appears and what it needs'));
     for (const workflowId of unique(entry.matches.map(m => m.workflowId))) {
@@ -360,10 +371,19 @@ class SystemBuilder extends HTMLElement {
         unresolved.forEach(reason => {
           const item = el('li', reason);
           const question = matches.flatMap(match => match.questions).find(question => question.message === reason);
-          if (question) item.append(this.answerButton(matches[0].subjectId, question));
+          if (question) item.append(this.answerButton(matches[0].subjectId, question, tool));
           list.append(item);
         });
         evidence.append(list);
+        if (matches.some(match => match.questions.some(question => question.kind === 'compatibility'))) {
+          evidence.append(el('p', 'Choose a different host only if you will use that environment. Reading compatibility notes does not change this match.', 'suite-muted'));
+          const sources = el('ul');
+          workflow.sources.forEach(url => {
+            const item = el('li'), link = el('a', `Workflow evidence on ${new URL(url).hostname}`);
+            link.href = url; link.target = '_blank'; link.rel = 'noopener'; item.append(link); sources.append(item);
+          });
+          evidence.append(sources);
+        }
       }
       evidence.append(el('p', workflow.caveat, 'suite-muted'));
     }
@@ -400,29 +420,91 @@ class SystemBuilder extends HTMLElement {
     this.tray.replaceChildren();
     this.tray.classList.toggle('has-selection', this.selected.length > 0);
     this.comparisonStatus = el('p', this.selected.length >= 2 ? `${this.selected.length} tools selected.` : 'Select two or three candidates to compare.');
-    this.comparisonStatus.setAttribute('role', 'status'); this.tray.append(this.comparisonStatus);
+    this.comparisonStatus.setAttribute('role', 'status'); this.comparisonStatus.tabIndex = -1; this.tray.append(this.comparisonStatus);
     const actions = el('div', '', 'suite-actions');
     for (const id of this.selected) {
       const tool = this.tools.find(t => t.id === id);
-      actions.append(button(`Remove ${tool.title}`, () => { this.selected = this.selected.filter(s => s !== id); this.updateCompareChecks(); this.renderComparison(); this.tray.querySelector('button, a')?.focus(); }));
+      actions.append(button(`Remove ${tool.title}`, () => {
+        this.selected = this.selected.filter(s => s !== id); this.updateCompareChecks(); this.renderComparison();
+        this.announce.textContent = `${tool.title} removed from comparison.`;
+        (this.tray.querySelector('button, a') || this.comparisonStatus).focus();
+      }));
     }
     if (this.selected.length >= 2) { const link = el('a', 'Open comparison'); link.href = comparisonHref(this.base, this.selected); link.target = '_blank'; link.rel = 'noopener'; link.setAttribute('aria-label', 'Open comparison in a new tab'); actions.append(link); }
     this.tray.append(actions);
   }
 
+  renderRecovery() {
+    this.recoveryPanel.replaceChildren(); this.recoveryPanel.hidden = !this.recovery;
+    if (!this.recovery) return;
+    this.recoveryPanel.append(el('h2', 'Protect saved data'), el('p', this.recovery.reason));
+    const actions = el('div', '', 'suite-actions');
+    if (this.recovery.kind === 'read-error') {
+      this.recoveryPanel.append(el('p', 'You can keep editing in memory. Reading storage again will not discard those edits or overwrite any saved data.'));
+      actions.append(button('Retry reading saved data', () => this.retryStorageRead()));
+    } else {
+      this.recoveryPanel.append(el('p', 'Download recovery data to keep the saved copy. This is not a normal export; it may need correction or reduction before import. Imports and undo keep the saved copy protected.'));
+      actions.append(button('Download recovery data', () => this.exportRecovery()));
+      actions.append(button('Replace saved system', () => this.replaceStoredSystem()));
+    }
+    this.recoveryPanel.append(actions);
+  }
+
+  retryStorageRead() {
+    try { this.storage = window.localStorage; } catch { this.storage = null; }
+    const result = retryProfileRead(this.storage);
+    this.recovery = result.recovery; this.saveError = result.error;
+    this.renderRecovery();
+    if (!this.recovery) this.changed('Saved data was checked. Your current description has been kept.');
+    else {
+      this.saveStatus.textContent = this.saveError;
+      this.announce.textContent = 'Your current description remains in memory. Automatic saving is still paused.';
+    }
+    this.saveStatus.focus();
+  }
+
+  replaceStoredSystem() {
+    try { serializeProfile(this.profile); }
+    catch (error) { this.announce.textContent = `Saved data was kept. ${error.message}`; return; }
+    if (!window.confirm('Replace the saved system with this description? Download recovery data first to keep the saved copy.')) return;
+    const error = replaceSavedProfile(this.storage, this.profile, this.recovery);
+    if (error) { this.saveError = error; this.saveStatus.textContent = error; this.announce.textContent = 'Saved data is still protected.'; return; }
+    this.recovery = null; this.saveError = '';
+    this.renderRecovery(); this.saveStatus.textContent = 'Saved in this browser.';
+    this.announce.textContent = 'Saved system replaced with the current description. Automatic saving has resumed.';
+    this.saveStatus.focus();
+  }
+
+  downloadData(raw, filename) {
+    const url = URL.createObjectURL(new Blob([raw], { type: 'application/json' }));
+    const link = el('a');
+    try { link.href = url; link.download = filename; this.root.append(link); link.click(); }
+    finally { link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000); }
+  }
+
+  exportRecovery() {
+    if (typeof this.recovery?.raw !== 'string') return;
+    try {
+      this.downloadData(this.recovery.raw, 'toolwiki-system-recovery.json');
+      this.announce.textContent = 'Recovery data downloaded. It may need correction or reduction before import. Existing saved data is still protected.';
+    } catch { this.announce.textContent = 'Recovery download could not be created. Existing saved data is still protected.'; }
+  }
+
   exportSystem() {
-    const url = URL.createObjectURL(new Blob([serializeProfile(this.profile)], { type: 'application/json' }));
-    const link = el('a'); link.href = url; link.download = 'toolwiki-system.json'; this.root.append(link); link.click(); link.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 1000); this.announce.textContent = 'System file exported. Import it here to restore the description.';
+    try {
+      const raw = serializeProfile(this.profile);
+      this.downloadData(raw, 'toolwiki-system.json');
+      this.announce.textContent = `System file exported. Import it here to restore the description.${this.recovery ? ' Existing saved data is still protected.' : ''}`;
+    } catch (error) { this.announce.textContent = `Export not created. ${error.message}`; }
   }
 
   async importSystem(file) {
     if (!file) return;
     try {
-      if (file.size > MAX_IMPORT_BYTES) throw new Error('Choose a system file smaller than 1 MB.');
-      const profile = parseProfile(await file.text());
+      if (file.size > MAX_IMPORT_BYTES) throw new Error('System files can be up to 1 MiB. Your current system has been kept.');
+      const profile = prepareProfileImport(await file.text());
       this.undo = { type: 'import', profile: structuredClone(this.profile) }; this.profile = profile; this.selected = [];
-      this.initialSaveError = ''; this.openSections.set('system-options', true); this.render(); this.changed('System imported. Recommendations use the current catalog. Undo is available above.'); this.root.querySelector('input')?.focus();
+      this.openSections.set('system-options', true); this.render(); this.changed('System imported. Recommendations use the current catalog. Undo is available above.'); this.root.querySelector('input')?.focus();
     } catch (error) { this.announce.textContent = error.message; }
     finally { const input = this.root.querySelector('input[type=file]'); if (input) input.value = ''; }
   }

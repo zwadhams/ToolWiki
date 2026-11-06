@@ -1,0 +1,49 @@
+{
+  "host": "Windows-11-10.0.26300-SP0",
+  "k6": "1.0.0 windows/amd64",
+  "inputs_sha256": {
+    "examples/http-api/server.py": "b419c1974730330d7e9b9956f01317755ab50bcd4909c909d32019a99e077867",
+    "examples/http-api/load.js": "1a166395f76900b3a55cc7ac2391c5ef5704ad638d40c02134491737d18c8dc6"
+  },
+  "cases": [
+    {
+      "case": "completed",
+      "fixed": true,
+      "latency_limit_ms": "500",
+      "return_code": 0,
+      "command": [
+        "k6",
+        "run",
+        "--no-usage-report",
+        "load.js"
+      ],
+      "base_url": "http://127.0.0.1:50764"
+    },
+    {
+      "case": "threshold-failed",
+      "fixed": true,
+      "latency_limit_ms": "0",
+      "return_code": 99,
+      "command": [
+        "k6",
+        "run",
+        "--no-usage-report",
+        "load.js"
+      ],
+      "base_url": "http://127.0.0.1:50808"
+    },
+    {
+      "case": "setup-failed",
+      "fixed": false,
+      "latency_limit_ms": "500",
+      "return_code": 107,
+      "command": [
+        "k6",
+        "run",
+        "--no-usage-report",
+        "load.js"
+      ],
+      "base_url": "http://127.0.0.1:50850"
+    }
+  ]
+}

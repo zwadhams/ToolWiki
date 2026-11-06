@@ -1,0 +1,636 @@
+{
+  "status": "complete",
+  "reviewer": "remaining_discovery",
+  "review_kind": "independent-measurement-and-runtime-review",
+  "review_date": "2026-11-06",
+  "requirements": [
+    "ADJ-01",
+    "ADJ-02",
+    "ADJ-04",
+    "REX-02",
+    "REX-05"
+  ],
+  "findings": [
+    {
+      "id": "MR-01",
+      "severity": "medium",
+      "status": "resolved-verified",
+      "paths": [
+        "examples/test-quality/jest.weak.config.cjs",
+        "examples/test-quality/jest.strong.config.cjs"
+      ],
+      "summary": "Baseline Jest discovery includes stale Stryker sandbox copies.",
+      "evidence": "pnpm run test:weak found 2 suites and 2 tests; test:strong found 2 suites and 4 tests. Jest reported a package naming collision between fixture/package.json and .stryker-tmp/sandbox-ig7Z6b/package.json.",
+      "impact": "An interrupted mutation run leaves stale source/test copies in the discovery tree; reruns can execute extra tests and no longer describe only the intended fixture.",
+      "requested_change": "Anchor testMatch to <rootDir>/tests/<suite>.test.js and exclude temporary sandbox metadata from discovery. Recheck both baselines and mutations, then refresh configuration hashes and retained evidence.",
+      "resolution": "Root-anchored Jest globs and temporary-directory exclusion eliminate stale sandbox discovery. Independent baselines now run exactly one suite with 1 weak/2 strong tests. Refreshed mutation reports and current configuration hashes match; weak=5 Killed+1 Survived, strong=6 Killed."
+    },
+    {
+      "id": "MR-02",
+      "severity": "medium",
+      "status": "resolved-verified",
+      "paths": [
+        "src/content/docs/guides/api-testing.md"
+      ],
+      "summary": "RESTler report path disagrees with the cited release documentation.",
+      "evidence": "v9.3.1 Program.fs sets taskWorkingDirectory from args.task.ToString(); Types.fs defines the Test case without an override. TaskResults.fs reads testing_summary.json, so that filename is valid. The defect is the plural Tests directory copied from the upstream QuickStart typo.",
+      "source": "https://raw.githubusercontent.com/microsoft/restler-fuzzer/v9.3.1/docs/user-guide/Testing.md",
+      "requested_change": "Change Tests to Test in the api-testing.md result path; retain testing_summary.json.",
+      "resolution": "Guide now uses singular Test/RestlerResults and retains the valid testing_summary.json filename."
+    },
+    {
+      "id": "MR-03",
+      "severity": "medium",
+      "status": "resolved-verified",
+      "paths": [
+        "src/content/docs/guides/api-testing.md",
+        "audits/remaining-work/executions/http-api/record.json"
+      ],
+      "summary": "Captured Windows Schemathesis output needs an explicit UTF-8 setting.",
+      "evidence": "Both independent reruns of the retained Schemathesis.exe command with captured stdout exited 2 before loading the schema. Python used cp1252 for the pipe and raised UnicodeEncodeError while printing the header; --no-color did not avoid Unicode output.",
+      "requested_change": "Use a scoped child-process UTF-8 output setting and record it. Schemathesis 4.33.1 does not support python -m schemathesis. Keep console-output failure distinct from service findings.",
+      "resolution": "New run_schemathesis.py wrapper sets UTF-8 only in the child environment, captures stdout/stderr/JUnit and records the actual invocation. Independent faulty/fixed runs return1/0. Existing output is preserved on repeat invocation. Controlled timeout preserves partial stdout/stderr and returns2."
+    },
+    {
+      "id": "MR-04",
+      "severity": "medium",
+      "status": "resolved-verified",
+      "paths": [
+        "src/content/docs/guides/test-evidence.md"
+      ],
+      "summary": "Later coverage export/gate commands do not select the installed virtual environment.",
+      "evidence": "The guide installs coverage only in .venv and does not activate it. Initial commands select .venv/Scripts/python.exe explicitly, but later JSON export and --fail-under examples use bare coverage.",
+      "requested_change": "Use the same virtual-environment interpreter with -m coverage in the later actionable commands.",
+      "resolution": "Both later coverage JSON and threshold examples select the same .venv/Scripts/python.exe -m coverage interpreter as installation and collection."
+    },
+    {
+      "id": "MR-05",
+      "severity": "medium",
+      "status": "resolved-verified",
+      "paths": [
+        "examples/protocol-ping/check.py",
+        "examples/protocol-ping/README.md"
+      ],
+      "summary": "Readiness connection exceptions can be swallowed by boofuzz, allowing a failed reset to be recorded as completed.",
+      "evidence": "In boofuzz 0.4.2 CallbackMonitor.restart_target, ordinary exceptions are logged/discarded while BoofuzzRestartFailedError is rethrown. A controlled TimeoutError from the HEALTH roundtrip was logged but the harness ran both mutations and returned 1/completed-findings, rather than documented setup failure/2.",
+      "requested_change": "Convert readiness roundtrip OSError/timeout failures into BoofuzzRestartFailedError. Preserve the cause, cover this case with a focused regression, and refresh executed records after rerunning.",
+      "resolution": "Readiness OSError is now wrapped in BoofuzzRestartFailedError with its cause. The new real-boofuzz timeout regression and two existing server tests pass. Independent normal faulty/fixed runs return1/0 with the same two observations, and retained script/requirements hashes match."
+    }
+  ],
+  "checked_requirements": [
+    {
+      "ids": [
+        "ADJ-01"
+      ],
+      "result": "passed",
+      "evidence": "Pinned coverage runs reproduced the retained statement/branch reports: line9 and branch3->5 missing in the partial suite, full coverage for reach-only and asserted suites. Test success and threshold status differ. All actionable coverage commands now select the isolated interpreter."
+    },
+    {
+      "ids": [
+        "ADJ-02"
+      ],
+      "result": "passed",
+      "evidence": "Corrected Jest discovery runs only one intended suite. Refreshed mutation reports show five killed/one boundary survivor versus six killed. State definitions and denominator match primary docs; source/input mutation and assertion-strength distinctions are explicit."
+    },
+    {
+      "ids": [
+        "ADJ-04"
+      ],
+      "result": "passed",
+      "evidence": "Independent k6 runs reproduced40 iterations/exit0,40 iterations with failed latency threshold/exit99, and zero iterations after failed setup/exit107. Tutorial workload, checks, threshold and completion requirements are explicit."
+    },
+    {
+      "ids": [
+        "REX-02"
+      ],
+      "result": "passed",
+      "evidence": "HTTP lifecycle/reset/schema/known replay tests pass. The scoped UTF-8 wrapper reproduces Schemathesis finding/clean outcomes while retaining artifacts; RESTler remains illustrative with corrected Test log directory. Separate boofuzz fixture supplies two finite mutations, response validation, readiness handling and explicit stop/reset scope, with executed faulty/fixed evidence."
+    },
+    {
+      "ids": [
+        "REX-05"
+      ],
+      "result": "passed",
+      "evidence": "Pinned RTAMT environment metadata confirms Python>=3.8,<3.13 and parser4.7. Independent execution returns [0,-5.0] and [0,1.0]. Original script/requirements digests match, prior parser-failure history remains distinct, and documentation-review date is not relabeled as execution proof."
+    }
+  ],
+  "tests": [
+    {
+      "name": "HTTP fixture tests",
+      "result": "4 passed; covers known failure/correction, resource lifecycle/reset, invalid inputs and live schema.",
+      "command": "python -m unittest discover -s examples/http-api -v"
+    },
+    {
+      "name": "RTAMT reproduction",
+      "result": "exit 0; violating trace [0,-5.0], corrected trace [0,1.0].",
+      "command": ".preview/rtamt-env/Scripts/python.exe examples/rtamt/temperature.py"
+    },
+    {
+      "name": "Initial Jest baselines",
+      "result": "Both commands exited 0, but discovered stale sandbox test copies; see MR-01."
+    },
+    {
+      "name": "Coverage three-suite reproduction",
+      "result": "All suites exit 0; partial leaves line 9 and branch 3->5 missing, reach and contract report full statement/branch coverage. Coverage threshold exits partial=2 and reach=0."
+    },
+    {
+      "name": "k6 completed/threshold/setup reproduction",
+      "result": "Expected exits 0/99/107 and iterations 40/40/0; setup-failed summary thresholds appear okay despite zero iterations, correctly rejected by process status and documented completion requirements."
+    },
+    {
+      "name": "Initial captured Schemathesis reproduction",
+      "result": "Both modes fail before analysis with stdout UnicodeEncodeError; see MR-03."
+    },
+    {
+      "name": "Schemathesis child UTF-8 workaround",
+      "result": "PYTHONIOENCODING=utf-8 in the child environment reproduces expected faulty exit 1/ST101 and fixed exit 0/3 operations/6 generated cases. This does not modify global shell or interpreter settings."
+    },
+    {
+      "name": "Corrected Jest baseline recheck",
+      "result": "Both commands now discover exactly one suite; weak has 1 test, strong has 2. No naming-collision warning or stale-sandbox tests."
+    },
+    {
+      "name": "Protocol target tests",
+      "result": "2 passed; faulty/corrected responses, surviving health, new-connection behavior and rejection checked."
+    },
+    {
+      "name": "Protocol readiness timeout failure test",
+      "result": "Controlled TimeoutError in HEALTH roundtrip is swallowed by the upstream callback layer; harness incorrectly returns completed-findings/1. See MR-05."
+    },
+    {
+      "name": "Schemathesis wrapper completed-run and overwrite tests",
+      "result": "Independent faulty wrapper exit1, fixed exit0, exact4.33.1 and scoped UTF-8 recorded; JUnit exists for both. Repeating each invocation exits2 and preserves all previous artifact hashes."
+    },
+    {
+      "name": "Schemathesis wrapper controlled timeout",
+      "result": "TimeoutExpired test double preserves exact partial stdout/stderr, records unknown child exit plus incomplete error, and wrapper exits2."
+    },
+    {
+      "name": "Refreshed mutation and HTTP evidence hashes",
+      "result": "All current raw input/configuration/runner hashes match refreshed run records. Mutation JSON still shows expected5+1/6 outcomes."
+    },
+    {
+      "name": "Final protocol regression suite",
+      "command": ".preview/boofuzz-env/Scripts/python.exe -m unittest discover -s examples/protocol-ping -v",
+      "result": "3 passed, including actual-boofuzz controlled readiness TimeoutError returning failed/2."
+    },
+    {
+      "name": "Independent final boofuzz faulty/fixed runs",
+      "result": "Faulty exits1/completed-findings with empty TRIGGER reply and passing world reply. Fixed exits0/completed-no-findings with both replies exact. Each run writes SQLite evidence. Current target/harness/requirements hashes equal retained records. Every ephemeral server was stopped afterward."
+    }
+  ],
+  "source_checks": [
+    {
+      "url": "https://coverage.readthedocs.io/en/7.10.6/branch.html",
+      "scope": "Statement/branch opportunities, partial branch semantics, and source reports."
+    },
+    {
+      "url": "https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/",
+      "scope": "Killed, survived, uncovered, timeout, runtime/compile error, ignored, pending and exact score denominator."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/stryker-mutator/stryker-js/v9.0.1/packages/core/package.json",
+      "scope": "Pinned core release and Node.js >=20 prerequisite."
+    },
+    {
+      "url": "https://grafana.com/docs/k6/latest/using-k6/checks/",
+      "scope": "Checks alone do not set failing test status; thresholds are separate."
+    },
+    {
+      "url": "https://grafana.com/docs/k6/latest/using-k6/thresholds/",
+      "scope": "Explicit threshold criteria, percentile units, tagged metric selection and failure status."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/restler-fuzzer/v9.3.1/restler-quick-start.py",
+      "scope": "Quickstart options, generated Compile files, server overrides and request-sending test mode."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/restler-fuzzer/v9.3.1/docs/user-guide/Links.md",
+      "scope": "Supported response-to-path parameter producer/consumer links using operationId."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/restler-fuzzer/v9.3.1/docs/user-guide/Fuzzing.md",
+      "scope": "Fuzz invocation, hours budget, bug buckets and replay."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/restler-fuzzer/v9.3.1/src/driver/Program.fs",
+      "scope": "Driver task working directory is args.task.ToString(); maximum fuzz duration uses hours."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/restler-fuzzer/v9.3.1/src/driver/Types.fs",
+      "scope": "Test union case yields singular Test task directory."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/restler-fuzzer/v9.3.1/src/driver/TaskResults.fs",
+      "scope": "testing_summary.json is an emitted/consumed report filename."
+    }
+  ],
+  "limitations": [
+    "This review covers the listed additions and narrow scopes, not every historical profile claim.",
+    "No RESTler execution, full build, browser validation, hosted CI or style sweep was performed by this reviewer.",
+    "Stryker mutation reports were inspected after coordinator reruns. The independent reviewer reran Jest baselines but not Stryker itself.",
+    "Timeout/readiness error cases use controlled faults and are labeled as such; they are not observed failures of the normal fixture.",
+    "Executed results use existing pinned local environments and independent loopback instances. They do not establish production capacity, exhaustive defect coverage, or general platform compatibility."
+  ],
+  "reviewed_files": [
+    {
+      "path": "src/content/docs/tools/coverage-py.md",
+      "sha256": "fae6e7daf4fd02e8575d3986f00b062545f6d7258b94a7f7671f8e0e9772eb2a",
+      "scope": "ADJ-01 first workflow, measurement meaning, executed claims and catalog-only boundary."
+    },
+    {
+      "path": "src/content/docs/tools/strykerjs.md",
+      "sha256": "ebc550a1620e9b495a2df26d3a4ec2c3fd34ad3dc1106520cc304b1eb81e2cd5",
+      "scope": "ADJ-02 runner/version scope, mutation outcomes, first workflow and executed claims."
+    },
+    {
+      "path": "src/content/docs/tools/k6.md",
+      "sha256": "02ae7835f0ede54dbc57afa41d98dffb5a48b5603fc4f474b6c6979660ff1a09",
+      "scope": "ADJ-04 local workload, endpoint/setup, checks/thresholds, completion interpretation and bounds."
+    },
+    {
+      "path": "src/content/docs/tools/rtamt.md",
+      "sha256": "4d5eb2cd51c4d6e6bda41613c5e33f6c9feb01fcf714b02b93469894dd7b9509",
+      "scope": "REX-05 newly executed temperature traces, pinned environment and preserved historical evidence only."
+    },
+    {
+      "path": "src/content/docs/tools/schemathesis.md",
+      "sha256": "8fb0cf91993f2d55feae6c6b03ca66e77fef975f2972aba0ab007a543d67fe9a",
+      "scope": "REX-02 first-try link and exact execution-scope claim only."
+    },
+    {
+      "path": "src/content/docs/tools/restler.md",
+      "sha256": "be244896ea21c5953b001840befd7fcc3ff8a66df97add97c5aef28a55b54e93",
+      "scope": "REX-02 illustrative procedure link, resource dependency scope and explicit unexecuted label only."
+    },
+    {
+      "path": "src/content/docs/tools/boofuzz.md",
+      "sha256": "79158c0a123328d2828e21c1d3ff108c88425ff27ca4e321458c829a21f20c20",
+      "scope": "REX-02 supplied protocol first-try link, finite response-check execution claim and monitor limits only."
+    },
+    {
+      "path": "src/content/docs/guides/test-evidence.md",
+      "sha256": "a4a811e99d796af800e634e266aacc93e091426401a88dc02a5a16e6a4b6aac7",
+      "scope": "ADJ-01/02 procedures, isolated-interpreter commands, executed coverage/mutation claims, exact states/denominator and assertion limits."
+    },
+    {
+      "path": "src/content/docs/guides/api-testing.md",
+      "sha256": "d273a7fb488ed64e0d7392fadb3ea91869229bca590ac07587c1f120c5d16fab",
+      "scope": "REX-02 HTTP lifecycle, known replay, Schemathesis wrapper setup/results, illustrative RESTler instructions and log path; k6 crosslink only."
+    },
+    {
+      "path": "examples/python-coverage/.gitignore",
+      "sha256": "17f6d048b234251ff08111f1a23657175c1ce27669443e21e5e8fec42751bf5b",
+      "scope": "ADJ-01 source/tests/pin/evidence and exact statement/branch counts."
+    },
+    {
+      "path": "examples/python-coverage/evidence.md",
+      "sha256": "0dca6a59aa79659b3db7bcb3a806f83905a12ea20da48cfdc20edf699131a5ac",
+      "scope": "ADJ-01 source/tests/pin/evidence and exact statement/branch counts."
+    },
+    {
+      "path": "examples/python-coverage/requirements.txt",
+      "sha256": "d9809490cb01b3d4b9d448d6171118996c2a7c2d648e856a50bc9dc77906e02b",
+      "scope": "ADJ-01 source/tests/pin/evidence and exact statement/branch counts."
+    },
+    {
+      "path": "examples/python-coverage/sample.py",
+      "sha256": "5fde79f0582b5add30077e09fcc017a4afc219c77ad77d009bb54dc091e90aed",
+      "scope": "ADJ-01 source/tests/pin/evidence and exact statement/branch counts."
+    },
+    {
+      "path": "examples/python-coverage/evidence/contract.json",
+      "sha256": "f0a848577d6d2923d3cef817cda4111bc74727b0c0a9b78e2860b38dd7836974",
+      "scope": "ADJ-01 source/tests/pin/evidence and exact statement/branch counts."
+    },
+    {
+      "path": "examples/python-coverage/evidence/partial.json",
+      "sha256": "13206961ddb9c59454ed3df88727ba19d80c70c0b73efd9e8d2e5eb653a52594",
+      "scope": "ADJ-01 source/tests/pin/evidence and exact statement/branch counts."
+    },
+    {
+      "path": "examples/python-coverage/evidence/reach.json",
+      "sha256": "50371964bfb8f5b7854367f9709a609fa6bf229bd6af528fb120add129421ae8",
+      "scope": "ADJ-01 source/tests/pin/evidence and exact statement/branch counts."
+    },
+    {
+      "path": "examples/python-coverage/evidence/run.json",
+      "sha256": "f966d4f2446611610b2920a4522ef06569c89be9fced417b1d0047f48da0dbf6",
+      "scope": "ADJ-01 source/tests/pin/evidence and exact statement/branch counts."
+    },
+    {
+      "path": "examples/python-coverage/tests/test_contract.py",
+      "sha256": "a8dafb752b321fc1b1e6d8a30a08c973c60c627a75672414507a5526fc4c4b95",
+      "scope": "ADJ-01 source/tests/pin/evidence and exact statement/branch counts."
+    },
+    {
+      "path": "examples/python-coverage/tests/test_partial.py",
+      "sha256": "9eb54233f350110a5020508510fa8f1417474741dbab7cbb28271fd472cff0ac",
+      "scope": "ADJ-01 source/tests/pin/evidence and exact statement/branch counts."
+    },
+    {
+      "path": "examples/python-coverage/tests/test_reach.py",
+      "sha256": "1e7df40c60ac0ee5c05e19f7bf470928fe2da0f590233cc043cc1661a306470d",
+      "scope": "ADJ-01 source/tests/pin/evidence and exact statement/branch counts."
+    },
+    {
+      "path": "examples/test-quality/.gitignore",
+      "sha256": "e134515865a239e6dabccd84a57036d1b9ff1573128ddbf288919e2a19a1fe3d",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/evidence.md",
+      "sha256": "e63cb2dff48bebbf3680fd3ac1d9e86e156ac4df1abdc9cfa297d640a63b5ce2",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/jest.strong.config.cjs",
+      "sha256": "ce01d67a66c487dc8e828240e588b716db19eafa99bc20608184a8dc81ef802b",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/jest.weak.config.cjs",
+      "sha256": "59a472de3c7a081e8e2ac03191a3fdf888703a1d2bc2c092c3d80c6032104003",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/package.json",
+      "sha256": "c0a7839660a95237e37311b12edb3c2163125c4d0c0309b88173b7253433b086",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/pnpm-lock.yaml",
+      "sha256": "f26f3b9a251a5426d17caf0ef6ea70574e9ef5a9e2244a1f3319c4950871951e",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/stryker.base.mjs",
+      "sha256": "6f3eb950aa122bfc6cd8b12b2cb502ad523204bc75242619efab9898f5494f6a",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/stryker.strong.config.mjs",
+      "sha256": "318f7403dd990220fd23b3ac17fa1488de4ac7a4baf42cbf00d226f97d74fd63",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/stryker.weak.config.mjs",
+      "sha256": "d1c3eaf9081fd479e6860d97dbf1dcbfb95f0eeefa10133dd13cb8ce4dce6c1c",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/evidence/run.json",
+      "sha256": "ceedc355be8e875e58fae7063e165f083c019fbc2e6a7d771b92a8c73fed61cd",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/evidence/strong-baseline.txt",
+      "sha256": "6138487c73416a40976246dce7aa458b289964a1a6edd3bf7d18a3bef3df7280",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/evidence/strong-mutation.txt",
+      "sha256": "2e82e905b06e0ec3bd13353c167129b1df7fcee7dfbff288444fb65e94dd9927",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/evidence/strong.json",
+      "sha256": "573dcc23f496847b5cf63326314f970a6fccf7ae984eadee88cfff5320ed615a",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/evidence/weak-baseline.txt",
+      "sha256": "b2316f7cffd6c36f4bd365481f490c1fad11f8373723ec7059f8ad1d7288ab00",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/evidence/weak-mutation.txt",
+      "sha256": "0ad54886d3145d40f512b9d836b9dbde92655557533d40c9e360ae8b62adad3f",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/evidence/weak.json",
+      "sha256": "604f73e46814bfc9712de989094d8931ff478daf7f376740d740f0daf4aae764",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/src/discount.js",
+      "sha256": "0b2533f1c0ce9d2e310bd2a11cbfa3bf34616a01e0477af097e7fc39ec657c55",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/tests/strong.test.js",
+      "sha256": "747e23bfebbc38b5be11ba6ee6cab10265a1be01367cb2f915aca774c38f1c5c",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/test-quality/tests/weak.test.js",
+      "sha256": "19bfcd10deb4b7eebba5680cd70a92454f620d1fd737e96fa6a69e40e0e5d406",
+      "scope": "ADJ-02 source/tests/configuration/pins/evidence, corrected root-only discovery and refreshed mutation/baseline reports."
+    },
+    {
+      "path": "examples/http-api/load.js",
+      "sha256": "1a166395f76900b3a55cc7ac2391c5ef5704ad638d40c02134491737d18c8dc6",
+      "scope": "REX-02/ADJ-04 local service, schema, deterministic replay, bounded workload, tests, child-only UTF-8 wrapper and environment."
+    },
+    {
+      "path": "examples/http-api/openapi.json",
+      "sha256": "13ab784c1177ac2ba0f133fb4201772bb7eb5a576688f1a26d8b4d0dedd7674b",
+      "scope": "REX-02/ADJ-04 local service, schema, deterministic replay, bounded workload, tests, child-only UTF-8 wrapper and environment."
+    },
+    {
+      "path": "examples/http-api/README.md",
+      "sha256": "12c3baa40160771d61d224f17fcba0e7035fd42deaec288696c8a6f9c050a86b",
+      "scope": "REX-02/ADJ-04 local service, schema, deterministic replay, bounded workload, tests, child-only UTF-8 wrapper and environment."
+    },
+    {
+      "path": "examples/http-api/replay.py",
+      "sha256": "752fb43fe26ea76fd722bf446f1f808ffcde7c9f4d460aefbdaaf99f702ca89b",
+      "scope": "REX-02/ADJ-04 local service, schema, deterministic replay, bounded workload, tests, child-only UTF-8 wrapper and environment."
+    },
+    {
+      "path": "examples/http-api/requirements-lock.txt",
+      "sha256": "fdb2378681df6901fb028db02a4ffdb5514d3c5630c001e62644552f496d0fba",
+      "scope": "REX-02/ADJ-04 local service, schema, deterministic replay, bounded workload, tests, child-only UTF-8 wrapper and environment."
+    },
+    {
+      "path": "examples/http-api/run_schemathesis.py",
+      "sha256": "bf1bce7eb0449eca59f7985d1ff94731653f1519838f69909b26c4f048e00ecd",
+      "scope": "REX-02/ADJ-04 local service, schema, deterministic replay, bounded workload, tests, child-only UTF-8 wrapper and environment."
+    },
+    {
+      "path": "examples/http-api/server.py",
+      "sha256": "b419c1974730330d7e9b9956f01317755ab50bcd4909c909d32019a99e077867",
+      "scope": "REX-02/ADJ-04 local service, schema, deterministic replay, bounded workload, tests, child-only UTF-8 wrapper and environment."
+    },
+    {
+      "path": "examples/http-api/test_server.py",
+      "sha256": "4bc48ace075a1bfc1cc002ce250b5a5613da83ac634d43b7c54fad9d1a9a4656",
+      "scope": "REX-02/ADJ-04 local service, schema, deterministic replay, bounded workload, tests, child-only UTF-8 wrapper and environment."
+    },
+    {
+      "path": "examples/rtamt/README.md",
+      "sha256": "732e411755033d6ee7e5acb0d1d5364b9c41517c50d62cef308d3c3b99d60569",
+      "scope": "REX-05 pinned environment, known violating/corrected traces, invocation and interpretation."
+    },
+    {
+      "path": "examples/rtamt/requirements.txt",
+      "sha256": "c5a72888aade2030f642bdf83830e0430c38071d88aca1a12f9cbc353c4b189d",
+      "scope": "REX-05 pinned environment, known violating/corrected traces, invocation and interpretation."
+    },
+    {
+      "path": "examples/rtamt/temperature.py",
+      "sha256": "f15080c2abd54d301b60cdc3f36e69c5d825396a9130c221b6c5809fde7e4093",
+      "scope": "REX-05 pinned environment, known violating/corrected traces, invocation and interpretation."
+    },
+    {
+      "path": "examples/protocol-ping/check.py",
+      "sha256": "03f3493c30a0a9e5ae0a8bfdb518dfdf7498937430acb1d6dfcb212b430766ca",
+      "scope": "REX-02 finite protocol target/harness, response oracle, readiness-failure propagation, tests, pinned environment and instructions."
+    },
+    {
+      "path": "examples/protocol-ping/README.md",
+      "sha256": "0f45015df31ef2c949c96e4ffe089a6f4210243d49c62d076f1b4bb49ce1e22b",
+      "scope": "REX-02 finite protocol target/harness, response oracle, readiness-failure propagation, tests, pinned environment and instructions."
+    },
+    {
+      "path": "examples/protocol-ping/requirements-lock.txt",
+      "sha256": "45c982bb7209c326f6f8941cc5bf20ffa99f2040e48a36b9a8c0fcdba67ba04c",
+      "scope": "REX-02 finite protocol target/harness, response oracle, readiness-failure propagation, tests, pinned environment and instructions."
+    },
+    {
+      "path": "examples/protocol-ping/server.py",
+      "sha256": "7366e45e416d9ede93ae9c99a2b41d37ea2c578b73826bf1ca593348d3a5060d",
+      "scope": "REX-02 finite protocol target/harness, response oracle, readiness-failure propagation, tests, pinned environment and instructions."
+    },
+    {
+      "path": "examples/protocol-ping/test_monitor.py",
+      "sha256": "830dbf63f3e169245caf503ac462925310c82e28721bfab993bd8f26e0063a61",
+      "scope": "REX-02 finite protocol target/harness, response oracle, readiness-failure propagation, tests, pinned environment and instructions."
+    },
+    {
+      "path": "examples/protocol-ping/test_server.py",
+      "sha256": "e02950b6fd84845eeeb08fd2e35cae522294f8628074eb72df851f5a586e2dea",
+      "scope": "REX-02 finite protocol target/harness, response oracle, readiness-failure propagation, tests, pinned environment and instructions."
+    },
+    {
+      "path": "audits/remaining-work/executions/k6/completed.json",
+      "sha256": "7e9b82034fd3ec87e008bf5bd7f84b99ba970bd9d9345f529c7ba52df1d0d763",
+      "scope": "ADJ-04 retained records/stdout/stderr/summary states for completed, threshold-failed and setup-failed cases."
+    },
+    {
+      "path": "audits/remaining-work/executions/k6/completed.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "scope": "ADJ-04 retained records/stdout/stderr/summary states for completed, threshold-failed and setup-failed cases."
+    },
+    {
+      "path": "audits/remaining-work/executions/k6/completed.stdout.txt",
+      "sha256": "d9afff3811d0a330c099dfd17968932bca1c3b62913231d453ddf2615cdcef02",
+      "scope": "ADJ-04 retained records/stdout/stderr/summary states for completed, threshold-failed and setup-failed cases."
+    },
+    {
+      "path": "audits/remaining-work/executions/k6/record.json",
+      "sha256": "935ebcc1f1f7733b2da231465e851eb40243146d689835dfe19ac1bac4caaa84",
+      "scope": "ADJ-04 retained records/stdout/stderr/summary states for completed, threshold-failed and setup-failed cases."
+    },
+    {
+      "path": "audits/remaining-work/executions/k6/setup-failed.json",
+      "sha256": "9e05e32c2700b45a840cf7cdbf1b6f4352ffc72f1c3bbbd4d1d4c56a5c9aa966",
+      "scope": "ADJ-04 retained records/stdout/stderr/summary states for completed, threshold-failed and setup-failed cases."
+    },
+    {
+      "path": "audits/remaining-work/executions/k6/setup-failed.stderr.txt",
+      "sha256": "f1aa9a37fb08772221a107ab721e36d6c8eb17739092b11884f1c1edf9f587d7",
+      "scope": "ADJ-04 retained records/stdout/stderr/summary states for completed, threshold-failed and setup-failed cases."
+    },
+    {
+      "path": "audits/remaining-work/executions/k6/setup-failed.stdout.txt",
+      "sha256": "0246adc69d3d11692200308e8876e64b46a8562eb3e2f24a76280f6b026a4ebd",
+      "scope": "ADJ-04 retained records/stdout/stderr/summary states for completed, threshold-failed and setup-failed cases."
+    },
+    {
+      "path": "audits/remaining-work/executions/k6/threshold-failed.json",
+      "sha256": "608142b27facea5a0774abf2b25d45539f9c7efb43d93fd6727d4944e0173fdb",
+      "scope": "ADJ-04 retained records/stdout/stderr/summary states for completed, threshold-failed and setup-failed cases."
+    },
+    {
+      "path": "audits/remaining-work/executions/k6/threshold-failed.stderr.txt",
+      "sha256": "9a45b6ed405cfd8db6b4a9ead0f66861bdd139f3d59f1ccdb5222d5df298c7e7",
+      "scope": "ADJ-04 retained records/stdout/stderr/summary states for completed, threshold-failed and setup-failed cases."
+    },
+    {
+      "path": "audits/remaining-work/executions/k6/threshold-failed.stdout.txt",
+      "sha256": "d9afff3811d0a330c099dfd17968932bca1c3b62913231d453ddf2615cdcef02",
+      "scope": "ADJ-04 retained records/stdout/stderr/summary states for completed, threshold-failed and setup-failed cases."
+    },
+    {
+      "path": "audits/remaining-work/executions/http-api/faulty.txt",
+      "sha256": "a6b8f0f5b5d59a8c5728467d9e0c5e168d4eef1d8d01ac4f05f5184961a8e42f",
+      "scope": "REX-02 retained Schemathesis record, exact child UTF-8 environment and JUnit/console evidence."
+    },
+    {
+      "path": "audits/remaining-work/executions/http-api/faulty.xml",
+      "sha256": "1f589213822ae1c2b343a40072629b1fb16ee9cd5353ba22efda1867b03d5100",
+      "scope": "REX-02 retained Schemathesis record, exact child UTF-8 environment and JUnit/console evidence."
+    },
+    {
+      "path": "audits/remaining-work/executions/http-api/fixed.txt",
+      "sha256": "139b3837f580b0aa1c2bfeb79a85d1f75e17abeaffc49cd55c5f76284d30b892",
+      "scope": "REX-02 retained Schemathesis record, exact child UTF-8 environment and JUnit/console evidence."
+    },
+    {
+      "path": "audits/remaining-work/executions/http-api/fixed.xml",
+      "sha256": "bb589139d3bb8f0c32847580ab2d295dfb5ec256fb494d228631ed3418400007",
+      "scope": "REX-02 retained Schemathesis record, exact child UTF-8 environment and JUnit/console evidence."
+    },
+    {
+      "path": "audits/remaining-work/executions/http-api/record.json",
+      "sha256": "ccb236efb8cfb342f5a28be7f7bd878c37a8a83da2af9580831bff7eef8fb246",
+      "scope": "REX-02 retained Schemathesis record, exact child UTF-8 environment and JUnit/console evidence."
+    },
+    {
+      "path": "audits/remaining-work/executions/boofuzz/faulty.json",
+      "sha256": "21f61cf7f20cd1b0ce4856b885b5ae30778dbcd4f85e121bcb1a4a3ba98fce80",
+      "scope": "REX-02 retained final faulty/fixed protocol runs, hex request/reply observations, environment and exact input hashes."
+    },
+    {
+      "path": "audits/remaining-work/executions/boofuzz/faulty.txt",
+      "sha256": "b2ad1ab63e884d10f54c0221c925545436998ce7b2dfba1fd3077b86e4a6b2dd",
+      "scope": "REX-02 retained final faulty/fixed protocol runs, hex request/reply observations, environment and exact input hashes."
+    },
+    {
+      "path": "audits/remaining-work/executions/boofuzz/fixed.json",
+      "sha256": "4f2bdd5cf38f24f9f6d190b0d41f16ae545418876024bdf29626d9d0e5ab6035",
+      "scope": "REX-02 retained final faulty/fixed protocol runs, hex request/reply observations, environment and exact input hashes."
+    },
+    {
+      "path": "audits/remaining-work/executions/boofuzz/fixed.txt",
+      "sha256": "48eafcb39ec9e5cd224907104d06014cf17d1b18e4677f37e57382b957ea09b8",
+      "scope": "REX-02 retained final faulty/fixed protocol runs, hex request/reply observations, environment and exact input hashes."
+    },
+    {
+      "path": "audits/remaining-work/executions/rtamt.json",
+      "sha256": "43a38c204daa1d23b6afaa4303c49ca4c79c2d81e65a1e6cb4d0b3afec149cca",
+      "scope": "REX-05 input/requirements hashes, environment, successful reproduction status and trace-specific finding statuses."
+    }
+  ],
+  "completed_at_utc": "2026-11-06T20:48:07.058209+00:00",
+  "open_findings": 0,
+  "runtime_source_checks": [
+    {
+      "distribution": "rtamt==0.4.10",
+      "source": "Installed distribution metadata",
+      "scope": "Requires-Python <3.13,>=3.8 and antlr4-python3-runtime==4.7."
+    },
+    {
+      "distribution": "schemathesis==4.33.1",
+      "source": "Installed entry_points.txt",
+      "scope": "Console entrypoint is schemathesis.cli:schemathesis; package has no __main__. Wrapper invokes the installed executable."
+    },
+    {
+      "distribution": "boofuzz==0.4.2",
+      "source": "boofuzz/monitors/callback_monitor.py and boofuzz/sessions/session.py",
+      "scope": "Restart callbacks discard ordinary exceptions, but preserve BoofuzzRestartFailedError. Selected Group cases and index_end bound the fixture; UI is disabled."
+    }
+  ]
+}

@@ -2,6 +2,10 @@
 title: PSY-TaLiRo
 description: Use a Python harness to search for system behaviors that violate temporal requirements.
 tool:
+  decision:
+    useWhen: Search a callable model for inputs that violate a requirement evaluated by your chosen monitor.
+    result: Run objects retain evaluated inputs and costs. Model-based evaluations can also retain the trace, letting you replay the lowest-cost scenario and inspect its score.
+    limit: Cost meaning depends on the evaluator. A finite search with no violation is not a proof; preserve the seed, bounds, model, and monitor settings.
   analysisWorkflows:
     - id: model
       label: Simulation-based falsification
@@ -49,6 +53,12 @@ tool:
       url: https://github.com/cpslab-asu/psy-taliro/blob/main/LICENSE
     - label: Original tool paper
       url: https://arxiv.org/abs/2106.02200
+    - label: Release-specific ODE example
+      url: https://github.com/cpslab-asu/psy-taliro/blob/v3.1.0/examples/nonlinear.py
+    - label: Release requirements
+      url: https://github.com/cpslab-asu/psy-taliro/blob/v3.1.0/pyproject.toml
+    - label: Run objects and evaluation history
+      url: https://psy-taliro.readthedocs.io/latest/quickstart.html
 ---
 
 ## What it does
@@ -69,6 +79,15 @@ The documentation demonstrates STL monitoring with RTAMT. Formula syntax, time s
 
 Search quality depends on the input bounds, simulation, score, and budget. Preserve the input, trace, random seed, and configuration when a test fails. A completed search without a violation is not a proof of correctness.
 
-## Getting started
+<span id="getting-started"></span>
 
-Start with the documentation's Quickstart and Examples, then replace the example model with your simulator interface. Read [model and temporal falsification](../../concepts/model-falsification/) for the underlying workflow.
+## First try
+
+**Documentation-led procedure; not executed here.** Use Python 3.12 in an isolated environment with `psy-taliro==3.1.0`; the [release metadata](https://github.com/cpslab-asu/psy-taliro/blob/v3.1.0/pyproject.toml) specifies Python and dependency requirements. Follow the [installation guide](https://psy-taliro.readthedocs.io/latest/installation.html).
+
+1. Save the complete [3.1.0 nonlinear ODE example](https://github.com/cpslab-asu/psy-taliro/blob/v3.1.0/examples/nonlinear.py) as `nonlinear.py`. It supplies the model, RTAMT formula, input bounds, optimizer, and budget.
+2. For an analysis-only first run, remove the Plotly import and the plotting code after `min_eval = ...`. Add `print(min_eval.cost, min_eval.inputs.static)` there instead. Set `seed=0` in `TestOptions` and record it.
+3. Run `python nonlinear.py`. A completed run returns evaluations; inspect the lowest cost, its sampled initial conditions, and `min_eval.extra.trace`. A dependency or monitor failure is not a completed search.
+4. Interpret the cost under this RTAMT formula: a negative robustness value is evidence of a violation in the evaluated trace. Preserve and replay that input before changing the model. A nonnegative minimum from a finite search does not establish universal satisfaction.
+
+Use the [run record](../../guides/run-record/) to retain the model, formula, seed, budget, sampled input, and trace. When adapting the example, first verify the signals, units, and time semantics against your requirement. Change the model or an incorrect assumption, then compare the same scenario and repeat the search. Read [model and temporal falsification](../../concepts/model-falsification/) for the distinction between replay and search.

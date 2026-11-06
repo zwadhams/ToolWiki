@@ -1,0 +1,251 @@
+{
+  "agent": "audit08_comparisons",
+  "lane": "Comparisons and alternatives",
+  "date": "2026-11-06",
+  "status": "complete",
+  "baseline": "27c229bd7079ede31cd30ce500e999461eb97eef",
+  "method": [
+    "Read comparison/profile/catalog components, URL helpers, edition data, all seven authored relationship records, comparison tests, representative paired profiles and prior usability guidance.",
+    "Inspected production comparison metadata and authored comparison URLs.",
+    "Live IAB checks on isolated audit origin http://127.0.0.1:4331/ToolWiki/: catalog/profile return; catalog/comparison/profile return; direct comparison return as positive control; CodeQL/PVS-Studio cost presentation.",
+    "Ran node --test tests/comparison.test.mjs: 7/7 passed. Did not rerun the full build.",
+    "No product edits, analyzer installation/execution, benchmark, or external source research. Upstream product entitlements were not independently reverified; related findings concern placement of existing repository qualifications."
+  ],
+  "findings": [
+    {
+      "id": "CMP-01",
+      "title": "Profile return clears the comparison shortlist",
+      "kind": "confirmed_defect",
+      "priority": "P2",
+      "confidence": "high",
+      "reader_task": "Read a shortlisted tool's notes and return without rebuilding the comparison selection",
+      "locations": [
+        {
+          "path": "src/components/ToolCatalog.astro",
+          "line": 108
+        },
+        {
+          "path": "src/components/ToolCatalog.astro",
+          "line": 121
+        },
+        {
+          "path": "src/components/ToolComparison.astro",
+          "line": 58
+        },
+        {
+          "path": "src/components/ToolComparison.astro",
+          "line": 98
+        },
+        {
+          "path": "src/components/ArticleContent.astro",
+          "line": 62
+        },
+        {
+          "path": "src/components/ArticleContent.astro",
+          "line": 66
+        }
+      ],
+      "reproduction": [
+        "Open /ToolWiki/?language=Python&compare=tools%2Fruff%2Ctools%2Fmypy. The catalog shows Ruff and mypy checked and two selected.",
+        "Open Read notes on Ruff. The profile URL contains only catalog=language%3DPython.",
+        "Use Return to filtered results. URL is /ToolWiki/?language=Python; both checkboxes are unchecked and the selection tray is absent.",
+        "Reselect Ruff and mypy and open comparison, then follow its Ruff table header to the profile and use the same return link. The same selection loss occurs.",
+        "Positive control: direct comparison Return to filtered results retains compare=tools%2Fruff%2Ctools%2Fmypy and both boxes remain checked."
+      ],
+      "evidence": "Catalog profile links and comparison profile links pass sanitized filters but omit the selected IDs. ArticleContent deliberately calls catalogHref(base, [], context). This is separate from the Static/Dynamic category loss because it occurs on the All/Python catalog.",
+      "impact": "Readers lose a transient shortlist while using the explicit navigation provided for reviewing candidates. Browser Back can recover the earlier URL, so this is not permanent system-description data loss.",
+      "recommendation": "Carry the current normalized comparison IDs through profile navigation and use them in the profile's explicit catalog return. Preserve context when following related tool notes; a newly selected comparison must carry its current IDs. Coordinate the change with the category-context repair.",
+      "acceptance_criteria": [
+        "Catalog -> profile -> explicit return preserves two or three selected IDs and filters.",
+        "Catalog -> comparison -> profile -> explicit return preserves the comparison's current IDs after additions/removals.",
+        "Direct comparison return continues to work.",
+        "Selections alone, without other filters, have a usable return path.",
+        "Unknown/duplicate IDs are normalized against catalog IDs and capped at three; old profile URLs without selection data remain valid.",
+        "Do not introduce arbitrary destination URLs or nested redirect context."
+      ],
+      "effort": "small to medium",
+      "dependencies": [
+        "Coordinate with ARC-01/SEA-01 context design"
+      ],
+      "compatibility": "Additive allowlisted URL state; no saved-system format or local-storage requirement.",
+      "prior_audit_status": "New selection-loss evidence. Prior usability work promised and tested filter continuity; README explicitly promises selection persistence through filters/category links, not every profile visit. The observation is reported as workflow loss, not a fabricated broken documentation guarantee."
+    },
+    {
+      "id": "CMP-02",
+      "title": "Existing comparison links lack authored relationship guidance",
+      "kind": "content_gap",
+      "priority": "P3",
+      "confidence": "high observation; medium impact",
+      "reader_task": "Understand whether tools linked as a comparison are alternatives, complements, or different questions",
+      "locations": [
+        {
+          "path": "src/data/tool-choices.ts",
+          "line": 3
+        },
+        {
+          "path": "src/components/ToolComparison.astro",
+          "line": 84
+        },
+        {
+          "path": "src/content/docs/tools/mypy.md",
+          "line": 96
+        },
+        {
+          "path": "src/content/docs/tools/pyright.md",
+          "line": 66
+        },
+        {
+          "path": "src/content/docs/tools/trivy.md",
+          "line": 150
+        },
+        {
+          "path": "src/content/docs/tools/osv-scanner.md",
+          "line": 98
+        }
+      ],
+      "evidence": [
+        "The seven authored relationship records involve eleven distinct profiles. This is a scope count, not a target that every profile needs a pair.",
+        "Both mypy/Pyright and Trivy/OSV-Scanner have explicit comparison links in their profile bodies, but evaluating the current related-choice predicate for either pair returns no guidance.",
+        "The existing OSV profile explains that Trivy also has separate infrastructure-configuration workflows. The comparison's generic table cannot replace a short explanation of the decision.",
+        "Existing Ruff/mypy guidance correctly explains complementarity; no need to replace the current relationship mechanism."
+      ],
+      "impact": "Some deliberately linked comparisons stop at adjacent fields, while others explain why the pair is useful and how to choose. Readers must reconstruct the missing decision criteria.",
+      "recommendation": "Extend the existing toolChoices data for mypy/Pyright and Trivy/OSV-Scanner using checked, task-specific claims and links to maintained explanations. Distinguish shared jobs from complementary scopes; avoid rankings based on generic finding categories or raw issue counts.",
+      "acceptance_criteria": [
+        "Each of the two existing comparison links renders a concise How these tools relate explanation.",
+        "Explain project/environment/configuration choices for the type checkers and input/scanner/interpretation boundaries for dependency scanners.",
+        "Use shared authored data for profile links and comparison guidance rather than copying a separate procedure.",
+        "Review primary sources before introducing new comparative capability claims; retain source/date scope."
+      ],
+      "effort": "small to medium content review",
+      "dependencies": [
+        "Primary-source confirmation for new comparative statements"
+      ],
+      "compatibility": "Existing comparison URLs and IDs unchanged.",
+      "prior_audit_status": "Still-open extension of prior related-tool/companion-tool recommendations, not a regression."
+    },
+    {
+      "id": "CMP-03",
+      "title": "Cost qualifications are difficult to reach from the primary comparison row",
+      "kind": "usability_opportunity",
+      "priority": "P3",
+      "confidence": "high observation; medium impact",
+      "reader_task": "Check whether a free option applies to a private or organization project",
+      "locations": [
+        {
+          "path": "src/components/ToolComparison.astro",
+          "line": 23
+        },
+        {
+          "path": "src/components/ToolComparison.astro",
+          "line": 48
+        },
+        {
+          "path": "src/components/ToolComparison.astro",
+          "line": 53
+        },
+        {
+          "path": "src/components/ToolComparison.astro",
+          "line": 108
+        },
+        {
+          "path": "src/content/docs/tools/codeql.md",
+          "line": 17
+        },
+        {
+          "path": "src/content/docs/tools/pvs-studio.md",
+          "line": 14
+        }
+      ],
+      "evidence": [
+        "Live CodeQL/PVS comparison shows Free with limits, Paid in both primary Cost cells.",
+        "The details disclosure is closed by default. Existing costNote text and See edition details links are rendered only inside that disclosure.",
+        "Repository qualifications distinguish eligible public/personal use from private or organization use. This audit did not independently verify current upstream terms.",
+        "The visible Free with limits label is accurate and already warns of conditions; this is an access-to-context opportunity, not a false-free claim."
+      ],
+      "impact": "A decisive eligibility condition is placed under a section labeled technical details and sources instead of being directly reachable from the cost choice.",
+      "recommendation": "Make each primary Cost cell link to its profile's Cost and editions section, matching the catalog's pattern. Give restricted/free-with-limits entries a clear eligibility cue. Keep detailed notes available without copying every licensing paragraph into the primary table.",
+      "acceptance_criteria": [
+        "Cost/eligibility details can be reached from the primary row without opening technical details.",
+        "CodeQL and PVS restricted-use caveats remain accurately scoped and accessible by keyboard.",
+        "Free, Free with limits, Paid and mixed values remain distinct; trials do not become free options.",
+        "Do not add unverified pricing or entitlement claims."
+      ],
+      "effort": "small",
+      "dependencies": [],
+      "compatibility": "Rendering/navigation only; unchanged metadata and saved formats.",
+      "prior_audit_status": "New presentation opportunity; edition boundary protections remain correct."
+    },
+    {
+      "id": "CMP-04",
+      "title": "Comparison result summaries are uneven outside the four pilot profiles",
+      "kind": "content_gap",
+      "priority": "P2",
+      "confidence": "high",
+      "duplicate_of": "N01",
+      "reader_task": "Learn the output form and meaning before trying competing or complementary tools",
+      "locations": [
+        {
+          "path": "src/components/ToolComparison.astro",
+          "line": 74
+        },
+        {
+          "path": "src/content/docs/guides/editing.md",
+          "line": 43
+        },
+        {
+          "path": "src/content/docs/tools/mypy.md",
+          "line": 63
+        }
+      ],
+      "evidence": "Live Ruff/mypy comparison shows a concrete diagnostics/rule/location description for Ruff but only Type errors for mypy. CodeQL/PVS shows concrete alerts/SARIF versus a list of finding categories. This matches decision.result falling back to findings. The richer format is optional and has four pilot entries, so the current fallback is not a schema violation.",
+      "impact": "The same row answers different questions across columns: output and interpretation for one tool, finding categories for another.",
+      "recommendation": "Deduplicate with newcomer N01 and reusable-content recommendations. Extend decision summaries in small, task-driven batches, keeping the editing guide's First try and execution-status requirements.",
+      "acceptance_criteria": [
+        "Common comparison columns describe concrete output and its interpretation at comparable detail",
+        "Profile and comparison share one reviewed summary",
+        "No category list is presented as measured coverage",
+        "Illustrative and executed evidence remain separate"
+      ],
+      "effort": "medium content review",
+      "dependencies": [
+        "Coordinate with REX-01 first-result work"
+      ],
+      "compatibility": "Use existing optional decision object; no schema migration.",
+      "prior_audit_status": "Continuation of the four-profile usability pilot."
+    }
+  ],
+  "corroborations": [
+    {
+      "id": "ARC-01/SEA-01",
+      "status": "source corroborated",
+      "note": "catalogParams excludes category; catalogHref root return causes category loss. No additional live category reproduction by this agent."
+    },
+    {
+      "id": "ARC-02",
+      "status": "source corroborated",
+      "note": "EditionComparison gates note and source under comparison.note; Polyspace has source but no note. General profile source remains."
+    },
+    {
+      "id": "ARC-05",
+      "status": "source corroborated",
+      "note": "Five promoted comparisons use hardcoded array positions. Keep explicit featured metadata recommendation with architecture finding."
+    }
+  ],
+  "positives": [
+    "Separate tool records preserve free/paid capability boundaries instead of merging a product family into one filter result.",
+    "Comparison uses the same metadata as profiles and includes setup, environment, limits, detailed language scope, editions and sources.",
+    "Shared finding labels are explicitly said not to imply equal checks or coverage.",
+    "Ruff/mypy guidance clearly distinguishes complements; CodeQL/JBMC and RTAMT/PSY-TaLiRo distinguish different questions.",
+    "Unknown/duplicate tool IDs normalize safely; comparisons cap at three; bookmarked selections round-trip; direct comparison return keeps the current selection.",
+    "All seven existing comparison unit tests pass."
+  ],
+  "scope_limits": [
+    "Live checks were desktop DOM/accessibility inspection, not mobile or keyboard-complete validation.",
+    "No human usability participants or analyzer performance/accuracy evaluation.",
+    "No changes to audit-origin system descriptions.",
+    "External current product capabilities and terms were not reverified by this lane.",
+    "Generic system-builder comparison context was considered but left to agents7/11; no unsupported finding that generic comparisons promise project-specific coverage.",
+    "Comparison getByLabel('Tool 1') automation lookup failed; the observed select ID worked. No product accessibility defect inferred from that automation mismatch."
+  ]
+}

@@ -13,6 +13,15 @@ test('combines filters and all search terms instead of returning their union', (
 test('multi-mode tools appear in either relevant category', () => {
   assert.deepEqual(selectTools(tools, { mode: 'Dynamic', language: 'Python' }).map((t) => t.id), ['hybrid']);
 });
+
+test('displayed analysis labels retrieve each mode population without changing keyword semantics', () => {
+  for (const mode of ['Static', 'Dynamic']) {
+    const ids = new Set(selectTools(tools, { q: `${mode} analysis` }).map(tool => tool.id));
+    assert.ok(tools.filter(tool => tool.modes.includes(mode)).every(tool => ids.has(tool.id)));
+  }
+  assert.deepEqual(selectTools(tools, { q: 'static analysis impossible-term' }), []);
+  assert.deepEqual(selectTools(tools, { q: 'dynamic analysis', input: 'Running applications' }).map(tool => tool.id), ['http']);
+});
 test('finding categories combine with input, language, and cost filters', () => {
   assert.deepEqual(selectTools(tools, { finding: 'Injection risks', input: 'Source code', language: 'Python', cost: 'Free' }).map((t) => t.id), ['python']);
   assert.deepEqual(selectTools(tools, { finding: 'Memory safety', input: 'Binaries' }).map((t) => t.id), ['hybrid']);

@@ -1454,5 +1454,149 @@
         "sha256": "f7f48aa8e72d7aa7d0acb9285b53ff3aa211ae6fb16bc31c4a52b9c2cc9e7033"
       }
     ]
+  },
+  {
+    "id": "reader-workflows-python-2026-11-06",
+    "date": "2026-11-06",
+    "reviewer": "retest_reader_python independent reader agent",
+    "scope": "Visible navigation, public ZIP acquisition, Pylint first-run procedure, Ruff/mypy demonstration and adaptation to a separate dependency-free invoice project on Windows/Python 3.13.15. Not a whole-profile or general compatibility review.",
+    "reference": "audits/reader-workflows/retests/python/report.md",
+    "files": [
+      {
+        "path": "src/content/docs/guides/python-checks.md",
+        "sha256": "50f29c68bd711f39a823ceb30811f61e06014493494fb4d9596f86ac41838fee"
+      },
+      {
+        "path": "src/content/docs/tools/pylint.md",
+        "sha256": "6941048a4203352aab4f81e40092724d5c55dd1df8b1a1dfc614328e7ad79496"
+      },
+      {
+        "path": "src/content/docs/guides/get-examples.md",
+        "sha256": "b3c3f28c02c869fb36e7ffe064e2dfd9e60f8e800a8440cd044c3c51d8f54fb5"
+      }
+    ]
+  },
+  {
+    "id": "reader-workflows-api-2026-11-06",
+    "date": "2026-11-06",
+    "reviewer": "retest_reader_api independent reader agent",
+    "scope": "Visible navigation, acquisition and checked Python 3.13.15 setup, demo fault/correction and documented Schemathesis adaptation to a shipment API including negative-input checks. No RESTler, authentication, production-service or whole-profile validation.",
+    "reference": "audits/reader-workflows/retests/api/report.md",
+    "files": [
+      {
+        "path": "src/content/docs/guides/api-testing.md",
+        "sha256": "8e64c6f48a80e2bba3a7d3e5c8509589e3a2d230351f978f2377d23bb07bd1a5"
+      },
+      {
+        "path": "src/content/docs/tools/schemathesis.md",
+        "sha256": "af6e22c94c67bafb9db362bc3db22b8ceaf12c046fe638c8738ed72bf0f2b3b1"
+      },
+      {
+        "path": "src/content/docs/guides/get-examples.md",
+        "sha256": "b3c3f28c02c869fb36e7ffe064e2dfd9e60f8e800a8440cd044c3c51d8f54fb5"
+      }
+    ]
+  },
+  {
+    "id": "reader-workflows-memory-confirmation-2026-11-06",
+    "date": "2026-11-06",
+    "reviewer": "retest_reader_memory_confirmation independent fresh reader agent",
+    "scope": "Visible home-page route, public acquisition, literal guide setup/build/run commands and raw-output interpretation on one native Windows x64 CI image. Confirms fault/correction after the bare-cl wording fix. No fresh Visual Studio installation, ARM64 or whole-profile validation.",
+    "reference": "audits/reader-workflows/retests/memory-confirmation/report.md",
+    "files": [
+      {
+        "path": "src/content/docs/guides/windows-memory-check.md",
+        "sha256": "aff703d9d4b4e356d4b63afe3f0010f8eca2d0a340428f5d17489ead7cbedfd9"
+      },
+      {
+        "path": "src/content/docs/guides/memory-error-detection.md",
+        "sha256": "75636cf454d876e4ec18a6f9c40ec9ac5e477e585e8ee48d21675cf264c2568f"
+      },
+      {
+        "path": "src/content/docs/guides/get-examples.md",
+        "sha256": "b3c3f28c02c869fb36e7ffe064e2dfd9e60f8e800a8440cd044c3c51d8f54fb5"
+      }
+    ]
+  },
+  {
+    "id": "reader-workflows-coordinator-2026-11-06",
+    "date": "2026-11-06",
+    "reviewer": "coordinator integration and evidence review",
+    "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+    "reference": "audits/reader-workflows/coordinator-review.json",
+    "files": [
+      {
+        "path": "astro.config.mjs",
+        "sha256": "6d6b1debfdbe734397fe857f98e163e1afdff520689c82e3bc6b058ec8a518bd"
+      },
+      {
+        "path": ".github/workflows/reader-validation.yml",
+        "sha256": "93e1227af7468cbe30e96f05536a653a62e340f9ba96b721560fa0f80798f621"
+      },
+      {
+        "path": "examples/windows-memory/README.md",
+        "sha256": "e6e11dbd7bcb75abdbe0872d2326bd276bc7d184336b8981cf66953ea9d4b2b9"
+      },
+      {
+        "path": "examples/windows-memory/verify.ps1",
+        "sha256": "72fb2a0e0ae5693569a550b972d63901e00438dc37ee841b24e19548b74491fc"
+      },
+      {
+        "path": "examples/windows-memory/bad/bounds.c",
+        "sha256": "f01c2e0e14b3438bf14357cc940990dbdffd03d68967d5bdc656ba2323884ac7"
+      },
+      {
+        "path": "examples/windows-memory/good/bounds.c",
+        "sha256": "85cc90c157fc6f7c7b76efc6acdd84b5feeb44ae3766f44d3ce370c0e09ccc34"
+      },
+      {
+        "path": "src/content/docs/guides/get-examples.md",
+        "sha256": "b3c3f28c02c869fb36e7ffe064e2dfd9e60f8e800a8440cd044c3c51d8f54fb5"
+      },
+      {
+        "path": "src/content/docs/guides/python-checks.md",
+        "sha256": "50f29c68bd711f39a823ceb30811f61e06014493494fb4d9596f86ac41838fee"
+      },
+      {
+        "path": "src/content/docs/guides/api-testing.md",
+        "sha256": "8e64c6f48a80e2bba3a7d3e5c8509589e3a2d230351f978f2377d23bb07bd1a5"
+      },
+      {
+        "path": "src/content/docs/guides/windows-memory-check.md",
+        "sha256": "aff703d9d4b4e356d4b63afe3f0010f8eca2d0a340428f5d17489ead7cbedfd9"
+      },
+      {
+        "path": "src/content/docs/guides/memory-error-detection.md",
+        "sha256": "75636cf454d876e4ec18a6f9c40ec9ac5e477e585e8ee48d21675cf264c2568f"
+      },
+      {
+        "path": "src/content/docs/tools/pylint.md",
+        "sha256": "6941048a4203352aab4f81e40092724d5c55dd1df8b1a1dfc614328e7ad79496"
+      },
+      {
+        "path": "src/content/docs/tools/schemathesis.md",
+        "sha256": "af6e22c94c67bafb9db362bc3db22b8ceaf12c046fe638c8738ed72bf0f2b3b1"
+      },
+      {
+        "path": "src/content/docs/tools/address-sanitizer.md",
+        "sha256": "1ede806e947feef5d1bbffeffd4af600a5fec8f28ec611635bf8da8c5b32e19d"
+      },
+      {
+        "path": "src/content/docs/tools/dr-memory.md",
+        "sha256": "01899c1d9fe4837ab9cee14367a8de2b7c17228d021a771f3426186b8ec67d9c"
+      },
+      {
+        "path": "audits/reader-workflows/retests/memory/reader-commands-initial.ps1",
+        "sha256": "e7c47cc0bc6ebaab6253c48accbc56db7c53849c7b93f88ae80cc40d9897925d"
+      },
+      {
+        "path": "audits/reader-workflows/retests/memory/reader-commands.ps1",
+        "sha256": "c606bece41caffc794df8b9994a01bfabe66ece8417a7d3b283d56938ccb1769"
+      },
+      {
+        "path": ".gitattributes",
+        "sha256": "b02e9fa51c1698da6b0765d84364833449a17da916dde6a3e85f9426ec727304"
+      }
+    ]
   }
 ]

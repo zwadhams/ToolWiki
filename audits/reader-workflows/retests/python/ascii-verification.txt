@@ -1,0 +1,2 @@
+Pre-packaging check: 551 text files; 0 non-ASCII files.
+Post-packaging check: 47 retained text files; 0 non-ASCII files.

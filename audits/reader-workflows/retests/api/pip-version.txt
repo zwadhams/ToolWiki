@@ -1,0 +1,1 @@
+pip 26.2.1 from C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\api\fresh-20261106\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\.preview\api-demo-env\Lib\site-packages\pip (python 3.13)

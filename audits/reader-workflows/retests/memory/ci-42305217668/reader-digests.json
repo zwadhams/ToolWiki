@@ -1,0 +1,212 @@
+[
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-work-c73e14cafc89406686a663bd10c98684\\examples.zip",
+    "SHA256": "1EA0D5A28C0BCA15B8C5F1481451FB91B3970F1D9CB1D1475BADD242E1F6713E",
+    "Bytes": 2234660
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-work-c73e14cafc89406686a663bd10c98684\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\bad\\bounds.c",
+    "SHA256": "F01C2E0E14B3438BF14357CC940990DBDFFD03D68967D5BDC656BA2323884AC7",
+    "Bytes": 164
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-work-c73e14cafc89406686a663bd10c98684\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\good\\bounds.c",
+    "SHA256": "85CC90C157FC6F7C7B76EFC6ACDD84B5FEEB44AE3766F44D3CE370C0E09CCC34",
+    "Bytes": 164
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-work-c73e14cafc89406686a663bd10c98684\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\bad-compile.pdb",
+    "SHA256": "FB663EB08ABF04FE6CFC9B5260C115516A4DBC130FBAD732C4AACDB793FD3A7A",
+    "Bytes": 69632
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-work-c73e14cafc89406686a663bd10c98684\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\bad.exe",
+    "SHA256": "1BA0AFE13092316C999E4D4FF1F34C07557154F827C92DC8EEEC2DDF7F64E57A",
+    "Bytes": 538624
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-work-c73e14cafc89406686a663bd10c98684\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\bad.obj",
+    "SHA256": "DDFE8C18A52404D0E228DB25981A6F9996924F17D62D96F9A4FD02EC08FC9E83",
+    "Bytes": 3699
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-work-c73e14cafc89406686a663bd10c98684\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\bad.pdb",
+    "SHA256": "7372C19927BE8BFF68031EFD2A45D1B999A41E28771DAE1FD4467389AD2E8D0A",
+    "Bytes": 6475776
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-work-c73e14cafc89406686a663bd10c98684\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\good-compile.pdb",
+    "SHA256": "EC7A8F35D51D85DF9075069DBA750883E2D03745E2DE24EFA01DD52E8027B839",
+    "Bytes": 69632
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-work-c73e14cafc89406686a663bd10c98684\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\good.exe",
+    "SHA256": "249AEF085B181A5A4AB30C41FFF83B4F5592100D789137E213D916E0CB8A0018",
+    "Bytes": 538624
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-work-c73e14cafc89406686a663bd10c98684\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\good.obj",
+    "SHA256": "13131CC2F2C235D07BFD8C3A31AA02CF4A2A8512F1AA3C33978A9A9FE85A4A80",
+    "Bytes": 3703
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\memory-reader-work-c73e14cafc89406686a663bd10c98684\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\\examples\\windows-memory\\build\\good.pdb",
+    "SHA256": "138D962A9982BEDA678AB09706ED5B0B7B0E34CF6622AF02F8A40BFFFB5FDC76",
+    "Bytes": 6475776
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\01-download-snapshot-stderr.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\01-download-snapshot-stdout.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\02-extract-snapshot-stderr.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\02-extract-snapshot-stdout.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\03-enter-repository-stderr.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\03-enter-repository-stdout.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\04-enter-example-stderr.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\04-enter-example-stdout.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\05-host-architecture-stderr.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\05-host-architecture-stdout.txt",
+    "SHA256": "73DDA8B8522642FA58AF9CCC3951517D3F8BDC3C77915034DE13EE53FC2F475D",
+    "Bytes": 5
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\06-initialize-developer-shell-stderr.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\06-initialize-developer-shell-stdout.txt",
+    "SHA256": "F4BD59D98A14339DBD1B25AD80EC5CFBCED84164CCB818B886068E040220360F",
+    "Bytes": 243
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\07-compiler-banner-stderr.txt",
+    "SHA256": "8E29834A4F5A5CBF82A6436414D68D51C3BDEB68D2DFF0023409CDEDC21E862C",
+    "Bytes": 131
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\07-compiler-banner-stdout.txt",
+    "SHA256": "ED6CA56A976BC0DD695904A59A423F36064632694B947125FF73CB68F125F840",
+    "Bytes": 61
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\08-target-and-runtime-stderr.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\08-target-and-runtime-stdout.txt",
+    "SHA256": "7848242B2A297ADA3A0EC3B149CBD74F860E2F50056175FB4B9DEFFE6C6065A6",
+    "Bytes": 10
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\09-version-metadata-stderr.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\09-version-metadata-stdout.txt",
+    "SHA256": "58206A2223237C622455CB4CD4F13E81CA26B041B3DDB5A9ED45C29CF0B93BEE",
+    "Bytes": 2928
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\10-build-bad-stderr.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\10-build-bad-stdout.txt",
+    "SHA256": "D77F5B2BA17BDC364BAC04CB7E27B40EF36283F09264A7A049A4B48A119E0678",
+    "Bytes": 10
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\11-run-bad-stderr.txt",
+    "SHA256": "27E191AABDA1CE59B2E757FFE70E362A718C16D22DC79FD931ED285FC6263308",
+    "Bytes": 3428
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\11-run-bad-stdout.txt",
+    "SHA256": "F1B2F662800122BED0FF255693DF89C4487FBDCF453D3524A42D4EC20C3D9C04",
+    "Bytes": 3
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\12-build-good-stderr.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\12-build-good-stdout.txt",
+    "SHA256": "D77F5B2BA17BDC364BAC04CB7E27B40EF36283F09264A7A049A4B48A119E0678",
+    "Bytes": 10
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\13-run-good-stderr.txt",
+    "SHA256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "Bytes": 0
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\13-run-good-stdout.txt",
+    "SHA256": "13BF7B3039C63BF5A50491FA3CFD8EB4E699D1BA1436315AEF9CBE5711530354",
+    "Bytes": 3
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\bad-source.txt",
+    "SHA256": "E4D27749C1721AC8D79D2EC22C608F8EE8FE9CF2093CE80C50D94EDE6FA0B6C2",
+    "Bytes": 172
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\good-source.txt",
+    "SHA256": "DEF02230A4FB08699E8EA939E04E4A5B7330143FCAE82F654724B1024C26B087",
+    "Bytes": 172
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\reader-commands.txt",
+    "SHA256": "F74D4D8A5CB3364C17D7C1D238A60903EE42F5A1B59EACD635295B68A6A2A245",
+    "Bytes": 4858
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\reader-environment.json",
+    "SHA256": "B1ECCD4711391BDC454FC21ED3E3DF318BF8B130CE48A97B82F15DCA2A8F3F0E",
+    "Bytes": 315
+  },
+  {
+    "Path": "D:\\a\\_temp\\reader-memory-evidence\\reader-run.json",
+    "SHA256": "8C5460832FB5FCF243DE466C1A4F912181927F7CD7089CD2B5A349FC208FBECF",
+    "Bytes": 10590
+  }
+]

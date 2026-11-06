@@ -1,0 +1,35 @@
+Downloading graphql_core-3.3.1-py3-none-any.whl (349 kB)
+Downloading harfile-0.6.0-py3-none-any.whl (7.4 kB)
+Downloading hypothesis-6.170.15-cp313-cp313-win_amd64.whl (691 kB)
+   ---------------------------------------- 691.4/691.4 kB 179.0 kB/s  0:00:02
+Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
+Downloading hypothesis_graphql-0.13.6-py3-none-any.whl (24 kB)
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+Downloading jsonschema_rs-0.60.3-cp310-abi3-win_amd64.whl (6.2 MB)
+   ---------------------------------------- 6.2/6.2 MB 964.9 kB/s  0:00:06
+Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Downloading markupsafe-3.0.4-cp313-cp313-win_amd64.whl (14 kB)
+Downloading packaging-26.3-py3-none-any.whl (129 kB)
+Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+   ---------------------------------------- 1.3/1.3 MB 386.7 kB/s  0:00:02
+Downloading pyrate_limiter-4.5.1-py3-none-any.whl (57 kB)
+Downloading pytest-9.2.0-py3-none-any.whl (411 kB)
+Downloading pyyaml-6.0.3-cp313-cp313-win_amd64.whl (154 kB)
+Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+Downloading schemathesis-4.33.1-py3-none-any.whl (1.3 MB)
+   ---------------------------------------- 1.3/1.3 MB 378.7 kB/s  0:00:02
+Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Installing collected packages: sortedcontainers, urllib3, typing-extensions, pyyaml, pyrate-limiter, pygments, pluggy, packaging, mdurl, markupsafe, jsonschema-rs, iniconfig, idna, hypothesis, harfile, graphql-core, colorama, click, charset-normalizer, certifi, werkzeug, requests, pytest, markdown-it-py, hypothesis-graphql, anyio, rich, schemathesis
+
+Successfully installed anyio-4.16.0 certifi-2026.10.23 charset-normalizer-3.5.2 click-8.5.1 colorama-0.4.6 graphql-core-3.3.1 harfile-0.6.0 hypothesis-6.170.15 hypothesis-graphql-0.13.6 idna-3.20 iniconfig-2.3.1 jsonschema-rs-0.60.3 markdown-it-py-4.2.0 markupsafe-3.0.4 mdurl-0.1.2 packaging-26.3 pluggy-1.7.0 pygments-2.21.0 pyrate-limiter-4.5.1 pytest-9.2.0 pyyaml-6.0.3 requests-2.34.2 rich-15.0.0 schemathesis-4.33.1 sortedcontainers-2.4.0 typing-extensions-4.16.0 urllib3-2.8.0 werkzeug-3.1.9
+
+[notice] A new release of pip is available: 26.2.1 -> 26.3
+[notice] To update, run: C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\api\fresh-20261106\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9\.preview\api-demo-env\Scripts\python.exe -m pip install --upgrade pip
+Transcript stopped, output file is C:\Users\zwadh\Repos\ToolWiki\audits\reader-workflows\retests\api\install.txt
+

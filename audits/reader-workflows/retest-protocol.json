@@ -44,6 +44,42 @@
     "Three scenarios do not validate all catalog tools, operating systems or accessibility conformance."
   ],
   "coordinator_boundary": "Root reviews the memory replay script for safety and command fidelity, commits it, triggers CI, retains outputs and sends those new outputs to the same reader for interpretation. No previous execution result substitutes for that replay.",
-  "status": "in-progress",
-  "build_index_sha256": "1a6161b12ff962bbd922c8cc13c337e477bb03cd4c71dd3d8042ee3163dcedd0"
+  "status": "complete",
+  "build_index_sha256": "1a6161b12ff962bbd922c8cc13c337e477bb03cd4c71dd3d8042ee3163dcedd0",
+  "rechecks": [
+    {
+      "scenario": "memory",
+      "agent": "retest_reader_memory_confirmation",
+      "source_revision": "f930842",
+      "reason": "Verify the affected workflow after correcting the bare-cl expected-output wording.",
+      "origin": "http://127.0.0.1:4363/ToolWiki/",
+      "independence": "New agent with no inherited conversation, no previous finding or report supplied; same reader goal and native CI execution boundary.",
+      "report": "retests/memory-confirmation/report.md",
+      "status": "passed",
+      "ci": {
+        "run_id": 42306409445,
+        "url": "https://github.com/zwadhams/ToolWiki/actions/runs/42306409445",
+        "commit": "f7e6eec324057646915c0688715ba0e69e9fce71",
+        "record": "retests/memory-confirmation/ci-42306409445/reader-run.json",
+        "artifact_sha256": "af292bf963ca5f0825dd806d6f83dadc3a7998acfd143c1ea0b86173cd663885"
+      }
+    }
+  ],
+  "results": {
+    "python": "passed",
+    "api": "passed",
+    "memory_initial": "runtime passed; minor bare-cl wording corrected",
+    "memory_confirmation": "passed with no remaining reader blocker"
+  },
+  "cleanup": {
+    "status": "complete",
+    "closed_loopback_ports": [
+      4361,
+      4362,
+      4363,
+      8771,
+      8785
+    ],
+    "environments": "Retained in ignored scratch; no global installations or host setting changes."
+  }
 }

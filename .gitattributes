@@ -1,2 +1,5 @@
 * text=auto eol=lf
 *.cmd text eol=crlf
+
+# Preserve captured evidence bytes and their recorded SHA-256 digests.
+/audits/reader-workflows/** -text

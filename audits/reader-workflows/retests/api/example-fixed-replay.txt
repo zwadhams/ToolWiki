@@ -1,0 +1,35 @@
+**********************
+PowerShell transcript start
+Start time: 20261106152801
+Username: ZACH-SURFACE\zwadh
+RunAs User: ZACH-SURFACE\zwadh
+Configuration Name: 
+Machine: ZACH-SURFACE (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Program Files\WindowsApps\OpenAI.CodexPrimaryRuntime.v26-1104-709-0_26.1104.709.0_arm64__3k8sg7r9htsxt\dependencies\native\powershell\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+Start-Transcript -LiteralPath 'C:\Users\zwadh\Repos\ToolWiki\audits\reader-workflows\retests\api\example-fixed-replay.txt'
+.preview/api-demo-env/Scripts/python examples/http-api/replay.py --expect-fixed
+"Replay exit code: $LASTEXITCODE"
+Stop-Transcript
+$inputDir = 'C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\inputs\api'
+$copyDir = 'C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\api\fresh-20261106\shipment-copy'
+New-Item -ItemType Directory -Path $copyDir | Out-Null
+Copy-Item -LiteralPath "$inputDir\README.txt","$inputDir\server.py","$inputDir\service-schema.json" -Destination $copyDir
+Get-FileHash -Algorithm SHA256 -LiteralPath "$inputDir\README.txt","$inputDir\server.py","$inputDir\service-schema.json","$copyDir\README.txt","$copyDir\server.py","$copyDir\service-schema.json" | ConvertTo-Json | Set-Content -Encoding ascii 'C:\Users\zwadh\Repos\ToolWiki\audits\reader-workflows\retests\api\input-digests.json'
+Process ID: 57992
+PSVersion: 7.6.9
+PSEdition: Core
+GitCommitId: 7.6.9
+OS: Microsoft Windows 10.0.26300
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is C:\Users\zwadh\Repos\ToolWiki\audits\reader-workflows\retests\api\example-fixed-replay.txt
+
+Replay exit code: 0
+**********************
+PowerShell transcript end
+End time: 20261106152802
+**********************

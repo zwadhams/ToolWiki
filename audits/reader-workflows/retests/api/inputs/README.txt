@@ -1,0 +1,1 @@
+Disposable local shipment API. From this directory run python server.py, or python server.py --fixed after a correction. Default address: http://127.0.0.1:8785. Schema: service-schema.json. POST /reset clears state; Ctrl+C stops the service. Use only the loopback target. No credentials or external dependencies.

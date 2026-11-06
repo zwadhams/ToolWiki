@@ -1,0 +1,151 @@
+**********************
+PowerShell transcript start
+Start time: 20261106152615
+Username: ZACH-SURFACE\zwadh
+RunAs User: ZACH-SURFACE\zwadh
+Configuration Name: 
+Machine: ZACH-SURFACE (Microsoft Windows NT 10.0.26300.0)
+Host Application: C:\Program Files\WindowsApps\OpenAI.CodexPrimaryRuntime.v26-1104-709-0_26.1104.709.0_arm64__3k8sg7r9htsxt\dependencies\native\powershell\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+New-Item -ItemType Directory -Path 'C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download' -ErrorAction Stop
+New-Item -ItemType Directory -Path 'C:\Users\zwadh\Repos\ToolWiki\audits\reader-workflows\retests\python' -Force
+Start-Transcript -Path 'C:\Users\zwadh\Repos\ToolWiki\audits\reader-workflows\retests\python\acquisition.txt'
+Set-Location 'C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download'
+Invoke-WebRequest 'https://github.com/zwadhams/ToolWiki/archive/506c522ca86fd8c9d7b688f35a4d37f842d04cc9.zip' -OutFile examples.zip
+Expand-Archive -LiteralPath examples.zip -DestinationPath .
+Set-Location '.\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9'
+Set-Location examples/python-checks
+$Python = 'python'
+& $Python --version
+Get-FileHash -LiteralPath '..\..\..\examples.zip' -Algorithm SHA256
+Get-ChildItem -Recurse -File | Get-FileHash -Algorithm SHA256
+Stop-Transcript
+Process ID: 57260
+PSVersion: 7.6.9
+PSEdition: Core
+GitCommitId: 7.6.9
+OS: Microsoft Windows 10.0.26300
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is C:\Users\zwadh\Repos\ToolWiki\audits\reader-workflows\retests\python\acquisition.txt
+
+
+Algorithm : SHA256
+Hash      : 1EA0D5A28C0BCA15B8C5F1481451FB91B3970F1D9CB1D1475BADD242E1F6713E
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\examples.zip
+
+
+Algorithm : SHA256
+Hash      : 00410C4CE43CA87E6061A87D1FF842C2BB02CA864317B0CAB265AB7B340B53D8
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\.gitignore
+
+
+Algorithm : SHA256
+Hash      : CFF8F2D44AE72E7FC6626D03E0349A192073FE3C0B312CEE8722AE0DD5CA32C9
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\evidence.md
+
+
+Algorithm : SHA256
+Hash      : 995758050D891BFB9CA75BB3820446B0F82353727EFAFFB87344C8FEA48407D9
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\pyproject.toml
+
+
+Algorithm : SHA256
+Hash      : 7FC660F71E47412548C51DC4C9EB982AF3C4BDD52CE91634AD9E373CFF7F87CD
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\requirements.txt
+
+
+Algorithm : SHA256
+Hash      : E251B3267934FEB80724AF9D2EE60145059A7259A36210458EE4E6A08D8C150C
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\run_checks.py
+
+
+Algorithm : SHA256
+Hash      : F65896C6404D767777446C496E6C1C5E0968999103D274539D49874FAB1320BE
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\test_runner.py
+
+
+Algorithm : SHA256
+Hash      : AE2A8D14259CB9D2B87DF0FA5D9886BB380EA17AB8753E76C8683AB7090AE4A3
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\bad\greeting.py
+
+
+Algorithm : SHA256
+Hash      : E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\evidence\bad\mypy.stderr.txt
+
+
+Algorithm : SHA256
+Hash      : C98FD266654AE5B328F93956C9E0E631A7ED246C03F06F8AF446DBD5403D9573
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\evidence\bad\mypy.txt
+
+
+Algorithm : SHA256
+Hash      : D743C59B55FFFC790238412B7AB22F4B24F8659F71D356DE01BFFC2190FD8B21
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\evidence\bad\ruff.json
+
+
+Algorithm : SHA256
+Hash      : E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\evidence\bad\ruff.stderr.txt
+
+
+Algorithm : SHA256
+Hash      : 4922732980159C92BD5ADB0770A923BE1D2889E0C58DAAC5750985CA5092117F
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\evidence\bad\run.json
+
+
+Algorithm : SHA256
+Hash      : E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\evidence\good\mypy.stderr.txt
+
+
+Algorithm : SHA256
+Hash      : 5D4B6D285B77932E3D08212C3B4974D0A803F98EC60408AC6CCF6A063FA6C19E
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\evidence\good\mypy.txt
+
+
+Algorithm : SHA256
+Hash      : 37517E5F3DC66819F61F5A7BB8ACE1921282415F10551D2DEFA5C3EB0985B570
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\evidence\good\ruff.json
+
+
+Algorithm : SHA256
+Hash      : E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\evidence\good\ruff.stderr.txt
+
+
+Algorithm : SHA256
+Hash      : 24DD334BA0DAE9F6466774986C1213C1503D5DB2CF832F3B818A1094AA84ADBA
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\evidence\good\run.json
+
+
+Algorithm : SHA256
+Hash      : EC88BF30DA24EF6BDA3A0B696145015055E8037EE5D25DCF6A1D05F1149CF46B
+Path      : C:\Users\zwadh\Repos\ToolWiki\.preview\reader-retests\python\public-download\ToolWiki-506c522ca86fd8c9d7b68
+            8f35a4d37f842d04cc9\examples\python-checks\good\greeting.py
+
+**********************
+PowerShell transcript end
+End time: 20261106152623
+**********************

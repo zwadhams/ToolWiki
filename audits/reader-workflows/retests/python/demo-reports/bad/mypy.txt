@@ -1,0 +1,2 @@
+bad\greeting.py:8: error: Argument 1 to "greeting" has incompatible type "str"; expected "int"  [arg-type]
+Found 1 error in 1 file (checked 1 source file)

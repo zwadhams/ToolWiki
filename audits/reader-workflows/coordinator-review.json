@@ -31,7 +31,7 @@
     {
       "id": "DOC-06",
       "result": "pass",
-      "detail": "133 built pages, local links, fragments, assets, search index and navigation passed check-site; original 101 tests passed. Final verification is pending reader outcomes."
+      "detail": "Final pnpm verify passed after the correction: 43 Astro files with no errors or warnings; 101 tests; 133 pages, local links, fragments, assets, search and discovery for 98 tools, and builder recommendations for 86 reviewed tools."
     }
   ],
   "primary_sources": [
@@ -52,8 +52,15 @@
     }
   ],
   "prior_evidence": {
-    "files": 236,
-    "all_original_digests_match": true,
+    "files_in_original_manifest": 236,
+    "historical_reader_audit": "unchanged",
+    "other_historical_evidence": "unchanged",
+    "permitted_updates": [
+      "audits/review-status/reviews.json: append scoped entries only",
+      "audits/review-status/current.json: regenerate derived report",
+      "audits/review-status/current.md: regenerate derived report"
+    ],
+    "original_review_entries": "preserved without modification",
     "manifest": "prior-audit-digests.json"
   },
   "files": [
@@ -87,7 +94,7 @@
     },
     {
       "path": "src/content/docs/guides/python-checks.md",
-      "sha256": "7ef07af4118c7f1f6f54a45019b4754d3f2aa1290845fc1b0e5c286fc70e9d52"
+      "sha256": "50f29c68bd711f39a823ceb30811f61e06014493494fb4d9596f86ac41838fee"
     },
     {
       "path": "src/content/docs/guides/api-testing.md",
@@ -95,7 +102,7 @@
     },
     {
       "path": "src/content/docs/guides/windows-memory-check.md",
-      "sha256": "d462c7558c442e9706f287ddc7f4665aa60eb748e380f1431a798bf315045e7f"
+      "sha256": "aff703d9d4b4e356d4b63afe3f0010f8eca2d0a340428f5d17489ead7cbedfd9"
     },
     {
       "path": "src/content/docs/guides/memory-error-detection.md",
@@ -107,7 +114,7 @@
     },
     {
       "path": "src/content/docs/tools/schemathesis.md",
-      "sha256": "ef271f426b81bc96e523e8510b8c7080bc451d87cd4c5fe520aef85e3ae55a58"
+      "sha256": "af6e22c94c67bafb9db362bc3db22b8ceaf12c046fe638c8738ed72bf0f2b3b1"
     },
     {
       "path": "src/content/docs/tools/address-sanitizer.md",
@@ -116,6 +123,37 @@
     {
       "path": "src/content/docs/tools/dr-memory.md",
       "sha256": "01899c1d9fe4837ab9cee14367a8de2b7c17228d021a771f3426186b8ec67d9c"
+    },
+    {
+      "path": "audits/reader-workflows/retests/memory/reader-commands-initial.ps1",
+      "sha256": "e7c47cc0bc6ebaab6253c48accbc56db7c53849c7b93f88ae80cc40d9897925d"
+    },
+    {
+      "path": "audits/reader-workflows/retests/memory/reader-commands.ps1",
+      "sha256": "c606bece41caffc794df8b9994a01bfabe66ece8417a7d3b283d56938ccb1769"
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "b02e9fa51c1698da6b0765d84364833449a17da916dde6a3e85f9426ec727304"
     }
-  ]
+  ],
+  "reader_findings": [
+    {
+      "id": "MEM-RETEST-01",
+      "source": "retests/memory/reader-report.md",
+      "severity": "minor-nonblocking",
+      "observation": "Bare cl printed usage and returned zero, while the guide said a missing-source diagnostic would appear. Both actual builds and runtime outcomes passed.",
+      "disposition": "Corrected the banner-check sentence in f930842. No build or run command changed. A new independent reader repeated the entire affected scenario and passed in CI run 42306409445.",
+      "affected_file": "src/content/docs/guides/windows-memory-check.md"
+    }
+  ],
+  "readers": {
+    "python": "Passed demo, Pylint and held-out invoice adaptation without a documentation blocker.",
+    "api": "Passed demo and held-out shipment positive/negative adaptation without a documentation blocker.",
+    "memory": "Initial native replay passed; one minor preflight wording mismatch was corrected and independently confirmed by a fresh reader and CI replay."
+  },
+  "final_product_revision": "f9308424ca218959b10a6ecb5860bd637c8fc025",
+  "status": "complete",
+  "script_review": "Coordinator checked isolated file operations, literal guide commands, expected-failure continuation, output capture and native CI assertions. Reader agents retained independent discovery and interpretation.",
+  "evidence_packaging": "A scoped .gitattributes -text rule preserves exact audit bytes and SHA-256 digests across checkouts. Public source and historical audit paths retain their existing newline policy. Review digests use the repository LF form of source documents; two working copies were aligned with their unchanged committed LF blobs before final hashing."
 }

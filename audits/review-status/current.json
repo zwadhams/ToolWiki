@@ -4,11 +4,41 @@
   "counts": {
     "unchanged-since-review": 3,
     "changed-since-review": 2,
-    "reviewed-follow-up": 269,
+    "reviewed-follow-up": 280,
     "not-yet-linked-to-review": 1,
     "removed-since-review": 0
   },
   "files": [
+    {
+      "path": ".gitattributes",
+      "status": "reviewed-follow-up",
+      "currentSha256": "b02e9fa51c1698da6b0765d84364833449a17da916dde6a3e85f9426ec727304",
+      "latestReview": {
+        "id": "reader-workflows-coordinator-2026-11-06",
+        "date": "2026-11-06",
+        "type": "follow-up",
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "b02e9fa51c1698da6b0765d84364833449a17da916dde6a3e85f9426ec727304"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": ".github/workflows/reader-validation.yml",
+      "status": "reviewed-follow-up",
+      "currentSha256": "93e1227af7468cbe30e96f05536a653a62e340f9ba96b721560fa0f80798f621",
+      "latestReview": {
+        "id": "reader-workflows-coordinator-2026-11-06",
+        "date": "2026-11-06",
+        "type": "follow-up",
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "93e1227af7468cbe30e96f05536a653a62e340f9ba96b721560fa0f80798f621"
+      },
+      "reviewCount": 1
+    },
     {
       "path": "README.md",
       "status": "reviewed-follow-up",
@@ -23,6 +53,51 @@
         "sha256": "b9b5c0f9c769c849f922a5b0f57d0b60274bb3b8151ec02db6a8cbc2def8b062"
       },
       "reviewCount": 2
+    },
+    {
+      "path": "astro.config.mjs",
+      "status": "reviewed-follow-up",
+      "currentSha256": "6d6b1debfdbe734397fe857f98e163e1afdff520689c82e3bc6b058ec8a518bd",
+      "latestReview": {
+        "id": "reader-workflows-coordinator-2026-11-06",
+        "date": "2026-11-06",
+        "type": "follow-up",
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "6d6b1debfdbe734397fe857f98e163e1afdff520689c82e3bc6b058ec8a518bd"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "audits/reader-workflows/retests/memory/reader-commands-initial.ps1",
+      "status": "reviewed-follow-up",
+      "currentSha256": "e7c47cc0bc6ebaab6253c48accbc56db7c53849c7b93f88ae80cc40d9897925d",
+      "latestReview": {
+        "id": "reader-workflows-coordinator-2026-11-06",
+        "date": "2026-11-06",
+        "type": "follow-up",
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "e7c47cc0bc6ebaab6253c48accbc56db7c53849c7b93f88ae80cc40d9897925d"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "audits/reader-workflows/retests/memory/reader-commands.ps1",
+      "status": "reviewed-follow-up",
+      "currentSha256": "c606bece41caffc794df8b9994a01bfabe66ece8417a7d3b283d56938ccb1769",
+      "latestReview": {
+        "id": "reader-workflows-coordinator-2026-11-06",
+        "date": "2026-11-06",
+        "type": "follow-up",
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "c606bece41caffc794df8b9994a01bfabe66ece8417a7d3b283d56938ccb1769"
+      },
+      "reviewCount": 1
     },
     {
       "path": "audits/remaining-work/executions/boofuzz/faulty.json",
@@ -477,7 +552,7 @@
     {
       "path": "audits/review-status/reviews.json",
       "status": "changed-since-review",
-      "currentSha256": "2129affd796382d68b4ce739c1e48063d6dc1353a2749999cee42590e0463d4d",
+      "currentSha256": "c3bef087b67def299c3e3ba2654d6ca7619201dbdfbed8569ec15ea6670a2d0a",
       "latestReview": {
         "id": "remaining-work-architecture-2026-11-06",
         "date": "2026-11-06",
@@ -1705,6 +1780,66 @@
       "reviewCount": 1
     },
     {
+      "path": "examples/windows-memory/README.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "e6e11dbd7bcb75abdbe0872d2326bd276bc7d184336b8981cf66953ea9d4b2b9",
+      "latestReview": {
+        "id": "reader-workflows-coordinator-2026-11-06",
+        "date": "2026-11-06",
+        "type": "follow-up",
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "e6e11dbd7bcb75abdbe0872d2326bd276bc7d184336b8981cf66953ea9d4b2b9"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "examples/windows-memory/bad/bounds.c",
+      "status": "reviewed-follow-up",
+      "currentSha256": "f01c2e0e14b3438bf14357cc940990dbdffd03d68967d5bdc656ba2323884ac7",
+      "latestReview": {
+        "id": "reader-workflows-coordinator-2026-11-06",
+        "date": "2026-11-06",
+        "type": "follow-up",
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "f01c2e0e14b3438bf14357cc940990dbdffd03d68967d5bdc656ba2323884ac7"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "examples/windows-memory/good/bounds.c",
+      "status": "reviewed-follow-up",
+      "currentSha256": "85cc90c157fc6f7c7b76efc6acdd84b5feeb44ae3766f44d3ce370c0e09ccc34",
+      "latestReview": {
+        "id": "reader-workflows-coordinator-2026-11-06",
+        "date": "2026-11-06",
+        "type": "follow-up",
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "85cc90c157fc6f7c7b76efc6acdd84b5feeb44ae3766f44d3ce370c0e09ccc34"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "examples/windows-memory/verify.ps1",
+      "status": "reviewed-follow-up",
+      "currentSha256": "72fb2a0e0ae5693569a550b972d63901e00438dc37ee841b24e19548b74491fc",
+      "latestReview": {
+        "id": "reader-workflows-coordinator-2026-11-06",
+        "date": "2026-11-06",
+        "type": "follow-up",
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "72fb2a0e0ae5693569a550b972d63901e00438dc37ee841b24e19548b74491fc"
+      },
+      "reviewCount": 1
+    },
+    {
       "path": "node_modules/@astrojs/starlight/dist/components/Search.astro",
       "status": "reviewed-follow-up",
       "currentSha256": "30d6549c54409a9e92ec9734901946d409a408635e8876b18940285f21c62062",
@@ -1996,17 +2131,17 @@
     {
       "path": "src/content/docs/guides/api-testing.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "79c67f627649a16443745d167c67708435a99b11ec0baacf77f5170a780010ed",
+      "currentSha256": "8e64c6f48a80e2bba3a7d3e5c8509589e3a2d230351f978f2377d23bb07bd1a5",
       "latestReview": {
-        "id": "remaining-work-language-guides-2026-11-06",
+        "id": "reader-workflows-coordinator-2026-11-06",
         "date": "2026-11-06",
         "type": "follow-up",
-        "reviewer": "remaining_discovery",
-        "reference": "audits/remaining-work/reviews/language-guides.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "79c67f627649a16443745d167c67708435a99b11ec0baacf77f5170a780010ed"
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "8e64c6f48a80e2bba3a7d3e5c8509589e3a2d230351f978f2377d23bb07bd1a5"
       },
-      "reviewCount": 2
+      "reviewCount": 4
     },
     {
       "path": "src/content/docs/guides/choosing-and-recording-tools.md",
@@ -2069,6 +2204,21 @@
       "reviewCount": 2
     },
     {
+      "path": "src/content/docs/guides/get-examples.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "b3c3f28c02c869fb36e7ffe064e2dfd9e60f8e800a8440cd044c3c51d8f54fb5",
+      "latestReview": {
+        "id": "reader-workflows-coordinator-2026-11-06",
+        "date": "2026-11-06",
+        "type": "follow-up",
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "b3c3f28c02c869fb36e7ffe064e2dfd9e60f8e800a8440cd044c3c51d8f54fb5"
+      },
+      "reviewCount": 4
+    },
+    {
       "path": "src/content/docs/guides/java-analysis.md",
       "status": "reviewed-follow-up",
       "currentSha256": "0323ca73d7e269fa22e9df6974daad43ab7b331ca343669aff19a57ca69b7798",
@@ -2086,32 +2236,32 @@
     {
       "path": "src/content/docs/guides/memory-error-detection.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "093a1b61b746e94629444c2d65a091fae243793c0e5d20773e571bbd5949b4b4",
+      "currentSha256": "75636cf454d876e4ec18a6f9c40ec9ac5e477e585e8ee48d21675cf264c2568f",
       "latestReview": {
-        "id": "remaining-work-language-guides-2026-11-06",
+        "id": "reader-workflows-coordinator-2026-11-06",
         "date": "2026-11-06",
         "type": "follow-up",
-        "reviewer": "remaining_discovery",
-        "reference": "audits/remaining-work/reviews/language-guides.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "093a1b61b746e94629444c2d65a091fae243793c0e5d20773e571bbd5949b4b4"
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "75636cf454d876e4ec18a6f9c40ec9ac5e477e585e8ee48d21675cf264c2568f"
       },
-      "reviewCount": 2
+      "reviewCount": 4
     },
     {
       "path": "src/content/docs/guides/python-checks.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "8ce2809c49e23112a55b4ff1b4db62a5c0a61708d059df7ae1432c4f395ce705",
+      "currentSha256": "50f29c68bd711f39a823ceb30811f61e06014493494fb4d9596f86ac41838fee",
       "latestReview": {
-        "id": "remaining-work-language-guides-2026-11-06",
+        "id": "reader-workflows-coordinator-2026-11-06",
         "date": "2026-11-06",
         "type": "follow-up",
-        "reviewer": "remaining_discovery",
-        "reference": "audits/remaining-work/reviews/language-guides.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "8ce2809c49e23112a55b4ff1b4db62a5c0a61708d059df7ae1432c4f395ce705"
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "50f29c68bd711f39a823ceb30811f61e06014493494fb4d9596f86ac41838fee"
       },
-      "reviewCount": 2
+      "reviewCount": 4
     },
     {
       "path": "src/content/docs/guides/reviewing-findings.md",
@@ -2200,6 +2350,21 @@
         "reference": "audits/remaining-work/reviews/language-guides.json",
         "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
         "sha256": "606577c872c16026719dc9b1ec3eff41f1a27d56a1d32908a90e8aa805a17858"
+      },
+      "reviewCount": 2
+    },
+    {
+      "path": "src/content/docs/guides/windows-memory-check.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "aff703d9d4b4e356d4b63afe3f0010f8eca2d0a340428f5d17489ead7cbedfd9",
+      "latestReview": {
+        "id": "reader-workflows-coordinator-2026-11-06",
+        "date": "2026-11-06",
+        "type": "follow-up",
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "aff703d9d4b4e356d4b63afe3f0010f8eca2d0a340428f5d17489ead7cbedfd9"
       },
       "reviewCount": 2
     },
@@ -2340,17 +2505,17 @@
     {
       "path": "src/content/docs/tools/address-sanitizer.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "c78c4711b4b305f497ad530c3115b32e12f974d1920646eba0234a2164e79657",
+      "currentSha256": "1ede806e947feef5d1bbffeffd4af600a5fec8f28ec611635bf8da8c5b32e19d",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
+        "id": "reader-workflows-coordinator-2026-11-06",
         "date": "2026-11-06",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "c78c4711b4b305f497ad530c3115b32e12f974d1920646eba0234a2164e79657"
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "1ede806e947feef5d1bbffeffd4af600a5fec8f28ec611635bf8da8c5b32e19d"
       },
-      "reviewCount": 2
+      "reviewCount": 3
     },
     {
       "path": "src/content/docs/tools/afl-plus-plus.md",
@@ -2820,17 +2985,17 @@
     {
       "path": "src/content/docs/tools/dr-memory.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "45ae1f59d2a7960e4673b64859fdab90e1b29e9567e2e48274f0eb793ca4f46d",
+      "currentSha256": "01899c1d9fe4837ab9cee14367a8de2b7c17228d021a771f3426186b8ec67d9c",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
+        "id": "reader-workflows-coordinator-2026-11-06",
         "date": "2026-11-06",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "45ae1f59d2a7960e4673b64859fdab90e1b29e9567e2e48274f0eb793ca4f46d"
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "01899c1d9fe4837ab9cee14367a8de2b7c17228d021a771f3426186b8ec67d9c"
       },
-      "reviewCount": 2
+      "reviewCount": 3
     },
     {
       "path": "src/content/docs/tools/esbmc.md",
@@ -3345,17 +3510,17 @@
     {
       "path": "src/content/docs/tools/pylint.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "f46e1cf03775f773c15848b2015ce62ec2850fd54f8e98663a6074a1b85312e3",
+      "currentSha256": "6941048a4203352aab4f81e40092724d5c55dd1df8b1a1dfc614328e7ad79496",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
+        "id": "reader-workflows-coordinator-2026-11-06",
         "date": "2026-11-06",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "f46e1cf03775f773c15848b2015ce62ec2850fd54f8e98663a6074a1b85312e3"
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "6941048a4203352aab4f81e40092724d5c55dd1df8b1a1dfc614328e7ad79496"
       },
-      "reviewCount": 1
+      "reviewCount": 3
     },
     {
       "path": "src/content/docs/tools/pyright.md",
@@ -3450,17 +3615,17 @@
     {
       "path": "src/content/docs/tools/schemathesis.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "8fb0cf91993f2d55feae6c6b03ca66e77fef975f2972aba0ab007a543d67fe9a",
+      "currentSha256": "af6e22c94c67bafb9db362bc3db22b8ceaf12c046fe638c8738ed72bf0f2b3b1",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
+        "id": "reader-workflows-coordinator-2026-11-06",
         "date": "2026-11-06",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "8fb0cf91993f2d55feae6c6b03ca66e77fef975f2972aba0ab007a543d67fe9a"
+        "reviewer": "coordinator integration and evidence review",
+        "reference": "audits/reader-workflows/coordinator-review.json",
+        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
+        "sha256": "af6e22c94c67bafb9db362bc3db22b8ceaf12c046fe638c8738ed72bf0f2b3b1"
       },
-      "reviewCount": 3
+      "reviewCount": 5
     },
     {
       "path": "src/content/docs/tools/semgrep-ce.md",

@@ -1,0 +1,32 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "C67C73B16B7359E7B78476354FF03F6119F1630E5BD154DA6C99E3CD372F6D07",
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\inputs\\api\\README.txt"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "91B2981F9BABB256CCE5D6D205DBC87833388B3C632DDDC8282B631E168A7A3D",
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\inputs\\api\\server.py"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "479422373815A1331CB9F0B28690D00EA2A2F60E45B9AFD8CD3589848279A21A",
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\inputs\\api\\service-schema.json"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "C67C73B16B7359E7B78476354FF03F6119F1630E5BD154DA6C99E3CD372F6D07",
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\api\\fresh-20261106\\shipment-copy\\README.txt"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "91B2981F9BABB256CCE5D6D205DBC87833388B3C632DDDC8282B631E168A7A3D",
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\api\\fresh-20261106\\shipment-copy\\server.py"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "479422373815A1331CB9F0B28690D00EA2A2F60E45B9AFD8CD3589848279A21A",
+    "Path": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-retests\\api\\fresh-20261106\\shipment-copy\\service-schema.json"
+  }
+]

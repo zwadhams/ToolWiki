@@ -1,0 +1,510 @@
+{
+  "algorithm": "SHA-256",
+  "transform": "Tool output was captured with UTF-8 scoped to the subprocess or restored PowerShell environment. Retained text strips ANSI control codes and escapes non-ASCII glyphs; manifest includes raw/retained SHA-256.",
+  "files": [
+    {
+      "source": ".preview/reader-implementation/api/install.txt",
+      "retained": "environment/install.txt",
+      "source_sha256": "ca279cb32bf85b9a7dbc832cdb8380d2e2814bc2c4244e013e6cc5261bed5da1",
+      "retained_sha256": "ca279cb32bf85b9a7dbc832cdb8380d2e2814bc2c4244e013e6cc5261bed5da1",
+      "source_bytes": 7426,
+      "retained_bytes": 7426
+    },
+    {
+      "source": ".preview/reader-implementation/api/widgets_server.py",
+      "retained": "inputs/widgets_server.py",
+      "source_sha256": "d02aaee60ad9cf36994570710cac1f58b8b09756a732955cf2d53e5e9fa50615",
+      "retained_sha256": "d02aaee60ad9cf36994570710cac1f58b8b09756a732955cf2d53e5e9fa50615",
+      "source_bytes": 4932,
+      "retained_bytes": 4932
+    },
+    {
+      "source": ".preview/reader-implementation/api/widgets.json",
+      "retained": "inputs/widgets.json",
+      "source_sha256": "89992eae722d8479387680c1337934f33b52fdc6848541d8c20945c49cc82207",
+      "retained_sha256": "89992eae722d8479387680c1337934f33b52fdc6848541d8c20945c49cc82207",
+      "source_bytes": 2740,
+      "retained_bytes": 2740
+    },
+    {
+      "source": ".preview/reader-implementation/api/verify_api.py",
+      "retained": "inputs/verify_api.py",
+      "source_sha256": "210ef9c12bccda4d3b9d091fc2fbf676a32070cba4ca911c3824ec3c178b3c62",
+      "retained_sha256": "210ef9c12bccda4d3b9d091fc2fbf676a32070cba4ca911c3824ec3c178b3c62",
+      "source_bytes": 8681,
+      "retained_bytes": 8681
+    },
+    {
+      "source": ".preview/reader-implementation/api/python-version.stdout.txt",
+      "retained": "environment/python-version.stdout.txt",
+      "source_sha256": "e01010a8a9c1cd68a0b1f72761644d8604090bec2d68ff9c3cad0d2535726849",
+      "retained_sha256": "e01010a8a9c1cd68a0b1f72761644d8604090bec2d68ff9c3cad0d2535726849",
+      "source_bytes": 16,
+      "retained_bytes": 16
+    },
+    {
+      "source": ".preview/reader-implementation/api/python-version.stderr.txt",
+      "retained": "environment/python-version.stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/schemathesis-version.stdout.txt",
+      "retained": "environment/schemathesis-version.stdout.txt",
+      "source_sha256": "adec87d6f6ef135542a6e52226b4c399ad24bbf345b8938a2d159989799196bd",
+      "retained_sha256": "adec87d6f6ef135542a6e52226b4c399ad24bbf345b8938a2d159989799196bd",
+      "source_bytes": 30,
+      "retained_bytes": 30
+    },
+    {
+      "source": ".preview/reader-implementation/api/schemathesis-version.stderr.txt",
+      "retained": "environment/schemathesis-version.stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/dependencies.stdout.txt",
+      "retained": "environment/dependencies.stdout.txt",
+      "source_sha256": "4898801dec8204765e97491ecbf50a7df92cd4aa40dd0dbaed2ddebffa58737b",
+      "retained_sha256": "4898801dec8204765e97491ecbf50a7df92cd4aa40dd0dbaed2ddebffa58737b",
+      "source_bytes": 532,
+      "retained_bytes": 532
+    },
+    {
+      "source": ".preview/reader-implementation/api/dependencies.stderr.txt",
+      "retained": "environment/dependencies.stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/pip-check.stdout.txt",
+      "retained": "environment/pip-check.stdout.txt",
+      "source_sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf",
+      "retained_sha256": "672aec65a45bed50e70229c70934a7eebf0462595c459b83023027645d57cccf",
+      "source_bytes": 31,
+      "retained_bytes": 31
+    },
+    {
+      "source": ".preview/reader-implementation/api/pip-check.stderr.txt",
+      "retained": "environment/pip-check.stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/powershell-version.stdout.txt",
+      "retained": "environment/powershell-version.stdout.txt",
+      "source_sha256": "530a48ced0354f0b46cb126ce533132cd5625ba3323f20fe39df85e58e441792",
+      "retained_sha256": "530a48ced0354f0b46cb126ce533132cd5625ba3323f20fe39df85e58e441792",
+      "source_bytes": 7,
+      "retained_bytes": 7
+    },
+    {
+      "source": ".preview/reader-implementation/api/powershell-version.stderr.txt",
+      "retained": "environment/powershell-version.stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/cli-help.stdout.txt",
+      "retained": "environment/cli-help.txt",
+      "source_sha256": "4e3f9721667ef9e3b14b20a7d51e4f8a2036066a0daea9e66f6f026a0f5763d7",
+      "retained_sha256": "4e3f9721667ef9e3b14b20a7d51e4f8a2036066a0daea9e66f6f026a0f5763d7",
+      "source_bytes": 10701,
+      "retained_bytes": 10701
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-demo-faulty.server.txt",
+      "retained": "runs/final-demo-faulty/server.txt",
+      "source_sha256": "69241fa54f5edac5c6eedd6da4693b320095e1802d531da7ae8d8055ec656fd9",
+      "retained_sha256": "69241fa54f5edac5c6eedd6da4693b320095e1802d531da7ae8d8055ec656fd9",
+      "source_bytes": 71,
+      "retained_bytes": 71
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-demo-faulty/junit.xml",
+      "retained": "runs/final-demo-faulty/junit.xml",
+      "source_sha256": "50f261f37400b598f44354d41842ae3f81188a4a63766fbb2d301352c1f56a6c",
+      "retained_sha256": "50f261f37400b598f44354d41842ae3f81188a4a63766fbb2d301352c1f56a6c",
+      "source_bytes": 651,
+      "retained_bytes": 651
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-demo-faulty/run.json",
+      "retained": "runs/final-demo-faulty/run.json",
+      "source_sha256": "1558d6e1aff83d90618f1b3ead6f6d35e592510aa93a346f5e910fee61c93cc8",
+      "retained_sha256": "1558d6e1aff83d90618f1b3ead6f6d35e592510aa93a346f5e910fee61c93cc8",
+      "source_bytes": 858,
+      "retained_bytes": 858
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-demo-faulty/stderr.txt",
+      "retained": "runs/final-demo-faulty/stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-demo-faulty/stdout.txt",
+      "retained": "runs/final-demo-faulty/stdout.txt",
+      "source_sha256": "5a733c56145a879ee18a7237e1a86860e2f42013a93e91e09bbd31577f2e848b",
+      "retained_sha256": "e39157050320b41e46008161544e8ed7bf47a4b8594b2a9eb5d1081d41253a47",
+      "source_bytes": 1655,
+      "retained_bytes": 1748
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-demo-faulty-replay.stdout.txt",
+      "retained": "runs/final-demo-faulty/replay-stdout.txt",
+      "source_sha256": "7dbaab2b50efa29e1b39dd37331094258a932a06805e1230e91eb7a3c0650db1",
+      "retained_sha256": "7dbaab2b50efa29e1b39dd37331094258a932a06805e1230e91eb7a3c0650db1",
+      "source_bytes": 227,
+      "retained_bytes": 227
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-demo-faulty-replay.stderr.txt",
+      "retained": "runs/final-demo-faulty/replay-stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-demo-faulty-reset.stdout.txt",
+      "retained": "runs/final-demo-faulty/reset-stdout.txt",
+      "source_sha256": "4a1e6ab071385715374fc17e8e1ded92d7226c67375edc631912da1c07e984be",
+      "retained_sha256": "4a1e6ab071385715374fc17e8e1ded92d7226c67375edc631912da1c07e984be",
+      "source_bytes": 42,
+      "retained_bytes": 42
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-demo-faulty-reset.stderr.txt",
+      "retained": "runs/final-demo-faulty/reset-stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-widgets-faulty-positive.server.txt",
+      "retained": "runs/final-widgets-faulty-positive/server.txt",
+      "source_sha256": "9bff30a85d10e105796a4d857dca4ceb8affe5ec1e81cd573aa4caf54b5c3e8a",
+      "retained_sha256": "9bff30a85d10e105796a4d857dca4ceb8affe5ec1e81cd573aa4caf54b5c3e8a",
+      "source_bytes": 584,
+      "retained_bytes": 584
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-faulty-positive/encoding-state.json",
+      "retained": "runs/final-widgets-faulty-positive/encoding-state.json",
+      "source_sha256": "3dd40ddff475f790285b3b20abf8659e9efb0738c662fc1573605101e71cb903",
+      "retained_sha256": "3dd40ddff475f790285b3b20abf8659e9efb0738c662fc1573605101e71cb903",
+      "source_bytes": 42,
+      "retained_bytes": 42
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-faulty-positive/exit-code.txt",
+      "retained": "runs/final-widgets-faulty-positive/exit-code.txt",
+      "source_sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "retained_sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "source_bytes": 3,
+      "retained_bytes": 3
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-faulty-positive/junit.xml",
+      "retained": "runs/final-widgets-faulty-positive/junit.xml",
+      "source_sha256": "6f7b5fe97d34006bf7a9abc5f35298e4a5f180e065c7d8146126d4bc8b31b32a",
+      "retained_sha256": "6f7b5fe97d34006bf7a9abc5f35298e4a5f180e065c7d8146126d4bc8b31b32a",
+      "source_bytes": 653,
+      "retained_bytes": 653
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-faulty-positive/stderr.txt",
+      "retained": "runs/final-widgets-faulty-positive/stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-faulty-positive/stdout.txt",
+      "retained": "runs/final-widgets-faulty-positive/stdout.txt",
+      "source_sha256": "62469494fc8eee6d80a23b8c30f4a6a127c5275340b31f037691db9cc092f7b2",
+      "retained_sha256": "c14cca88d9378ec02a300983d6df083ff0ddfa30da8598f60aa255d360ff5914",
+      "source_bytes": 1539,
+      "retained_bytes": 1632
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-widgets-faulty-positive.ps1",
+      "retained": "runs/final-widgets-faulty-positive/command.ps1",
+      "source_sha256": "c98c7cceab752a71fd39c401172471d6e750cca0beb9f7ea34a4d8b040cbe129",
+      "retained_sha256": "c98c7cceab752a71fd39c401172471d6e750cca0beb9f7ea34a4d8b040cbe129",
+      "source_bytes": 972,
+      "retained_bytes": 972
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-widgets-faulty-negative.server.txt",
+      "retained": "runs/final-widgets-faulty-negative/server.txt",
+      "source_sha256": "c244b55abca46b26de2011a16bc407a2c64dd9fab7577e82228543f3746de4da",
+      "retained_sha256": "c244b55abca46b26de2011a16bc407a2c64dd9fab7577e82228543f3746de4da",
+      "source_bytes": 2494,
+      "retained_bytes": 2494
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-faulty-negative/encoding-state.json",
+      "retained": "runs/final-widgets-faulty-negative/encoding-state.json",
+      "source_sha256": "31a6654417e73c4f8609489ee879e8841b9e757f68d235b0939d7586d2198cb5",
+      "retained_sha256": "31a6654417e73c4f8609489ee879e8841b9e757f68d235b0939d7586d2198cb5",
+      "source_bytes": 48,
+      "retained_bytes": 48
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-faulty-negative/exit-code.txt",
+      "retained": "runs/final-widgets-faulty-negative/exit-code.txt",
+      "source_sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "retained_sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "source_bytes": 3,
+      "retained_bytes": 3
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-faulty-negative/junit.xml",
+      "retained": "runs/final-widgets-faulty-negative/junit.xml",
+      "source_sha256": "79c8c9e282c69c091a50bcb4fea76a4f83eb0cbbd120952cab09824a10042c2d",
+      "retained_sha256": "79c8c9e282c69c091a50bcb4fea76a4f83eb0cbbd120952cab09824a10042c2d",
+      "source_bytes": 321,
+      "retained_bytes": 321
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-faulty-negative/stderr.txt",
+      "retained": "runs/final-widgets-faulty-negative/stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-faulty-negative/stdout.txt",
+      "retained": "runs/final-widgets-faulty-negative/stdout.txt",
+      "source_sha256": "5c54ce1e517de06f5fcdd1bce8cf962e6355db2f1c579c0ed7118085a0f425bf",
+      "retained_sha256": "f7bad7432f992f4631b7ee2b79fca48cd415686db6441a5b7b9e3b6a9c7376f0",
+      "source_bytes": 968,
+      "retained_bytes": 1058
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-widgets-faulty-negative.ps1",
+      "retained": "runs/final-widgets-faulty-negative/command.ps1",
+      "source_sha256": "f9d8c72583bfabe30c2bbf9d7383f9f2155f337a8a3745145f06e11affdffb64",
+      "retained_sha256": "f9d8c72583bfabe30c2bbf9d7383f9f2155f337a8a3745145f06e11affdffb64",
+      "source_bytes": 977,
+      "retained_bytes": 977
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-widgets-faulty-manual.server.txt",
+      "retained": "runs/final-widgets-faulty-manual/server.txt",
+      "source_sha256": "eb202c3820372a498955fdc49c7aaa7436dc905cb2ea4ce4df4f670293f786b2",
+      "retained_sha256": "eb202c3820372a498955fdc49c7aaa7436dc905cb2ea4ce4df4f670293f786b2",
+      "source_bytes": 669,
+      "retained_bytes": 669
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-demo-fixed.server.txt",
+      "retained": "runs/final-demo-fixed/server.txt",
+      "source_sha256": "4f86efe3c14db7ffdaf86029e901d626e100a4abdcd4cf5d4b0b4a7a09245823",
+      "retained_sha256": "4f86efe3c14db7ffdaf86029e901d626e100a4abdcd4cf5d4b0b4a7a09245823",
+      "source_bytes": 70,
+      "retained_bytes": 70
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-demo-fixed/junit.xml",
+      "retained": "runs/final-demo-fixed/junit.xml",
+      "source_sha256": "824d4f3ed36992f718b74122f0c3d82996558a3df29d1f91d91cf3c1c0613c13",
+      "retained_sha256": "824d4f3ed36992f718b74122f0c3d82996558a3df29d1f91d91cf3c1c0613c13",
+      "source_bytes": 449,
+      "retained_bytes": 449
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-demo-fixed/run.json",
+      "retained": "runs/final-demo-fixed/run.json",
+      "source_sha256": "2a66d20ce72be805f8cc80e001e3d4d4304d6a459b433f0bb578bb8955370aa5",
+      "retained_sha256": "2a66d20ce72be805f8cc80e001e3d4d4304d6a459b433f0bb578bb8955370aa5",
+      "source_bytes": 857,
+      "retained_bytes": 857
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-demo-fixed/stderr.txt",
+      "retained": "runs/final-demo-fixed/stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-demo-fixed/stdout.txt",
+      "retained": "runs/final-demo-fixed/stdout.txt",
+      "source_sha256": "2bd796a84574062ce35b229f83af8a27fc7a757a6907cec969096493f0a1b24f",
+      "retained_sha256": "46ca8424fec0908e35be5d9bf6d971dcde2356f3f9883e11f40665e09614a921",
+      "source_bytes": 1028,
+      "retained_bytes": 1118
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-demo-fixed-replay.stdout.txt",
+      "retained": "runs/final-demo-fixed/replay-stdout.txt",
+      "source_sha256": "5c5963b6a1a47c731fcfa900f677ecea0d9ca959f2c035fe0df577050b9853a1",
+      "retained_sha256": "5c5963b6a1a47c731fcfa900f677ecea0d9ca959f2c035fe0df577050b9853a1",
+      "source_bytes": 295,
+      "retained_bytes": 295
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-demo-fixed-replay.stderr.txt",
+      "retained": "runs/final-demo-fixed/replay-stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-demo-fixed-reset.stdout.txt",
+      "retained": "runs/final-demo-fixed/reset-stdout.txt",
+      "source_sha256": "4a1e6ab071385715374fc17e8e1ded92d7226c67375edc631912da1c07e984be",
+      "retained_sha256": "4a1e6ab071385715374fc17e8e1ded92d7226c67375edc631912da1c07e984be",
+      "source_bytes": 42,
+      "retained_bytes": 42
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-demo-fixed-reset.stderr.txt",
+      "retained": "runs/final-demo-fixed/reset-stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-widgets-fixed-positive.server.txt",
+      "retained": "runs/final-widgets-fixed-positive/server.txt",
+      "source_sha256": "1f7e543abc735fdd3dd07970d68d170ef5092cc9017717a643a1629f68a45902",
+      "retained_sha256": "1f7e543abc735fdd3dd07970d68d170ef5092cc9017717a643a1629f68a45902",
+      "source_bytes": 675,
+      "retained_bytes": 675
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-fixed-positive/encoding-state.json",
+      "retained": "runs/final-widgets-fixed-positive/encoding-state.json",
+      "source_sha256": "3dd40ddff475f790285b3b20abf8659e9efb0738c662fc1573605101e71cb903",
+      "retained_sha256": "3dd40ddff475f790285b3b20abf8659e9efb0738c662fc1573605101e71cb903",
+      "source_bytes": 42,
+      "retained_bytes": 42
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-fixed-positive/exit-code.txt",
+      "retained": "runs/final-widgets-fixed-positive/exit-code.txt",
+      "source_sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "retained_sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "source_bytes": 3,
+      "retained_bytes": 3
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-fixed-positive/junit.xml",
+      "retained": "runs/final-widgets-fixed-positive/junit.xml",
+      "source_sha256": "df220d7a38a55b2ddac3546307fcd8b5fe5f500b1d5b6321388c9f9d4fbaf90f",
+      "retained_sha256": "df220d7a38a55b2ddac3546307fcd8b5fe5f500b1d5b6321388c9f9d4fbaf90f",
+      "source_bytes": 321,
+      "retained_bytes": 321
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-fixed-positive/stderr.txt",
+      "retained": "runs/final-widgets-fixed-positive/stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-fixed-positive/stdout.txt",
+      "retained": "runs/final-widgets-fixed-positive/stdout.txt",
+      "source_sha256": "37608745bcee3cd0b57ddf9afa65df325e97e8150800fd74d751e28c0a3bacb7",
+      "retained_sha256": "6bc4dec382a11daff8b32cd6e982d36ddc8c9124b22f76d8005b0f5a6524ab83",
+      "source_bytes": 954,
+      "retained_bytes": 1044
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-widgets-fixed-positive.ps1",
+      "retained": "runs/final-widgets-fixed-positive/command.ps1",
+      "source_sha256": "dfd301f606da53562430974cd5834677aecfa8c9c1a4de5093e72422bc034d33",
+      "retained_sha256": "dfd301f606da53562430974cd5834677aecfa8c9c1a4de5093e72422bc034d33",
+      "source_bytes": 971,
+      "retained_bytes": 971
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-widgets-fixed-negative.server.txt",
+      "retained": "runs/final-widgets-fixed-negative/server.txt",
+      "source_sha256": "50353432bfa94e6d95060cb0e3c103d916b5c87a84a26be285907745eac1b9c1",
+      "retained_sha256": "50353432bfa94e6d95060cb0e3c103d916b5c87a84a26be285907745eac1b9c1",
+      "source_bytes": 2493,
+      "retained_bytes": 2493
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-fixed-negative/encoding-state.json",
+      "retained": "runs/final-widgets-fixed-negative/encoding-state.json",
+      "source_sha256": "31a6654417e73c4f8609489ee879e8841b9e757f68d235b0939d7586d2198cb5",
+      "retained_sha256": "31a6654417e73c4f8609489ee879e8841b9e757f68d235b0939d7586d2198cb5",
+      "source_bytes": 48,
+      "retained_bytes": 48
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-fixed-negative/exit-code.txt",
+      "retained": "runs/final-widgets-fixed-negative/exit-code.txt",
+      "source_sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "retained_sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "source_bytes": 3,
+      "retained_bytes": 3
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-fixed-negative/junit.xml",
+      "retained": "runs/final-widgets-fixed-negative/junit.xml",
+      "source_sha256": "7ae18439b70510f0c9e93897fdcd88959c6591798ca39ff46f1359bc7df595fd",
+      "retained_sha256": "7ae18439b70510f0c9e93897fdcd88959c6591798ca39ff46f1359bc7df595fd",
+      "source_bytes": 321,
+      "retained_bytes": 321
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-fixed-negative/stderr.txt",
+      "retained": "runs/final-widgets-fixed-negative/stderr.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "retained_bytes": 0
+    },
+    {
+      "source": ".preview/reader-implementation/api/.preview/final-widgets-fixed-negative/stdout.txt",
+      "retained": "runs/final-widgets-fixed-negative/stdout.txt",
+      "source_sha256": "9449970adfd98fc42c4b9fc846c713f44080fd9d096162c78a39bcb4f13950ea",
+      "retained_sha256": "07073398decfaeb049b1af358d4570ccda8c4345a7d3625c9d43bbee25ee672c",
+      "source_bytes": 967,
+      "retained_bytes": 1057
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-widgets-fixed-negative.ps1",
+      "retained": "runs/final-widgets-fixed-negative/command.ps1",
+      "source_sha256": "ad5c21c0e28687938976bdec51f5b20581a25170001c09bcd0cdd672ffdde675",
+      "retained_sha256": "ad5c21c0e28687938976bdec51f5b20581a25170001c09bcd0cdd672ffdde675",
+      "source_bytes": 976,
+      "retained_bytes": 976
+    },
+    {
+      "source": ".preview/reader-implementation/api/final-widgets-fixed-manual.server.txt",
+      "retained": "runs/final-widgets-fixed-manual/server.txt",
+      "source_sha256": "42a9e27a727843e336ea0654e1005c58de0bf35f9a879454d97247194aa5dad8",
+      "retained_sha256": "42a9e27a727843e336ea0654e1005c58de0bf35f9a879454d97247194aa5dad8",
+      "source_bytes": 668,
+      "retained_bytes": 668
+    }
+  ]
+}

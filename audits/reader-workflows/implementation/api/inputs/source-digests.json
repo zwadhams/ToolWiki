@@ -1,0 +1,7 @@
+{
+  "examples/http-api/server.py": "b419c1974730330d7e9b9956f01317755ab50bcd4909c909d32019a99e077867",
+  "examples/http-api/openapi.json": "13ab784c1177ac2ba0f133fb4201772bb7eb5a576688f1a26d8b4d0dedd7674b",
+  "examples/http-api/replay.py": "752fb43fe26ea76fd722bf446f1f808ffcde7c9f4d460aefbdaaf99f702ca89b",
+  "examples/http-api/run_schemathesis.py": "bf1bce7eb0449eca59f7985d1ff94731653f1519838f69909b26c4f048e00ecd",
+  "examples/http-api/requirements-lock.txt": "fdb2378681df6901fb028db02a4ffdb5514d3c5630c001e62644552f496d0fba"
+}

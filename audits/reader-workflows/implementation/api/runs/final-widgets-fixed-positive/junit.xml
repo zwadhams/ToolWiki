@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites errors="0" failures="0" skipped="0" tests="1" time="0.136543">
+  <testsuite name="schemathesis" hostname="Zach-Surface" errors="0" failures="0" skipped="0" tests="1" time="0.136543">
+    <testcase name="POST /widgets" time="0.136543" />
+  </testsuite>
+</testsuites>

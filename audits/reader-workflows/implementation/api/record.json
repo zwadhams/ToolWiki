@@ -1,0 +1,742 @@
+{
+  "date": "2026-11-06",
+  "kind": "New implementation verification; historical records unchanged",
+  "runs": [
+    {
+      "name": "final-demo-faulty",
+      "service": {
+        "command": [
+          "C:\\Users\\zwadh\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "examples/http-api/server.py",
+          "--port",
+          "8771"
+        ],
+        "pid": 51360,
+        "health": {
+          "status": 200,
+          "body": {
+            "status": "ready",
+            "mode": "faulty"
+          }
+        }
+      },
+      "replay": {
+        "command": [
+          "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\api-demo-env\\Scripts\\python.exe",
+          "examples/http-api/replay.py"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.199,
+        "stdout": "final-demo-faulty-replay.stdout.txt",
+        "stderr": "final-demo-faulty-replay.stderr.txt"
+      },
+      "reset": {
+        "command": [
+          "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\api-demo-env\\Scripts\\python.exe",
+          "examples/http-api/replay.py",
+          "--reset"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.182,
+        "stdout": "final-demo-faulty-reset.stdout.txt",
+        "stderr": "final-demo-faulty-reset.stderr.txt"
+      },
+      "wrapper": {
+        "command": [
+          "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\api-demo-env\\Scripts\\python.exe",
+          "examples/http-api/run_schemathesis.py",
+          "--output",
+          ".preview/final-demo-faulty"
+        ],
+        "exit_code": 1,
+        "elapsed_seconds": 1.653,
+        "stdout": "final-demo-faulty.stdout.txt",
+        "stderr": "final-demo-faulty.stderr.txt"
+      },
+      "tool_record": {
+        "command": [
+          "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\api-demo-env\\Scripts\\schemathesis.exe",
+          "--no-color",
+          "run",
+          "http://127.0.0.1:8771/openapi.json",
+          "--phases",
+          "coverage",
+          "--mode",
+          "positive",
+          "--checks",
+          "not_a_server_error",
+          "--max-failures",
+          "1",
+          "--max-time",
+          "20",
+          "--seed",
+          "20261106",
+          "--workers",
+          "1",
+          "--report",
+          "junit",
+          "--report-junit-path",
+          "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\final-demo-faulty\\junit.xml"
+        ],
+        "environment_overrides": {
+          "PYTHONIOENCODING": "utf-8"
+        },
+        "exit_code": 1,
+        "scope": "Coverage phase, positive generation, server-error check. Read reports for skipped work.",
+        "version": "4.33.1"
+      },
+      "retained_server_log": "runs/final-demo-faulty/server.txt",
+      "case_summary": "3 generated, 1 found 1 unique failure",
+      "schema_operation_scope": {
+        "total": 3,
+        "selected": 3,
+        "tested": 1
+      },
+      "finding_codes": [
+        "ST101"
+      ],
+      "retained_report_directory": "runs/final-demo-faulty"
+    },
+    {
+      "name": "final-widgets-faulty-positive",
+      "service": {
+        "command": [
+          "C:\\Users\\zwadh\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "widgets_server.py",
+          "--port",
+          "8781"
+        ],
+        "pid": 52748,
+        "health": {
+          "status": 200,
+          "body": {
+            "status": "ready",
+            "mode": "faulty"
+          }
+        }
+      },
+      "generation": "positive",
+      "execution": {
+        "command": [
+          "C:\\Program Files\\WindowsApps\\OpenAI.CodexPrimaryRuntime.v26-1104-709-0_26.1104.709.0_arm64__3k8sg7r9htsxt\\dependencies\\native\\powershell\\pwsh.exe",
+          "-NoProfile",
+          "-File",
+          "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\final-widgets-faulty-positive.ps1"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 1.895,
+        "stdout": "final-widgets-faulty-positive.stdout.txt",
+        "stderr": "final-widgets-faulty-positive.stderr.txt"
+      },
+      "cli_exit_code": 1,
+      "encoding_state": {
+        "after": null,
+        "before": null
+      },
+      "reports": ".preview/final-widgets-faulty-positive",
+      "retained_server_log": "runs/final-widgets-faulty-positive/server.txt",
+      "case_summary": "3 generated, 1 found 1 unique failure",
+      "schema_operation_scope": {
+        "total": 3,
+        "selected": 1,
+        "tested": 1
+      },
+      "finding_codes": [
+        "ST101"
+      ],
+      "retained_report_directory": "runs/final-widgets-faulty-positive",
+      "server_trace_summary": {
+        "includes_readiness_and_capability_probes": true,
+        "request_count": 6,
+        "method_counts": {
+          "GET": 3,
+          "POST": 3
+        },
+        "status_counts": {
+          "200": 1,
+          "404": 2,
+          "201": 2,
+          "500": 1
+        }
+      }
+    },
+    {
+      "name": "final-widgets-faulty-negative",
+      "service": {
+        "command": [
+          "C:\\Users\\zwadh\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "widgets_server.py",
+          "--port",
+          "8781"
+        ],
+        "pid": 16720,
+        "health": {
+          "status": 200,
+          "body": {
+            "status": "ready",
+            "mode": "faulty"
+          }
+        }
+      },
+      "generation": "negative",
+      "execution": {
+        "command": [
+          "C:\\Program Files\\WindowsApps\\OpenAI.CodexPrimaryRuntime.v26-1104-709-0_26.1104.709.0_arm64__3k8sg7r9htsxt\\dependencies\\native\\powershell\\pwsh.exe",
+          "-NoProfile",
+          "-File",
+          "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\final-widgets-faulty-negative.ps1"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 2.564,
+        "stdout": "final-widgets-faulty-negative.stdout.txt",
+        "stderr": "final-widgets-faulty-negative.stderr.txt"
+      },
+      "cli_exit_code": 0,
+      "encoding_state": {
+        "before": "ascii",
+        "after": "ascii"
+      },
+      "reports": ".preview/final-widgets-faulty-negative",
+      "retained_server_log": "runs/final-widgets-faulty-negative/server.txt",
+      "case_summary": "25 generated, 16 passed, 9 skipped",
+      "schema_operation_scope": {
+        "total": 3,
+        "selected": 1,
+        "tested": 1
+      },
+      "finding_codes": [],
+      "retained_report_directory": "runs/final-widgets-faulty-negative",
+      "server_trace_summary": {
+        "includes_readiness_and_capability_probes": true,
+        "request_count": 28,
+        "method_counts": {
+          "GET": 4,
+          "POST": 18,
+          "TRACE": 1,
+          "QUERY": 1,
+          "PUT": 1,
+          "PATCH": 1,
+          "OPTIONS": 1,
+          "DELETE": 1
+        },
+        "status_counts": {
+          "200": 1,
+          "404": 4,
+          "400": 16,
+          "501": 5,
+          "201": 2
+        }
+      }
+    },
+    {
+      "name": "final-widgets-faulty-manual",
+      "service": {
+        "command": [
+          "C:\\Users\\zwadh\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "widgets_server.py",
+          "--port",
+          "8781"
+        ],
+        "pid": 11360,
+        "health": {
+          "status": 200,
+          "body": {
+            "status": "ready",
+            "mode": "faulty"
+          }
+        }
+      },
+      "requests": [
+        {
+          "request": {
+            "quantity": 0
+          },
+          "response": {
+            "status": 500,
+            "body": {
+              "error": "Zero-quantity unit-price defect"
+            }
+          }
+        },
+        {
+          "request": {
+            "quantity": -1
+          },
+          "response": {
+            "status": 400,
+            "body": {
+              "error": "quantity must be an integer from 0 through 100"
+            }
+          }
+        },
+        {
+          "request": {
+            "quantity": 101
+          },
+          "response": {
+            "status": 400,
+            "body": {
+              "error": "quantity must be an integer from 0 through 100"
+            }
+          }
+        },
+        {
+          "request": {
+            "quantity": "1"
+          },
+          "response": {
+            "status": 400,
+            "body": {
+              "error": "quantity must be an integer from 0 through 100"
+            }
+          }
+        },
+        {
+          "request": {},
+          "response": {
+            "status": 400,
+            "body": {
+              "error": "quantity must be an integer from 0 through 100"
+            }
+          }
+        },
+        {
+          "request": "GET /orders",
+          "response": {
+            "status": 404,
+            "body": {
+              "error": "Route not found"
+            }
+          }
+        }
+      ],
+      "retained_server_log": "runs/final-widgets-faulty-manual/server.txt"
+    },
+    {
+      "name": "final-demo-fixed",
+      "service": {
+        "command": [
+          "C:\\Users\\zwadh\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "examples/http-api/server.py",
+          "--port",
+          "8771",
+          "--fixed"
+        ],
+        "pid": 50764,
+        "health": {
+          "status": 200,
+          "body": {
+            "status": "ready",
+            "mode": "fixed"
+          }
+        }
+      },
+      "replay": {
+        "command": [
+          "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\api-demo-env\\Scripts\\python.exe",
+          "examples/http-api/replay.py",
+          "--expect-fixed"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.195,
+        "stdout": "final-demo-fixed-replay.stdout.txt",
+        "stderr": "final-demo-fixed-replay.stderr.txt"
+      },
+      "reset": {
+        "command": [
+          "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\api-demo-env\\Scripts\\python.exe",
+          "examples/http-api/replay.py",
+          "--reset"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.183,
+        "stdout": "final-demo-fixed-reset.stdout.txt",
+        "stderr": "final-demo-fixed-reset.stderr.txt"
+      },
+      "wrapper": {
+        "command": [
+          "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\api-demo-env\\Scripts\\python.exe",
+          "examples/http-api/run_schemathesis.py",
+          "--output",
+          ".preview/final-demo-fixed"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 2.043,
+        "stdout": "final-demo-fixed.stdout.txt",
+        "stderr": "final-demo-fixed.stderr.txt"
+      },
+      "tool_record": {
+        "command": [
+          "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\api-demo-env\\Scripts\\schemathesis.exe",
+          "--no-color",
+          "run",
+          "http://127.0.0.1:8771/openapi.json",
+          "--phases",
+          "coverage",
+          "--mode",
+          "positive",
+          "--checks",
+          "not_a_server_error",
+          "--max-failures",
+          "1",
+          "--max-time",
+          "20",
+          "--seed",
+          "20261106",
+          "--workers",
+          "1",
+          "--report",
+          "junit",
+          "--report-junit-path",
+          "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\final-demo-fixed\\junit.xml"
+        ],
+        "environment_overrides": {
+          "PYTHONIOENCODING": "utf-8"
+        },
+        "exit_code": 0,
+        "scope": "Coverage phase, positive generation, server-error check. Read reports for skipped work.",
+        "version": "4.33.1"
+      },
+      "retained_server_log": "runs/final-demo-fixed/server.txt",
+      "case_summary": "6 generated, 6 passed",
+      "schema_operation_scope": {
+        "total": 3,
+        "selected": 3,
+        "tested": 3
+      },
+      "finding_codes": [],
+      "retained_report_directory": "runs/final-demo-fixed"
+    },
+    {
+      "name": "final-widgets-fixed-positive",
+      "service": {
+        "command": [
+          "C:\\Users\\zwadh\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "widgets_server.py",
+          "--port",
+          "8781",
+          "--fixed"
+        ],
+        "pid": 54148,
+        "health": {
+          "status": 200,
+          "body": {
+            "status": "ready",
+            "mode": "fixed"
+          }
+        }
+      },
+      "generation": "positive",
+      "execution": {
+        "command": [
+          "C:\\Program Files\\WindowsApps\\OpenAI.CodexPrimaryRuntime.v26-1104-709-0_26.1104.709.0_arm64__3k8sg7r9htsxt\\dependencies\\native\\powershell\\pwsh.exe",
+          "-NoProfile",
+          "-File",
+          "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\final-widgets-fixed-positive.ps1"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 1.855,
+        "stdout": "final-widgets-fixed-positive.stdout.txt",
+        "stderr": "final-widgets-fixed-positive.stderr.txt"
+      },
+      "cli_exit_code": 0,
+      "encoding_state": {
+        "after": null,
+        "before": null
+      },
+      "reports": ".preview/final-widgets-fixed-positive",
+      "retained_server_log": "runs/final-widgets-fixed-positive/server.txt",
+      "case_summary": "4 generated, 4 passed",
+      "schema_operation_scope": {
+        "total": 3,
+        "selected": 1,
+        "tested": 1
+      },
+      "finding_codes": [],
+      "retained_report_directory": "runs/final-widgets-fixed-positive",
+      "server_trace_summary": {
+        "includes_readiness_and_capability_probes": true,
+        "request_count": 7,
+        "method_counts": {
+          "GET": 3,
+          "POST": 4
+        },
+        "status_counts": {
+          "200": 1,
+          "404": 2,
+          "201": 4
+        }
+      }
+    },
+    {
+      "name": "final-widgets-fixed-negative",
+      "service": {
+        "command": [
+          "C:\\Users\\zwadh\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "widgets_server.py",
+          "--port",
+          "8781",
+          "--fixed"
+        ],
+        "pid": 43992,
+        "health": {
+          "status": 200,
+          "body": {
+            "status": "ready",
+            "mode": "fixed"
+          }
+        }
+      },
+      "generation": "negative",
+      "execution": {
+        "command": [
+          "C:\\Program Files\\WindowsApps\\OpenAI.CodexPrimaryRuntime.v26-1104-709-0_26.1104.709.0_arm64__3k8sg7r9htsxt\\dependencies\\native\\powershell\\pwsh.exe",
+          "-NoProfile",
+          "-File",
+          "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\final-widgets-fixed-negative.ps1"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 2.22,
+        "stdout": "final-widgets-fixed-negative.stdout.txt",
+        "stderr": "final-widgets-fixed-negative.stderr.txt"
+      },
+      "cli_exit_code": 0,
+      "encoding_state": {
+        "before": "ascii",
+        "after": "ascii"
+      },
+      "reports": ".preview/final-widgets-fixed-negative",
+      "retained_server_log": "runs/final-widgets-fixed-negative/server.txt",
+      "case_summary": "25 generated, 16 passed, 9 skipped",
+      "schema_operation_scope": {
+        "total": 3,
+        "selected": 1,
+        "tested": 1
+      },
+      "finding_codes": [],
+      "retained_report_directory": "runs/final-widgets-fixed-negative",
+      "server_trace_summary": {
+        "includes_readiness_and_capability_probes": true,
+        "request_count": 28,
+        "method_counts": {
+          "GET": 4,
+          "POST": 18,
+          "TRACE": 1,
+          "QUERY": 1,
+          "PUT": 1,
+          "PATCH": 1,
+          "OPTIONS": 1,
+          "DELETE": 1
+        },
+        "status_counts": {
+          "200": 1,
+          "404": 4,
+          "400": 16,
+          "501": 5,
+          "201": 2
+        }
+      }
+    },
+    {
+      "name": "final-widgets-fixed-manual",
+      "service": {
+        "command": [
+          "C:\\Users\\zwadh\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "widgets_server.py",
+          "--port",
+          "8781",
+          "--fixed"
+        ],
+        "pid": 13860,
+        "health": {
+          "status": 200,
+          "body": {
+            "status": "ready",
+            "mode": "fixed"
+          }
+        }
+      },
+      "requests": [
+        {
+          "request": {
+            "quantity": 0
+          },
+          "response": {
+            "status": 201,
+            "body": {
+              "id": "1",
+              "quantity": 0,
+              "total": 0,
+              "unitPrice": 10
+            }
+          }
+        },
+        {
+          "request": {
+            "quantity": -1
+          },
+          "response": {
+            "status": 400,
+            "body": {
+              "error": "quantity must be an integer from 0 through 100"
+            }
+          }
+        },
+        {
+          "request": {
+            "quantity": 101
+          },
+          "response": {
+            "status": 400,
+            "body": {
+              "error": "quantity must be an integer from 0 through 100"
+            }
+          }
+        },
+        {
+          "request": {
+            "quantity": "1"
+          },
+          "response": {
+            "status": 400,
+            "body": {
+              "error": "quantity must be an integer from 0 through 100"
+            }
+          }
+        },
+        {
+          "request": {},
+          "response": {
+            "status": 400,
+            "body": {
+              "error": "quantity must be an integer from 0 through 100"
+            }
+          }
+        },
+        {
+          "request": "GET /orders",
+          "response": {
+            "status": 404,
+            "body": {
+              "error": "Route not found"
+            }
+          }
+        }
+      ],
+      "retained_server_log": "runs/final-widgets-fixed-manual/server.txt"
+    }
+  ],
+  "environment": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "working_directory": "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api",
+    "python": {
+      "command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\api-demo-env\\Scripts\\python.exe",
+        "--version"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.046,
+      "stdout": "python-version.stdout.txt",
+      "stderr": "python-version.stderr.txt",
+      "retained_stdout": "environment/python-version.stdout.txt",
+      "retained_stderr": "environment/python-version.stderr.txt"
+    },
+    "schemathesis": {
+      "command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\api-demo-env\\Scripts\\schemathesis.exe",
+        "--version"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.456,
+      "stdout": "schemathesis-version.stdout.txt",
+      "stderr": "schemathesis-version.stderr.txt",
+      "retained_stdout": "environment/schemathesis-version.stdout.txt",
+      "retained_stderr": "environment/schemathesis-version.stderr.txt"
+    },
+    "dependencies": {
+      "command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\api-demo-env\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "freeze"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.422,
+      "stdout": "dependencies.stdout.txt",
+      "stderr": "dependencies.stderr.txt",
+      "retained_stdout": "environment/dependencies.stdout.txt",
+      "retained_stderr": "environment/dependencies.stderr.txt"
+    },
+    "pip_check": {
+      "command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\api-demo-env\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.603,
+      "stdout": "pip-check.stdout.txt",
+      "stderr": "pip-check.stderr.txt",
+      "retained_stdout": "environment/pip-check.stdout.txt",
+      "retained_stderr": "environment/pip-check.stderr.txt"
+    },
+    "powershell": {
+      "command": [
+        "C:\\Program Files\\WindowsApps\\OpenAI.CodexPrimaryRuntime.v26-1104-709-0_26.1104.709.0_arm64__3k8sg7r9htsxt\\dependencies\\native\\powershell\\pwsh.exe",
+        "-NoProfile",
+        "-Command",
+        "$PSVersionTable.PSVersion.ToString()"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.216,
+      "stdout": "powershell-version.stdout.txt",
+      "stderr": "powershell-version.stderr.txt",
+      "retained_stdout": "environment/powershell-version.stdout.txt",
+      "retained_stderr": "environment/powershell-version.stderr.txt"
+    }
+  },
+  "cli_help": {
+    "command": [
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\.preview\\reader-implementation\\api\\.preview\\api-demo-env\\Scripts\\schemathesis.exe",
+      "run",
+      "--help"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.457,
+    "stdout": "cli-help.stdout.txt",
+    "stderr": "cli-help.stderr.txt"
+  },
+  "cleanup": "Each owned server terminated in finally; ports 8771 and 8781 checked closed after each run.",
+  "schema_version": 1,
+  "scope": "Command verification of API guide implementation; not a human usability study or whole-site test.",
+  "freshness": "Scratch root and venv did not exist before this lane. Final runs use previously unused final-* output directories.",
+  "installation": {
+    "venv_command": "python -m venv .preview/reader-implementation/api/.preview/api-demo-env",
+    "install_command": ".preview/reader-implementation/api/.preview/api-demo-env/Scripts/python.exe -m pip install -r examples/http-api/requirements-lock.txt",
+    "working_directory": "C:\\Users\\zwadh\\Repos\\ToolWiki",
+    "exit_code": 0,
+    "log": "environment/install.txt",
+    "runtime": "CPython 3.13.15",
+    "package": "Schemathesis 4.33.1"
+  },
+  "primary_sources": [
+    "https://github.com/schemathesis/schemathesis/blob/v4.33.1/pyproject.toml",
+    "https://schemathesis.readthedocs.io/en/stable/reference/cli/",
+    "https://schemathesis.readthedocs.io/en/stable/reference/checks/",
+    "https://docs.python.org/3.13/using/windows.html"
+  ],
+  "limitations": [
+    "Repository acquisition was not tested in this lane; fixture files came from the existing checkout.",
+    "Only Windows, PowerShell 7.6.9 and Python 3.13.15 were executed in the new verification.",
+    "Python 3.11+ is the pinned package minimum, not a compatibility test matrix. Historical 3.12.16 evidence was not rewritten.",
+    "RESTler, Linux/macOS, authentication, real/external APIs, combined --mode all and exhaustive correctness/security were not tested.",
+    "Operation filters select schema operations; they do not prevent capability probes and negative method requests.",
+    "Negative reports contain nine skipped cases. Server traces alone do not explain each skipped case.",
+    "negative_data_rejection accepts certain error statuses including 5xx; negative success is not a server-error verdict.",
+    "Service processes use the base Python 3.13.15 executable for reliable owned-process cleanup; CLI/replay use the fresh venv.",
+    "The verification driver uses subprocess termination, not an interactive Ctrl+C cleanup test.",
+    "Browser/site validation is outside this lane."
+  ],
+  "normalization": "Tool output was captured with UTF-8 scoped to the subprocess or restored PowerShell environment. Retained text strips ANSI control codes and escapes non-ASCII glyphs; manifest includes raw/retained SHA-256."
+}

@@ -1,0 +1,18 @@
+{
+  "purpose": "Retain harness failures separately from the final successful API command verification.",
+  "observations": [
+    {
+      "stage": "Before package installation completed",
+      "error": "FileNotFoundError: [WinError 2] The system cannot find the file specified",
+      "action": "Waited for successful installation before running verification again.",
+      "api_test_executed": false
+    },
+    {
+      "stage": "Final cleanup of the preliminary six scans plus manual checks",
+      "error": "AssertionError: Own server port 8781 remains open",
+      "observation": "A subsequent Get-NetTCPConnection listener check found neither 8771 nor 8781 listening.",
+      "action": "Used the base Python executable for owned server processes and a bounded post-termination port check; repeated scans into fresh final-* directories. Final driver exited 0 and both ports were checked closed."
+    }
+  ],
+  "preliminary_raw_artifacts": ".preview/reader-implementation/api; names without final- prefix"
+}

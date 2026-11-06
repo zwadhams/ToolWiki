@@ -1,0 +1,39 @@
+Schemathesis v4.33.1
+\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501
+
+ \u2705  Loaded specification from ./widgets.json (in 0.52s)
+
+     Base URL:         http://127.0.0.1:8781
+     Specification:    Open API 3.0.3
+     Operations:       1 selected / 3 total
+
+ \u2705  API capabilities:
+
+     Supports NULL byte in headers:                            \u2713
+     Accepts backslash and control characters in URL paths:    \u2713
+
+ \u2705  Coverage (in 0.51s)
+
+     \u2705 1 passed
+
+=================================== SUMMARY ====================================
+
+API Operations:
+  Selected: 1/3
+  Tested: 1
+
+Test Phases:
+  \u23ed  Examples (disabled)
+  \u2705 Coverage
+  \u23ed  Fuzzing (disabled)
+  \u23ed  Stateful (disabled)
+
+Test cases:
+  25 generated, 16 passed, 9 skipped
+
+Reports:
+  - JUnit: .preview\final-widgets-fixed-negative\junit.xml
+
+Seed: 20261106
+
+=========================== No issues found in 0.58s ===========================

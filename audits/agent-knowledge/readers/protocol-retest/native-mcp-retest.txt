@@ -1,0 +1,80 @@
+ToolWiki native MCP independent protocol retest
+Date: 2026-11-09
+Working directory: C:/Users/zwadh/Repos/ToolWiki/audits/agent-knowledge/work/protocol-retest
+
+Outcome
+PASS for the exercised retrieval, comparison, recommendations, validation, response-size rejection and recovery paths. No connection blocker was observed. One large successful result was truncated by the local functions output display; this is distinct from the explicit server response-size error tested afterward. This is a protocol/content-usability assessment, not execution validation of any target program.
+
+Independence and scope
+Discovered the four mcp__toolwiki__ tools from the live connection's available tool metadata: search_knowledge, get_document, compare_tools, recommend_checks. Used only native ToolWiki MCP responses for wiki knowledge. Did not inspect implementation, static exports, source Markdown, earlier reports or other readers' evidence. Source/evidence URLs below were inspected as returned link text only, not opened. No target programs, analyzers, installers, compilers, or fixture services were executed. No wiki edits, commits, pushes or publishing occurred. The recorder retains full requests/responses; this report records the call sequence and independent interpretation.
+
+All successful calls observed the same snapshotRevision:
+3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d
+
+Cited documents
+Canonical base: https://zwadhams.github.io/ToolWiki/
+- guides/agents-reference/
+  revision 6e8e4b01131fd909648e3780528c8947a848ecde9c5ba97f94020735a994305b
+- guides/python-checks/
+  revision 38d8b61a412fe820cfca92717e5013e91d81e3674dfa92a149cef3123d610817
+- guides/api-testing/
+  revision 0c56d9ff1e87fb5aec444f737eee889d3d83900f3d0f44a53736a79f3c82f3f6
+- guides/windows-memory-check/
+  revision 02779fa2065944149654162409c1d71e4c3bfc84a37276d2594be9a9e66c0815
+- tools/ruff/
+  revision 28e55ed6b2be0b946eb98cd04a5136cfcac1e3ed141560f37a85a2235d6a1b2b
+- tools/mypy/
+  revision 9d95ee85775618479267ec6aa06fca4667de122300edcbbd8fb4b93eb9e59125
+- tools/atheris/
+  revision 6aa61d84b4e705a416c71c2b4388d39ee6003aed537ad1f73a800028df8c7996
+
+Call record
+Calls in independent batches could complete in a different order.
+1. Discovered live ToolWiki tool names, descriptions and argument schemas.
+2. search_knowledge(filters.kind=guide, limit=50): rejected; limit must be <=20. This was a tester input error; numeric bounds were not present in the discovered TypeScript signature.
+3. get_document(id=guides/agents-reference): complete 6587-character reference, nextOffset=null.
+4. search_knowledge(filters.kind=guide, limit=20): 18 guides, nextOffset=null, with IDs, sections, evidence and revisions.
+5. get_document for each of Python, API and Windows memory guides, maxChars=4000, offset omitted.
+6. Followed every nextOffset with maxChars=4000: Python offset 4000; API offsets 4000 and 8000; memory offsets 4000 and 8000.
+7. compare_tools(ids=[tools/ruff,tools/mypy]): success.
+8. recommend_checks(profile=the complete Python example from the reference, limit=20): 16 matches, nextOffset=null.
+9. get_document(id=guides/not-a-real-protocol-retest-document): isError=true, "Unknown document ID", with advice to use search_knowledge.
+10. get_document(id=guides/python-checks, section=not-a-real-section): isError=true, "Unknown section", listing all five valid sections.
+11. search_knowledge(query=301 repetitions of ASCII x): isError=true; clearly states <=300 characters.
+12. recommend_checks with 50 copies of the reference component, IDs app0..app49 and names Application 0..49, limit=20: 800 total matches, nextOffset=20. Local output display truncated the printed response (16964 original tokens across the batch).
+13. get_document(id=guides/python-checks, section=prepare-an-isolated-environment, maxChars=4000): success, section-relative offset 0, 998 characters, nextOffset=null.
+14. recommend_checks stress variant: 50 components with languages/inputs empty and kind/host/target/deployment blank; 100 included connections link0..link99 from app0 to app1 with blank interface/definition/transport/host, unknown harness/testInstance, empty goals/notes. Success: 150 subjects, zero matches, no gaps, needsDescription=true in inspected subjects. Missing descriptions yielded no fabricated support.
+15. recommend_checks reference variant with hostPlatform and targetPlatform blank, limit=2: total=16, nextOffset=2. Atheris explicitly asks to specify analysis host OS.
+16. Same unknown-platform profile, offset=2, limit=2: nextOffset=4; CodeQL and CVE Binary Tool explicitly ask for host OS; dependency metadata remains unanswered.
+17. search_knowledge(query=Python, filters.kind=guide, limit=1): success after earlier errors; total=12, nextOffset=1, Python workflow ranked first.
+18. Checked stored MCP chunks: contiguous offsets, joined lengths equal totalChars, stable snapshot and document revisions.
+19. recommend_checks response-bound variant: same 50 Python components as call 12, but inputs=[], inputsComplete=true, and rebuild/instrument/harness/testInstance all no, limit=20. Explicit isError=true: "MCP response exceeds 120000 bytes. Narrow the request or reduce limit/maxChars."
+20. Immediately repeated call 19 with subjectId=app0 and limit=2: success, total=15, nextOffset=2, blocked matches with reasons. Gap summary contains 20 reasons with totalReasons=24, consistent with the documented cap. Connection remained usable after the actual server size rejection.
+
+Retrieval usability
+Python: joined 7788 characters from offsets 0 and 4000.
+API: joined 11674 characters from offsets 0, 4000 and 8000.
+Windows memory: joined 8758 characters from offsets 0, 4000 and 8000.
+All terminal chunks had nextOffset=null. Metadata, source arrays, section IDs and revisions remained usable on all pages. The first Python split bisected an HTML anchor; memory split a PowerShell command and later ASAN_OPTIONS; API split prose. These are recoverable with verbatim concatenation, and the reference explicitly warns that chunks can split code blocks. Individual pages must not be treated as complete runnable recipes.
+
+Python commands retain working directory, Python 3.13 selection, venv paths, pinned Ruff 0.14.3/mypy 1.18.2, report directories, separate exit codes and project adaptation configuration. Prerequisites include package-index access, project dependencies and stubs. Evidence is explicitly Windows/Python 3.13.15 with selected findings and corrections, not general defect coverage or other-host execution. Returned evidence link:
+https://github.com/zwadhams/ToolWiki/blob/main/examples/python-checks/evidence.md
+This is a mutable main-branch URL; the MCP document revision pins returned text, not the future contents of that evidence URL.
+
+API commands preserve the two-terminal service/replay sequence, localhost port 8771, fault/correction modes, reset and shutdown, pinned dependency installation and retained outputs. Adaptation names PowerShell 7, schema/base URL/path/method replacements, port 8781, bounded positive and negative commands, timeouts, fresh reports and encoding restoration. Limits distinguish a budget from a hard deadline, setup failure from findings, and positive server-error detection from invalid-input rejection. RESTler is clearly illustrative and unexecuted, with tagged prerequisites and commands. New evidence is Windows/Python 3.13.15/Schemathesis 4.33.1; Linux/macOS, authentication, real services and combined all-mode were not tested. Returned pinned evidence link:
+https://github.com/zwadhams/ToolWiki/blob/7fce8e2cf1903a98cade96865bb383036f200e13/audits/reader-workflows/implementation/api/record.json
+
+Memory commands preserve native x64 architecture checks, VS 2022 17.7+ discovery, developer-shell initialization, ASan runtime presence, compile/link flags, build-failure guards, expected diagnostic and correction. PDB/source attribution and failed-environment interpretation are explicit. Evidence names native Windows Server 2022 x64, VS 17.14.44/MSVC 19.44.35229; ARM64, emulation and fresh installation remain unvalidated. Clean execution only covers exercised code. Returned pinned evidence link:
+https://github.com/zwadhams/ToolWiki/blob/a81760a9f74ed6d94eb33f80ab03f8bd6fc42362/audits/reader-workflows/implementation/memory/ci-42303178089/run.json
+
+Each guide includes absolute upstream documentation and internal workflow links. They are syntactically usable citations in the response. Reachability and current upstream accuracy were outside this MCP-only retest. documentationReviewedOn is null for all three guides; recorded execution is historical evidence, not a fresh MCP execution.
+
+Comparison and recommendations interpretation
+Ruff/mypy comparison returned setup, environment, cost/license, source inputs, language notes, scope, outputs, limitations, sources and revision/evidence citations. Ruff lint rules and mypy type consistency are differentiated; no benchmark or execution guarantee is claimed.
+
+The reference profile is synthetic Python source on Windows, local desktop CLI, inputsComplete=false, blank cost/license/binary format, empty technologies/goals/notes/connections, all access unknown. It does not establish the actual machine's interpreter, architecture, dependencies, tool availability or permissions. The result had 6 candidates and 10 details matches. Atheris retains callable-code, Windows-example compatibility, harness, test-instance and instrumentation questions. Dependency tools retain missing metadata questions. Blank host-platform follow-up asks for OS instead of assuming it. The profile-level gap status candidate with no reasons is only an aggregate: individual details still contain unresolved prerequisites. Treating it as full readiness would be misleading.
+
+Explicit absence is distinguished from unknown: call 20 blocks Atheris and Bandit for unavailable inputs/access. The 20-reason gap summary explicitly reports 24 total reasons; per-tool pagination is needed for full details. Only two pages of the unknown-platform recommendation variant and one narrowed blocked page were inspected; the initial reference profile's 16 matches were complete.
+
+Limits and remaining uncertainty
+The final response-size behavior was directly exercised, not inferred: the valid large blocked profile returned a short actionable error, and subject narrowing recovered immediately. No startup, timeout, malformed-snapshot, remote transport, resource inventory, or exact 120000-byte boundary test was performed. No claim is made about all response shapes or target execution. The local display truncation is an operational caution when printing duplicated content and structuredContent; using the structured response and narrower requests kept this retest reviewable. No unresolved blocker remains for the tested scope.

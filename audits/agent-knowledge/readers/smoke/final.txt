@@ -1,0 +1,8 @@
+Retrieved "Check Python linting and types together" through the configured ToolWiki MCP connection using `search_knowledge` and `get_document`.
+
+- Document ID: `guides/python-checks`
+- Document revision: `38d8b61a412fe820cfca92717e5013e91d81e3674dfa92a149cef3123d610817`
+- Snapshot revision: `3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d`
+- Execution scope: Windows with Python 3.13.15, Ruff 0.14.3 and mypy 1.18.2; selected findings in faulty and corrected examples. Other hosts were not executed.
+
+The full guide was retrieved (`nextOffset: null`). No target commands were executed, and no repository files or static exports were inspected directly.

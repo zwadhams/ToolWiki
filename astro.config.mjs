@@ -22,6 +22,7 @@ export default defineConfig({
         { label: 'Compare tools', slug: 'compare' },
         { label: 'Find tools for your system', slug: 'analysis-suite' },
         { label: 'Use this wiki', slug: 'guides/using-this-wiki' },
+        { label: 'Use ToolWiki with agents', slug: 'guides/using-with-agents' },
       ] },
       { label: 'Concepts', collapsed: true, items: [
         { label: 'Static vs. dynamic analysis', slug: 'concepts/static-vs-dynamic' },

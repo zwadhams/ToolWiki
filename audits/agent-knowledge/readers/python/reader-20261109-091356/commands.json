@@ -1,0 +1,162 @@
+[
+  {
+    "name": "interpreter",
+    "argv": [
+      "C:\\Users\\zwadh\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "-c",
+      "import sys,platform,struct,json; print(json.dumps(dict(executable=sys.executable,version=sys.version,machine=platform.machine(),platform=platform.platform(),bits=struct.calcsize('P')*8)))"
+    ],
+    "cwd": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356",
+    "exit_code": 0
+  },
+  {
+    "name": "venv",
+    "argv": [
+      "C:\\Users\\zwadh\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "-m",
+      "venv",
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture\\.venv"
+    ],
+    "cwd": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture",
+    "exit_code": 0
+  },
+  {
+    "name": "install",
+    "argv": [
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pip",
+      "install",
+      "-r",
+      "requirements.txt"
+    ],
+    "cwd": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture",
+    "exit_code": 0
+  },
+  {
+    "name": "freeze",
+    "argv": [
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pip",
+      "freeze",
+      "--all"
+    ],
+    "cwd": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture",
+    "exit_code": 0
+  },
+  {
+    "name": "ruff-version",
+    "argv": [
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture\\.venv\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "--version"
+    ],
+    "cwd": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture",
+    "exit_code": 0
+  },
+  {
+    "name": "mypy-version",
+    "argv": [
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture\\.venv\\Scripts\\python.exe",
+      "-m",
+      "mypy",
+      "--version"
+    ],
+    "cwd": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture",
+    "exit_code": 0
+  },
+  {
+    "name": "fixture-bad",
+    "argv": [
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture\\.venv\\Scripts\\python.exe",
+      "run_checks.py",
+      "bad",
+      "--output",
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\readers\\python\\reader-20261109-091356\\fixture-bad"
+    ],
+    "cwd": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture",
+    "exit_code": 1
+  },
+  {
+    "name": "fixture-good",
+    "argv": [
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture\\.venv\\Scripts\\python.exe",
+      "run_checks.py",
+      "good",
+      "--output",
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\readers\\python\\reader-20261109-091356\\fixture-good"
+    ],
+    "cwd": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture",
+    "exit_code": 0
+  },
+  {
+    "name": "synthetic-bad-ruff",
+    "argv": [
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture\\.venv\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "check",
+      "--no-fix",
+      "--no-cache",
+      "--config",
+      "pyproject.toml",
+      "--output-format",
+      "json",
+      "src/parcel_cost"
+    ],
+    "cwd": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\parcel-project",
+    "exit_code": 1
+  },
+  {
+    "name": "synthetic-bad-mypy",
+    "argv": [
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture\\.venv\\Scripts\\python.exe",
+      "-m",
+      "mypy",
+      "--no-incremental",
+      "--cache-dir",
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\readers\\python\\reader-20261109-091356\\synthetic-bad\\mypy-cache",
+      "--config-file",
+      "pyproject.toml",
+      "src/parcel_cost"
+    ],
+    "cwd": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\parcel-project",
+    "exit_code": 1
+  },
+  {
+    "name": "synthetic-good-ruff",
+    "argv": [
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture\\.venv\\Scripts\\python.exe",
+      "-m",
+      "ruff",
+      "check",
+      "--no-fix",
+      "--no-cache",
+      "--config",
+      "pyproject.toml",
+      "--output-format",
+      "json",
+      "src/parcel_cost"
+    ],
+    "cwd": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\parcel-project",
+    "exit_code": 0
+  },
+  {
+    "name": "synthetic-good-mypy",
+    "argv": [
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture\\.venv\\Scripts\\python.exe",
+      "-m",
+      "mypy",
+      "--no-incremental",
+      "--cache-dir",
+      "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\readers\\python\\reader-20261109-091356\\synthetic-good\\mypy-cache",
+      "--config-file",
+      "pyproject.toml",
+      "src/parcel_cost"
+    ],
+    "cwd": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\parcel-project",
+    "exit_code": 0
+  }
+]

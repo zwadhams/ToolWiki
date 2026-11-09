@@ -1,0 +1,2 @@
+src\parcel_cost\pricing.py:6: error: Argument 1 to "shipment_cost" has incompatible type "str"; expected "int"  [arg-type]
+Found 1 error in 1 file (checked 2 source files)

@@ -1,0 +1,71 @@
+ToolWiki independent API audit - 2026-11-09
+VERDICT: PASS for the bounded disposable workflow and adaptation. This does not establish general correctness or security.
+
+DOCUMENTATION REVIEW - native ToolWiki MCP only
+search_knowledge(query="HTTP API", filters={"kind":"guide"}), then full get_document calls (nextOffset null):
+guides/api-testing revision 0c56d9ff1e87fb5aec444f737eee889d3d83900f3d0f44a53736a79f3c82f3f6
+https://zwadhams.github.io/ToolWiki/guides/api-testing/
+guides/get-examples revision 348abeca8590adc2dcc2533453c85a206d6a93d9b3b938c6601b06fbfe369b26
+https://zwadhams.github.io/ToolWiki/guides/get-examples/
+tools/schemathesis revision cc0711b71384ad970976756224fbf29baeaf5daed1b72ac8112099dec269a240
+https://zwadhams.github.io/ToolWiki/tools/schemathesis/
+All returned snapshotRevision:
+3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d
+Full requests/responses remain in the MCP recorder. Historical execution claims were documentation only; linked earlier audit records were not opened.
+Selected Schemathesis because the retrieved guide supplies a pinned executable workflow and explicit positive/negative checks for OpenAPI. RESTler was illustrative and was not executed.
+
+Fresh example snapshot returned by MCP:
+https://github.com/zwadhams/ToolWiki/archive/506c522ca86fd8c9d7b688f35a4d37f842d04cc9.zip
+Example commit: 506c522ca86fd8c9d7b688f35a4d37f842d04cc9.
+Only examples/http-api ZIP members extracted/read. No wiki source documentation, exports, implementation, earlier reports, or another reader's evidence was read. No repository verification scripts run. Supplied replay and wrapper are the walkthrough examples.
+
+ACTUAL EXECUTIONS
+Windows ARM64, PowerShell 7.6.9. Python 3.13.15 at C:/Users/zwadh/AppData/Local/Programs/Python/Python313/python.exe.
+sys.version reports MSC v.1944 64 bit (AMD64), although platform.machine reports ARM64. This validates an AMD64 interpreter build on ARM64 host, not native ARM64 Python.
+host.json retains probes. New scratch/env venv, pinned install exit 0; Schemathesis 4.33.1. versions/stdout.txt retains dependency versions. Services bound only 127.0.0.1.
+
+Results:
+Original faulty replay: exit 0, POST /orders quantity 0 -> expected HTTP 500.
+Original fixed replay: exit 0, same input -> 201, total 0, unitPrice 10, created object read back. Both reset commands exit 0.
+Original faulty generated: exit 1, 3 generated cases, one unique 500 finding, 1/3 operations tested; failure limit left two untested.
+Original fixed generated: exit 0, 6/6 cases passed, all 3 operations tested.
+Adapted faulty positive: exit 1, 3 generated, one unique 500.
+Adapted quantity-fixed positive: exit 0, 4/4 passed.
+Adapted faulty and quantity-fixed negative: both exit 1, each 2 generated, unsupported TRACE returned 501 caught by not_a_server_error.
+Adapted method-fixed positive: exit 0, 4/4 passed.
+Adapted method-fixed negative: exit 0, 25/25 passed.
+All adapted generated runs selected POST /parcels, 1/3 operations.
+
+Adaptation: /parcels, port 8793, schema parcel-contract.json (also served at /parcel-contract.json). Transformations are exact in execute.py. Field names and operation IDs retained; different business fields were not required.
+Explicit synthetic inputs in both modes: quantity 0 -> faulty 500, fixed 201; quantity 2 -> 201; quantity -1, 101, true, string "2", missing quantity, and extra property -> 400. Complete requests/responses in adapted-*-requests.json and separate inputs/requests files.
+Root fault: total // quantity divides by zero for schema-valid zero. --fixed uses unit price 10.
+
+Separate negative failure: default BaseHTTPRequestHandler unsupported-method dispatch produces 501. Exact TRACE reproducer appears in negative stdout. Quantity correction does not fix it.
+server-method-fixed.py adds __getattr__ for do_* dispatch to return 405 JSON on unsupported methods, and runs with --fixed. Both generated reruns pass. This is a scratch adapter correction only; no wiki/example source was edited in place.
+
+INTERPRETATION / LIMITS
+Faulty replay exit 0 means successful assertion of expected API failure, not API health. Generated exit 1 here denotes a server-error response, not schema/setup failure. Negative runs combine negative_data_rejection and not_a_server_error because rejection alone accepts some 5xx. Positive runs check absence of server errors, not all response/business rules.
+Coverage phase only, seed 20261106, one worker, 20-second budget, first-failure stop; fuzzing/stateful disabled. Direct adapter commands additionally use 3-second request timeout and outer 60-second deadline. Original wrapper uses outer 40 seconds. No timeouts.
+No complete generated traffic archive; stdout/JUnit retain counts/findings and explicit tests retain full responses. Original deterministic fixed replay checks create/read, not deletion. Passing coverage does not prove producer-consumer lifecycle behavior.
+No authentication, real/external services, load/security scan, RESTler, Linux/macOS, or native ARM64 interpreter tested.
+All five owned servers terminated and waited; cleanup.json confirms process exited and ports refused connections. Windows terminated-server exit 1 is cleanup status, not a test result.
+
+USABILITY / RECOVERY LOG
+1. platform.machine ARM64 differs from interpreter AMD64 build; retained both.
+2. Optional Get-Command probe included absent uv, yielding exit 1 despite locating Python/py/curl. Not a guide failure.
+3. Terminal-oriented instructions required automation: readiness polling, subprocess ownership, finally cleanup, and connection-refusal checks.
+4. --no-color still emits Unicode symbols. All retained outputs escaped non-ASCII as literal backslash sequences. JUnit is an ASCII representation, not byte-identical original UTF-8 XML.
+5. POST filters do not prevent unsupported method negative cases; guide warns about this. Stronger negative check exposed 501 and required separate correction.
+6. Wrapper retains summaries/JUnit but not every generated HTTP exchange; no full-traffic claim.
+7. Read-only shell required reviewed escalation for authorized writes/install/services. No automatic review rejection occurred.
+8. First final-report write attempt failed before execution with PowerShell ParserError (exit 1): "Unexpected token 'ToolWiki' in expression or statement." Cause: nested here-string delimiter in bootstrap text. Retried with safely quoted payload; no earlier evidence overwritten.
+Pinned install had no observed architecture/dependency blocker.
+
+OUTSIDE KNOWLEDGE
+General Python stdlib subprocess/pathlib/zipfile/hashlib/urllib/JSON, venv isolation, PowerShell file operations, Windows process termination, HTTP status semantics, interpreter version architecture, and Python HTTP handler dispatch used for orchestration/evidence and method repair. No outside tutorial/web search or unreturned source documentation consulted.
+No commit, push, publication, or wiki edit.
+
+EVIDENCE
+execute.py and method-correction.py retain exact automation. Per-child command.json retains argv/cwd/encoding overrides; stdout.txt, stderr.txt, exit-code.txt retain results. Wrapper directories also contain run.json and JUnit. Server directories contain commands, streams, status and cleanup.
+inputs/original, inputs/adapted and inputs/requests retain synthetic/source files. sha256.json covers retained files and downloaded ZIP (ZIP remains in scratch).
+bootstrap.txt retains initial commands and initial setup output. Unique directory preserves prior reports. All retained text verified ASCII.

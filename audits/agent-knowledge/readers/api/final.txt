@@ -1,0 +1,9 @@
+PASS for the bounded workflow and adaptation.
+
+- Reproduced the known HTTP 500 and verified its correction.
+- Adapted to `/parcels`, port `8793`, and `parcel-contract.json`.
+- Found and corrected an additional unsupported-method HTTP 501.
+- Final adapted checks passed: 4 positive and 25 negative cases.
+- Stopped all owned services.
+
+[Report and evidence](C:/Users/zwadh/Repos/ToolWiki/audits/agent-knowledge/readers/api/run-20261109-091329/report.txt) include revisions, exact commands, versions, hashes, inputs, outputs, exit codes, usability issues, and limits. All 138 retained files verified ASCII. Testing used an AMD64 Python build on the ARM64 host.

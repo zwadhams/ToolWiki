@@ -1,0 +1,359 @@
+{
+  "guides/python-checks": {
+    "snapshotRevision": "3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d",
+    "id": "guides/python-checks",
+    "title": "Check Python linting and types together",
+    "url": "https://zwadhams.github.io/ToolWiki/guides/python-checks/",
+    "revision": "38d8b61a412fe820cfca92717e5013e91d81e3674dfa92a149cef3123d610817",
+    "evidence": {
+      "documentationReviewedOn": null,
+      "execution": {
+        "status": "recorded",
+        "scope": "Windows with Python 3.13.15, Ruff 0.14.3 and mypy 1.18.2; selected findings in faulty and corrected examples. Other hosts were not executed.",
+        "sources": [
+          "https://github.com/zwadhams/ToolWiki/blob/main/examples/python-checks/evidence.md"
+        ]
+      }
+    },
+    "section": null,
+    "sections": [
+      {
+        "id": "prepare-an-isolated-environment",
+        "title": "Prepare an isolated environment",
+        "depth": 2
+      },
+      {
+        "id": "check-the-faulty-version",
+        "title": "Check the faulty version",
+        "depth": 2
+      },
+      {
+        "id": "check-the-correction",
+        "title": "Check the correction",
+        "depth": 2
+      },
+      {
+        "id": "use-it-on-your-project",
+        "title": "Use it on your project",
+        "depth": 2
+      },
+      {
+        "id": "sources",
+        "title": "Sources",
+        "depth": 2
+      }
+    ],
+    "sources": [
+      {
+        "label": "Ruff",
+        "url": "https://zwadhams.github.io/ToolWiki/tools/ruff/"
+      },
+      {
+        "label": "mypy",
+        "url": "https://zwadhams.github.io/ToolWiki/tools/mypy/"
+      },
+      {
+        "label": "Get the examples",
+        "url": "https://zwadhams.github.io/ToolWiki/guides/get-examples/"
+      },
+      {
+        "label": "examples/python-checks",
+        "url": "https://github.com/zwadhams/ToolWiki/tree/main/examples/python-checks"
+      },
+      {
+        "label": "execution record and reports",
+        "url": "https://github.com/zwadhams/ToolWiki/blob/main/examples/python-checks/evidence.md"
+      },
+      {
+        "label": "Ruff configuration",
+        "url": "https://docs.astral.sh/ruff/configuration/"
+      },
+      {
+        "label": "missing imports and stubs",
+        "url": "https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports"
+      },
+      {
+        "label": "run record",
+        "url": "https://zwadhams.github.io/ToolWiki/guides/run-record/"
+      },
+      {
+        "label": "CI result-handling guide",
+        "url": "https://zwadhams.github.io/ToolWiki/guides/ci-checks/"
+      },
+      {
+        "label": "Python virtual environments",
+        "url": "https://docs.python.org/3.13/library/venv.html"
+      },
+      {
+        "label": "Ruff rule selection and exit behavior",
+        "url": "https://docs.astral.sh/ruff/linter/"
+      },
+      {
+        "label": "Ruff 0.14.3 distribution",
+        "url": "https://pypi.org/project/ruff/0.14.3/"
+      },
+      {
+        "label": "mypy 1.18.2 distribution",
+        "url": "https://pypi.org/project/mypy/1.18.2/"
+      },
+      {
+        "label": "mypy file and import scope",
+        "url": "https://mypy.readthedocs.io/en/stable/running_mypy.html"
+      }
+    ],
+    "totalChars": 7788,
+    "offset": 0,
+    "nextOffset": null,
+    "markdown": "# Check Python linting and types together\n\n[Ruff](https://zwadhams.github.io/ToolWiki/tools/ruff/) and [mypy](https://zwadhams.github.io/ToolWiki/tools/mypy/) answer different questions.\nThis recipe gives both the same fixture: an unused import and a call that passes\ntext to an integer parameter. Ruff checks only `F401`; mypy checks the annotated\ncall. Neither runs the target program.\n\nStart with [Get the examples](https://zwadhams.github.io/ToolWiki/guides/get-examples/) to download or clone the\nrepository. From the downloaded repository's root, enter the fixture directory:\n\n```powershell\nSet-Location examples/python-checks\n```\n\n[`examples/python-checks`](https://github.com/zwadhams/ToolWiki/tree/main/examples/python-checks)\ncontains `bad/greeting.py`, the corrected `good/greeting.py`, a shared\n`pyproject.toml`, pinned requirements, and `run_checks.py`.\n\n**Executed on Windows with Python 3.13.15.** Both expected findings appeared in\nthe faulty file and both checks were clean on the corrected file. The\n[execution record and reports](https://github.com/zwadhams/ToolWiki/blob/main/examples/python-checks/evidence.md)\nretain the environment and tested input hashes. Other hosts have not been run\nfor this recipe.\n\n## Prepare an isolated environment\n\nUse Python 3.13 and the pinned Ruff 0.14.3 and mypy 1.18.2 releases. These versions\nare a reproducible example, not a recommendation to downgrade an existing project.\nThe target Python version is also set to 3.13 in `pyproject.toml`.\n\nOn Windows, select an interpreter and check it before creating the environment:\n\n```powershell\n$Python = \"python\"\n& $Python --version\n```\n\nExpect `Python 3.13.x`. If that command is missing or reports another version,\nset `$Python` to your Python 3.13 executable, such as\n`$Python = \"C:\\path\\to\\Python313\\python.exe\"`, and repeat the check.\nContinue from `examples/python-checks` once the version matches:\n\n```powershell\n& $Python -m venv .venv\n.\\.venv\\Scripts\\python.exe -m pip install -r requirements.txt\n```\n\nOn Linux or macOS, use `.venv/bin/python` in place of the Windows interpreter path.\nInstalling the pinned packages requires package-index access. The fixture has no\napplication dependencies or service credentials.\n\n## Check the faulty version\n\nRun both checks and keep their reports:\n\n```powershell\n.\\.venv\\Scripts\\python.exe run_checks.py bad --output reports/bad\n```\n\nThe runner verifies versions, runs each tool separately, and saves commands,\ninput hashes, host details, versions, and return codes in `run.json`. Diagnostics\ngo in `ruff.json` and `mypy.txt`, with separate stderr files. Read both reports.\nUse a new output directory for each rerun; the runner refuses to overwrite\nearlier reports. It records setup failures and retains partial output on timeout.\n\nThe expected signals are:\n\n| Tool | Expected finding                  | Meaning                                                             |\n| ---- | --------------------------------- | ------------------------------------------------------------------- |\n| Ruff | `F401` for `math`                 | The imported module is unused.                                      |\n| mypy | `arg-type` at `greeting(\"three\")` | The argument is text, but the parameter is annotated as an integer. |\n\nThe runner returns `1` when the checks complete with findings, `0` when both\ncomplete without findings, and `2` when either cannot complete. These are this\nrunner's gate rules, not universal analyzer exit codes. Tool completion is\nrecorded separately from the gate in `run.json`.\n\n## Check the correction\n\nThe corrected file removes the unused import and calls `greeting(3)`. Run the\nsame configuration against it:\n\n```powershell\n.\\.venv\\Scripts\\python.exe run_checks.py good --output reports/good\n```\n\nBoth reports should be clean for this fixture. The known defects and correction\nshow that the selected checks are active. They do not measure general defect\ncoverage or prove that the program meets every requirement.\n\n<a id=\"adapt-the-recipe\"></a>\n\n## Use it on your project\n\n`run_checks.py` accepts only `bad` and `good`; it is a demonstration runner.\nFor your code, run the tools directly. From `examples/python-checks`, keep the\nchecker interpreter's absolute path, then enter your project's root:\n\n```powershell\n$CheckPython = (Resolve-Path .\\.venv\\Scripts\\python.exe).Path\nSet-Location \"C:\\path\\to\\YOUR_PROJECT\"\n```\n\nReplace `C:\\path\\to\\YOUR_PROJECT` with your project directory. Use its existing\nanalyzer configuration. If it has none, add these tables to its root\n`pyproject.toml`, creating the file only if absent. Merge settings into any\nexisting tables instead of replacing the file:\n\n```toml\n[tool.ruff]\ntarget-version = \"py313\"\n\n[tool.ruff.lint]\nselect = [\"E4\", \"E7\", \"E9\", \"F\"]\n\n[tool.mypy]\npython_version = \"3.13\"\nstrict = true\nshow_error_codes = true\npretty = false\n```\n\nMatch both target-version settings to the Python version your project supports.\nThe fixture selects only `F401`; this starting selection adds other Pyflakes\nand selected pycodestyle checks. Review the\n[Ruff configuration](https://docs.astral.sh/ruff/configuration/) for your project.\nIf your settings live in `ruff.toml` or `mypy.ini`, use those paths in the\ncorresponding config arguments below.\n\nThe checker environment needs access to your project's dependencies and type\nstubs. Install the project's declared dependencies and needed stub packages in\nthat environment, or use a project environment with the checkers installed by\nsetting `$CheckPython` to its interpreter. Resolve\n[missing imports and stubs](https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports)\nbefore treating a clean result as useful type coverage.\n\nChoose one small source directory and a new report directory for this run:\n\n```powershell\n$Target = \".\\src\\YOUR_PACKAGE\"\n$Reports = \".\\check-reports\\first-run\"\nNew-Item -ItemType Directory -Path $Reports -ErrorAction Stop | Out-Null\n\n& $CheckPython -m ruff check --no-fix --no-cache --config pyproject.toml `\n  --output-format json $Target > \"$Reports\\ruff.json\" 2> \"$Reports\\ruff.stderr.txt\"\n$RuffExit = $LASTEXITCODE\n$RuffExit | Set-Content \"$Reports\\ruff.exit.txt\"\n\n& $CheckPython -m mypy --no-incremental --cache-dir \"$Reports\\mypy-cache\" `\n  --config-file pyproject.toml $Target > \"$Reports\\mypy.txt\" 2> \"$Reports\\mypy.stderr.txt\"\n$MypyExit = $LASTEXITCODE\n$MypyExit | Set-Content \"$Reports\\mypy.exit.txt\"\n```\n\nReplace `src\\YOUR_PACKAGE` with the directory you want checked. Use a different\n`$Reports` path for every run; stop if directory creation fails. These commands\nmake no automatic source fixes. Read `ruff.json`, `mypy.txt`, and both stderr\nfiles with their separate exit codes. Ruff returns `0` for no findings, `1` for\nfindings, and `2` for a failed run. A completed mypy run reports either success\nor a diagnostic summary; an empty report or a setup error is not a clean result.\n\nReview and correct findings, then repeat with a new report directory. Record\nthe source revision, selected configuration, exclusions, and environment using\nthe [run record](https://zwadhams.github.io/ToolWiki/guides/run-record/). Keep diagnostics separate; do not compare raw\nissue counts as measures of quality.\n\nUse the [CI result-handling guide](https://zwadhams.github.io/ToolWiki/guides/ci-checks/) to decide which completed\nfindings block a change and how to retain failed or incomplete runs.\n\n## Sources\n\n- [Python virtual environments](https://docs.python.org/3.13/library/venv.html)\n- [Ruff rule selection and exit behavior](https://docs.astral.sh/ruff/linter/)\n- [Ruff 0.14.3 distribution](https://pypi.org/project/ruff/0.14.3/)\n- [mypy 1.18.2 distribution](https://pypi.org/project/mypy/1.18.2/)\n- [mypy file and import scope](https://mypy.readthedocs.io/en/stable/running_mypy.html)\n"
+  },
+  "guides/get-examples": {
+    "snapshotRevision": "3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d",
+    "id": "guides/get-examples",
+    "title": "Get the examples",
+    "url": "https://zwadhams.github.io/ToolWiki/guides/get-examples/",
+    "revision": "348abeca8590adc2dcc2533453c85a206d6a93d9b3b938c6601b06fbfe369b26",
+    "evidence": {
+      "documentationReviewedOn": null,
+      "execution": {
+        "status": "not-recorded",
+        "scope": "No structured execution record for this document. Read the text for illustrative examples and limitations.",
+        "sources": []
+      }
+    },
+    "section": null,
+    "sections": [
+      {
+        "id": "download-the-snapshot",
+        "title": "Download the snapshot",
+        "depth": 2
+      },
+      {
+        "id": "use-git-instead",
+        "title": "Use Git instead",
+        "depth": 2
+      }
+    ],
+    "sources": [
+      {
+        "label": "Download the example snapshot (ZIP)",
+        "url": "https://github.com/zwadhams/ToolWiki/archive/506c522ca86fd8c9d7b688f35a4d37f842d04cc9.zip"
+      },
+      {
+        "label": "Python linting and types",
+        "url": "https://zwadhams.github.io/ToolWiki/guides/python-checks/"
+      },
+      {
+        "label": "Disposable HTTP API",
+        "url": "https://zwadhams.github.io/ToolWiki/guides/api-testing/"
+      },
+      {
+        "label": "Windows memory check",
+        "url": "https://zwadhams.github.io/ToolWiki/guides/windows-memory-check/"
+      },
+      {
+        "label": "snapshot revision",
+        "url": "https://github.com/zwadhams/ToolWiki/commit/506c522ca86fd8c9d7b688f35a4d37f842d04cc9"
+      }
+    ],
+    "totalChars": 2057,
+    "offset": 0,
+    "nextOffset": null,
+    "markdown": "# Get the examples\n\nUse this snapshot for the Python, API, and Windows memory walkthroughs. It\ncontains the example files; each walkthrough explains which tools to install.\n\n## Download the snapshot\n\n[Download the example snapshot (ZIP)](https://github.com/zwadhams/ToolWiki/archive/506c522ca86fd8c9d7b688f35a4d37f842d04cc9.zip)\nand extract it, or run these commands in PowerShell from an empty working\ndirectory:\n\n```powershell\nInvoke-WebRequest 'https://github.com/zwadhams/ToolWiki/archive/506c522ca86fd8c9d7b688f35a4d37f842d04cc9.zip' -OutFile examples.zip\nExpand-Archive -LiteralPath examples.zip -DestinationPath .\nSet-Location '.\\ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9'\n```\n\nYou are now at the repository root: the directory containing `README.md` and\n`examples`. If you extracted the ZIP elsewhere, open that directory instead.\n\n| Walkthrough                                                                              | Working directory from the repository root |\n| ---------------------------------------------------------------------------------------- | ------------------------------------------ |\n| [Python linting and types](https://zwadhams.github.io/ToolWiki/guides/python-checks/)    | `Set-Location examples/python-checks`      |\n| [Disposable HTTP API](https://zwadhams.github.io/ToolWiki/guides/api-testing/)           | Stay at the repository root.               |\n| [Windows memory check](https://zwadhams.github.io/ToolWiki/guides/windows-memory-check/) | `Set-Location examples/windows-memory`     |\n\n## Use Git instead\n\nClone into a new directory and select the same snapshot:\n\n```powershell\ngit clone https://github.com/zwadhams/ToolWiki.git ToolWiki-examples\nSet-Location ToolWiki-examples\ngit checkout --detach 506c522ca86fd8c9d7b688f35a4d37f842d04cc9\n```\n\nThe [snapshot revision](https://github.com/zwadhams/ToolWiki/commit/506c522ca86fd8c9d7b688f35a4d37f842d04cc9)\nkeeps the examples stable while the wiki changes. Keep your reports outside a\nfresh checkout or in the output directories named by the walkthrough.\n"
+  },
+  "tools/ruff": {
+    "snapshotRevision": "3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d",
+    "id": "tools/ruff",
+    "title": "Ruff",
+    "url": "https://zwadhams.github.io/ToolWiki/tools/ruff/",
+    "revision": "28e55ed6b2be0b946eb98cd04a5136cfcac1e3ed141560f37a85a2235d6a1b2b",
+    "evidence": {
+      "documentationReviewedOn": "2026-09-22",
+      "execution": {
+        "status": "not-recorded",
+        "scope": "No structured execution record for this document. Read the text for illustrative examples and limitations.",
+        "sources": []
+      }
+    },
+    "section": null,
+    "sections": [
+      {
+        "id": "first-try",
+        "title": "First try",
+        "depth": 2
+      },
+      {
+        "id": "use-it-on-your-project",
+        "title": "Use it on your project",
+        "depth": 2
+      },
+      {
+        "id": "fixes-and-limitations",
+        "title": "Fixes and limitations",
+        "depth": 2
+      },
+      {
+        "id": "alternatives-and-complements",
+        "title": "Alternatives and complements",
+        "depth": 2
+      }
+    ],
+    "sources": [
+      {
+        "label": "First lint check tutorial",
+        "url": "https://docs.astral.sh/ruff/tutorial/"
+      },
+      {
+        "label": "Installation platforms",
+        "url": "https://docs.astral.sh/ruff/installation/"
+      },
+      {
+        "label": "Ruff overview",
+        "url": "https://docs.astral.sh/ruff/"
+      },
+      {
+        "label": "Linter configuration and fix safety",
+        "url": "https://docs.astral.sh/ruff/linter/"
+      },
+      {
+        "label": "File discovery and notebook support",
+        "url": "https://docs.astral.sh/ruff/configuration/"
+      },
+      {
+        "label": "Ruff limitations and comparison with type checkers",
+        "url": "https://docs.astral.sh/ruff/faq/"
+      },
+      {
+        "label": "Ruff license and third-party notices",
+        "url": "https://github.com/astral-sh/ruff/blob/main/LICENSE"
+      },
+      {
+        "label": "Ruff and mypy recipe",
+        "url": "https://zwadhams.github.io/ToolWiki/guides/python-checks/"
+      },
+      {
+        "label": "mypy",
+        "url": "https://zwadhams.github.io/ToolWiki/tools/mypy/"
+      },
+      {
+        "label": "Pyright",
+        "url": "https://zwadhams.github.io/ToolWiki/tools/pyright/"
+      },
+      {
+        "label": "Bandit",
+        "url": "https://zwadhams.github.io/ToolWiki/tools/bandit/"
+      },
+      {
+        "label": "Pylint",
+        "url": "https://zwadhams.github.io/ToolWiki/tools/pylint/"
+      },
+      {
+        "label": "official comparison",
+        "url": "https://docs.astral.sh/ruff/faq/#how-does-ruffs-linter-compare-to-pylint"
+      },
+      {
+        "label": "finding review workflow",
+        "url": "https://zwadhams.github.io/ToolWiki/guides/reviewing-findings/"
+      }
+    ],
+    "totalChars": 2442,
+    "offset": 0,
+    "nextOffset": null,
+    "markdown": "# Ruff\n\n<span id=\"what-it-does\"></span> <span id=\"a-useful-first-evaluation\"></span>\n\n## First try\n\n**Illustrative example; not executed in this review.** [Install Ruff](https://docs.astral.sh/ruff/installation/), then save this as `sample.py`:\n\n```python\nimport math\n\nprint(\"Ready\")\n```\n\nRun this in the directory containing the file. It checks for unused imports without changing the file or loading project configuration:\n\n```sh\nruff check --isolated --select F401 sample.py\n```\n\nRepresentative diagnostic excerpt, not captured output (formatting varies by version):\n\n```text\nsample.py:1:8: F401 `math` imported but unused\n```\n\nThe location identifies the import; `F401` identifies the unused-import rule. Remove that line and repeat the check. A clean result means this selected rule found no violation in this file.\n\n<span id=\"inputs-and-workflow\"></span>\n\n## Use it on your project\n\nFollow the [Ruff tutorial](https://docs.astral.sh/ruff/tutorial/) to configure rule selection, file exclusions, and the target Python version. Run `ruff check` for linting; `ruff format` only formats code. Start without automatic fixes so you can inspect the diagnostics.\n\n## Fixes and limitations\n\nRuff distinguishes safe and unsafe fixes. Review proposed changes and run your tests after applying them. Record the tool version, configuration, and preview setting for repeatable results.\n\n<span id=\"what-it-does-not-replace\"></span>\n\n## Alternatives and complements\n\nFollow the [Ruff and mypy recipe](https://zwadhams.github.io/ToolWiki/guides/python-checks/) to check one project with separate lint and type reports. Pair Ruff with [mypy](https://zwadhams.github.io/ToolWiki/tools/mypy/) or [Pyright](https://zwadhams.github.io/ToolWiki/tools/pyright/) when you also need type checking. Consider [Bandit](https://zwadhams.github.io/ToolWiki/tools/bandit/) for a dedicated Python security-rule workflow.\n\n[Pylint](https://zwadhams.github.io/ToolWiki/tools/pylint/) uses inference and supports plugins; Ruff provides built-in rule families. Their rules overlap but are not interchangeable. Before switching, compare the diagnostics and plugin requirements of your project. The [official comparison](https://docs.astral.sh/ruff/faq/#how-does-ruffs-linter-compare-to-pylint) explains these differences.\n\nUse the [finding review workflow](https://zwadhams.github.io/ToolWiki/guides/reviewing-findings/) to investigate a diagnostic and verify a correction.\n"
+  },
+  "tools/mypy": {
+    "snapshotRevision": "3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d",
+    "id": "tools/mypy",
+    "title": "mypy",
+    "url": "https://zwadhams.github.io/ToolWiki/tools/mypy/",
+    "revision": "9d95ee85775618479267ec6aa06fca4667de122300edcbbd8fb4b93eb9e59125",
+    "evidence": {
+      "documentationReviewedOn": "2026-09-26",
+      "execution": {
+        "status": "not-recorded",
+        "scope": "No structured execution record for this document. Read the text for illustrative examples and limitations.",
+        "sources": []
+      }
+    },
+    "section": null,
+    "sections": [
+      {
+        "id": "where-it-fits",
+        "title": "Where it fits",
+        "depth": 2
+      },
+      {
+        "id": "first-try",
+        "title": "First try",
+        "depth": 2
+      },
+      {
+        "id": "configure-a-useful-check",
+        "title": "Configure a useful check",
+        "depth": 2
+      },
+      {
+        "id": "compare-python-type-checkers",
+        "title": "Compare Python type checkers",
+        "depth": 2
+      }
+    ],
+    "sources": [
+      {
+        "label": "Type checking and gradual typing",
+        "url": "https://mypy.readthedocs.io/en/stable/"
+      },
+      {
+        "label": "Installation, annotations, and strictness",
+        "url": "https://mypy.readthedocs.io/en/stable/getting_started.html"
+      },
+      {
+        "label": "Imports, stubs, and analysis scope",
+        "url": "https://mypy.readthedocs.io/en/stable/running_mypy.html"
+      },
+      {
+        "label": "Missing errors and other limitations",
+        "url": "https://mypy.readthedocs.io/en/stable/common_issues.html"
+      },
+      {
+        "label": "License and bundled notices",
+        "url": "https://github.com/python/mypy/blob/master/LICENSE"
+      },
+      {
+        "label": "Pyright configuration for comparable checks",
+        "url": "https://github.com/microsoft/pyright/blob/main/docs/configuration.md"
+      },
+      {
+        "label": "Ruff",
+        "url": "https://zwadhams.github.io/ToolWiki/tools/ruff/"
+      },
+      {
+        "label": "Bandit",
+        "url": "https://zwadhams.github.io/ToolWiki/tools/bandit/"
+      },
+      {
+        "label": "argument-type diagnostic reference",
+        "url": "https://mypy.readthedocs.io/en/stable/error_code_list.html#check-argument-types-arg-type"
+      },
+      {
+        "label": "shared Ruff and mypy recipe",
+        "url": "https://zwadhams.github.io/ToolWiki/guides/python-checks/"
+      },
+      {
+        "label": "Compare mypy, Ruff, and Bandit",
+        "url": "https://zwadhams.github.io/ToolWiki/compare/?tools=tools%2Fmypy%2Ctools%2Fruff%2Ctools%2Fbandit"
+      },
+      {
+        "label": "Pyright",
+        "url": "https://zwadhams.github.io/ToolWiki/tools/pyright/"
+      },
+      {
+        "label": "Compare mypy and Pyright",
+        "url": "https://zwadhams.github.io/ToolWiki/compare/?tools=tools%2Fmypy%2Ctools%2Fpyright"
+      }
+    ],
+    "totalChars": 3272,
+    "offset": 0,
+    "nextOffset": null,
+    "markdown": "# mypy\n\n## Where it fits\n\nUse mypy to check whether code uses the types described by annotations and stubs consistently. It complements [Ruff](https://zwadhams.github.io/ToolWiki/tools/ruff/) for linting and [Bandit](https://zwadhams.github.io/ToolWiki/tools/bandit/) for selected Python security patterns. A clean lint run is not a type-checking result.\n\nGradual typing lets a project adopt annotations in stages. By default, bodies of functions without annotations receive limited checking. `Any` and ignored imports can also let type mistakes pass unnoticed.\n\n<span id=\"worked-example-an-incompatible-argument\"></span>\n\n## First try\n\n**Illustrative example, not run here.** Follow the [mypy installation instructions](https://mypy.readthedocs.io/en/stable/getting_started.html) in your selected Python environment, then save this as `sample.py`:\n\n```python\ndef next_count(count: int) -> int:\n    return count + 1\n\nnext_count(\"three\")\n```\n\nCheck it without running the program:\n\n```sh\npython -m mypy sample.py\n```\n\nRepresentative diagnostic, not captured output (formatting varies by version):\n\n```text\nsample.py:4: error: Argument 1 to \"next_count\" has incompatible type \"str\"; expected \"int\" [arg-type]\n```\n\n`sample.py:4` locates the call. `arg-type` identifies an incompatible argument type: text was passed to an integer parameter. Replace the argument with `3` and check again. This example exercises one mismatch, not the entire type system. See the [argument-type diagnostic reference](https://mypy.readthedocs.io/en/stable/error_code_list.html#check-argument-types-arg-type) for details.\n\nUse the [shared Ruff and mypy recipe](https://zwadhams.github.io/ToolWiki/guides/python-checks/) for a pinned environment, faulty/corrected files, and separate reports.\n\n## Configure a useful check\n\nSupply the project's imports and any required third-party stubs. Start with a small annotated area, inspect errors, and tighten the configuration deliberately. `--check-untyped-defs` can inspect unannotated bodies, while `--strict` enables a broader set of checks.\n\nRecord the mypy version, configuration, target Python version, and suppressions. Static types do not validate arbitrary input data at runtime or replace application tests.\n\n[Compare mypy, Ruff, and Bandit](https://zwadhams.github.io/ToolWiki/compare/?tools=tools%2Fmypy%2Ctools%2Fruff%2Ctools%2Fbandit) to see their different roles.\n\n## Compare Python type checkers\n\n[Pyright](https://zwadhams.github.io/ToolWiki/tools/pyright/) is another Python type checker. Both use annotations and stubs, but configuration, inference, diagnostics, and plugin support differ. For a useful trial, check the same revision with matching Python version, platform, imports, and intended strictness. Investigate disagreements instead of comparing diagnostic counts. Keep [mypy import and stub settings](https://mypy.readthedocs.io/en/stable/running_mypy.html) and [Pyright settings](https://github.com/microsoft/pyright/blob/main/docs/configuration.md) with the reports.\n\n[Compare mypy and Pyright](https://zwadhams.github.io/ToolWiki/compare/?tools=tools%2Fmypy%2Ctools%2Fpyright). Ruff remains complementary for lint rules; running two type checkers is a deliberate evaluation choice, not a requirement of the Python recipe.\n"
+  }
+}

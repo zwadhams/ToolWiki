@@ -14,15 +14,27 @@
     "check": "astro check",
     "test": "node --test tests/*.test.mjs",
     "review:status": "node scripts/review-status.mjs",
-    "verify": "pnpm check && pnpm test && pnpm build && node scripts/check-site.mjs"
+    "mcp": "node --experimental-strip-types mcp/server.ts",
+    "test:mcp": "node --test tests/mcp/*.test.mjs",
+    "verify": "pnpm check && pnpm test && pnpm build && node scripts/check-site.mjs && node scripts/check-knowledge.mjs && pnpm test:mcp"
   },
   "dependencies": {
     "@astrojs/starlight": "0.42.2",
+    "@modelcontextprotocol/server": "2.4.0",
     "astro": "7.3.3",
     "zod": "^4.6.5"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
-    "typescript": "6.0.3"
+    "@modelcontextprotocol/client": "2.4.0",
+    "@modelcontextprotocol/inspector": "2.14.0",
+    "@types/node": "24.10.0",
+    "github-slugger": "2.0.0",
+    "remark-gfm": "4.0.1",
+    "remark-parse": "11.0.0",
+    "remark-stringify": "11.0.0",
+    "typescript": "6.0.3",
+    "unified": "11.0.5",
+    "unist-util-visit": "5.0.0"
   }
 }

@@ -1,0 +1,31 @@
+{
+  "startedAt": "2026-11-09T16:28:05.161Z",
+  "node": "v24.22.1",
+  "command": "codex",
+  "args": [
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--json",
+    "--color",
+    "never",
+    "--approve-for-me",
+    "--skip-git-repo-check",
+    "-C",
+    "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\protocol-retest",
+    "--add-dir",
+    "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\readers\\protocol-retest",
+    "-c",
+    "mcp_servers.toolwiki.command=\"C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1104-2876-0_26.1104.2876.0_arm64__3k8sg7r9htsxt/dependencies/node/bin/node.exe\"",
+    "-c",
+    "mcp_servers.toolwiki.args=[\"C:/Users/zwadh/Repos/ToolWiki/scripts/record-mcp.mjs\",\"C:/Users/zwadh/Repos/ToolWiki/audits/agent-knowledge/readers/protocol-retest/mcp.jsonl\",\"C:/Users/zwadh/Repos/ToolWiki/dist/knowledge/v1/manifest.json\"]",
+    "-c",
+    "mcp_servers.toolwiki.startup_timeout_sec=30",
+    "-c",
+    "mcp_servers.toolwiki.tool_timeout_sec=30",
+    "-o",
+    "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\readers\\protocol-retest\\final.txt",
+    "-"
+  ],
+  "work": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\protocol-retest"
+}

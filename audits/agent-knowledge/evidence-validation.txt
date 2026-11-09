@@ -1,0 +1,1 @@
+Verified 4 workflow/interpretation MCP sessions plus the fresh protocol retest, complete guide pagination, response-limit recovery, Python/API fault and adaptation results, service cleanup, native x64 memory diagnostics, script provenance, 190 retained file hashes and 259 ASCII files. 519 auxiliary cache/archive entries are intentionally not required.

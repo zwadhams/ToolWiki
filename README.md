@@ -39,6 +39,17 @@ launcher from a terminal, run:
 node scripts/preview.mjs
 ```
 
+## Use knowledge with agents
+
+`pnpm build` also generates `dist/knowledge/v1/`: a manifest, document index,
+Markdown and JSON records, and a complete snapshot. The same files are published
+with the website. Follow [Use ToolWiki with agents](src/content/docs/guides/using-with-agents.md)
+for static access and local Codex MCP configuration, and the
+[reference](src/content/docs/guides/agents-reference.md) for the format and tools.
+
+After building, `pnpm test:mcp` checks the real stdio protocol. `pnpm mcp` starts
+the local server and waits for a client. Remote service hosting is deferred.
+
 ## Edit content and styling
 
 - Tool entries: `src/content/docs/tools/`, one Markdown file per tool.

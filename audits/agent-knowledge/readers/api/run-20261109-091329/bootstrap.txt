@@ -1,0 +1,62 @@
+Initial read-only probe:
+Get-Location
+Get-Command python, py, uv, curl.exe -ErrorAction SilentlyContinue | Select-Object Name,Source
+Exit 1; Python and py and curl found, uv absent.
+
+python -c "import sys,platform,struct; print(sys.version); print(sys.executable); print(platform.machine()); print(struct.calcsize('P')*8)"
+$PSVersionTable.PSVersion.ToString()
+[System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture
+Exit 0. Output retained in host.json (PowerShell 7.6.9, OS Arm64).
+
+$run = 'run-' + (Get-Date -Format 'yyyyMMdd-HHmmss')
+$scratch = Join-Path (Get-Location) $run
+$evidence = Join-Path 'C:\Users\zwadh\Repos\ToolWiki\audits\agent-knowledge\readers\api' $run
+New-Item -ItemType Directory -Path $scratch,$evidence | Out-Null
+@{scratch=$scratch;evidence=$evidence} | ConvertTo-Json | Set-Content -Encoding ascii (Join-Path $scratch 'paths.json')
+Invoke-WebRequest 'https://github.com/zwadhams/ToolWiki/archive/506c522ca86fd8c9d7b688f35a4d37f842d04cc9.zip' -OutFile (Join-Path $scratch 'examples.zip')
+Write-Output $scratch
+Write-Output $evidence
+Exit 0; stdout:
+C:\Users\zwadh\Repos\ToolWiki\audits\agent-knowledge\work\api\run-20261109-091329
+C:\Users\zwadh\Repos\ToolWiki\audits\agent-knowledge\readers\api\run-20261109-091329
+No stderr.
+
+Exact extraction Python passed to python - (exit 0, no Python stdout/stderr):
+import zipfile,pathlib
+p=pathlib.Path(r'C:\Users\zwadh\Repos\ToolWiki\audits\agent-knowledge\work\api\run-20261109-091329')
+with zipfile.ZipFile(p/'examples.zip') as z:
+ for n in z.namelist():
+  if '/examples/http-api/' in n and not n.endswith('/'):
+   q=p/'examples/http-api'/pathlib.Path(n).name;q.parent.mkdir(parents=True,exist_ok=True);q.write_bytes(z.read(n))
+
+Example inspection commands (exit 0):
+Get-Content run-20261109-091329/examples/http-api/server.py,run-20261109-091329/examples/http-api/run_schemathesis.py,run-20261109-091329/examples/http-api/replay.py
+Get-Content run-20261109-091329/examples/http-api/openapi.json -TotalCount 90
+Output is the retained original files (schema limited to first 90 lines).
+
+Execution entry commands:
+python run-20261109-091329/execute.py
+Exit 0. stdout:
+venv 0
+install 0
+versions 0
+tool-version 0
+original-faulty-replay 0
+original-faulty-reset 0
+original-faulty-generated 1
+original-fixed-replay 0
+original-fixed-reset 0
+original-fixed-generated 0
+adapted-faulty-positive 1
+adapted-faulty-negative 1
+adapted-fixed-positive 0
+adapted-fixed-negative 1
+No stderr.
+
+python run-20261109-091329/method-correction.py
+Exit 0. stdout:
+positive 0
+negative 0
+No stderr.
+
+Scripts were written using PowerShell Set-Content -Encoding ascii from literal here-strings. Scripts are retained verbatim. Each subprocess records its exact argv and streams; server cwd was scratch.

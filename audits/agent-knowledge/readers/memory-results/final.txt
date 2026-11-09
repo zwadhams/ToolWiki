@@ -1,0 +1,5 @@
+Saved the [ASCII interpretation report](/C:/Users/zwadh/Repos/ToolWiki/audits/agent-knowledge/readers/memory-results/ci-42653327079-interpretation.txt).
+
+The evidence supports both expected outcomes on native Windows x64: the faulty program produces the precise ASan overflow diagnostic, and the correction exits cleanly. The report includes document/snapshot revisions, hashes, provenance, differences and missing evidence.
+
+No compilation or repository changes were performed.

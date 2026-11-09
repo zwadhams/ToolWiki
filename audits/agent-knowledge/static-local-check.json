@@ -1,0 +1,9 @@
+{
+  "verifiedAt": "2026-11-09T16:26:29.747Z",
+  "manifestUrl": "http://127.0.0.1:4322/ToolWiki/knowledge/v1/manifest.json",
+  "manifestSha256": "96c7f592083dcc0763accfd0e2e14bc3099c6f29eac1a69b5f9e501bdada2c03",
+  "snapshotRevision": "3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d",
+  "documents": 134,
+  "files": 271,
+  "directStaticAccess": "passed"
+}

@@ -1,6 +1,11 @@
 ---
 title: Check Python linting and types together
 description: Run Ruff and mypy against the same small project, inspect separate reports, and repeat the checks after a correction.
+executionEvidence:
+  status: recorded
+  scope: Windows with Python 3.13.15, Ruff 0.14.3 and mypy 1.18.2; selected findings in faulty and corrected examples. Other hosts were not executed.
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/main/examples/python-checks/evidence.md
 ---
 
 [Ruff](../../tools/ruff/) and [mypy](../../tools/mypy/) answer different questions.

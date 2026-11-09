@@ -1,6 +1,11 @@
 ---
 title: "Find a memory error on Windows"
 description: "Build a small C program with MSVC AddressSanitizer, diagnose an out-of-bounds write, and verify its correction."
+executionEvidence:
+  status: recorded
+  scope: Native Windows Server 2022 x64 with VS 2022 17.14.44 and MSVC 19.44.35229; faulty and corrected C examples. ARM64, x64 emulation and fresh VS installation were not validated.
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/a81760a9f74ed6d94eb33f80ab03f8bd6fc42362/audits/reader-workflows/implementation/memory/ci-42303178089/run.json
 ---
 
 Use MSVC AddressSanitizer to find an invalid write in a C program you can rebuild. You will compile a faulty example, read its diagnostic, and run a corrected version.

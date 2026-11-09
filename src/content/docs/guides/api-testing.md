@@ -1,6 +1,11 @@
 ---
 title: Test a disposable HTTP API
 description: Reproduce a known API failure, correct it, and inspect generated tests against the same schema.
+executionEvidence:
+  status: recorded
+  scope: Windows with Python 3.13.15 and Schemathesis 4.33.1; disposable API fault, correction and separate adaptation. Linux and macOS were not executed.
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/7fce8e2cf1903a98cade96865bb383036f200e13/audits/reader-workflows/implementation/api/record.json
 ---
 
 Use this small orders service to try [Schemathesis](../../tools/schemathesis/)

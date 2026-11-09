@@ -1,0 +1,2 @@
+ruff: completed-no-findings
+mypy: completed-no-findings

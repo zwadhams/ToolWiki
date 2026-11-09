@@ -1,0 +1,38 @@
+{
+  "argv": [
+    "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\api\\run-20261109-091329\\env\\Scripts\\schemathesis.exe",
+    "--no-color",
+    "run",
+    "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\api\\run-20261109-091329\\adapted\\parcel-contract.json",
+    "--url",
+    "http://127.0.0.1:8793",
+    "--include-path",
+    "/parcels",
+    "--include-method",
+    "POST",
+    "--phases",
+    "coverage",
+    "--mode",
+    "positive",
+    "--checks",
+    "not_a_server_error",
+    "--max-time",
+    "20",
+    "--workers",
+    "1",
+    "--max-failures",
+    "1",
+    "--request-timeout",
+    "3",
+    "--seed",
+    "20261106",
+    "--report",
+    "junit",
+    "--report-junit-path",
+    "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\readers\\api\\run-20261109-091329\\adapted-method-fixed-positive\\junit.xml"
+  ],
+  "cwd": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\api\\run-20261109-091329",
+  "environment_overrides": {
+    "PYTHONIOENCODING": "utf-8"
+  }
+}

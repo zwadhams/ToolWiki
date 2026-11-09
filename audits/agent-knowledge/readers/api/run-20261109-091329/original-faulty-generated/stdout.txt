@@ -1,0 +1,1 @@
+Reports: C:\Users\zwadh\Repos\ToolWiki\audits\agent-knowledge\readers\api\run-20261109-091329\original-faulty-wrapper. Process status: 1. Inspect the reports for findings and incomplete work.

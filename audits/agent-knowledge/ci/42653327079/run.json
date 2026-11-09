@@ -1,0 +1,291 @@
+{
+  "status": "passed",
+  "startedUtc": "2026-11-09T16:18:05.6516114Z",
+  "repositoryRoot": "D:\\a\\ToolWiki\\ToolWiki",
+  "outputPath": "D:\\a\\_temp\\mcp-memory-evidence",
+  "host": {
+    "os": "Microsoft Windows 10.0.20348",
+    "osArchitecture": "X64",
+    "processArchitecture": "X64",
+    "machine": "runnervmquqza",
+    "powershell": {
+      "Platform": "Win32NT",
+      "OS": "Microsoft Windows 10.0.20348",
+      "PSEdition": "Core",
+      "PSCompatibleVersions": [
+        {
+          "Major": 1,
+          "Minor": 0,
+          "Build": -1,
+          "Revision": -1,
+          "MajorRevision": -1,
+          "MinorRevision": -1
+        },
+        {
+          "Major": 2,
+          "Minor": 0,
+          "Build": -1,
+          "Revision": -1,
+          "MajorRevision": -1,
+          "MinorRevision": -1
+        },
+        {
+          "Major": 3,
+          "Minor": 0,
+          "Build": -1,
+          "Revision": -1,
+          "MajorRevision": -1,
+          "MinorRevision": -1
+        },
+        {
+          "Major": 4,
+          "Minor": 0,
+          "Build": -1,
+          "Revision": -1,
+          "MajorRevision": -1,
+          "MinorRevision": -1
+        },
+        {
+          "Major": 5,
+          "Minor": 0,
+          "Build": -1,
+          "Revision": -1,
+          "MajorRevision": -1,
+          "MinorRevision": -1
+        },
+        {
+          "Major": 5,
+          "Minor": 1,
+          "Build": -1,
+          "Revision": -1,
+          "MajorRevision": -1,
+          "MinorRevision": -1
+        },
+        {
+          "Major": 6,
+          "Minor": 0,
+          "Build": -1,
+          "Revision": -1,
+          "MajorRevision": -1,
+          "MinorRevision": -1
+        },
+        {
+          "Major": 7,
+          "Minor": 0,
+          "Build": -1,
+          "Revision": -1,
+          "MajorRevision": -1,
+          "MinorRevision": -1
+        }
+      ],
+      "GitCommitId": "7.6.9",
+      "WSManStackVersion": {
+        "Major": 3,
+        "Minor": 0,
+        "Build": -1,
+        "Revision": -1,
+        "MajorRevision": -1,
+        "MinorRevision": -1
+      },
+      "SerializationVersion": {
+        "Major": 1,
+        "Minor": 1,
+        "Build": 0,
+        "Revision": 1,
+        "MajorRevision": 0,
+        "MinorRevision": 1
+      },
+      "PSRemotingProtocolVersion": {
+        "Major": 2,
+        "Minor": 4,
+        "Build": -1,
+        "Revision": -1,
+        "MajorRevision": -1,
+        "MinorRevision": -1
+      },
+      "PSVersion": {
+        "Major": 7,
+        "Minor": 6,
+        "Patch": 9,
+        "PreReleaseLabel": null,
+        "BuildLabel": null
+      }
+    },
+    "environmentBefore": {
+      "PATH": "C:\\Program Files\\PowerShell\\7;C:\\Program Files\\MongoDB\\Server\\7.0\\bin;C:\\aliyun-cli;C:\\vcpkg;C:\\Program Files (x86)\\NSIS\\;C:\\tools\\zstd;C:\\Program Files\\Mercurial\\;C:\\hostedtoolcache\\windows\\stack\\3.11.1\\x64;C:\\cabal\\bin;C:\\\\ghcup\\bin;C:\\mingw64\\bin;C:\\Program Files\\dotnet;C:\\Program Files\\MySQL\\MySQL Server 8.4\\bin;C:\\Program Files\\R\\R-4.6.2\\bin\\x64;C:\\SeleniumWebDrivers\\GeckoDriver;C:\\SeleniumWebDrivers\\EdgeDriver\\;C:\\SeleniumWebDrivers\\ChromeDriver;C:\\Program Files (x86)\\sbt\\bin;C:\\Program Files (x86)\\GitHub CLI;C:\\Program Files\\Git\\bin;C:\\Program Files (x86)\\pipx_bin;C:\\npm\\prefix;C:\\hostedtoolcache\\windows\\go\\1.24.13\\x64\\bin;C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\Scripts;C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64;C:\\hostedtoolcache\\windows\\Ruby\\3.3.13\\x64\\bin;C:\\Program Files\\OpenSSL\\bin;C:\\tools\\kotlinc\\bin;C:\\hostedtoolcache\\windows\\Java_Temurin-Hotspot_jdk\\8.0.504-1\\x64\\bin;C:\\Program Files\\ImageMagick-7.1.2-Q16-HDRI;C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin;C:\\ProgramData\\kind;C:\\ProgramData\\Chocolatey\\bin;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\PowerShell\\7\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files (x86)\\WiX Toolset v3.14\\bin;C:\\Program Files\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\140\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\160\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\170\\DTS\\Binn\\;C:\\Strawberry\\c\\bin;C:\\Strawberry\\perl\\site\\bin;C:\\Strawberry\\perl\\bin;C:\\ProgramData\\chocolatey\\lib\\pulumi\\tools\\Pulumi\\bin;C:\\Program Files\\CMake\\bin;C:\\ProgramData\\chocolatey\\lib\\maven\\apache-maven-3.9.16\\bin;C:\\Program Files\\Microsoft Service Fabric\\bin\\Fabric\\Fabric.Code;C:\\Program Files\\Microsoft SDKs\\Service Fabric\\Tools\\ServiceFabricLocalClusterManager;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Git\\ucrt64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\GitHub CLI\\;c:\\tools\\php;C:\\Program Files (x86)\\sbt\\bin;C:\\Program Files\\Amazon\\AWSCLIV2\\;C:\\Program Files\\Amazon\\SessionManagerPlugin\\bin\\;C:\\Program Files\\Amazon\\AWSSAMCLI\\bin\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\mongosh\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\LLVM\\bin;C:\\Users\\runneradmin\\.dotnet\\tools;C:\\Users\\runneradmin\\.cargo\\bin;C:\\Users\\runneradmin\\AppData\\Local\\Microsoft\\WindowsApps",
+      "ASAN_OPTIONS": null
+    },
+    "toolchain": {
+      "hostArch": "x64",
+      "runtimeVersion": null,
+      "WindowsSDKVersion": "10.0.26100.0\\",
+      "ASAN_OPTIONS": null,
+      "VCToolsVersion": "14.44.35207",
+      "PATH": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\VC\\VCPackages;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\MSBuild\\Current\\bin\\Roslyn;C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v10.0A\\bin\\NETFX 4.8 Tools\\x64\\;C:\\Program Files (x86)\\HTML Help Workshop;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\FSharp\\Tools;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Team Tools\\DiagnosticsHub\\Collector;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\Extensions\\Microsoft\\CodeCoverage.Console;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\Llvm\\x64\\bin;C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\\\x64;C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x64;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\\\MSBuild\\Current\\Bin\\amd64;C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\Tools\\;C:\\Program Files\\PowerShell\\7;C:\\Program Files\\MongoDB\\Server\\7.0\\bin;C:\\aliyun-cli;C:\\vcpkg;C:\\Program Files (x86)\\NSIS\\;C:\\tools\\zstd;C:\\Program Files\\Mercurial\\;C:\\hostedtoolcache\\windows\\stack\\3.11.1\\x64;C:\\cabal\\bin;C:\\\\ghcup\\bin;C:\\mingw64\\bin;C:\\Program Files\\dotnet;C:\\Program Files\\MySQL\\MySQL Server 8.4\\bin;C:\\Program Files\\R\\R-4.6.2\\bin\\x64;C:\\SeleniumWebDrivers\\GeckoDriver;C:\\SeleniumWebDrivers\\EdgeDriver\\;C:\\SeleniumWebDrivers\\ChromeDriver;C:\\Program Files (x86)\\sbt\\bin;C:\\Program Files (x86)\\GitHub CLI;C:\\Program Files\\Git\\bin;C:\\Program Files (x86)\\pipx_bin;C:\\npm\\prefix;C:\\hostedtoolcache\\windows\\go\\1.24.13\\x64\\bin;C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64\\Scripts;C:\\hostedtoolcache\\windows\\Python\\3.12.10\\x64;C:\\hostedtoolcache\\windows\\Ruby\\3.3.13\\x64\\bin;C:\\Program Files\\OpenSSL\\bin;C:\\tools\\kotlinc\\bin;C:\\hostedtoolcache\\windows\\Java_Temurin-Hotspot_jdk\\8.0.504-1\\x64\\bin;C:\\Program Files\\ImageMagick-7.1.2-Q16-HDRI;C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin;C:\\ProgramData\\kind;C:\\ProgramData\\Chocolatey\\bin;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\PowerShell\\7\\;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files (x86)\\WiX Toolset v3.14\\bin;C:\\Program Files\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\140\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\160\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\170\\DTS\\Binn\\;C:\\Strawberry\\c\\bin;C:\\Strawberry\\perl\\site\\bin;C:\\Strawberry\\perl\\bin;C:\\ProgramData\\chocolatey\\lib\\pulumi\\tools\\Pulumi\\bin;C:\\Program Files\\CMake\\bin;C:\\ProgramData\\chocolatey\\lib\\maven\\apache-maven-3.9.16\\bin;C:\\Program Files\\Microsoft Service Fabric\\bin\\Fabric\\Fabric.Code;C:\\Program Files\\Microsoft SDKs\\Service Fabric\\Tools\\ServiceFabricLocalClusterManager;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Git\\ucrt64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\GitHub CLI\\;c:\\tools\\php;C:\\Program Files (x86)\\sbt\\bin;C:\\Program Files\\Amazon\\AWSCLIV2\\;C:\\Program Files\\Amazon\\SessionManagerPlugin\\bin\\;C:\\Program Files\\Amazon\\AWSSAMCLI\\bin\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\mongosh\\;C:\\Program Files\\LLVM\\bin;C:\\Program Files (x86)\\LLVM\\bin;C:\\Users\\runneradmin\\.dotnet\\tools;C:\\Users\\runneradmin\\.cargo\\bin;C:\\Users\\runneradmin\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\VC\\Linux\\bin\\ConnectionManagerExe;C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\vcpkg",
+      "compiler": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe",
+      "targetArch": "x64",
+      "runtimeSha256": "3AA742521E8CBD23252F0545AA51D5A15624A3E4430FBE2F81567AFAEB3FC59B",
+      "runtime": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\clang_rt.asan_dynamic-x86_64.dll"
+    }
+  },
+  "inputs": [
+    {
+      "sha256": "F01C2E0E14B3438BF14357CC940990DBDFFD03D68967D5BDC656BA2323884AC7",
+      "path": "D:\\a\\ToolWiki\\ToolWiki\\examples\\windows-memory\\bad\\bounds.c",
+      "expectedSha256": "F01C2E0E14B3438BF14357CC940990DBDFFD03D68967D5BDC656BA2323884AC7"
+    },
+    {
+      "sha256": "85CC90C157FC6F7C7B76EFC6ACDD84B5FEEB44AE3766F44D3CE370C0E09CCC34",
+      "path": "D:\\a\\ToolWiki\\ToolWiki\\examples\\windows-memory\\good\\bounds.c",
+      "expectedSha256": "85CC90C157FC6F7C7B76EFC6ACDD84B5FEEB44AE3766F44D3CE370C0E09CCC34"
+    }
+  ],
+  "commands": [
+    {
+      "name": "vs-discovery",
+      "executable": "C:\\Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe",
+      "arguments": [
+        "-latest",
+        "-products",
+        "*",
+        "-version",
+        "[17.7,18.0)",
+        "-requires",
+        "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
+        "-property",
+        "installationPath"
+      ],
+      "command": "C:\\Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe -latest -products * -version [17.7,18.0) -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath",
+      "cwd": "D:\\a\\ToolWiki\\ToolWiki",
+      "exitCode": 0,
+      "stdout": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\r\n",
+      "stderr": "",
+      "startUtc": "2026-11-09T16:18:05.7684936Z",
+      "endUtc": "2026-11-09T16:18:06.2951632Z"
+    },
+    {
+      "name": "vs-version",
+      "executable": "C:\\Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe",
+      "arguments": [
+        "-latest",
+        "-products",
+        "*",
+        "-version",
+        "[17.7,18.0)",
+        "-requires",
+        "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
+        "-property",
+        "installationVersion"
+      ],
+      "command": "C:\\Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe -latest -products * -version [17.7,18.0) -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationVersion",
+      "cwd": "D:\\a\\ToolWiki\\ToolWiki",
+      "exitCode": 0,
+      "stdout": "17.14.37827.9\r\n",
+      "stderr": "",
+      "startUtc": "2026-11-09T16:18:06.3043937Z",
+      "endUtc": "2026-11-09T16:18:06.3471736Z"
+    },
+    {
+      "name": "developer-shell",
+      "executable": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\Tools\\Launch-VsDevShell.ps1",
+      "arguments": [
+        "-Arch",
+        "amd64",
+        "-HostArch",
+        "amd64",
+        "-SkipAutomaticLocation"
+      ],
+      "command": "& \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\Tools\\Launch-VsDevShell.ps1\" -Arch amd64 -HostArch amd64 -SkipAutomaticLocation",
+      "stdout": "**********************************************************************\r\n** Visual Studio 2022 Developer PowerShell v17.14.44\r\n** Copyright (c) 2025 Microsoft Corporation\r\n**********************************************************************\r\n",
+      "stderr": "",
+      "exitCode": null,
+      "outcome": "completed; PowerShell script has no native process exit code"
+    },
+    {
+      "name": "compiler-banner",
+      "executable": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe",
+      "arguments": [],
+      "command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe ",
+      "cwd": "D:\\a\\ToolWiki\\ToolWiki",
+      "exitCode": 0,
+      "stdout": "usage: cl [ option... ] filename... [ /link linkoption... ]\r\n",
+      "stderr": "Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35229 for x64\r\nCopyright (C) Microsoft Corporation.  All rights reserved.\r\n\r\n",
+      "startUtc": "2026-11-09T16:18:09.4450178Z",
+      "endUtc": "2026-11-09T16:18:09.5981506Z"
+    },
+    {
+      "name": "bad-build",
+      "executable": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe",
+      "arguments": [
+        "/nologo",
+        "/Od",
+        "/Zi",
+        "/fsanitize=address",
+        "./bad/bounds.c",
+        "/Fe:build/bad.exe",
+        "/Fo:build/bad.obj",
+        "/Fd:build/bad-compile.pdb",
+        "/link",
+        "/DEBUG",
+        "/INCREMENTAL:NO"
+      ],
+      "command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe /nologo /Od /Zi /fsanitize=address ./bad/bounds.c /Fe:build/bad.exe /Fo:build/bad.obj /Fd:build/bad-compile.pdb /link /DEBUG /INCREMENTAL:NO",
+      "cwd": "D:\\a\\_temp\\mcp-memory-evidence",
+      "exitCode": 0,
+      "stdout": "bounds.c\r\n",
+      "stderr": "",
+      "startUtc": "2026-11-09T16:18:09.6044506Z",
+      "endUtc": "2026-11-09T16:18:14.7462174Z"
+    },
+    {
+      "name": "bad-run",
+      "executable": "D:\\a\\_temp\\mcp-memory-evidence\\build\\bad.exe",
+      "arguments": [],
+      "command": "D:\\a\\_temp\\mcp-memory-evidence\\build\\bad.exe ",
+      "cwd": "D:\\a\\_temp\\mcp-memory-evidence",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "=================================================================\n==1952==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x1171b2ba0178 at pc 0x7ff635ab10a4 bp 0x0014f07af9a0 sp 0x0014f07af9a8\nWRITE of size 4 at 0x1171b2ba0178 thread T0\n    #0 0x7ff635ab10a3 in main D:\\a\\_temp\\mcp-memory-evidence\\bad\\bounds.c:5\n    #1 0x7ff635ab3273 in invoke_main D:\\a\\_work\\1\\s\\src\\vctools\\crt\\vcstartup\\src\\startup\\exe_common.inl:78\n    #2 0x7ff635ab3273 in __scrt_common_main_seh D:\\a\\_work\\1\\s\\src\\vctools\\crt\\vcstartup\\src\\startup\\exe_common.inl:288\n    #3 0x7ff8d1c84f7f  (C:\\Windows\\System32\\KERNEL32.DLL+0x180014f7f)\n    #4 0x7ff8d2bbedca  (C:\\Windows\\SYSTEM32\\ntdll.dll+0x18007edca)\n\n0x1171b2ba0178 is located 0 bytes after 8-byte region [0x1171b2ba0170,0x1171b2ba0178)\nallocated by thread T0 here:\n    #0 0x7ff89bf9d638 in malloc D:\\a\\_work\\1\\s\\src\\vctools\\asan\\llvm\\compiler-rt\\lib\\asan\\asan_malloc_win.cpp:134\n    #1 0x7ff635ab2213 in malloc D:\\a\\_work\\1\\s\\src\\vctools\\asan\\llvm\\compiler-rt\\lib\\asan\\asan_malloc_win_thunk.cpp:100\n    #2 0x7ff635ab1039 in main D:\\a\\_temp\\mcp-memory-evidence\\bad\\bounds.c:3\n    #3 0x7ff635ab3273 in invoke_main D:\\a\\_work\\1\\s\\src\\vctools\\crt\\vcstartup\\src\\startup\\exe_common.inl:78\n    #4 0x7ff635ab3273 in __scrt_common_main_seh D:\\a\\_work\\1\\s\\src\\vctools\\crt\\vcstartup\\src\\startup\\exe_common.inl:288\n    #5 0x7ff8d1c84f7f  (C:\\Windows\\System32\\KERNEL32.DLL+0x180014f7f)\n    #6 0x7ff8d2bbedca  (C:\\Windows\\SYSTEM32\\ntdll.dll+0x18007edca)\n\nSUMMARY: AddressSanitizer: heap-buffer-overflow D:\\a\\_temp\\mcp-memory-evidence\\bad\\bounds.c:5 in main\nShadow bytes around the buggy address:\n  0x1171b2b9fe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x1171b2b9ff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x1171b2b9ff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x1171b2ba0000: fa fa fd fd fa fa 00 fa fa fa 00 00 fa fa 00 05\n  0x1171b2ba0080: fa fa 00 06 fa fa 00 06 fa fa 00 00 fa fa 00 00\n=>0x1171b2ba0100: fa fa 00 04 fa fa 00 00 fa fa 00 07 fa fa 00[fa]\n  0x1171b2ba0180: fa fa fd fd fa fa fa fa fa fa fa fa fa fa fa fa\n  0x1171b2ba0200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x1171b2ba0280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x1171b2ba0300: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x1171b2ba0380: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==1952==ABORTING\n",
+      "startUtc": "2026-11-09T16:18:14.7495056Z",
+      "endUtc": "2026-11-09T16:18:15.4155052Z"
+    },
+    {
+      "name": "good-build",
+      "executable": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe",
+      "arguments": [
+        "/nologo",
+        "/Od",
+        "/Zi",
+        "/fsanitize=address",
+        "./good/bounds.c",
+        "/Fe:build/good.exe",
+        "/Fo:build/good.obj",
+        "/Fd:build/good-compile.pdb",
+        "/link",
+        "/DEBUG",
+        "/INCREMENTAL:NO"
+      ],
+      "command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\cl.exe /nologo /Od /Zi /fsanitize=address ./good/bounds.c /Fe:build/good.exe /Fo:build/good.obj /Fd:build/good-compile.pdb /link /DEBUG /INCREMENTAL:NO",
+      "cwd": "D:\\a\\_temp\\mcp-memory-evidence",
+      "exitCode": 0,
+      "stdout": "bounds.c\r\n",
+      "stderr": "",
+      "startUtc": "2026-11-09T16:18:15.4198254Z",
+      "endUtc": "2026-11-09T16:18:15.5776132Z"
+    },
+    {
+      "name": "good-run",
+      "executable": "D:\\a\\_temp\\mcp-memory-evidence\\build\\good.exe",
+      "arguments": [],
+      "command": "D:\\a\\_temp\\mcp-memory-evidence\\build\\good.exe ",
+      "cwd": "D:\\a\\_temp\\mcp-memory-evidence",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "",
+      "startUtc": "2026-11-09T16:18:15.5800013Z",
+      "endUtc": "2026-11-09T16:18:15.6607167Z"
+    }
+  ],
+  "failure": null,
+  "finishedUtc": "2026-11-09T16:18:15.6653607Z"
+}

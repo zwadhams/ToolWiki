@@ -48,8 +48,10 @@ test('real stdio discovery, all four tools, resources, input errors, and shutdow
       { name: 'search_knowledge', arguments: { query: 'x'.repeat(301) } },
       { name: 'compare_tools', arguments: { ids: ['tools/ruff', 'tools/ruff'] } },
     ]) {
-      try { assert.equal((await client.callTool(request)).isError, true, JSON.stringify(request)); }
-      catch (error) { assert.match(error.message, /Invalid|validation|arguments/i); }
+      let response;
+      try { response = await client.callTool(request); }
+      catch (error) { assert.match(error.message, /Invalid|validation|arguments/i); continue; }
+      assert.equal(response.isError, true, JSON.stringify(request));
     }
     assert.equal(decode(await client.callTool({ name: 'search_knowledge', arguments: { query: 'qwertyuiop-nonexistent' } })).total, 0);
   } finally { await client.close(); }

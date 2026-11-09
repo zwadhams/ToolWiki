@@ -2,6 +2,7 @@ import { McpServer } from '@modelcontextprotocol/server';
 import { serveStdio } from '@modelcontextprotocol/server/stdio';
 import { fileURLToPath } from 'node:url';
 import { createKnowledge, loadKnowledge } from './knowledge.mjs';
+import { boundedToolResult } from './result.mjs';
 
 export function createServer(knowledge: ReturnType<typeof createKnowledge>) {
   const server = new McpServer({ name: 'toolwiki', version: '0.1.0' });
@@ -18,15 +19,17 @@ export function createServer(knowledge: ReturnType<typeof createKnowledge>) {
     }, async (input: unknown) => {
       try {
         const result = knowledge.call(name, input);
-        return { content: [{ type: 'text' as const, text: JSON.stringify(result) }], structuredContent: result };
+        return boundedToolResult(result) as { content: { type: 'text'; text: string }[]; structuredContent: typeof result };
       } catch (error) {
         return { isError: true, content: [{ type: 'text' as const, text: error instanceof Error ? error.message : 'Knowledge request failed.' }] };
       }
     });
   }
-  server.registerResource('snapshot', 'toolwiki://snapshot', { mimeType: 'application/json', description: 'Pinned snapshot identity and document inventory. Read documents with get_document.' }, async uri => ({
-    contents: [{ uri: uri.href, mimeType: 'application/json', text: JSON.stringify({ version: 1, revision: knowledge.snapshot.revision, documents: knowledge.snapshot.documents.map(({ id, title, url, revision }: { id: string; title: string; url: string; revision: string }) => ({ id, title, url, revision })) }) }],
-  }));
+  server.registerResource('snapshot', 'toolwiki://snapshot', { mimeType: 'application/json', description: 'Pinned snapshot identity and document inventory. Read documents with get_document.' }, async uri => {
+    const result = { contents: [{ uri: uri.href, mimeType: 'application/json', text: JSON.stringify({ version: 1, revision: knowledge.snapshot.revision, documents: knowledge.snapshot.documents.map(({ id, title, url, revision }: { id: string; title: string; url: string; revision: string }) => ({ id, title, url, revision })) }) }] };
+    if (Buffer.byteLength(JSON.stringify(result)) > 120000) throw new Error('Resource inventory exceeds 120000 bytes. Browse with paginated search_knowledge instead.');
+    return result;
+  });
   return server;
 }
 

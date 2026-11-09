@@ -20,6 +20,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      knowledge_manifest_sha256: ${{ steps.knowledge.outputs.manifest_sha256 }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -33,6 +35,9 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Verify and build
         run: pnpm verify
+      - name: Record tested knowledge manifest
+        id: knowledge
+        run: node --input-type=module -e "import { readFileSync, appendFileSync } from 'node:fs'; import { createHash } from 'node:crypto'; appendFileSync(process.env.GITHUB_OUTPUT, 'manifest_sha256=' + createHash('sha256').update(readFileSync('dist/knowledge/v1/manifest.json')).digest('hex') + '\n');"
       - name: Upload site
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
@@ -43,12 +48,21 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       pages: write
       id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Verify published knowledge files
+        run: node scripts/check-published-knowledge.mjs '${{ needs.build.outputs.knowledge_manifest_sha256 }}'

@@ -1,0 +1,15 @@
+{
+  "runId": 42653327079,
+  "jobId": 129285151754,
+  "runUrl": "https://github.com/zwadhams/ToolWiki/actions/runs/42653327079",
+  "commit": "86811380a887aaf117c6108ceed398e512180c4b",
+  "artifactId": 13690123610,
+  "artifactName": "mcp-memory-42653327079-1",
+  "archiveSha256": "346ddf706ca55e3c484d5fe1682e38183f0dda67211bfe1de345cbaf0f0a4c9c",
+  "archiveDigestVerified": true,
+  "script": "audits/agent-knowledge/readers/memory/reader-commands.ps1",
+  "note": "run.json was extracted without modification from the downloaded GitHub artifact. Job log text represents non-ASCII characters with backslash-u escapes.",
+  "scriptSha256AtCommit": "413508aa8c177a172d0daad349b55e0fad6ce35acaf42e4366d5bce8a3d32162",
+  "scriptMatchesLocalReviewedFile": true,
+  "runRecordSha256": "d8152b9b582b2a97759caf451018938b0e63c4d9023f7c04bfdb2c4bef839d1b"
+}

@@ -1,0 +1,62 @@
+{
+  "evidence": "executed",
+  "date_utc": "2026-11-09T16:14:23.336681+00:00",
+  "host": "Windows-11-10.0.26300-SP0",
+  "python": "3.13.15",
+  "variant": "good",
+  "scope": "One fixture file; Ruff F401 and mypy strict type checking. Target not executed.",
+  "inputs_sha256": {
+    "good/greeting.py": "ec88bf30da24ef6bda3a0b696145015055e8037ee5d25dcf6a1d05f1149cf46b",
+    "pyproject.toml": "995758050d891bfb9ca75bb3820446b0f82353727efaffb87344c8fea48407d9",
+    "requirements.txt": "7fc660f71e47412548c51dc4c9eb982af3c4bdd52ce91634ad9e373cff7f87cd",
+    "run_checks.py": "e251b3267934feb80724af9d2ee60145059a7259a36210458ee4e6a08d8c150c"
+  },
+  "results": [
+    {
+      "tool": "ruff",
+      "command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "--no-fix",
+        "--no-cache",
+        "--config",
+        "pyproject.toml",
+        "--output-format",
+        "json",
+        "good/greeting.py"
+      ],
+      "target": "good/greeting.py",
+      "version": "0.14.3",
+      "return_code": 0,
+      "artifacts": [
+        "ruff.json",
+        "ruff.stderr.txt"
+      ],
+      "status": "completed-no-findings"
+    },
+    {
+      "tool": "mypy",
+      "command": [
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\python\\reader-20261109-091356\\fixture\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "--no-incremental",
+        "--cache-dir",
+        "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\readers\\python\\reader-20261109-091356\\fixture-good\\mypy-cache",
+        "--config-file",
+        "pyproject.toml",
+        "good/greeting.py"
+      ],
+      "target": "good/greeting.py",
+      "version": "1.18.2",
+      "return_code": 0,
+      "artifacts": [
+        "mypy.txt",
+        "mypy.stderr.txt"
+      ],
+      "status": "completed-no-findings"
+    }
+  ]
+}

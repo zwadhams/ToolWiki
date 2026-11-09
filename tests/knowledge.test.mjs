@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { buildKnowledge, cleanMarkdown } from '../src/lib/knowledge-export.mjs';
 import { revisionOf } from '../src/lib/knowledge-format.mjs';
 import { validateSnapshot, createKnowledge } from '../mcp/knowledge.mjs';
+import { boundedToolResult } from '../mcp/result.mjs';
 
 const site = 'https://example.com/ToolWiki/';
 const entry = { id: 'guides/custom-slug', body: 'Intro [relative](../other/)\n\n## Setup\n\n```powershell\n$Path = "../original/"\n```\n\n### Detail\nKeep this caveat.\n\n## Setup\nAnother heading.\n', data: { title: 'Example', description: 'A workflow.' } };
@@ -26,6 +27,13 @@ test('reference links are absolute while fenced literal Markdown stays unchanged
   const markdown = cleanMarkdown('[guide][g]\n\n[g]: ../target/#setup\n\n```md\n[local](../literal)\n```', site + 'guides/start/', 'Title');
   assert.ok(markdown.includes('[g]: https://example.com/ToolWiki/guides/target/#setup'));
   assert.ok(markdown.includes('[local](../literal)'));
+});
+
+test('the response bound includes both structured and text representations with JSON escaping', () => {
+  const value = { markdown: 'a'.repeat(40000) };
+  assert.ok(Buffer.byteLength(JSON.stringify(boundedToolResult(value))) < 120000);
+  assert.throws(() => boundedToolResult({ markdown: '\\'.repeat(40000) }), /response exceeds/);
+  assert.throws(() => boundedToolResult({ markdown: 'a'.repeat(60000) }), /response exceeds/);
 });
 
 test('validated snapshots reject corrupted content, duplicate identities and invalid section bounds', () => {

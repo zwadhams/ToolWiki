@@ -1,0 +1,5 @@
+PASS: ToolWiki's faulty and corrected examples behaved as documented. A separate `parcel_cost/pricing.py` project produced useful lint and type findings, then passed both checks after correction.
+
+[Report and evidence](C:/Users/zwadh/Repos/ToolWiki/audits/agent-knowledge/readers/python/reader-20261109-091356/report.md) include commands, versions, hashes, stdout/stderr, exit codes, inputs, revisions and usability issues.
+
+Limit: execution used AMD64 Python on ARM64 Windows. Native ARM64 binaries and application runtime behavior were not tested.

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites errors="0" failures="1" skipped="0" tests="1" time="0.150133">
+  <testsuite name="schemathesis" hostname="Zach-Surface" errors="0" failures="1" skipped="0" tests="1" time="0.150133">
+    <testcase name="POST /parcels" time="0.150133">
+      <failure type="failure" message="ST101">1. Test Case ID: AUtkEK
+
+- ST101 Server error
+
+[501] Not Implemented:
+
+    `&lt;!DOCTYPE HTML&gt;
+    &lt;html lang="en"&gt;
+        &lt;head&gt;
+            &lt;meta charset="utf-8"&gt;
+            &lt;title&gt;Error response&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;h1&gt;Error response&lt;/h1&gt;
+            &lt;p&gt;Error code: 501&lt;/p&gt;
+            &lt;p&gt;Message: Unsupported method ('TRACE').&lt;/p&gt;
+            &lt;p&gt;Error code explanation: 501 - Server does not support this operation.&lt;/p&gt;
+        &lt;/body&gt;
+    &lt;/html&gt;`
+
+Reproduce with:
+
+    curl -X TRACE -H 'Content-Type: application/json' -d '{"quantity": 1}' http://127.0.0.1:8793/parcels</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

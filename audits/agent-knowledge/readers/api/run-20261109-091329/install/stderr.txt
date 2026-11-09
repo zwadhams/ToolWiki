@@ -1,0 +1,3 @@
+
+[notice] A new release of pip is available: 26.2.1 -> 26.3
+[notice] To update, run: C:\Users\zwadh\Repos\ToolWiki\audits\agent-knowledge\work\api\run-20261109-091329\env\Scripts\python.exe -m pip install --upgrade pip

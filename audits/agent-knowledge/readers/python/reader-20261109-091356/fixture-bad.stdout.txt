@@ -1,0 +1,2 @@
+ruff: completed-findings
+mypy: completed-findings

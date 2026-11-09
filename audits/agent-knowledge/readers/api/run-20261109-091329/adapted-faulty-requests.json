@@ -1,0 +1,73 @@
+[
+  {
+    "method": "POST",
+    "path": "/parcels",
+    "input": {
+      "quantity": 0
+    },
+    "status": 500,
+    "body": "{\"error\": \"Zero-quantity unit-price defect\"}"
+  },
+  {
+    "method": "POST",
+    "path": "/parcels",
+    "input": {
+      "quantity": 2
+    },
+    "status": 201,
+    "body": "{\"id\": \"1\", \"quantity\": 2, \"total\": 20, \"unitPrice\": 10}"
+  },
+  {
+    "method": "POST",
+    "path": "/parcels",
+    "input": {
+      "quantity": -1
+    },
+    "status": 400,
+    "body": "{\"error\": \"quantity must be an integer from 0 through 100\"}"
+  },
+  {
+    "method": "POST",
+    "path": "/parcels",
+    "input": {
+      "quantity": 101
+    },
+    "status": 400,
+    "body": "{\"error\": \"quantity must be an integer from 0 through 100\"}"
+  },
+  {
+    "method": "POST",
+    "path": "/parcels",
+    "input": {
+      "quantity": true
+    },
+    "status": 400,
+    "body": "{\"error\": \"quantity must be an integer from 0 through 100\"}"
+  },
+  {
+    "method": "POST",
+    "path": "/parcels",
+    "input": {
+      "quantity": "2"
+    },
+    "status": 400,
+    "body": "{\"error\": \"quantity must be an integer from 0 through 100\"}"
+  },
+  {
+    "method": "POST",
+    "path": "/parcels",
+    "input": {},
+    "status": 400,
+    "body": "{\"error\": \"quantity must be an integer from 0 through 100\"}"
+  },
+  {
+    "method": "POST",
+    "path": "/parcels",
+    "input": {
+      "quantity": 1,
+      "extra": 1
+    },
+    "status": 400,
+    "body": "{\"error\": \"quantity must be an integer from 0 through 100\"}"
+  }
+]

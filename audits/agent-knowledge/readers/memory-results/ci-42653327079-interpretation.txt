@@ -1,0 +1,72 @@
+Independent interpretation of Windows memory-check CI run 42653327079
+Date: 2026-11-09
+
+Decision
+The supplied record demonstrates the retrieved workflow's faulty and corrected outcomes on a supported native Windows x64 environment. This conclusion rests on captured diagnostics, matching source hashes, build flags, architecture and return codes, rather than status=passed or job success alone. It is an interpretation of supplied CI evidence, not an independent rerun or cryptographic attestation of the runner.
+
+Retrieved documents and revisions
+Native ToolWiki MCP search_knowledge(query="Windows C memory", kind=guide) discovered the workflow. get_document retrieved both documents completely (nextOffset=null).
+MCP snapshotRevision: 3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d
+Document: guides/windows-memory-check
+URL: https://zwadhams.github.io/ToolWiki/guides/windows-memory-check/
+Document revision: 02779fa2065944149654162409c1d71e4c3bfc84a37276d2594be9a9e66c0815
+Document: guides/get-examples
+URL: https://zwadhams.github.io/ToolWiki/guides/get-examples/
+Document revision: 348abeca8590adc2dcc2533453c85a206d6a93d9b3b938c6601b06fbfe369b26
+Pinned example repository snapshot: 506c522ca86fd8c9d7b688f35a4d37f842d04cc9
+These document/content revisions, the example Git snapshot, and the new CI commit are distinct identifiers. The MCP recorder retains retrieval requests and responses.
+
+Workflow requirements and limits
+The guide requires rebuildable C source, native Windows x64, PowerShell, VS 2022 17.7 or later, Desktop development with C++, x64 MSVC tools, Windows SDK and C++ AddressSanitizer. It discovers VS with vswhere restricted to [17.7,18.0), then invokes Launch-VsDevShell.ps1 with -Arch amd64 -HostArch amd64 -SkipAutomaticLocation. OSArchitecture must be X64; selecting an x64 compiler on ARM64 is insufficient. Compiler banner and host/target environment values must identify x64. The ASan runtime must be present and available through the initialized environment. Source attribution requires debug information and PDB retention.
+The guide's published execution metadata describes a prior native Windows Server 2022 x64 execution with VS 17.14.44 and MSVC 19.44.35229. I reviewed that metadata but did not open its linked implementation/execution record. ARM64, x64 emulation and fresh VS installation are explicitly outside validated scope. Installation and setup-failure remedies are instructions reviewed here, not actions executed here.
+
+Evidence inspected
+Only the requested run.json, sibling source.json and job-log.txt, reader-commands.ps1, and fresh-bad-bounds.c / fresh-good-bounds.c were read locally. No other reader reports, implementation files, wiki source or static exports were read. No compilation occurred on this ARM64 reader machine.
+CI run URL: https://github.com/zwadhams/ToolWiki/actions/runs/42653327079
+source.json identifies job 129285151754, commit 86811380a887aaf117c6108ceed398e512180c4b, artifact 13690123610 named mcp-memory-42653327079-1.
+The job log independently shows checkout of that commit, invocation of audits/agent-knowledge/readers/memory/reader-commands.ps1 with a fresh RUNNER_TEMP output directory, and upload of one file (4095-byte archive). Its upload digest matches source.json:
+346ddf706ca55e3c484d5fe1682e38183f0dda67211bfe1de345cbaf0f0a4c9c
+source.json states archiveDigestVerified=true and unmodified extraction of run.json. I checked agreement with the log, but did not download or independently rehash the archive. Log non-ASCII characters are represented by literal backslash-u escapes per source.json.
+Locally computed SHA256 of supplied run.json:
+D8152B9B582B2A97759CAF451018938B0E63C4D9023F7C04BFDB2C4BEF839D1B
+Locally computed SHA256 of reviewed reader-commands.ps1:
+413508AA8C177A172D0DAAD349B55E0FAD6CE35ACAF42E4366D5BCE8A3D32162
+The log identifies the script path, but the CI record does not hash its executed script. The local script hash identifies what I reviewed; it does not independently prove byte identity with the executed script.
+
+Environment and setup actually recorded
+Run interval: 2026-11-09T16:18:05.6516114Z through 16:18:15.6653607Z.
+Job log: windows-2022 image 20261101.353.1, Microsoft Windows Server 2022 Datacenter 10.0.20348, runner 2.338.2.
+run.json: Microsoft Windows 10.0.20348, OSArchitecture=X64, ProcessArchitecture=X64, PowerShell Core 7.6.9. The Windows version string and Server branding are compatible descriptions of the same recorded build, not evidence of a host mismatch.
+vswhere discovery and version queries both exit 0. Selected installation is Visual Studio 2022 Enterprise; installationVersion=17.14.37827.9. Developer shell prints v17.14.44 and completes with no stderr. Its exitCode is null because it is an in-process PowerShell script, not a native child process; the record explicitly explains this. These version formats are different identifiers and do not establish a mismatch.
+Compiler: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64\cl.exe
+Compiler banner: 19.44.35229 for x64; bare invocation exits 0 and prints usage. It compiles no source in preflight.
+VCToolsVersion=14.44.35207; hostArch=x64; targetArch=x64; WindowsSDKVersion=10.0.26100.0\.
+Runtime alongside compiler: clang_rt.asan_dynamic-x86_64.dll
+Recorded runtime SHA256: 3AA742521E8CBD23252F0545AA51D5A15624A3E4430FBE2F81567AFAEB3FC59B
+runtimeVersion=null, so no runtime file version is established. ASAN_OPTIONS is null both before and after initialization. Initialized PATH includes the selected compiler/runtime directory. The ASan diagnostic and clean corrected execution provide operational evidence beyond mere DLL presence; no loaded-module trace proves the exact runtime DLL loaded.
+
+Inputs, commands and outcomes
+The script hashes repository inputs, compares fixed expected hashes, copies them to a newly created evidence directory, and compiles the copies. Locally recomputed fixture hashes equal both recorded actual and expected input hashes:
+bad: F01C2E0E14B3438BF14357CC940990DBDFFD03D68967D5BDC656BA2323884AC7
+good: 85CC90C157FC6F7C7B76EFC6ACDD84B5FEEB44AE3766F44D3CE370C0E09CCC34
+Recorded original paths are D:\a\ToolWiki\ToolWiki\examples\windows-memory\bad\bounds.c and the corresponding good path. Builds run in D:\a\_temp\mcp-memory-evidence using ./bad/bounds.c and ./good/bounds.c. This explains why diagnostic paths point into the temporary directory. The script does not separately hash the copied inputs after copying.
+Both builds use the selected full compiler path and these guide flags:
+/nologo /Od /Zi /fsanitize=address ./KIND/bounds.c /Fe:build/KIND.exe /Fo:build/KIND.obj /Fd:build/KIND-compile.pdb /link /DEBUG /INCREMENTAL:NO
+KIND is bad or good. /Od disables optimization; /Zi and /DEBUG enable source/debug attribution; /fsanitize=address instruments memory accesses; incremental linking is disabled. Each build exits 0, prints bounds.c on stdout and has empty stderr. Both executables run without arguments from the same temporary directory.
+Bad execution exits 1, stdout empty. Actual stderr includes:
+ERROR: AddressSanitizer: heap-buffer-overflow
+WRITE of size 4 at 0x1171b2ba0178 thread T0
+#0 ... in main D:\a\_temp\mcp-memory-evidence\bad\bounds.c:5
+0x1171b2ba0178 is located 0 bytes after 8-byte region [0x1171b2ba0170,0x1171b2ba0178)
+Allocation stack identifies main at bad\bounds.c:3. The summary again identifies heap-buffer-overflow at line 5 in main; the report ends ABORTING. This is the expected diagnosed invalid write, not just an unexplained nonzero exit.
+Good execution exits 0, with both stdout and stderr empty. It was built with the same sanitizer/debug flags, so it meets the guide's corrected-run criterion.
+
+Plain-language bug and correction
+malloc reserves two integers, whose valid indices are 0 and 1. Line 5 of the faulty program writes values[2], the nonexistent third integer. On this execution integers occupy four bytes, so the allocation is eight bytes and the four-byte write starts exactly at its end. The corrected fixture changes only that write to values[1], which fits inside the allocation. Both fixtures check allocation failure and free the allocation on their normal path. Exit 0 in the good run also shows it did not take its allocation-failure return of 1.
+
+Differences and remaining limits
+The CI checkout commit 86811380a887aaf117c6108ceed398e512180c4b differs from the guide's pinned example snapshot 506c522ca86fd8c9d7b688f35a4d37f842d04cc9. The two inspected fixture hashes match the executed record and script expectations, and their text matches the retrieved guide, so the memory-example content is consistent. This does not establish identity of the complete checkouts or independently verify those fixture bytes against the remote pinned snapshot.
+The guide enters examples/windows-memory; CI instead copies hash-checked inputs into a fresh temporary directory and uses the same relative layout and build flags there. This is a faithful execution adaptation, not literal execution of the download/checkout walkthrough. Fresh installation, ZIP download/extraction, and troubleshooting branches were not exercised. Existing hosted-runner tools were discovered and initialized.
+The script captures native process stdout/stderr asynchronously, return codes and timestamps through System.Diagnostics.Process; its assertions check the bad diagnostic and good clean exit. That capture mechanism makes the record interpretable, but assertions and status fields alone would not establish success. The actual retained output supplies the necessary detail. The job log itself does not echo the detailed ASan report; that report is embedded in run.json.
+No executable/object/PDB artifacts, binary hashes, PE architecture inspection, compiler hash, or loaded-runtime inventory are supplied. The upload log lists one evidence file, so this evidence set does not retain the generated PDBs/executables for later symbolization or rerun. Architecture is supported by recorded host/process values, toolchain path, environment and compiler banner rather than a separate PE inspection. The provenance chain is consistent but depends on the supplied capture and log; it is not a tamper-proof attestation.
+A single clean corrected run covers this exercised program path only. It proves neither general memory safety nor coverage of uninitialized reads, races, other inputs, platforms, architectures or compiler integrations. No local rerun, repository edit, push or publication was performed; only this interpretation report was written.

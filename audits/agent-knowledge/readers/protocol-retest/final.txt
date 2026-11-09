@@ -1,0 +1,3 @@
+Wrote the [ASCII retest report](C:/Users/zwadh/Repos/ToolWiki/audits/agent-knowledge/readers/protocol-retest/native-mcp-retest.txt).
+
+The tested paths passed, including pagination, comparison, unknown prerequisites, clear errors, and recovery after the server's 120000-byte response rejection. The report records revisions, calls, limitations, and local display truncation. No target programs were executed or wiki changes made.

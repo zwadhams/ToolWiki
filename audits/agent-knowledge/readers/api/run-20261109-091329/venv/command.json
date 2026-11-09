@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\zwadh\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-m",
+    "venv",
+    "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\api\\run-20261109-091329\\env"
+  ],
+  "cwd": "C:\\Users\\zwadh\\Repos\\ToolWiki\\audits\\agent-knowledge\\work\\api\\run-20261109-091329",
+  "environment_overrides": {
+    "PYTHONIOENCODING": "utf-8"
+  }
+}

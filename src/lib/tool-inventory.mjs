@@ -172,7 +172,8 @@ export function withToolInventory(loader) {
         },
       });
       const profiles = createToolInventory(sources, context.store.values());
-      const inventory = { version: 1, docsDirectory, extensions, sources: sources.map(({ filePath, digest }) => ({ filePath, digest })), profiles };
+      const documents = [...context.store.values()].filter(entry => !entry.data.draft && entry.id !== '404').map(entry => ({ id: entry.id, filePath: slash(entry.filePath) })).sort((a, b) => a.id.localeCompare(b.id, 'en'));
+      const inventory = { version: 1, docsDirectory, extensions, sources: sources.map(({ filePath, digest }) => ({ filePath, digest })), profiles, documents };
       const destination = path.resolve(root, TOOL_INVENTORY_PATH);
       await mkdir(path.dirname(destination), { recursive: true });
       await writeFile(destination, JSON.stringify(inventory, null, 2) + '\n', 'utf8');

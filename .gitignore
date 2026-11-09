@@ -10,3 +10,5 @@ __pycache__/
 .env.*
 !.env.example
 *.log
+audits/agent-knowledge/work/
+audits/agent-knowledge/**/mypy-cache/

@@ -1,0 +1,93 @@
+Initial independent reader report
+Date: 2026-11-09
+Status: PREPARED; CI execution pending. No execution success claimed.
+
+Discovery and scope
+Used actual ToolWiki MCP search_knowledge(query=Windows memory, kind=guide),
+then get_document for guides/windows-memory-check and guides/get-examples.
+Both documents returned nextOffset=null. Full returned document metadata and
+text are retained in retrieved-documents.json, escaped to ASCII.
+Snapshot revision: 3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d
+Memory guide revision: 02779fa2065944149654162409c1d71e4c3bfc84a37276d2594be9a9e66c0815
+Examples guide revision: 348abeca8590adc2dcc2533453c85a206d6a93d9b3b938c6601b06fbfe369b26
+Citations:
+https://zwadhams.github.io/ToolWiki/guides/windows-memory-check/
+https://zwadhams.github.io/ToolWiki/guides/get-examples/
+
+Fresh inputs
+Downloaded the returned ZIP link:
+https://github.com/zwadhams/ToolWiki/archive/506c522ca86fd8c9d7b688f35a4d37f842d04cc9.zip
+ZIP SHA256: 1EA0D5A28C0BCA15B8C5F1481451FB91B3970F1D9CB1D1475BADD242E1F6713E
+Read only these ZIP entries, under ToolWiki-506c522ca86fd8c9d7b688f35a4d37f842d04cc9/:
+examples/windows-memory/bad/bounds.c
+examples/windows-memory/good/bounds.c
+Bad SHA256: F01C2E0E14B3438BF14357CC940990DBDFFD03D68967D5BDC656BA2323884AC7
+Good SHA256: 85CC90C157FC6F7C7B76EFC6ACDD84B5FEEB44AE3766F44D3CE370C0E09CCC34
+Bad writes values[2] at line 5 after allocating two integers; good writes values[1].
+CI verifies these hashes against repository fixtures and copies inputs into its
+new output directory before building. No verification/replay scripts, source
+documentation, implementation, static exports, prior audits or reader evidence
+were read. The guide's prior execution-record link was not opened.
+
+Local inspection
+OSDescription: Microsoft Windows 10.0.26300
+OSArchitecture: Arm64
+ProcessArchitecture: Arm64
+Working directory: C:\Users\zwadh\Repos\ToolWiki\audits\agent-knowledge\work\memory
+The guide explicitly says to stop on ARM64 and use native Windows x64.
+No compiler initialization, compilation or memory experiment was run locally.
+Only PowerShell AST parsing was performed on the prepared script: no errors.
+
+CI invocation from repository root (use a fresh, nonexistent output path):
+& ./audits/agent-knowledge/readers/memory/reader-commands.ps1 -OutputPath C:/memory-reader-run-001
+Use x64 PowerShell on the available native Windows Server 2022 x64 runner.
+The script discovers VS 2022 17.7+ and initializes amd64 host/target tools.
+Missing prerequisites fail with run.json evidence where output creation succeeded.
+An existing output path fails immediately without overwriting it.
+Return the complete new output directory, including run.json, inputs and build
+artifacts/PDBs. Commands run in the output directory using copied fixtures;
+compiler flags and relative bad/good/build paths match the guide.
+
+Evidence and outside knowledge
+Ordinary PowerShell/.NET mechanics added independently: parameter binding,
+strict/error modes, Test-Path/New-Item/Copy-Item, SHA256 via Get-FileHash,
+RuntimeInformation, Get-Command, FileVersionInfo, ProcessStartInfo with separate
+stdout/stderr asynchronous reads and exit codes, ConvertTo-Json, regex matching,
+try/catch/finally, and PowerShell AST parsing. No outside technical web sources
+were used. The ZIP was opened via System.IO.Compression to avoid reading other
+repository material. All retained text is ASCII; non-ASCII UTF-16 code units in
+runtime evidence are escaped as backslash-u hexadecimal sequences. JSON preserves
+command executable, argument array, cwd, output and exit status. Developer-shell
+initialization runs in-process to preserve environment; its PowerShell output is
+combined, terminating errors are retained in stderr, and native exitCode is null.
+The exact developer-shell invocation and outcome are recorded. Bare cl's exit
+code is retained but not required to be zero because it is a banner/usage probe.
+VS installation version, compiler banner, SDK/tool versions, runtime DLL version
+and hash, architecture and PATH/ASAN_OPTIONS are retained. The script itself is
+the exact record of PowerShell filesystem and assertion commands.
+
+Usability findings (including recovered issues)
+1. Search returned unrelated API testing among four results for Windows memory;
+   the intended memory guide was first and easy to identify.
+2. The snapshot download is the whole repository rather than just fixtures.
+   Reading ZIP entries selectively avoided accessing forbidden material.
+3. The guide is interactive: it does not supply CI capture, hash verification,
+   unique output handling, or explicit assertions. These required the ordinary
+   PowerShell additions listed above, plus copying fixtures to preserve artifacts
+   without overwriting an existing examples/windows-memory/build directory.
+4. Expected stack output is an outline, not a machine-readable assertion, and
+   acknowledges varying formatting. The script accepts bounds.c:5 or bounds.c(5),
+   also requiring main, overflow, WRITE of size 4, and nonzero exit. Other source
+   notation fails clearly for follow-up inspection rather than silently passing.
+5. The guide explains bare cl may print usage but does not prescribe its expected
+   exit status; only its x64 banner is asserted, and the actual status is retained.
+6. The guide gives no fixture checksums. Fresh snapshot hashes were computed and
+   embedded; differing checkout bytes (including line endings) will fail clearly.
+7. ARM64 and emulation limits, prerequisites, and faulty-versus-clean outcomes
+   were explicit and sufficient to choose the available native x64 CI route.
+   Fresh VS installation remains unvalidated; no installation is attempted.
+
+Interpretation pending
+A passing CI record must include both the faulty diagnostic and corrected clean
+run. A crash alone is not success. A clean run only covers the executed example;
+it does not establish that every input to an adapted program is memory safe.

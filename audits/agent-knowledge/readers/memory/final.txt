@@ -1,0 +1,11 @@
+Prepared [reader-commands.ps1](/C:/Users/zwadh/Repos/ToolWiki/audits/agent-knowledge/readers/memory/reader-commands.ps1), retrieved document revisions, fresh fixtures, and [initial-report.txt](/C:/Users/zwadh/Repos/ToolWiki/audits/agent-knowledge/readers/memory/initial-report.txt).
+
+PowerShell syntax validation passed. Local execution was skipped because this host is ARM64, outside the guide's supported scope.
+
+Run from the CI repository root with x64 PowerShell:
+
+```powershell
+& ./audits/agent-knowledge/readers/memory/reader-commands.ps1 -OutputPath C:/memory-reader-run-001
+```
+
+The output path must not exist. Execution success remains pending fresh CI outputs.

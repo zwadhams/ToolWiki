@@ -1,3 +1,4 @@
 allowBuilds:
+  '@modelcontextprotocol/inspector': false
   esbuild: true
   sharp: true

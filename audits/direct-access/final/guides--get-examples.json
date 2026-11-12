@@ -1,0 +1,83 @@
+{
+  "id": "guides/get-examples",
+  "kind": "guide",
+  "title": "Get the examples",
+  "description": "Download the tested example files and open the right working directory.",
+  "url": "https://zwadhams.github.io/ToolWiki/guides/get-examples/",
+  "revision": "4fe6df6bdc8cbfd8c1719cea256a25ac1e7f0e6fe9d9acc02f37e5204d0a1218",
+  "markdown": "# Get the examples\n\nUse this snapshot for the walkthroughs below. It contains the example files;\neach walkthrough explains which tools to install.\n\n## Download the snapshot\n\n[Download the example snapshot (ZIP)](https://github.com/zwadhams/ToolWiki/archive/1a1cabbdf6dca8ca55aa289020ba98777aabc6f1.zip)\nand extract it, or run these commands in PowerShell from an empty working\ndirectory:\n\n```powershell\nInvoke-WebRequest 'https://github.com/zwadhams/ToolWiki/archive/1a1cabbdf6dca8ca55aa289020ba98777aabc6f1.zip' -OutFile examples.zip\nExpand-Archive -LiteralPath examples.zip -DestinationPath .\nSet-Location '.\\ToolWiki-1a1cabbdf6dca8ca55aa289020ba98777aabc6f1'\n```\n\nYou are now at the repository root: the directory containing `README.md` and\n`examples`. If you extracted the ZIP elsewhere, open that directory instead.\n\n| Walkthrough                                                                                       | Working directory from the repository root                                              |\n| ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |\n| [Python linting and types](https://zwadhams.github.io/ToolWiki/guides/python-checks/)             | `Set-Location examples/python-checks`                                                   |\n| [Disposable HTTP API](https://zwadhams.github.io/ToolWiki/guides/api-testing/)                    | Stay at the repository root.                                                            |\n| [Windows memory check](https://zwadhams.github.io/ToolWiki/guides/windows-memory-check/)          | `Set-Location examples/windows-memory`                                                  |\n| [Browser behavior and accessibility](https://zwadhams.github.io/ToolWiki/guides/browser-testing/) | `Set-Location examples/browser-testing`                                                 |\n| [API descriptions and contracts](https://zwadhams.github.io/ToolWiki/guides/api-contracts/)       | `Set-Location examples/api-contracts`                                                   |\n| [Software inventories](https://zwadhams.github.io/ToolWiki/guides/sbom-inventory/)                | `Set-Location examples/sbom-inventory`                                                  |\n| [Finite model checking](https://zwadhams.github.io/ToolWiki/guides/model-checking/)               | `Set-Location examples/tlc`                                                             |\n| [Coverage and mutation](https://zwadhams.github.io/ToolWiki/guides/test-evidence/)                | Follow the selected recipe under `examples/python-coverage` or `examples/test-quality`. |\n\n## Use Git instead\n\nClone into a new directory and select the same snapshot:\n\n```powershell\ngit clone https://github.com/zwadhams/ToolWiki.git ToolWiki-examples\nSet-Location ToolWiki-examples\ngit checkout --detach 1a1cabbdf6dca8ca55aa289020ba98777aabc6f1\n```\n\nThe [snapshot revision](https://github.com/zwadhams/ToolWiki/commit/1a1cabbdf6dca8ca55aa289020ba98777aabc6f1)\nkeeps the examples stable while the wiki changes. Keep your reports outside a\nfresh checkout or in the output directories named by the walkthrough.\n\nSource: [ToolWiki page](https://zwadhams.github.io/ToolWiki/guides/get-examples/). [JSON record and content revision](https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/guides/get-examples.json).\n\n- **Documentation reviewed:** Not recorded\n- **Execution evidence:** not-recorded\n- **Execution scope:** No structured execution record for this document. Read the text for illustrative examples and limitations.\n\nDocumentation review is separate from execution evidence. A recorded execution applies only to its stated environment and scope; not-recorded means no structured execution record is supplied.\n",
+  "sections": [
+    {
+      "id": "download-the-snapshot",
+      "title": "Download the snapshot",
+      "depth": 2,
+      "start": 148,
+      "end": 2743
+    },
+    {
+      "id": "use-git-instead",
+      "title": "Use Git instead",
+      "depth": 2,
+      "start": 2743,
+      "end": 3872
+    }
+  ],
+  "sources": [
+    {
+      "label": "Download the example snapshot (ZIP)",
+      "url": "https://github.com/zwadhams/ToolWiki/archive/1a1cabbdf6dca8ca55aa289020ba98777aabc6f1.zip"
+    },
+    {
+      "label": "Python linting and types",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/python-checks/"
+    },
+    {
+      "label": "Disposable HTTP API",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/api-testing/"
+    },
+    {
+      "label": "Windows memory check",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/windows-memory-check/"
+    },
+    {
+      "label": "Browser behavior and accessibility",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/browser-testing/"
+    },
+    {
+      "label": "API descriptions and contracts",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/api-contracts/"
+    },
+    {
+      "label": "Software inventories",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/sbom-inventory/"
+    },
+    {
+      "label": "Finite model checking",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/model-checking/"
+    },
+    {
+      "label": "Coverage and mutation",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/test-evidence/"
+    },
+    {
+      "label": "snapshot revision",
+      "url": "https://github.com/zwadhams/ToolWiki/commit/1a1cabbdf6dca8ca55aa289020ba98777aabc6f1"
+    },
+    {
+      "label": "ToolWiki page",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/get-examples/"
+    },
+    {
+      "label": "JSON record and content revision",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/guides/get-examples.json"
+    }
+  ],
+  "evidence": {
+    "documentationReviewedOn": null,
+    "execution": {
+      "status": "not-recorded",
+      "scope": "No structured execution record for this document. Read the text for illustrative examples and limitations.",
+      "sources": []
+    }
+  }
+}

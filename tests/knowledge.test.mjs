@@ -4,9 +4,56 @@ import { buildKnowledge, cleanMarkdown } from '../src/lib/knowledge-export.mjs';
 import { revisionOf } from '../src/lib/knowledge-format.mjs';
 import { validateSnapshot, createKnowledge } from '../mcp/knowledge.mjs';
 import { boundedToolResult } from '../mcp/result.mjs';
+import { readFile } from 'node:fs/promises';
+import { parseFrontmatter } from 'astro/markdown';
+import { toolSchema } from '../src/lib/tool-schema.mjs';
+import { markdownText } from '../src/lib/knowledge-markdown.mjs';
 
 const site = 'https://example.com/ToolWiki/';
 const entry = { id: 'guides/custom-slug', body: 'Intro [relative](../other/)\n\n## Setup\n\n```powershell\n$Path = "../original/"\n```\n\n### Detail\nKeep this caveat.\n\n## Setup\nAnother heading.\n', data: { title: 'Example', description: 'A workflow.' } };
+
+test('standalone Markdown includes tool decisions, compatibility, editions, sources and evidence', async () => {
+  for (const slug of ['ruff', 'coverity-scan']) {
+    const { frontmatter, content } = parseFrontmatter(await readFile(`src/content/docs/tools/${slug}.md`, 'utf8'));
+    const tool = toolSchema.parse(frontmatter.tool);
+    const { snapshot } = buildKnowledge([{ id: `tools/${slug}`, data: { ...frontmatter, tool }, body: content }], site);
+    const doc = snapshot.documents[0];
+    for (const field of ['setup', 'environment', 'languageNote', 'scope', 'costNote', 'license', 'findingNote']) assert.ok(doc.markdown.includes(markdownText(tool[field])), field);
+    for (const source of tool.sources) assert.ok(doc.markdown.includes(source.url));
+    assert.ok(doc.markdown.includes(`**Execution evidence:** ${slug === 'ruff' ? 'recorded' : 'not-recorded'}`));
+    assert.ok(doc.markdown.includes(`**Documentation reviewed:** ${tool.verified}`));
+    assert.ok(doc.sections.some(s => s.id === 'technical-details'));
+    assert.ok(doc.sections.some(s => s.id === 'tool-sources'));
+    if (slug === 'coverity-scan') {
+      assert.ok(doc.markdown.includes('| Edition or use | Cost | Capabilities and limits |'));
+      assert.ok(doc.markdown.includes('Commercial Coverity'));
+      assert.ok(doc.markdown.includes(site + 'tools/coverity/'));
+    }
+  }
+});
+
+test('compact catalog filters locally and links to complete records with scope qualifiers', async () => {
+  const entries = await Promise.all(['ruff', 'osv-scanner', 'coverity-scan'].map(async slug => {
+    const { frontmatter, content } = parseFrontmatter(await readFile(`src/content/docs/tools/${slug}.md`, 'utf8'));
+    return { id: `tools/${slug}`, body: content, data: { ...frontmatter, tool: toolSchema.parse(frontmatter.tool) } };
+  }));
+  const { files, snapshot } = buildKnowledge([...entries, entry], site);
+  const catalog = JSON.parse(files.get('catalog.json'));
+  assert.equal(catalog.revision, snapshot.revision);
+  assert.equal(catalog.tools.length, 3);
+  assert.deepEqual(catalog.tools.filter(t => t.languages.includes('Python') && t.inputTypes.includes('Source code') && t.cost.includes('Free')).map(t => t.id), ['tools/ruff']);
+  const ruff = catalog.tools.find(t => t.id === 'tools/ruff');
+  assert.ok(ruff.reviewedHostPlatforms.includes('Windows'));
+  assert.ok(ruff.languageNote.includes('Python'));
+  assert.ok(ruff.findingNote.includes('configuration'));
+  for (const tool of catalog.tools) {
+    const record = JSON.parse(files.get(tool.record));
+    assert.equal(record.revision, tool.revision);
+    assert.equal(files.get(tool.markdown), record.markdown);
+    assert.equal('sections' in tool, false);
+    assert.equal('analysisWorkflows' in tool, false);
+  }
+});
 
 test('exports loader IDs, excludes drafts and error pages, and preserves commands and section nesting', () => {
   const { files, snapshot } = buildKnowledge([entry, { ...entry, id: 'draft', data: { ...entry.data, draft: true } }, { ...entry, id: '404' }], site);

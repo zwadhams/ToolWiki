@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { sha256, revisionOf } from '../src/lib/knowledge-format.mjs';
+import { CONTRACT_PATHS } from '../src/lib/knowledge-paths.mjs';
 
 const base = process.argv[3] || 'https://zwadhams.github.io/ToolWiki/knowledge/v1/';
 const expectedManifestHash = process.argv[2] || sha256(await readFile('dist/knowledge/v1/manifest.json'));
@@ -23,9 +24,10 @@ async function fetchVerified(file, expectedHash, expectedBytes, attempts = 4) {
 
 const manifest = JSON.parse((await fetchVerified('manifest.json', expectedManifestHash, undefined, 10)).toString('utf8'));
 assert.equal(manifest.version, 1);
-assert.equal(manifest.files.length, manifest.documentCount * 2 + 2);
+assert.equal(manifest.files.length, manifest.documentCount * 2 + 3 + CONTRACT_PATHS.length);
+for (const file of CONTRACT_PATHS) assert.ok(manifest.files.some(entry => entry.path === file), `Missing contract file ${file}`);
 assert.equal(new Set(manifest.files.map(f => f.path)).size, manifest.files.length);
-for (const file of manifest.files) assert.match(file.path, /^(?:index\.json|snapshots\/[a-f0-9]{64}\.json|documents\/[a-z0-9/_-]+\.(?:json|md))$/);
+for (const file of manifest.files) assert.ok(CONTRACT_PATHS.includes(file.path) || /^(?:(?:index|catalog)\.json|snapshots\/[a-f0-9]{64}\.json|documents\/[a-z0-9/_-]+\.(?:json|md))$/.test(file.path), `Unknown export path ${file.path}`);
 let cursor = 0, snapshot;
 await Promise.all(Array.from({ length: 8 }, async () => {
   while (cursor < manifest.files.length) {

@@ -1,0 +1,218 @@
+{
+  "id": "tools/pyright",
+  "kind": "tool",
+  "title": "Pyright",
+  "description": "Check Python types and imports using configurable static analysis.",
+  "url": "https://zwadhams.github.io/ToolWiki/tools/pyright/",
+  "revision": "ddf6e02b356f711f69454d469d509eb5905c704437dd7689aec0a02ee1389319",
+  "markdown": "# Pyright\n\n## Where it fits\n\nPyright provides another Python type-checking workflow alongside [mypy](https://zwadhams.github.io/ToolWiki/tools/mypy/). It complements [Ruff](https://zwadhams.github.io/ToolWiki/tools/ruff/) linting; these tools answer different questions.\n\n## First try\n\n**Illustrative example; not executed here.** This path uses Pyright 1.1.407's\nnpm CLI with Node.js 24 and a Python 3.13 target. In a new example directory,\ninstall the pinned checker locally:\n\n```sh\nnpm install --save-dev pyright@1.1.407\n```\n\nSave `sample.py`:\n\n```python\ndef double(value: int) -> int:\n    return value * 2\n\ndouble(\"two\")\n```\n\nSave `pyrightconfig.json` beside it:\n\n```json\n{\n  \"include\": [\"sample.py\"],\n  \"pythonVersion\": \"3.13\",\n  \"typeCheckingMode\": \"strict\"\n}\n```\n\nCheck the file without executing it:\n\n```sh\nnpx --no-install pyright --project pyrightconfig.json\n```\n\nExpect an argument-type diagnostic at `double(\"two\")`: a string does not fit\nthe integer parameter. Replace it with `double(2)` and repeat the command.\nThat diagnostic should disappear. Preserve the configuration and installed\nchecker version; diagnostic wording can change between releases.\n\nThe [pinned package metadata](https://github.com/microsoft/pyright/blob/1.1.407/packages/pyright/package.json)\nand [CLI reference](https://github.com/microsoft/pyright/blob/main/docs/command-line.md)\ndescribe installation requirements and invocation. This minimal file has no\nthird-party imports.\n\n## Start with the project environment\n\nPoint Pyright at a small package. Configure the intended Python interpreter, target version and platform, dependencies, stubs, and import paths before interpreting missing-import or unknown-type messages. Choose a diagnostic mode deliberately and review its defaults.\n\n## Interpret the result\n\nCheck both the analyzed-file scope and the diagnostic configuration. A clean result cannot establish runtime behavior or validate arbitrary external data. Keep the configuration and checker version with comparison results.\n\n[Compare Pyright and mypy](https://zwadhams.github.io/ToolWiki/compare/?tools=tools%2Fpyright%2Ctools%2Fmypy).\nUse the [comparison guidance](https://zwadhams.github.io/ToolWiki/tools/mypy/#compare-python-type-checkers) to align the\ntwo checks' scope and investigate disagreements.\n\n- **Summary:** Check Python types and imports using configurable static analysis.\n- **Use it for:** Check Python types and imports using configurable static analysis.\n- **What you need:** Provide Python source, dependencies or stubs, and a pyrightconfig.json or pyproject.toml configuration.\n- **Checks and limits:** Reports selected type and import problems. Unknown types, Any, exclusions, and diagnostic settings affect coverage.\n- **Finding scope:** Reports selected type and import problems. Unknown types, Any, exclusions, and diagnostic settings affect coverage.\n\n## Compatibility and scope\n\n- **Also known as:** Pyright type checker\n- **Analysis mode:** Static\n- **What it examines:** Source code\n- **Context:** Python applications, Type stubs, Libraries\n- **Techniques:** Type checking\n- **Finding categories:** Type errors\n- **Where it runs:** Node.js command-line installation or the documented editor integration.\n- **Languages / ecosystem:** Python\n- **Language support:** Python code and stubs. Target Python versions, platforms, and import environments must match the project.\n- **Edition and scope:** The open-source Pyright checker; Pylance-specific editor features are excluded.\n\n## Cost and editions\n\n- **Cost:** Free\n- **Cost conditions:** Free open-source checker. Pylance is a separate editor product with its own scope and terms.\n- **License category:** Open source\n- **License:** MIT\n\nCost information checked 2026-09-26. Runtimes, hosting, and compute may cost extra. Free trials are not counted as free editions.\n\n## Sources and evidence\n\n[Official website](https://github.com/microsoft/pyright)\n\n- [Project overview](https://github.com/microsoft/pyright)\n- [Command-line usage](https://raw.githubusercontent.com/microsoft/pyright/main/docs/command-line.md)\n- [Configuration and diagnostic settings](https://raw.githubusercontent.com/microsoft/pyright/main/docs/configuration.md)\n- [License](https://raw.githubusercontent.com/microsoft/pyright/main/LICENSE.txt)\n- [Pinned CLI package requirements](https://github.com/microsoft/pyright/blob/1.1.407/packages/pyright/package.json)\n\nSource: [ToolWiki page](https://zwadhams.github.io/ToolWiki/tools/pyright/). [JSON record and content revision](https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/tools/pyright.json).\n\n- **Documentation reviewed:** 2026-09-26\n- **Execution evidence:** not-recorded\n- **Execution scope:** No structured execution record for this document. Read the text for illustrative examples and limitations.\n\nDocumentation review is separate from execution evidence. A recorded execution applies only to its stated environment and scope; not-recorded means no structured execution record is supplied.\n",
+  "sections": [
+    {
+      "id": "where-it-fits",
+      "title": "Where it fits",
+      "depth": 2,
+      "start": 11,
+      "end": 272
+    },
+    {
+      "id": "first-try",
+      "title": "First try",
+      "depth": 2,
+      "start": 272,
+      "end": 1465
+    },
+    {
+      "id": "start-with-the-project-environment",
+      "title": "Start with the project environment",
+      "depth": 2,
+      "start": 1465,
+      "end": 1773
+    },
+    {
+      "id": "interpret-the-result",
+      "title": "Interpret the result",
+      "depth": 2,
+      "start": 1773,
+      "end": 2875
+    },
+    {
+      "id": "technical-details",
+      "title": "Compatibility and scope",
+      "depth": 2,
+      "start": 2875,
+      "end": 3502
+    },
+    {
+      "id": "cost-and-editions",
+      "title": "Cost and editions",
+      "depth": 2,
+      "start": 3502,
+      "end": 3844
+    },
+    {
+      "id": "tool-sources",
+      "title": "Sources and evidence",
+      "depth": 2,
+      "start": 3844,
+      "end": 5006
+    }
+  ],
+  "sources": [
+    {
+      "label": "Project overview",
+      "url": "https://github.com/microsoft/pyright"
+    },
+    {
+      "label": "Command-line usage",
+      "url": "https://raw.githubusercontent.com/microsoft/pyright/main/docs/command-line.md"
+    },
+    {
+      "label": "Configuration and diagnostic settings",
+      "url": "https://raw.githubusercontent.com/microsoft/pyright/main/docs/configuration.md"
+    },
+    {
+      "label": "License",
+      "url": "https://raw.githubusercontent.com/microsoft/pyright/main/LICENSE.txt"
+    },
+    {
+      "label": "Pinned CLI package requirements",
+      "url": "https://github.com/microsoft/pyright/blob/1.1.407/packages/pyright/package.json"
+    },
+    {
+      "label": "mypy",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/mypy/"
+    },
+    {
+      "label": "Ruff",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/ruff/"
+    },
+    {
+      "label": "CLI reference",
+      "url": "https://github.com/microsoft/pyright/blob/main/docs/command-line.md"
+    },
+    {
+      "label": "Compare Pyright and mypy",
+      "url": "https://zwadhams.github.io/ToolWiki/compare/?tools=tools%2Fpyright%2Ctools%2Fmypy"
+    },
+    {
+      "label": "comparison guidance",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/mypy/#compare-python-type-checkers"
+    },
+    {
+      "label": "ToolWiki page",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/pyright/"
+    },
+    {
+      "label": "JSON record and content revision",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/tools/pyright.json"
+    }
+  ],
+  "evidence": {
+    "documentationReviewedOn": "2026-09-26",
+    "execution": {
+      "status": "not-recorded",
+      "scope": "No structured execution record for this document. Read the text for illustrative examples and limitations.",
+      "sources": []
+    }
+  },
+  "tool": {
+    "analysisWorkflows": [
+      {
+        "id": "source",
+        "label": "Source analysis",
+        "subject": "component",
+        "inputs": [
+          "Source code"
+        ],
+        "languageScope": "source",
+        "languages": [
+          "Python"
+        ],
+        "findings": [
+          "Type errors"
+        ],
+        "interfaces": [],
+        "transports": [],
+        "definitions": [],
+        "binaryFormats": [],
+        "technologies": [],
+        "requires": [],
+        "hostPlatforms": [],
+        "targetPlatforms": [],
+        "excludedHosts": [],
+        "excludedTargets": [],
+        "caveat": "Reports selected type and import problems. Unknown types, Any, exclusions, and diagnostic settings affect coverage.",
+        "sources": [
+          "https://github.com/microsoft/pyright",
+          "https://raw.githubusercontent.com/microsoft/pyright/main/docs/command-line.md",
+          "https://raw.githubusercontent.com/microsoft/pyright/main/docs/configuration.md",
+          "https://raw.githubusercontent.com/microsoft/pyright/main/LICENSE.txt"
+        ]
+      }
+    ],
+    "aliases": [
+      "Pyright type checker"
+    ],
+    "searchTerms": [
+      "Python type checker",
+      "type hints",
+      "type annotations",
+      "static typing"
+    ],
+    "modes": [
+      "Static"
+    ],
+    "inputTypes": [
+      "Source code"
+    ],
+    "findings": [
+      "Type errors"
+    ],
+    "findingNote": "Reports selected type and import problems. Unknown types, Any, exclusions, and diagnostic settings affect coverage.",
+    "environment": "Node.js command-line installation or the documented editor integration.",
+    "setup": "Provide Python source, dependencies or stubs, and a pyrightconfig.json or pyproject.toml configuration.",
+    "techniques": [
+      "Type checking"
+    ],
+    "languages": [
+      "Python"
+    ],
+    "languageNote": "Python code and stubs. Target Python versions, platforms, and import environments must match the project.",
+    "targets": [
+      "Python applications",
+      "Type stubs",
+      "Libraries"
+    ],
+    "licenseCategory": "Open source",
+    "license": "MIT",
+    "cost": [
+      "Free"
+    ],
+    "costNote": "Free open-source checker. Pylance is a separate editor product with its own scope and terms.",
+    "website": "https://github.com/microsoft/pyright",
+    "verified": "2026-09-26",
+    "scope": "The open-source Pyright checker; Pylance-specific editor features are excluded.",
+    "sources": [
+      {
+        "label": "Project overview",
+        "url": "https://github.com/microsoft/pyright"
+      },
+      {
+        "label": "Command-line usage",
+        "url": "https://raw.githubusercontent.com/microsoft/pyright/main/docs/command-line.md"
+      },
+      {
+        "label": "Configuration and diagnostic settings",
+        "url": "https://raw.githubusercontent.com/microsoft/pyright/main/docs/configuration.md"
+      },
+      {
+        "label": "License",
+        "url": "https://raw.githubusercontent.com/microsoft/pyright/main/LICENSE.txt"
+      },
+      {
+        "label": "Pinned CLI package requirements",
+        "url": "https://github.com/microsoft/pyright/blob/1.1.407/packages/pyright/package.json"
+      }
+    ]
+  }
+}

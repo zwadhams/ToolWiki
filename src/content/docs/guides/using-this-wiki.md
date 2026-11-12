@@ -12,7 +12,7 @@ description: Choose a route for finding a tool, learning analysis methods, and i
 3. For several components or interfaces, use [Find tools for your system](../../analysis-suite/). Its candidates reflect reviewed prerequisites. Answer missing questions and check compatibility notes before treating a suggestion as ready to run.
 4. Follow the profile's first-result procedure or a [worked Python workflow](../python-checks/). Keep a [run record](../run-record/) and [review the findings](../reviewing-findings/).
 
-If you know the tool's name, search for it directly. Catalog search covers tool metadata; **Search all pages** also finds guide and profile text. Global sidebar category links start a fresh category view; category tabs above catalog results keep your current filters.
+If you know the tool's name, search for it directly. Catalog search covers tool metadata; **Search tools, capabilities, and all pages** also finds guide and profile text. Global sidebar category links start a fresh category view; category tabs above catalog results keep your current filters.
 
 ## Learn enough to choose
 

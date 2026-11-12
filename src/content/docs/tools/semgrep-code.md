@@ -29,6 +29,8 @@ tool:
       url: https://docs.semgrep.dev/usage-and-billing/overview
     - label: Language support matrix
       url: https://docs.semgrep.dev/supported-languages
+    - label: Platform-connected CLI setup and scan
+      url: https://docs.semgrep.dev/getting-started/quickstart
 ---
 
 ## What differs from CE
@@ -50,3 +52,13 @@ Paid plans expand team and organization support. Product modules and additional 
 [Comparing SAST tools](../../research/comparing-tools/) explains how to interpret differences in reported findings. Check the edition and selected rules when applying those lessons to this platform.
 
 Compare the reviewed [execution and data boundaries](../../guides/execution-and-data/) for CE and Code workflows.
+
+## System builder scope
+
+**Reviewed November 12, 2026.** This profile remains catalog-only. The
+[platform prerequisites](https://docs.semgrep.dev/prerequisites) and
+[CLI setup](https://docs.semgrep.dev/getting-started/quickstart) require an
+account and repository/platform setup beyond source availability. The builder
+does not represent that setup or distinguish the project's selected Pro rules
+and enabled analysis modes. Its reviewed [CE route](../semgrep-ce/) uses an
+explicit local rule; that route does not establish Semgrep Code coverage.

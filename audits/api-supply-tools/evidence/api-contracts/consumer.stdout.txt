@@ -1,0 +1,1 @@
+Consumer passed; pact file generated from the actual client call.

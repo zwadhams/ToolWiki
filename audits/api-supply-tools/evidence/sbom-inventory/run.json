@@ -1,0 +1,69 @@
+{
+  "executedAt": "2026-11-12T15:49:13.435Z",
+  "environment": {
+    "platform": "win32",
+    "nodeArchitecture": "arm64",
+    "node": "v24.22.1",
+    "machine": "arm64",
+    "osRelease": "10.0.26300",
+    "syft": {
+      "application": "syft",
+      "buildDate": "2026-11-09T14:36:35Z",
+      "compiler": "gc",
+      "gitCommit": "a0c0d3890a9d79421c403e8fcadec50a2e55bf21",
+      "gitDescription": "v1.57.1",
+      "goVersion": "go1.27.3",
+      "platform": "windows/arm64",
+      "schemaVersion": "16.1.13",
+      "version": "1.57.1"
+    }
+  },
+  "scope": "Two local npm lockfile inventories, with only javascript-lock-cataloger enabled. No packages installed or application code executed; no vulnerability database or scanner invoked.",
+  "runs": [
+    {
+      "name": "baseline",
+      "command": [
+        "syft",
+        "scan",
+        "dir:baseline",
+        "--override-default-catalogers",
+        "javascript-lock-cataloger",
+        "-o",
+        "syft-json=reports/baseline.syft.json"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "changed",
+      "command": [
+        "syft",
+        "scan",
+        "dir:changed",
+        "--override-default-catalogers",
+        "javascript-lock-cataloger",
+        "-o",
+        "syft-json=reports/changed.syft.json"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "inventories": {
+    "baseline": [
+      "is-number@7.0.0",
+      "toolwiki-inventory-fixture@1.0.0"
+    ],
+    "changed": [
+      "is-number@6.0.0",
+      "is-number@7.0.0",
+      "is-odd@3.0.1",
+      "toolwiki-inventory-fixture@1.0.0"
+    ]
+  },
+  "inputsSha256": {
+    "baseline/package.json": "f7f3d6da3f5464c9ca5794dc9a9f1303b9b9094083813e646f03f6dc33bc3d87",
+    "baseline/package-lock.json": "30b54bb19f56e67474c2c0826b4ebc2374a1f3e291360f0f160341480151ba79",
+    "changed/package.json": "8ad198f8846dc8a4fedb364057aba51c4a3c257d97348d69eda53304f4c66331",
+    "changed/package-lock.json": "0ca2a9c2c79eccbd49c82538016e0df43e324030dfeaee54347ce810b6e8558c",
+    "verify.mjs": "234c626154243d0ba573d1176ed03b8a78a62a7886221262ea20ce2cfe5c4574"
+  }
+}

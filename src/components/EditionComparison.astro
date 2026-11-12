@@ -1,5 +1,5 @@
 ---
-import { editionComparisons, type EditionGroup } from '../data/editions';
+import { editionComparisons, type EditionGroup } from '../data/editions.mjs';
 interface Props { group: EditionGroup }
 const comparison = editionComparisons[Astro.props.group];
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');

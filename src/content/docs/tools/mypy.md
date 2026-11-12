@@ -1,6 +1,12 @@
 ---
 title: mypy
 description: Check Python types to find incompatible arguments, return values, and operations without running the program.
+executionEvidence:
+  status: recorded
+  scope: "mypy 1.18.2 on Windows with Python 3.13.15 checked the single-file greeting fixture under its supplied strict configuration. The faulty fixture produced arg-type and exited 1; the corrected fixture exited 0. Target code was not executed. This does not establish runtime correctness, missing-dependency behavior, or results for other configurations and Python versions."
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-bad/run.json
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-good/run.json
 tool:
   decision:
     useWhen: Check whether Python annotations, calls, and return values agree in a configured project.

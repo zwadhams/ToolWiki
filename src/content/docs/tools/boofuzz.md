@@ -1,6 +1,12 @@
 ---
 title: boofuzz
 description: Generate malformed protocol messages and exercise a running service through a configurable test session.
+executionEvidence:
+  status: recorded
+  scope: "boofuzz 0.4.2 on Windows with Python 3.12.16 sent two selected PING values to a local protocol fixture. The faulty server missed the TRIGGER response and the harness exited 1; the corrected server satisfied both response checks and exited 0. Only this finite response contract was checked, without a process-crash or memory monitor."
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/remaining-work/executions/boofuzz/faulty.json
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/remaining-work/executions/boofuzz/fixed.json
 tool:
   analysisWorkflows:
     - id: custom-protocol

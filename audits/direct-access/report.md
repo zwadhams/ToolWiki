@@ -1,0 +1,69 @@
+Direct HTTP reader audit, 2026-11-12
+
+All requested reader tasks were completed from the entry URL http://127.0.0.1:4323/ToolWiki/ using ordinary HTTP requests and links or record paths discovered from those responses. No repository source, implementation, MCP knowledge tools, JavaScript execution, or local files outside this audit directory were consulted. Canonical https://zwadhams.github.io URLs under /ToolWiki/ were mapped only by origin to http://127.0.0.1:4323; citations below retain their canonical URLs.
+
+The pinned manifest revision is `5eaee2291425b0c0248079960a009c25b18d1d6fc93d33994b89a20c3c6dc955`. It contains 159 documents and the catalog contains 106 tools. The exact manifest, index, catalog, history feed, selected records, and request trace are retained here. Full snapshots were retrieved and validated in memory; the large snapshot responses are not retained. The selected exact JSON files were checked against the snapshot objects and manifest bytes/checksums, so the task answers form one consistent collection.
+
+1. Machine-readable access was discoverable from the homepage without guessing routes. Its HTML links include `rel="describedby"` to `/ToolWiki/llms.txt` and Markdown/JSON alternates. Visible navigation leads to Data and AI access. That guide links the catalog, document index, manifest, snapshot, schemas, vocabulary, and history. `llms.txt` provides a concise agent starting point. Static JSON must be filtered locally; URL query parameters do not filter it. Catalog platform lists are reviewed workflow unions; empty lists do not mean unsupported. Full records supply prerequisites and scope. Source: [Data and AI access](https://zwadhams.github.io/ToolWiki/guides/data-access/), revision `7d26be9e04aee11b54c510dda6ba766265229c4f6d186321d4ea3242c993e8bf`. Field and evidence semantics: [Data format reference](https://zwadhams.github.io/ToolWiki/guides/data-reference/), revision `397204f07f10e2a92d20c469a076d761c5dbfcb7751e160413ee8e9fb8c46c9a`.
+
+2. Filtering the downloaded catalog for Python, Source code, and either Linting or Type checking found Ruff, Pylint, mypy, and Pyright. All four are listed as free and open source, with their scope conditions retained.
+
+| Tool | Role and requirements | Limit to preserve |
+| --- | --- | --- |
+| Ruff | Built-in lint rules for conventions and selected mistakes; installed Ruff plus Python files or supported notebooks, selected rules, target Python version, and project exclusions. | Not a type checker. Security rules require deliberate selection; notebook restrictions and safe/unsafe fixes matter. Formatting is a separate operation. |
+| Pylint | Syntax and inference checks for mistakes, conventions, and complexity; Python environment, project dependencies, selected modules/messages, and explicit plugins. | Dynamic attributes, missing dependencies, ignored messages, and plugins affect results. A score is not a security or accuracy measure. Ruff and Pylint rules overlap but are not interchangeable. |
+| mypy | Type consistency for annotations, calls, and returns; Python environment, source, configuration, imports/dependencies, and relevant stubs. The profile says Python 3.10+ to run the checker. | Any, missing stubs, suppressions, and untyped bodies reduce coverage. Target Python/platform may differ from the checker host. No runtime input validation or proof of behavior. |
+| Pyright | Type and import checks; Node.js CLI or documented editor route, source, dependencies/stubs, configuration, target Python/platform, and import environment. | Unknown/Any types, exclusions, and diagnostic modes affect coverage. Pylance is a separate product. A clean check does not establish runtime behavior. |
+
+The four tool-page citations and full revisions are in the record table below. For a useful combination, Ruff plus either mypy or Pyright checks different properties. Running both type checkers is an evaluation choice; compare the same source revision, targets, imports, and intended strictness, then investigate disagreements rather than compare diagnostic counts. Preserve existing project configuration before adapting commands.
+
+The shared Python recipe has recorded Windows execution with Python 3.13.15, Ruff 0.14.3, and mypy 1.18.2. Ruff found the selected F401 unused import and mypy found the annotated argument mismatch; corrected inputs passed those checks. This does not measure general coverage. Each tool profile separately says `not-recorded`; evidence is document-specific, so the guide's recorded run must not be generalized to every profile example. Source: [Check Python linting and types together](https://zwadhams.github.io/ToolWiki/guides/python-checks/), revision `f428a8418f666116c40f46ba462bcdf34493e57f6211ef41ef783f7c29ed6a09`.
+
+3. Browser behavior and accessibility are distinct checks. Playwright Test requires a reachable browser UI, matching installed browser binaries, locked runner dependencies, isolated state, locators/actions, and authored assertions. Passing tests cover only selected scenarios, assertions, states, and browsers. Loading a page or clicking successfully alone establishes little about correctness. Source: [Playwright Test](https://zwadhams.github.io/ToolWiki/tools/playwright/), revision `0857c2860219948603b0ac62e86dbb8cd49222afd7dc5297843e13f33a022e76`.
+
+axe-core scans a rendered page state using selected automated accessibility rules. It requires a supported browser, the locked integration, intended state and tags, and retention of full results. Violations identify affected nodes and rules; incomplete results require review, passed rules apply to evaluated conditions, and inapplicable rules found no relevant content. No violations does not establish WCAG conformance, keyboard usability, or successful assistive-technology use. Source: [axe-core](https://zwadhams.github.io/ToolWiki/tools/axe-core/), revision `f1e18c776ff31f9e4575d02cf96f5c04104df55b6ee1c9139cf409f729b57970`.
+
+Recorded browser evidence is narrowly scoped: Windows ARM64 host, Node.js 24.22.1, Playwright Test 1.65.0, axe-core and @axe-core/playwright 4.14.0, win64 headless Chromium 158.0.8127.18, and one 1000x720 viewport. The faulty capability search returned zero results where one was expected; the corrected page retained the intended result/link. The faulty input produced axe rule `label`; the corrected initial-page scan had no violations or incomplete results for wcag2a, wcag2aa, wcag21a, and wcag21aa. The axe scan did not cover filtered states. Other browsers, platforms, mobile behavior, and manual accessibility assessment were not executed. Infrastructure failures do not count as reproducing the intended faults. Source: [Check browser behavior and accessibility](https://zwadhams.github.io/ToolWiki/guides/browser-testing/), revision `fe037edf31b76e99b78641dbeaad623f8e76bb415a3e34506b41578706b4dc9e`. This reader audit did not rerun that browser fixture or fetch its external execution artifact; it assessed the supplied record and clearly stated scope.
+
+4. The Ruff/mypy static comparison returned HTTP 200 and 37,251 bytes. Its raw HTML contains the requirements/results table, tool prerequisites, checks and limits, environment, cost, edition, sources, and per-tool evidence. No JavaScript was executed. Its linked standalone Markdown also returned 200 and matched the pinned manifest. The page says linting and type checking work together and cautions that shared labels do not imply equal checks or coverage. Source: [Linting and type checking work together](https://zwadhams.github.io/ToolWiki/comparisons/ruff-and-mypy/), revision `2fc99821b1258da0191c80b2b2cf986ab29af432895a0bcba8176633b935d0fc`. Retained evidence is `comparison.html`, `comparison.html.text.txt`, `comparison.md`, and its exact JSON record.
+
+5. Current and retained snapshots were discovered through the manifest and [change history](https://zwadhams.github.io/ToolWiki/changes/). Both downloaded successfully, and both exact file byte counts and SHA-256 values matched the published metadata:
+
+| Snapshot revision | Bytes | SHA-256 of exact response | Result |
+| --- | ---: | --- | --- |
+| 5eaee2291425b0c0248079960a009c25b18d1d6fc93d33994b89a20c3c6dc955 | 1831965 | `9eadc6babcf57888e6b4baa2a18eb1dd26b2805cd0614897cafb68ddcd4d7529` | Pass |
+| 3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d | 1099082 | `e0cabe226241203d1295ad25dbf36558b6eab96cde5f5105b5c289e239427c5b` | Pass |
+
+The current snapshot is identified as a current build, not yet a retained release. The baseline was captured on 2026-11-12; that is not a documentation-review date. History retains selected snapshots rather than every deployment. Hashes detect changed or mixed bytes, not publisher authenticity. Eleven complete individual JSON records match the pinned snapshot objects and manifest checksums; the catalog, index, and two standalone Markdown downloads also match the manifest. See `verification.json` for exact URLs and checks.
+
+6. Added, changed, and removed refer to record IDs and revisions between adjacent listed snapshots. Added means present in the newer snapshot but absent in its predecessor; changed means the ID exists in both and its document revision differs; removed means present only in the predecessor. A changed revision identifies content change, not a tool release, new review date, measured improvement, or semantic severity. Removed records remain readable in the preceding snapshot rather than necessarily at their former live page URL. The baseline has `changes: null` because no predecessor is retained.
+
+Directly comparing both snapshots reproduces the feed exactly: 25 added, 134 changed, and 0 removed. For example, `tools/playwright`, `tools/axe-core`, and `comparisons/ruff-and-mypy` were added; `tools/ruff` and `guides/python-checks` changed. Every pre-existing record changed in this comparison. This is accurate by revision but provides limited prioritization for a reader. There is no real removal in this history, so removal semantics are documented and inferred from set membership rather than demonstrated by a removed record. Evidence: [JSON change feed](https://zwadhams.github.io/ToolWiki/history/index.json), pinned current revision above, `history-index.json`, `snapshot-document-revisions.json`, and `verification.json`.
+
+Friction and limitations observed:
+
+- No blocking content or HTTP defect appeared in these requested reader tasks.
+- The first request preceded preview startup and was refused; the next succeeded. It is recorded as startup timing, not a site defect.
+- Production-canonical links in llms.txt and exported records require the explicit origin mapping when auditing a local preview. Public-host readers can follow them normally.
+- The index (243,332 bytes) and catalog (243,430 bytes) are similar in size, and the homepage (217,703 bytes) is verbose for an HTTP-only reader. Discovery remains workable through concise llms.txt and per-document records.
+- Standalone Markdown links to the revision-bearing JSON record rather than embedding the full document revision. Citing the full revision therefore requires the JSON request; the data reference explains this distinction.
+- The history's 134 changed records make change prioritization noisy. No claim about the significance of each change is implied by the feed.
+- This audit validates discoverability, supplied facts and evidence boundaries, static comparison access, and byte integrity. It does not independently verify upstream tool compatibility or execution claims.
+
+Exact record evidence and citations:
+
+| Canonical page | Full document revision | Exact retrieved record |
+| --- | --- | --- |
+| [Linting and type checking work together](https://zwadhams.github.io/ToolWiki/comparisons/ruff-and-mypy/) | `2fc99821b1258da0191c80b2b2cf986ab29af432895a0bcba8176633b935d0fc` | `comparisons--ruff-and-mypy.json` |
+| [Check browser behavior and accessibility](https://zwadhams.github.io/ToolWiki/guides/browser-testing/) | `fe037edf31b76e99b78641dbeaad623f8e76bb415a3e34506b41578706b4dc9e` | `guides--browser-testing.json` |
+| [Data and AI access](https://zwadhams.github.io/ToolWiki/guides/data-access/) | `7d26be9e04aee11b54c510dda6ba766265229c4f6d186321d4ea3242c993e8bf` | `guides--data-access.json` |
+| [Data format reference](https://zwadhams.github.io/ToolWiki/guides/data-reference/) | `397204f07f10e2a92d20c469a076d761c5dbfcb7751e160413ee8e9fb8c46c9a` | `guides--data-reference.json` |
+| [Check Python linting and types together](https://zwadhams.github.io/ToolWiki/guides/python-checks/) | `f428a8418f666116c40f46ba462bcdf34493e57f6211ef41ef783f7c29ed6a09` | `guides--python-checks.json` |
+| [axe-core](https://zwadhams.github.io/ToolWiki/tools/axe-core/) | `f1e18c776ff31f9e4575d02cf96f5c04104df55b6ee1c9139cf409f729b57970` | `tools--axe-core.json` |
+| [mypy](https://zwadhams.github.io/ToolWiki/tools/mypy/) | `d35baaac33c691aea2a23cf71969a7fdc27e4d0d8b24c40ef5f0762fc3142021` | `tools--mypy.json` |
+| [Playwright Test](https://zwadhams.github.io/ToolWiki/tools/playwright/) | `0857c2860219948603b0ac62e86dbb8cd49222afd7dc5297843e13f33a022e76` | `tools--playwright.json` |
+| [Pylint](https://zwadhams.github.io/ToolWiki/tools/pylint/) | `797897600a10adfe210119b5689039bc1b9165d730825a9ee995ab46e5e69c5c` | `tools--pylint.json` |
+| [Pyright](https://zwadhams.github.io/ToolWiki/tools/pyright/) | `ddf6e02b356f711f69454d469d509eb5905c704437dd7689aec0a02ee1389319` | `tools--pyright.json` |
+| [Ruff](https://zwadhams.github.io/ToolWiki/tools/ruff/) | `82a894c0850f31783a12a58b61de8a4ffe3bf56729408ffc8f078f9391d5138d` | `tools--ruff.json` |
+
+`trace.jsonl` retains request URL, status, byte count, SHA-256, time, and artifact name. `trace.tsv` is the compact request ledger. There were 24 successful HTTP responses and one pre-startup connection refusal. No snapshots or source outside the explicitly documented HTTP resources were read.

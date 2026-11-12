@@ -1,0 +1,108 @@
+{
+  "id": "guides/data-access",
+  "kind": "guide",
+  "title": "Data and AI access",
+  "description": "Download ToolWiki data or give an agent direct access through ordinary URLs.",
+  "url": "https://zwadhams.github.io/ToolWiki/guides/data-access/",
+  "revision": "7d26be9e04aee11b54c510dda6ba766265229c4f6d186321d4ea3242c993e8bf",
+  "markdown": "# Data and AI access\n\nRead ToolWiki from the website, a script, or an agent that can fetch URLs. The\nfiles below are generated with the site. No account, API key, repository clone,\nor local server is needed.\n\nOn tool profiles and articles, use **Copy as Markdown** to copy the text with\nsources, evidence status, and its content revision. **Read Markdown** and\n**View JSON** open the files directly and work without JavaScript. If clipboard\naccess is unavailable, the copy button provides selectable text instead.\n\n## Choose what to download\n\n- **Tool catalog:** Filter a compact list of tool names, aliases, languages,\n  inputs, findings, costs, and reviewed workflow platforms. Follow each record's\n  links for complete requirements and workflow details.\n- **Document index:** Find tool profiles, guides, concepts, and research notes by\n  title and description. Each entry links to its Markdown and JSON record.\n- **Markdown:** Read a profile or workflow as text, including tool compatibility,\n  cost conditions, sources, and evidence status.\n- **JSON record:** Read the same document with structured tool metadata, section\n  offsets, citations, and its content revision.\n- **Complete snapshot:** Download every document and tool record in one JSON\n  file for local search, comparison, or offline use.\n- **Manifest:** Find the current snapshot, its revision, and file checksums.\n\nStart with the [tool catalog](https://zwadhams.github.io/ToolWiki/knowledge/v1/catalog.json) or\n[document index](https://zwadhams.github.io/ToolWiki/knowledge/v1/index.json), or try the\n[Ruff Markdown profile](https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/tools/ruff.md) and\n[Ruff JSON record](https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/tools/ruff.json).\nThe [data format reference](https://zwadhams.github.io/ToolWiki/guides/data-reference/) explains fields, allowed values,\nand evidence semantics. Download the [JSON Schema index](https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/index.json)\nand [filter vocabulary](https://zwadhams.github.io/ToolWiki/knowledge/v1/vocabulary.json) for programmatic use.\n\n## Give an agent access\n\nCopy this request into an agent that can fetch public URLs, replacing the task\nin the first sentence:\n\n```text\nUse ToolWiki to find tools for Python linting and type checks.\nStart at https://zwadhams.github.io/ToolWiki/llms.txt and follow its links to\nthe document index and relevant JSON or Markdown records. Read requirements,\nlimitations, and evidence scope before recommending a tool. Inspect my existing\nproject configuration before proposing commands or configuration changes.\nCite the ToolWiki page URLs and the revisions from the JSON records you use.\n```\n\nIf the agent cannot fetch URLs, download the relevant records and attach them\nusing that agent's file input. The optional [local MCP connection](https://zwadhams.github.io/ToolWiki/guides/using-with-agents/)\noffers named search and comparison tools for clients that support it.\n\n## Fetch documents from a script\n\nThis Python 3 example uses only the standard library. It reads the index and\nprints Markdown URLs for documents mentioning Python in their title or description:\n\n```python\nimport json\nfrom urllib.request import urlopen\n\nbase = \"https://zwadhams.github.io/ToolWiki/knowledge/v1/\"\nwith urlopen(base + \"index.json\", timeout=30) as response:\n    index = json.load(response)\n\nfor document in index[\"documents\"]:\n    summary = document[\"title\"] + \" \" + document[\"description\"]\n    if \"python\" in summary.lower():\n        print(document[\"id\"], base + document[\"markdown\"])\n```\n\nThese are static files. A URL query such as `?language=Python` does not filter\nthe JSON response; your script or agent filters downloaded data locally.\n\nTo find Python source tools, fetch `catalog.json` instead and filter its `tools`\narray where `languages` includes `Python` and `inputTypes` includes `Source code`.\nRetain `languageNote`, `findingNote`, and `costNote` when presenting matches.\n`reviewedHostPlatforms` and `reviewedTargetPlatforms` are unions of the tool's\nreviewed workflows, not exhaustive support lists or guarantees for every mode.\nAn empty list means no platform is listed there; it does not mean unsupported.\n\n## Download selections and recommendations\n\nIn the catalog, **Download these results** saves the current filtered results\nin their displayed order as JSON or CSV. JSON includes the filters, source URL,\nsnapshot revision, and tool records. CSV keeps the tool fields and scope notes;\nlists use `/` between values and cells that could be spreadsheet formulas are\nprefixed with an apostrophe. Use JSON when you need the exact structured values.\n\nOn **Compare tools**, choose two or three tools and use **Download comparison\n(Markdown)**. It includes the comparison fields, related explanations, sources,\nand evidence status, including details in the collapsed table.\n\nIn **Find tools for your system**, download recommendations as Markdown or JSON\nfrom **Tool candidates**. Reports include your current description and notes,\nselected tools, candidate and blocked matches, unanswered questions, gaps, and\nsource revisions. They do not establish that any check has run. **Export system**\nstill saves just the description for later import; recommendation reports are a\nseparate format for reading and sharing. Files are created in your browser.\n\n## Keep a consistent copy\n\nRead the [manifest](https://zwadhams.github.io/ToolWiki/knowledge/v1/manifest.json), then fetch the path in\n`snapshot.path` relative to the manifest URL. Check its byte count and SHA-256\nagainst `snapshot.bytes` and `snapshot.sha256`. Keep that validated snapshot\nfor the whole task. A deployment can replace individual files between requests;\nif a snapshot disappears during an update, fetch the manifest again and retry.\nThe [change history](https://zwadhams.github.io/ToolWiki/changes/) and [JSON change feed](https://zwadhams.github.io/ToolWiki/history/index.json)\nlist selected retained snapshots with byte counts and SHA-256 checksums. A snapshot\nlisted there remains available at its revision URL. The archive does not include\nevery deployment; save unlisted snapshots when reproducibility matters. A capture\ndate records when a snapshot was retained, not when its documentation was reviewed.\n\nA revision identifies content, not a review date. Documentation review and\nrecorded execution are separate. `not-recorded` means no structured execution\nrecord is supplied; it does not mean a check failed or an example was never run.\n\nSource: [ToolWiki page](https://zwadhams.github.io/ToolWiki/guides/data-access/). [JSON record and content revision](https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/guides/data-access.json).\n\n- **Documentation reviewed:** Not recorded\n- **Execution evidence:** not-recorded\n- **Execution scope:** No structured execution record for this document. Read the text for illustrative examples and limitations.\n\nDocumentation review is separate from execution evidence. A recorded execution applies only to its stated environment and scope; not-recorded means no structured execution record is supplied.\n",
+  "sections": [
+    {
+      "id": "choose-what-to-download",
+      "title": "Choose what to download",
+      "depth": 2,
+      "start": 515,
+      "end": 2126
+    },
+    {
+      "id": "give-an-agent-access",
+      "title": "Give an agent access",
+      "depth": 2,
+      "start": 2126,
+      "end": 2995
+    },
+    {
+      "id": "fetch-documents-from-a-script",
+      "title": "Fetch documents from a script",
+      "depth": 2,
+      "start": 2995,
+      "end": 4233
+    },
+    {
+      "id": "download-selections-and-recommendations",
+      "title": "Download selections and recommendations",
+      "depth": 2,
+      "start": 4233,
+      "end": 5373
+    },
+    {
+      "id": "keep-a-consistent-copy",
+      "title": "Keep a consistent copy",
+      "depth": 2,
+      "start": 5373,
+      "end": 7144
+    }
+  ],
+  "sources": [
+    {
+      "label": "tool catalog",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/catalog.json"
+    },
+    {
+      "label": "document index",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/index.json"
+    },
+    {
+      "label": "Ruff Markdown profile",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/tools/ruff.md"
+    },
+    {
+      "label": "Ruff JSON record",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/tools/ruff.json"
+    },
+    {
+      "label": "data format reference",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/data-reference/"
+    },
+    {
+      "label": "JSON Schema index",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/index.json"
+    },
+    {
+      "label": "filter vocabulary",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/vocabulary.json"
+    },
+    {
+      "label": "local MCP connection",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/using-with-agents/"
+    },
+    {
+      "label": "manifest",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/manifest.json"
+    },
+    {
+      "label": "change history",
+      "url": "https://zwadhams.github.io/ToolWiki/changes/"
+    },
+    {
+      "label": "JSON change feed",
+      "url": "https://zwadhams.github.io/ToolWiki/history/index.json"
+    },
+    {
+      "label": "ToolWiki page",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/data-access/"
+    },
+    {
+      "label": "JSON record and content revision",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/guides/data-access.json"
+    }
+  ],
+  "evidence": {
+    "documentationReviewedOn": null,
+    "execution": {
+      "status": "not-recorded",
+      "scope": "No structured execution record for this document. Read the text for illustrative examples and limitations.",
+      "sources": []
+    }
+  }
+}

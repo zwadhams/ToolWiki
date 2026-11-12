@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-11-12",
+  "method": "Reviewed retained repository commands, versions, results, and limitations. This metadata reconciliation did not execute the analyzers again or change historical records.",
+  "records": [
+    {
+      "slug": "address-sanitizer",
+      "applyBy": "api_supply_tools",
+      "scope": "The Windows example ran MSVC AddressSanitizer with compiler 19.44.35229 on native Windows Server 2022 x64 in CI. The faulty C fixture reported a four-byte heap-buffer-overflow write at bounds.c:5 and exited 1; the correction exited 0 with no output. This is evidence for the MSVC Windows route, not a Clang execution, fresh toolchain installation, ARM64 support, or unexecuted paths.",
+      "sources": [
+        "audits/agent-knowledge/ci/42653327079/run.json",
+        "audits/agent-knowledge/ci/42653327079/source.json"
+      ],
+      "supportingFiles": ["audits/agent-knowledge/readers/memory/reader-commands.ps1"]
+    },
+    {
+      "slug": "boofuzz",
+      "applyBy": "api_supply_tools",
+      "scope": "boofuzz 0.4.2 on Windows with Python 3.12.16 sent two selected PING values to a local protocol fixture. The faulty server missed the TRIGGER response and the harness exited 1; the corrected server satisfied both response checks and exited 0. Only this finite response contract was checked, without a process-crash or memory monitor.",
+      "sources": [
+        "audits/remaining-work/executions/boofuzz/faulty.json",
+        "audits/remaining-work/executions/boofuzz/fixed.json"
+      ],
+      "supportingFiles": []
+    },
+    {
+      "slug": "coverage-py",
+      "applyBy": "parent",
+      "scope": "coverage.py 7.10.6 on Windows with Python 3.13.15 measured one selected module with branch collection in three separate unittest processes. The partial suite missed one statement and one branch destination; the reach-only and assertion-bearing suites covered all selected statements and branches. The 80% gate exited 2 for partial coverage and 0 for reach-only coverage. Subprocess collection and assertion quality were not established by coverage percentages.",
+      "sources": ["examples/python-coverage/evidence/run.json"],
+      "supportingFiles": [
+        "examples/python-coverage/evidence/partial.json",
+        "examples/python-coverage/evidence/reach.json",
+        "examples/python-coverage/evidence/contract.json"
+      ]
+    },
+    {
+      "slug": "k6",
+      "applyBy": "api_supply_tools",
+      "scope": "k6 1.0.0 windows/amd64 exercised the local HTTP fixture with a bounded two-user workload. The completed case exited 0, an intentionally impossible latency threshold exited 99, and a failed setup check exited 107. The retained records distinguish those outcomes; this local demonstration is not a production capacity measurement or evidence for other protocols and executors.",
+      "sources": ["audits/remaining-work/executions/k6/record.json"],
+      "supportingFiles": [
+        "audits/remaining-work/executions/k6/completed.json",
+        "audits/remaining-work/executions/k6/threshold-failed.json",
+        "audits/remaining-work/executions/k6/setup-failed.json"
+      ]
+    },
+    {
+      "slug": "mypy",
+      "applyBy": "api_supply_tools",
+      "scope": "mypy 1.18.2 on Windows with Python 3.13.15 checked the single-file greeting fixture under its supplied strict configuration. The faulty fixture produced arg-type and exited 1; the corrected fixture exited 0. Target code was not executed. This does not establish runtime correctness, missing-dependency behavior, or results for other configurations and Python versions.",
+      "sources": [
+        "audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-bad/run.json",
+        "audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-good/run.json"
+      ],
+      "supportingFiles": [
+        "audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-bad/mypy.txt",
+        "audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-good/mypy.txt"
+      ]
+    },
+    {
+      "slug": "psscriptanalyzer",
+      "applyBy": "api_supply_tools",
+      "scope": "PSScriptAnalyzer 1.25.0 on Windows under PowerShell 7.6.9 checked only PSAvoidUsingWriteHost. It reported the selected warning on line 2 of the faulty script and no diagnostics for the corrected script. The target scripts were not executed; other rules, host versions, and runtime behavior were not tested.",
+      "sources": ["audits/remaining-work/expansion-runs/powershell.json"],
+      "supportingFiles": []
+    },
+    {
+      "slug": "pylint",
+      "applyBy": "api_supply_tools",
+      "scope": "The retained fresh-reader report records Pylint 4.1.3 on Windows with Python 3.13.15 checking only unused-import in the greeting fixtures. It reports W0611 and exit 4 for the faulty input, then no diagnostic and exit 0 for the correction; the retained script and transcript confirm the selected rule and exit codes. This was not a run of the full default rule set or a runtime test.",
+      "sources": [
+        "audits/reader-workflows/retests/python/report.md",
+        "audits/reader-workflows/retests/python/pylint-inline.ps1",
+        "audits/reader-workflows/retests/python/pylint-inline.txt"
+      ],
+      "supportingFiles": ["audits/reader-workflows/retests/python/pylint-freeze.txt"]
+    },
+    {
+      "slug": "rtamt",
+      "applyBy": "api_supply_tools",
+      "scope": "RTAMT 0.4.10 with Python 3.12.16 and antlr4-python3-runtime 4.7 on Windows evaluated two known temperature traces using the pure-Python offline dense-time monitor. Robustness at time zero was -5.0 for the violating trace and 1.0 for the correction; reproduction assertions passed and the process exited 0. Optional compiled backends, online monitoring, other formulas, and other hosts were not exercised.",
+      "sources": ["audits/remaining-work/executions/rtamt.json"],
+      "supportingFiles": []
+    },
+    {
+      "slug": "ruff",
+      "applyBy": "api_supply_tools",
+      "scope": "Ruff 0.14.3 on Windows with Python 3.13.15 checked only F401 in the greeting fixture without fixes. The faulty input produced one unused-import diagnostic and exited 1; the correction produced an empty JSON report and exited 0. Target code was not executed, and this selected-rule example does not exercise the full rule set or formatter.",
+      "sources": [
+        "audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-bad/run.json",
+        "audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-good/run.json"
+      ],
+      "supportingFiles": [
+        "audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-bad/ruff.json",
+        "audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-good/ruff.json"
+      ]
+    },
+    {
+      "slug": "schemathesis",
+      "applyBy": "api_supply_tools",
+      "scope": "Schemathesis 4.33.1 on Windows used Python 3.12.16 to check a local OpenAPI fixture served by Python 3.13.15. The coverage phase used positive generation, not_a_server_error, one worker, seed 20261106, and a 20-second limit. The faulty run exited 1 on an HTTP 500 and the correction exited 0. This does not cover all generation phases, negative cases, security checks, GraphQL, or RESTler.",
+      "sources": ["audits/remaining-work/executions/http-api/record.json"],
+      "supportingFiles": [
+        "audits/remaining-work/executions/http-api/faulty.txt",
+        "audits/remaining-work/executions/http-api/faulty.xml",
+        "audits/remaining-work/executions/http-api/fixed.txt",
+        "audits/remaining-work/executions/http-api/fixed.xml"
+      ]
+    },
+    {
+      "slug": "semgrep-ce",
+      "applyBy": "api_supply_tools",
+      "scope": "Semgrep CE 1.184.0 on Windows with Python 3.13.15 ran the OSS engine and one local Python rule with normal local permissions. The faulty file produced one finding and exit 1; the corrected and deliberately uncovered files produced zero findings and exit 0, with no scan errors. Target code was not executed. The uncovered case demonstrates the rule's limit; this Windows run does not validate the Linux builder workflow or Semgrep Code.",
+      "sources": ["audits/remaining-work/expansion-runs/semgrep.json"],
+      "supportingFiles": [
+        "audits/remaining-work/expansion-runs/semgrep-bad.json",
+        "audits/remaining-work/expansion-runs/semgrep-good.json",
+        "audits/remaining-work/expansion-runs/semgrep-not-covered.json"
+      ]
+    },
+    {
+      "slug": "strykerjs",
+      "applyBy": "parent",
+      "scope": "StrykerJS 9.0.1 with Jest 29.7.0 on Windows under Node.js 24.22.1 mutated only discount.js using one worker and temporary copies. Both baseline suites passed. The weak suite killed five mutants and left one survivor; adding the boundary assertion killed all six. Both mutation commands exited 0 because the fixture's breaking threshold was zero. This does not establish complete test quality or other runner and language combinations.",
+      "sources": ["examples/test-quality/evidence/run.json"],
+      "supportingFiles": [
+        "examples/test-quality/evidence/weak.json",
+        "examples/test-quality/evidence/strong.json",
+        "examples/test-quality/evidence/weak-baseline.txt",
+        "examples/test-quality/evidence/strong-baseline.txt"
+      ]
+    },
+    {
+      "slug": "typescript",
+      "applyBy": "api_supply_tools",
+      "scope": "TypeScript 6.0.3 on Windows under Node.js 24.22.1 checked the supplied greeting projects without executing target code. The faulty input produced TS2345 for a number passed to a string parameter and exited 2; the corrected project exited 0. This is a small compile-time type-checking example, not a runtime test or validation of other project configurations.",
+      "sources": ["audits/remaining-work/expansion-runs/typescript.json"],
+      "supportingFiles": [
+        "audits/remaining-work/expansion-runs/typescript-bad.txt",
+        "audits/remaining-work/expansion-runs/typescript-good.txt"
+      ]
+    }
+  ]
+}

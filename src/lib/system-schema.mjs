@@ -7,7 +7,7 @@ export const INTERFACES = ['HTTP API', 'GraphQL', 'gRPC', 'WebSocket', 'MQTT', '
 export const TRANSPORTS = ['TCP', 'UDP', 'Serial', 'Other'];
 export const PLATFORMS = ['Windows', 'Linux', 'macOS', 'FreeBSD', 'NetBSD', 'Android', 'Browser', 'RTOS', 'Bare metal', 'Other'];
 export const FORMATS = ['Native executable', 'JVM bytecode', '.NET assembly', 'LLVM bitcode', 'Firmware image', 'Other'];
-export const TECHNOLOGIES = ['.NET', 'Ruby on Rails', 'Docker', 'Kubernetes/Helm', 'Terraform', 'CloudFormation', 'Azure Resource Manager', 'GitHub Actions', 'MATLAB', 'Simulink', 'Scenic'];
+export const TECHNOLOGIES = ['.NET', 'Ruby on Rails', 'Docker', 'Kubernetes/Helm', 'Terraform', 'CloudFormation', 'Azure Resource Manager', 'GitHub Actions', 'MATLAB', 'Simulink', 'Scenic', 'Browser UI'];
 export const ACCESS = { rebuild: 'Rebuild this component', instrument: 'Add instrumentation', harness: 'Write a test or verification harness', testInstance: 'Run a test instance or workload' };
 export const GOALS = [
   { id: 'correctness', label: 'Coding and type errors', findings: ['Logic errors', 'Type errors', 'Portability issues'] },

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="toolwiki-fixture" content="browser-testing-v1">
+  <title>Tool search example</title>
+  <style>
+    body { margin: 2rem auto; padding: 0 1rem; max-width: 44rem; font: 18px/1.5 system-ui, sans-serif; color: #202020; background: #fff; }
+    input { display: block; margin: .5rem 0 1rem; padding: .5rem; font: inherit; border: 2px solid #555; }
+    a { color: #0645ad; }
+    li { margin: .8rem 0; }
+    [hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Tool search example</h1>
+    <p>Search tool names or capabilities.</p>
+    <label for="tool-query">Find a tool</label>
+    <input id="tool-query" data-testid="tool-query" type="search">
+    <p id="result-count" role="status">3 tools</p>
+    <ul id="tool-results">
+      <li data-name="Ruff"><a href="https://zwadhams.github.io/ToolWiki/tools/ruff/">Ruff</a>: Python lint checks</li>
+      <li data-name="mypy"><a href="https://zwadhams.github.io/ToolWiki/tools/mypy/">mypy</a>: Python type checks</li>
+      <li data-name="AddressSanitizer"><a href="https://zwadhams.github.io/ToolWiki/tools/address-sanitizer/">AddressSanitizer</a>: C and C++ memory safety</li>
+    </ul>
+  </main>
+  <script>
+    const query = document.querySelector('#tool-query');
+    const items = [...document.querySelectorAll('#tool-results li')];
+    query.addEventListener('input', () => {
+      for (const item of items) item.hidden = !item.textContent.toLowerCase().includes(query.value.trim().toLowerCase());
+      const count = items.filter(item => !item.hidden).length;
+      document.querySelector('#result-count').textContent = `${count} ${count === 1 ? 'tool' : 'tools'}`;
+    });
+  </script>
+</body>
+</html>

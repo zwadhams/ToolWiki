@@ -1,0 +1,24 @@
+[
+  {
+    "slug": "coverage-py",
+    "path": "src/content/docs/tools/coverage-py.md",
+    "executionEvidence": {
+      "status": "recorded",
+      "scope": "coverage.py 7.10.6 on Windows with Python 3.13.15 measured one selected module with branch collection in three separate unittest processes. The partial suite missed one statement and one branch destination; the reach-only and assertion-bearing suites covered all selected statements and branches. The 80% gate exited 2 for partial coverage and 0 for reach-only coverage. Subprocess collection and assertion quality were not established by coverage percentages.",
+      "sources": [
+        "https://github.com/zwadhams/ToolWiki/blob/main/examples/python-coverage/evidence/run.json"
+      ]
+    }
+  },
+  {
+    "slug": "strykerjs",
+    "path": "src/content/docs/tools/strykerjs.md",
+    "executionEvidence": {
+      "status": "recorded",
+      "scope": "StrykerJS 9.0.1 with Jest 29.7.0 on Windows under Node.js 24.22.1 mutated only discount.js using one worker and temporary copies. Both baseline suites passed. The weak suite killed five mutants and left one survivor; adding the boundary assertion killed all six. Both mutation commands exited 0 because the fixture's breaking threshold was zero. This does not establish complete test quality or other runner and language combinations.",
+      "sources": [
+        "https://github.com/zwadhams/ToolWiki/blob/main/examples/test-quality/evidence/run.json"
+      ]
+    }
+  }
+]

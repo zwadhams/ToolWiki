@@ -1,0 +1,94 @@
+{
+  "reviewedOn": "2026-11-12",
+  "admission": "Primary documentation review and scoped local execution; no benchmark or full accessibility claim.",
+  "records": [
+    {
+      "path": "src/content/docs/tools/playwright.md",
+      "sha256": "3b779030061dd302b71d6683af1b05685b24433cc7fbabdbc04b947c258bdf25",
+      "title": "Playwright Test",
+      "scope": "Playwright Test 1.65.0 for authored browser workflows. The worked example uses headless Chromium; API-request testing, mobile-device testing, and other language bindings are outside its executed scope.",
+      "sources": [
+        {
+          "label": "Installation and supported hosts",
+          "url": "https://playwright.dev/docs/intro"
+        },
+        {
+          "label": "Browser installation and version coupling",
+          "url": "https://playwright.dev/docs/browsers"
+        },
+        {
+          "label": "Assertions and retry behavior",
+          "url": "https://playwright.dev/docs/test-assertions"
+        },
+        {
+          "label": "Locators and accessible attributes",
+          "url": "https://playwright.dev/docs/locators"
+        },
+        {
+          "label": "Test configuration",
+          "url": "https://playwright.dev/docs/test-configuration"
+        },
+        {
+          "label": "Trace viewer",
+          "url": "https://playwright.dev/docs/trace-viewer"
+        },
+        {
+          "label": "Selected release",
+          "url": "https://github.com/microsoft/playwright/releases/tag/v1.65.0"
+        },
+        {
+          "label": "Playwright license",
+          "url": "https://github.com/microsoft/playwright/blob/v1.65.0/LICENSE"
+        }
+      ]
+    },
+    {
+      "path": "src/content/docs/tools/axe-core.md",
+      "sha256": "7b765395ddf56bfc0454213e647e2947dd574e4a2705ef26f150f5e508cd4c3e",
+      "title": "axe-core",
+      "scope": "axe-core 4.14.0 through @axe-core/playwright 4.14.0. The executed example covers selected WCAG-tagged rules on one initial page; it is not a conformance audit or a review of commercial axe products.",
+      "sources": [
+        {
+          "label": "Engine scope and supported environments",
+          "url": "https://github.com/dequelabs/axe-core"
+        },
+        {
+          "label": "Playwright integration and automation limits",
+          "url": "https://playwright.dev/docs/accessibility-testing"
+        },
+        {
+          "label": "Browser installation and support",
+          "url": "https://playwright.dev/docs/browsers"
+        },
+        {
+          "label": "Rule selection and result categories",
+          "url": "https://github.com/dequelabs/axe-core/blob/v4.14.0/doc/API.md"
+        },
+        {
+          "label": "Selected engine release",
+          "url": "https://github.com/dequelabs/axe-core/releases/tag/v4.14.0"
+        },
+        {
+          "label": "Engine license",
+          "url": "https://github.com/dequelabs/axe-core/blob/v4.14.0/LICENSE"
+        },
+        {
+          "label": "Playwright adapter package and license",
+          "url": "https://registry.npmjs.org/@axe-core%2Fplaywright/4.14.0"
+        }
+      ]
+    },
+    {
+      "path": "src/content/docs/guides/browser-testing.md",
+      "sha256": "97a23c7159238215144a35960bc5699940ede1d2ce71a0e5b67d346218b22390",
+      "title": "Check browser behavior and accessibility",
+      "scope": "Windows ARM64 host (kernel build 10.0.26300) with Node.js 24.22.1, Playwright Test 1.65.0, axe-core and @axe-core/playwright 4.14.0, and bundled win64 headless Chromium 158.0.8127.18. One 1000x720 viewport, authored search assertions, and the initial page's selected WCAG rule tags. Both faulty checks failed for their intended reasons and both corrected checks passed. No other browser/platform or manual accessibility assessment was executed.",
+      "sources": [
+        {
+          "label": "Execution record",
+          "url": "https://github.com/zwadhams/ToolWiki/blob/main/audits/browser-testing/record.json"
+        }
+      ]
+    }
+  ]
+}

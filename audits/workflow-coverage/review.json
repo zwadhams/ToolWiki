@@ -1,0 +1,69 @@
+{
+  "id": "workflow-coverage-2026-11-12",
+  "date": "2026-11-12",
+  "reviewer": "formal_tools primary-source workflow review",
+  "scope": "Reviewed twelve existing catalog-only profiles against current builder fields and primary documentation. Added one-process Python coverage, PVS-Studio JS/TS V7001, and separate Sonar Community/Server Python source workflows. Retained eight documented exclusions. No new analyzer execution. Four focused workflow tests and the updated measurement tests passed.",
+  "reference": "audits/workflow-coverage/README.md",
+  "files": [
+    {
+      "path": "src/content/docs/tools/coverage-py.md",
+      "sha256": "c4bdcede7e85ee332c47fba2d3ab8f49540d14d816cb51d907b38b2ce594edf9"
+    },
+    {
+      "path": "src/content/docs/tools/coverity-scan.md",
+      "sha256": "24174f87994134da49e06135ba0331321125a29f4dbef70de9ec80ab89635f45"
+    },
+    {
+      "path": "src/content/docs/tools/coverity.md",
+      "sha256": "11e64f4d7d416bc2fbda2f54232c60a6b7ba2b1db5bbf78e6cbd2c2bd68dcce3"
+    },
+    {
+      "path": "src/content/docs/tools/gitleaks.md",
+      "sha256": "631ac1a6277edc771a6df3e34179ce6556a0d18dcb3d7b8371eca94877504dfc"
+    },
+    {
+      "path": "src/content/docs/tools/mobsf.md",
+      "sha256": "ab60d404ecae8054365307330d71e4bd6223257bde2036a215dd05e29f1b3531"
+    },
+    {
+      "path": "src/content/docs/tools/pvs-studio.md",
+      "sha256": "c83e78e28d86cf707d3c588d8e785210955ec347a4eced56b32612301e99818e"
+    },
+    {
+      "path": "src/content/docs/tools/py-spy.md",
+      "sha256": "16a2a32806b764275d39587c07fcfd9dc08f43ddd4d55d0ca48b47e30c7f6075"
+    },
+    {
+      "path": "src/content/docs/tools/semgrep-code.md",
+      "sha256": "78ddc4be42871cd96410f1bd9e7de527292d3c076d20420f2ea11fb5d0b6262f"
+    },
+    {
+      "path": "src/content/docs/tools/s-taliro.md",
+      "sha256": "a6b2d17e5203fa5d1ce71619b35d59bf49c39fed9d690494f19459445105d0e6"
+    },
+    {
+      "path": "src/content/docs/tools/sonarqube-community.md",
+      "sha256": "2402175c1363bf9bee010cfc5c33de1bd8d81bbcfff480fb588d39e6828d4c5b"
+    },
+    {
+      "path": "src/content/docs/tools/sonarqube.md",
+      "sha256": "0a2d27595d44f80573343a964d4fb9c2a0a4000c2fbe3e0ac4314131acb7ee19"
+    },
+    {
+      "path": "src/content/docs/tools/strykerjs.md",
+      "sha256": "1fcb684a3d5520bb7a7f23a58bbbf36fc94b488c29d6ddaeddfcc3e8d025da06"
+    },
+    {
+      "path": "tests/workflow-coverage.test.mjs",
+      "sha256": "d0e6019c92b5fd2c42a46981006425492c5196bb37e9f8d2b543740f5d82d669"
+    },
+    {
+      "path": "audits/workflow-coverage/README.md",
+      "sha256": "6ea7eaabee52cdc2462c3a2d0f46ccc7a21a98a3c8b73d14dd2836ef9cd6ca4c"
+    },
+    {
+      "path": "tests/measurement-workflows.test.mjs",
+      "sha256": "bcc4813067f55bdf4d16b88df6be3f279cf945def662d5852c5036d72e115f96"
+    }
+  ]
+}

@@ -1,6 +1,12 @@
 ---
 title: "AddressSanitizer (Clang)"
 description: "Detect selected memory errors while executing a program built with AddressSanitizer instrumentation."
+executionEvidence:
+  status: recorded
+  scope: "The Windows example ran MSVC AddressSanitizer with compiler 19.44.35229 on native Windows Server 2022 x64 in CI. The faulty C fixture reported a four-byte heap-buffer-overflow write at bounds.c:5 and exited 1; the correction exited 0 with no output. This is evidence for the MSVC Windows route, not a Clang execution, fresh toolchain installation, ARM64 support, or unexecuted paths."
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/agent-knowledge/ci/42653327079/run.json
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/agent-knowledge/ci/42653327079/source.json
 tool:
   cardRequirement: Requires source and a build with AddressSanitizer instrumentation.
   decision:

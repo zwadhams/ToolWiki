@@ -1,0 +1,119 @@
+{
+  "reviewedOn": "2026-11-12",
+  "records": [
+    {
+      "path": "src/content/docs/tools/spectral.md",
+      "sha256": "30afff4ef3be9024ab1b332a78ec520b372dd0a17de198c95cd1e22a908bbe60",
+      "reviewedOn": "2026-11-12",
+      "scope": "Spectral CLI document linting, with bundled OpenAPI/AsyncAPI rules and user-defined rulesets. The worked example pins CLI 6.17.1 and exercises one isolated custom rule.",
+      "sources": [
+        {
+          "label": "Project scope, supported document formats, and CLI examples",
+          "url": "https://github.com/stoplightio/spectral"
+        },
+        {
+          "label": "Ruleset structure and rule selection",
+          "url": "https://github.com/stoplightio/spectral/blob/develop/docs/getting-started/3-rulesets.md"
+        },
+        {
+          "label": "CLI 6.17.1 package and runtime requirements",
+          "url": "https://registry.npmjs.org/@stoplight/spectral-cli/6.17.1"
+        },
+        {
+          "label": "Spectral license",
+          "url": "https://github.com/stoplightio/spectral/blob/develop/LICENSE"
+        }
+      ]
+    },
+    {
+      "path": "src/content/docs/tools/pact.md",
+      "sha256": "a7c7817a07eb280913800da968a04452638f775c20abbe62d80c409485fbf8be",
+      "reviewedOn": "2026-11-12",
+      "scope": "Pact JS 17.1.4 HTTP consumer testing and local provider verification using generated pact files. Message transports, plugin protocols, broker deployment gates, and other language SDKs are outside the worked example.",
+      "sources": [
+        {
+          "label": "Pact JS overview and local setup",
+          "url": "https://docs.pact.io/implementation_guides/javascript/readme"
+        },
+        {
+          "label": "Consumer tests and Pact V4 interaction API",
+          "url": "https://docs.pact.io/implementation_guides/javascript/docs/consumer"
+        },
+        {
+          "label": "Provider verification, pact files, and provider states",
+          "url": "https://docs.pact.io/implementation_guides/javascript/docs/provider"
+        },
+        {
+          "label": "Pact JS 17.1.4 package requirements",
+          "url": "https://registry.npmjs.org/@pact-foundation/pact/17.1.4"
+        },
+        {
+          "label": "Pact Core 20.2.0 native platform packages",
+          "url": "https://registry.npmjs.org/@pact-foundation/pact-core/20.2.0"
+        },
+        {
+          "label": "Pact JS license",
+          "url": "https://github.com/pact-foundation/pact-js/blob/master/LICENSE"
+        }
+      ]
+    },
+    {
+      "path": "src/content/docs/tools/syft.md",
+      "sha256": "682864e6b79b4703803f5fd5041afe953cbfe1692d59291b6fced72bf369b4dc",
+      "reviewedOn": "2026-11-12",
+      "scope": "Syft software-component cataloging and SBOM output. The example pins 1.57.1 and a single npm lockfile cataloger; it does not demonstrate every ecosystem, image source, output format, or license field.",
+      "sources": [
+        {
+          "label": "Project scope and supported package ecosystems",
+          "url": "https://github.com/anchore/syft"
+        },
+        {
+          "label": "Installation and release asset selection",
+          "url": "https://oss.anchore.com/docs/installation/syft/"
+        },
+        {
+          "label": "First directory and container-image scans",
+          "url": "https://oss.anchore.com/docs/guides/sbom/getting-started/"
+        },
+        {
+          "label": "Catalogers and declared versus installed packages",
+          "url": "https://oss.anchore.com/docs/guides/sbom/catalogers/"
+        },
+        {
+          "label": "JavaScript package metadata support",
+          "url": "https://oss.anchore.com/docs/capabilities/javascript/"
+        },
+        {
+          "label": "SBOM output formats",
+          "url": "https://oss.anchore.com/docs/guides/sbom/formats/"
+        },
+        {
+          "label": "Syft 1.57.1 release",
+          "url": "https://github.com/anchore/syft/releases/tag/v1.57.1"
+        },
+        {
+          "label": "Syft license",
+          "url": "https://github.com/anchore/syft/blob/main/LICENSE"
+        }
+      ]
+    },
+    {
+      "path": "src/content/docs/guides/api-contracts.md",
+      "sha256": "fa8c6f5505c8515da4088096104cd203499f8a069ae38db56e6d76a408d01736",
+      "reviewedOn": "2026-11-12",
+      "scope": "November 12, 2026 run of Spectral CLI 6.17.1 and Pact JS 17.1.4 with Pact Core 20.2.0 on Windows using Node.js 24.22.1 x64. One custom lint rule and one local HTTP interaction were checked, including faulty and corrected variants. No external target, broker, or result publication was used.",
+      "sources": [
+        "https://github.com/zwadhams/ToolWiki/blob/main/audits/api-supply-tools/evidence/api-contracts/run.json"
+      ]
+    },
+    {
+      "path": "src/content/docs/guides/sbom-inventory.md",
+      "sha256": "66df7dbb861faa932ecfa77038cdabce80d038da5bc4ded3aea9bf46ba64d3a9",
+      "reviewedOn": "2026-11-12",
+      "scope": "November 12, 2026 run of Syft 1.57.1 on Windows ARM64 against two local npm lockfile directories, restricted to javascript-lock-cataloger. The baseline contained two package records including the root project; the changed fixture contained four. No vulnerability matching or application execution was performed.",
+      "sources": [
+        "https://github.com/zwadhams/ToolWiki/blob/main/audits/api-supply-tools/evidence/sbom-inventory/run.json"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,314 @@
+{
+  "recordedAt": "2026-11-12T15:51:01.218Z",
+  "environment": {
+    "os": "Windows_NT",
+    "release": "10.0.26300",
+    "node": "v24.22.1",
+    "nodeArchitecture": "arm64"
+  },
+  "versions": {
+    "playwrightTest": "1.65.0",
+    "axePlaywright": "4.14.0"
+  },
+  "target": "http://127.0.0.1:8837/",
+  "scope": "Bundled headless Chromium, one 1000x720 viewport, authored search checks, and the initial page with wcag2a/wcag2aa/wcag21a/wcag21aa axe rule tags. No manual accessibility assessment or other browser/platform was executed.",
+  "inputs": [
+    {
+      "path": "package.json",
+      "bytes": 456,
+      "sha256": "f569d1f5bc90fe58da95343c23f5dda6a207f8fafa7975fa3cfb09c5971a7e19"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 1669,
+      "sha256": "161de6ca3ef50d63168010d7dd3ac42efed47db32367fda52c4f3469b50fe0d7"
+    },
+    {
+      "path": "run.mjs",
+      "bytes": 840,
+      "sha256": "facbe976dbbdc3ee283cded4f2ebe64bce1948f07b1450b47cbc418506724b24"
+    },
+    {
+      "path": "verify.mjs",
+      "bytes": 4421,
+      "sha256": "8b89a546a93fd0d937e32367de165b4660229dc60b217e6392e2b701e430bcca"
+    },
+    {
+      "path": "playwright.config.mjs",
+      "bytes": 815,
+      "sha256": "10d64187b233839bab26b8b5a07ac121c9889d5160494a3141f38bf09af2f6fc"
+    },
+    {
+      "path": "server.mjs",
+      "bytes": 1026,
+      "sha256": "00ac40cd874cbb196acac23f6a3a14af7d24f3d772bc6f40aacd10b044482424"
+    },
+    {
+      "path": "tests/search.spec.mjs",
+      "bytes": 2105,
+      "sha256": "6401cd76bd80bddb3c7d98ea74aeca7256b3fbb951e8a789b348abbd4676850f"
+    },
+    {
+      "path": "fixtures/bad.html",
+      "bytes": 1765,
+      "sha256": "ee7bba7c77c59d34c7a07562a3571d163a42bfdbd6487341f007dc677811dc48"
+    },
+    {
+      "path": "fixtures/good.html",
+      "bytes": 1812,
+      "sha256": "05d6c5e7598d6dbc8df3667834231dc4149518b096a78b5cb0a2552f2e0fa3bd"
+    }
+  ],
+  "cases": [
+    {
+      "mode": "bad",
+      "command": [
+        "node",
+        "run.mjs",
+        "bad"
+      ],
+      "exitCode": 1,
+      "durationMs": 4757.157999999999,
+      "tests": [
+        {
+          "title": "search finds a capability and retains the relevant link",
+          "status": "failed",
+          "browserVersion": "158.0.8127.18",
+          "errors": [
+            "Error: expect(locator).toHaveCount(expected) failed\n\nLocator:  locator('#tool-results li:visible')\nExpected: 1\nReceived: 0\nTimeout:  2000ms\n\nCall log:\n  - Expect \"toHaveCount\" locator('#tool-results li:visible') with timeout 2000ms\n  - waiting for locator('#tool-results li:visible')\n    19 \\u00d7 locator resolved to 0 elements\n       - unexpected value \"0\"\n\n\n  11 |   // A test ID reaches the intentionally unlabeled input in the faulty fixture.\n  12 |   await page.getByTestId('tool-query').fill('memory');\n> 13 |   await expect(page.locator('#tool-results li:visible')).toHaveCount(1);\n     |                                                          ^\n  14 |   await expect(page.getByRole('link', { name: 'AddressSanitizer', exact: true })).toBeVisible();\n  15 |   await expect(page.getByRole('link', { name: 'AddressSanitizer', exact: true })).toHaveAttribute('href', 'https://zwadhams.github.io/ToolWiki/tools/address-sanitizer/');\n  16 |   await expect(page.getByRole('status')).toHaveText('1 tool');\n    at C:\\Users\\zwadh\\Repos\\ToolWiki\\examples\\browser-testing\\tests\\search.spec.mjs:13:58"
+          ]
+        },
+        {
+          "title": "initial page has no violations in the selected WCAG rule tags",
+          "status": "failed",
+          "browserVersion": "158.0.8127.18",
+          "errors": [
+            "Error: Review axe-results and its affected nodes.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 97\n\n- Array []\n+ Array [\n+   Object {\n+     \"description\": \"Ensure every form element has a label\",\n+     \"help\": \"Form elements must have labels\",\n+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.14/label?application=playwright\",\n+     \"id\": \"label\",\n+     \"impact\": \"critical\",\n+     \"nodes\": Array [\n+       Object {\n+         \"all\": Array [],\n+         \"any\": Array [\n+           Object {\n+             \"data\": null,\n+             \"id\": \"implicit-label\",\n+             \"impact\": \"critical\",\n+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\n+             \"relatedNodes\": Array [],\n+           },\n+           Object {\n+             \"data\": null,\n+             \"id\": \"explicit-label\",\n+             \"impact\": \"critical\",\n+             \"message\": \"Element does not have an explicit <label>\",\n+             \"relatedNodes\": Array [],\n+           },\n+           Object {\n+             \"data\": null,\n+             \"id\": \"aria-label\",\n+             \"impact\": \"critical\",\n+             \"message\": \"aria-label attribute does not exist or is empty\",\n+             \"relatedNodes\": Array [],\n+           },\n+           Object {\n+             \"data\": null,\n+             \"id\": \"aria-labelledby\",\n+             \"impact\": \"critical\",\n+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\n+             \"relatedNodes\": Array [],\n+           },\n+           Object {\n+             \"data\": Object {\n+               \"messageKey\": \"noAttr\",\n+             },\n+             \"id\": \"non-empty-title\",\n+             \"impact\": \"critical\",\n+             \"message\": \"Element has no title attribute\",\n+             \"relatedNodes\": Array [],\n+           },\n+           Object {\n+             \"data\": Object {\n+               \"messageKey\": \"noAttr\",\n+             },\n+             \"id\": \"non-empty-placeholder\",\n+             \"impact\": \"critical\",\n+             \"message\": \"Element has no placeholder attribute\",\n+             \"relatedNodes\": Array [],\n+           },\n+           Object {\n+             \"data\": null,\n+             \"id\": \"presentational-role\",\n+             \"impact\": \"critical\",\n+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\n+             \"relatedNodes\": Array [],\n+           },\n+         ],\n+         \"failureSummary\": \"Fix any of the following:\n+   Element does not have an implicit (wrapped) <label>\n+   Element does not have an explicit <label>\n+   aria-label attribute does not exist or is empty\n+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n+   Element has no title attribute\n+   Element has no placeholder attribute\n+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\n+         \"html\": \"<input id=\\\"tool-query\\\" data-testid=\\\"tool-query\\\" type=\\\"search\\\">\",\n+         \"impact\": \"critical\",\n+         \"none\": Array [],\n+         \"target\": Array [\n+           \"#tool-query\",\n+         ],\n+       },\n+     ],\n+     \"tags\": Array [\n+       \"cat.forms\",\n+       \"wcag2a\",\n+       \"wcag412\",\n+       \"section508\",\n+       \"section508.22.n\",\n+       \"TTv5\",\n+       \"TT5.c\",\n+       \"EN-301-549\",\n+       \"EN-9.4.1.2\",\n+       \"ACT\",\n+       \"RGAAv4\",\n+       \"RGAA-11.1.1\",\n+     ],\n+   },\n+ ]\n\n  32 |     }, null, 2), contentType: 'application/json',\n  33 |   });\n> 34 |   expect(results.violations, 'Review axe-results and its affected nodes.').toEqual([]);\n     |                                                                            ^\n  35 | });\n  36 |\n    at C:\\Users\\zwadh\\Repos\\ToolWiki\\examples\\browser-testing\\tests\\search.spec.mjs:34:76"
+          ],
+          "axe": {
+            "engine": {
+              "name": "axe-core",
+              "version": "4.14.0"
+            },
+            "environment": {
+              "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.8127.18 Safari/537.36",
+              "windowWidth": 1000,
+              "windowHeight": 720,
+              "orientationAngle": 0,
+              "orientationType": "landscape-primary"
+            },
+            "violationIds": [
+              "label"
+            ],
+            "incompleteIds": [],
+            "passIds": [
+              "aria-deprecated-role",
+              "aria-hidden-body",
+              "aria-required-attr",
+              "aria-roles",
+              "bypass",
+              "color-contrast",
+              "document-title",
+              "form-field-multiple-labels",
+              "html-has-lang",
+              "html-lang-valid",
+              "link-in-text-block",
+              "link-name",
+              "list",
+              "listitem",
+              "meta-viewport"
+            ],
+            "inapplicableIds": [
+              "area-alt",
+              "aria-allowed-attr",
+              "aria-braille-equivalent",
+              "aria-command-name",
+              "aria-conditional-attr",
+              "aria-hidden-focus",
+              "aria-input-field-name",
+              "aria-meter-name",
+              "aria-progressbar-name",
+              "aria-prohibited-attr",
+              "aria-required-children",
+              "aria-required-parent",
+              "aria-tab-name",
+              "aria-toggle-field-name",
+              "aria-tooltip-name",
+              "aria-valid-attr-value",
+              "aria-valid-attr",
+              "autocomplete-valid",
+              "avoid-inline-spacing",
+              "blink",
+              "button-name",
+              "definition-list",
+              "dlitem",
+              "duplicate-id-aria",
+              "frame-focusable-content",
+              "frame-title-unique",
+              "frame-title",
+              "html-xml-lang-mismatch",
+              "image-alt",
+              "input-button-name",
+              "input-image-alt",
+              "label-content-name-mismatch",
+              "marquee",
+              "meta-refresh",
+              "nested-interactive",
+              "object-alt",
+              "role-img-alt",
+              "scrollable-region-focusable",
+              "select-name",
+              "server-side-image-map",
+              "summary-name",
+              "svg-img-alt",
+              "td-headers-attr",
+              "th-has-data-cells",
+              "valid-lang",
+              "video-caption",
+              "no-autoplay-audio"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "mode": "good",
+      "command": [
+        "node",
+        "run.mjs",
+        "good"
+      ],
+      "exitCode": 0,
+      "durationMs": 2231.135,
+      "tests": [
+        {
+          "title": "search finds a capability and retains the relevant link",
+          "status": "passed",
+          "browserVersion": "158.0.8127.18",
+          "errors": []
+        },
+        {
+          "title": "initial page has no violations in the selected WCAG rule tags",
+          "status": "passed",
+          "browserVersion": "158.0.8127.18",
+          "errors": [],
+          "axe": {
+            "engine": {
+              "name": "axe-core",
+              "version": "4.14.0"
+            },
+            "environment": {
+              "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/158.0.8127.18 Safari/537.36",
+              "windowWidth": 1000,
+              "windowHeight": 720,
+              "orientationAngle": 0,
+              "orientationType": "landscape-primary"
+            },
+            "violationIds": [],
+            "incompleteIds": [],
+            "passIds": [
+              "aria-deprecated-role",
+              "aria-hidden-body",
+              "aria-required-attr",
+              "aria-roles",
+              "bypass",
+              "color-contrast",
+              "document-title",
+              "duplicate-id-aria",
+              "form-field-multiple-labels",
+              "html-has-lang",
+              "html-lang-valid",
+              "label",
+              "link-in-text-block",
+              "link-name",
+              "list",
+              "listitem",
+              "meta-viewport"
+            ],
+            "inapplicableIds": [
+              "area-alt",
+              "aria-allowed-attr",
+              "aria-braille-equivalent",
+              "aria-command-name",
+              "aria-conditional-attr",
+              "aria-hidden-focus",
+              "aria-input-field-name",
+              "aria-meter-name",
+              "aria-progressbar-name",
+              "aria-prohibited-attr",
+              "aria-required-children",
+              "aria-required-parent",
+              "aria-tab-name",
+              "aria-toggle-field-name",
+              "aria-tooltip-name",
+              "aria-valid-attr-value",
+              "aria-valid-attr",
+              "autocomplete-valid",
+              "avoid-inline-spacing",
+              "blink",
+              "button-name",
+              "definition-list",
+              "dlitem",
+              "frame-focusable-content",
+              "frame-title-unique",
+              "frame-title",
+              "html-xml-lang-mismatch",
+              "image-alt",
+              "input-button-name",
+              "input-image-alt",
+              "label-content-name-mismatch",
+              "marquee",
+              "meta-refresh",
+              "nested-interactive",
+              "object-alt",
+              "role-img-alt",
+              "scrollable-region-focusable",
+              "select-name",
+              "server-side-image-map",
+              "summary-name",
+              "svg-img-alt",
+              "td-headers-attr",
+              "th-has-data-cells",
+              "valid-lang",
+              "video-caption",
+              "no-autoplay-audio"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "retainedArtifacts": [
+    {
+      "path": "reports/bad.json",
+      "bytes": 115398,
+      "sha256": "3a7ebe3ffa480403d9dce4e3354fa89182eb29b6e17cdecb37fba2e542211e16"
+    },
+    {
+      "path": "reports/bad.stdout.txt",
+      "bytes": 8749,
+      "sha256": "44afe37b05e297e868c8055e55318401d6a767e9d3edf172c0eb8c92759227b6"
+    },
+    {
+      "path": "reports/bad.stderr.txt",
+      "bytes": 516,
+      "sha256": "e635da9b876b9fd6421e6b24d52e370b3f5d6c17e7379ba92c88b18a17ea6675"
+    },
+    {
+      "path": "reports/good.json",
+      "bytes": 88228,
+      "sha256": "16ecd9bd68606527e05edb91c926383072f03c64e6c463a4eb04a854e86603df"
+    },
+    {
+      "path": "reports/good.stdout.txt",
+      "bytes": 268,
+      "sha256": "b98dce3f55fd2bd9e5c12273d1fc867be07911effce6b8275e2ced037a75e381"
+    },
+    {
+      "path": "reports/good.stderr.txt",
+      "bytes": 352,
+      "sha256": "32533d8496566ec20fa76e64b5a200018d857758f4bb2a00c454aed4cf78ad32"
+    }
+  ],
+  "transcriptEncoding": "ANSI color sequences removed from stdout/stderr; non-ASCII code units escaped as \\uXXXX in retained text. JSON escapes preserve original string values."
+}

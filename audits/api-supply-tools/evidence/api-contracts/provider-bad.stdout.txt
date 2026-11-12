@@ -1,0 +1,23 @@
+
+Verifying a pact between [1mParcelClient[0m and [1mParcelAPI[0m
+
+  a request for parcel 1 (5ms loading, 100ms verification)
+     Given parcel 1 exists
+    returns a response which
+      has status code [1m200[0m ([32mOK[0m)
+      includes headers
+        "[1mContent-Type[0m" with value "[1mapplication/json[0m" ([32mOK[0m)
+      has a matching body ([31mFAILED[0m)
+
+
+Failures:
+
+1) Verifying a pact between ParcelClient and ParcelAPI Given parcel 1 exists - a request for parcel 1
+    1.1) has a matching body
+           [1m$.status[0m -> Expected 7 (Integer) to be the same type as 'queued' (String)
+
+
+There were 1 pact failures
+
+[08:54:30.307] ERROR (38956): pact-core@20.2.0: Verification unsuccessful
+

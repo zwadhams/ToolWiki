@@ -1,0 +1,163 @@
+
+Running 2 tests using 1 worker
+
+  x  1 tests\search.spec.mjs:10:1 \u203a search finds a capability and retains the relevant link (2.2s)
+  x  2 tests\search.spec.mjs:22:1 \u203a initial page has no violations in the selected WCAG rule tags (748ms)
+
+
+  1) tests\search.spec.mjs:10:1 \u203a search finds a capability and retains the relevant link \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('#tool-results li:visible')
+    Expected: 1
+    Received: 0
+    Timeout:  2000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('#tool-results li:visible') with timeout 2000ms
+      - waiting for locator('#tool-results li:visible')
+        19 \u00d7 locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      11 |   // A test ID reaches the intentionally unlabeled input in the faulty fixture.
+      12 |   await page.getByTestId('tool-query').fill('memory');
+    > 13 |   await expect(page.locator('#tool-results li:visible')).toHaveCount(1);
+         |                                                          ^
+      14 |   await expect(page.getByRole('link', { name: 'AddressSanitizer', exact: true })).toBeVisible();
+      15 |   await expect(page.getByRole('link', { name: 'AddressSanitizer', exact: true })).toHaveAttribute('href', 'https://zwadhams.github.io/ToolWiki/tools/address-sanitizer/');
+      16 |   await expect(page.getByRole('status')).toHaveText('1 tool');
+        at C:\Users\zwadh\Repos\ToolWiki\examples\browser-testing\tests\search.spec.mjs:13:58
+
+    attachment #1: screenshot (image/png) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+    .results\bad\artifacts\search-search-finds-a-capa-d4a63-d-retains-the-relevant-link\test-failed-1.png
+    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+
+    Error Context: .results\bad\artifacts\search-search-finds-a-capa-d4a63-d-retains-the-relevant-link\error-context.md
+
+  2) tests\search.spec.mjs:22:1 \u203a initial page has no violations in the selected WCAG rule tags \u2500\u2500\u2500\u2500
+
+    Error: Review axe-results and its affected nodes.
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 97
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure every form element has a label",
+    +     "help": "Form elements must have labels",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label?application=playwright",
+    +     "id": "label",
+    +     "impact": "critical",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": null,
+    +             "id": "implicit-label",
+    +             "impact": "critical",
+    +             "message": "Element does not have an implicit (wrapped) <label>",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "explicit-label",
+    +             "impact": "critical",
+    +             "message": "Element does not have an explicit <label>",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "aria-label",
+    +             "impact": "critical",
+    +             "message": "aria-label attribute does not exist or is empty",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "aria-labelledby",
+    +             "impact": "critical",
+    +             "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": Object {
+    +               "messageKey": "noAttr",
+    +             },
+    +             "id": "non-empty-title",
+    +             "impact": "critical",
+    +             "message": "Element has no title attribute",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": Object {
+    +               "messageKey": "noAttr",
+    +             },
+    +             "id": "non-empty-placeholder",
+    +             "impact": "critical",
+    +             "message": "Element has no placeholder attribute",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "presentational-role",
+    +             "impact": "critical",
+    +             "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"",
+    +             "relatedNodes": Array [],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element does not have an implicit (wrapped) <label>
+    +   Element does not have an explicit <label>
+    +   aria-label attribute does not exist or is empty
+    +   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+    +   Element has no title attribute
+    +   Element has no placeholder attribute
+    +   Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"",
+    +         "html": "<input id=\"tool-query\" data-testid=\"tool-query\" type=\"search\">",
+    +         "impact": "critical",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "#tool-query",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.forms",
+    +       "wcag2a",
+    +       "wcag412",
+    +       "section508",
+    +       "section508.22.n",
+    +       "TTv5",
+    +       "TT5.c",
+    +       "EN-301-549",
+    +       "EN-9.4.1.2",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-11.1.1",
+    +     ],
+    +   },
+    + ]
+
+      32 |     }, null, 2), contentType: 'application/json',
+      33 |   });
+    > 34 |   expect(results.violations, 'Review axe-results and its affected nodes.').toEqual([]);
+         |                                                                            ^
+      35 | });
+      36 |
+        at C:\Users\zwadh\Repos\ToolWiki\examples\browser-testing\tests\search.spec.mjs:34:76
+
+    attachment #3: screenshot (image/png) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+    .results\bad\artifacts\search-initial-page-has-no-bc4b0-the-selected-WCAG-rule-tags\test-failed-1.png
+    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+
+    Error Context: .results\bad\artifacts\search-initial-page-has-no-bc4b0-the-selected-WCAG-rule-tags\error-context.md
+
+  2 failed
+    tests\search.spec.mjs:10:1 \u203a search finds a capability and retains the relevant link \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+    tests\search.spec.mjs:22:1 \u203a initial page has no violations in the selected WCAG rule tags \u2500\u2500\u2500\u2500\u2500

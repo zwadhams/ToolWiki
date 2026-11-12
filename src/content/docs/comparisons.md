@@ -1,0 +1,20 @@
+---
+title: Task comparisons
+description: Read common tool comparisons without selecting controls or running JavaScript.
+---
+
+Choose a comparison for the decision you need to make. Each page includes current
+requirements, results, limits, sources, and evidence from the linked tool profiles.
+The tables are documentation comparisons, not benchmarks.
+
+- [Two Python linting workflows](./ruff-and-pylint/): Both check Python code for mistakes and conventions. Pylint uses inference and optional plugins; Ruff provides built-in rule families. Check the rules and plugins your project needs before switching.
+- [Linting and type checking work together](./ruff-and-mypy/): Ruff checks lint rules, such as unused imports. mypy checks type consistency, such as passing text where a number is expected. Use both when you want both kinds of checks.
+- [Linting and type checking work together](./ruff-and-pyright/): Ruff checks lint rules. Pyright checks types and imports. They provide complementary checks.
+- [Can you rebuild the program?](./address-sanitizer-and-valgrind-memcheck/): AddressSanitizer requires a build with instrumentation. Memcheck instruments an existing executable on supported hosts. Both need you to run the program with useful tests, and their supported platforms and checks differ.
+- [Java source database or compiled classes](./codeql-and-spotbugs/): CodeQL runs queries against a database extracted from source. SpotBugs checks compiled Java class files for bug patterns. Their preparation and checks differ; a shared finding label does not mean equal coverage.
+- [Security queries or a stated property](./codeql-and-jbmc/): CodeQL looks for problems described by its queries. JBMC checks Java assertions and properties within configured bounds. Choose based on your question and modeling effort.
+- [Check a trace or search for a failure](./rtamt-and-psy-taliro/): RTAMT evaluates signals you already have against a requirement. PSY-TaLiRo searches system executions for a violation. A monitor can be part of that search, but does not generate test scenarios by itself.
+- [Compare Python type-checking workflows](./mypy-and-pyright/): Both check Python types using annotations and stubs. Align the target Python version, imports, and strictness, then investigate diagnostic differences on the same code. Neither replaces linting or runtime validation.
+- [Compare package inventories and advisory matches](./trivy-and-osv-scanner/): Both match identified packages to vulnerability data. Compare extraction and advisory results for the same input; finding counts alone do not rank the tools. Trivy also offers separate infrastructure-configuration checks.
+
+For another selection, [compare two or three tools](../compare/).

@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { buildKnowledge } from '../lib/knowledge-export.mjs';
+interface Props { entries: CollectionEntry<'docs'>[] }
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const site = new URL(base + '/', import.meta.env.SITE).href;
+const { files } = buildKnowledge(Astro.props.entries, site);
+const manifest = JSON.parse(files.get('manifest.json')!);
+---
+<nav class="data-downloads" aria-label="Download ToolWiki data" data-pagefind-ignore>
+  <p>{manifest.documentCount} documents, generated from the same sources as this website.</p>
+  <div>
+    <a href={`${base}/knowledge/v1/catalog.json`} download="toolwiki-catalog.json">Download tool catalog (JSON)</a>
+    <a href={`${base}/knowledge/v1/index.json`}>Document index (JSON)</a>
+    <a href={`${base}/knowledge/v1/${manifest.snapshot.path}`} download="toolwiki-snapshot.json">Download complete snapshot ({(manifest.snapshot.bytes / 1024 / 1024).toFixed(1)} MB)</a>
+    <a href={`${base}/knowledge/v1/manifest.json`}>Manifest and checksums</a>
+    <a href={`${base}/llms.txt`}>Agent starting point (llms.txt)</a>
+    <a href={`${base}/guides/data-reference/`}>Field dictionary and schemas</a>
+  </div>
+</nav>

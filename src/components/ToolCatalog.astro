@@ -2,10 +2,14 @@
 import { getCollection } from 'astro:content';
 import { publishedTools, catalogTools } from '../lib/tool-data.mjs';
 import { COSTS } from '../lib/tool-vocabulary.mjs';
+import { buildKnowledge } from '../lib/knowledge-export.mjs';
 interface Props { mode?: 'Static' | 'Dynamic' }
 const { mode = '' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const allTools = publishedTools(await getCollection('docs'));
+const entries = await getCollection('docs');
+const allTools = publishedTools(entries);
+const site = new URL(base + '/', import.meta.env.SITE).href;
+const { snapshot } = buildKnowledge(entries, site);
 const tools = allTools.filter((tool) => !mode || tool.modes.includes(mode));
 const options = (key: 'inputTypes' | 'findings' | 'languages' | 'techniques') => [...new Set(allTools.flatMap((tool) => tool[key]))].sort();
 const groups = [
@@ -21,7 +25,7 @@ const filterHelp: Record<string, string> = {
   finding: 'Checks vary by tool and edition.',
 };
 ---
-<tool-catalog data-mode={mode} data-base={base} data-pagefind-ignore>
+<tool-catalog data-mode={mode} data-base={base} data-site={site} data-snapshot-revision={snapshot.revision} data-pagefind-ignore>
   {!mode && <nav class="task-starts" aria-label="Start with a task">
     <span>Start with a task:</span>
     <a href={`${base}/?input=Source+code#tool-results`}>Check source code</a>
@@ -62,6 +66,12 @@ const filterHelp: Record<string, string> = {
     <div class="selected-tools" data-selected-tools></div>
   </section>
   <div class="results-bar" id="tool-results"><p role="status" aria-live="polite" aria-atomic="true" tabindex="-1" data-result-count>{tools.length} entries</p><button type="button" class="reset-filters">Reset search</button></div>
+  <div class="result-exports" data-result-exports hidden>
+    <span>Download these results:</span>
+    <button type="button" data-export-catalog="json">JSON</button>
+    <button type="button" data-export-catalog="csv">CSV</button>
+    <p role="status" aria-live="polite" data-export-status></p>
+  </div>
   <p class="sr-only" data-selection-announcement role="status" aria-live="polite" aria-atomic="true"></p>
   <div class="tool-grid">
     {tools.map((tool) => <article class="tool-card" data-tool-id={tool.id}>
@@ -95,6 +105,7 @@ const filterHelp: Record<string, string> = {
   import { selectTools, suggestTools } from '../lib/catalog.mjs';
   import { openPageSearch } from '../lib/page-search.mjs';
   import { normalizeSelection, comparisonHref, catalogParams, CATALOG_FILTERS } from '../lib/comparison.mjs';
+  import { downloadText } from '../lib/browser-download.mjs';
   class ToolCatalog extends HTMLElement {
     connectedCallback() {
       const form = this.querySelector<HTMLFormElement>('form')!;
@@ -103,6 +114,27 @@ const filterHelp: Record<string, string> = {
       const empty = this.querySelector<HTMLElement>('.catalog-empty')!;
       const allTools = JSON.parse(this.querySelector('[data-catalog-data]')!.textContent!);
       const tools = selectTools(allTools, { mode: this.dataset.mode });
+      this.querySelector<HTMLElement>('[data-result-exports]')!.hidden = false;
+      const exportButtons = [...this.querySelectorAll<HTMLButtonElement>('[data-export-catalog]')];
+      const exportStatus = this.querySelector<HTMLElement>('[data-export-status]')!;
+      exportButtons.forEach(button => button.addEventListener('click', async () => {
+        const filters = { ...Object.fromEntries(new FormData(form).entries()), mode: this.dataset.mode || '' };
+        const ids = selectTools(tools, filters).map(tool => tool.id);
+        const sourceUrl = new URL(location.pathname + location.search, this.dataset.site!).href;
+        exportButtons.forEach(button => { button.disabled = true; });
+        exportStatus.textContent = 'Preparing download...';
+        try {
+          const { catalogSelection, catalogCsv } = await import('../lib/result-exports.mjs');
+          const response = await fetch(`${this.dataset.base}/knowledge/v1/catalog.json`, { signal: AbortSignal.timeout(15000) });
+          if (!response.ok) throw new Error('Could not load the catalog. Try again.');
+          const selection = catalogSelection(await response.json(), ids, filters, sourceUrl, new URL('knowledge/v1/', this.dataset.site!).href, this.dataset.snapshotRevision!);
+          const csv = button.dataset.exportCatalog === 'csv';
+          downloadText(csv ? catalogCsv(selection) : JSON.stringify(selection, null, 2) + '\n', `toolwiki-results.${csv ? 'csv' : 'json'}`, csv ? 'text/csv' : 'application/json');
+          exportStatus.textContent = `Downloaded ${selection.count} tool records in the current result order.`;
+        } catch (error) {
+          exportStatus.textContent = error instanceof Error ? error.message : 'Download failed. Try again.';
+        } finally { exportButtons.forEach(button => { button.disabled = false; }); }
+      }));
       const query = form.elements.namedItem('q') as HTMLInputElement;
       const extraFilters = this.querySelector<HTMLDetailsElement>('.more-filters')!;
       const cards = new Map(Array.from(this.querySelectorAll<HTMLElement>('[data-tool-id]')).map((card) => [card.dataset.toolId, card]));

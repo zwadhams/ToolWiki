@@ -2,6 +2,8 @@ import { ACCESS, COMPONENT_TYPES, FORMATS, INPUTS, INTERFACES, PLATFORMS, STATUS
 import { analyzeSystem, MAX_IMPORT_BYTES, newComponent, newConnection, prepareProfileImport, removalSnapshot, removeComponent, replaceSavedProfile, restoreProfile, retryProfileRead, saveProfile, serializeProfile, subjectName, undoRemoval } from './system-builder.mjs';
 import { comparisonHref } from './comparison.mjs';
 import { COSTS, LICENSES } from './tool-vocabulary.mjs';
+import { recommendationReport, recommendationMarkdown } from './result-exports.mjs';
+import { downloadText } from './browser-download.mjs';
 
 const el = (tag, text = '', className = '') => {
   const node = document.createElement(tag);
@@ -22,6 +24,8 @@ class SystemBuilder extends HTMLElement {
     if (this.initialized) return;
     this.initialized = true;
     const data = JSON.parse(this.querySelector('[data-builder-data]').textContent);
+    this.snapshotRevision = data.snapshotRevision;
+    this.sourceUrl = data.sourceUrl;
     this.tools = data.tools;
     this.totalTools = data.totalTools;
     this.languages = unique([...data.languages.filter(l => !TECHNOLOGIES.includes(l)), '.NET', 'Other', 'Not sure']);
@@ -300,6 +304,17 @@ class SystemBuilder extends HTMLElement {
     if (!this.results) return;
     const result = analyzeSystem(this.profile, this.tools);
     this.results.replaceChildren(); this.results.append(el('h2', 'Tool candidates'));
+    const exports = el('div', '', 'result-exports');
+    const exportStatus = el('p'); exportStatus.setAttribute('role', 'status');
+    for (const format of ['Markdown', 'JSON']) exports.append(button(`Download recommendations (${format})`, () => {
+      try {
+        const report = recommendationReport(this.profile, this.tools, this.selected, this.sourceUrl, this.snapshotRevision);
+        downloadText(format === 'JSON' ? JSON.stringify(report, null, 2) + '\n' : recommendationMarkdown(report), `toolwiki-recommendations.${format === 'JSON' ? 'json' : 'md'}`, format === 'JSON' ? 'application/json' : 'text/markdown');
+        exportStatus.textContent = 'Downloaded the current system description, recommendations, and unresolved requirements.';
+      } catch (error) { exportStatus.textContent = `Could not export recommendations: ${error.message}`; }
+    }));
+    exports.append(exportStatus);
+    this.results.append(exports, el('p', 'Recommendation downloads include your current system description and notes, match explanations, gaps, selections, and sources. Import a system file to edit a description; recommendation reports are for reading.', 'suite-muted'));
     this.results.append(el('p', 'Suggestions match the information you provided. They do not measure test coverage. Tools within each component are listed by match status, then name.', 'suite-muted'));
     if (!result.subjects.length) {
       this.results.append(el('p', 'Choose a language, ecosystem, available material, or connection interface on an included part to see candidates.', 'suite-empty'));

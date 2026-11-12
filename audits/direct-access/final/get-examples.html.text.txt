@@ -1,0 +1,51 @@
+
+
+
+Get the examples 
+
+
+Copy as Markdown Read Markdown View JSON 
+Select and copy Markdown 
+
+Use this snapshot for the walkthroughs below. It contains the example files;
+each walkthrough explains which tools to install. 
+
+Download the snapshot Section titled \u201cDownload the snapshot\u201d 
+Download the example snapshot (ZIP) and extract it, or run these commands in PowerShell from an empty working
+directory: 
+Terminal window 
+
+Invoke-WebRequest ' https://github.com/zwadhams/ToolWiki/archive/1a1cabbdf6dca8ca55aa289020ba98777aabc6f1.zip ' - OutFile examples.zip 
+
+Expand-Archive - LiteralPath examples.zip - DestinationPath . 
+
+Set-Location ' .\ToolWiki-1a1cabbdf6dca8ca55aa289020ba98777aabc6f1 ' 
+
+
+
+You are now at the repository root: the directory containing README.md and examples . If you extracted the ZIP elsewhere, open that directory instead. 
+Walkthrough Working directory from the repository root 
+Python linting and types Set-Location examples/python-checks 
+Disposable HTTP API Stay at the repository root. 
+Windows memory check Set-Location examples/windows-memory 
+Browser behavior and accessibility Set-Location examples/browser-testing 
+API descriptions and contracts Set-Location examples/api-contracts 
+Software inventories Set-Location examples/sbom-inventory 
+Finite model checking Set-Location examples/tlc 
+Coverage and mutation Follow the selected recipe under examples/python-coverage or examples/test-quality . 
+
+Use Git instead Section titled \u201cUse Git instead\u201d 
+Clone into a new directory and select the same snapshot: 
+Terminal window 
+
+git clone https: // github.com / zwadhams / ToolWiki.git ToolWiki - examples 
+
+Set-Location ToolWiki - examples 
+
+git checkout -- detach 1a1cabbdf6dca8ca55aa289020ba98777aabc6f1 
+
+
+
+The snapshot revision keeps the examples stable while the wiki changes. Keep your reports outside a
+fresh checkout or in the output directories named by the walkthrough. 
+Edit page 

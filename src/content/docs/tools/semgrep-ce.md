@@ -1,6 +1,11 @@
 ---
 title: Semgrep CE
 description: Match code patterns and apply local data flow checks using customizable analysis rules.
+executionEvidence:
+  status: recorded
+  scope: "Semgrep CE 1.184.0 on Windows with Python 3.13.15 ran the OSS engine and one local Python rule with normal local permissions. The faulty file produced one finding and exit 1; the corrected and deliberately uncovered files produced zero findings and exit 0, with no scan errors. Target code was not executed. The uncovered case demonstrates the rule's limit; this Windows run does not validate the Linux builder workflow or Semgrep Code."
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/remaining-work/expansion-runs/semgrep.json
 tool:
   cardRequirement: Source files and licensed rules for the chosen CE language.
   analysisWorkflows:

@@ -44,6 +44,16 @@ The historical project link redirected to a Google sign-in page during this revi
 
 Before reproducing an experiment, match its toolbox version, model, MATLAB dependencies, and search configuration.
 
+## System builder scope
+
+**Availability rechecked November 12, 2026.** The historical project URL still
+redirected to Google sign-in during this review. The
+[tool paper](https://www.bhoxha.com/papers/HSCC2014ToolDemo.pdf) supports the
+historical model-falsification description, but does not establish a current
+installable release. This profile remains catalog-only until distribution
+availability and a version-specific MATLAB/toolbox setup can be verified.
+An executable model and harness permission do not resolve that evidence gap.
+
 ## Interpreting results
 
 A violating trace is evidence against the requirement for that model and configuration. Finding no violation within a finite budget does not establish universal correctness. See [model and temporal falsification](../../concepts/model-falsification/).

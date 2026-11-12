@@ -1,0 +1,210 @@
+{
+  "id": "tools/pylint",
+  "kind": "tool",
+  "title": "Pylint",
+  "description": "Inspect Python source for selected programming mistakes, conventions, and maintainability issues.",
+  "url": "https://zwadhams.github.io/ToolWiki/tools/pylint/",
+  "revision": "797897600a10adfe210119b5689039bc1b9165d730825a9ee995ab46e5e69c5c",
+  "markdown": "# Pylint\n\n## Where it fits\n\nUse Pylint when reviewing Python conventions and inferred code behavior. Compare its messages with [Ruff](https://zwadhams.github.io/ToolWiki/tools/ruff/), and use [mypy](https://zwadhams.github.io/ToolWiki/tools/mypy/) or [Pyright](https://zwadhams.github.io/ToolWiki/tools/pyright/) for a dedicated type-checking workflow.\n\n## Start with a small package\n\nThe official [installation guide](https://pylint.readthedocs.io/en/stable/user_guide/installation/command_line_installation.html)\nand [run instructions](https://pylint.readthedocs.io/en/stable/user_guide/usage/run.html)\ncover setup and configuration. For a first result on Windows, use Python 3.13\nand Pylint 4.1.3 with the shared greeting example.\n\n[Get the examples](https://zwadhams.github.io/ToolWiki/guides/get-examples/), then enter the example directory\nfrom the downloaded repository's root and check your interpreter:\n\n```powershell\nSet-Location examples/python-checks\n$Python = \"python\"\n& $Python --version\n```\n\nExpect `Python 3.13.x`. If needed, set `$Python` to your installed Python 3.13\nexecutable, such as `$Python = \"C:\\path\\to\\Python313\\python.exe\"`, and repeat\nthe check. Create the environment if you have not already created it for this\nexample, then install the pinned release:\n\n```powershell\n& $Python -m venv .venv\n.\\.venv\\Scripts\\python.exe -m pip install pylint==4.1.3\n```\n\nCheck only `unused-import` (`W0611`) so the correction has one clear result:\n\n```powershell\n.\\.venv\\Scripts\\python.exe -m pylint --rcfile=pyproject.toml --disable=all `\n  --enable=unused-import --score=n --persistent=n bad/greeting.py\n$LASTEXITCODE\n```\n\nExpect `W0611: Unused import math (unused-import)` and exit code `4`, indicating\na warning. The supplied correction removes that import. Check it with the same\noptions:\n\n```powershell\n.\\.venv\\Scripts\\python.exe -m pylint --rcfile=pyproject.toml --disable=all `\n  --enable=unused-import --score=n --persistent=n good/greeting.py\n$LASTEXITCODE\n```\n\nExpect no diagnostics and exit code `0`. This is an isolated message check;\nthe explicit fixture config and command options keep its scope small. Normal\nproject configuration can enable other messages, including convention findings\non these same files. Pylint uses\n[bit-encoded exit codes](https://pylint.readthedocs.io/en/stable/user_guide/usage/run.html#exit-codes),\nso inspect the diagnostics before classifying a nonzero result.\n\nFor your project, run a chosen module or package in an environment with its\ndependencies and reviewed Pylint configuration. Inspect import resolution before\nsuppressing diagnostics, and keep plugin choices explicit. For complementary\nlint and type checks with retained reports, follow\n[Check Python linting and types together](https://zwadhams.github.io/ToolWiki/guides/python-checks/).\n\n## Interpret the result\n\nReview individual diagnostic codes and locations. A summary score is not a measure of security or an accuracy benchmark. Missing dependencies, generated attributes, ignored messages, and plugin behavior can change what Pylint sees. Run application tests after code changes.\n\n- **Summary:** Inspect Python source for selected programming mistakes, conventions, and maintainability issues.\n- **Use it for:** Inspect Python source for selected programming mistakes, conventions, and maintainability issues.\n- **What you need:** Install Pylint with project dependencies; choose modules or packages and configure enabled messages and plugins.\n- **Checks and limits:** Selected messages use syntax and inference. Dynamic attributes and unavailable dependencies can produce incomplete or misleading results.\n- **Finding scope:** Selected messages use syntax and inference. Dynamic attributes and unavailable dependencies can produce incomplete or misleading results.\n\n## Compatibility and scope\n\n- **Also known as:** PyLint\n- **Analysis mode:** Static\n- **What it examines:** Source code\n- **Context:** Python applications, Libraries\n- **Techniques:** Linting, Bug finding\n- **Finding categories:** Logic errors, Coding conventions, Code complexity\n- **Where it runs:** A supported Python environment on a local machine or CI host.\n- **Languages / ecosystem:** Python\n- **Language support:** Python source. Inference and framework behavior depend on the interpreter, dependencies, and configured plugins.\n- **Edition and scope:** Core Pylint checks; third-party framework plugins have separate rules and requirements.\n\n## Cost and editions\n\n- **Cost:** Free\n- **Cost conditions:** Free open-source analyzer; local checks require no paid service.\n- **License category:** Open source\n- **License:** GPL-2.0; consult the repository notices for the selected release\n\nCost information checked 2026-09-26. Runtimes, hosting, and compute may cost extra. Free trials are not counted as free editions.\n\n## Sources and evidence\n\n[Official website](https://pylint.readthedocs.io/en/stable/)\n\n- [Purpose and installation](https://raw.githubusercontent.com/pylint-dev/pylint/main/README.rst)\n- [Running Pylint](https://pylint.readthedocs.io/en/stable/user_guide/usage/run.html)\n- [License](https://raw.githubusercontent.com/pylint-dev/pylint/main/LICENSE)\n\nSource: [ToolWiki page](https://zwadhams.github.io/ToolWiki/tools/pylint/). [JSON record and content revision](https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/tools/pylint.json).\n\n- **Documentation reviewed:** 2026-09-26\n- **Execution evidence:** not-recorded\n- **Execution scope:** No structured execution record for this document. Read the text for illustrative examples and limitations.\n\nDocumentation review is separate from execution evidence. A recorded execution applies only to its stated environment and scope; not-recorded means no structured execution record is supplied.\n",
+  "sections": [
+    {
+      "id": "where-it-fits",
+      "title": "Where it fits",
+      "depth": 2,
+      "start": 10,
+      "end": 354
+    },
+    {
+      "id": "start-with-a-small-package",
+      "title": "Start with a small package",
+      "depth": 2,
+      "start": 354,
+      "end": 2807
+    },
+    {
+      "id": "interpret-the-result",
+      "title": "Interpret the result",
+      "depth": 2,
+      "start": 2807,
+      "end": 3793
+    },
+    {
+      "id": "technical-details",
+      "title": "Compatibility and scope",
+      "depth": 2,
+      "start": 3793,
+      "end": 4444
+    },
+    {
+      "id": "cost-and-editions",
+      "title": "Cost and editions",
+      "depth": 2,
+      "start": 4444,
+      "end": 4819
+    },
+    {
+      "id": "tool-sources",
+      "title": "Sources and evidence",
+      "depth": 2,
+      "start": 4819,
+      "end": 5763
+    }
+  ],
+  "sources": [
+    {
+      "label": "Purpose and installation",
+      "url": "https://raw.githubusercontent.com/pylint-dev/pylint/main/README.rst"
+    },
+    {
+      "label": "Running Pylint",
+      "url": "https://pylint.readthedocs.io/en/stable/user_guide/usage/run.html"
+    },
+    {
+      "label": "License",
+      "url": "https://raw.githubusercontent.com/pylint-dev/pylint/main/LICENSE"
+    },
+    {
+      "label": "Ruff",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/ruff/"
+    },
+    {
+      "label": "mypy",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/mypy/"
+    },
+    {
+      "label": "Pyright",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/pyright/"
+    },
+    {
+      "label": "installation guide",
+      "url": "https://pylint.readthedocs.io/en/stable/user_guide/installation/command_line_installation.html"
+    },
+    {
+      "label": "Get the examples",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/get-examples/"
+    },
+    {
+      "label": "bit-encoded exit codes",
+      "url": "https://pylint.readthedocs.io/en/stable/user_guide/usage/run.html#exit-codes"
+    },
+    {
+      "label": "Check Python linting and types together",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/python-checks/"
+    },
+    {
+      "label": "Official website",
+      "url": "https://pylint.readthedocs.io/en/stable/"
+    },
+    {
+      "label": "ToolWiki page",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/pylint/"
+    },
+    {
+      "label": "JSON record and content revision",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/tools/pylint.json"
+    }
+  ],
+  "evidence": {
+    "documentationReviewedOn": "2026-09-26",
+    "execution": {
+      "status": "not-recorded",
+      "scope": "No structured execution record for this document. Read the text for illustrative examples and limitations.",
+      "sources": []
+    }
+  },
+  "tool": {
+    "analysisWorkflows": [
+      {
+        "id": "source",
+        "label": "Source analysis",
+        "subject": "component",
+        "inputs": [
+          "Source code"
+        ],
+        "languageScope": "source",
+        "languages": [
+          "Python"
+        ],
+        "findings": [
+          "Logic errors",
+          "Coding conventions",
+          "Code complexity"
+        ],
+        "interfaces": [],
+        "transports": [],
+        "definitions": [],
+        "binaryFormats": [],
+        "technologies": [],
+        "requires": [],
+        "hostPlatforms": [],
+        "targetPlatforms": [],
+        "excludedHosts": [],
+        "excludedTargets": [],
+        "caveat": "Selected messages use syntax and inference. Dynamic attributes and unavailable dependencies can produce incomplete or misleading results.",
+        "sources": [
+          "https://raw.githubusercontent.com/pylint-dev/pylint/main/README.rst",
+          "https://pylint.readthedocs.io/en/stable/user_guide/usage/run.html",
+          "https://raw.githubusercontent.com/pylint-dev/pylint/main/LICENSE"
+        ]
+      }
+    ],
+    "aliases": [
+      "PyLint"
+    ],
+    "searchTerms": [
+      "Python linter",
+      "unused variables",
+      "code smells",
+      "Python code quality"
+    ],
+    "modes": [
+      "Static"
+    ],
+    "inputTypes": [
+      "Source code"
+    ],
+    "findings": [
+      "Logic errors",
+      "Coding conventions",
+      "Code complexity"
+    ],
+    "findingNote": "Selected messages use syntax and inference. Dynamic attributes and unavailable dependencies can produce incomplete or misleading results.",
+    "environment": "A supported Python environment on a local machine or CI host.",
+    "setup": "Install Pylint with project dependencies; choose modules or packages and configure enabled messages and plugins.",
+    "techniques": [
+      "Linting",
+      "Bug finding"
+    ],
+    "languages": [
+      "Python"
+    ],
+    "languageNote": "Python source. Inference and framework behavior depend on the interpreter, dependencies, and configured plugins.",
+    "targets": [
+      "Python applications",
+      "Libraries"
+    ],
+    "licenseCategory": "Open source",
+    "license": "GPL-2.0; consult the repository notices for the selected release",
+    "cost": [
+      "Free"
+    ],
+    "costNote": "Free open-source analyzer; local checks require no paid service.",
+    "website": "https://pylint.readthedocs.io/en/stable/",
+    "verified": "2026-09-26",
+    "scope": "Core Pylint checks; third-party framework plugins have separate rules and requirements.",
+    "sources": [
+      {
+        "label": "Purpose and installation",
+        "url": "https://raw.githubusercontent.com/pylint-dev/pylint/main/README.rst"
+      },
+      {
+        "label": "Running Pylint",
+        "url": "https://pylint.readthedocs.io/en/stable/user_guide/usage/run.html"
+      },
+      {
+        "label": "License",
+        "url": "https://raw.githubusercontent.com/pylint-dev/pylint/main/LICENSE"
+      }
+    ]
+  }
+}

@@ -62,7 +62,7 @@ The entry automatically appears in the catalog, the matching analysis section, a
 | `tool.license` | Specific terms and edition caveats. |
 | `tool.cost` | A list containing `Free`, `Free with limits`, and/or `Paid`. Multiple values represent different usage entitlements or plans for this entry. |
 | `tool.costNote` | Explain free-use eligibility, usage limits, and any paid alternatives. Do not count a time-limited trial as a free edition. |
-| `tool.editionGroup` | Optional shared comparison: `codeql`, `sonarqube`, `semgrep`, `burp`, `cppcheck`, `pvs-studio`, `phpstan`, `coverity`, or `polyspace`. The table lives in `src/data/editions.ts`. |
+| `tool.editionGroup` | Optional shared comparison: `codeql`, `sonarqube`, `semgrep`, `burp`, `cppcheck`, `pvs-studio`, `phpstan`, `coverity`, or `polyspace`. The table lives in `src/data/editions.mjs`. |
 | `tool.website` | The official product or project URL. |
 | `tool.verified` | A quoted date such as `'2026-09-21'`. |
 | `tool.scope` | Product edition, component, and any verified version. |
@@ -136,7 +136,7 @@ Add aliases for the exact entry's name, not for a different edition or predecess
 
 Search understands common language spellings such as `cpp`, `C sharp`, `js`, and `golang`. It keeps C, C++, C#, Java, and JavaScript distinct. Search terms must all match; spelling suggestions appear separately when there are no results and retain the current filters. This is keyword search, not a natural-language question-answering system.
 
-The catalog does not search the full article, platform caveats, or cost notes. Those can mention unsupported features or other editions. Use **Search all pages** to search the full notes and guides. Aliases shown on tool pages are also indexed there when the site is built.
+The catalog does not search the full article, platform caveats, or cost notes. Those can mention unsupported features or other editions. Use **Search tools, capabilities, and all pages** to search the full notes and guides. Aliases shown on tool pages are also indexed there when the site is built.
 
 Check the official name, each alias, a capability phrase, and a relevant combination of filters after editing an entry. Ensure a free-edition search cannot inherit a paid edition's capabilities. Search and filter choices remain in category links and bookmark URLs.
 

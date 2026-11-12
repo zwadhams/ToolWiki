@@ -1,0 +1,17 @@
+{
+  "name": "toolwiki-api-contracts-example",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node verify.mjs",
+    "consumer": "node consumer.mjs",
+    "provider:bad": "node provider-check.mjs bad",
+    "provider:good": "node provider-check.mjs good"
+  },
+  "devDependencies": {
+    "@pact-foundation/pact": "17.1.4",
+    "@stoplight/spectral-cli": "6.17.1"
+  }
+}

@@ -1,0 +1,17 @@
+---
+import Head from '@astrojs/starlight/components/Head.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const { entry } = Astro.locals.starlightRoute;
+const path = `${base}/knowledge/v1/documents/${entry.id || 'index'}`;
+---
+<Head />
+<link rel="describedby" type="text/plain" href={`${base}/llms.txt`} />
+{!['404', 'changes'].includes(entry.id) && !entry.data.draft && <>
+  <link rel="alternate" type="text/markdown" href={`${path}.md`} />
+  <link rel="alternate" type="application/json" href={`${path}.json`} />
+</>}
+
+{entry.id === 'changes' && <>
+  <link rel="alternate" type="text/markdown" href={`${base}/history/changes.md`} />
+  <link rel="alternate" type="application/json" href={`${base}/history/index.json`} />
+</>}

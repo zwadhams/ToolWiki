@@ -2,6 +2,20 @@
 title: SonarQube Community Build
 description: Run a free, self-managed service for code quality and security checks on supported languages.
 tool:
+  cardRequirement: Python source and a configured Community Build project with scanner access.
+  analysisWorkflows:
+    - id: python-source
+      label: Python source rules in Community Build
+      subject: component
+      inputs: [Source code]
+      languageScope: source
+      languages: [Python]
+      findings: [Logic errors, Coding conventions]
+      hostPlatforms: [Windows, Linux, macOS]
+      caveat: Python source analysis through SonarScanner CLI and an already configured Community Build instance. Verify the scanner runtime, project access, Python version, quality profile, exclusions, and server processing result. No application execution or Python bytecode is required for this route; Server-only features and other language workflows are not implied.
+      sources:
+        - https://docs.sonarsource.com/sonarqube-community-build/analyzing-source-code/languages/python
+        - https://docs.sonarsource.com/sonarqube-community-build/analyzing-source-code/scanners/sonarscanner
   modes: [Static]
   inputTypes: [Source code]
   techniques: [SAST, Bug finding]
@@ -29,6 +43,10 @@ tool:
       url: https://docs.sonarsource.com/sonarqube-community-build/analyzing-source-code/languages/overview
     - label: Sonar free products
       url: https://www.sonarsource.com/open-source-editions/
+    - label: Community Build Python source analysis
+      url: https://docs.sonarsource.com/sonarqube-community-build/analyzing-source-code/languages/python
+    - label: Community Build SonarScanner CLI setup
+      url: https://docs.sonarsource.com/sonarqube-community-build/analyzing-source-code/scanners/sonarscanner
 ---
 
 ## What it does
@@ -44,6 +62,21 @@ Feature depth also varies. Do not treat a shared language name as evidence that 
 ## When it is useful
 
 Consider it when you want to maintain your own code-analysis service and its supported checks fit the project. Free software still requires an environment to run it and someone to maintain that environment.
+
+## System builder scope
+
+**Documentation reviewed November 12, 2026; not executed here.** The builder
+matches Python source analysis using [SonarScanner CLI](https://docs.sonarsource.com/sonarqube-community-build/analyzing-source-code/scanners/sonarscanner).
+Prepare a Community Build instance, project access, and a compatible scanner
+runtime. Set the project key, source directories, and
+[`sonar.python.version`](https://docs.sonarsource.com/sonarqube-community-build/analyzing-source-code/languages/python)
+for the actual project; preserve its existing quality profile and exclusions.
+
+Run the scanner from the configured project root and confirm that server
+processing completed before reading findings. This route covers Python logic
+and coding-rule findings. It does not import execution coverage, run tests,
+or transfer commercial security-analysis depth to Community Build. Other
+catalog languages need their own scanner and artifact review.
 
 ## Related research
 

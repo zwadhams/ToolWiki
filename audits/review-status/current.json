@@ -3,16 +3,16 @@
   "purpose": "Informational provenance only. A changed digest does not establish a false claim, and a scoped review does not verify every claim.",
   "counts": {
     "unchanged-since-review": 3,
-    "changed-since-review": 2,
-    "reviewed-follow-up": 280,
-    "not-yet-linked-to-review": 1,
-    "removed-since-review": 0
+    "changed-since-review": 95,
+    "reviewed-follow-up": 223,
+    "not-yet-linked-to-review": 3,
+    "removed-since-review": 1
   },
   "files": [
     {
       "path": ".gitattributes",
-      "status": "reviewed-follow-up",
-      "currentSha256": "b02e9fa51c1698da6b0765d84364833449a17da916dde6a3e85f9426ec727304",
+      "status": "changed-since-review",
+      "currentSha256": "ba2ed07fed20f027f531813c4f2864dff41b9a3322e3112bedeaed5ff166d30d",
       "latestReview": {
         "id": "reader-workflows-coordinator-2026-11-06",
         "date": "2026-11-06",
@@ -41,8 +41,8 @@
     },
     {
       "path": "README.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "b9b5c0f9c769c849f922a5b0f57d0b60274bb3b8151ec02db6a8cbc2def8b062",
+      "status": "changed-since-review",
+      "currentSha256": "70fde9c80460d3d9e16a7ba637399ec50f610d6f44061ff3c3ad5070b8a517ee",
       "latestReview": {
         "id": "remaining-work-language-ui-2026-11-06",
         "date": "2026-11-06",
@@ -56,8 +56,8 @@
     },
     {
       "path": "astro.config.mjs",
-      "status": "reviewed-follow-up",
-      "currentSha256": "6d6b1debfdbe734397fe857f98e163e1afdff520689c82e3bc6b058ec8a518bd",
+      "status": "changed-since-review",
+      "currentSha256": "310f73959a2383a0e1a6ec462221dfb3ca96b78652f3339e11d8c26eeb51a03e",
       "latestReview": {
         "id": "reader-workflows-coordinator-2026-11-06",
         "date": "2026-11-06",
@@ -101,8 +101,8 @@
     },
     {
       "path": "audits/remaining-work/executions/boofuzz/faulty.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "21f61cf7f20cd1b0ce4856b885b5ae30778dbcd4f85e121bcb1a4a3ba98fce80",
+      "status": "changed-since-review",
+      "currentSha256": "e0dbe67f21bf93f773ad14d73a3565f37c0e6c9d9054995fdbc96fae60b2b559",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -116,8 +116,8 @@
     },
     {
       "path": "audits/remaining-work/executions/boofuzz/faulty.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "b2ad1ab63e884d10f54c0221c925545436998ce7b2dfba1fd3077b86e4a6b2dd",
+      "status": "changed-since-review",
+      "currentSha256": "15789f955e808f6a3e9212104cada9c47cdb4e549a6f4ffc0eb5992dac9895a8",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -131,8 +131,8 @@
     },
     {
       "path": "audits/remaining-work/executions/boofuzz/fixed.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "4f2bdd5cf38f24f9f6d190b0d41f16ae545418876024bdf29626d9d0e5ab6035",
+      "status": "changed-since-review",
+      "currentSha256": "5545722b416a726ccbc7eef6a95b8f38a0fa24167ab5669709736850db5b56f5",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -146,8 +146,8 @@
     },
     {
       "path": "audits/remaining-work/executions/boofuzz/fixed.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "48eafcb39ec9e5cd224907104d06014cf17d1b18e4677f37e57382b957ea09b8",
+      "status": "changed-since-review",
+      "currentSha256": "b6012807c0cd4f2c382f9f38391cc1899acb94a89f0cea586c514e605afe07d3",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -161,8 +161,8 @@
     },
     {
       "path": "audits/remaining-work/executions/http-api/faulty.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "a6b8f0f5b5d59a8c5728467d9e0c5e168d4eef1d8d01ac4f05f5184961a8e42f",
+      "status": "changed-since-review",
+      "currentSha256": "af10c03293a1128d7c0244e15b1fce2042073334b886683acab346f4fd106d5f",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -176,8 +176,8 @@
     },
     {
       "path": "audits/remaining-work/executions/http-api/faulty.xml",
-      "status": "reviewed-follow-up",
-      "currentSha256": "1f589213822ae1c2b343a40072629b1fb16ee9cd5353ba22efda1867b03d5100",
+      "status": "changed-since-review",
+      "currentSha256": "10a03e04cc6d928a0f763cc3741f5a1464e5587654fd8477b03c95ad162b8f70",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -191,8 +191,8 @@
     },
     {
       "path": "audits/remaining-work/executions/http-api/fixed.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "139b3837f580b0aa1c2bfeb79a85d1f75e17abeaffc49cd55c5f76284d30b892",
+      "status": "changed-since-review",
+      "currentSha256": "0fde83e94b5219db0f966e8bb60d90eeb1771ee1962284d2b98f96857937e0b8",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -206,8 +206,8 @@
     },
     {
       "path": "audits/remaining-work/executions/http-api/fixed.xml",
-      "status": "reviewed-follow-up",
-      "currentSha256": "bb589139d3bb8f0c32847580ab2d295dfb5ec256fb494d228631ed3418400007",
+      "status": "changed-since-review",
+      "currentSha256": "29c2e59720a165013ebe6d2e0a1e093523eeaf767cccf3060307f5b98721da7d",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -221,8 +221,8 @@
     },
     {
       "path": "audits/remaining-work/executions/http-api/record.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "ccb236efb8cfb342f5a28be7f7bd878c37a8a83da2af9580831bff7eef8fb246",
+      "status": "changed-since-review",
+      "currentSha256": "fa5ac8086c074e8e223ebaa6d98d302661e6217779cbd08fcb8d9b1a28f8f310",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -266,8 +266,8 @@
     },
     {
       "path": "audits/remaining-work/executions/k6/completed.stdout.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "d9afff3811d0a330c099dfd17968932bca1c3b62913231d453ddf2615cdcef02",
+      "status": "changed-since-review",
+      "currentSha256": "90e0d40de841e7ccf9cb3932137ff8b900b3556805b9d3cd686be95281b2ab32",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -281,8 +281,8 @@
     },
     {
       "path": "audits/remaining-work/executions/k6/record.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "935ebcc1f1f7733b2da231465e851eb40243146d689835dfe19ac1bac4caaa84",
+      "status": "changed-since-review",
+      "currentSha256": "7c478ccb29043f06de22b63225fb2b763f928c2c886f84b1dc70148dda94086a",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -311,8 +311,8 @@
     },
     {
       "path": "audits/remaining-work/executions/k6/setup-failed.stderr.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "f1aa9a37fb08772221a107ab721e36d6c8eb17739092b11884f1c1edf9f587d7",
+      "status": "changed-since-review",
+      "currentSha256": "2351a38360e255824827d9a2fdb07e9fab8717e9819649130cc2c91282dbf065",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -326,8 +326,8 @@
     },
     {
       "path": "audits/remaining-work/executions/k6/setup-failed.stdout.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "0246adc69d3d11692200308e8876e64b46a8562eb3e2f24a76280f6b026a4ebd",
+      "status": "changed-since-review",
+      "currentSha256": "65ee2c4da2adac5b9b0a6fe0ff0d3d2f2dd3bae3b653a3d7047ce37a222827f2",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -356,8 +356,8 @@
     },
     {
       "path": "audits/remaining-work/executions/k6/threshold-failed.stderr.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "9a45b6ed405cfd8db6b4a9ead0f66861bdd139f3d59f1ccdb5222d5df298c7e7",
+      "status": "changed-since-review",
+      "currentSha256": "9e55c7286dbe39a6478c8804ec912db859c68ed653b02ab96c461af5b7f95a74",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -371,8 +371,8 @@
     },
     {
       "path": "audits/remaining-work/executions/k6/threshold-failed.stdout.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "d9afff3811d0a330c099dfd17968932bca1c3b62913231d453ddf2615cdcef02",
+      "status": "changed-since-review",
+      "currentSha256": "90e0d40de841e7ccf9cb3932137ff8b900b3556805b9d3cd686be95281b2ab32",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -386,8 +386,8 @@
     },
     {
       "path": "audits/remaining-work/executions/rtamt.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "43a38c204daa1d23b6afaa4303c49ca4c79c2d81e65a1e6cb4d0b3afec149cca",
+      "status": "changed-since-review",
+      "currentSha256": "d2b92a175570611e1af8de150c30c43e4c7bfe025a2356f73fdb43652ea7cc5e",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -401,8 +401,8 @@
     },
     {
       "path": "audits/remaining-work/expansion-runs/powershell.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "87a3cf9c896babeda70bb333f6ff18b1186699f1d0f22c5cf592ef1127fa436f",
+      "status": "changed-since-review",
+      "currentSha256": "6c50bc1082f0bf8f6b31016364bd3dab5381939c2669b5d82829302afa0fe8f7",
       "latestReview": {
         "id": "remaining-work-expansion-2026-11-06",
         "date": "2026-11-06",
@@ -416,8 +416,8 @@
     },
     {
       "path": "audits/remaining-work/expansion-runs/semgrep-bad.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "64efe5c6bab3414af072f93ae3458902af54a07898bbc2c4789f889b860c2947",
+      "status": "changed-since-review",
+      "currentSha256": "5996c4dab6763e2dbb4bc4c90b2b967e44865e68d13da5c12e02a3bf284d6a01",
       "latestReview": {
         "id": "remaining-work-expansion-2026-11-06",
         "date": "2026-11-06",
@@ -431,8 +431,8 @@
     },
     {
       "path": "audits/remaining-work/expansion-runs/semgrep-good.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "f4f7e9f424ed9d4d5895a42f61bb5abf2052d66ed92351a88b0e56b5f68518da",
+      "status": "changed-since-review",
+      "currentSha256": "9e7003add5a9aedbc93547f2f37926069b71c5b5a2dc848503996f01f5b9591c",
       "latestReview": {
         "id": "remaining-work-expansion-2026-11-06",
         "date": "2026-11-06",
@@ -446,8 +446,8 @@
     },
     {
       "path": "audits/remaining-work/expansion-runs/semgrep-not-covered.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "a3ca8e7b8c5e4746c6fdd4a3422643c147f93111cb5a6d584b09e59339047ad0",
+      "status": "changed-since-review",
+      "currentSha256": "19154d3586674c86d9314973763a265a6f6a936e3c5bc7bde508f7a5dee03f97",
       "latestReview": {
         "id": "remaining-work-expansion-2026-11-06",
         "date": "2026-11-06",
@@ -461,8 +461,8 @@
     },
     {
       "path": "audits/remaining-work/expansion-runs/semgrep.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "6a478690aa26bd3060a32f24735fae90fd2e3943b3c92cb10168b255539dbd2e",
+      "status": "changed-since-review",
+      "currentSha256": "f9300d2d854d7fe18b59f43dd31858f7f45a1fa4e3c010fae7a1d08bc38e59a8",
       "latestReview": {
         "id": "remaining-work-expansion-2026-11-06",
         "date": "2026-11-06",
@@ -476,8 +476,8 @@
     },
     {
       "path": "audits/remaining-work/expansion-runs/typescript.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "a72f687eb8fa29ca5cf2051925885f2e21e7a41082426f19409a4ec07b3d44b3",
+      "status": "changed-since-review",
+      "currentSha256": "3135686bc27138a9280f1cc3e3b7a50794df5b8344823f21c033254e092f299a",
       "latestReview": {
         "id": "remaining-work-expansion-2026-11-06",
         "date": "2026-11-06",
@@ -521,8 +521,8 @@
     },
     {
       "path": "audits/remaining-work/historical-audit-digests.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "4c8e24d8630be650a649d0af5b605bb26bf8b808c964a064024c2002c5cac098",
+      "status": "changed-since-review",
+      "currentSha256": "fc647549100493c8e09330ae6fb59712c5456825fa8f254271c7041bf92e0059",
       "latestReview": {
         "id": "remaining-work-architecture-2026-11-06",
         "date": "2026-11-06",
@@ -552,7 +552,7 @@
     {
       "path": "audits/review-status/reviews.json",
       "status": "changed-since-review",
-      "currentSha256": "c3bef087b67def299c3e3ba2654d6ca7619201dbdfbed8569ec15ea6670a2d0a",
+      "currentSha256": "c887c377e46abab083c292f37a04e402d5d5b3dc8349f7a16e2ea3891523d74f",
       "latestReview": {
         "id": "remaining-work-architecture-2026-11-06",
         "date": "2026-11-06",
@@ -561,6 +561,21 @@
         "reference": "audits/remaining-work/reviews/architecture.json",
         "scope": "Independent architecture review of stated requirements only; file-specific scope and limitations are recorded in the linked evidence.",
         "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "audits/workflow-coverage/README.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "6ea7eaabee52cdc2462c3a2d0f46ccc7a21a98a3c8b73d14dd2836ef9cd6ca4c",
+      "latestReview": {
+        "id": "workflow-coverage-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "formal_tools primary-source workflow review",
+        "reference": "audits/workflow-coverage/README.md",
+        "scope": "Reviewed twelve existing catalog-only profiles against current builder fields and primary documentation. Added one-process Python coverage, PVS-Studio JS/TS V7001, and separate Sonar Community/Server Python source workflows. Retained eight documented exclusions. No new analyzer execution. Four focused workflow tests and the updated measurement tests passed.",
+        "sha256": "6ea7eaabee52cdc2462c3a2d0f46ccc7a21a98a3c8b73d14dd2836ef9cd6ca4c"
       },
       "reviewCount": 1
     },
@@ -626,8 +641,8 @@
     },
     {
       "path": "examples/http-api/requirements-lock.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "fdb2378681df6901fb028db02a4ffdb5514d3c5630c001e62644552f496d0fba",
+      "status": "changed-since-review",
+      "currentSha256": "bb0d159c99a5ac10b34a7b332f85885f665811b010eb055aafa1563ffa23ba02",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -716,8 +731,8 @@
     },
     {
       "path": "examples/protocol-ping/README.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "f015f377769a72ce4754c107597cfc32b257ffda29755e881f56970a6b57fe0d",
+      "status": "changed-since-review",
+      "currentSha256": "280fc042d580b2a5a71da9ec53d44e45b9505b30cb5275b75ed668261bfe1eed",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -746,8 +761,8 @@
     },
     {
       "path": "examples/protocol-ping/requirements-lock.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "45c982bb7209c326f6f8941cc5bf20ffa99f2040e48a36b9a8c0fcdba67ba04c",
+      "status": "changed-since-review",
+      "currentSha256": "9593e1eb23d88fa83fb051b2d228bfe0df265478848f3af40d5b661ce4d7c336",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -1106,8 +1121,8 @@
     },
     {
       "path": "examples/python-coverage/evidence/contract.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "f0a848577d6d2923d3cef817cda4111bc74727b0c0a9b78e2860b38dd7836974",
+      "status": "changed-since-review",
+      "currentSha256": "fae011633fe2e2f62f0cfa922feae12f67be96989b51596d088c8bb3bf9cf9ed",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -1121,8 +1136,8 @@
     },
     {
       "path": "examples/python-coverage/evidence/partial.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "13206961ddb9c59454ed3df88727ba19d80c70c0b73efd9e8d2e5eb653a52594",
+      "status": "changed-since-review",
+      "currentSha256": "31d80d8cb8de98d7f8780936c6148af99a3671e12199c9b4d29834d495f13194",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -1136,8 +1151,8 @@
     },
     {
       "path": "examples/python-coverage/evidence/reach.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "50371964bfb8f5b7854367f9709a609fa6bf229bd6af528fb120add129421ae8",
+      "status": "changed-since-review",
+      "currentSha256": "ed1842a6080063a7beaa472650f53fa24866a19ff0b75105aafe3e827e8fa3d0",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -1151,8 +1166,8 @@
     },
     {
       "path": "examples/python-coverage/evidence/run.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "f966d4f2446611610b2920a4522ef06569c89be9fced417b1d0047f48da0dbf6",
+      "status": "changed-since-review",
+      "currentSha256": "cd9b89ce63888fe0b192bb43b3957d88e45d28506e535659310a5a65c1dc8e1e",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -1241,8 +1256,8 @@
     },
     {
       "path": "examples/rtamt/README.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "d015a28229707ac412be714c4b361a29116588892de01e639b08600ccb25c104",
+      "status": "changed-since-review",
+      "currentSha256": "364f655f979c6f86c22f74b25436b1b23915a498c47056e2ce866df34b1e7cc5",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -1391,8 +1406,8 @@
     },
     {
       "path": "examples/test-quality/evidence.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "fe85f9c8c3984085b5016d2ff70353adb3c206e5308a7ce9d91775f8dc63cdbb",
+      "status": "changed-since-review",
+      "currentSha256": "da75b8ef281f78550668b0327d5cda629661ffbf20909cf33e318349d54eaa9f",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -1406,8 +1421,8 @@
     },
     {
       "path": "examples/test-quality/evidence/run.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "ceedc355be8e875e58fae7063e165f083c019fbc2e6a7d771b92a8c73fed61cd",
+      "status": "changed-since-review",
+      "currentSha256": "d0c6a189a4263ab2ef54715127e598957f82c0b722983882a410fb34f288bb69",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -1421,8 +1436,8 @@
     },
     {
       "path": "examples/test-quality/evidence/strong-baseline.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "6138487c73416a40976246dce7aa458b289964a1a6edd3bf7d18a3bef3df7280",
+      "status": "changed-since-review",
+      "currentSha256": "8badcb95f200ab50ae61605fb156eba9731ce84d6c54729d925a76aa70c42ded",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -1436,8 +1451,8 @@
     },
     {
       "path": "examples/test-quality/evidence/strong-mutation.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "2e82e905b06e0ec3bd13353c167129b1df7fcee7dfbff288444fb65e94dd9927",
+      "status": "changed-since-review",
+      "currentSha256": "d8203df64c0a61ae381669f1b250c78d83f9847c5076ce7497e809d1eea1bd17",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -1451,8 +1466,8 @@
     },
     {
       "path": "examples/test-quality/evidence/strong.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "573dcc23f496847b5cf63326314f970a6fccf7ae984eadee88cfff5320ed615a",
+      "status": "changed-since-review",
+      "currentSha256": "c1e3db03e869167b0d05d59a7828227caf7dbb45b2e05bcbbc1df1147bd928e5",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -1466,8 +1481,8 @@
     },
     {
       "path": "examples/test-quality/evidence/weak-baseline.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "b2316f7cffd6c36f4bd365481f490c1fad11f8373723ec7059f8ad1d7288ab00",
+      "status": "changed-since-review",
+      "currentSha256": "c1ed87cdb6de9a44c4fca77db2d5765f1476c17b3e274aff89f9dd517c0269c1",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -1481,8 +1496,8 @@
     },
     {
       "path": "examples/test-quality/evidence/weak-mutation.txt",
-      "status": "reviewed-follow-up",
-      "currentSha256": "0ad54886d3145d40f512b9d836b9dbde92655557533d40c9e360ae8b62adad3f",
+      "status": "changed-since-review",
+      "currentSha256": "aa8f27993ce987fb938f5913c32ad1d479e1003245a9477267d97796042db93d",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -1496,8 +1511,8 @@
     },
     {
       "path": "examples/test-quality/evidence/weak.json",
-      "status": "reviewed-follow-up",
-      "currentSha256": "604f73e46814bfc9712de989094d8931ff478daf7f376740d740f0daf4aae764",
+      "status": "changed-since-review",
+      "currentSha256": "e44428cea04757c5f9bb878adaccad75aa9ec2efeee77c0cb45ffc01b3c27f57",
       "latestReview": {
         "id": "remaining-work-measurement-runtime-2026-11-06",
         "date": "2026-11-06",
@@ -1656,6 +1671,126 @@
         "reference": "audits/remaining-work/reviews/measurement-runtime.json",
         "scope": "Independent measurement-runtime review of stated requirements only; file-specific scope and limitations are recorded in the linked evidence.",
         "sha256": "19bfcd10deb4b7eebba5680cd70a92454f620d1fd737e96fa6a69e40e0e5d406"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "examples/tlc/Queue.cfg",
+      "status": "reviewed-follow-up",
+      "currentSha256": "3d8bc348a97de48363ac0d294074e393fbcc1981f246f71094994f129a3a0378",
+      "latestReview": {
+        "id": "formal-tools-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "formal_tools documentation and fixture review",
+        "reference": "audits/formal-tools/README.md",
+        "scope": "Primary-source review of TLC, heaptrack, and PIT purpose, preparation, findings, limits, and licensing. Executed TLC capacity-2 faulty/corrected model only on Windows 11 with Oracle Java 25.0.4.1. heaptrack and PIT examples remain illustrative. Focused schema/matching/evidence tests passed.",
+        "sha256": "3d8bc348a97de48363ac0d294074e393fbcc1981f246f71094994f129a3a0378"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "examples/tlc/QueueCorrected.tla",
+      "status": "reviewed-follow-up",
+      "currentSha256": "4dbcf4f4015dac9af8feaa3391ac70f24ae5780bb0b830032f18efd4d16273d2",
+      "latestReview": {
+        "id": "formal-tools-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "formal_tools documentation and fixture review",
+        "reference": "audits/formal-tools/README.md",
+        "scope": "Primary-source review of TLC, heaptrack, and PIT purpose, preparation, findings, limits, and licensing. Executed TLC capacity-2 faulty/corrected model only on Windows 11 with Oracle Java 25.0.4.1. heaptrack and PIT examples remain illustrative. Focused schema/matching/evidence tests passed.",
+        "sha256": "4dbcf4f4015dac9af8feaa3391ac70f24ae5780bb0b830032f18efd4d16273d2"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "examples/tlc/QueueFaulty.tla",
+      "status": "reviewed-follow-up",
+      "currentSha256": "95913f80318ab6c0ed038b829b93e7394cd92383aa199994676cda97c0e24033",
+      "latestReview": {
+        "id": "formal-tools-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "formal_tools documentation and fixture review",
+        "reference": "audits/formal-tools/README.md",
+        "scope": "Primary-source review of TLC, heaptrack, and PIT purpose, preparation, findings, limits, and licensing. Executed TLC capacity-2 faulty/corrected model only on Windows 11 with Oracle Java 25.0.4.1. heaptrack and PIT examples remain illustrative. Focused schema/matching/evidence tests passed.",
+        "sha256": "95913f80318ab6c0ed038b829b93e7394cd92383aa199994676cda97c0e24033"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "examples/tlc/README.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "342502a83b48941d92ed493745c4acc8dc942fcbcccef1ee4ae6dbb46c1ad9aa",
+      "latestReview": {
+        "id": "formal-tools-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "formal_tools documentation and fixture review",
+        "reference": "audits/formal-tools/README.md",
+        "scope": "Primary-source review of TLC, heaptrack, and PIT purpose, preparation, findings, limits, and licensing. Executed TLC capacity-2 faulty/corrected model only on Windows 11 with Oracle Java 25.0.4.1. heaptrack and PIT examples remain illustrative. Focused schema/matching/evidence tests passed.",
+        "sha256": "342502a83b48941d92ed493745c4acc8dc942fcbcccef1ee4ae6dbb46c1ad9aa"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "examples/tlc/evidence.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "965dc3243018ce3ba14868506808bd70d12b5e83590fedd7f271c9989de82576",
+      "latestReview": {
+        "id": "formal-tools-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "formal_tools documentation and fixture review",
+        "reference": "audits/formal-tools/README.md",
+        "scope": "Primary-source review of TLC, heaptrack, and PIT purpose, preparation, findings, limits, and licensing. Executed TLC capacity-2 faulty/corrected model only on Windows 11 with Oracle Java 25.0.4.1. heaptrack and PIT examples remain illustrative. Focused schema/matching/evidence tests passed.",
+        "sha256": "965dc3243018ce3ba14868506808bd70d12b5e83590fedd7f271c9989de82576"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "examples/tlc/fetch_tool.py",
+      "status": "reviewed-follow-up",
+      "currentSha256": "87dc1e161f62d4e150e62e6485407173f78011bbf345b362bbbb78a09d7c9923",
+      "latestReview": {
+        "id": "formal-tools-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "formal_tools documentation and fixture review",
+        "reference": "audits/formal-tools/README.md",
+        "scope": "Primary-source review of TLC, heaptrack, and PIT purpose, preparation, findings, limits, and licensing. Executed TLC capacity-2 faulty/corrected model only on Windows 11 with Oracle Java 25.0.4.1. heaptrack and PIT examples remain illustrative. Focused schema/matching/evidence tests passed.",
+        "sha256": "87dc1e161f62d4e150e62e6485407173f78011bbf345b362bbbb78a09d7c9923"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "examples/tlc/run.py",
+      "status": "reviewed-follow-up",
+      "currentSha256": "fe97da6c2579945e98c6d5b460b00887683bbeac1702224d30ec8f7bee491080",
+      "latestReview": {
+        "id": "formal-tools-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "formal_tools documentation and fixture review",
+        "reference": "audits/formal-tools/README.md",
+        "scope": "Primary-source review of TLC, heaptrack, and PIT purpose, preparation, findings, limits, and licensing. Executed TLC capacity-2 faulty/corrected model only on Windows 11 with Oracle Java 25.0.4.1. heaptrack and PIT examples remain illustrative. Focused schema/matching/evidence tests passed.",
+        "sha256": "fe97da6c2579945e98c6d5b460b00887683bbeac1702224d30ec8f7bee491080"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "examples/tlc/tool-lock.json",
+      "status": "reviewed-follow-up",
+      "currentSha256": "3ad58c8fc3576e7bb1af032bd08ec0c847bb807bf939f655e10a4426cfb1111b",
+      "latestReview": {
+        "id": "formal-tools-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "formal_tools documentation and fixture review",
+        "reference": "audits/formal-tools/README.md",
+        "scope": "Primary-source review of TLC, heaptrack, and PIT purpose, preparation, findings, limits, and licensing. Executed TLC capacity-2 faulty/corrected model only on Windows 11 with Oracle Java 25.0.4.1. heaptrack and PIT examples remain illustrative. Focused schema/matching/evidence tests passed.",
+        "sha256": "3ad58c8fc3576e7bb1af032bd08ec0c847bb807bf939f655e10a4426cfb1111b"
       },
       "reviewCount": 1
     },
@@ -1886,8 +2021,8 @@
     },
     {
       "path": "src/components/ArticleContent.astro",
-      "status": "reviewed-follow-up",
-      "currentSha256": "a22ab59bf669fd0b020b37433af69c5529a47f4fcb90db995fb539e25aea61e8",
+      "status": "changed-since-review",
+      "currentSha256": "8a426b3d26d3526dd1a30c63375d12f1801314c405caff7fc5cd91ff32f2bb45",
       "latestReview": {
         "id": "remaining-work-language-ui-2026-11-06",
         "date": "2026-11-06",
@@ -1901,8 +2036,8 @@
     },
     {
       "path": "src/components/EditionComparison.astro",
-      "status": "reviewed-follow-up",
-      "currentSha256": "8334deb146e29a9fa20b2c923242b352321df86736748f7486c98180541a9db9",
+      "status": "changed-since-review",
+      "currentSha256": "2ecafcfae1dec937060c121b377df5903aa9dc1456724cb22f1d4fa8172f2235",
       "latestReview": {
         "id": "remaining-work-language-ui-2026-11-06",
         "date": "2026-11-06",
@@ -1916,8 +2051,8 @@
     },
     {
       "path": "src/components/SystemBuilder.astro",
-      "status": "reviewed-follow-up",
-      "currentSha256": "dc4f74fd8e36a13e6d50da1de8fce2ba8063610b2249fb2691ab6d88dfe70bfb",
+      "status": "changed-since-review",
+      "currentSha256": "28291d781c8b4736841eb12aada27936513f26c3ed1cd0c84c63b99834d46e88",
       "latestReview": {
         "id": "remaining-work-language-ui-2026-11-06",
         "date": "2026-11-06",
@@ -1931,8 +2066,8 @@
     },
     {
       "path": "src/components/ToolCatalog.astro",
-      "status": "reviewed-follow-up",
-      "currentSha256": "7c0d092516a422b88da3d428cba25f5a95fac4965c5297173e9adc7423ea5db0",
+      "status": "changed-since-review",
+      "currentSha256": "da122f766ed08bbb571185d8f0635aa7ec06d69bfeded2d332fbe2f08c6e70a5",
       "latestReview": {
         "id": "remaining-work-language-ui-2026-11-06",
         "date": "2026-11-06",
@@ -1946,8 +2081,8 @@
     },
     {
       "path": "src/components/ToolComparison.astro",
-      "status": "reviewed-follow-up",
-      "currentSha256": "6c30702c4297c3dbf78e776aca16dd3fe9ba66ebea8c9817120458fc0e299adb",
+      "status": "changed-since-review",
+      "currentSha256": "fa5a5dd60997e8b9a17c4537c37e5936e52d3b036bcb56e9aa9a719560f6e906",
       "latestReview": {
         "id": "remaining-work-language-ui-2026-11-06",
         "date": "2026-11-06",
@@ -1961,8 +2096,8 @@
     },
     {
       "path": "src/content.config.ts",
-      "status": "reviewed-follow-up",
-      "currentSha256": "06f61213a9c4ed01710d42d6affc264e1ec79acfd25f29c8360672bc4333838e",
+      "status": "changed-since-review",
+      "currentSha256": "92d36bd04af045b0d03da3ceea916c5911420b9dc87eebf6721b92a2196eff89",
       "latestReview": {
         "id": "remaining-work-architecture-2026-11-06",
         "date": "2026-11-06",
@@ -1997,22 +2132,173 @@
     },
     {
       "path": "src/content/docs/compare.md",
-      "status": "changed-since-review",
-      "currentSha256": "e2c4a9f78890246d7b8719211771e9a124d29f66b9b305328ac1667ea5877a0a",
+      "status": "reviewed-follow-up",
+      "currentSha256": "4245b55a93d57dd2c47a809a76668267c866ce800ba5cfd9993d82b66dc75539",
       "latestReview": {
-        "id": "tool-review-2026-09-22",
-        "date": "2026-09-22",
-        "type": "historical",
-        "reference": "audits/tool-review/README.md",
-        "scope": "Historical documentation review; see its scope and unresolved findings.",
-        "sha256": "232ca731013e196081b80b894ee61fc0670774da5136fdfc1ef523a1a119bc07"
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "4245b55a93d57dd2c47a809a76668267c866ce800ba5cfd9993d82b66dc75539"
+      },
+      "reviewCount": 2
+    },
+    {
+      "path": "src/content/docs/comparisons.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "19874e4efcd545908f7b2d3ff684b314df51f457f99e682245af0ceafe926cdd",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "19874e4efcd545908f7b2d3ff684b314df51f457f99e682245af0ceafe926cdd"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "src/content/docs/comparisons/address-sanitizer-and-valgrind-memcheck.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "1f1c4e5c0dabd5ea4a2bc9fba4ed2f31b3be2acf03216a35c448acb38f565783",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "1f1c4e5c0dabd5ea4a2bc9fba4ed2f31b3be2acf03216a35c448acb38f565783"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "src/content/docs/comparisons/codeql-and-jbmc.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "ab5830dfc0daa7e1484affa8c2f10d3f6e45135da0ad9dbbf071f4391db4208f",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "ab5830dfc0daa7e1484affa8c2f10d3f6e45135da0ad9dbbf071f4391db4208f"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "src/content/docs/comparisons/codeql-and-spotbugs.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "0ad47190410dc7b8e512870b179842ed6833e0c86fffa8f5aeaa22e10178c828",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "0ad47190410dc7b8e512870b179842ed6833e0c86fffa8f5aeaa22e10178c828"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "src/content/docs/comparisons/mypy-and-pyright.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "9175e83786bcd0dc7b1b4082b55a21cc0021b8c4e1d1b5051a976b17eeea33f3",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "9175e83786bcd0dc7b1b4082b55a21cc0021b8c4e1d1b5051a976b17eeea33f3"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "src/content/docs/comparisons/rtamt-and-psy-taliro.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "7fea06bcde82ca0047d8707c7b43c170b7004ca32d30b3dbfd34a8b05ea19bf0",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "7fea06bcde82ca0047d8707c7b43c170b7004ca32d30b3dbfd34a8b05ea19bf0"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "src/content/docs/comparisons/ruff-and-mypy.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "66dc62e92e5996e1a447a62f3271a0f5456d7ad4d048e2262927856511b4581f",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "66dc62e92e5996e1a447a62f3271a0f5456d7ad4d048e2262927856511b4581f"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "src/content/docs/comparisons/ruff-and-pylint.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "22935632da6aa6cbf0da5fe3c4801b52786d807e9d2695f4bc24c75f7f925c8f",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "22935632da6aa6cbf0da5fe3c4801b52786d807e9d2695f4bc24c75f7f925c8f"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "src/content/docs/comparisons/ruff-and-pyright.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "dc6567fc488996ae1ec6acac20dae066acfc55a68a56783bde217485343ac6b2",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "dc6567fc488996ae1ec6acac20dae066acfc55a68a56783bde217485343ac6b2"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "src/content/docs/comparisons/trivy-and-osv-scanner.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "d594a4bebf52e717a93ddcc29972809297108806233c23ae097e60decfc8b9d8",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "d594a4bebf52e717a93ddcc29972809297108806233c23ae097e60decfc8b9d8"
       },
       "reviewCount": 1
     },
     {
       "path": "src/content/docs/concepts/advanced-static-methods.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "7de8d78691cb198966fecaea690fe6628160c5bf3e9d2a2a695b0d512407e136",
+      "status": "changed-since-review",
+      "currentSha256": "8cddeefd0d2f017a00133d8472ae37e5af0db81fd45fd9ec5e507f099b5bd2df",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2026,8 +2312,8 @@
     },
     {
       "path": "src/content/docs/concepts/dast-approaches.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "0d777db1f401c05e8377c501735cf7b018be018c0f807197eb1e42776fc53b60",
+      "status": "changed-since-review",
+      "currentSha256": "3f0f85334404db11b06b7f25b5b0c16542ca9aa62d15a5af1f92792a00201062",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2041,8 +2327,8 @@
     },
     {
       "path": "src/content/docs/concepts/model-falsification.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "941ab61158610f17997051bca2afa2167da11d37f2acdd1e502ebc2f6766d3af",
+      "status": "changed-since-review",
+      "currentSha256": "38217230c9abb0445aa4b5a54f861459bd9dc2e9d00d80fc4eb7c7081dbdc341",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2071,8 +2357,8 @@
     },
     {
       "path": "src/content/docs/concepts/static-approaches.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "1a36ed4b0a00e7c2a17de889af5abebc8e510b9740699eda73c64bad65ef4370",
+      "status": "changed-since-review",
+      "currentSha256": "a333cd9f7ef27e8478b2ab309344a72cdc845c66b2a6d742f5973c40ecd8662d",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2101,8 +2387,8 @@
     },
     {
       "path": "src/content/docs/concepts/verification-and-generated-tests.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "8bb829fb33bb8fef444b1c39f12550af774ed4dd0792605f56da8de334d185b2",
+      "status": "changed-since-review",
+      "currentSha256": "9a30e2f28ce8902c9aaf6da0109c6e0b4e8f28fdc6981c595928b322ddf5294b",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2129,9 +2415,31 @@
       "reviewCount": 1
     },
     {
-      "path": "src/content/docs/guides/api-testing.md",
+      "path": "src/content/docs/guides/agents-reference.md",
+      "status": "not-yet-linked-to-review",
+      "currentSha256": "45781e19cae0b900eed9a0d405ea6be76ab05a1bfa3d7872b68baf7142d0beda",
+      "latestReview": null,
+      "reviewCount": 0
+    },
+    {
+      "path": "src/content/docs/guides/api-contracts.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "8e64c6f48a80e2bba3a7d3e5c8509589e3a2d230351f978f2377d23bb07bd1a5",
+      "currentSha256": "fa8c6f5505c8515da4088096104cd203499f8a069ae38db56e6d76a408d01736",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "fa8c6f5505c8515da4088096104cd203499f8a069ae38db56e6d76a408d01736"
+      },
+      "reviewCount": 2
+    },
+    {
+      "path": "src/content/docs/guides/api-testing.md",
+      "status": "changed-since-review",
+      "currentSha256": "c8b9acb6060ea85fb57bad380badfd43d99a94846a44319feab82e1a6ae3c8c9",
       "latestReview": {
         "id": "reader-workflows-coordinator-2026-11-06",
         "date": "2026-11-06",
@@ -2144,9 +2452,24 @@
       "reviewCount": 4
     },
     {
-      "path": "src/content/docs/guides/choosing-and-recording-tools.md",
+      "path": "src/content/docs/guides/browser-testing.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "8f43328e6d071a99b72e1a636bb4b92146a22b076eb976808afb319eb9727de5",
+      "currentSha256": "4793335511a4e70512e02186f6d24145d6be45db99dabeaf7c706aa1323f326d",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "4793335511a4e70512e02186f6d24145d6be45db99dabeaf7c706aa1323f326d"
+      },
+      "reviewCount": 2
+    },
+    {
+      "path": "src/content/docs/guides/choosing-and-recording-tools.md",
+      "status": "changed-since-review",
+      "currentSha256": "a613a8176cf0778d8ea198a060c3390afa9bc3b0860990663aa63987c80746fa",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2160,8 +2483,8 @@
     },
     {
       "path": "src/content/docs/guides/ci-checks.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "c92c26645bab739429312cbd4699506404d3b6055596bf4202b7ddec9a970c97",
+      "status": "changed-since-review",
+      "currentSha256": "97daefd77792e321131c086e44f370f89408362bc295850d188dc41ee38b0b2d",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2174,9 +2497,39 @@
       "reviewCount": 2
     },
     {
-      "path": "src/content/docs/guides/editing.md",
+      "path": "src/content/docs/guides/data-access.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "dc70c7c01d500b3f9724291488d7c0bbdc177b46b0176dd1960b466f1bbc1cc8",
+      "currentSha256": "b19f942d1fc7c0b1fb628fa4401d27fd2f1e3967bfcada18c7421fd5af300914",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "b19f942d1fc7c0b1fb628fa4401d27fd2f1e3967bfcada18c7421fd5af300914"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "src/content/docs/guides/data-reference.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "e62c775ba8cc93255b15ce8846ca9a0d1a545d8d74e1583037c1679267a3c95c",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "e62c775ba8cc93255b15ce8846ca9a0d1a545d8d74e1583037c1679267a3c95c"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "src/content/docs/guides/editing.md",
+      "status": "changed-since-review",
+      "currentSha256": "18b15ab9c1faf40e7f7c4f682411b83e4e561a2196b3b2b72fca48d1f0e75835",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2190,8 +2543,8 @@
     },
     {
       "path": "src/content/docs/guides/execution-and-data.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "b6f0a556886069b1f88af7f624eda7d34ada37c5493a0a480d5dbc5166734eb1",
+      "status": "changed-since-review",
+      "currentSha256": "b79758787b013c5c7c447f4fb33b15a6c3d95bbb4d606a5a5684f1d07e45d09d",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2206,17 +2559,17 @@
     {
       "path": "src/content/docs/guides/get-examples.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "b3c3f28c02c869fb36e7ffe064e2dfd9e60f8e800a8440cd044c3c51d8f54fb5",
+      "currentSha256": "8cab6a50b4f55b5c8972049414d3fe216268cd7799dad9b0581fa5a9c8ddedf8",
       "latestReview": {
-        "id": "reader-workflows-coordinator-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "coordinator integration and evidence review",
-        "reference": "audits/reader-workflows/coordinator-review.json",
-        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
-        "sha256": "b3c3f28c02c869fb36e7ffe064e2dfd9e60f8e800a8440cd044c3c51d8f54fb5"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "8cab6a50b4f55b5c8972049414d3fe216268cd7799dad9b0581fa5a9c8ddedf8"
       },
-      "reviewCount": 4
+      "reviewCount": 5
     },
     {
       "path": "src/content/docs/guides/java-analysis.md",
@@ -2249,9 +2602,24 @@
       "reviewCount": 4
     },
     {
-      "path": "src/content/docs/guides/python-checks.md",
+      "path": "src/content/docs/guides/model-checking.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "50f29c68bd711f39a823ceb30811f61e06014493494fb4d9596f86ac41838fee",
+      "currentSha256": "d7f5f6b70e5689e59bcbbc18995bb9014c3eedef848e519e35bdc8d1f30e141f",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "d7f5f6b70e5689e59bcbbc18995bb9014c3eedef848e519e35bdc8d1f30e141f"
+      },
+      "reviewCount": 2
+    },
+    {
+      "path": "src/content/docs/guides/python-checks.md",
+      "status": "changed-since-review",
+      "currentSha256": "553c80193a873a68cda8153e085e563f15824c3563c1282b9bc6f6da8be482de",
       "latestReview": {
         "id": "reader-workflows-coordinator-2026-11-06",
         "date": "2026-11-06",
@@ -2265,8 +2633,8 @@
     },
     {
       "path": "src/content/docs/guides/reviewing-findings.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "66d6f54e4a351c12d40b2256b0af100c0339c416dad99a86579ecf7447dbe4ee",
+      "status": "changed-since-review",
+      "currentSha256": "9d23975dc98e119538bf6d5978f0314310b748e43f8baa29c8225ee41d12859f",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2280,8 +2648,8 @@
     },
     {
       "path": "src/content/docs/guides/run-record.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "fbe2ee3f630c871516e5785a7ac1fd5a3f68a9aaf327f2e93fb89511b632389c",
+      "status": "changed-since-review",
+      "currentSha256": "a78ed50f06abcb89e89953cf1980c4f30b7307a4152a31b976b96b37921d2bba",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2290,6 +2658,21 @@
         "reference": "audits/remaining-work/reviews/language-guides.json",
         "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
         "sha256": "fbe2ee3f630c871516e5785a7ac1fd5a3f68a9aaf327f2e93fb89511b632389c"
+      },
+      "reviewCount": 2
+    },
+    {
+      "path": "src/content/docs/guides/sbom-inventory.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "66df7dbb861faa932ecfa77038cdabce80d038da5bc4ded3aea9bf46ba64d3a9",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "66df7dbb861faa932ecfa77038cdabce80d038da5bc4ded3aea9bf46ba64d3a9"
       },
       "reviewCount": 2
     },
@@ -2310,8 +2693,8 @@
     },
     {
       "path": "src/content/docs/guides/temporal-monitoring-and-falsification.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "0604dce350696442c83fd5e83382e255a8f3004c8f798e4a376e7e21f53f5edc",
+      "status": "changed-since-review",
+      "currentSha256": "81519dea1480030a4b17699da69a3d14aa780b29c2a472a004edb0be4d4650ae",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2325,8 +2708,8 @@
     },
     {
       "path": "src/content/docs/guides/test-evidence.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "d5fc217f98add1d68ab60b7debfdc4259f0a344300de707e2e11a3bca9db967e",
+      "status": "changed-since-review",
+      "currentSha256": "8d6fc67b136697393c295d332cbc3b834ad75a8e41ce57f9cff61604b1609be4",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2340,8 +2723,8 @@
     },
     {
       "path": "src/content/docs/guides/using-this-wiki.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "606577c872c16026719dc9b1ec3eff41f1a27d56a1d32908a90e8aa805a17858",
+      "status": "changed-since-review",
+      "currentSha256": "f69939c47f22bea90322e0f3d2f87996af7d53fadbfb342d15ee0f96130106f9",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2354,9 +2737,16 @@
       "reviewCount": 2
     },
     {
+      "path": "src/content/docs/guides/using-with-agents.md",
+      "status": "not-yet-linked-to-review",
+      "currentSha256": "2dc33dccd21c59f73ab00d6f3c9d56be1d5bcb6fc9855b6c23d4bc06c99f7278",
+      "latestReview": null,
+      "reviewCount": 0
+    },
+    {
       "path": "src/content/docs/guides/windows-memory-check.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "aff703d9d4b4e356d4b63afe3f0010f8eca2d0a340428f5d17489ead7cbedfd9",
+      "status": "changed-since-review",
+      "currentSha256": "30902dea33e230fa433454d83f19ed9d2bc5f7969e07600eac57cddec465b1f4",
       "latestReview": {
         "id": "reader-workflows-coordinator-2026-11-06",
         "date": "2026-11-06",
@@ -2370,8 +2760,8 @@
     },
     {
       "path": "src/content/docs/index.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "4facb0ab2196873596dc955220b5d27b0dcd74e43aab35b958c56acf660a7160",
+      "status": "changed-since-review",
+      "currentSha256": "d62d20c0525d7b3b5c04d6f1c81187403355db7b3fa5443b26cc9b868eef0c02",
       "latestReview": {
         "id": "remaining-work-language-ui-2026-11-06",
         "date": "2026-11-06",
@@ -2385,8 +2775,8 @@
     },
     {
       "path": "src/content/docs/research/binary-analysis.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "386d10ad927198fdc47ad02f14474926526c0b037595257c61a98a03389a7d6c",
+      "status": "changed-since-review",
+      "currentSha256": "c831f22ac9abc005a739c9ccb1dd977d6c076b021a52af7f2fd9f627acbdf5f6",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2415,8 +2805,8 @@
     },
     {
       "path": "src/content/docs/research/index.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "c0677122abe7357d668543eda299b4f57294b90a79a4c321842d948a4c03d677",
+      "status": "changed-since-review",
+      "currentSha256": "d40daa4ae3f4ea8c570376e15863b4bef98fe06f156122cf49fb8b5f39e5bb24",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2430,8 +2820,8 @@
     },
     {
       "path": "src/content/docs/research/sast-adoption.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "2a2981c00476ed491bd5fb32eda421c3543ba5c71f0782ec6ce7928af29839d5",
+      "status": "changed-since-review",
+      "currentSha256": "f7dd2fbe95ee4f33648cebd0e10fcde7b6b8ea35969e9bf1100c6765fe1afe95",
       "latestReview": {
         "id": "remaining-work-language-guides-2026-11-06",
         "date": "2026-11-06",
@@ -2488,6 +2878,21 @@
       "reviewCount": 1
     },
     {
+      "path": "src/content/docs/tasks.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "96c47956ad3ce112f50d5b17f27e34005d3fc49cc708f075dc58967a5707a9d2",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "96c47956ad3ce112f50d5b17f27e34005d3fc49cc708f075dc58967a5707a9d2"
+      },
+      "reviewCount": 1
+    },
+    {
       "path": "src/content/docs/tools/actionlint.md",
       "status": "reviewed-follow-up",
       "currentSha256": "6dd41b8d2348db8f991e0654b685ecf7a2da453098cfe99f4f2ebba473f3edfe",
@@ -2505,17 +2910,17 @@
     {
       "path": "src/content/docs/tools/address-sanitizer.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "1ede806e947feef5d1bbffeffd4af600a5fec8f28ec611635bf8da8c5b32e19d",
+      "currentSha256": "c376f0c217c92260ef55e9fd77ba7d5c688491c44afe112f609db84ed914a6d6",
       "latestReview": {
-        "id": "reader-workflows-coordinator-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "coordinator integration and evidence review",
-        "reference": "audits/reader-workflows/coordinator-review.json",
-        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
-        "sha256": "1ede806e947feef5d1bbffeffd4af600a5fec8f28ec611635bf8da8c5b32e19d"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "c376f0c217c92260ef55e9fd77ba7d5c688491c44afe112f609db84ed914a6d6"
       },
-      "reviewCount": 3
+      "reviewCount": 5
     },
     {
       "path": "src/content/docs/tools/afl-plus-plus.md",
@@ -2534,8 +2939,8 @@
     },
     {
       "path": "src/content/docs/tools/angr.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "74a2d801806c9571e6d9aec67110b2cd56022a83241b0d28a0d286fcc14265ed",
+      "status": "changed-since-review",
+      "currentSha256": "aadae2aeb80cf98538a095466f2fd8bcc52c5d3b90db35dd049c107aea139643",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -2563,9 +2968,24 @@
       "reviewCount": 1
     },
     {
-      "path": "src/content/docs/tools/bandit.md",
+      "path": "src/content/docs/tools/axe-core.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "0c19a7c91f2d796009f5be0836ed07e09c54120cb3864710e5423974493fb578",
+      "currentSha256": "9165a9350ba6868c47c50b1527f041caa7d914a3748e494fa58f0cb491198851",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "9165a9350ba6868c47c50b1527f041caa7d914a3748e494fa58f0cb491198851"
+      },
+      "reviewCount": 2
+    },
+    {
+      "path": "src/content/docs/tools/bandit.md",
+      "status": "changed-since-review",
+      "currentSha256": "42c98b49afaad53aa8f2c99d9cae75ecf14715eb1b536a241f110a02d46d2982",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -2595,17 +3015,17 @@
     {
       "path": "src/content/docs/tools/boofuzz.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "79158c0a123328d2828e21c1d3ff108c88425ff27ca4e321458c829a21f20c20",
+      "currentSha256": "12e42087ca936b32be0e0e02211f6432e7e861efbbed06c9d56e1afd7bf2babd",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "79158c0a123328d2828e21c1d3ff108c88425ff27ca4e321458c829a21f20c20"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "12e42087ca936b32be0e0e02211f6432e7e861efbbed06c9d56e1afd7bf2babd"
       },
-      "reviewCount": 3
+      "reviewCount": 5
     },
     {
       "path": "src/content/docs/tools/brakeman.md",
@@ -2684,8 +3104,8 @@
     },
     {
       "path": "src/content/docs/tools/cargo-audit.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "99df3ba6b9968e24f4f0d351d845bc553bb4e9ef82a31dea4a7bda9bb60b6d5a",
+      "status": "changed-since-review",
+      "currentSha256": "b2eee516732c93e0ce46aeca187409a775b24223564763e96c6e367c03f529bd",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -2789,8 +3209,8 @@
     },
     {
       "path": "src/content/docs/tools/codeql.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "f6d1fb18432d8c2d45c56b0fb0d948797c84339319c35be22f9afedc891c5182",
+      "status": "changed-since-review",
+      "currentSha256": "177320d5d15e5dd896426d4f8d83c1673aa04917acecaf78935daf822c685334",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -2805,47 +3225,47 @@
     {
       "path": "src/content/docs/tools/coverage-py.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "7624f1431777a4bad4d235781f14b084dba32ed4e2a4f971278cd4a9952e8cdc",
+      "currentSha256": "f9fa3283d2e94ff44ed59a8e8cbe5600f5eac05da6986f32e5a9141e204744ba",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "7624f1431777a4bad4d235781f14b084dba32ed4e2a4f971278cd4a9952e8cdc"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "f9fa3283d2e94ff44ed59a8e8cbe5600f5eac05da6986f32e5a9141e204744ba"
       },
-      "reviewCount": 2
+      "reviewCount": 5
     },
     {
       "path": "src/content/docs/tools/coverity-scan.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "2926447856ba03f97914a5e066ec0c3f577e3248ba032bf5a8d00b246ffc3d05",
+      "currentSha256": "24174f87994134da49e06135ba0331321125a29f4dbef70de9ec80ab89635f45",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "2926447856ba03f97914a5e066ec0c3f577e3248ba032bf5a8d00b246ffc3d05"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "24174f87994134da49e06135ba0331321125a29f4dbef70de9ec80ab89635f45"
       },
-      "reviewCount": 2
+      "reviewCount": 4
     },
     {
       "path": "src/content/docs/tools/coverity.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "f035862c58bbd8d237a4156409a46e0a441e10836141a35c4b0953338b90ba2c",
+      "currentSha256": "11e64f4d7d416bc2fbda2f54232c60a6b7ba2b1db5bbf78e6cbd2c2bd68dcce3",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "f035862c58bbd8d237a4156409a46e0a441e10836141a35c4b0953338b90ba2c"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "11e64f4d7d416bc2fbda2f54232c60a6b7ba2b1db5bbf78e6cbd2c2bd68dcce3"
       },
-      "reviewCount": 2
+      "reviewCount": 4
     },
     {
       "path": "src/content/docs/tools/cpachecker.md",
@@ -2864,8 +3284,8 @@
     },
     {
       "path": "src/content/docs/tools/cppcheck.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "c2a513506632d3c3198dc6a34e6c72418666631d06e1f67a6c6b7445509a4f8f",
+      "status": "changed-since-review",
+      "currentSha256": "b5362a83fcd4a01d37043f3ec4090e35073fbd4029936fa3491a4095fd80c36f",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -2894,8 +3314,8 @@
     },
     {
       "path": "src/content/docs/tools/cwe-checker.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "888781077a0d87ee18f926549afc316e1e0001edfe0f80841f54b3be4f7ab085",
+      "status": "changed-since-review",
+      "currentSha256": "2afb654835aae1e6141d9084253fdf11d5e76dfdc0715fc4b5ff764c4bea7d37",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -2969,8 +3389,8 @@
     },
     {
       "path": "src/content/docs/tools/dotnet-analyzers.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "53c05d7308db021eb25cd27ee93e3ab7c58c4eb71316da0fb6573a65eccead4d",
+      "status": "changed-since-review",
+      "currentSha256": "5ebae773b0a72b4638131dfe6e9fc15db66e6c36b349533b7dc3d5404b1059cf",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -3044,8 +3464,8 @@
     },
     {
       "path": "src/content/docs/tools/floss.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "ebd778b2562c105de6938aee19881a499ffca4f9497b3d17c70db7ed45720782",
+      "status": "changed-since-review",
+      "currentSha256": "f989b40a22539b27bdb58cb186ccdcd52e0199cb75146f7825270f9b84a11d53",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -3059,8 +3479,8 @@
     },
     {
       "path": "src/content/docs/tools/frama-c.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "fdc77e25f18708008e7f4de0372cb73f6dbecc83b11c9eba28829c5ff2ab5690",
+      "status": "changed-since-review",
+      "currentSha256": "2be368a4781b6e1d91eb0b8787c51e3615513ab97d99474a35d5c95b689f3109",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -3074,8 +3494,8 @@
     },
     {
       "path": "src/content/docs/tools/ghidra.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "9822e06f01fc61cfff7bb0f9f05bc39566e52b9886546ac79099ea14a67a6ab1",
+      "status": "changed-since-review",
+      "currentSha256": "8956f28dc2adf57962bc5358a1c2f8f7a7e4c84cbc90d60a544262eca447d02f",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -3090,17 +3510,17 @@
     {
       "path": "src/content/docs/tools/gitleaks.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "3f82c4f167e79756e67c1e1223704b2498a8d96c477579d47757881b35346781",
+      "currentSha256": "631ac1a6277edc771a6df3e34179ce6556a0d18dcb3d7b8371eca94877504dfc",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "3f82c4f167e79756e67c1e1223704b2498a8d96c477579d47757881b35346781"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "631ac1a6277edc771a6df3e34179ce6556a0d18dcb3d7b8371eca94877504dfc"
       },
-      "reviewCount": 2
+      "reviewCount": 4
     },
     {
       "path": "src/content/docs/tools/go-race-detector.md",
@@ -3164,8 +3584,8 @@
     },
     {
       "path": "src/content/docs/tools/grype.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "99bf27901674f1c9324b637b97d0ebd0e00bb59854309142ecb8f840383ebe45",
+      "status": "changed-since-review",
+      "currentSha256": "3b7ed017f64d29cc79754b486bc426dec25e0c86becb2fffb742fc57b3382c02",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -3193,6 +3613,21 @@
       "reviewCount": 1
     },
     {
+      "path": "src/content/docs/tools/heaptrack.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "83b45c81c7dc5785978c3069fc3af4868fc0010f472f000bc11597370eeeb26d",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "83b45c81c7dc5785978c3069fc3af4868fc0010f472f000bc11597370eeeb26d"
+      },
+      "reviewCount": 2
+    },
+    {
       "path": "src/content/docs/tools/hypothesis.md",
       "status": "reviewed-follow-up",
       "currentSha256": "4ebf2d421aa3380b195cf91d7fd783ba0729e69ef6f75d7f19e295e6f0472f35",
@@ -3209,8 +3644,8 @@
     },
     {
       "path": "src/content/docs/tools/infer.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "d4b96904291ba86a6c7e8efd8ba10aeb7b666d5ef558faebe798d79327f0143b",
+      "status": "changed-since-review",
+      "currentSha256": "921ed7cb6ff49e40070d6b0b75904ee512bc6fd814b9012b94c51e75d3c16353",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -3255,17 +3690,17 @@
     {
       "path": "src/content/docs/tools/k6.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "8a1ac0e90ed92409e68249d85f204fc466e1aff5a3602b9f6c62656483e6bd35",
+      "currentSha256": "439c1826afc422b9d8b1c6d13d4079925567248fb48e6242218b62f10810786a",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "8a1ac0e90ed92409e68249d85f204fc466e1aff5a3602b9f6c62656483e6bd35"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "439c1826afc422b9d8b1c6d13d4079925567248fb48e6242218b62f10810786a"
       },
-      "reviewCount": 2
+      "reviewCount": 4
     },
     {
       "path": "src/content/docs/tools/kani.md",
@@ -3284,8 +3719,8 @@
     },
     {
       "path": "src/content/docs/tools/klee.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "3f5f7fde7290cbfbf204acaf247c91b0d83627f178b147ba0b4dc9d4b8d8b3a5",
+      "status": "changed-since-review",
+      "currentSha256": "591f8b86d7955dc61bc5a4e1cabc45def08634e603bcc2a1d6d4301d7dba7bdf",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -3345,37 +3780,37 @@
     {
       "path": "src/content/docs/tools/mobsf.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "7456244f785931700585ffb464ce191e184909db07a90c295f7d58f241285dd3",
+      "currentSha256": "24dfb81486104dd53de802fb09cc0018137ce46f3f80618a91f61422b116734b",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "7456244f785931700585ffb464ce191e184909db07a90c295f7d58f241285dd3"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "24dfb81486104dd53de802fb09cc0018137ce46f3f80618a91f61422b116734b"
       },
-      "reviewCount": 2
+      "reviewCount": 4
     },
     {
       "path": "src/content/docs/tools/mypy.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "5abedf890d4a0cfd841ae9eb33f2f3c89651a561cd844d1daf62f23056f29d80",
+      "currentSha256": "3d88a5d2ca191a929072651682c49dab6fac8d7246cf21fdbaee0172e11148e9",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "5abedf890d4a0cfd841ae9eb33f2f3c89651a561cd844d1daf62f23056f29d80"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "3d88a5d2ca191a929072651682c49dab6fac8d7246cf21fdbaee0172e11148e9"
       },
-      "reviewCount": 2
+      "reviewCount": 4
     },
     {
       "path": "src/content/docs/tools/osv-scanner.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "ec42f9137163cb1afd75e391b888b9f9d532e33532bb8b9e72b1ce89b0272bb3",
+      "status": "changed-since-review",
+      "currentSha256": "fcc2bd368626103e268bef199aa84d9277c98659cd30fab4e347d783093ae965",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -3386,6 +3821,21 @@
         "sha256": "ec42f9137163cb1afd75e391b888b9f9d532e33532bb8b9e72b1ce89b0272bb3"
       },
       "reviewCount": 3
+    },
+    {
+      "path": "src/content/docs/tools/pact.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "a7c7817a07eb280913800da968a04452638f775c20abbe62d80c409485fbf8be",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "a7c7817a07eb280913800da968a04452638f775c20abbe62d80c409485fbf8be"
+      },
+      "reviewCount": 2
     },
     {
       "path": "src/content/docs/tools/phpstan.md",
@@ -3399,6 +3849,36 @@
         "reference": "audits/remaining-work/reviews/language-profiles.json",
         "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
         "sha256": "fb0f3cc91d2e652424a4f27b63d032019a7e0ec37f92a22fe3574bc13d1ec19d"
+      },
+      "reviewCount": 2
+    },
+    {
+      "path": "src/content/docs/tools/pit.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "f823d60de49e83211297bfe8d5114844699804196081f3df45d85a6d69dfa721",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "f823d60de49e83211297bfe8d5114844699804196081f3df45d85a6d69dfa721"
+      },
+      "reviewCount": 2
+    },
+    {
+      "path": "src/content/docs/tools/playwright.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "3b779030061dd302b71d6683af1b05685b24433cc7fbabdbc04b947c258bdf25",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "3b779030061dd302b71d6683af1b05685b24433cc7fbabdbc04b947c258bdf25"
       },
       "reviewCount": 2
     },
@@ -3434,8 +3914,8 @@
     },
     {
       "path": "src/content/docs/tools/psalm.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "3f564b788172cc7454b4a81934c5f0f645bd54395d525050f82f9091f99ee1e1",
+      "status": "changed-since-review",
+      "currentSha256": "80db6178a86f41e19ce1958e0fdeafcbfa2ba65487e288ff8d5e97d194cdeb3d",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -3450,17 +3930,17 @@
     {
       "path": "src/content/docs/tools/psscriptanalyzer.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "265dae39a2208dca6a117f5b9c5c1edc93f13a8956ef51974d72a94dcb1cc8b9",
+      "currentSha256": "ab11752f71fa301121775870abc41d26e26d1c0db6ea6ff6bfb3df00dccd39dd",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "265dae39a2208dca6a117f5b9c5c1edc93f13a8956ef51974d72a94dcb1cc8b9"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "ab11752f71fa301121775870abc41d26e26d1c0db6ea6ff6bfb3df00dccd39dd"
       },
-      "reviewCount": 2
+      "reviewCount": 4
     },
     {
       "path": "src/content/docs/tools/psy-taliro.md",
@@ -3480,52 +3960,52 @@
     {
       "path": "src/content/docs/tools/pvs-studio.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "f4b38d99fdc20114a7230ad56a4515d485691d4c18f360d5d4e5c3c994292204",
+      "currentSha256": "c83e78e28d86cf707d3c588d8e785210955ec347a4eced56b32612301e99818e",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "f4b38d99fdc20114a7230ad56a4515d485691d4c18f360d5d4e5c3c994292204"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "c83e78e28d86cf707d3c588d8e785210955ec347a4eced56b32612301e99818e"
       },
-      "reviewCount": 2
+      "reviewCount": 4
     },
     {
       "path": "src/content/docs/tools/py-spy.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "3297579eae6eab7c06f82cc93236199f99bb7f4e40446f8815d8d912067b6c9c",
+      "currentSha256": "16a2a32806b764275d39587c07fcfd9dc08f43ddd4d55d0ca48b47e30c7f6075",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "3297579eae6eab7c06f82cc93236199f99bb7f4e40446f8815d8d912067b6c9c"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "16a2a32806b764275d39587c07fcfd9dc08f43ddd4d55d0ca48b47e30c7f6075"
       },
-      "reviewCount": 2
+      "reviewCount": 4
     },
     {
       "path": "src/content/docs/tools/pylint.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "6941048a4203352aab4f81e40092724d5c55dd1df8b1a1dfc614328e7ad79496",
+      "currentSha256": "4e78f07919fb6b808470669d3edd4f75117fb72542ad6b304a6210dfcf6043d3",
       "latestReview": {
-        "id": "reader-workflows-coordinator-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "coordinator integration and evidence review",
-        "reference": "audits/reader-workflows/coordinator-review.json",
-        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
-        "sha256": "6941048a4203352aab4f81e40092724d5c55dd1df8b1a1dfc614328e7ad79496"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "4e78f07919fb6b808470669d3edd4f75117fb72542ad6b304a6210dfcf6043d3"
       },
-      "reviewCount": 3
+      "reviewCount": 5
     },
     {
       "path": "src/content/docs/tools/pyright.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "b8bfde591a9f184eb9e677f8bb7db96f05ff55808cce12b4bae5af76c4b1c879",
+      "status": "changed-since-review",
+      "currentSha256": "04e4f4471934dba0da1861b4af090d8a0eac5eba6be6e2b0bcaaafa9d37ef985",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -3539,8 +4019,8 @@
     },
     {
       "path": "src/content/docs/tools/restler.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "be244896ea21c5953b001840befd7fcc3ff8a66df97add97c5aef28a55b54e93",
+      "status": "changed-since-review",
+      "currentSha256": "167f1102a9eb3afbd9f3df97fbb30c3980f858d3df4021582f2fd7f657f54be3",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -3555,17 +4035,17 @@
     {
       "path": "src/content/docs/tools/rtamt.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "4d5eb2cd51c4d6e6bda41613c5e33f6c9feb01fcf714b02b93469894dd7b9509",
+      "currentSha256": "15dcee61747ea649045e1b3ab8d1ab0e4b3c0e729c5b085be2525b234947aced",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "4d5eb2cd51c4d6e6bda41613c5e33f6c9feb01fcf714b02b93469894dd7b9509"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "15dcee61747ea649045e1b3ab8d1ab0e4b3c0e729c5b085be2525b234947aced"
       },
-      "reviewCount": 3
+      "reviewCount": 5
     },
     {
       "path": "src/content/docs/tools/rubocop.md",
@@ -3585,77 +4065,77 @@
     {
       "path": "src/content/docs/tools/ruff.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "5a87512fc60addc023249f1734ae95d5dbd04ce8ff8678c5b98fe9c3c1bf89eb",
+      "currentSha256": "291798aba2db0d21c6e23bcd9beb564355758b426c91c8578135b1a96dedda95",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "5a87512fc60addc023249f1734ae95d5dbd04ce8ff8678c5b98fe9c3c1bf89eb"
-      },
-      "reviewCount": 3
-    },
-    {
-      "path": "src/content/docs/tools/s-taliro.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "639c2c612a13a7fdea8ef4649118b589ee469f395881e30cd8046ff1c9ce8e83",
-      "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
-        "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "639c2c612a13a7fdea8ef4649118b589ee469f395881e30cd8046ff1c9ce8e83"
-      },
-      "reviewCount": 2
-    },
-    {
-      "path": "src/content/docs/tools/schemathesis.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "af6e22c94c67bafb9db362bc3db22b8ceaf12c046fe638c8738ed72bf0f2b3b1",
-      "latestReview": {
-        "id": "reader-workflows-coordinator-2026-11-06",
-        "date": "2026-11-06",
-        "type": "follow-up",
-        "reviewer": "coordinator integration and evidence review",
-        "reference": "audits/reader-workflows/coordinator-review.json",
-        "scope": "Changed workflow instructions, official setup/check semantics, source snapshot and navigation integration, CI replay safety/fidelity, independent-reader results and final repository verification. Existing profile metadata and whole-profile dates remain unchanged; this is not complete tool compatibility certification.",
-        "sha256": "af6e22c94c67bafb9db362bc3db22b8ceaf12c046fe638c8738ed72bf0f2b3b1"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "291798aba2db0d21c6e23bcd9beb564355758b426c91c8578135b1a96dedda95"
       },
       "reviewCount": 5
     },
     {
+      "path": "src/content/docs/tools/s-taliro.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "a6b2d17e5203fa5d1ce71619b35d59bf49c39fed9d690494f19459445105d0e6",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "a6b2d17e5203fa5d1ce71619b35d59bf49c39fed9d690494f19459445105d0e6"
+      },
+      "reviewCount": 4
+    },
+    {
+      "path": "src/content/docs/tools/schemathesis.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "9b3966ff753a56051901dbe3158257975a42d16b86ff205bd876fafb576c8e32",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "9b3966ff753a56051901dbe3158257975a42d16b86ff205bd876fafb576c8e32"
+      },
+      "reviewCount": 7
+    },
+    {
       "path": "src/content/docs/tools/semgrep-ce.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "2b44aa41dc133d68c1daeeea5a34826d842660e6b724aedaf7f68fe2fa486ccf",
+      "currentSha256": "6385f9ee95dfe3d1d150338afef2f023cdc5b9df02eff61925112c51c13e907a",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "2b44aa41dc133d68c1daeeea5a34826d842660e6b724aedaf7f68fe2fa486ccf"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "6385f9ee95dfe3d1d150338afef2f023cdc5b9df02eff61925112c51c13e907a"
       },
-      "reviewCount": 3
+      "reviewCount": 5
     },
     {
       "path": "src/content/docs/tools/semgrep-code.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "f7f48aa8e72d7aa7d0acb9285b53ff3aa211ae6fb16bc31c4a52b9c2cc9e7033",
+      "currentSha256": "93a5f1f83429941494ffe05541b9340bef2c6395a9bc35926b46fef4c3fe5ae4",
       "latestReview": {
-        "id": "semgrep-code-host-followup-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "root",
-        "reference": "audits/remaining-work/reviews/semgrep-host-followup.json",
-        "scope": "Semgrep Code environment field only: clarified local/CI CLI prerequisites while retaining managed scans. No pricing, rules, plan, or analyzer-execution re-review.",
-        "sha256": "f7f48aa8e72d7aa7d0acb9285b53ff3aa211ae6fb16bc31c4a52b9c2cc9e7033"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "93a5f1f83429941494ffe05541b9340bef2c6395a9bc35926b46fef4c3fe5ae4"
       },
-      "reviewCount": 3
+      "reviewCount": 5
     },
     {
       "path": "src/content/docs/tools/shellcheck.md",
@@ -3675,30 +4155,45 @@
     {
       "path": "src/content/docs/tools/sonarqube-community.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "5372e9645c097d94788b0ad56616ff4299dcce472cfccbf86b18a9dbc4beda08",
+      "currentSha256": "2402175c1363bf9bee010cfc5c33de1bd8d81bbcfff480fb588d39e6828d4c5b",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "5372e9645c097d94788b0ad56616ff4299dcce472cfccbf86b18a9dbc4beda08"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "2402175c1363bf9bee010cfc5c33de1bd8d81bbcfff480fb588d39e6828d4c5b"
       },
-      "reviewCount": 2
+      "reviewCount": 4
     },
     {
       "path": "src/content/docs/tools/sonarqube.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "121506bcee08bb0e39b0070c433f162e51f359d8c1987bf693ca2a424dd7e95b",
+      "currentSha256": "0a2d27595d44f80573343a964d4fb9c2a0a4000c2fbe3e0ac4314131acb7ee19",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "121506bcee08bb0e39b0070c433f162e51f359d8c1987bf693ca2a424dd7e95b"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "0a2d27595d44f80573343a964d4fb9c2a0a4000c2fbe3e0ac4314131acb7ee19"
+      },
+      "reviewCount": 4
+    },
+    {
+      "path": "src/content/docs/tools/spectral.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "30afff4ef3be9024ab1b332a78ec520b372dd0a17de198c95cd1e22a908bbe60",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "30afff4ef3be9024ab1b332a78ec520b372dd0a17de198c95cd1e22a908bbe60"
       },
       "reviewCount": 2
     },
@@ -3750,17 +4245,17 @@
     {
       "path": "src/content/docs/tools/strykerjs.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "ebc550a1620e9b495a2df26d3a4ec2c3fd34ad3dc1106520cc304b1eb81e2cd5",
+      "currentSha256": "e506e53e679ab99df186063e9a8cf932af9d53f65108b8daf436149209c069c8",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "ebc550a1620e9b495a2df26d3a4ec2c3fd34ad3dc1106520cc304b1eb81e2cd5"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "e506e53e679ab99df186063e9a8cf932af9d53f65108b8daf436149209c069c8"
       },
-      "reviewCount": 2
+      "reviewCount": 5
     },
     {
       "path": "src/content/docs/tools/stylelint.md",
@@ -3793,6 +4288,21 @@
       "reviewCount": 1
     },
     {
+      "path": "src/content/docs/tools/syft.md",
+      "status": "reviewed-follow-up",
+      "currentSha256": "682864e6b79b4703803f5fd5041afe953cbfe1692d59291b6fced72bf369b4dc",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "682864e6b79b4703803f5fd5041afe953cbfe1692d59291b6fced72bf369b4dc"
+      },
+      "reviewCount": 2
+    },
+    {
       "path": "src/content/docs/tools/thread-sanitizer.md",
       "status": "reviewed-follow-up",
       "currentSha256": "01cfd31965fde54c589be51d07ad02a01e2028a3add1d4e69214e046b9a1af84",
@@ -3808,9 +4318,24 @@
       "reviewCount": 2
     },
     {
-      "path": "src/content/docs/tools/trivy.md",
+      "path": "src/content/docs/tools/tlc.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "9fb0e6d02e391fbfdb632f4a5aca7ffe6fd24801825c1bd8e2d421ae296adc35",
+      "currentSha256": "f47bc5a12d54807dd6ebdd6a869f6d62aa82b7466b49a2a0276a6dccfd60bf84",
+      "latestReview": {
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "f47bc5a12d54807dd6ebdd6a869f6d62aa82b7466b49a2a0276a6dccfd60bf84"
+      },
+      "reviewCount": 2
+    },
+    {
+      "path": "src/content/docs/tools/trivy.md",
+      "status": "changed-since-review",
+      "currentSha256": "3ad16d6cb8e0f21aff89a330d35acf94e30ab19dc57387c2c3dcf7a2e8577bf6",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -3825,17 +4350,17 @@
     {
       "path": "src/content/docs/tools/typescript.md",
       "status": "reviewed-follow-up",
-      "currentSha256": "e4c77fefeec18df0bb475ed59d8b908de694d64fece4c9195ebfb62806d32a29",
+      "currentSha256": "654b5dc695f45cfbe59754d6cc45e7ad78d22dc859040dbb9645fc008da4e6ae",
       "latestReview": {
-        "id": "remaining-work-language-profiles-2026-11-06",
-        "date": "2026-11-06",
+        "id": "site-expansion-integration-2026-11-12",
+        "date": "2026-11-12",
         "type": "follow-up",
-        "reviewer": "remaining_recipes",
-        "reference": "audits/remaining-work/reviews/language-profiles.json",
-        "scope": "Final language-only review and verification of applied wording. Preserves stated technical qualifications; does not reverify tool claims or execution. See earlier technical reviews and the linked report.",
-        "sha256": "e4c77fefeec18df0bb475ed59d8b908de694d64fece4c9195ebfb62806d32a29"
+        "reviewer": "coordinator integration review",
+        "reference": "audits/site-expansion/README.md",
+        "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+        "sha256": "654b5dc695f45cfbe59754d6cc45e7ad78d22dc859040dbb9645fc008da4e6ae"
       },
-      "reviewCount": 2
+      "reviewCount": 4
     },
     {
       "path": "src/content/docs/tools/undefined-behavior-sanitizer.md",
@@ -3914,8 +4439,8 @@
     },
     {
       "path": "src/content/docs/tools/wartremover.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "0046bc2c12bebabf2a03de05298adeb89f432b927dd4bd8e37c68b93b11ae583",
+      "status": "changed-since-review",
+      "currentSha256": "f325ba04ea30ce45595306cf7e93fe121cacc2d1b785a0673bfa655c51b185b5",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -3929,8 +4454,8 @@
     },
     {
       "path": "src/content/docs/tools/yara-x.md",
-      "status": "reviewed-follow-up",
-      "currentSha256": "4df1380d61e617db54d8911ed780f1e1188d14ad495abe2bc6a3ed4247d9897e",
+      "status": "changed-since-review",
+      "currentSha256": "34717efebf275a5bb45a2ea6cbb5fb4e523bb8df4c47a3ae11260d4b698a3966",
       "latestReview": {
         "id": "remaining-work-language-profiles-2026-11-06",
         "date": "2026-11-06",
@@ -3959,8 +4484,8 @@
     },
     {
       "path": "src/data/editions.ts",
-      "status": "reviewed-follow-up",
-      "currentSha256": "9e4b6bbeae6de8ceb35f1af01f82414805874f6203f8b1843029162d4b809f08",
+      "status": "removed-since-review",
+      "currentSha256": null,
       "latestReview": {
         "id": "remaining-work-language-ui-2026-11-06",
         "date": "2026-11-06",
@@ -3974,8 +4499,8 @@
     },
     {
       "path": "src/data/tool-choices.ts",
-      "status": "reviewed-follow-up",
-      "currentSha256": "95acc821e1e54d82ed433e3c7193aad07df77ac9cd52da1f0c0736aa3cd7a0b6",
+      "status": "changed-since-review",
+      "currentSha256": "8228b748600a5216971356569c0fa6ff46fa6d75379fe3fd53c0decdd950ba7c",
       "latestReview": {
         "id": "remaining-work-language-ui-2026-11-06",
         "date": "2026-11-06",
@@ -4034,8 +4559,8 @@
     },
     {
       "path": "src/lib/system-builder-ui.mjs",
-      "status": "reviewed-follow-up",
-      "currentSha256": "e02c6de5dcd40d32443467c6a70cd101fd9d9ce93c271035048eda2c047cf747",
+      "status": "changed-since-review",
+      "currentSha256": "8ed7718e650792e1a1773c47919f286b95ca4cb4359d47c07e826602634e47c7",
       "latestReview": {
         "id": "remaining-work-language-ui-2026-11-06",
         "date": "2026-11-06",
@@ -4049,8 +4574,8 @@
     },
     {
       "path": "src/lib/system-builder.mjs",
-      "status": "reviewed-follow-up",
-      "currentSha256": "c732d02ba659a60f9321ded44f8bfcafed41bfbe6c5baf0e8fbe4b50383c7793",
+      "status": "changed-since-review",
+      "currentSha256": "36f74a87218d1820ddfbae487ff1f870da02b35336ff4b01d3dcd2b2fffa2bd4",
       "latestReview": {
         "id": "remaining-work-language-ui-2026-11-06",
         "date": "2026-11-06",
@@ -4064,8 +4589,8 @@
     },
     {
       "path": "src/lib/system-schema.mjs",
-      "status": "reviewed-follow-up",
-      "currentSha256": "3fff652d5fde66fc987071f5a92f1feb0f43c8f39a8325368152c311059d778b",
+      "status": "changed-since-review",
+      "currentSha256": "2accd2c13c6ec7c82f72c7e894e6626292a13bb9461332a5456b537b0521151d",
       "latestReview": {
         "id": "remaining-work-language-ui-2026-11-06",
         "date": "2026-11-06",
@@ -4094,8 +4619,8 @@
     },
     {
       "path": "src/lib/tool-inventory.mjs",
-      "status": "reviewed-follow-up",
-      "currentSha256": "1558cd557ec3f584654ff70b1d69f22485590f177e9b338ff5fa15c4f5f7f9f5",
+      "status": "changed-since-review",
+      "currentSha256": "e362abc57d5df0f84001e1e4c5e18364d233ce9d0d55079eef2f6e05985d0267",
       "latestReview": {
         "id": "remaining-work-language-ui-2026-11-06",
         "date": "2026-11-06",
@@ -4198,6 +4723,36 @@
       "reviewCount": 2
     },
     {
+      "path": "tests/formal-tools.test.mjs",
+      "status": "reviewed-follow-up",
+      "currentSha256": "0e549bd6135d98fd4fd3d009bddd3f00f8b3f55f6e0e8b67a8d3f757875b4c40",
+      "latestReview": {
+        "id": "formal-tools-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "formal_tools documentation and fixture review",
+        "reference": "audits/formal-tools/README.md",
+        "scope": "Primary-source review of TLC, heaptrack, and PIT purpose, preparation, findings, limits, and licensing. Executed TLC capacity-2 faulty/corrected model only on Windows 11 with Oracle Java 25.0.4.1. heaptrack and PIT examples remain illustrative. Focused schema/matching/evidence tests passed.",
+        "sha256": "0e549bd6135d98fd4fd3d009bddd3f00f8b3f55f6e0e8b67a8d3f757875b4c40"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "tests/measurement-workflows.test.mjs",
+      "status": "reviewed-follow-up",
+      "currentSha256": "bcc4813067f55bdf4d16b88df6be3f279cf945def662d5852c5036d72e115f96",
+      "latestReview": {
+        "id": "workflow-coverage-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "formal_tools primary-source workflow review",
+        "reference": "audits/workflow-coverage/README.md",
+        "scope": "Reviewed twelve existing catalog-only profiles against current builder fields and primary documentation. Added one-process Python coverage, PVS-Studio JS/TS V7001, and separate Sonar Community/Server Python source workflows. Retained eight documented exclusions. No new analyzer execution. Four focused workflow tests and the updated measurement tests passed.",
+        "sha256": "bcc4813067f55bdf4d16b88df6be3f279cf945def662d5852c5036d72e115f96"
+      },
+      "reviewCount": 1
+    },
+    {
       "path": "tests/review-status.test.mjs",
       "status": "reviewed-follow-up",
       "currentSha256": "aaf4ce2baf11fe6e2a84c84ea91d1800fb7855bd448cab60d4f7c461be29a555",
@@ -4269,6 +4824,21 @@
         "reference": "audits/remaining-work/reviews/architecture.json",
         "scope": "Independent architecture review of stated requirements only; file-specific scope and limitations are recorded in the linked evidence.",
         "sha256": "3ae8fda7cb19d8b818feeda9bd46a7336e4cf73b455596d5b24ab107b3dec869"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "tests/workflow-coverage.test.mjs",
+      "status": "reviewed-follow-up",
+      "currentSha256": "d0e6019c92b5fd2c42a46981006425492c5196bb37e9f8d2b543740f5d82d669",
+      "latestReview": {
+        "id": "workflow-coverage-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "formal_tools primary-source workflow review",
+        "reference": "audits/workflow-coverage/README.md",
+        "scope": "Reviewed twelve existing catalog-only profiles against current builder fields and primary documentation. Added one-process Python coverage, PVS-Studio JS/TS V7001, and separate Sonar Community/Server Python source workflows. Retained eight documented exclusions. No new analyzer execution. Four focused workflow tests and the updated measurement tests passed.",
+        "sha256": "d0e6019c92b5fd2c42a46981006425492c5196bb37e9f8d2b543740f5d82d669"
       },
       "reviewCount": 1
     },

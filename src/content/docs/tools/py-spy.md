@@ -84,5 +84,12 @@ Change one suspected source of cost, repeat the same workload, and compare
 timings as well as profiles. Sampling identifies where to investigate; it does
 not by itself show that a change preserved behavior or will help another load.
 
-This entry is catalog-only because the builder does not model process-inspection
-permission. Python plus Running applications is not enough to establish it.
+## System builder scope
+
+**Reviewed November 12, 2026.** This entry is catalog-only because the builder
+does not model process-inspection permission. The
+[versioned permission guidance](https://github.com/benfred/py-spy/blob/v0.4.3/README.md)
+distinguishes child-process sampling, attachment, and restricted containers.
+Python, Running applications, and permission to run a test instance do not
+establish permission to read process memory. The general instrumentation
+answer is not a substitute for that operating-system permission.

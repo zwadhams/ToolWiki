@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Parcel API", "version": "1.0.0" },
+  "paths": {
+    "/parcels/1": {
+      "get": {
+        "operationId": "getParcel",
+        "responses": {
+          "200": {
+            "description": "A parcel",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["id", "status"],
+                  "properties": {
+                    "id": { "type": "integer" },
+                    "status": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

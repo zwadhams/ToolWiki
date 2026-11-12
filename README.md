@@ -20,7 +20,7 @@ Use **Find a tool** for ranked catalog search by name, alias, language, or
 capability. Common spellings such as `ASan`, `cpp`, and `C sharp` are supported.
 **More filters** contains technique and license; active filters can be removed
 individually. Empty results offer spelling suggestions or a way to broaden the
-search while keeping the query. **Search all pages** searches full tool notes
+search while keeping the query. **Search tools, capabilities, and all pages** searches full tool notes
 and guides. Catalog search and full-page search use different indexes.
 
 ## Set up another computer
@@ -41,6 +41,14 @@ node scripts/preview.mjs
 
 ## Use knowledge with agents
 
+Start with [Data and AI access](src/content/docs/guides/data-access.md) for direct
+downloads and URL access without a local server. The site also publishes
+`/ToolWiki/llms.txt` as an agent starting point.
+
+[Data format reference](src/content/docs/guides/data-reference.md) documents the
+published Draft 2020-12 JSON Schemas, current filter vocabulary, and downloadable
+catalog and recommendation reports. All files are generated during the static build.
+
 `pnpm build` also generates `dist/knowledge/v1/`: a manifest, document index,
 Markdown and JSON records, and a complete snapshot. The same files are published
 with the website. Follow [Use ToolWiki with agents](src/content/docs/guides/using-with-agents.md)
@@ -56,7 +64,7 @@ the local server and waits for a client. Remote service hosting is deferred.
 - Concept guides: `src/content/docs/concepts/`.
 - Research notes and paper references: `src/content/docs/research/`.
 - Colors, spacing, and catalog appearance: `src/styles/custom.css`.
-- Shared comparisons of free and paid editions: `src/data/editions.ts`.
+- Shared comparisons of free and paid editions: `src/data/editions.mjs`.
 - Explanations of common tool choices: `src/data/tool-choices.ts`.
 - Navigation and GitHub Pages address: `astro.config.mjs`.
 
@@ -155,6 +163,31 @@ Open [production preview](http://127.0.0.1:4322/ToolWiki/). This view does not u
 until you rebuild; use **Preview.cmd** for style iteration.
 
 ## Publish on GitHub Pages
+
+### Retain a knowledge snapshot
+
+The build publishes a readable change history at `/ToolWiki/changes/` and JSON
+at `/ToolWiki/history/index.json`. It compares document revisions against the
+selected snapshots listed in `data/knowledge-history.json`. A capture date is
+not a publication or documentation review date. The first snapshot is a baseline;
+it does not report every existing record as a new addition.
+
+After a reviewed build, retain its exact bytes from the repository root:
+
+```sh
+node scripts/retain-knowledge.mjs dist/knowledge/v1/manifest.json 2026-11-12 "Reviewed expansion"
+pnpm build
+```
+
+Replace the date and label with the actual capture date and a useful description.
+The script checks the manifest checksum, snapshot revision, document revisions,
+and section bounds. It writes a new file under `public/knowledge/v1/snapshots/`
+and refuses to overwrite an existing revision. Commit the archive and ledger
+together. Rebuilding includes them in static hosting; no database or service is
+required. A validated public HTTPS manifest can also be used as the first argument.
+Retained files must remain byte-identical. Keep older entries when adding a new one.
+
+### Deploy
 
 The repository is configured for `https://zwadhams.github.io/ToolWiki/`.
 Publication requires repository administration access and a commit on `main`.

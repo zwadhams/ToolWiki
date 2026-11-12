@@ -1,0 +1,75 @@
+{
+  "reason": "Generated HTML contains Unicode UI glyphs. Exact HTTP bytes are retained as ASCII base64 to follow repository authoring instructions.",
+  "files": [
+    {
+      "originalPath": "audits/direct-access/changes.html",
+      "storedPath": "audits/direct-access/changes.html.b64",
+      "encoding": "base64",
+      "bytes": 61081,
+      "sha256": "e056de0b4fff0cc07de1c213e2711b224eb519b1dd8165777ec283c449c44d89"
+    },
+    {
+      "originalPath": "audits/direct-access/comparison.html",
+      "storedPath": "audits/direct-access/comparison.html.b64",
+      "encoding": "base64",
+      "bytes": 37251,
+      "sha256": "2b6845ad2675e1378a6addeb78cf11d156bcc809c2e77d58556558c491d5faf4"
+    },
+    {
+      "originalPath": "audits/direct-access/data-access.html",
+      "storedPath": "audits/direct-access/data-access.html.b64",
+      "encoding": "base64",
+      "bytes": 53856,
+      "sha256": "e01594019d6afa94c2138e2fe51f463202891e28bf7337199f5cefef26ddba43"
+    },
+    {
+      "originalPath": "audits/direct-access/entry.html",
+      "storedPath": "audits/direct-access/entry.html.b64",
+      "encoding": "base64",
+      "bytes": 217703,
+      "sha256": "f0924a21b9d8db9223cad64a825d6828aef5e797b4016045fd27712bdef08391"
+    },
+    {
+      "originalPath": "audits/direct-access/final/changes.html",
+      "storedPath": "audits/direct-access/final/changes.html.b64",
+      "encoding": "base64",
+      "bytes": 61124,
+      "sha256": "9d7204269dd2f38601e68d3588f6f0d515e2f9bb40f97242b203bc98423d304b"
+    },
+    {
+      "originalPath": "audits/direct-access/final/comparison.html",
+      "storedPath": "audits/direct-access/final/comparison.html.b64",
+      "encoding": "base64",
+      "bytes": 38721,
+      "sha256": "0fd644b751b3ae0da0b6958779112cbcbf5a9732daa6dad89a259fd35cc4dcdb"
+    },
+    {
+      "originalPath": "audits/direct-access/final/comparisons.html",
+      "storedPath": "audits/direct-access/final/comparisons.html.b64",
+      "encoding": "base64",
+      "bytes": 35312,
+      "sha256": "5dfee283658b17ff473ba83fb411a698067b17e127b4ffc4ca4483a1fead8f77"
+    },
+    {
+      "originalPath": "audits/direct-access/final/data-access.html",
+      "storedPath": "audits/direct-access/final/data-access.html.b64",
+      "encoding": "base64",
+      "bytes": 53856,
+      "sha256": "9e7de26675fdc73b169629b051517a96d00c037aea860412cdb230520db653fe"
+    },
+    {
+      "originalPath": "audits/direct-access/final/entry.html",
+      "storedPath": "audits/direct-access/final/entry.html.b64",
+      "encoding": "base64",
+      "bytes": 218033,
+      "sha256": "fe0f0b860b57bcb977475e7f113513247be2c7aa5ba143d63d3cc65e243fe15b"
+    },
+    {
+      "originalPath": "audits/direct-access/final/get-examples.html",
+      "storedPath": "audits/direct-access/final/get-examples.html.b64",
+      "encoding": "base64",
+      "bytes": 41000,
+      "sha256": "22daf36bfc87757de73156520c7a627b9d652a705fd12c468c3581e7feb9b53a"
+    }
+  ]
+}

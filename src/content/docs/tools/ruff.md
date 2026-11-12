@@ -1,6 +1,12 @@
 ---
 title: Ruff
 description: Find Python lint violations, common mistakes, and selected security patterns with configurable built-in rules.
+executionEvidence:
+  status: recorded
+  scope: "Ruff 0.14.3 on Windows with Python 3.13.15 checked only F401 in the greeting fixture without fixes. The faulty input produced one unused-import diagnostic and exited 1; the correction produced an empty JSON report and exited 0. Target code was not executed, and this selected-rule example does not exercise the full rule set or formatter."
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-bad/run.json
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-good/run.json
 tool:
   decision:
     useWhen: Use Ruff to check Python files for unused imports, common mistakes, and coding conventions.

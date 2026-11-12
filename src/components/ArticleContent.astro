@@ -5,6 +5,9 @@ import ToolCatalog from './ToolCatalog.astro';
 import ToolComparison from './ToolComparison.astro';
 import SystemBuilder from './SystemBuilder.astro';
 import EditionComparison from './EditionComparison.astro';
+import DataDownloads from './DataDownloads.astro';
+import DocumentActions from './DocumentActions.astro';
+import StaticComparison from './StaticComparison.astro';
 import { toolChoices } from '../data/tool-choices';
 const { entry } = Astro.locals.starlightRoute;
 const tool = entry.data.tool;
@@ -15,6 +18,8 @@ const docs = await getCollection('docs');
 const catalogIds = docs.filter(doc => doc.data.tool && !doc.data.draft).map(doc => doc.id);
 const titles = choices.length ? new Map(docs.map(doc => [doc.id, doc.data.title])) : new Map();
 ---
+{entry.data.dataAccess && <DataDownloads entries={docs} />}
+{!['404', 'changes'].includes(entry.id) && !entry.data.draft && !entry.data.catalog && !entry.data.comparison && !entry.data.systemBuilder && <DocumentActions entry={entry} entries={docs} />}
 {tool && <section class="tool-profile tool-decision" aria-label="Is this tool a fit?">
   <div class="profile-heading" data-pagefind-ignore><span class="mode-badge">{tool.modes.join(' / ')} analysis</span><a href={tool.website}>Official website</a></div>
   <p class="tool-purpose">{tool.decision?.useWhen || entry.data.description}</p>
@@ -33,9 +38,10 @@ const titles = choices.length ? new Map(docs.map(doc => [doc.id, doc.data.title]
   <p class="profile-meta" data-pagefind-ignore><a href="#cost-and-editions">{tool.cost.join(' / ')}</a> <span>Docs checked {tool.verified}</span></p>
 </section>}
 {entry.data.systemBuilder ? <SystemBuilder /> : entry.data.catalog ? <div class="catalog-content"><slot /><ToolCatalog mode={entry.data.catalogMode} /></div> : entry.data.comparison ? <div class="catalog-content"><slot /><ToolComparison /></div> : <MarkdownContent><slot /></MarkdownContent>}
+{entry.data.staticComparison && <StaticComparison ids={entry.data.staticComparison} entries={docs} />}
 {tool && choices.length > 0 && <section class="related-choices" aria-labelledby="compare-for-this-task">
   <h2 id="compare-for-this-task">Compare for this task</h2>
-  <ul>{choices.map(choice => <li><a href={`${base}/compare/?tools=${encodeURIComponent(choice.tools.join(','))}`}>{choice.tools.map(id => titles.get(id)).join(' + ')}: {choice.title}</a></li>)}</ul>
+  <ul>{choices.map(choice => <li><a href={`${base}/comparisons/${choice.tools.map(id => id.replace('tools/', '')).join('-and-')}/`}>{choice.tools.map(id => titles.get(id)).join(' + ')}: {choice.title}</a></li>)}</ul>
 </section>}
 {tool && <section class="tool-profile technical-profile" aria-labelledby="technical-details">
   <h2 id="technical-details">Compatibility and scope</h2>

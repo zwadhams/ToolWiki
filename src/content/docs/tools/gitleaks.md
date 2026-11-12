@@ -101,5 +101,10 @@ remote refs cannot supply history it does not contain. Record fetch depth,
 selected refs, rules, allowlists, baseline, and limits with the result. A
 baseline hides matching earlier findings; it does not remediate them.
 
-This entry is catalog-only. Source files alone do not establish that the
-builder has the repository history needed for this workflow.
+## System builder scope
+
+**Reviewed November 12, 2026.** This entry is catalog-only. The versioned
+[Git command documentation](https://github.com/gitleaks/gitleaks/blob/v8.30.1/README.md#git)
+describes scanning patches from Git history. The builder has no Git-history
+input or selected-ref field, so source files alone cannot establish this
+workflow. The separate directory-scanning mode is outside this history profile.

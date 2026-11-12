@@ -20,7 +20,7 @@ Use **Find a tool** for ranked catalog search by name, alias, language, or
 capability. Common spellings such as `ASan`, `cpp`, and `C sharp` are supported.
 **More filters** contains technique and license; active filters can be removed
 individually. Empty results offer spelling suggestions or a way to broaden the
-search while keeping the query. **Search all pages** searches full tool notes
+search while keeping the query. **Search tools, capabilities, and all pages** searches full tool notes
 and guides. Catalog search and full-page search use different indexes.
 
 ## Set up another computer

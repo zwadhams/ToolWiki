@@ -136,7 +136,7 @@ Add aliases for the exact entry's name, not for a different edition or predecess
 
 Search understands common language spellings such as `cpp`, `C sharp`, `js`, and `golang`. It keeps C, C++, C#, Java, and JavaScript distinct. Search terms must all match; spelling suggestions appear separately when there are no results and retain the current filters. This is keyword search, not a natural-language question-answering system.
 
-The catalog does not search the full article, platform caveats, or cost notes. Those can mention unsupported features or other editions. Use **Search all pages** to search the full notes and guides. Aliases shown on tool pages are also indexed there when the site is built.
+The catalog does not search the full article, platform caveats, or cost notes. Those can mention unsupported features or other editions. Use **Search tools, capabilities, and all pages** to search the full notes and guides. Aliases shown on tool pages are also indexed there when the site is built.
 
 Check the official name, each alias, a capability phrase, and a relevant combination of filters after editing an entry. Ensure a free-edition search cannot inherit a paid edition's capabilities. Search and filter choices remain in category links and bookmark URLs.
 

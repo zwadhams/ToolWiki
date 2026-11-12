@@ -69,6 +69,15 @@ html { scroll-behavior: smooth; }
 .result-exports button:disabled { opacity: .5; cursor: default; }
 .result-exports [role='status'] { flex-basis: 100%; margin: 0; color: var(--muted); }
 .result-exports [role='status']:empty { display: none; }
+.search-scope-help { margin: 1rem 0 0; color: var(--muted); font-size: .875rem; line-height: 1.5; }
+@media (min-width: 50rem) {
+  site-search button[data-open-modal] { max-width: 32rem; height: auto; min-height: 2.5rem; padding-block: .35rem; }
+  site-search button[data-open-modal] > span { min-width: 0; text-align: left; line-height: 1.25; }
+  site-search button[data-open-modal] > :is(svg, kbd) { flex-shrink: 0; }
+}
+@media (min-width: 50rem) and (max-width: 70rem) {
+  site-search button[data-open-modal] > kbd { display: none !important; }
+}
 body { font-size: 1rem; line-height: 1.65; }
 h1, h2, .site-title { font-family: var(--font-display); font-weight: 400; letter-spacing: 0; }
 h1 { line-height: 1.25; }

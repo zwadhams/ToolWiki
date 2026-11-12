@@ -1,0 +1,12 @@
+---
+import Search from '@astrojs/starlight/components/Search.astro';
+---
+<Search {...Astro.props} />
+<template id="toolwiki-search-help">
+  <p class="search-scope-help">Search tool names, capabilities, guides, concepts, and research notes.</p>
+</template>
+<script>
+  const container = document.querySelector('site-search .search-container');
+  const help = document.querySelector<HTMLTemplateElement>('#toolwiki-search-help');
+  if (container && help && !container.querySelector('.search-scope-help')) container.append(help.content.cloneNode(true));
+</script>

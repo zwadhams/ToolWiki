@@ -13,7 +13,7 @@ export default defineConfig({
     editLink: { baseUrl: 'https://github.com/zwadhams/ToolWiki/edit/main/' },
     social: [{ icon: 'github', label: 'GitHub repository', href: 'https://github.com/zwadhams/ToolWiki' }],
     pagination: false,
-    components: { MarkdownContent: './src/components/ArticleContent.astro', Head: './src/components/KnowledgeHead.astro' },
+    components: { MarkdownContent: './src/components/ArticleContent.astro', Head: './src/components/KnowledgeHead.astro', Search: './src/components/DescriptiveSearch.astro' },
     sidebar: [
       { label: 'Explore', collapsed: false, items: [
         { label: 'All tools', slug: 'index' },

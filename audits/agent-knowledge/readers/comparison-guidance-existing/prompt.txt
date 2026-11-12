@@ -1,0 +1,1 @@
+Use the ToolWiki MCP server to compare Ruff and mypy and explain which checks I should start with for the Python project in the current directory. Give me commands, but do not run the analyzers or edit files.

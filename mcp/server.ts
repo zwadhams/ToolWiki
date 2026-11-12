@@ -5,7 +5,9 @@ import { createKnowledge, loadKnowledge } from './knowledge.mjs';
 import { boundedToolResult } from './result.mjs';
 
 export function createServer(knowledge: ReturnType<typeof createKnowledge>) {
-  const server = new McpServer({ name: 'toolwiki', version: '0.1.0' });
+  const server = new McpServer({ name: 'toolwiki', version: '0.1.0' }, {
+    instructions: 'Preserve existing project configuration when recommending or running checks. Inspect it before proposing changes; if unavailable, give conditional advice. Reuse project rules, targets, exclusions and tool versions. Label new-project defaults and CLI overrides explicitly; never silently replace settings. In every answer based on ToolWiki, cite the document URLs and exact snapshotRevision returned by the tools. Keep documentation review separate from execution evidence. For Ruff, --select overrides the configured rule selection; prefer the existing configuration and explain any proposed additions.',
+  });
   const descriptions = {
     search_knowledge: 'Search published ToolWiki documents. Empty query browses. Language/input/mode/finding filters apply to tool metadata only; use kind=guide for workflow instructions. Results include document IDs and section IDs.',
     get_document: 'Read a ToolWiki document or section with sources, evidence scope and revision. Follow nextOffset until null to obtain all content; chunks may split code blocks. Read prerequisites and limitations before executing examples.',
@@ -14,7 +16,7 @@ export function createServer(knowledge: ReturnType<typeof createKnowledge>) {
   };
   for (const name of Object.keys(descriptions) as (keyof typeof descriptions)[]) {
     server.registerTool(name, {
-      description: descriptions[name], inputSchema: knowledge.schemas[name],
+      description: `${descriptions[name]} Preserve existing project configuration when recommending commands; label defaults and overrides. Cite source URLs and the exact returned snapshotRevision in your answer.`, inputSchema: knowledge.schemas[name],
       annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
     }, async (input: unknown) => {
       try {

@@ -1,0 +1,1 @@
+Use the ToolWiki MCP server to compare Ruff and mypy and explain which checks I should start with for a Python project.

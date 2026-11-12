@@ -1,0 +1,19 @@
+Start with Ruff for common coding mistakes, then add mypy on a small annotated part of the project. They complement each other.
+
+| Tool | Checks | Main limitation |
+|---|---|---|
+| [Ruff](https://zwadhams.github.io/ToolWiki/tools/ruff/) | Unused imports, common mistakes, coding conventions, and deliberately enabled security rules | Coverage depends on enabled rules; it does not replace a type checker |
+| [mypy](https://zwadhams.github.io/ToolWiki/tools/mypy/) | Incompatible arguments, return values, assignments, and operations using annotations and stubs | Untyped code, `Any`, missing stubs, and suppressions can hide mistakes |
+
+Both are free, open-source static tools: neither needs to run your application.
+
+My recommended starting sequence is:
+
+1. **Preserve existing settings.** I found no Python checker configuration in the current workspace, so these recommendations are conditional. In your actual project, reuse its pinned tool versions, rules, targets, and exclusions.
+2. **Run Ruff without automatic fixes.** For a new project with no existing lint policy, ToolWiki suggests `E4`, `E7`, `E9`, and `F` as a starting selection. Review findings before enabling more rules. Avoid casually adding `--select`: it overrides configured rule selection.
+3. **Add mypy on one small annotated package.** Make the project's dependencies and required type stubs available. Start with its existing strictness; otherwise adopt checks gradually. `--check-untyped-defs` can expand checking into unannotated function bodies, while `--strict` enables broader checks.
+4. **Correct findings and repeat both checks.** Keep their reports separate and continue running application tests. A clean static check does not prove runtime correctness. [ToolWiki's combined workflow](https://zwadhams.github.io/ToolWiki/guides/python-checks/)
+
+This is a documentation-based recommendation; I did not run either checker. ToolWiki's combined example has recorded Windows execution, limited to selected faulty and corrected examples.
+
+ToolWiki `snapshotRevision`: `42dd95ef4d15f352944311bc871106279330b0204eaabfa5899c9013abe43656`.

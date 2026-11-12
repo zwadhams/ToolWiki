@@ -1,0 +1,42 @@
+{
+  "snapshotRevision": "42dd95ef4d15f352944311bc871106279330b0204eaabfa5899c9013abe43656",
+  "cases": {
+    "comparison-guidance-generic": {
+      "successfulNativeMcpCalls": 5,
+      "recoveredInputErrors": [],
+      "serverInstructionsReceived": true,
+      "citesExactSnapshot": true,
+      "warnsAboutRuleOverrides": true,
+      "completed": true
+    },
+    "comparison-guidance-existing": {
+      "successfulNativeMcpCalls": 4,
+      "recoveredInputErrors": [
+        {
+          "request": {
+            "name": "compare_tools",
+            "arguments": {
+              "ids": [
+                "ruff",
+                "mypy"
+              ]
+            }
+          },
+          "error": [
+            {
+              "type": "text",
+              "text": "Unknown document ID: ruff. Use search_knowledge."
+            }
+          ]
+        }
+      ],
+      "serverInstructionsReceived": true,
+      "citesExactSnapshot": true,
+      "warnsAboutRuleOverrides": true,
+      "completed": true,
+      "projectFilesUnchanged": true,
+      "retainsRulesVersionsTargetsAndExclusions": true
+    }
+  },
+  "guidanceSha256": "a8d1f51460a71533a075772999f1d64369c14976ccee20be971aa22dbdf1c38f"
+}

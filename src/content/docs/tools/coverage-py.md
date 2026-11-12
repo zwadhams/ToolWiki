@@ -15,12 +15,13 @@ tool:
       languageScope: source
       languages: [Python]
       findings: [Execution coverage gaps]
-      requires: [testInstance]
+      requires: [instrument, testInstance]
       hostPlatforms: [Windows]
       caveat: coverage.py 7.10.6 measuring one Python process with source available. Supply a runnable program or test command and select the source scope; no particular test framework is required. Subprocesses, concurrency integrations, assertion quality, and native-extension coverage are outside this route.
       sources:
         - https://coverage.readthedocs.io/en/7.10.6/cmd.html
         - https://coverage.readthedocs.io/en/7.10.6/branch.html
+        - https://coverage.readthedocs.io/en/7.10.6/howitworks.html
   decision:
     useWhen: Find Python code and branch destinations that a selected test run did not execute.
     result: Text, HTML, or JSON reports identify measured statements, missing lines, and missing branches within the configured source scope.
@@ -47,6 +48,8 @@ tool:
   sources:
     - label: Selected release and Python requirements
       url: https://pypi.org/project/coverage/7.10.6/
+    - label: Runtime trace collection
+      url: https://coverage.readthedocs.io/en/7.10.6/howitworks.html
     - label: Running tests and producing reports
       url: https://coverage.readthedocs.io/en/7.10.6/cmd.html
     - label: Branch measurement

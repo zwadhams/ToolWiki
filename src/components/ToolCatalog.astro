@@ -61,10 +61,14 @@ const filterHelp: Record<string, string> = {
     </dl></details>
     <div class="active-filters" data-active-filters aria-label="Active filters" hidden></div>
   </form>
-  <section class="compare-tray" aria-label="Selected tools for comparison">
+  <section class="compare-tray" id="comparison-selection" tabindex="-1" aria-label="Selected tools for comparison">
     <div class="compare-tray-heading"><p data-selection-status role="status" tabindex="-1">Select two or three tools to compare.</p><a href={`${base}/compare/`} data-open-comparison>Open comparison</a><button type="button" data-clear-selection hidden>Clear selection</button></div>
     <div class="selected-tools" data-selected-tools></div>
   </section>
+  <nav class="mobile-comparison" aria-label="Quick comparison" hidden>
+    <div><span data-mobile-selection-count></span><a href="#comparison-selection">Manage selection</a></div>
+    <a href={`${base}/compare/`} data-open-comparison>Open comparison</a>
+  </nav>
   <div class="results-bar" id="tool-results"><p role="status" aria-live="polite" aria-atomic="true" tabindex="-1" data-result-count>{tools.length} entries</p><button type="button" class="reset-filters">Reset search</button></div>
   <div class="result-exports" data-result-exports hidden>
     <span>Download these results:</span>
@@ -160,7 +164,7 @@ const filterHelp: Record<string, string> = {
           anchor.href = url.pathname + url.search;
         });
         const context = catalogContext();
-        this.querySelector<HTMLAnchorElement>('[data-open-comparison]')!.href = comparisonHref(this.dataset.base!, selected, context, allowedIds);
+        this.querySelectorAll<HTMLAnchorElement>('[data-open-comparison]').forEach(anchor => { anchor.href = comparisonHref(this.dataset.base!, selected, context, allowedIds); });
         this.querySelectorAll<HTMLAnchorElement>('.tool-card a').forEach(anchor => {
           const url = new URL(anchor.href);
           if (context) url.searchParams.set('catalog', context); else url.searchParams.delete('catalog');
@@ -178,9 +182,12 @@ const filterHelp: Record<string, string> = {
         });
         const selectionHint = selected.length === 3 ? 'Remove a tool to choose another.' : selected.length === 2 ? 'Ready to compare, or choose a third tool.' : 'Select one more tool to compare.';
         selectionStatus.textContent = selected.length ? `${selected.length} of 3 selected. ${selectionHint}` : 'Select two or three tools to compare.';
-        const link = this.querySelector<HTMLAnchorElement>('[data-open-comparison]')!;
-        link.href = comparisonHref(this.dataset.base!, selected, catalogContext(), allowedIds);
-        link.textContent = selected.length >= 2 ? `Compare ${selected.length} tools` : 'Open comparison';
+        this.querySelectorAll<HTMLAnchorElement>('[data-open-comparison]').forEach(link => {
+          link.href = comparisonHref(this.dataset.base!, selected, catalogContext(), allowedIds);
+          link.textContent = selected.length >= 2 ? `Compare ${selected.length} tools` : 'Open comparison';
+        });
+        this.querySelector<HTMLElement>('.mobile-comparison')!.hidden = !selected.length;
+        this.querySelector('[data-mobile-selection-count]')!.textContent = `${selected.length} of 3 selected`;
         this.querySelector<HTMLButtonElement>('[data-clear-selection]')!.hidden = !selected.length;
         const list = this.querySelector('[data-selected-tools]')!; list.replaceChildren();
         this.querySelector('.compare-tray')!.classList.toggle('has-selection', selected.length > 0);

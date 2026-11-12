@@ -26,6 +26,7 @@ tool:
       binaryFormats:
         - JVM bytecode
       requires:
+        - instrument
         - harness
         - testInstance
       hostPlatforms:

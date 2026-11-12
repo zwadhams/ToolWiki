@@ -24,6 +24,7 @@ tool:
       binaryFormats:
         - Native executable
       requires:
+        - instrument
         - testInstance
   modes: [Dynamic]
   inputTypes: [Binaries]

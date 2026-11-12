@@ -8,9 +8,32 @@ import { readFile } from 'node:fs/promises';
 import { parseFrontmatter } from 'astro/markdown';
 import { toolSchema } from '../src/lib/tool-schema.mjs';
 import { markdownText } from '../src/lib/knowledge-markdown.mjs';
+import { readDocumentationSources } from '../src/lib/tool-inventory.mjs';
 
 const site = 'https://example.com/ToolWiki/';
 const entry = { id: 'guides/custom-slug', body: 'Intro [relative](../other/)\n\n## Setup\n\n```powershell\n$Path = "../original/"\n```\n\n### Detail\nKeep this caveat.\n\n## Setup\nAnother heading.\n', data: { title: 'Example', description: 'A workflow.' } };
+
+test('builder records retain instructions, static access links, and current workflow coverage', async () => {
+  const { frontmatter, content } = parseFrontmatter(await readFile('src/content/docs/analysis-suite.md', 'utf8'));
+  const entries = (await readDocumentationSources(process.cwd())).filter(source => source.data.tool).map(source => ({
+    id: source.relativePath.replace(/\.[^.]+$/, ''), data: { ...source.data, tool: toolSchema.parse(source.data.tool) }, body: '',
+  }));
+  const page = { id: 'analysis-suite', data: frontmatter, body: content };
+  const build = items => buildKnowledge([...items, page], site).snapshot.documents.find(doc => doc.id === page.id);
+  const matched = entries.filter(entry => entry.data.tool.analysisWorkflows.length).length;
+  const before = build(entries);
+  for (const phrase of ['does not run them', 'requires JavaScript', 'saves in this browser', 'Tool candidates', `${matched} of ${entries.length}`]) assert.ok(before.markdown.includes(phrase), phrase);
+  for (const path of ['guides/data-access/', 'guides/data-reference/', 'knowledge/v1/catalog.json', 'knowledge/v1/schemas/system-profile.schema.json']) assert.ok(before.markdown.includes(site + path), path);
+  assert.ok(before.sections.some(section => section.id === 'suggestion-scope'));
+  for (const item of entries.filter(entry => !entry.data.tool.analysisWorkflows.length)) assert.ok(before.markdown.includes(site + item.id + '/'));
+  const changed = structuredClone(entries);
+  const removed = changed.find(entry => entry.data.tool.analysisWorkflows.length);
+  removed.data.tool.analysisWorkflows = [];
+  const after = build(changed);
+  assert.notEqual(after.revision, before.revision);
+  assert.ok(after.markdown.includes(`${matched - 1} of ${entries.length}`));
+  assert.ok(after.markdown.includes(site + removed.id + '/'));
+});
 
 test('standalone Markdown includes tool decisions, compatibility, editions, sources and evidence', async () => {
   for (const slug of ['ruff', 'coverity-scan']) {

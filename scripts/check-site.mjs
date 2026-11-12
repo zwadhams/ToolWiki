@@ -184,7 +184,9 @@ system.connections = [{ ...newConnection('api', 'service', 'device'), interface:
 const candidates = (id, data = analyzeSystem(system, builder.tools)) => data.subjects.find(s => s.subjectId === id).candidates.map(c => c.toolId);
 assert.ok(candidates('service').includes('tools/ruff'));
 assert.ok(!candidates('service').includes('tools/cppcheck'));
-assert.ok(candidates('device').includes('tools/valgrind-memcheck'));
+assert.ok(!candidates('device').includes('tools/valgrind-memcheck'), 'Runtime instrumentation must honor an explicit No');
+system.components[1].access.instrument = 'yes';
+assert.ok(candidates('device').includes('tools/valgrind-memcheck'), 'Runtime instrumentation must not require a rebuild');
 assert.ok(!candidates('device').includes('tools/address-sanitizer'));
 assert.ok(!candidates('device').includes('tools/spotbugs'));
 assert.ok(candidates('api').includes('tools/schemathesis'));

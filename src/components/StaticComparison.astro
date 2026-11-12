@@ -1,5 +1,5 @@
 ---
-import { STATIC_COMPARISON_ROWS, staticComparisonTools } from '../lib/static-comparison.mjs';
+import { STATIC_COMPARISON_ROWS, staticComparisonTools, staticComparisonValue } from '../lib/static-comparison.mjs';
 import GithubSlugger from 'github-slugger';
 import type { CollectionEntry } from 'astro:content';
 interface Props { ids: string[]; entries: CollectionEntry<'docs'>[] }
@@ -12,7 +12,7 @@ const slugger = new GithubSlugger();
   <p>Documentation comparison; shared labels do not establish equal checks or coverage.</p>
   <div class="static-comparison-scroll" tabindex="0" role="region" aria-label="Tool requirements and results">
     <table><thead><tr><th scope="col">Field</th>{tools.map(tool => <th scope="col"><a href={tool.url}>{tool.title}</a></th>)}</tr></thead>
-      <tbody>{STATIC_COMPARISON_ROWS.map(([label, key]) => <tr><th scope="row">{label}</th>{tools.map(tool => <td>{tool[key]}</td>)}</tr>)}</tbody>
+      <tbody>{STATIC_COMPARISON_ROWS.map(([label, key]) => <tr><th scope="row">{label}</th>{tools.map(tool => <td>{staticComparisonValue(tool[key])}</td>)}</tr>)}</tbody>
     </table>
   </div>
   <h2 id="comparison-sources-and-evidence">Comparison sources and evidence</h2>

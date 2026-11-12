@@ -16,6 +16,41 @@ const tools = publishedTools(entries);
 const projected = catalogTools(tools);
 const ids = values => values.map(value => value.id);
 
+test('native runtime workflows honor instrumentation access without requiring a rebuild', () => {
+  const affected = tools.filter(tool => ['tools/dr-memory', 'tools/heaptrack', 'tools/valgrind-memcheck', 'tools/valgrind-helgrind'].includes(tool.id));
+  assert.equal(affected.length, 4);
+  const profile = newProfile();
+  const component = { ...newComponent('native'), languages: ['Not sure'], inputs: ['Binaries'], inputsComplete: true, binaryFormat: 'Native executable', hostPlatform: 'Linux', targetPlatform: 'Linux', access: { rebuild: 'no', instrument: 'no', harness: 'no', testInstance: 'yes' } };
+  profile.components = [component];
+  for (const [instrument, expected] of [['no', 'blocked'], ['unknown', 'details'], ['yes', 'candidate']]) {
+    component.access.instrument = instrument;
+    const result = analyzeSystem(profile, builderData(affected).tools);
+    assert.equal(result.matches.length, 4);
+    for (const match of result.matches) {
+      assert.equal(match.status, expected, `${match.toolId}: ${instrument}`);
+      if (instrument === 'unknown') assert.ok(match.questions.some(question => question.field === 'instrument'));
+    }
+  }
+  component.access.testInstance = 'no';
+  assert.ok(analyzeSystem(profile, affected).matches.every(match => match.status === 'blocked'));
+});
+
+test('runtime coverage and JVM fuzzing also require instrumentation access', () => {
+  for (const [id, languages, inputs, binaryFormat] of [
+    ['tools/coverage-py', ['Python'], ['Source code', 'Callable code'], ''],
+    ['tools/jazzer', ['Java'], ['Binaries'], 'JVM bytecode'],
+  ]) {
+    const tool = tools.find(tool => tool.id === id);
+    const profile = newProfile();
+    const component = { ...newComponent('runtime'), languages, inputs, binaryFormat, inputsComplete: true, hostPlatform: 'Windows', access: { rebuild: 'no', instrument: 'no', harness: 'yes', testInstance: 'yes' } };
+    profile.components = [component];
+    for (const [instrument, expected] of [['no', 'blocked'], ['unknown', 'details'], ['yes', 'candidate']]) {
+      component.access.instrument = instrument;
+      assert.equal(analyzeSystem(profile, [tool]).matches[0]?.status, expected, `${id}: ${instrument}`);
+    }
+  }
+});
+
 test('shared adapter excludes drafts and plain documentation and preserves authored identities', () => {
   const [entry] = entries;
   const result = publishedTools([

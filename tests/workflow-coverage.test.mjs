@@ -22,6 +22,7 @@ test('Python coverage needs callable source and workload access, not only a runn
   const tool = await authoredTool('coverage-py');
   const profile = profileFor({ languages: ['Python'], inputs: ['Source code', 'Callable code'], inputsComplete: true, hostPlatform: 'Windows' });
   profile.components[0].access.testInstance = 'yes';
+  profile.components[0].access.instrument = 'yes';
   assert.equal(analyzeSystem(profile, [tool]).matches[0]?.status, 'candidate');
   profile.components[0].access.testInstance = 'unknown';
   assert.equal(analyzeSystem(profile, [tool]).matches[0]?.status, 'details');

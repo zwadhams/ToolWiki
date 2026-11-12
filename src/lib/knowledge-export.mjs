@@ -6,7 +6,8 @@ import { visit } from 'unist-util-visit';
 import GithubSlugger from 'github-slugger';
 import { documentSchema, snapshotSchema, indexSchema } from './knowledge-schema.mjs';
 import { json, sha256, revisionOf } from './knowledge-format.mjs';
-import { profileMarkdown, evidenceMarkdown } from './knowledge-markdown.mjs';
+import { profileMarkdown, evidenceMarkdown, builderScopeMarkdown } from './knowledge-markdown.mjs';
+import { publishedTools } from './tool-data.mjs';
 import { buildCatalog } from './catalog-export.mjs';
 import { buildContract } from './knowledge-contract.mjs';
 import { staticComparisonMarkdown } from './static-comparison.mjs';
@@ -47,6 +48,7 @@ export function exportDocument(entry, site, entries = []) {
     execution: data.executionEvidence || { status: 'not-recorded', scope: 'No structured execution record for this document. Read the text for illustrative examples and limitations.', sources: [] },
   };
   const markdown = cleanMarkdown(entry.body || '', url, data.title)
+    + (data.systemBuilder ? builderScopeMarkdown(publishedTools(entries), site) : '')
     + staticComparisonMarkdown(data.staticComparison, entries, site)
     + profileMarkdown(data.tool, site, data.description || '')
     + evidenceMarkdown(evidence, url, new URL(`knowledge/v1/documents/${id}.json`, site).href);

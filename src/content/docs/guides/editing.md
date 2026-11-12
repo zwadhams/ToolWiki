@@ -108,6 +108,10 @@ The fields above are required, except `languages` may be empty for `languageScop
 
 `subject` is `component` or `connection`. `languageScope` is `source`, `ecosystem`, `independent`, `model`, or `configuration`. Ecosystem languages describe dependency support. Ecosystem, configuration, and model workflows also inspect selected technologies. All listed `inputs` are required together; use separate workflows for alternatives. An instrumented-build workflow can require source even when the catalog input is the executable it eventually checks.
 
+Use `instrument` for checks or recording hooks added at build time or runtime.
+A workflow that instruments an existing executable needs `instrument` even when
+it does not need `rebuild`. Keep both requirements when both permissions are needed.
+
 Workflow findings must be supported by the entry and that particular workflow. Do not give every language all of a product's aggregate capabilities. Record rule, version, plugin, solver, and architecture qualifications in `caveat`; results also display setup, environment, scope, and cost notes. Candidate status means recorded requirements matched, not that all compatibility details or findings were demonstrated.
 
 Keep controlled choices in `src/lib/system-schema.mjs` consistent with metadata. Add focused tests for new matching distinctions. Preserve subject, finding, tool, and workflow relationships so a future coverage view can use the same evidence. Finding categories are derived from matched workflows; users do not need to select investigation goals.

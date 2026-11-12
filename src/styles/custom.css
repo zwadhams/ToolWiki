@@ -51,6 +51,10 @@
   --dynamic-fg: #794737;
 }
 html { scroll-behavior: smooth; }
+.data-downloads { margin: 0 0 1.5rem; padding: 1rem 1.25rem; border: 1px solid var(--line); background: var(--surface); border-radius: .35rem; }
+.data-downloads p { margin: 0 0 .75rem; color: var(--muted); font-size: .9rem; }
+.data-downloads > div { display: flex; flex-wrap: wrap; gap: .65rem 1.5rem; }
+.data-downloads a { color: var(--sl-color-accent-high); }
 body { font-size: 1rem; line-height: 1.65; }
 h1, h2, .site-title { font-family: var(--font-display); font-weight: 400; letter-spacing: 0; }
 h1 { line-height: 1.25; }

@@ -41,6 +41,10 @@ node scripts/preview.mjs
 
 ## Use knowledge with agents
 
+Start with [Data and AI access](src/content/docs/guides/data-access.md) for direct
+downloads and URL access without a local server. The site also publishes
+`/ToolWiki/llms.txt` as an agent starting point.
+
 `pnpm build` also generates `dist/knowledge/v1/`: a manifest, document index,
 Markdown and JSON records, and a complete snapshot. The same files are published
 with the website. Follow [Use ToolWiki with agents](src/content/docs/guides/using-with-agents.md)

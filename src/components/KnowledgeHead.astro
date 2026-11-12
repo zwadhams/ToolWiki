@@ -1,0 +1,6 @@
+---
+import Head from '@astrojs/starlight/components/Head.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Head />
+<link rel="describedby" type="text/plain" href={`${base}/llms.txt`} />

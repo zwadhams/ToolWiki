@@ -13,7 +13,7 @@ export default defineConfig({
     editLink: { baseUrl: 'https://github.com/zwadhams/ToolWiki/edit/main/' },
     social: [{ icon: 'github', label: 'GitHub repository', href: 'https://github.com/zwadhams/ToolWiki' }],
     pagination: false,
-    components: { MarkdownContent: './src/components/ArticleContent.astro' },
+    components: { MarkdownContent: './src/components/ArticleContent.astro', Head: './src/components/KnowledgeHead.astro' },
     sidebar: [
       { label: 'Explore', collapsed: false, items: [
         { label: 'All tools', slug: 'index' },
@@ -22,6 +22,7 @@ export default defineConfig({
         { label: 'Compare tools', slug: 'compare' },
         { label: 'Find tools for your system', slug: 'analysis-suite' },
         { label: 'Use this wiki', slug: 'guides/using-this-wiki' },
+        { label: 'Data and AI access', slug: 'guides/data-access' },
         { label: 'Use ToolWiki with agents', slug: 'guides/using-with-agents' },
       ] },
       { label: 'Concepts', collapsed: true, items: [

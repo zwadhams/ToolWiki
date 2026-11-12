@@ -25,6 +25,7 @@ export default defineConfig({
         { label: 'Find tools for your system', slug: 'analysis-suite' },
         { label: 'Use this wiki', slug: 'guides/using-this-wiki' },
         { label: 'Data and AI access', slug: 'guides/data-access' },
+        { label: 'Knowledge changes', link: '/changes/' },
         { label: 'Use ToolWiki with agents', slug: 'guides/using-with-agents' },
       ] },
       { label: 'Concepts', collapsed: true, items: [

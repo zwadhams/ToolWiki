@@ -164,6 +164,31 @@ until you rebuild; use **Preview.cmd** for style iteration.
 
 ## Publish on GitHub Pages
 
+### Retain a knowledge snapshot
+
+The build publishes a readable change history at `/ToolWiki/changes/` and JSON
+at `/ToolWiki/history/index.json`. It compares document revisions against the
+selected snapshots listed in `data/knowledge-history.json`. A capture date is
+not a publication or documentation review date. The first snapshot is a baseline;
+it does not report every existing record as a new addition.
+
+After a reviewed build, retain its exact bytes from the repository root:
+
+```sh
+node scripts/retain-knowledge.mjs dist/knowledge/v1/manifest.json 2026-11-12 "Reviewed expansion"
+pnpm build
+```
+
+Replace the date and label with the actual capture date and a useful description.
+The script checks the manifest checksum, snapshot revision, document revisions,
+and section bounds. It writes a new file under `public/knowledge/v1/snapshots/`
+and refuses to overwrite an existing revision. Commit the archive and ledger
+together. Rebuilding includes them in static hosting; no database or service is
+required. A validated public HTTPS manifest can also be used as the first argument.
+Retained files must remain byte-identical. Keep older entries when adding a new one.
+
+### Deploy
+
 The repository is configured for `https://zwadhams.github.io/ToolWiki/`.
 Publication requires repository administration access and a commit on `main`.
 

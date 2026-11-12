@@ -6,7 +6,12 @@ const path = `${base}/knowledge/v1/documents/${entry.id || 'index'}`;
 ---
 <Head />
 <link rel="describedby" type="text/plain" href={`${base}/llms.txt`} />
-{entry.id !== '404' && !entry.data.draft && <>
+{!['404', 'changes'].includes(entry.id) && !entry.data.draft && <>
   <link rel="alternate" type="text/markdown" href={`${path}.md`} />
   <link rel="alternate" type="application/json" href={`${path}.json`} />
+</>}
+
+{entry.id === 'changes' && <>
+  <link rel="alternate" type="text/markdown" href={`${base}/history/changes.md`} />
+  <link rel="alternate" type="application/json" href={`${base}/history/index.json`} />
 </>}

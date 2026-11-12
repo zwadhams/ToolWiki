@@ -19,7 +19,7 @@ const catalogIds = docs.filter(doc => doc.data.tool && !doc.data.draft).map(doc 
 const titles = choices.length ? new Map(docs.map(doc => [doc.id, doc.data.title])) : new Map();
 ---
 {entry.data.dataAccess && <DataDownloads entries={docs} />}
-{entry.id !== '404' && !entry.data.draft && !entry.data.catalog && !entry.data.comparison && !entry.data.systemBuilder && <DocumentActions entry={entry} entries={docs} />}
+{!['404', 'changes'].includes(entry.id) && !entry.data.draft && !entry.data.catalog && !entry.data.comparison && !entry.data.systemBuilder && <DocumentActions entry={entry} entries={docs} />}
 {tool && <section class="tool-profile tool-decision" aria-label="Is this tool a fit?">
   <div class="profile-heading" data-pagefind-ignore><span class="mode-badge">{tool.modes.join(' / ')} analysis</span><a href={tool.website}>Official website</a></div>
   <p class="tool-purpose">{tool.decision?.useWhen || entry.data.description}</p>

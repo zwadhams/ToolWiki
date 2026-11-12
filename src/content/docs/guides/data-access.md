@@ -109,7 +109,11 @@ Read the [manifest](../../knowledge/v1/manifest.json), then fetch the path in
 against `snapshot.bytes` and `snapshot.sha256`. Keep that validated snapshot
 for the whole task. A deployment can replace individual files between requests;
 if a snapshot disappears during an update, fetch the manifest again and retry.
-Old snapshot URLs are not an archive, so save the file when reproducibility matters.
+The [change history](../../changes/) and [JSON change feed](../../history/index.json)
+list selected retained snapshots with byte counts and SHA-256 checksums. A snapshot
+listed there remains available at its revision URL. The archive does not include
+every deployment; save unlisted snapshots when reproducibility matters. A capture
+date records when a snapshot was retained, not when its documentation was reviewed.
 
 A revision identifies content, not a review date. Documentation review and
 recorded execution are separate. `not-recorded` means no structured execution

@@ -1,0 +1,28 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getCollection } from 'astro:content';
+import { buildKnowledge } from '../lib/knowledge-export.mjs';
+import { buildHistory, readArchive } from '../lib/knowledge-history.mjs';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const site = new URL(base + '/', import.meta.env.SITE).href;
+const { snapshot } = buildKnowledge(await getCollection('docs'), site);
+const history = buildHistory(snapshot, await readArchive());
+---
+<StarlightPage frontmatter={{ title: 'Knowledge changes', description: 'Added, changed, and removed document records with retained snapshots.', tableOfContents: false }}>
+  <p>{history.retention}</p>
+  <p><a href={`${base}/history/index.json`}>JSON change feed</a> | <a href={`${base}/history/changes.md`}>Read changes as Markdown</a></p>
+  {history.entries.map(entry => <section>
+    <h2>{entry.label}</h2>
+    <p>{entry.current ? 'Current snapshot. ' : ''}{entry.capturedOn ? `Captured ${entry.capturedOn}. ` : 'Not a retained release yet. '}{entry.documentCount} documents.</p>
+    <p><a href={`${base}/${entry.path}`}>Download complete snapshot</a></p>
+    <p>Revision: <code class="revision">{entry.revision}</code></p>
+    {!entry.changes ? <p>Archive baseline. No earlier snapshot is retained for comparison.</p> : <>
+      <p>Compared with revision <code class="revision">{entry.previousRevision}</code>.</p>
+      {Object.entries(entry.changes).map(([kind, records]) => <details open={kind === 'added'}>
+        <summary>{kind[0].toUpperCase() + kind.slice(1)} ({records.length})</summary>
+        {records.length ? <ul>{records.map(record => <li>{kind === 'removed' ? record.title : <a href={record.url}>{record.title}</a>} <code>{record.id}</code></li>)}</ul> : <p>None.</p>}
+      </details>)}
+    </>}
+  </section>)}
+</StarlightPage>
+<style>.revision { overflow-wrap: anywhere; } section { margin-block: 2rem; }</style>

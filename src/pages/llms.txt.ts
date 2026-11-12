@@ -26,6 +26,8 @@ the snapshot against its manifest byte count and SHA-256 and keep it for the tas
 - [Vocabulary](${site}knowledge/v1/vocabulary.json): Current filter values, system choices, and status labels.
 - [Choose a task](${site}knowledge/v1/documents/tasks.md): Requirements, guides, examples, and tool comparisons by reader task.
 - [Static comparisons](${site}knowledge/v1/documents/comparisons.md): Read common comparisons without JavaScript.
+- [Change feed](${site}history/index.json): Selected retained snapshots and added, changed, or removed document revisions. Resolve snapshot paths against the feed's site field.
+- [Readable changes](${site}history/changes.md): The same history as Markdown.
 
 ## Example workflows
 

@@ -184,3 +184,29 @@ or compatibility verification is needed. `goalIds` classifies findings and does
 not filter matches. `results.gaps` summarizes each described part's match status
 and reasons. The referenced tool records retain setup, scope, costs, workflows,
 and a `citation` containing the document URL, revision, and evidence.
+
+## Change feed and retained snapshots
+
+[`history/index.json`](../../history/index.json) has `version: 1`, `site`,
+`currentRevision`, a retention explanation, and `entries` in reverse capture order.
+Resolve each entry's snapshot `path` against `site`, not against the feed URL.
+The [readable history](../../changes/) and [Markdown feed](../../history/changes.md)
+present the same comparison.
+
+Each entry has a `revision`, `label`, `capturedOn`, `current`, `documentCount`,
+`path`, `sha256`, and `bytes`. A current build that has not been archived has
+`capturedOn: null`. Retained capture dates do not imply publication dates or
+new documentation reviews. Only listed archives are retained across deployments.
+
+`previousRevision` identifies the preceding selected snapshot; `changes` is
+null for the archive baseline. Later entries have `changes.added`,
+`changes.changed`, and `changes.removed` arrays. Records contain document `id`,
+`title`, canonical `url`, and content `revision`; changed records also include
+`previousRevision`. Changes are content-hash differences, so formatting and
+export improvements can change many records without changing their tool claims.
+An empty array means no difference of that kind between these selected snapshots.
+
+To retrieve a removed record, download the entry named by `previousRevision`,
+validate its bytes and checksum, and select the ID from its `documents` array.
+The removed record's canonical page URL may no longer exist. The current manifest
+continues to inventory only the current export; archive checksums live in the feed.

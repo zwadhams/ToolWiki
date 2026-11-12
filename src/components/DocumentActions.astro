@@ -1,10 +1,10 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { exportDocument } from '../lib/knowledge-export.mjs';
-interface Props { entry: CollectionEntry<'docs'> }
-const { entry } = Astro.props;
+interface Props { entry: CollectionEntry<'docs'>; entries: CollectionEntry<'docs'>[] }
+const { entry, entries } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const record = exportDocument(entry, new URL(base + '/', import.meta.env.SITE).href);
+const record = exportDocument(entry, new URL(base + '/', import.meta.env.SITE).href, entries);
 const path = `${base}/knowledge/v1/documents/${entry.id}`;
 ---
 <document-actions class="document-actions" data-id={entry.id} data-revision={record.revision} data-record={`${path}.json`} data-pagefind-ignore>

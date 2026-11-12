@@ -24,6 +24,8 @@ the snapshot against its manifest byte count and SHA-256 and keep it for the tas
 - [Format reference](${site}knowledge/v1/documents/guides/data-reference.md): Field dictionary, revisions, evidence semantics, and validation limits.
 - [JSON Schema index](${site}knowledge/v1/schemas/index.json): Schemas for records, catalogs, snapshots, system profiles, and downloaded reports.
 - [Vocabulary](${site}knowledge/v1/vocabulary.json): Current filter values, system choices, and status labels.
+- [Choose a task](${site}knowledge/v1/documents/tasks.md): Requirements, guides, examples, and tool comparisons by reader task.
+- [Static comparisons](${site}knowledge/v1/documents/comparisons.md): Read common comparisons without JavaScript.
 
 ## Example workflows
 

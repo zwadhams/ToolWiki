@@ -1,0 +1,30 @@
+---
+import { STATIC_COMPARISON_ROWS, staticComparisonTools } from '../lib/static-comparison.mjs';
+import GithubSlugger from 'github-slugger';
+import type { CollectionEntry } from 'astro:content';
+interface Props { ids: string[]; entries: CollectionEntry<'docs'>[] }
+const site = new URL(import.meta.env.BASE_URL.replace(/\/$/, '') + '/', import.meta.env.SITE).href;
+const tools = staticComparisonTools(Astro.props.ids, Astro.props.entries, site);
+const slugger = new GithubSlugger();
+---
+<section class="sl-markdown-content">
+  <h2 id="requirements-and-results">Requirements and results</h2>
+  <p>Documentation comparison; shared labels do not establish equal checks or coverage.</p>
+  <div class="static-comparison-scroll" tabindex="0" role="region" aria-label="Tool requirements and results">
+    <table><thead><tr><th scope="col">Field</th>{tools.map(tool => <th scope="col"><a href={tool.url}>{tool.title}</a></th>)}</tr></thead>
+      <tbody>{STATIC_COMPARISON_ROWS.map(([label, key]) => <tr><th scope="row">{label}</th>{tools.map(tool => <td>{tool[key]}</td>)}</tr>)}</tbody>
+    </table>
+  </div>
+  <h2 id="comparison-sources-and-evidence">Comparison sources and evidence</h2>
+  {tools.map(tool => <section>
+    <h3 id={slugger.slug(tool.title)}>{tool.title}</h3>
+    <p>Docs checked {tool.verified}. Execution: {tool.execution.status}. {tool.execution.scope}</p>
+    <ul>{tool.sources.map(source => <li><a href={source.url}>{source.label}</a></li>)}{tool.execution.sources.map(url => <li><a href={url}>Execution record</a></li>)}</ul>
+  </section>)}
+</section>
+<style>
+  .static-comparison-scroll { overflow-x: auto; margin-block: 1rem; }
+  table { min-width: 36rem; width: 100%; }
+  th, td { vertical-align: top; }
+  th:first-child { width: 20%; }
+</style>

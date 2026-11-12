@@ -9,6 +9,7 @@ import { json, sha256, revisionOf } from './knowledge-format.mjs';
 import { profileMarkdown, evidenceMarkdown } from './knowledge-markdown.mjs';
 import { buildCatalog } from './catalog-export.mjs';
 import { buildContract } from './knowledge-contract.mjs';
+import { staticComparisonMarkdown } from './static-comparison.mjs';
 
 const processor = unified().use(remarkParse).use(remarkGfm).use(remarkStringify, { fences: true, bullet: '-' });
 const nodeText = node => node.value ?? (node.children || []).map(nodeText).join('');
@@ -38,7 +39,7 @@ export function sectionsOf(markdown, aliases = {}) {
   return headings;
 }
 
-export function exportDocument(entry, site) {
+export function exportDocument(entry, site, entries = []) {
   const { id, data } = entry;
   const url = new URL(`${id === 'index' ? '' : id + '/'}`, site).href;
   const evidence = {
@@ -46,6 +47,7 @@ export function exportDocument(entry, site) {
     execution: data.executionEvidence || { status: 'not-recorded', scope: 'No structured execution record for this document. Read the text for illustrative examples and limitations.', sources: [] },
   };
   const markdown = cleanMarkdown(entry.body || '', url, data.title)
+    + staticComparisonMarkdown(data.staticComparison, entries, site)
     + profileMarkdown(data.tool, site, data.description || '')
     + evidenceMarkdown(evidence, url, new URL(`knowledge/v1/documents/${id}.json`, site).href);
   const sources = new Map((data.tool?.sources || []).map(source => [source.url, source]));
@@ -63,7 +65,7 @@ export function exportDocument(entry, site) {
 }
 
 export function buildKnowledge(entries, site) {
-  const documents = entries.filter(entry => !entry.data.draft && entry.id !== '404').map(entry => exportDocument(entry, site)).sort((a, b) => a.id.localeCompare(b.id, 'en'));
+  const documents = entries.filter(entry => !entry.data.draft && entry.id !== '404').map(entry => exportDocument(entry, site, entries)).sort((a, b) => a.id.localeCompare(b.id, 'en'));
   if (new Set(documents.map(d => d.id)).size !== documents.length) throw new Error('Duplicate knowledge ID');
   const payload = { version: 1, site, documents };
   const snapshot = snapshotSchema.parse({ ...payload, revision: revisionOf(payload) });

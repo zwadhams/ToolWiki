@@ -8,7 +8,7 @@ import { withToolInventory } from './lib/tool-inventory.mjs';
 export const collections = {
   docs: defineCollection({
     loader: withToolInventory(docsLoader()),
-    schema: docsSchema({ extend: z.object({ tool: toolSchema.optional(), executionEvidence: z.object({ status: z.literal('recorded'), scope: z.string().min(1), sources: z.array(z.url()).min(1) }).strict().optional(), dataAccess: z.boolean().default(false), catalog: z.boolean().default(false), comparison: z.boolean().default(false), systemBuilder: z.boolean().default(false), catalogMode: z.enum(['Static', 'Dynamic']).optional() }) }),
+    schema: docsSchema({ extend: z.object({ tool: toolSchema.optional(), executionEvidence: z.object({ status: z.literal('recorded'), scope: z.string().min(1), sources: z.array(z.url()).min(1) }).strict().optional(), dataAccess: z.boolean().default(false), catalog: z.boolean().default(false), comparison: z.boolean().default(false), staticComparison: z.array(z.string()).min(2).max(3).optional(), systemBuilder: z.boolean().default(false), catalogMode: z.enum(['Static', 'Dynamic']).optional() }) }),
   }),
   i18n: defineCollection({ loader: i18nLoader(), schema: i18nSchema() }),
 };

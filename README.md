@@ -45,6 +45,10 @@ Start with [Data and AI access](src/content/docs/guides/data-access.md) for dire
 downloads and URL access without a local server. The site also publishes
 `/ToolWiki/llms.txt` as an agent starting point.
 
+[Data format reference](src/content/docs/guides/data-reference.md) documents the
+published Draft 2020-12 JSON Schemas, current filter vocabulary, and downloadable
+catalog and recommendation reports. All files are generated during the static build.
+
 `pnpm build` also generates `dist/knowledge/v1/`: a manifest, document index,
 Markdown and JSON records, and a complete snapshot. The same files are published
 with the website. Follow [Use ToolWiki with agents](src/content/docs/guides/using-with-agents.md)

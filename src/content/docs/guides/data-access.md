@@ -32,8 +32,9 @@ Start with the [tool catalog](../../knowledge/v1/catalog.json) or
 [document index](../../knowledge/v1/index.json), or try the
 [Ruff Markdown profile](../../knowledge/v1/documents/tools/ruff.md) and
 [Ruff JSON record](../../knowledge/v1/documents/tools/ruff.json).
-The [agent format reference](../agents-reference/#static-format-version-1)
-explains the record structure and revision calculation.
+The [data format reference](../data-reference/) explains fields, allowed values,
+and evidence semantics. Download the [JSON Schema index](../../knowledge/v1/schemas/index.json)
+and [filter vocabulary](../../knowledge/v1/vocabulary.json) for programmatic use.
 
 ## Give an agent access
 

@@ -21,7 +21,9 @@ the snapshot against its manifest byte count and SHA-256 and keep it for the tas
 - [Data access guide](${site}knowledge/v1/documents/guides/data-access.md): Downloads and a Python fetch example.
 - [Document index](${site}knowledge/v1/index.json): IDs, descriptions, sections, and paths to all records.
 - [Manifest](${site}knowledge/v1/manifest.json): Current snapshot path, revision, byte counts, and checksums.
-- [Format reference](${site}knowledge/v1/documents/guides/agents-reference.md): Record format and evidence semantics.
+- [Format reference](${site}knowledge/v1/documents/guides/data-reference.md): Field dictionary, revisions, evidence semantics, and validation limits.
+- [JSON Schema index](${site}knowledge/v1/schemas/index.json): Schemas for records, catalogs, snapshots, system profiles, and downloaded reports.
+- [Vocabulary](${site}knowledge/v1/vocabulary.json): Current filter values, system choices, and status labels.
 
 ## Example workflows
 

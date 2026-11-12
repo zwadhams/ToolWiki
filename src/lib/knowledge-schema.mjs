@@ -46,3 +46,12 @@ export const catalogToolSchema = z.object({
 export const catalogSchema = z.object({
   version: z.literal(1), revision: hashSchema, tools: z.array(catalogToolSchema),
 }).strict();
+
+export const indexDocumentSchema = documentSchema.omit({ markdown: true, tool: true, sources: true, sections: true }).extend({
+  sections: z.array(documentSchema.shape.sections.element.omit({ start: true, end: true })),
+  record: catalogToolSchema.shape.record, markdown: catalogToolSchema.shape.markdown,
+}).strict();
+export const indexSchema = z.object({
+  version: z.literal(1), revision: hashSchema, documents: z.array(indexDocumentSchema),
+}).strict();
+export const citationSchema = documentSchema.pick({ id: true, title: true, url: true, revision: true, evidence: true });

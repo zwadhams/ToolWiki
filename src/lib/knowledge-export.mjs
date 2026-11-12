@@ -4,10 +4,11 @@ import remarkGfm from 'remark-gfm';
 import remarkStringify from 'remark-stringify';
 import { visit } from 'unist-util-visit';
 import GithubSlugger from 'github-slugger';
-import { documentSchema, snapshotSchema } from './knowledge-schema.mjs';
+import { documentSchema, snapshotSchema, indexSchema } from './knowledge-schema.mjs';
 import { json, sha256, revisionOf } from './knowledge-format.mjs';
 import { profileMarkdown, evidenceMarkdown } from './knowledge-markdown.mjs';
 import { buildCatalog } from './catalog-export.mjs';
+import { buildContract } from './knowledge-contract.mjs';
 
 const processor = unified().use(remarkParse).use(remarkGfm).use(remarkStringify, { fences: true, bullet: '-' });
 const nodeText = node => node.value ?? (node.children || []).map(nodeText).join('');
@@ -66,9 +67,9 @@ export function buildKnowledge(entries, site) {
   if (new Set(documents.map(d => d.id)).size !== documents.length) throw new Error('Duplicate knowledge ID');
   const payload = { version: 1, site, documents };
   const snapshot = snapshotSchema.parse({ ...payload, revision: revisionOf(payload) });
-  const files = new Map();
+  const files = buildContract(snapshot);
   const index = documents.map(({ markdown, tool, sections, sources, ...doc }) => ({ ...doc, sections: sections.map(({ start, end, ...section }) => section), record: `documents/${doc.id}.json`, markdown: `documents/${doc.id}.md` }));
-  files.set('index.json', json({ version: 1, revision: snapshot.revision, documents: index }));
+  files.set('index.json', json(indexSchema.parse({ version: 1, revision: snapshot.revision, documents: index })));
   files.set('catalog.json', json(buildCatalog(snapshot)));
   for (const document of documents) {
     files.set(`documents/${document.id}.json`, json(document));

@@ -1,6 +1,7 @@
 import { markdownText as md, markdownLink as link } from './knowledge-markdown.mjs';
 import { analyzeSystem } from './system-builder.mjs';
 import { profileSchema } from './system-schema.mjs';
+import { catalogResultSchema, recommendationReportSchema } from './result-schema.mjs';
 
 export const COMPARISON_ROWS = [
   ['Use it for', 'useWhen'], ['What you need', 'setup'], ['What it can tell you', 'result'],
@@ -22,7 +23,7 @@ export function catalogSelection(catalog, ids, filters, sourceUrl, knowledgeBase
     if (!tool) throw new Error('A selected tool is missing. Reload the page and try again.');
     return tool;
   });
-  return { version: 1, kind: 'catalog-results', snapshotRevision: catalog.revision, sourceUrl, knowledgeBase, filters, count: tools.length, tools };
+  return catalogResultSchema.parse({ version: 1, kind: 'catalog-results', snapshotRevision: catalog.revision, sourceUrl, knowledgeBase, filters, count: tools.length, tools });
 }
 
 /** Quote RFC 4180 cells; neutralize formula-like strings for spreadsheet use. */
@@ -65,11 +66,11 @@ export function recommendationReport(profile, tools, selectedToolIds, sourceUrl,
   const results = analyzeSystem(savedProfile, tools);
   const selected = selectedToolIds.filter(id => tools.some(tool => tool.id === id));
   const used = new Set([...results.matches.map(match => match.toolId), ...selected]);
-  return {
+  return recommendationReportSchema.parse({
     version: 1, kind: 'recommendations', snapshotRevision, sourceUrl,
     limitation: 'Recommendations use reviewed workflows and the supplied description. They do not measure coverage or establish that a check was executed. Unknown details are not confirmed support.',
     profile: savedProfile, selectedToolIds: selected, results, tools: tools.filter(tool => used.has(tool.id)),
-  };
+  });
 }
 
 export function recommendationMarkdown(report) {

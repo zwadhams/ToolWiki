@@ -12,6 +12,8 @@ import { readDocumentationSources } from '../src/lib/tool-inventory.mjs';
 import { sha256 } from '../src/lib/knowledge-format.mjs';
 import { cleanMarkdown } from '../src/lib/knowledge-export.mjs';
 import { buildCatalog } from '../src/lib/catalog-export.mjs';
+import { buildContract } from '../src/lib/knowledge-contract.mjs';
+import { CONTRACT_PATHS } from '../src/lib/knowledge-paths.mjs';
 
 const base = path.resolve('dist/knowledge/v1');
 const manifest = manifestSchema.parse(JSON.parse(await readFile(path.join(base, 'manifest.json'), 'utf8')));
@@ -24,12 +26,13 @@ assert.deepEqual([...sourceMap.keys()].sort(), inventory.documents.map(d => d.fi
 assert.deepEqual(snapshot.documents.map(d => d.id), inventory.documents.map(d => d.id), 'Export inventory must match loader-resolved IDs');
 const files = new Set();
 for (const file of manifest.files) {
-  assert.match(file.path, /^(?:(?:index|catalog)\.json|snapshots\/[a-f0-9]{64}\.json|documents\/[a-z0-9/_-]+\.(?:json|md))$/);
+  assert.ok(CONTRACT_PATHS.includes(file.path) || /^(?:(?:index|catalog)\.json|snapshots\/[a-f0-9]{64}\.json|documents\/[a-z0-9/_-]+\.(?:json|md))$/.test(file.path), `Unknown export path ${file.path}`);
   assert.ok(!files.has(file.path), `Duplicate export path ${file.path}`); files.add(file.path);
   const bytes = await readFile(path.join(base, file.path));
   assert.equal(bytes.length, file.bytes); assert.equal(sha256(bytes), file.sha256);
 }
-assert.equal(files.size, 3 + snapshot.documents.length * 2);
+assert.equal(files.size, 3 + CONTRACT_PATHS.length + snapshot.documents.length * 2);
+for (const [file, content] of buildContract(snapshot)) assert.equal(await readFile(path.join(base, file), 'utf8'), content, `Stale contract: ${file}`);
 const catalog = JSON.parse(await readFile(path.join(base, 'catalog.json'), 'utf8'));
 assert.deepEqual(catalog, buildCatalog(snapshot));
 assert.deepEqual(catalog.tools.map(tool => tool.id), inventory.profiles.map(tool => tool.id));

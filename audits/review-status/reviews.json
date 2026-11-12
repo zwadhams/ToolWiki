@@ -1619,5 +1619,66 @@
         "sha256": "97a23c7159238215144a35960bc5699940ede1d2ce71a0e5b67d346218b22390"
       }
     ]
+  },
+  {
+    "id": "formal-tools-2026-11-12",
+    "date": "2026-11-12",
+    "reviewer": "formal_tools documentation and fixture review",
+    "scope": "Primary-source review of TLC, heaptrack, and PIT purpose, preparation, findings, limits, and licensing. Executed TLC capacity-2 faulty/corrected model only on Windows 11 with Oracle Java 25.0.4.1. heaptrack and PIT examples remain illustrative. Focused schema/matching/evidence tests passed.",
+    "reference": "audits/formal-tools/README.md",
+    "files": [
+      {
+        "path": "src/content/docs/tools/tlc.md",
+        "sha256": "f47bc5a12d54807dd6ebdd6a869f6d62aa82b7466b49a2a0276a6dccfd60bf84"
+      },
+      {
+        "path": "src/content/docs/tools/heaptrack.md",
+        "sha256": "83b45c81c7dc5785978c3069fc3af4868fc0010f472f000bc11597370eeeb26d"
+      },
+      {
+        "path": "src/content/docs/tools/pit.md",
+        "sha256": "f823d60de49e83211297bfe8d5114844699804196081f3df45d85a6d69dfa721"
+      },
+      {
+        "path": "src/content/docs/guides/model-checking.md",
+        "sha256": "d7f5f6b70e5689e59bcbbc18995bb9014c3eedef848e519e35bdc8d1f30e141f"
+      },
+      {
+        "path": "examples/tlc/QueueFaulty.tla",
+        "sha256": "95913f80318ab6c0ed038b829b93e7394cd92383aa199994676cda97c0e24033"
+      },
+      {
+        "path": "examples/tlc/QueueCorrected.tla",
+        "sha256": "4dbcf4f4015dac9af8feaa3391ac70f24ae5780bb0b830032f18efd4d16273d2"
+      },
+      {
+        "path": "examples/tlc/Queue.cfg",
+        "sha256": "3d8bc348a97de48363ac0d294074e393fbcc1981f246f71094994f129a3a0378"
+      },
+      {
+        "path": "examples/tlc/tool-lock.json",
+        "sha256": "3ad58c8fc3576e7bb1af032bd08ec0c847bb807bf939f655e10a4426cfb1111b"
+      },
+      {
+        "path": "examples/tlc/fetch_tool.py",
+        "sha256": "87dc1e161f62d4e150e62e6485407173f78011bbf345b362bbbb78a09d7c9923"
+      },
+      {
+        "path": "examples/tlc/run.py",
+        "sha256": "fe97da6c2579945e98c6d5b460b00887683bbeac1702224d30ec8f7bee491080"
+      },
+      {
+        "path": "examples/tlc/README.md",
+        "sha256": "342502a83b48941d92ed493745c4acc8dc942fcbcccef1ee4ae6dbb46c1ad9aa"
+      },
+      {
+        "path": "examples/tlc/evidence.md",
+        "sha256": "965dc3243018ce3ba14868506808bd70d12b5e83590fedd7f271c9989de82576"
+      },
+      {
+        "path": "tests/formal-tools.test.mjs",
+        "sha256": "0e549bd6135d98fd4fd3d009bddd3f00f8b3f55f6e0e8b67a8d3f757875b4c40"
+      }
+    ]
   }
 ]

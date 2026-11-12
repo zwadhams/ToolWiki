@@ -9,3 +9,9 @@
 /audits/browser-testing/** -text
 /audits/formal-tools/** -text
 /audits/api-supply-tools/** -text
+
+# Keep executed fixture inputs byte-identical to their retained hashes.
+/examples/tlc/** -text
+/examples/browser-testing/** -text
+/examples/api-contracts/** -text
+/examples/sbom-inventory/** -text

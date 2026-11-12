@@ -23,9 +23,9 @@ async function fetchVerified(file, expectedHash, expectedBytes, attempts = 4) {
 
 const manifest = JSON.parse((await fetchVerified('manifest.json', expectedManifestHash, undefined, 10)).toString('utf8'));
 assert.equal(manifest.version, 1);
-assert.equal(manifest.files.length, manifest.documentCount * 2 + 2);
+assert.equal(manifest.files.length, manifest.documentCount * 2 + 3);
 assert.equal(new Set(manifest.files.map(f => f.path)).size, manifest.files.length);
-for (const file of manifest.files) assert.match(file.path, /^(?:index\.json|snapshots\/[a-f0-9]{64}\.json|documents\/[a-z0-9/_-]+\.(?:json|md))$/);
+for (const file of manifest.files) assert.match(file.path, /^(?:(?:index|catalog)\.json|snapshots\/[a-f0-9]{64}\.json|documents\/[a-z0-9/_-]+\.(?:json|md))$/);
 let cursor = 0, snapshot;
 await Promise.all(Array.from({ length: 8 }, async () => {
   while (cursor < manifest.files.length) {

@@ -7,6 +7,7 @@ import GithubSlugger from 'github-slugger';
 import { documentSchema, snapshotSchema } from './knowledge-schema.mjs';
 import { json, sha256, revisionOf } from './knowledge-format.mjs';
 import { profileMarkdown, evidenceMarkdown } from './knowledge-markdown.mjs';
+import { buildCatalog } from './catalog-export.mjs';
 
 const processor = unified().use(remarkParse).use(remarkGfm).use(remarkStringify, { fences: true, bullet: '-' });
 const nodeText = node => node.value ?? (node.children || []).map(nodeText).join('');
@@ -68,6 +69,7 @@ export function buildKnowledge(entries, site) {
   const files = new Map();
   const index = documents.map(({ markdown, tool, sections, sources, ...doc }) => ({ ...doc, sections: sections.map(({ start, end, ...section }) => section), record: `documents/${doc.id}.json`, markdown: `documents/${doc.id}.md` }));
   files.set('index.json', json({ version: 1, revision: snapshot.revision, documents: index }));
+  files.set('catalog.json', json(buildCatalog(snapshot)));
   for (const document of documents) {
     files.set(`documents/${document.id}.json`, json(document));
     files.set(`documents/${document.id}.md`, document.markdown);

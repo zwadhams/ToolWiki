@@ -32,6 +32,29 @@ test('standalone Markdown includes tool decisions, compatibility, editions, sour
   }
 });
 
+test('compact catalog filters locally and links to complete records with scope qualifiers', async () => {
+  const entries = await Promise.all(['ruff', 'osv-scanner', 'coverity-scan'].map(async slug => {
+    const { frontmatter, content } = parseFrontmatter(await readFile(`src/content/docs/tools/${slug}.md`, 'utf8'));
+    return { id: `tools/${slug}`, body: content, data: { ...frontmatter, tool: toolSchema.parse(frontmatter.tool) } };
+  }));
+  const { files, snapshot } = buildKnowledge([...entries, entry], site);
+  const catalog = JSON.parse(files.get('catalog.json'));
+  assert.equal(catalog.revision, snapshot.revision);
+  assert.equal(catalog.tools.length, 3);
+  assert.deepEqual(catalog.tools.filter(t => t.languages.includes('Python') && t.inputTypes.includes('Source code') && t.cost.includes('Free')).map(t => t.id), ['tools/ruff']);
+  const ruff = catalog.tools.find(t => t.id === 'tools/ruff');
+  assert.ok(ruff.reviewedHostPlatforms.includes('Windows'));
+  assert.ok(ruff.languageNote.includes('Python'));
+  assert.ok(ruff.findingNote.includes('configuration'));
+  for (const tool of catalog.tools) {
+    const record = JSON.parse(files.get(tool.record));
+    assert.equal(record.revision, tool.revision);
+    assert.equal(files.get(tool.markdown), record.markdown);
+    assert.equal('sections' in tool, false);
+    assert.equal('analysisWorkflows' in tool, false);
+  }
+});
+
 test('exports loader IDs, excludes drafts and error pages, and preserves commands and section nesting', () => {
   const { files, snapshot } = buildKnowledge([entry, { ...entry, id: 'draft', data: { ...entry.data, draft: true } }, { ...entry, id: '404' }], site);
   assert.deepEqual(snapshot.documents.map(d => d.id), ['guides/custom-slug']);

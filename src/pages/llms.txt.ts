@@ -17,6 +17,7 @@ the snapshot against its manifest byte count and SHA-256 and keep it for the tas
 
 ## Start here
 
+- [Tool catalog](${site}knowledge/v1/catalog.json): Compact tool metadata for local filtering, with links to complete records. Platform lists cover reviewed workflows only.
 - [Data access guide](${site}knowledge/v1/documents/guides/data-access.md): Downloads and a Python fetch example.
 - [Document index](${site}knowledge/v1/index.json): IDs, descriptions, sections, and paths to all records.
 - [Manifest](${site}knowledge/v1/manifest.json): Current snapshot path, revision, byte counts, and checksums.

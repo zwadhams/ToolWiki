@@ -10,6 +10,9 @@ or local server is needed.
 
 ## Choose what to download
 
+- **Tool catalog:** Filter a compact list of tool names, aliases, languages,
+  inputs, findings, costs, and reviewed workflow platforms. Follow each record's
+  links for complete requirements and workflow details.
 - **Document index:** Find tool profiles, guides, concepts, and research notes by
   title and description. Each entry links to its Markdown and JSON record.
 - **Markdown:** Read a profile or workflow as text, including tool compatibility,
@@ -20,7 +23,8 @@ or local server is needed.
   file for local search, comparison, or offline use.
 - **Manifest:** Find the current snapshot, its revision, and file checksums.
 
-Start with the [document index](../../knowledge/v1/index.json), or try the
+Start with the [tool catalog](../../knowledge/v1/catalog.json) or
+[document index](../../knowledge/v1/index.json), or try the
 [Ruff Markdown profile](../../knowledge/v1/documents/tools/ruff.md) and
 [Ruff JSON record](../../knowledge/v1/documents/tools/ruff.json).
 The [agent format reference](../agents-reference/#static-format-version-1)
@@ -65,6 +69,13 @@ for document in index["documents"]:
 
 These are static files. A URL query such as `?language=Python` does not filter
 the JSON response; your script or agent filters downloaded data locally.
+
+To find Python source tools, fetch `catalog.json` instead and filter its `tools`
+array where `languages` includes `Python` and `inputTypes` includes `Source code`.
+Retain `languageNote`, `findingNote`, and `costNote` when presenting matches.
+`reviewedHostPlatforms` and `reviewedTargetPlatforms` are unions of the tool's
+reviewed workflows, not exhaustive support lists or guarantees for every mode.
+An empty list means no platform is listed there; it does not mean unsupported.
 
 ## Keep a consistent copy
 

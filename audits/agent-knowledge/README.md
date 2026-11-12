@@ -81,9 +81,16 @@ auxiliary scratch files; their hashes are retained as observations. The memory
 diagnostic is fully symbolized in `run.json`. Non-ASCII output is represented
 with explicit escapes, and audit bytes are protected from Git newline conversion.
 
-Run `node scripts/check-agent-evidence.mjs` after `pnpm build` to verify native
-MCP retrievals, fault/correction outcomes, input/script provenance, retained
-hashes, and ASCII evidence. [Evidence validation output](evidence-validation.txt)
-records that check. Run `node scripts/check-published-knowledge.mjs` to compare
-the published export against the current local build. Existing audits remain
-unchanged as historical records.
+Run `node scripts/check-agent-evidence.mjs` to verify historical native MCP
+retrievals, fault/correction outcomes, input/script provenance, retained hashes,
+and ASCII evidence. It loads the archived snapshot named by `static-local-check.json`
+and verifies its checksum, revision, and document count. It does not need a current
+build. The Git history containing the memory execution's recorded source commit
+must be available for its script-provenance check.
+[Original evidence validation output](evidence-validation.txt) records the earlier
+check; [the guidance follow-up](guidance-update/README.md) records the archive fix.
+
+Run `pnpm verify` to validate current exports and the current MCP protocol.
+After building, run `node scripts/check-published-knowledge.mjs` to compare the
+published export against that build. Historical evidence does not certify later
+document changes. Captured reader records remain unchanged.

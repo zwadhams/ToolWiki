@@ -2048,5 +2048,38 @@
         "sha256": "654b5dc695f45cfbe59754d6cc45e7ad78d22dc859040dbb9645fc008da4e6ae"
       }
     ]
+  },
+  {
+    "id": "mcp-guidance-evidence-2026-11-12",
+    "date": "2026-11-12",
+    "reviewer": "coordinator follow-up review",
+    "scope": "Configuration-preserving MCP instructions and snapshot citations, transport delivery, historical snapshot selection with byte/revision/count checks, reader-record reconciliation, and failure-mode regression tests. No new analyzer runs.",
+    "reference": "audits/agent-knowledge/guidance-update/README.md",
+    "files": [
+      {
+        "path": "mcp/server.ts",
+        "sha256": "a8d1f51460a71533a075772999f1d64369c14976ccee20be971aa22dbdf1c38f"
+      },
+      {
+        "path": "scripts/check-agent-evidence.mjs",
+        "sha256": "0786cd28344d79d13ed474e87c9afdc844b24b2e373c4270bb26e7975fac0ce3"
+      },
+      {
+        "path": "scripts/lib/agent-evidence-snapshot.mjs",
+        "sha256": "a447a2cfc9da205fb79d2f2a38cd578d8583e0681bd7a8de004e0dac7dec9e97"
+      },
+      {
+        "path": "src/content/docs/guides/agents-reference.md",
+        "sha256": "120206464268c47a03ec48065c2e5779e14330ea5b152859e3ba409512d3b8fd"
+      },
+      {
+        "path": "tests/mcp/protocol.test.mjs",
+        "sha256": "bce6aded7e06a0a47e2ec25b1d9678469fa1e5ae2f900892cc71cbe7e0926d50"
+      },
+      {
+        "path": "tests/agent-evidence-snapshot.test.mjs",
+        "sha256": "e6367fb7274ceb3188afa1ea2b93cc1ea27e79298be73d710bc34441ee486870"
+      }
+    ]
   }
 ]

@@ -1,0 +1,38 @@
+{
+  "reviewedOn": "2026-11-12",
+  "scope": "Revalidated existing November 9 reader records and the current implementation. No new agent sessions or analyzer runs were performed.",
+  "historicalAuditSnapshot": "3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d",
+  "guidanceSessionSnapshot": "42dd95ef4d15f352944311bc871106279330b0204eaabfa5899c9013abe43656",
+  "currentBuildSnapshot": "286719e694ce37be533dfedc4de1fdab5ba42d69248770c646708baa58cb94cc",
+  "guidanceServerSha256": "a8d1f51460a71533a075772999f1d64369c14976ccee20be971aa22dbdf1c38f",
+  "cases": [
+    {
+      "name": "comparison-guidance-generic",
+      "successfulCalls": 5,
+      "recoveredErrors": 0,
+      "instructionsMatch": true,
+      "citesRecordedSnapshot": true
+    },
+    {
+      "name": "comparison-guidance-existing",
+      "successfulCalls": 4,
+      "recoveredErrors": 1,
+      "instructionsMatch": true,
+      "citesRecordedSnapshot": true
+    }
+  ],
+  "inputFilesMatched": 3,
+  "checks": {
+    "unitTests": 137,
+    "mcpTests": 4,
+    "historicalRetainedHashes": 190,
+    "documentationValidation": "passed",
+    "regressions": [
+      "No current dist build needed",
+      "Newer archived content does not replace the audit revision",
+      "Missing archive rejected",
+      "Wrong document count rejected",
+      "Modified snapshot bytes rejected"
+    ]
+  }
+}

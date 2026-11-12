@@ -1,0 +1,5 @@
+{
+  "pyproject.toml": "12a202ebd26a71ab61f5c543f3cb180afc6183d38015ec8aa4398d5d1e95acaa",
+  "src/parcel_demo/greeting.py": "e61f256595ea2747ca26791022a5c10ace30702743c4806fc75e70e7323869d6",
+  "src/parcel_demo/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -4,15 +4,15 @@
   "counts": {
     "unchanged-since-review": 3,
     "changed-since-review": 95,
-    "reviewed-follow-up": 223,
-    "not-yet-linked-to-review": 3,
-    "removed-since-review": 1
+    "reviewed-follow-up": 228,
+    "not-yet-linked-to-review": 2,
+    "removed-since-review": 2
   },
   "files": [
     {
       "path": ".gitattributes",
       "status": "changed-since-review",
-      "currentSha256": "ba2ed07fed20f027f531813c4f2864dff41b9a3322e3112bedeaed5ff166d30d",
+      "currentSha256": "a87a5ca4607187d63d0416423bf2f769dc80c24aa9adcdef067f04b5bd2c9959",
       "latestReview": {
         "id": "reader-workflows-coordinator-2026-11-06",
         "date": "2026-11-06",
@@ -552,7 +552,7 @@
     {
       "path": "audits/review-status/reviews.json",
       "status": "changed-since-review",
-      "currentSha256": "c887c377e46abab083c292f37a04e402d5d5b3dc8349f7a16e2ea3891523d74f",
+      "currentSha256": "61359e1ced7b6e19eeff23e46988653cdeca3a48cd56c2b7a45a6e6227065792",
       "latestReview": {
         "id": "remaining-work-architecture-2026-11-06",
         "date": "2026-11-06",
@@ -1975,9 +1975,24 @@
       "reviewCount": 1
     },
     {
-      "path": "node_modules/@astrojs/starlight/dist/components/Search.astro",
+      "path": "mcp/server.ts",
       "status": "reviewed-follow-up",
-      "currentSha256": "30d6549c54409a9e92ec9734901946d409a408635e8876b18940285f21c62062",
+      "currentSha256": "a8d1f51460a71533a075772999f1d64369c14976ccee20be971aa22dbdf1c38f",
+      "latestReview": {
+        "id": "mcp-guidance-evidence-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator follow-up review",
+        "reference": "audits/agent-knowledge/guidance-update/README.md",
+        "scope": "Configuration-preserving MCP instructions and snapshot citations, transport delivery, historical snapshot selection with byte/revision/count checks, reader-record reconciliation, and failure-mode regression tests. No new analyzer runs.",
+        "sha256": "a8d1f51460a71533a075772999f1d64369c14976ccee20be971aa22dbdf1c38f"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "node_modules/@astrojs/starlight/dist/components/Search.astro",
+      "status": "removed-since-review",
+      "currentSha256": null,
       "latestReview": {
         "id": "remaining-work-architecture-2026-11-06",
         "date": "2026-11-06",
@@ -1986,6 +2001,21 @@
         "reference": "audits/remaining-work/reviews/architecture.json",
         "scope": "Independent architecture review of stated requirements only; file-specific scope and limitations are recorded in the linked evidence.",
         "sha256": "30d6549c54409a9e92ec9734901946d409a408635e8876b18940285f21c62062"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "scripts/check-agent-evidence.mjs",
+      "status": "reviewed-follow-up",
+      "currentSha256": "0786cd28344d79d13ed474e87c9afdc844b24b2e373c4270bb26e7975fac0ce3",
+      "latestReview": {
+        "id": "mcp-guidance-evidence-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator follow-up review",
+        "reference": "audits/agent-knowledge/guidance-update/README.md",
+        "scope": "Configuration-preserving MCP instructions and snapshot citations, transport delivery, historical snapshot selection with byte/revision/count checks, reader-record reconciliation, and failure-mode regression tests. No new analyzer runs.",
+        "sha256": "0786cd28344d79d13ed474e87c9afdc844b24b2e373c4270bb26e7975fac0ce3"
       },
       "reviewCount": 1
     },
@@ -2001,6 +2031,21 @@
         "reference": "audits/remaining-work/reviews/architecture.json",
         "scope": "Independent architecture review of stated requirements only; file-specific scope and limitations are recorded in the linked evidence.",
         "sha256": "4ec1ef745426dad5c46f958d97d7fd660398290d6eed6c6dce9ec9f32202d95f"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "scripts/lib/agent-evidence-snapshot.mjs",
+      "status": "reviewed-follow-up",
+      "currentSha256": "a447a2cfc9da205fb79d2f2a38cd578d8583e0681bd7a8de004e0dac7dec9e97",
+      "latestReview": {
+        "id": "mcp-guidance-evidence-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator follow-up review",
+        "reference": "audits/agent-knowledge/guidance-update/README.md",
+        "scope": "Configuration-preserving MCP instructions and snapshot citations, transport delivery, historical snapshot selection with byte/revision/count checks, reader-record reconciliation, and failure-mode regression tests. No new analyzer runs.",
+        "sha256": "a447a2cfc9da205fb79d2f2a38cd578d8583e0681bd7a8de004e0dac7dec9e97"
       },
       "reviewCount": 1
     },
@@ -2416,10 +2461,18 @@
     },
     {
       "path": "src/content/docs/guides/agents-reference.md",
-      "status": "not-yet-linked-to-review",
-      "currentSha256": "45781e19cae0b900eed9a0d405ea6be76ab05a1bfa3d7872b68baf7142d0beda",
-      "latestReview": null,
-      "reviewCount": 0
+      "status": "reviewed-follow-up",
+      "currentSha256": "120206464268c47a03ec48065c2e5779e14330ea5b152859e3ba409512d3b8fd",
+      "latestReview": {
+        "id": "mcp-guidance-evidence-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator follow-up review",
+        "reference": "audits/agent-knowledge/guidance-update/README.md",
+        "scope": "Configuration-preserving MCP instructions and snapshot citations, transport delivery, historical snapshot selection with byte/revision/count checks, reader-record reconciliation, and failure-mode regression tests. No new analyzer runs.",
+        "sha256": "120206464268c47a03ec48065c2e5779e14330ea5b152859e3ba409512d3b8fd"
+      },
+      "reviewCount": 1
     },
     {
       "path": "src/content/docs/guides/api-contracts.md",
@@ -4663,6 +4716,21 @@
       "reviewCount": 2
     },
     {
+      "path": "tests/agent-evidence-snapshot.test.mjs",
+      "status": "reviewed-follow-up",
+      "currentSha256": "e6367fb7274ceb3188afa1ea2b93cc1ea27e79298be73d710bc34441ee486870",
+      "latestReview": {
+        "id": "mcp-guidance-evidence-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator follow-up review",
+        "reference": "audits/agent-knowledge/guidance-update/README.md",
+        "scope": "Configuration-preserving MCP instructions and snapshot citations, transport delivery, historical snapshot selection with byte/revision/count checks, reader-record reconciliation, and failure-mode regression tests. No new analyzer runs.",
+        "sha256": "e6367fb7274ceb3188afa1ea2b93cc1ea27e79298be73d710bc34441ee486870"
+      },
+      "reviewCount": 1
+    },
+    {
       "path": "tests/authoring.test.mjs",
       "status": "reviewed-follow-up",
       "currentSha256": "470ecf06cd4dca45e5a1c656e3e124ff0010df2c579364ee0163372a3912756a",
@@ -4734,6 +4802,21 @@
         "reference": "audits/formal-tools/README.md",
         "scope": "Primary-source review of TLC, heaptrack, and PIT purpose, preparation, findings, limits, and licensing. Executed TLC capacity-2 faulty/corrected model only on Windows 11 with Oracle Java 25.0.4.1. heaptrack and PIT examples remain illustrative. Focused schema/matching/evidence tests passed.",
         "sha256": "0e549bd6135d98fd4fd3d009bddd3f00f8b3f55f6e0e8b67a8d3f757875b4c40"
+      },
+      "reviewCount": 1
+    },
+    {
+      "path": "tests/mcp/protocol.test.mjs",
+      "status": "reviewed-follow-up",
+      "currentSha256": "bce6aded7e06a0a47e2ec25b1d9678469fa1e5ae2f900892cc71cbe7e0926d50",
+      "latestReview": {
+        "id": "mcp-guidance-evidence-2026-11-12",
+        "date": "2026-11-12",
+        "type": "follow-up",
+        "reviewer": "coordinator follow-up review",
+        "reference": "audits/agent-knowledge/guidance-update/README.md",
+        "scope": "Configuration-preserving MCP instructions and snapshot citations, transport delivery, historical snapshot selection with byte/revision/count checks, reader-record reconciliation, and failure-mode regression tests. No new analyzer runs.",
+        "sha256": "bce6aded7e06a0a47e2ec25b1d9678469fa1e5ae2f900892cc71cbe7e0926d50"
       },
       "reviewCount": 1
     },

@@ -8,6 +8,20 @@ All four tools return `snapshotRevision`. Document citations contain `id`,
 `title`, `url`, `revision`, and `evidence`. These tools read data and do not
 execute target programs, install analyzers, or write files.
 
+The MCP server instructs agents to preserve existing project configuration when
+recommending or running checks. Inspect the project's settings before proposing
+changes, or give conditional advice when they are unavailable. Reuse existing
+rules, targets, exclusions, and tool versions; label new-project defaults and
+command-line overrides explicitly. For example, Ruff's `--select` overrides the
+configured rule selection, so do not present it as a neutral way to run an
+already configured project. See [Ruff rule selection](https://docs.astral.sh/ruff/linter/#rule-selection).
+
+Answers based on ToolWiki should cite the relevant document URLs and the exact
+`snapshotRevision` returned by the tools. Cite a shared snapshot once when all
+results use it. Keep documentation review separate from execution evidence.
+These instructions are delivered during MCP initialization and repeated briefly
+in tool descriptions. Restart an existing server connection to load updates.
+
 ## Static format version 1
 
 The base path is `/ToolWiki/knowledge/v1/`. `manifest.json` gives the format

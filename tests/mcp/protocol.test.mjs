@@ -24,7 +24,16 @@ test('real stdio discovery, all four tools, resources, input errors, and shutdow
   await client.connect(transport);
   const pid = transport.pid;
   try {
-    assert.deepEqual((await client.listTools()).tools.map(t => t.name).sort(), ['compare_tools', 'get_document', 'recommend_checks', 'search_knowledge']);
+    const instructions = client.getInstructions();
+    assert.match(instructions, /Preserve existing project configuration/);
+    assert.match(instructions.slice(0, 512), /exact snapshotRevision/);
+    assert.match(instructions, /--select overrides/);
+    const discovered = (await client.listTools()).tools;
+    assert.deepEqual(discovered.map(t => t.name).sort(), ['compare_tools', 'get_document', 'recommend_checks', 'search_knowledge']);
+    for (const tool of discovered) {
+      assert.match(tool.description, /Preserve existing project configuration/);
+      assert.match(tool.description, /exact returned snapshotRevision/);
+    }
     const search = decode(await client.callTool({ name: 'search_knowledge', arguments: { query: 'Python', filters: { kind: 'guide' } } }));
     assert.equal(search.snapshotRevision, snapshot.revision);
     assert.ok(search.results.some(d => d.id === 'guides/python-checks'));

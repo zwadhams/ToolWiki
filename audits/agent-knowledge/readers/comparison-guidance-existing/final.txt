@@ -1,0 +1,23 @@
+Start with Ruff, then mypy, using your existing configuration for both.
+
+| Tool | What it checks | Fit for this project |
+|---|---|---|
+| [Ruff](https://zwadhams.github.io/ToolWiki/tools/ruff/) | Common mistakes and coding conventions | Already configured for error rules, Pyflakes, bugbear, import sorting, and Python modernization |
+| [mypy](https://zwadhams.github.io/ToolWiki/tools/mypy/) | Consistency of annotations, arguments, returns, and operations | Your code has annotations, and strict checking plus unreachable-code warnings are already enabled |
+
+Your `pyproject.toml` pins Ruff `0.14.3` and mypy `1.18.2`, targets Python 3.12, and excludes `src/parcel_demo/generated/` from discovery in both tools. Ruff deliberately ignores `F401` (unused imports).
+
+From the current directory, with those pinned tools installed in your Python 3.12 environment, run:
+
+```powershell
+python -m ruff check src
+python -m mypy --config-file pyproject.toml src
+```
+
+These commands retain the configured rules, strictness, target versions, and exclusions. Start by reviewing Ruff's findings, then examine mypy's type errors. No additional rules or stricter flags are needed for the initial baseline. Avoid Ruff's `--select`, which replaces configured rule selection, and `--isolated`, which bypasses project configuration.
+
+The tools complement each other: Ruff does not replace type checking, and mypy can miss problems hidden by `Any`, missing stubs, or suppressions. Neither replaces runtime tests. See the linked ToolWiki profiles above.
+
+I only inspected files and consulted ToolWiki; I did not run analyzers or edit files. This is documentation-based guidance, not an execution result.
+
+ToolWiki `snapshotRevision`: `42dd95ef4d15f352944311bc871106279330b0204eaabfa5899c9013abe43656`.

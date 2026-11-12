@@ -3,12 +3,15 @@ import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { sha256 } from '../src/lib/knowledge-format.mjs';
-import { loadKnowledge } from '../mcp/knowledge.mjs';
+import { loadAgentEvidenceSnapshot } from './lib/agent-evidence-snapshot.mjs';
 
 const root = path.resolve('audits/agent-knowledge');
 const read = file => readFile(path.join(root, file), 'utf8');
 const parse = async file => JSON.parse(await read(file));
-const snapshot = await loadKnowledge(path.resolve('dist/knowledge/v1/manifest.json'));
+// Validate historical sessions against their retained export. Current exports
+// are validated separately by check-knowledge.mjs and the live protocol tests.
+const snapshot = await loadAgentEvidenceSnapshot();
+const auditSnapshotRevision = snapshot.revision;
 const readers = [['python', 'guides/python-checks'], ['api', 'guides/api-testing'], ['memory', 'guides/windows-memory-check'], ['memory-results', 'guides/windows-memory-check']];
 for (const [reader, guide] of readers) {
   assert.equal((await parse(`readers/${reader}/completion.json`)).code, 0);
@@ -22,9 +25,11 @@ for (const [reader, guide] of readers) {
   const response = events.find(e => e.direction === 'response' && e.pid === request.pid && e.message.id === request.message.id).message.result;
   assert.ok(!response.isError);
   const doc = response.structuredContent || JSON.parse(response.content[0].text);
-  assert.equal(doc.snapshotRevision, snapshot.revision, 'Audit snapshot changed: reassess affected reader scenarios.');
+  assert.equal(doc.snapshotRevision, auditSnapshotRevision, 'Recorded reader snapshot does not match the original audit.');
   assert.equal(doc.revision, snapshot.documents.find(d => d.id === guide).revision);
+  assert.equal(doc.offset, 0);
   assert.equal(doc.nextOffset, null, 'These reader scenarios must retain the full guide.');
+  assert.equal(doc.markdown, snapshot.documents.find(d => d.id === guide).markdown);
 }
 assert.equal((await parse('readers/protocol-retest/completion.json')).code, 0);
 const retest = (await read('readers/protocol-retest/mcp.jsonl')).trim().split('\n').map(JSON.parse);
@@ -35,6 +40,8 @@ for (const guide of ['guides/python-checks', 'guides/api-testing', 'guides/windo
     const response = retest.find(e => e.direction === 'response' && e.pid === request.pid && e.message.id === request.message.id).message.result;
     assert.ok(!response.isError);
     const doc = response.structuredContent || JSON.parse(response.content[0].text);
+    assert.equal(doc.snapshotRevision, auditSnapshotRevision);
+    assert.equal(doc.revision, snapshot.documents.find(d => d.id === guide).revision);
     chunks.set(doc.offset, doc.markdown);
   }
   let combined = '';

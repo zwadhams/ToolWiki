@@ -2,6 +2,21 @@
 title: PVS-Studio
 description: Find defects and potential security weaknesses across native, managed, and web application source code.
 tool:
+  cardRequirement: Source files, a compatible pvs-js installation, and an active PVS-Studio license.
+  analysisWorkflows:
+    - id: javascript-equivalent-operands
+      label: JavaScript and TypeScript equivalent-operands check
+      subject: component
+      inputs: [Source code]
+      languageScope: source
+      languages: [JavaScript, TypeScript]
+      findings: [Logic errors]
+      hostPlatforms: [Windows, Linux, macOS]
+      caveat: The pvs-js V7001 diagnostic checks equivalent operands in JavaScript and TypeScript source. Install the required Node.js and PVS-Studio analyzer components and activate a suitable license. Review parsing failures, project configuration, and suppressions. This route does not imply native-code memory checks or other PVS-Studio analyzers.
+      sources:
+        - https://pvs-studio.com/en/docs/manual/7195/
+        - https://pvs-studio.com/en/docs/manual/0018/
+        - https://pvs-studio.com/en/docs/warnings/v7001/
   modes: [Static]
   inputTypes: [Source code]
   techniques: [SAST, Bug finding, Data flow analysis]
@@ -33,6 +48,12 @@ tool:
       url: https://pvs-studio.com/en/order/for-students/
     - label: Pricing request
       url: https://pvs-studio.com/en/order/
+    - label: JavaScript and TypeScript CLI
+      url: https://pvs-studio.com/en/docs/manual/7195/
+    - label: Analyzer-specific runtime and host requirements
+      url: https://pvs-studio.com/en/docs/manual/0018/
+    - label: V7001 equivalent operands diagnostic
+      url: https://pvs-studio.com/en/docs/warnings/v7001/
 ---
 
 ## What it does
@@ -60,3 +81,24 @@ The free open-source program has narrower eligibility than simply having a publi
 ## A useful first evaluation
 
 Choose a representative project and the matching analyzer integration. Review a small set of findings against the diagnostic reference, then assess the paid or eligible free license against the platforms and workflow features you need. Record your configuration and exclusions when comparing results with another tool.
+
+## System builder scope
+
+**Documentation reviewed November 12, 2026; not executed here.** The builder's
+route covers JavaScript and TypeScript source with `pvs-js`, selecting only
+[V7001](https://pvs-studio.com/en/docs/warnings/v7001/). It identifies equivalent
+operands that may indicate a mistaken condition. A match needs review against
+the intended behavior.
+
+After installing the [required runtime and analyzer components](https://pvs-studio.com/en/docs/manual/0018/)
+and activating a suitable license, run from your project directory:
+
+```sh
+pvs-js analyze . --rules ALL=off --rules V7001=on --output pvs-v7001.json --indicate-warnings
+```
+
+The [CLI reference](https://pvs-studio.com/en/docs/manual/7195/) distinguishes
+completed findings from parse, timeout, configuration, and license failures.
+Preserve the project's existing exclusions and suppressions with the report.
+The catalog's C/C++, C#, Java, and Go capabilities have different setup and are
+not included in this builder route.

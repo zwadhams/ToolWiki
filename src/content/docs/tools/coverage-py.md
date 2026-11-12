@@ -2,6 +2,20 @@
 title: coverage.py
 description: Measure which Python statements and branches a test run executes.
 tool:
+  analysisWorkflows:
+    - id: python-process-coverage
+      label: Python statement and branch coverage
+      subject: component
+      inputs: [Source code, Callable code]
+      languageScope: source
+      languages: [Python]
+      findings: [Execution coverage gaps]
+      requires: [testInstance]
+      hostPlatforms: [Windows]
+      caveat: coverage.py 7.10.6 measuring one Python process with source available. Supply a runnable program or test command and select the source scope; no particular test framework is required. Subprocesses, concurrency integrations, assertion quality, and native-extension coverage are outside this route.
+      sources:
+        - https://coverage.readthedocs.io/en/7.10.6/cmd.html
+        - https://coverage.readthedocs.io/en/7.10.6/branch.html
   decision:
     useWhen: Find Python code and branch destinations that a selected test run did not execute.
     result: Text, HTML, or JSON reports identify measured statements, missing lines, and missing branches within the configured source scope.
@@ -32,6 +46,8 @@ tool:
       url: https://coverage.readthedocs.io/en/7.10.6/cmd.html
     - label: Branch measurement
       url: https://coverage.readthedocs.io/en/latest/branch.html
+    - label: Reviewed release branch measurement
+      url: https://coverage.readthedocs.io/en/7.10.6/branch.html
     - label: Source selection and unexecuted files
       url: https://coverage.readthedocs.io/en/latest/source.html
     - label: Process collection requirements
@@ -71,5 +87,14 @@ Coverage can show which code those tests reached; it does not supply the
 properties. [StrykerJS](../strykerjs/) answers a different question for JavaScript:
 whether existing tests notice selected changes to the source.
 
-This profile is catalog-only. The system builder does not yet select a Python
-test runner or a coverage collection configuration for you.
+## System builder scope
+
+**Workflow reviewed November 12, 2026.** The builder can suggest one-process
+measurement when you have Python source, callable code, and permission to run
+the workload. A runnable Python script or module is sufficient; the existing
+fixture uses unittest, but coverage.py does not require that runner.
+
+Choose the source directory, branch setting, and existing configuration before
+running. The Windows host scope follows the retained fixture; other hosts need
+a compatibility check. Subprocess and concurrency collection remain outside
+this route. Coverage does not establish that assertions check the behavior.

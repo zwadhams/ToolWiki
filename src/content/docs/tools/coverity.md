@@ -27,6 +27,10 @@ tool:
       url: https://www.blackduck.com/static-analysis-tools-sast/languages-and-frameworks.html
     - label: "Free Scan eligibility and submission limits"
       url: https://scan.coverity.com/faq
+    - label: "Coverity 2026.9 compiler and language configuration"
+      url: https://docs.blackduck.com/r/coverity/2026.9/coverity-documentation/language-specific-configurations.html?contentId=oNdbP4nNLQpIGfs_jGJD2w
+    - label: "Coverity 2026.9 capture models"
+      url: https://docs.blackduck.com/r/coverity/2026.9/coverity-documentation/capture-models-you-can-use.html?contentId=Gkp4bda4SB19vYlv~sWnqQ
 ---
 
 ## When to use it
@@ -62,3 +66,14 @@ This is an evaluation recipe, not a transcript from a licensed run. Commands and
 [Coverity Scan](../coverity-scan/) has separate eligibility, listed languages, and submission limits. Use that entry when filtering for a free option.
 
 A clean commercial scan still needs evidence that the intended code and configuration were analyzed. For C/C++ verification claims, also compare [Polyspace Code Prover](../polyspace-code-prover/) and [Frama-C](../frama-c/).
+
+## System builder scope
+
+**Reviewed November 12, 2026.** This profile remains catalog-only until a
+complete route has been checked against a specific release's host/compiler
+support. The [compiler configuration reference](https://docs.blackduck.com/r/coverity/2026.9/coverity-documentation/language-specific-configurations.html?contentId=oNdbP4nNLQpIGfs_jGJD2w)
+requires the native compiler environment for accurate C/C++ capture.
+[Capture modes](https://docs.blackduck.com/r/coverity/2026.9/coverity-documentation/capture-models-you-can-use.html?contentId=Gkp4bda4SB19vYlv~sWnqQ)
+also differ in which files they collect. Source and rebuild access alone do
+not establish a supported capture configuration. The broad product language
+list is therefore not used as a builder workflow.

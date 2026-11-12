@@ -92,5 +92,11 @@ score as proof that the application is secure. Save needed reports before
 stopping the temporary container with `docker stop mobsf-apk-review` from another
 terminal.
 
-This entry stays outside automatic matching because the builder does not yet
-model APK artifacts. Selecting Native executable or Other is not a substitute.
+## System builder scope
+
+**Reviewed November 12, 2026.** This entry stays outside automatic matching
+because the builder does not model APK artifacts. The
+[release documentation](https://github.com/MobSF/Mobile-Security-Framework-MobSF/blob/v4.6.4/README.md)
+distinguishes mobile package inputs. An Android target, Native executable,
+JVM bytecode, or Other format does not establish that an APK is available.
+Docker describes this workflow's analysis environment, not the target input.

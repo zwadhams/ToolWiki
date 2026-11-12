@@ -51,3 +51,12 @@ The [commercial Coverity example](../coverity/#worked-example-review-a-c-memory-
 A difference between revisions can reflect code, configuration, or analyzer changes. Record these separately. A successful submission is not evidence that every intended file was captured.
 
 For broader language requirements or private commercial analysis, consult [commercial Coverity](../coverity/). Keep that product's capabilities separate when comparing free alternatives.
+
+## System builder scope
+
+**Reviewed November 12, 2026.** This profile remains catalog-only. The
+[Scan FAQ](https://scan.coverity.com/faq) requires an eligible registered
+open-source project and its capture/submission setup. The builder records
+source and rebuild access, but not Scan registration, project eligibility,
+or permission to submit the captured project. A free-cost preference cannot
+establish those conditions.

@@ -2,6 +2,20 @@
 title: SonarQube Server
 description: Review code quality and security findings across projects using analysis rules and quality gates.
 tool:
+  cardRequirement: Python source and a configured licensed Server project with scanner access.
+  analysisWorkflows:
+    - id: python-source
+      label: Python source rules in SonarQube Server
+      subject: component
+      inputs: [Source code]
+      languageScope: source
+      languages: [Python]
+      findings: [Logic errors, Coding conventions]
+      hostPlatforms: [Windows, Linux, macOS]
+      caveat: Python source analysis through SonarScanner CLI and an already configured licensed Server instance. Verify the scanner runtime, project access, Python version, quality profile, exclusions, and server processing result. This route does not establish advanced security-feature entitlements, test coverage, or compiled-language prerequisites.
+      sources:
+        - https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/languages/python
+        - https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/scanners/sonarscanner
   modes: [Static]
   inputTypes: [Source code]
   techniques: [SAST, Bug finding, Data flow analysis]
@@ -31,6 +45,10 @@ tool:
       url: https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/languages/overview
     - label: Edition and feature comparison
       url: https://www.sonarsource.com/plans-and-pricing/sonarqube/
+    - label: Server Python source analysis
+      url: https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/languages/python
+    - label: Server SonarScanner CLI setup
+      url: https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/scanners/sonarscanner
 ---
 
 ## What it does
@@ -54,6 +72,22 @@ A passing quality gate means the configured conditions passed. It is not a guara
 ## Getting started
 
 Choose the relevant product and edition, then analyze a small representative project. Review the rule profile and findings before defining quality gates for a larger workflow.
+
+## System builder scope
+
+**Documentation reviewed November 12, 2026; not executed here.** The builder
+matches Python source through [SonarScanner CLI](https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/scanners/sonarscanner).
+Use a licensed Server instance and project account, configure the source
+directories and quality profile, and set
+[`sonar.python.version`](https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/languages/python)
+to the project's supported version. Preserve existing exclusions and supply
+the scanner's required runtime.
+
+This static route needs no application test run. Check server processing and
+analyzed-file scope before reviewing Python logic and coding-rule findings.
+A candidate match does not establish your license's advanced security features
+or the build and bytecode prerequisites for other catalog languages. The
+separate Community Build route uses that edition's own documentation.
 
 ## Related research
 

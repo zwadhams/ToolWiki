@@ -34,9 +34,11 @@ test('k6 does not promise readiness without a supplied script or for a non-HTTP 
   assert.ok(!analyzeSystem(profile, [tool]).matches.some(match => match.status === 'candidate'));
 });
 
-test('coverage and mutation profiles remain catalog-only despite broad test-access answers', async () => {
+test('Python coverage requests its host while mutation testing remains catalog-only', async () => {
   const tools = await Promise.all(['coverage-py', 'strykerjs'].map(authoredTool));
   const profile = newProfile();
   profile.components[0] = { ...profile.components[0], languages: ['Python', 'JavaScript'], inputs: ['Source code', 'Callable code'], inputsComplete: true, access: { rebuild: 'yes', instrument: 'yes', harness: 'yes', testInstance: 'yes' } };
-  assert.equal(analyzeSystem(profile, tools).matches.length, 0);
+  const result = analyzeSystem(profile, tools);
+  assert.equal(result.matches.find(match => match.toolId === 'tools/coverage-py')?.status, 'details');
+  assert.ok(!result.matches.some(match => match.toolId === 'tools/strykerjs'));
 });

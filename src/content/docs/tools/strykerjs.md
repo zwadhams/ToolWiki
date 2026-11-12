@@ -73,5 +73,12 @@ its cause still needs review.
 Source mutation changes the program. [Input mutation in fuzzing](../../concepts/verification-and-generated-tests/)
 changes values supplied to it. The two techniques are complementary, not interchangeable.
 
-This profile is catalog-only while runner-specific preparation remains outside
-the system builder's reviewed workflow set.
+## System builder scope
+
+**Reviewed November 12, 2026.** This profile remains catalog-only. The
+[Jest integration](https://stryker-mutator.io/docs/stryker-js/jest-runner/)
+requires the matching runner and compatible Jest setup; this route also starts
+with a passing baseline suite. The builder cannot record those conditions.
+Source, callable code, or permission to write a harness does not establish an
+existing working Jest suite. The retained boundary fixture demonstrates its
+own setup, not readiness of an arbitrary JavaScript project.

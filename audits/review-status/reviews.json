@@ -1598,5 +1598,26 @@
         "sha256": "b02e9fa51c1698da6b0765d84364833449a17da916dde6a3e85f9426ec727304"
       }
     ]
+  },
+  {
+    "id": "browser-tools-2026-11-12",
+    "date": "2026-11-12",
+    "reviewer": "browser_tools documentation and fixture review",
+    "scope": "Primary documentation review and scoped local execution; no benchmark or full accessibility claim.",
+    "reference": "audits/browser-testing/README.md",
+    "files": [
+      {
+        "path": "src/content/docs/tools/playwright.md",
+        "sha256": "3b779030061dd302b71d6683af1b05685b24433cc7fbabdbc04b947c258bdf25"
+      },
+      {
+        "path": "src/content/docs/tools/axe-core.md",
+        "sha256": "7b765395ddf56bfc0454213e647e2947dd574e4a2705ef26f150f5e508cd4c3e"
+      },
+      {
+        "path": "src/content/docs/guides/browser-testing.md",
+        "sha256": "97a23c7159238215144a35960bc5699940ede1d2ce71a0e5b67d346218b22390"
+      }
+    ]
   }
 ]

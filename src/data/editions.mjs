@@ -1,9 +1,10 @@
 import { EDITION_GROUPS } from '../lib/tool-vocabulary.mjs';
-export type EditionGroup = (typeof EDITION_GROUPS)[number];
-type Edition = { name: string; cost: string; difference: string; url: string; slug?: string };
-type Comparison = { intro: string; editions: Edition[]; note?: string; source?: { label: string; url: string } };
+/** @typedef {(typeof EDITION_GROUPS)[number]} EditionGroup */
+/** @typedef {{ name: string, cost: string, difference: string, url: string, slug?: string }} Edition */
+/** @typedef {{ intro: string, editions: Edition[], note?: string, source?: { label: string, url: string } }} Comparison */
 
-export const editionComparisons: Record<EditionGroup, Comparison> = {
+/** @type {Record<EditionGroup, Comparison>} */
+export const editionComparisons = {
   coverity: {
     intro: 'Commercial Coverity and the free Scan service have separate eligibility and advertised language coverage. Their catalog entries keep those differences filterable.',
     editions: [

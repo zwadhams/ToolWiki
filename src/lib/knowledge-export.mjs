@@ -6,6 +6,7 @@ import { visit } from 'unist-util-visit';
 import GithubSlugger from 'github-slugger';
 import { documentSchema, snapshotSchema } from './knowledge-schema.mjs';
 import { json, sha256, revisionOf } from './knowledge-format.mjs';
+import { profileMarkdown, evidenceMarkdown } from './knowledge-markdown.mjs';
 
 const processor = unified().use(remarkParse).use(remarkGfm).use(remarkStringify, { fences: true, bullet: '-' });
 const nodeText = node => node.value ?? (node.children || []).map(nodeText).join('');
@@ -19,13 +20,14 @@ export function cleanMarkdown(body, url, title) {
   return `# ${title}\n\n${processor.stringify(tree)}`;
 }
 
-export function sectionsOf(markdown) {
+export function sectionsOf(markdown, aliases = {}) {
   const tree = processor.parse(markdown), slugger = new GithubSlugger(), headings = [];
   visit(tree, 'heading', node => {
     // The page title is not a Starlight content anchor.
     if (node.position.start.offset === 0) return;
     const title = nodeText(node);
-    headings.push({ id: slugger.slug(title), title, depth: node.depth, start: node.position.start.offset, end: markdown.length });
+    const slug = slugger.slug(title);
+    headings.push({ id: aliases[slug] || slug, title, depth: node.depth, start: node.position.start.offset, end: markdown.length });
   });
   for (let i = 0; i < headings.length; i++) {
     const next = headings.slice(i + 1).find(h => h.depth <= headings[i].depth);
@@ -37,7 +39,13 @@ export function sectionsOf(markdown) {
 export function exportDocument(entry, site) {
   const { id, data } = entry;
   const url = new URL(`${id === 'index' ? '' : id + '/'}`, site).href;
-  const markdown = cleanMarkdown(entry.body || '', url, data.title);
+  const evidence = {
+    documentationReviewedOn: data.tool?.verified || null,
+    execution: data.executionEvidence || { status: 'not-recorded', scope: 'No structured execution record for this document. Read the text for illustrative examples and limitations.', sources: [] },
+  };
+  const markdown = cleanMarkdown(entry.body || '', url, data.title)
+    + profileMarkdown(data.tool, site, data.description || '')
+    + evidenceMarkdown(evidence, url, new URL(`knowledge/v1/documents/${id}.json`, site).href);
   const sources = new Map((data.tool?.sources || []).map(source => [source.url, source]));
   visit(processor.parse(markdown), node => {
     if (['link', 'definition'].includes(node.type) && /^https?:/.test(node.url) && !sources.has(node.url)) sources.set(node.url, { label: nodeText(node) || node.url, url: node.url });
@@ -45,11 +53,8 @@ export function exportDocument(entry, site) {
   const document = {
     id, kind: data.tool ? 'tool' : id.startsWith('guides/') ? 'guide' : id.startsWith('concepts/') ? 'concept' : id === 'research' || id.startsWith('research/') ? 'research' : 'page',
     title: data.title, description: data.description || '', url, markdown,
-    sections: sectionsOf(markdown), sources: [...sources.values()],
-    evidence: {
-      documentationReviewedOn: data.tool?.verified || null,
-      execution: data.executionEvidence || { status: 'not-recorded', scope: 'No structured execution record for this document. Read the text for illustrative examples and limitations.', sources: [] },
-    },
+    sections: sectionsOf(markdown, data.tool ? { 'compatibility-and-scope': 'technical-details', 'sources-and-evidence': 'tool-sources' } : {}),
+    sources: [...sources.values()], evidence,
     ...(data.tool ? { tool: data.tool } : {}),
   };
   return documentSchema.parse({ ...document, revision: revisionOf(document) });

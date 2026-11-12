@@ -62,7 +62,7 @@ The entry automatically appears in the catalog, the matching analysis section, a
 | `tool.license` | Specific terms and edition caveats. |
 | `tool.cost` | A list containing `Free`, `Free with limits`, and/or `Paid`. Multiple values represent different usage entitlements or plans for this entry. |
 | `tool.costNote` | Explain free-use eligibility, usage limits, and any paid alternatives. Do not count a time-limited trial as a free edition. |
-| `tool.editionGroup` | Optional shared comparison: `codeql`, `sonarqube`, `semgrep`, `burp`, `cppcheck`, `pvs-studio`, `phpstan`, `coverity`, or `polyspace`. The table lives in `src/data/editions.ts`. |
+| `tool.editionGroup` | Optional shared comparison: `codeql`, `sonarqube`, `semgrep`, `burp`, `cppcheck`, `pvs-studio`, `phpstan`, `coverity`, or `polyspace`. The table lives in `src/data/editions.mjs`. |
 | `tool.website` | The official product or project URL. |
 | `tool.verified` | A quoted date such as `'2026-09-21'`. |
 | `tool.scope` | Product edition, component, and any verified version. |

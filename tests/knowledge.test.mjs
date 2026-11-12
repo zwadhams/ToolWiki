@@ -4,9 +4,33 @@ import { buildKnowledge, cleanMarkdown } from '../src/lib/knowledge-export.mjs';
 import { revisionOf } from '../src/lib/knowledge-format.mjs';
 import { validateSnapshot, createKnowledge } from '../mcp/knowledge.mjs';
 import { boundedToolResult } from '../mcp/result.mjs';
+import { readFile } from 'node:fs/promises';
+import { parseFrontmatter } from 'astro/markdown';
+import { toolSchema } from '../src/lib/tool-schema.mjs';
+import { markdownText } from '../src/lib/knowledge-markdown.mjs';
 
 const site = 'https://example.com/ToolWiki/';
 const entry = { id: 'guides/custom-slug', body: 'Intro [relative](../other/)\n\n## Setup\n\n```powershell\n$Path = "../original/"\n```\n\n### Detail\nKeep this caveat.\n\n## Setup\nAnother heading.\n', data: { title: 'Example', description: 'A workflow.' } };
+
+test('standalone Markdown includes tool decisions, compatibility, editions, sources and evidence', async () => {
+  for (const slug of ['ruff', 'coverity-scan']) {
+    const { frontmatter, content } = parseFrontmatter(await readFile(`src/content/docs/tools/${slug}.md`, 'utf8'));
+    const tool = toolSchema.parse(frontmatter.tool);
+    const { snapshot } = buildKnowledge([{ id: `tools/${slug}`, data: { ...frontmatter, tool }, body: content }], site);
+    const doc = snapshot.documents[0];
+    for (const field of ['setup', 'environment', 'languageNote', 'scope', 'costNote', 'license', 'findingNote']) assert.ok(doc.markdown.includes(markdownText(tool[field])), field);
+    for (const source of tool.sources) assert.ok(doc.markdown.includes(source.url));
+    assert.ok(doc.markdown.includes('**Execution evidence:** not-recorded'));
+    assert.ok(doc.markdown.includes(`**Documentation reviewed:** ${tool.verified}`));
+    assert.ok(doc.sections.some(s => s.id === 'technical-details'));
+    assert.ok(doc.sections.some(s => s.id === 'tool-sources'));
+    if (slug === 'coverity-scan') {
+      assert.ok(doc.markdown.includes('| Edition or use | Cost | Capabilities and limits |'));
+      assert.ok(doc.markdown.includes('Commercial Coverity'));
+      assert.ok(doc.markdown.includes(site + 'tools/coverity/'));
+    }
+  }
+});
 
 test('exports loader IDs, excludes drafts and error pages, and preserves commands and section nesting', () => {
   const { files, snapshot } = buildKnowledge([entry, { ...entry, id: 'draft', data: { ...entry.data, draft: true } }, { ...entry, id: '404' }], site);

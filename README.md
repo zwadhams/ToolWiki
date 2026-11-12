@@ -56,7 +56,7 @@ the local server and waits for a client. Remote service hosting is deferred.
 - Concept guides: `src/content/docs/concepts/`.
 - Research notes and paper references: `src/content/docs/research/`.
 - Colors, spacing, and catalog appearance: `src/styles/custom.css`.
-- Shared comparisons of free and paid editions: `src/data/editions.ts`.
+- Shared comparisons of free and paid editions: `src/data/editions.mjs`.
 - Explanations of common tool choices: `src/data/tool-choices.ts`.
 - Navigation and GitHub Pages address: `astro.config.mjs`.
 

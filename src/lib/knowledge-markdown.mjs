@@ -1,6 +1,6 @@
 import { editionComparisons } from '../data/editions.mjs';
 
-export const markdownText = value => String(value).replace(/[\\`*_[\]<>|]/g, '\\$&').replace(/\r?\n/g, ' ');
+export const markdownText = value => String(value).replace(/[\\`*_[\]<>|#!]/g, '\\$&').replace(/\r?\n/g, ' ');
 export const markdownLink = (label, url) => `[${markdownText(label)}](${url.replace(/\(/g, '%28').replace(/\)/g, '%29')})`;
 const fact = (label, value) => `- **${label}:** ${markdownText(Array.isArray(value) ? value.join(', ') : value)}\n`;
 

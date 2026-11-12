@@ -2,10 +2,15 @@
 import { getCollection } from 'astro:content';
 import { toolChoices } from '../data/tool-choices';
 import { publishedTools, comparisonTools } from '../lib/tool-data.mjs';
+import { buildKnowledge } from '../lib/knowledge-export.mjs';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const tools = comparisonTools(publishedTools(await getCollection('docs')));
+const entries = await getCollection('docs');
+const site = new URL(base + '/', import.meta.env.SITE).href;
+const { snapshot } = buildKnowledge(entries, site);
+const citations = new Map(snapshot.documents.map(({ id, title, url, revision, evidence }) => [id, { id, title, url, revision, evidence }]));
+const tools = comparisonTools(publishedTools(entries)).map(tool => ({ ...tool, citation: citations.get(tool.id) }));
 ---
-<tool-comparison data-base={base}>
+<tool-comparison data-base={base} data-site={site} data-snapshot-revision={snapshot.revision}>
   <nav class="comparison-starts" data-common-comparisons aria-label="Common comparisons">
     <span>Try a comparison:</span>
     {toolChoices.filter(choice => choice.featured).map(choice => <a href={`${base}/compare/?tools=${encodeURIComponent(choice.tools.join(','))}`}>{choice.tools.map(id => tools.find(tool => tool.id === id)!.title).join(' + ')}</a>)}
@@ -14,6 +19,10 @@ const tools = comparisonTools(publishedTools(await getCollection('docs')));
     {[1, 2, 3].map((n) => <label for={`compare-tool-${n}`}>Tool {n}{n === 3 ? ' (optional)' : ''}<select id={`compare-tool-${n}`} name={`tool-${n}`}><option value="">Choose a tool</option>{tools.map((tool) => <option value={tool.id}>{tool.title}</option>)}</select></label>)}
   </form>
   <div class="comparison-actions"><p role="status" aria-live="polite" data-comparison-status>Choose two or three tools.</p><button type="button" data-clear-comparison>Clear comparison</button><a href={`${base}/`} data-browse-tools>Browse tools</a></div>
+  <div class="result-exports" data-comparison-export hidden>
+    <button type="button" data-export-comparison disabled>Download comparison (Markdown)</button>
+    <p role="status" aria-live="polite" data-export-status></p>
+  </div>
   <section class="choice-summary" data-choice-summary aria-label="How these tools relate" hidden></section>
   <div class="comparison-empty" data-comparison-empty>Pick at least two tools above, or select Compare on catalog cards.</div>
   <div class="comparison-scroll" role="region" aria-label="Tool comparison table" tabindex="0" hidden>
@@ -29,6 +38,8 @@ const tools = comparisonTools(publishedTools(await getCollection('docs')));
 </tool-comparison>
 <script>
   import { normalizeSelection, catalogParams, catalogHref } from '../lib/comparison.mjs';
+  import { COMPARISON_ROWS, COMPARISON_DETAILS, comparisonMarkdown } from '../lib/result-exports.mjs';
+  import { downloadText } from '../lib/browser-download.mjs';
   class ToolComparison extends HTMLElement {
     connectedCallback() {
       const tools = JSON.parse(this.querySelector('[data-comparison-data]')!.textContent!);
@@ -41,19 +52,24 @@ const tools = comparisonTools(publishedTools(await getCollection('docs')));
       const choices = JSON.parse(this.querySelector('[data-choice-data]')!.textContent!);
       const summary = this.querySelector<HTMLElement>('[data-choice-summary]')!;
       const base = this.dataset.base!;
-      const rows = [
-        ['Use it for', 'useWhen'], ['What you need', 'setup'],
-        ['What it can tell you', 'result'], ['Checks and limits', 'limit'],
-        ['Where it runs', 'environment'], ['Cost', 'cost'],
-      ];
-      const detailRows = [
-        ['Analysis mode', 'modes'], ['What it examines', 'inputTypes'],
-        ['Languages / ecosystem', 'languages'], ['Language support', 'languageNote'],
-        ['Techniques', 'techniques'], ['Cost and edition limits', 'costNote'], ['License', 'license'],
-        ['Edition and scope', 'scope'], ['Docs checked', 'verified'],
-      ];
+      const rows = COMPARISON_ROWS;
+      const detailRows = COMPARISON_DETAILS;
+      const exportButton = this.querySelector<HTMLButtonElement>('[data-export-comparison]')!;
+      const exportStatus = this.querySelector<HTMLElement>('[data-export-status]')!;
+      this.querySelector<HTMLElement>('[data-comparison-export]')!.hidden = false;
+      exportButton.addEventListener('click', () => {
+        const selected = normalizeSelection(controls.map(control => control.value), ids);
+        try {
+          const sourceUrl = new URL(location.pathname + location.search, this.dataset.site!).href;
+          const text = comparisonMarkdown(selected.map(id => tools.find((tool: { id: string }) => tool.id === id)), choices, sourceUrl, this.dataset.snapshotRevision!, this.dataset.site!);
+          downloadText(text, 'toolwiki-comparison.md', 'text/markdown');
+          exportStatus.textContent = 'Downloaded comparison with sources, limits, and revisions.';
+        } catch (error) { exportStatus.textContent = error instanceof Error ? error.message : 'Download failed. Try again.'; }
+      });
       const render = (save = true) => {
         const selected = normalizeSelection(controls.map((control) => control.value), ids);
+        exportButton.disabled = selected.length < 2;
+        exportStatus.textContent = '';
         const origin = catalogParams(new URLSearchParams(location.search).get('catalog'), ids);
         if (origin.size || selected.length) {
           if (!origin.has('category')) origin.set('category', 'all');

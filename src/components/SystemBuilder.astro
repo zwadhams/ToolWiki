@@ -1,9 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 import { publishedTools, builderData } from '../lib/tool-data.mjs';
+import { buildKnowledge } from '../lib/knowledge-export.mjs';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const tools = publishedTools(await getCollection('docs'));
+const entries = await getCollection('docs');
+const tools = publishedTools(entries);
 const data = builderData(tools);
+const site = new URL(base + '/', import.meta.env.SITE).href;
+const { snapshot } = buildKnowledge(entries, site);
+const citations = new Map(snapshot.documents.map(({ id, title, url, revision, evidence }) => [id, { id, title, url, revision, evidence }]));
+const exportData = { ...data, tools: data.tools.map(tool => ({ ...tool, citation: citations.get(tool.id) })), snapshotRevision: snapshot.revision, sourceUrl: new URL('analysis-suite/', site).href };
 ---
 <system-builder data-base={base} data-pagefind-ignore>
   <div class="suite-intro">
@@ -17,7 +23,7 @@ const data = builderData(tools);
   </div>
   <div data-builder-root><p>Loading your system editor...</p></div>
   <noscript><p>Enable JavaScript to describe and save a system. You can also <a href={`${base}/`}>browse the tool catalog</a> and read the tool notes.</p></noscript>
-  <script type="application/json" data-builder-data set:html={JSON.stringify(data).replace(/</g, '\u003c')} />
+  <script type="application/json" data-builder-data set:html={JSON.stringify(exportData).replace(/</g, '\u003c')} />
 </system-builder>
 <script>
   import '../lib/system-builder-ui.mjs';

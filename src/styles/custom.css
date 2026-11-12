@@ -63,6 +63,12 @@ html { scroll-behavior: smooth; }
 .document-actions [role='status'] { color: var(--muted); margin: .5rem 0 0; }
 .document-actions [role='status']:empty { display: none; }
 .document-actions textarea { display: block; width: 100%; margin-top: .5rem; padding: .75rem; font: .85rem var(--font-display); background: var(--surface); color: var(--sl-color-white); border: 1px solid var(--control-border); }
+.result-exports { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; margin: .75rem 0 1.25rem; font-size: .875rem; }
+.result-exports[hidden] { display: none; }
+.result-exports button { border: 1px solid var(--control-border); border-radius: .25rem; background: var(--surface); color: var(--sl-color-accent-high); padding: .5rem .75rem; font: inherit; cursor: pointer; }
+.result-exports button:disabled { opacity: .5; cursor: default; }
+.result-exports [role='status'] { flex-basis: 100%; margin: 0; color: var(--muted); }
+.result-exports [role='status']:empty { display: none; }
 body { font-size: 1rem; line-height: 1.65; }
 h1, h2, .site-title { font-family: var(--font-display); font-weight: 400; letter-spacing: 0; }
 h1 { line-height: 1.25; }

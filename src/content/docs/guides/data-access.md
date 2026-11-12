@@ -82,6 +82,25 @@ Retain `languageNote`, `findingNote`, and `costNote` when presenting matches.
 reviewed workflows, not exhaustive support lists or guarantees for every mode.
 An empty list means no platform is listed there; it does not mean unsupported.
 
+## Download selections and recommendations
+
+In the catalog, **Download these results** saves the current filtered results
+in their displayed order as JSON or CSV. JSON includes the filters, source URL,
+snapshot revision, and tool records. CSV keeps the tool fields and scope notes;
+lists use ` / ` between values and cells that could be spreadsheet formulas are
+prefixed with an apostrophe. Use JSON when you need the exact structured values.
+
+On **Compare tools**, choose two or three tools and use **Download comparison
+(Markdown)**. It includes the comparison fields, related explanations, sources,
+and evidence status, including details in the collapsed table.
+
+In **Find tools for your system**, download recommendations as Markdown or JSON
+from **Tool candidates**. Reports include your current description and notes,
+selected tools, candidate and blocked matches, unanswered questions, gaps, and
+source revisions. They do not establish that any check has run. **Export system**
+still saves just the description for later import; recommendation reports are a
+separate format for reading and sharing. Files are created in your browser.
+
 ## Keep a consistent copy
 
 Read the [manifest](../../knowledge/v1/manifest.json), then fetch the path in

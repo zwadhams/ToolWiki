@@ -1,6 +1,11 @@
 ---
 title: TypeScript compiler (tsc)
 description: Check a configured TypeScript project for type errors without emitting JavaScript.
+executionEvidence:
+  status: recorded
+  scope: "TypeScript 6.0.3 on Windows under Node.js 24.22.1 checked the supplied greeting projects without executing target code. The faulty input produced TS2345 for a number passed to a string parameter and exited 2; the corrected project exited 0. This is a small compile-time type-checking example, not a runtime test or validation of other project configurations."
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/remaining-work/expansion-runs/typescript.json
 tool:
   aliases: [tsc, TypeScript]
   searchTerms: [TypeScript type checker, compiler diagnostics, noEmit, checkJs]

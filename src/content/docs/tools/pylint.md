@@ -1,6 +1,13 @@
 ---
 title: "Pylint"
 description: "Inspect Python source for selected programming mistakes, conventions, and maintainability issues."
+executionEvidence:
+  status: recorded
+  scope: "The retained fresh-reader report records Pylint 4.1.3 on Windows with Python 3.13.15 checking only unused-import in the greeting fixtures. It reports W0611 and exit 4 for the faulty input, then no diagnostic and exit 0 for the correction; the retained script and transcript confirm the selected rule and exit codes. This was not a run of the full default rule set or a runtime test."
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/reader-workflows/retests/python/report.md
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/reader-workflows/retests/python/pylint-inline.ps1
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/reader-workflows/retests/python/pylint-inline.txt
 tool:
   analysisWorkflows:
     - id: source

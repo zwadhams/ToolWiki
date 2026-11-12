@@ -45,7 +45,7 @@ test('comparison export retains collapsed details, relationships, citations and 
   const compared = comparisonTools(tools).map(t => ({ ...t, citation: tools.find(tool => tool.id === t.id).citation }));
   const choices = [{ tools: ['tools/ruff', 'tools/mypy'], title: 'Complementary checks', summary: 'Lint and types have different scopes.', href: 'guides/python-checks/', linkText: 'Python guide' }];
   const text = comparisonMarkdown(compared, choices, site + 'compare/', snapshot.revision, site);
-  for (const expected of ['Language support', 'Cost and edition limits', 'Complementary checks', 'not-recorded', 'Execution evidence', snapshot.revision, tools[0].citation.revision, tools[0].sources[0].url]) assert.ok(text.includes(expected), expected);
+  for (const expected of ['Language support', 'Cost and edition limits', 'Complementary checks', 'recorded', 'Execution evidence', snapshot.revision, tools[0].citation.revision, tools[0].sources[0].url]) assert.ok(text.includes(expected), expected);
   assert.throws(() => comparisonMarkdown(compared.slice(0, 1), [], site, snapshot.revision, site), /at least two/);
 });
 
@@ -65,5 +65,6 @@ test('recommendation reports preserve candidates, unknowns, blocked matches, gap
   assert.deepEqual(report.selectedToolIds, ['tools/ruff']);
   const text = recommendationMarkdown(report);
   for (const expected of ['Ready', 'Unknown host', 'Missing source', 'No match', 'Undescribed', 'Information needed:', 'Unmet requirements:', 'Workflow limits:', 'System description', snapshot.revision, tools[0].citation.revision]) assert.ok(text.includes(expected), expected);
-  assert.ok(text.includes('not-recorded'));
+  assert.ok(text.includes('Execution evidence: recorded'));
+  for (const tool of tools) assert.ok(text.includes(tool.citation.evidence.execution.scope));
 });

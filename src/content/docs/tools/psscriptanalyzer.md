@@ -1,6 +1,11 @@
 ---
 title: PSScriptAnalyzer
 description: Review PowerShell scripts and modules with selected static-analysis rules.
+executionEvidence:
+  status: recorded
+  scope: "PSScriptAnalyzer 1.25.0 on Windows under PowerShell 7.6.9 checked only PSAvoidUsingWriteHost. It reported the selected warning on line 2 of the faulty script and no diagnostics for the corrected script. The target scripts were not executed; other rules, host versions, and runtime behavior were not tested."
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/remaining-work/expansion-runs/powershell.json
 tool:
   aliases: [PSSA, PowerShell ScriptAnalyzer]
   searchTerms: [PowerShell linter, PowerShell source analysis, ps1, psm1, DiagnosticRecord]

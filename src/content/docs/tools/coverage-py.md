@@ -1,6 +1,11 @@
 ---
 title: coverage.py
 description: Measure which Python statements and branches a test run executes.
+executionEvidence:
+  status: recorded
+  scope: "coverage.py 7.10.6 on Windows with Python 3.13.15 measured one selected module with branch collection in three separate unittest processes. The partial suite missed one statement and one branch destination; the reach-only and assertion-bearing suites covered all selected statements and branches. The 80% gate exited 2 for partial coverage and 0 for reach-only coverage. Subprocess collection and assertion quality were not established by coverage percentages."
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/main/examples/python-coverage/evidence/run.json
 tool:
   analysisWorkflows:
     - id: python-process-coverage

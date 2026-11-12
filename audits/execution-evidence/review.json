@@ -1,0 +1,1076 @@
+{
+  "reviewedOn": "2026-11-12",
+  "baselineRevision": "f5c052097b45e969ea4db1cc2cefa53151844c31",
+  "baselineProfiles": 98,
+  "method": "Reviewed retained repository commands, versions, results, and limitations. This metadata reconciliation did not execute the analyzers again or change historical records.",
+  "searchScope": [
+    "examples/",
+    "audits/remaining-work/",
+    "audits/reader-usability/",
+    "audits/reader-workflows/",
+    "audits/agent-knowledge/",
+    "audits/tool-review/",
+    "audits/catalog-expansion/",
+    "audits/first-batch/"
+  ],
+  "interpretation": "No qualifying retained run identified means no metadata was added in this reconciliation; it is not a claim that the tool has never been run. New profiles created in the current change are outside the 98-profile baseline.",
+  "inventory": [
+    {
+      "path": "src/content/docs/tools/actionlint.md",
+      "sha256": "6dd41b8d2348db8f991e0654b685ecf7a2da453098cfe99f4f2ebba473f3edfe",
+      "slug": "actionlint",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/address-sanitizer.md",
+      "sha256": "1ede806e947feef5d1bbffeffd4af600a5fec8f28ec611635bf8da8c5b32e19d",
+      "slug": "address-sanitizer",
+      "hadWorkflows": true,
+      "disposition": "recorded-execution-metadata"
+    },
+    {
+      "path": "src/content/docs/tools/afl-plus-plus.md",
+      "sha256": "38ff9ba0f6187519efe9d4ae47aa9c2f8d83b1a2cecbd4cb023b31543653ed94",
+      "slug": "afl-plus-plus",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/angr.md",
+      "sha256": "aadae2aeb80cf98538a095466f2fd8bcc52c5d3b90db35dd049c107aea139643",
+      "slug": "angr",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/atheris.md",
+      "sha256": "7af4569ec0ebfc31744c79b552e656b18169dd4da83ba89740ce76e7a9055c38",
+      "slug": "atheris",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/bandit.md",
+      "sha256": "42c98b49afaad53aa8f2c99d9cae75ecf14715eb1b536a241f110a02d46d2982",
+      "slug": "bandit",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/binwalk.md",
+      "sha256": "6ab4278d4a074dc01b0df0b2b20f4e8703969fa6392243e4e3d00cdc2a0e5629",
+      "slug": "binwalk",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/boofuzz.md",
+      "sha256": "9acb39e1f0f2ec477aba384fb9558a9152e6303fa3eb61a148e5d387fe72d485",
+      "slug": "boofuzz",
+      "hadWorkflows": true,
+      "disposition": "recorded-execution-metadata"
+    },
+    {
+      "path": "src/content/docs/tools/brakeman.md",
+      "sha256": "8b861934fc4b4507c452e58466c1b53d757e47f39740a4932368e2f1c9ce3580",
+      "slug": "brakeman",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/breach.md",
+      "sha256": "af388cc200278e576315066a226f0d42da3bf0b983d8c457149f8697cbb0ee38",
+      "slug": "breach",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/burp-suite-community.md",
+      "sha256": "1a48ea7887a432152aead35c6d7cd2d9623671787158d63b4d4fb872fc45d4f3",
+      "slug": "burp-suite-community",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/burp-suite-professional.md",
+      "sha256": "b7324723ad6c0ea852aea27ccdfdd0bf35985083e55b258ca1907f71c8611893",
+      "slug": "burp-suite-professional",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/capa.md",
+      "sha256": "822faaaee3e4b0da3b11d0a9927a28bf2e11af2bf3f1bf2e5452145e17fd2687",
+      "slug": "capa",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/cargo-audit.md",
+      "sha256": "b2eee516732c93e0ce46aeca187409a775b24223564763e96c6e367c03f529bd",
+      "slug": "cargo-audit",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/cbmc.md",
+      "sha256": "ee12b34a6831c13deaa280992e2ac3e8b8b404b677267d3cc46a07f71c2d1031",
+      "slug": "cbmc",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/checkov.md",
+      "sha256": "75d1d19e101c73d5e29e069c9d83adcfebcb712ddd2c1acdd5b65cc9c1cebb81",
+      "slug": "checkov",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/checkstyle.md",
+      "sha256": "7ab8afbc43f4b3f1e790ab2e890a35ae8f6000b6799182e860ea6cf375b12508",
+      "slug": "checkstyle",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/clang-static-analyzer.md",
+      "sha256": "f16083ef96d6915ab6474719d6aca1dfcf44d8aefd084440a8d0e3ce15a651dc",
+      "slug": "clang-static-analyzer",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/clang-tidy.md",
+      "sha256": "16bd0c2546132f33f72d3021cfc5bb48a5049b5f88acb32ad7c2448e834ce342",
+      "slug": "clang-tidy",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/clippy.md",
+      "sha256": "edcf76c8b9cc565efff273bdd11c95021d5dcc94c177a08fad99e5880dbf0a21",
+      "slug": "clippy",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/codeql.md",
+      "sha256": "177320d5d15e5dd896426d4f8d83c1673aa04917acecaf78935daf822c685334",
+      "slug": "codeql",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/coverage-py.md",
+      "sha256": "cd13a7c2df0ad962cfefde04655c881bbaca2991fd0475494712999bf8309430",
+      "slug": "coverage-py",
+      "hadWorkflows": false,
+      "disposition": "recorded-execution-metadata"
+    },
+    {
+      "path": "src/content/docs/tools/coverity-scan.md",
+      "sha256": "2926447856ba03f97914a5e066ec0c3f577e3248ba032bf5a8d00b246ffc3d05",
+      "slug": "coverity-scan",
+      "hadWorkflows": false,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/coverity.md",
+      "sha256": "f035862c58bbd8d237a4156409a46e0a441e10836141a35c4b0953338b90ba2c",
+      "slug": "coverity",
+      "hadWorkflows": false,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/cpachecker.md",
+      "sha256": "d9b945e6d90f653661a2f89a97d61ac6655325bba9abdf96f558aed212ac0bf5",
+      "slug": "cpachecker",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/cppcheck.md",
+      "sha256": "b5362a83fcd4a01d37043f3ec4090e35073fbd4029936fa3491a4095fd80c36f",
+      "slug": "cppcheck",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/cve-bin-tool.md",
+      "sha256": "463b9adfe6bb947bad598b47a292361ca34e5f372173827d0d54fb085abd2abe",
+      "slug": "cve-bin-tool",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/cwe-checker.md",
+      "sha256": "2afb654835aae1e6141d9084253fdf11d5e76dfdc0715fc4b5ff764c4bea7d37",
+      "slug": "cwe-checker",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/dafny.md",
+      "sha256": "f0b07c87290d0bc47716e5b7a777a2e76b8734e6ada12c6c37da8040253fa5f5",
+      "slug": "dafny",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/dependency-check.md",
+      "sha256": "10efa59933c2875808e2b26758146e73c2be724cace218a17f13c16eff4bebb8",
+      "slug": "dependency-check",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/detect-secrets.md",
+      "sha256": "e81497c42787b660874b15aca8a538758741f1dc2fec72e8e93cf5657c6a5acb",
+      "slug": "detect-secrets",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/detekt.md",
+      "sha256": "fa4d3ef37c9e555b55e795eac5af5ac3e7afac4947abb0a643df309bebcca27e",
+      "slug": "detekt",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/dotnet-analyzers.md",
+      "sha256": "5ebae773b0a72b4638131dfe6e9fc15db66e6c36b349533b7dc3d5404b1059cf",
+      "slug": "dotnet-analyzers",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/dr-memory.md",
+      "sha256": "01899c1d9fe4837ab9cee14367a8de2b7c17228d021a771f3426186b8ec67d9c",
+      "slug": "dr-memory",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/esbmc.md",
+      "sha256": "5332a3d46a91bafca40469f72f2f9bfc1618eec14fca59e07e71d4e9a6b426c8",
+      "slug": "esbmc",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/eslint.md",
+      "sha256": "c90755107b23a6022b69450a9504953b8f24b44e83104ee2ad545dcac4616a28",
+      "slug": "eslint",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/fast-check.md",
+      "sha256": "7fd168088c4839dc36a719d25990e6b440bf4348e3c0e1d39a2a8d7ab291131f",
+      "slug": "fast-check",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/floss.md",
+      "sha256": "f989b40a22539b27bdb58cb186ccdcd52e0199cb75146f7825270f9b84a11d53",
+      "slug": "floss",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/frama-c.md",
+      "sha256": "2be368a4781b6e1d91eb0b8787c51e3615513ab97d99474a35d5c95b689f3109",
+      "slug": "frama-c",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/ghidra.md",
+      "sha256": "8956f28dc2adf57962bc5358a1c2f8f7a7e4c84cbc90d60a544262eca447d02f",
+      "slug": "ghidra",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/gitleaks.md",
+      "sha256": "3f82c4f167e79756e67c1e1223704b2498a8d96c477579d47757881b35346781",
+      "slug": "gitleaks",
+      "hadWorkflows": false,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/go-race-detector.md",
+      "sha256": "1c077b14116af88796f310b1c064754975e4eed7ec6cfc0faca28d4307b12c2e",
+      "slug": "go-race-detector",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/go-vet.md",
+      "sha256": "04d3a5c922eace116331fca670dfe9b9011556806e6d529ef965ebe67314d195",
+      "slug": "go-vet",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/gosec.md",
+      "sha256": "5f3ef0797f3a45ddf68933c4eecf7a34432fab6fbd06051ad60086f8c1533beb",
+      "slug": "gosec",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/govulncheck.md",
+      "sha256": "806e1ea452cd86da5db4a713d84b2401ec3b9d751fb285b1f442a1c5ce1e117e",
+      "slug": "govulncheck",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/grype.md",
+      "sha256": "3b7ed017f64d29cc79754b486bc426dec25e0c86becb2fffb742fc57b3382c02",
+      "slug": "grype",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/hadolint.md",
+      "sha256": "a5ed0ff0aa41154a1709dc5211a0928fb9c4f8fdc634f8cae98b1d7ab2b26cfa",
+      "slug": "hadolint",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/hypothesis.md",
+      "sha256": "4ebf2d421aa3380b195cf91d7fd783ba0729e69ef6f75d7f19e295e6f0472f35",
+      "slug": "hypothesis",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/infer.md",
+      "sha256": "921ed7cb6ff49e40070d6b0b75904ee512bc6fd814b9012b94c51e75d3c16353",
+      "slug": "infer",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/jazzer.md",
+      "sha256": "c0e8fc1af51efb654197a7706bf12f72533b73cb37a51550834d90b36e481482",
+      "slug": "jazzer",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/jbmc.md",
+      "sha256": "c788a241a806f1cac7d3a18ebfeefd8c128fee1f1a3ffbfdfee642c2cd4803a6",
+      "slug": "jbmc",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/k6.md",
+      "sha256": "d0205c13023a543b8f2d951966d04851ad3b83851a24434105afa8b71d6a2d9b",
+      "slug": "k6",
+      "hadWorkflows": true,
+      "disposition": "recorded-execution-metadata"
+    },
+    {
+      "path": "src/content/docs/tools/kani.md",
+      "sha256": "773dac26e7812488eac7822e2c27ddef6088ca44d3ddf74cf231bfa5a34bbc94",
+      "slug": "kani",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/klee.md",
+      "sha256": "591f8b86d7955dc61bc5a4e1cabc45def08634e603bcc2a1d6d4301d7dba7bdf",
+      "slug": "klee",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/libfuzzer.md",
+      "sha256": "b8b60bbec9b9965e046db2dc6dcca1ab8c7ba78aa1ae3c15159cb27619b585a0",
+      "slug": "libfuzzer",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/memory-sanitizer.md",
+      "sha256": "3c0f07827bb8f395c821fe63863ad495128bf0ee042a67e14cc8f57df8dad529",
+      "slug": "memory-sanitizer",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/miri.md",
+      "sha256": "fa2ef683fd65c7faa35b54bd9273c9db76a4ce1d4122818ea5853272c070060d",
+      "slug": "miri",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/mobsf.md",
+      "sha256": "ae87144801f5ddd7f1efe98d5cbce7591bbf76c8d95af553c78bc2147640f3b6",
+      "slug": "mobsf",
+      "hadWorkflows": false,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/mypy.md",
+      "sha256": "5abedf890d4a0cfd841ae9eb33f2f3c89651a561cd844d1daf62f23056f29d80",
+      "slug": "mypy",
+      "hadWorkflows": true,
+      "disposition": "recorded-execution-metadata"
+    },
+    {
+      "path": "src/content/docs/tools/osv-scanner.md",
+      "sha256": "fcc2bd368626103e268bef199aa84d9277c98659cd30fab4e347d783093ae965",
+      "slug": "osv-scanner",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/phpstan.md",
+      "sha256": "fb0f3cc91d2e652424a4f27b63d032019a7e0ec37f92a22fe3574bc13d1ec19d",
+      "slug": "phpstan",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/pmd.md",
+      "sha256": "0cc9d237d1ad754c6b88bf5e1d1c3fcc8e4deb24c393ee396d880fba92efbfc0",
+      "slug": "pmd",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/polyspace-code-prover.md",
+      "sha256": "b0ee431326ece225ce1a290d50e0ab98b127b8e4a85844deed420cb46cf45dec",
+      "slug": "polyspace-code-prover",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/psalm.md",
+      "sha256": "80db6178a86f41e19ce1958e0fdeafcbfa2ba65487e288ff8d5e97d194cdeb3d",
+      "slug": "psalm",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/psscriptanalyzer.md",
+      "sha256": "cef00b6213648f8a81e60d3ff23df7e42f3d70b281ebc4b26f40f8dc9e5b3c53",
+      "slug": "psscriptanalyzer",
+      "hadWorkflows": true,
+      "disposition": "recorded-execution-metadata"
+    },
+    {
+      "path": "src/content/docs/tools/psy-taliro.md",
+      "sha256": "821ff60aea227a4c7033b15b0ea74baef8f8706133b92048b4958b2948fc2e24",
+      "slug": "psy-taliro",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/pvs-studio.md",
+      "sha256": "f4b38d99fdc20114a7230ad56a4515d485691d4c18f360d5d4e5c3c994292204",
+      "slug": "pvs-studio",
+      "hadWorkflows": false,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/py-spy.md",
+      "sha256": "3297579eae6eab7c06f82cc93236199f99bb7f4e40446f8815d8d912067b6c9c",
+      "slug": "py-spy",
+      "hadWorkflows": false,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/pylint.md",
+      "sha256": "6941048a4203352aab4f81e40092724d5c55dd1df8b1a1dfc614328e7ad79496",
+      "slug": "pylint",
+      "hadWorkflows": true,
+      "disposition": "recorded-execution-metadata"
+    },
+    {
+      "path": "src/content/docs/tools/pyright.md",
+      "sha256": "04e4f4471934dba0da1861b4af090d8a0eac5eba6be6e2b0bcaaafa9d37ef985",
+      "slug": "pyright",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/restler.md",
+      "sha256": "167f1102a9eb3afbd9f3df97fbb30c3980f858d3df4021582f2fd7f657f54be3",
+      "slug": "restler",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/rtamt.md",
+      "sha256": "4d5eb2cd51c4d6e6bda41613c5e33f6c9feb01fcf714b02b93469894dd7b9509",
+      "slug": "rtamt",
+      "hadWorkflows": true,
+      "disposition": "recorded-execution-metadata"
+    },
+    {
+      "path": "src/content/docs/tools/rubocop.md",
+      "sha256": "4f6522f25382324870bfb4374158a21090426dae1e1be00db649ee32da86c258",
+      "slug": "rubocop",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/ruff.md",
+      "sha256": "211e48fbb37fd0b7d1087f4aaae0662d33a7ceb73d678d61d34ecc8fbe7e60c3",
+      "slug": "ruff",
+      "hadWorkflows": true,
+      "disposition": "recorded-execution-metadata"
+    },
+    {
+      "path": "src/content/docs/tools/s-taliro.md",
+      "sha256": "639c2c612a13a7fdea8ef4649118b589ee469f395881e30cd8046ff1c9ce8e83",
+      "slug": "s-taliro",
+      "hadWorkflows": false,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/schemathesis.md",
+      "sha256": "af6e22c94c67bafb9db362bc3db22b8ceaf12c046fe638c8738ed72bf0f2b3b1",
+      "slug": "schemathesis",
+      "hadWorkflows": true,
+      "disposition": "recorded-execution-metadata"
+    },
+    {
+      "path": "src/content/docs/tools/semgrep-ce.md",
+      "sha256": "2b44aa41dc133d68c1daeeea5a34826d842660e6b724aedaf7f68fe2fa486ccf",
+      "slug": "semgrep-ce",
+      "hadWorkflows": true,
+      "disposition": "recorded-execution-metadata"
+    },
+    {
+      "path": "src/content/docs/tools/semgrep-code.md",
+      "sha256": "76b49acde3b8aef53058ff95b18b45cd7dcb8d2bb5b934fd94b1f263de2b3360",
+      "slug": "semgrep-code",
+      "hadWorkflows": false,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/shellcheck.md",
+      "sha256": "507cb53305783f114a87eddbf3a0a5e8083c00d05d0c3a16b7340392aee7992e",
+      "slug": "shellcheck",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/sonarqube-community.md",
+      "sha256": "5372e9645c097d94788b0ad56616ff4299dcce472cfccbf86b18a9dbc4beda08",
+      "slug": "sonarqube-community",
+      "hadWorkflows": false,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/sonarqube.md",
+      "sha256": "121506bcee08bb0e39b0070c433f162e51f359d8c1987bf693ca2a424dd7e95b",
+      "slug": "sonarqube",
+      "hadWorkflows": false,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/spotbugs.md",
+      "sha256": "dbd8f0f59b2c85e3142e225e8191c345989bc3c9a3418f9b52ce6e86e83e487c",
+      "slug": "spotbugs",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/sqlfluff.md",
+      "sha256": "c74461c6c0bddc18b427cda682c7d119806c1151881a89d78c46d72b3dd02438",
+      "slug": "sqlfluff",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/staticcheck.md",
+      "sha256": "a4ab007467a95ed83c088a7f7a1618afbb05c92bc4bc15c7b88388a680b8d230",
+      "slug": "staticcheck",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/strykerjs.md",
+      "sha256": "ebc550a1620e9b495a2df26d3a4ec2c3fd34ad3dc1106520cc304b1eb81e2cd5",
+      "slug": "strykerjs",
+      "hadWorkflows": false,
+      "disposition": "recorded-execution-metadata"
+    },
+    {
+      "path": "src/content/docs/tools/stylelint.md",
+      "sha256": "020152cca944b961c4bd128eea26a07dfcfcda527e4b8c04ddeec1a3e08517a0",
+      "slug": "stylelint",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/swiftlint.md",
+      "sha256": "c2837df7066de1b2f27200f495599af0d778d4e0f76061046f858de679a8ba9b",
+      "slug": "swiftlint",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/thread-sanitizer.md",
+      "sha256": "01cfd31965fde54c589be51d07ad02a01e2028a3add1d4e69214e046b9a1af84",
+      "slug": "thread-sanitizer",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/trivy.md",
+      "sha256": "3ad16d6cb8e0f21aff89a330d35acf94e30ab19dc57387c2c3dcf7a2e8577bf6",
+      "slug": "trivy",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/typescript.md",
+      "sha256": "910fce2539e6d1c01fa33d63385ec75d56bdd2271daf61beaedded38579a0501",
+      "slug": "typescript",
+      "hadWorkflows": true,
+      "disposition": "recorded-execution-metadata"
+    },
+    {
+      "path": "src/content/docs/tools/undefined-behavior-sanitizer.md",
+      "sha256": "fa302c388644feffe2d5ff06296ee4bfc4ad95ad304115059db87e946a3b8e42",
+      "slug": "undefined-behavior-sanitizer",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/valgrind-helgrind.md",
+      "sha256": "5f42262cb8e841d93173b3d265bace92e3a7d1c43d1694f4267dd95a7c0a863c",
+      "slug": "valgrind-helgrind",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/valgrind-memcheck.md",
+      "sha256": "fb724a9d87cd91eb9f3c05aa864d019c5e1549b604356ee45af586d13a31a83d",
+      "slug": "valgrind-memcheck",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/verifai.md",
+      "sha256": "6b5ec86752f3b5ed5765858e72906e77dcc1b8802ff5f77efb22df547c901014",
+      "slug": "verifai",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/verilator.md",
+      "sha256": "cd85fb11b15bb892b4b178f0847f1899d7b978af7b950fbaea41fea76d6bd7a4",
+      "slug": "verilator",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/wartremover.md",
+      "sha256": "f325ba04ea30ce45595306cf7e93fe121cacc2d1b785a0673bfa655c51b185b5",
+      "slug": "wartremover",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/yara-x.md",
+      "sha256": "34717efebf275a5bb45a2ea6cbb5fb4e523bb8df4c47a3ae11260d4b698a3966",
+      "slug": "yara-x",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    },
+    {
+      "path": "src/content/docs/tools/zap.md",
+      "sha256": "1e77400bb3861ea2631a5c295a079568a9ccd8186af758999505d17d14b47e97",
+      "slug": "zap",
+      "hadWorkflows": true,
+      "disposition": "no-qualifying-retained-run-identified"
+    }
+  ],
+  "retainedFiles": [
+    {
+      "path": "audits/agent-knowledge/ci/42653327079/run.json",
+      "sha256": "d8152b9b582b2a97759caf451018938b0e63c4d9023f7c04bfdb2c4bef839d1b",
+      "observedWorkingTreeSha256": "d8152b9b582b2a97759caf451018938b0e63c4d9023f7c04bfdb2c4bef839d1b",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/agent-knowledge/ci/42653327079/source.json",
+      "sha256": "2a6610ce575f0c454b458cd4b0551361ce1307a6a7e5e47343557c41d950c0dd",
+      "observedWorkingTreeSha256": "2a6610ce575f0c454b458cd4b0551361ce1307a6a7e5e47343557c41d950c0dd",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/agent-knowledge/readers/memory/reader-commands.ps1",
+      "sha256": "413508aa8c177a172d0daad349b55e0fad6ce35acaf42e4366d5bce8a3d32162",
+      "observedWorkingTreeSha256": "413508aa8c177a172d0daad349b55e0fad6ce35acaf42e4366d5bce8a3d32162",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-bad/mypy.txt",
+      "sha256": "c2f22195426ae6bc2e106a470bb4fbae4343ebe14938413c2f77bd5611dd097a",
+      "observedWorkingTreeSha256": "c2f22195426ae6bc2e106a470bb4fbae4343ebe14938413c2f77bd5611dd097a",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-bad/ruff.json",
+      "sha256": "789237334641ec53e50dd7fafeb473779dccb6ff967c02c3da2f744fcfa828ec",
+      "observedWorkingTreeSha256": "789237334641ec53e50dd7fafeb473779dccb6ff967c02c3da2f744fcfa828ec",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-bad/run.json",
+      "sha256": "b53932eb4c2bcd41c4389c681477400585635e350b2997308f8036bd79059669",
+      "observedWorkingTreeSha256": "b53932eb4c2bcd41c4389c681477400585635e350b2997308f8036bd79059669",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-good/mypy.txt",
+      "sha256": "8e63ae22e8213e327a5e9cbd584067681681bd8ef7f25c869877887ccdcfc4ff",
+      "observedWorkingTreeSha256": "8e63ae22e8213e327a5e9cbd584067681681bd8ef7f25c869877887ccdcfc4ff",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-good/ruff.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "observedWorkingTreeSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/agent-knowledge/readers/python/reader-20261109-091356/fixture-good/run.json",
+      "sha256": "a81d390557e80cc841b5214f19426454289323f0545a2b7b5a4aa6d76e92d103",
+      "observedWorkingTreeSha256": "a81d390557e80cc841b5214f19426454289323f0545a2b7b5a4aa6d76e92d103",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/reader-workflows/retests/python/pylint-freeze.txt",
+      "sha256": "40858ee72d71d06bcee50bc1b674f60e2dbc47a33d84575817a8f9985a5c3820",
+      "observedWorkingTreeSha256": "40858ee72d71d06bcee50bc1b674f60e2dbc47a33d84575817a8f9985a5c3820",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/reader-workflows/retests/python/pylint-inline.ps1",
+      "sha256": "cf3126b7745c3f8b033bf1b68ab20fd02a1ccf7f90e2169e08de40a266478fb9",
+      "observedWorkingTreeSha256": "cf3126b7745c3f8b033bf1b68ab20fd02a1ccf7f90e2169e08de40a266478fb9",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/reader-workflows/retests/python/pylint-inline.txt",
+      "sha256": "020873768003799d758bd0894163c280d8b8a6f4068bb1f9eee4d244deefa6cf",
+      "observedWorkingTreeSha256": "020873768003799d758bd0894163c280d8b8a6f4068bb1f9eee4d244deefa6cf",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/reader-workflows/retests/python/report.md",
+      "sha256": "afce1d7eb772afb8b922969d1908917f008f570d022d89555425b78b4dc3ed92",
+      "observedWorkingTreeSha256": "afce1d7eb772afb8b922969d1908917f008f570d022d89555425b78b4dc3ed92",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/remaining-work/executions/boofuzz/faulty.json",
+      "sha256": "e0dbe67f21bf93f773ad14d73a3565f37c0e6c9d9054995fdbc96fae60b2b559",
+      "observedWorkingTreeSha256": "21f61cf7f20cd1b0ce4856b885b5ae30778dbcd4f85e121bcb1a4a3ba98fce80",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/executions/boofuzz/fixed.json",
+      "sha256": "5545722b416a726ccbc7eef6a95b8f38a0fa24167ab5669709736850db5b56f5",
+      "observedWorkingTreeSha256": "4f2bdd5cf38f24f9f6d190b0d41f16ae545418876024bdf29626d9d0e5ab6035",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/executions/http-api/faulty.txt",
+      "sha256": "af10c03293a1128d7c0244e15b1fce2042073334b886683acab346f4fd106d5f",
+      "observedWorkingTreeSha256": "a6b8f0f5b5d59a8c5728467d9e0c5e168d4eef1d8d01ac4f05f5184961a8e42f",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/executions/http-api/faulty.xml",
+      "sha256": "10a03e04cc6d928a0f763cc3741f5a1464e5587654fd8477b03c95ad162b8f70",
+      "observedWorkingTreeSha256": "1f589213822ae1c2b343a40072629b1fb16ee9cd5353ba22efda1867b03d5100",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/executions/http-api/fixed.txt",
+      "sha256": "0fde83e94b5219db0f966e8bb60d90eeb1771ee1962284d2b98f96857937e0b8",
+      "observedWorkingTreeSha256": "139b3837f580b0aa1c2bfeb79a85d1f75e17abeaffc49cd55c5f76284d30b892",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/executions/http-api/fixed.xml",
+      "sha256": "29c2e59720a165013ebe6d2e0a1e093523eeaf767cccf3060307f5b98721da7d",
+      "observedWorkingTreeSha256": "bb589139d3bb8f0c32847580ab2d295dfb5ec256fb494d228631ed3418400007",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/executions/http-api/record.json",
+      "sha256": "fa5ac8086c074e8e223ebaa6d98d302661e6217779cbd08fcb8d9b1a28f8f310",
+      "observedWorkingTreeSha256": "ccb236efb8cfb342f5a28be7f7bd878c37a8a83da2af9580831bff7eef8fb246",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/executions/k6/completed.json",
+      "sha256": "7e9b82034fd3ec87e008bf5bd7f84b99ba970bd9d9345f529c7ba52df1d0d763",
+      "observedWorkingTreeSha256": "7e9b82034fd3ec87e008bf5bd7f84b99ba970bd9d9345f529c7ba52df1d0d763",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/remaining-work/executions/k6/record.json",
+      "sha256": "7c478ccb29043f06de22b63225fb2b763f928c2c886f84b1dc70148dda94086a",
+      "observedWorkingTreeSha256": "935ebcc1f1f7733b2da231465e851eb40243146d689835dfe19ac1bac4caaa84",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/executions/k6/setup-failed.json",
+      "sha256": "9e05e32c2700b45a840cf7cdbf1b6f4352ffc72f1c3bbbd4d1d4c56a5c9aa966",
+      "observedWorkingTreeSha256": "9e05e32c2700b45a840cf7cdbf1b6f4352ffc72f1c3bbbd4d1d4c56a5c9aa966",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/remaining-work/executions/k6/threshold-failed.json",
+      "sha256": "608142b27facea5a0774abf2b25d45539f9c7efb43d93fd6727d4944e0173fdb",
+      "observedWorkingTreeSha256": "608142b27facea5a0774abf2b25d45539f9c7efb43d93fd6727d4944e0173fdb",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/remaining-work/executions/rtamt.json",
+      "sha256": "d2b92a175570611e1af8de150c30c43e4c7bfe025a2356f73fdb43652ea7cc5e",
+      "observedWorkingTreeSha256": "43a38c204daa1d23b6afaa4303c49ca4c79c2d81e65a1e6cb4d0b3afec149cca",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/expansion-runs/powershell.json",
+      "sha256": "6c50bc1082f0bf8f6b31016364bd3dab5381939c2669b5d82829302afa0fe8f7",
+      "observedWorkingTreeSha256": "87a3cf9c896babeda70bb333f6ff18b1186699f1d0f22c5cf592ef1127fa436f",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/expansion-runs/semgrep-bad.json",
+      "sha256": "5996c4dab6763e2dbb4bc4c90b2b967e44865e68d13da5c12e02a3bf284d6a01",
+      "observedWorkingTreeSha256": "64efe5c6bab3414af072f93ae3458902af54a07898bbc2c4789f889b860c2947",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/expansion-runs/semgrep-good.json",
+      "sha256": "9e7003add5a9aedbc93547f2f37926069b71c5b5a2dc848503996f01f5b9591c",
+      "observedWorkingTreeSha256": "f4f7e9f424ed9d4d5895a42f61bb5abf2052d66ed92351a88b0e56b5f68518da",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/expansion-runs/semgrep-not-covered.json",
+      "sha256": "19154d3586674c86d9314973763a265a6f6a936e3c5bc7bde508f7a5dee03f97",
+      "observedWorkingTreeSha256": "a3ca8e7b8c5e4746c6fdd4a3422643c147f93111cb5a6d584b09e59339047ad0",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/expansion-runs/semgrep.json",
+      "sha256": "f9300d2d854d7fe18b59f43dd31858f7f45a1fa4e3c010fae7a1d08bc38e59a8",
+      "observedWorkingTreeSha256": "6a478690aa26bd3060a32f24735fae90fd2e3943b3c92cb10168b255539dbd2e",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/expansion-runs/typescript-bad.txt",
+      "sha256": "a04f3843a3348871b5504865af8166ea18bb4b94d638b9643ea769d929f45606",
+      "observedWorkingTreeSha256": "ab8836fb593cbf0bfa893ab3ec5249a86b4f8175808fc214d3e927d61c2160b1",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "audits/remaining-work/expansion-runs/typescript-good.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observedWorkingTreeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "representation": "identical"
+    },
+    {
+      "path": "audits/remaining-work/expansion-runs/typescript.json",
+      "sha256": "3135686bc27138a9280f1cc3e3b7a50794df5b8344823f21c033254e092f299a",
+      "observedWorkingTreeSha256": "a72f687eb8fa29ca5cf2051925885f2e21e7a41082426f19409a4ec07b3d44b3",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "examples/python-coverage/evidence/contract.json",
+      "sha256": "fae011633fe2e2f62f0cfa922feae12f67be96989b51596d088c8bb3bf9cf9ed",
+      "observedWorkingTreeSha256": "f0a848577d6d2923d3cef817cda4111bc74727b0c0a9b78e2860b38dd7836974",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "examples/python-coverage/evidence/partial.json",
+      "sha256": "31d80d8cb8de98d7f8780936c6148af99a3671e12199c9b4d29834d495f13194",
+      "observedWorkingTreeSha256": "13206961ddb9c59454ed3df88727ba19d80c70c0b73efd9e8d2e5eb653a52594",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "examples/python-coverage/evidence/reach.json",
+      "sha256": "ed1842a6080063a7beaa472650f53fa24866a19ff0b75105aafe3e827e8fa3d0",
+      "observedWorkingTreeSha256": "50371964bfb8f5b7854367f9709a609fa6bf229bd6af528fb120add129421ae8",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "examples/python-coverage/evidence/run.json",
+      "sha256": "cd9b89ce63888fe0b192bb43b3957d88e45d28506e535659310a5a65c1dc8e1e",
+      "observedWorkingTreeSha256": "f966d4f2446611610b2920a4522ef06569c89be9fced417b1d0047f48da0dbf6",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "examples/test-quality/evidence/run.json",
+      "sha256": "d0c6a189a4263ab2ef54715127e598957f82c0b722983882a410fb34f288bb69",
+      "observedWorkingTreeSha256": "ceedc355be8e875e58fae7063e165f083c019fbc2e6a7d771b92a8c73fed61cd",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "examples/test-quality/evidence/strong-baseline.txt",
+      "sha256": "8badcb95f200ab50ae61605fb156eba9731ce84d6c54729d925a76aa70c42ded",
+      "observedWorkingTreeSha256": "6138487c73416a40976246dce7aa458b289964a1a6edd3bf7d18a3bef3df7280",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "examples/test-quality/evidence/strong.json",
+      "sha256": "c1e3db03e869167b0d05d59a7828227caf7dbb45b2e05bcbbc1df1147bd928e5",
+      "observedWorkingTreeSha256": "573dcc23f496847b5cf63326314f970a6fccf7ae984eadee88cfff5320ed615a",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "examples/test-quality/evidence/weak-baseline.txt",
+      "sha256": "c1ed87cdb6de9a44c4fca77db2d5765f1476c17b3e274aff89f9dd517c0269c1",
+      "observedWorkingTreeSha256": "b2316f7cffd6c36f4bd365481f490c1fad11f8373723ec7059f8ad1d7288ab00",
+      "representation": "LF repository blob; CRLF observed working tree"
+    },
+    {
+      "path": "examples/test-quality/evidence/weak.json",
+      "sha256": "e44428cea04757c5f9bb878adaccad75aa9ec2efeee77c0cb45ffc01b3c27f57",
+      "observedWorkingTreeSha256": "604f73e46814bfc9712de989094d8931ff478daf7f376740d740f0daf4aae764",
+      "representation": "LF repository blob; CRLF observed working tree"
+    }
+  ],
+  "retentionCheck": "All 42 retained files match their baseline repository blobs exactly (17 files) or only differ through existing LF-to-CRLF checkout conversion (25 files). Both observed byte representations are recorded; no retained file was changed.",
+  "reviewedProfileMetadata": [
+    {
+      "path": "src/content/docs/tools/address-sanitizer.md",
+      "scope": "Execution evidence metadata only; complete profile bytes are recorded for context, not as a renewed review of every product claim.",
+      "executionMetadataSha256": "b160dbb9d0a3b5efab964fe56c4a827124f2b0aaadee5071791bff2d6c945185",
+      "observedDocumentSha256": "c376f0c217c92260ef55e9fd77ba7d5c688491c44afe112f609db84ed914a6d6",
+      "documentLfSha256": "c376f0c217c92260ef55e9fd77ba7d5c688491c44afe112f609db84ed914a6d6"
+    },
+    {
+      "path": "src/content/docs/tools/boofuzz.md",
+      "scope": "Execution evidence metadata only; complete profile bytes are recorded for context, not as a renewed review of every product claim.",
+      "executionMetadataSha256": "da9e12704d426362de9eb5fdcdccdaf20ede4096f9b5efe43d44b6eca3cae88f",
+      "observedDocumentSha256": "e95ddac2c4e4060a6d699e1825f750bd8505f9958e221198b6da2e3fcf60858b",
+      "documentLfSha256": "12e42087ca936b32be0e0e02211f6432e7e861efbbed06c9d56e1afd7bf2babd"
+    },
+    {
+      "path": "src/content/docs/tools/coverage-py.md",
+      "scope": "Execution evidence metadata only; complete profile bytes are recorded for context, not as a renewed review of every product claim.",
+      "executionMetadataSha256": "623c7ff51d04c6ab2b82585afeb1de1fc6a82522985f4b0ad2a8a02bbdca9565",
+      "observedDocumentSha256": "b614b722374bcad391799eb0ce45e054954132f35868d66cbdbacde0b8d9e8db",
+      "documentLfSha256": "f9fa3283d2e94ff44ed59a8e8cbe5600f5eac05da6986f32e5a9141e204744ba"
+    },
+    {
+      "path": "src/content/docs/tools/k6.md",
+      "scope": "Execution evidence metadata only; complete profile bytes are recorded for context, not as a renewed review of every product claim.",
+      "executionMetadataSha256": "54305c3f6754513646575be1fb6b913263a70fa10a7f8830f004e9bf1fe667c4",
+      "observedDocumentSha256": "f268c87db9dc35176c01efefaad45d87a63b3babd96c0c03640135723cabfbde",
+      "documentLfSha256": "439c1826afc422b9d8b1c6d13d4079925567248fb48e6242218b62f10810786a"
+    },
+    {
+      "path": "src/content/docs/tools/mypy.md",
+      "scope": "Execution evidence metadata only; complete profile bytes are recorded for context, not as a renewed review of every product claim.",
+      "executionMetadataSha256": "6079806298eb195a6402b488f41d10e1bba4396ddc7b88a9c5695645df7efe11",
+      "observedDocumentSha256": "3d88a5d2ca191a929072651682c49dab6fac8d7246cf21fdbaee0172e11148e9",
+      "documentLfSha256": "3d88a5d2ca191a929072651682c49dab6fac8d7246cf21fdbaee0172e11148e9"
+    },
+    {
+      "path": "src/content/docs/tools/psscriptanalyzer.md",
+      "scope": "Execution evidence metadata only; complete profile bytes are recorded for context, not as a renewed review of every product claim.",
+      "executionMetadataSha256": "7053a87ef30ddaa2fb85f2ca56a87685e6d63f836cb2e17951e07d2950f5a7db",
+      "observedDocumentSha256": "c846220b2b64ff54bdfd6c94f0f4c019ebd60920d7ed72a2dee87322e1f7ca55",
+      "documentLfSha256": "ab11752f71fa301121775870abc41d26e26d1c0db6ea6ff6bfb3df00dccd39dd"
+    },
+    {
+      "path": "src/content/docs/tools/pylint.md",
+      "scope": "Execution evidence metadata only; complete profile bytes are recorded for context, not as a renewed review of every product claim.",
+      "executionMetadataSha256": "d6cd39b9b3b2871881755d56c0497c3def233fa78500a04f277130e5642dca1a",
+      "observedDocumentSha256": "4e78f07919fb6b808470669d3edd4f75117fb72542ad6b304a6210dfcf6043d3",
+      "documentLfSha256": "4e78f07919fb6b808470669d3edd4f75117fb72542ad6b304a6210dfcf6043d3"
+    },
+    {
+      "path": "src/content/docs/tools/rtamt.md",
+      "scope": "Execution evidence metadata only; complete profile bytes are recorded for context, not as a renewed review of every product claim.",
+      "executionMetadataSha256": "94bc833e348ed89ea49b5043442938874abc16084790e606d69c9da532e02584",
+      "observedDocumentSha256": "15dcee61747ea649045e1b3ab8d1ab0e4b3c0e729c5b085be2525b234947aced",
+      "documentLfSha256": "15dcee61747ea649045e1b3ab8d1ab0e4b3c0e729c5b085be2525b234947aced"
+    },
+    {
+      "path": "src/content/docs/tools/ruff.md",
+      "scope": "Execution evidence metadata only; complete profile bytes are recorded for context, not as a renewed review of every product claim.",
+      "executionMetadataSha256": "6968ced0d7fa5535c501a45ac0653d3a8f8cac64736a8dcdb06a25546e84396a",
+      "observedDocumentSha256": "2c2a8896f983de83ce9c4003e2477a27f20ced8809e86c355510543e7047a2c0",
+      "documentLfSha256": "291798aba2db0d21c6e23bcd9beb564355758b426c91c8578135b1a96dedda95"
+    },
+    {
+      "path": "src/content/docs/tools/schemathesis.md",
+      "scope": "Execution evidence metadata only; complete profile bytes are recorded for context, not as a renewed review of every product claim.",
+      "executionMetadataSha256": "256b4617a61801aa43a25ceb52732824557feda8a67e91a0c3324f399b6a5e89",
+      "observedDocumentSha256": "9b3966ff753a56051901dbe3158257975a42d16b86ff205bd876fafb576c8e32",
+      "documentLfSha256": "9b3966ff753a56051901dbe3158257975a42d16b86ff205bd876fafb576c8e32"
+    },
+    {
+      "path": "src/content/docs/tools/semgrep-ce.md",
+      "scope": "Execution evidence metadata only; complete profile bytes are recorded for context, not as a renewed review of every product claim.",
+      "executionMetadataSha256": "d4081043c1be31612e5edb0d354349f700903d9f5d92425975996eacceb5ea57",
+      "observedDocumentSha256": "6385f9ee95dfe3d1d150338afef2f023cdc5b9df02eff61925112c51c13e907a",
+      "documentLfSha256": "6385f9ee95dfe3d1d150338afef2f023cdc5b9df02eff61925112c51c13e907a"
+    },
+    {
+      "path": "src/content/docs/tools/strykerjs.md",
+      "scope": "Execution evidence metadata only; complete profile bytes are recorded for context, not as a renewed review of every product claim.",
+      "executionMetadataSha256": "a4f2f81e759eec5ba8af6042dd87c636b32435589d50c320fa61da9ef20b5df8",
+      "observedDocumentSha256": "e506e53e679ab99df186063e9a8cf932af9d53f65108b8daf436149209c069c8",
+      "documentLfSha256": "e506e53e679ab99df186063e9a8cf932af9d53f65108b8daf436149209c069c8"
+    },
+    {
+      "path": "src/content/docs/tools/typescript.md",
+      "scope": "Execution evidence metadata only; complete profile bytes are recorded for context, not as a renewed review of every product claim.",
+      "executionMetadataSha256": "10f6a9161e91f6005f15b6eab79645fde7765f1aeea864ea7549b4be373b98dc",
+      "observedDocumentSha256": "bd6879cb05c87730568b271fe5a03addbac14df911624694a73bb29692baf69e",
+      "documentLfSha256": "654b5dc695f45cfbe59754d6cc45e7ad78d22dc859040dbb9645fc008da4e6ae"
+    }
+  ],
+  "validation": {
+    "checkedAt": "2026-11-12T16:07:48.297Z",
+    "tests": {
+      "command": "node --test tests/evidence-metadata.test.mjs tests/knowledge.test.mjs",
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0
+    },
+    "documentation": {
+      "command": "python C:/Users/zwadh/.codex/skills/developer-documentation/scripts/validate_docs.py audits/execution-evidence/README.md",
+      "files": 1,
+      "exitCode": 0
+    },
+    "diffCheck": {
+      "scope": "Eleven directly updated profiles and tests/knowledge.test.mjs",
+      "exitCode": 0
+    },
+    "ascii": {
+      "scope": "New audit files, new test, and eleven directly updated profiles",
+      "nonAsciiFiles": 0
+    }
+  }
+}

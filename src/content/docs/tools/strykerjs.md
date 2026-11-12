@@ -1,6 +1,11 @@
 ---
 title: StrykerJS
 description: Change selected JavaScript source expressions temporarily and check whether an existing test suite notices.
+executionEvidence:
+  status: recorded
+  scope: "StrykerJS 9.0.1 with Jest 29.7.0 on Windows under Node.js 24.22.1 mutated only discount.js using one worker and temporary copies. Both baseline suites passed. The weak suite killed five mutants and left one survivor; adding the boundary assertion killed all six. Both mutation commands exited 0 because the fixture's breaking threshold was zero. This does not establish complete test quality or other runner and language combinations."
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/main/examples/test-quality/evidence/run.json
 tool:
   decision:
     useWhen: Investigate whether a working JavaScript test suite detects small changes to selected source behavior.

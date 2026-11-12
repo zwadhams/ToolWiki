@@ -1,6 +1,11 @@
 ---
 title: Schemathesis
 description: Generate API tests from OpenAPI or GraphQL definitions and check observed responses.
+executionEvidence:
+  status: recorded
+  scope: "Schemathesis 4.33.1 on Windows used Python 3.12.16 to check a local OpenAPI fixture served by Python 3.13.15. The coverage phase used positive generation, not_a_server_error, one worker, seed 20261106, and a 20-second limit. The faulty run exited 1 on an HTTP 500 and the correction exited 0. This does not cover all generation phases, negative cases, security checks, GraphQL, or RESTler."
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/remaining-work/executions/http-api/record.json
 tool:
   analysisWorkflows:
     - id: openapi

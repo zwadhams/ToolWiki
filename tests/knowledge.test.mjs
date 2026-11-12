@@ -20,7 +20,7 @@ test('standalone Markdown includes tool decisions, compatibility, editions, sour
     const doc = snapshot.documents[0];
     for (const field of ['setup', 'environment', 'languageNote', 'scope', 'costNote', 'license', 'findingNote']) assert.ok(doc.markdown.includes(markdownText(tool[field])), field);
     for (const source of tool.sources) assert.ok(doc.markdown.includes(source.url));
-    assert.ok(doc.markdown.includes('**Execution evidence:** not-recorded'));
+    assert.ok(doc.markdown.includes(`**Execution evidence:** ${slug === 'ruff' ? 'recorded' : 'not-recorded'}`));
     assert.ok(doc.markdown.includes(`**Documentation reviewed:** ${tool.verified}`));
     assert.ok(doc.sections.some(s => s.id === 'technical-details'));
     assert.ok(doc.sections.some(s => s.id === 'tool-sources'));

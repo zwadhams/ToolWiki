@@ -1,6 +1,11 @@
 ---
 title: "RTAMT"
 description: "Evaluate signal traces against temporal requirements using online or offline monitors."
+executionEvidence:
+  status: recorded
+  scope: "RTAMT 0.4.10 with Python 3.12.16 and antlr4-python3-runtime 4.7 on Windows evaluated two known temperature traces using the pure-Python offline dense-time monitor. Robustness at time zero was -5.0 for the violating trace and 1.0 for the correction; reproduction assertions passed and the process exited 0. Optional compiled backends, online monitoring, other formulas, and other hosts were not exercised."
+  sources:
+    - https://github.com/zwadhams/ToolWiki/blob/main/audits/remaining-work/executions/rtamt.json
 tool:
   decision:
     useWhen: Use RTAMT to check recorded or streaming signals against a requirement about values over time.

@@ -1778,5 +1778,66 @@
         "sha256": "bcc4813067f55bdf4d16b88df6be3f279cf945def662d5852c5036d72e115f96"
       }
     ]
+  },
+  {
+    "id": "execution-metadata-2026-11-12",
+    "date": "2026-11-12",
+    "reviewer": "api_supply_tools evidence review and coordinator integration",
+    "scope": "Execution evidence metadata only, reconciled with 42 retained provenance files. No new analyzer runs or renewed review of every product claim. Authored profile line endings normalized to repository LF; retained evidence unchanged.",
+    "reference": "audits/execution-evidence/README.md",
+    "files": [
+      {
+        "path": "src/content/docs/tools/address-sanitizer.md",
+        "sha256": "c376f0c217c92260ef55e9fd77ba7d5c688491c44afe112f609db84ed914a6d6"
+      },
+      {
+        "path": "src/content/docs/tools/boofuzz.md",
+        "sha256": "12e42087ca936b32be0e0e02211f6432e7e861efbbed06c9d56e1afd7bf2babd"
+      },
+      {
+        "path": "src/content/docs/tools/coverage-py.md",
+        "sha256": "f9fa3283d2e94ff44ed59a8e8cbe5600f5eac05da6986f32e5a9141e204744ba"
+      },
+      {
+        "path": "src/content/docs/tools/k6.md",
+        "sha256": "439c1826afc422b9d8b1c6d13d4079925567248fb48e6242218b62f10810786a"
+      },
+      {
+        "path": "src/content/docs/tools/mypy.md",
+        "sha256": "3d88a5d2ca191a929072651682c49dab6fac8d7246cf21fdbaee0172e11148e9"
+      },
+      {
+        "path": "src/content/docs/tools/psscriptanalyzer.md",
+        "sha256": "ab11752f71fa301121775870abc41d26e26d1c0db6ea6ff6bfb3df00dccd39dd"
+      },
+      {
+        "path": "src/content/docs/tools/pylint.md",
+        "sha256": "4e78f07919fb6b808470669d3edd4f75117fb72542ad6b304a6210dfcf6043d3"
+      },
+      {
+        "path": "src/content/docs/tools/rtamt.md",
+        "sha256": "15dcee61747ea649045e1b3ab8d1ab0e4b3c0e729c5b085be2525b234947aced"
+      },
+      {
+        "path": "src/content/docs/tools/ruff.md",
+        "sha256": "291798aba2db0d21c6e23bcd9beb564355758b426c91c8578135b1a96dedda95"
+      },
+      {
+        "path": "src/content/docs/tools/schemathesis.md",
+        "sha256": "9b3966ff753a56051901dbe3158257975a42d16b86ff205bd876fafb576c8e32"
+      },
+      {
+        "path": "src/content/docs/tools/semgrep-ce.md",
+        "sha256": "6385f9ee95dfe3d1d150338afef2f023cdc5b9df02eff61925112c51c13e907a"
+      },
+      {
+        "path": "src/content/docs/tools/strykerjs.md",
+        "sha256": "e506e53e679ab99df186063e9a8cf932af9d53f65108b8daf436149209c069c8"
+      },
+      {
+        "path": "src/content/docs/tools/typescript.md",
+        "sha256": "654b5dc695f45cfbe59754d6cc45e7ad78d22dc859040dbb9645fc008da4e6ae"
+      }
+    ]
   }
 ]

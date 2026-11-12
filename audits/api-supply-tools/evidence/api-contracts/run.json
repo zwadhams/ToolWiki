@@ -1,0 +1,89 @@
+{
+  "executedAt": "2026-11-12T15:54:31.837Z",
+  "environment": {
+    "platform": "win32",
+    "nodeArchitecture": "x64",
+    "machine": "x86_64",
+    "osRelease": "10.0.26300",
+    "node": "v24.22.1",
+    "spectral": "6.17.1",
+    "pact": "17.1.4",
+    "pactCore": "20.2.0"
+  },
+  "scope": "One custom document-lint rule and one consumer-generated HTTP interaction with a type-mismatched and corrected local provider. No broker, published result, or external target.",
+  "results": [
+    {
+      "name": "spectral-bad",
+      "command": [
+        "node",
+        "node_modules/@stoplight/spectral-cli/dist/index.js",
+        "lint",
+        "openapi.bad.json",
+        "--ruleset",
+        ".spectral.yaml",
+        "--format",
+        "json",
+        "--output",
+        "reports/spectral-bad.json",
+        "--fail-severity",
+        "error"
+      ],
+      "exitCode": 1
+    },
+    {
+      "name": "spectral-good",
+      "command": [
+        "node",
+        "node_modules/@stoplight/spectral-cli/dist/index.js",
+        "lint",
+        "openapi.good.json",
+        "--ruleset",
+        ".spectral.yaml",
+        "--format",
+        "json",
+        "--output",
+        "reports/spectral-good.json",
+        "--fail-severity",
+        "error"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "consumer",
+      "command": [
+        "node",
+        "consumer.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "provider-bad",
+      "command": [
+        "node",
+        "provider-check.mjs",
+        "bad"
+      ],
+      "exitCode": 1
+    },
+    {
+      "name": "provider-good",
+      "command": [
+        "node",
+        "provider-check.mjs",
+        "good"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "inputsSha256": {
+    "package.json": "83364bdf81ffb9094d21df36a1fa659f4a62e76152e9cdec90b579f5a34ed385",
+    "package-lock.json": "2995b161d54e35168a696b479f516bc1764a0ce16e31c1f040cfd99252e9e2f8",
+    ".spectral.yaml": "581ca4542e4a1ab058f2b9ac9edfc5ed77d394bc44d594dd75946f882284f7c1",
+    "openapi.bad.json": "6a302a605b6664da9b7a3162c149e0ac2d3eb8be159d6f7e82f212004cdc0473",
+    "openapi.good.json": "4e678da0555690df2136215a056f57259cecc6b2885868a02169517022bd029b",
+    "client.mjs": "aeadaf12bb45f3d88f70b1a4dfa0b536375da3e890ecba14e57ef2dbbaa5ba2e",
+    "consumer.mjs": "87baa8ae53398accb48f47bc4e94714c93bd21ad48aeecd251e2350a4b055eb2",
+    "provider-check.mjs": "b1b911b36d51573ae860cf8f39c9d46520557b54e2437877d9340bc7cf2c64cc",
+    "verify.mjs": "ff9c8794cd719ee9dac7b8b624b79bde56df1de0505a97293f9a373c627f435f"
+  }
+}

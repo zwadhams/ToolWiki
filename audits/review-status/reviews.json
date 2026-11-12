@@ -1680,5 +1680,34 @@
         "sha256": "0e549bd6135d98fd4fd3d009bddd3f00f8b3f55f6e0e8b67a8d3f757875b4c40"
       }
     ]
+  },
+  {
+    "id": "api-supply-tools-2026-11-12",
+    "date": "2026-11-12",
+    "reviewer": "api_supply_tools documentation and fixture review",
+    "scope": "Primary-source review of Spectral, Pact JS and Syft, with isolated faulty/corrected API checks and declared npm inventory examples.",
+    "reference": "audits/api-supply-tools/README.md",
+    "files": [
+      {
+        "path": "src/content/docs/tools/spectral.md",
+        "sha256": "30afff4ef3be9024ab1b332a78ec520b372dd0a17de198c95cd1e22a908bbe60"
+      },
+      {
+        "path": "src/content/docs/tools/pact.md",
+        "sha256": "a7c7817a07eb280913800da968a04452638f775c20abbe62d80c409485fbf8be"
+      },
+      {
+        "path": "src/content/docs/tools/syft.md",
+        "sha256": "682864e6b79b4703803f5fd5041afe953cbfe1692d59291b6fced72bf369b4dc"
+      },
+      {
+        "path": "src/content/docs/guides/api-contracts.md",
+        "sha256": "fa8c6f5505c8515da4088096104cd203499f8a069ae38db56e6d76a408d01736"
+      },
+      {
+        "path": "src/content/docs/guides/sbom-inventory.md",
+        "sha256": "66df7dbb861faa932ecfa77038cdabce80d038da5bc4ded3aea9bf46ba64d3a9"
+      }
+    ]
   }
 ]

@@ -1,0 +1,10 @@
+{
+  "nativeNode": "v24.22.1",
+  "architecture": "arm64",
+  "processorArchitecture": "ARM64",
+  "syftAsset": "syft_1.57.1_windows_arm64.zip",
+  "syftSha256": "8cdd580b5f7160d12b66c7c5191100a6cf792e130d8a28deeae5ea45e0030e00",
+  "nodeAsset": "node-v24.22.1-win-x64.zip",
+  "nodeSha256": "d2046d28c2c3dcd211ac5145c0bf30e2047ef9dfb306693c8c6e2eccd8b95fa5",
+  "verification": "Syft ZIP matched the official GitHub release asset digest; Node ZIP matched the official release SHASUMS256.txt. These checks were not independent signature verification."
+}

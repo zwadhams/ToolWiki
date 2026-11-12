@@ -1,0 +1,9 @@
+# This isolated teaching ruleset checks one policy, not full OpenAPI validity.
+rules:
+  operation-id-required:
+    description: Every GET operation must have an operationId.
+    severity: error
+    given: $.paths.*.get
+    then:
+      field: operationId
+      function: truthy

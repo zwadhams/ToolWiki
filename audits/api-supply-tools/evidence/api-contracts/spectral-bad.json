@@ -1,0 +1,23 @@
+[
+	{
+		"code": "operation-id-required",
+		"path": [
+			"paths",
+			"/parcels/1",
+			"get"
+		],
+		"message": "Every GET operation must have an operationId.",
+		"severity": 0,
+		"range": {
+			"start": {
+				"line": 5,
+				"character": 12
+			},
+			"end": {
+				"line": 16,
+				"character": 48
+			}
+		},
+		"source": "<REPO>/examples/api-contracts/openapi.bad.json"
+	}
+]

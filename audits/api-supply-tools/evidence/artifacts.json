@@ -1,0 +1,131 @@
+{
+  "capturedAt": "2026-11-12T15:55:56.438Z",
+  "artifacts": [
+    {
+      "path": "api-contracts/consumer.stderr.txt",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retainedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalization": "none"
+    },
+    {
+      "path": "api-contracts/consumer.stdout.txt",
+      "originalSha256": "b3bafea04dd32e241d754fdd791b33e26bc5603dca1a2da7bbec19d4c3271c84",
+      "retainedSha256": "b3bafea04dd32e241d754fdd791b33e26bc5603dca1a2da7bbec19d4c3271c84",
+      "normalization": "none"
+    },
+    {
+      "path": "api-contracts/provider-bad.stderr.txt",
+      "originalSha256": "7b3e380fd8ffe1f6090d734c20dde6ee22b55e0e97f0e2c3631e35a0ce702a40",
+      "retainedSha256": "7b3e380fd8ffe1f6090d734c20dde6ee22b55e0e97f0e2c3631e35a0ce702a40",
+      "normalization": "none"
+    },
+    {
+      "path": "api-contracts/provider-bad.stdout.txt",
+      "originalSha256": "e71ceb24e6d74b5c5edadc23544aca4e1c25f3400f7269504a5369d3ccebad6c",
+      "retainedSha256": "e71ceb24e6d74b5c5edadc23544aca4e1c25f3400f7269504a5369d3ccebad6c",
+      "normalization": "none"
+    },
+    {
+      "path": "api-contracts/provider-good.stderr.txt",
+      "originalSha256": "abce463ce015407b61cd5577eae5791a57efe200481e320844b861785e04d41f",
+      "retainedSha256": "abce463ce015407b61cd5577eae5791a57efe200481e320844b861785e04d41f",
+      "normalization": "none"
+    },
+    {
+      "path": "api-contracts/provider-good.stdout.txt",
+      "originalSha256": "ad72d62793bc5592c45a2b0f0943c5f24fef0f62fd93fee89d1b2a43dad45c4d",
+      "retainedSha256": "ad72d62793bc5592c45a2b0f0943c5f24fef0f62fd93fee89d1b2a43dad45c4d",
+      "normalization": "none"
+    },
+    {
+      "path": "api-contracts/run.json",
+      "originalSha256": "e59e041cf281f2d28822e93a1203fd076bbd2ec1568d5364f8df07222487dea2",
+      "retainedSha256": "e59e041cf281f2d28822e93a1203fd076bbd2ec1568d5364f8df07222487dea2",
+      "normalization": "none"
+    },
+    {
+      "path": "api-contracts/spectral-bad.json",
+      "originalSha256": "18d6fe7352c622e71828758c843952b663362f86ad255265ed433f33d707e58c",
+      "retainedSha256": "d85582de10630bc186cf46127615d3c2294710f7e09600f067be3dae4a2874e2",
+      "normalization": "Workspace prefix replaced with <REPO>; any non-ASCII character escaped as \\uXXXX."
+    },
+    {
+      "path": "api-contracts/spectral-bad.stderr.txt",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retainedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalization": "none"
+    },
+    {
+      "path": "api-contracts/spectral-bad.stdout.txt",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retainedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalization": "none"
+    },
+    {
+      "path": "api-contracts/spectral-good.json",
+      "originalSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "retainedSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "normalization": "none"
+    },
+    {
+      "path": "api-contracts/spectral-good.stderr.txt",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retainedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalization": "none"
+    },
+    {
+      "path": "api-contracts/spectral-good.stdout.txt",
+      "originalSha256": "c6b11d0c197754686da7a4c71150f189c4634f4113dd7b85f1d12200c5bdb0bd",
+      "retainedSha256": "c6b11d0c197754686da7a4c71150f189c4634f4113dd7b85f1d12200c5bdb0bd",
+      "normalization": "none"
+    },
+    {
+      "path": "api-contracts/pacts/ParcelClient-ParcelAPI.json",
+      "originalSha256": "70fa995a18da4bf9f1de8df7b804527c059deeaa060e81aee164085872bdc4bf",
+      "retainedSha256": "70fa995a18da4bf9f1de8df7b804527c059deeaa060e81aee164085872bdc4bf",
+      "normalization": "none"
+    },
+    {
+      "path": "sbom-inventory/baseline.stderr.txt",
+      "originalSha256": "382d6fa3cb387a13cae816cd9271403543e6692d4241132e0e3508b55ca957b1",
+      "retainedSha256": "382d6fa3cb387a13cae816cd9271403543e6692d4241132e0e3508b55ca957b1",
+      "normalization": "none"
+    },
+    {
+      "path": "sbom-inventory/baseline.stdout.txt",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retainedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalization": "none"
+    },
+    {
+      "path": "sbom-inventory/baseline.syft.json",
+      "originalSha256": "7b11c245f03efe2e997f981b3eb48b3d2d5bb7d9ce536f7d1afbb0be692d115a",
+      "retainedSha256": "7b11c245f03efe2e997f981b3eb48b3d2d5bb7d9ce536f7d1afbb0be692d115a",
+      "normalization": "none"
+    },
+    {
+      "path": "sbom-inventory/changed.stderr.txt",
+      "originalSha256": "382d6fa3cb387a13cae816cd9271403543e6692d4241132e0e3508b55ca957b1",
+      "retainedSha256": "382d6fa3cb387a13cae816cd9271403543e6692d4241132e0e3508b55ca957b1",
+      "normalization": "none"
+    },
+    {
+      "path": "sbom-inventory/changed.stdout.txt",
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retainedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalization": "none"
+    },
+    {
+      "path": "sbom-inventory/changed.syft.json",
+      "originalSha256": "8df373936ecf0dea49a990183014fde71cfc8ec64eb64d623ecc762f722ef490",
+      "retainedSha256": "8df373936ecf0dea49a990183014fde71cfc8ec64eb64d623ecc762f722ef490",
+      "normalization": "none"
+    },
+    {
+      "path": "sbom-inventory/run.json",
+      "originalSha256": "d9e4761ca94882ba2297a3ff63069b0dd0a3197ffb178a95eeb3bed88b140278",
+      "retainedSha256": "d9e4761ca94882ba2297a3ff63069b0dd0a3197ffb178a95eeb3bed88b140278",
+      "normalization": "none"
+    }
+  ]
+}

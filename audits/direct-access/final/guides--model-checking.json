@@ -1,0 +1,90 @@
+{
+  "id": "guides/model-checking",
+  "kind": "guide",
+  "title": "Check a queue model with TLC",
+  "description": "Find a queue-capacity invariant violation, inspect its state trace, and repeat the same check after correcting the transition guard.",
+  "url": "https://zwadhams.github.io/ToolWiki/guides/model-checking/",
+  "revision": "dab4069982cb9d21174847c88168f77c35cfd71058dfea747435ec6701b31a08",
+  "markdown": "# Check a queue model with TLC\n\n[TLC](https://zwadhams.github.io/ToolWiki/tools/tlc/) explores reachable states of a TLA+ model. This example\nmodels only a queue's occupancy. The intended property is that occupancy never\nexceeds capacity. It contains no message contents, FIFO ordering, threads,\nnetwork failures, or implementation code.\n\nThe faulty and corrected modules use the same configuration and properties.\nChanging only the enqueue guard makes the difference visible in a short trace.\n\n## Prepare the example\n\nUse [Get the examples](https://zwadhams.github.io/ToolWiki/guides/get-examples/) to obtain the repository, then open\n`examples/tlc`. You need Python 3 to run the small download/recording scripts and\na working Java runtime for TLC. The retained run used Python 3.13.15 and an x64\nOracle JDK 25.0.4.1 on Windows 11. Other host/JVM combinations were not executed\nfor this example.\n\nDownload and verify the official archive pinned by `tool-lock.json`:\n\n```sh\npython fetch_tool.py\n```\n\nThe script fetches `tla2tools.jar` from the official `v1.7.4` release and verifies\nits byte count, the release's published SHA-1 checksum, and the recorded SHA-256.\nIt stores the archive in `.tools/`; it does not install Java or change your PATH.\nThe versioned archive reports **TLC2 Version 2.19**, so distinguish the archive's\nrelease tag from TLC's own version string.\n\n## Understand the property\n\nBoth modules start with `queued = 0`. An enqueue adds one and a dequeue subtracts\none when the queue is nonempty. `Queue.cfg` sets `Capacity = 2`, selects `Init`\nand `Next`, and checks `TypeOK` and `WithinCapacity`.\n\nThe invariant is the same in both modules:\n\n```text\nWithinCapacity == queued <= Capacity\n```\n\nThe faulty enqueue guard permits another item when occupancy already equals\ncapacity:\n\n```text\nEnqueue == /\\ queued <= Capacity\n           /\\ queued' = queued + 1\n```\n\n`/\\` means conjunction. The primed variable `queued'` denotes the next state's\nvalue. In `QueueCorrected.tla`, the guard uses `<` instead of `<=`.\n\n## Run both models\n\nIf `java` resolves to a working Java executable, run:\n\n```sh\npython run.py\n```\n\nIf your launcher is missing or does not start the intended runtime, pass the\nexecutable's full path. The recorded Windows run used:\n\n```powershell\npython run.py --java \"C:/Program Files/Java/jdk-25.0.4.1/bin/java.exe\"\n```\n\nReplace that path with your installed Java executable when it differs. The\nrunner verifies the pinned archive, copies the two model inputs into separate\nrun directories, and invokes the CLI with one worker, a 256 MiB Java heap,\nfingerprint polynomial 0, and seed 1. It uses the default breadth-first\nmodel-checking mode, not random simulation. It writes stdout, stderr, commands,\nexit codes, runtime versions, and input hashes beneath `.runs/`.\n\nThe runner succeeds only when the faulty model reports the expected invariant\nviolation with a nonzero process exit and the corrected model reports completion\nwithout an error and exits zero. It refuses to overwrite a nonempty explicit\n`--output-dir`.\n\n## Interpret the retained result\n\nThe [execution record](https://github.com/zwadhams/ToolWiki/blob/main/examples/tlc/evidence.md)\nlinks the complete output and exact commands from November 12, 2026.\n\n| Model            | Observed result                        | Process exit | Distinct states reported |\n| ---------------- | -------------------------------------- | ------------ | ------------------------ |\n| `QueueFaulty`    | `WithinCapacity` violated              | 12           | 4                        |\n| `QueueCorrected` | Model checking completed with no error | 0            | 3                        |\n\nThe faulty trace shows `queued` taking values 0, 1, 2, and 3. The transition out\nof the full queue is the counterexample. That run stops at the reported\nviolation; its state count is not evidence that all later behavior was checked.\n\nThe corrected run reports five generated states, three distinct states, and\nzero states remaining on the queue. It finishes the configured finite search\nand finds no violation of the selected invariants. TLC uses state fingerprints;\nits completion output also reports a collision-probability estimate.\n\n## Keep the claim within the model\n\nThis result applies to capacity 2 and the stated transitions. It is not a proof\nfor every capacity, an unbounded queue, or a production queue implementation.\nNo liveness property was selected: a safety invariant does not establish that\nan item is eventually removed. Larger models can fail to finish because of\nstate-space growth or resource limits; those are incomplete checks.\n\nTo adapt the example, first decide what states, transitions, failures, and\nproperties matter for your system. Record any fairness assumptions or\nstate-space constraints. Check that the model can reach intended states and\ntransitions instead of obtaining a vacuous success by excluding them. Retain\neach model/configuration pair with its [run record](https://zwadhams.github.io/ToolWiki/guides/run-record/).\n\nFor verifying contracts against implementation code, compare\n[Dafny](https://zwadhams.github.io/ToolWiki/tools/dafny/) and [CBMC](https://zwadhams.github.io/ToolWiki/tools/cbmc/). A design model and an\nimplementation need a separate argument or check connecting their behavior.\n\nSource: [ToolWiki page](https://zwadhams.github.io/ToolWiki/guides/model-checking/). [JSON record and content revision](https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/guides/model-checking.json).\n\n- **Documentation reviewed:** Not recorded\n- **Execution evidence:** recorded\n- **Execution scope:** TLC 2.19 from v1.7.4, Oracle Java 25.0.4.1 and Python 3.13.15 on Windows 11; capacity-2 queue occupancy and two invariants. No liveness properties or application implementation were checked.\n- [Execution record](https://github.com/zwadhams/ToolWiki/blob/main/examples/tlc/evidence.md)\n\nDocumentation review is separate from execution evidence. A recorded execution applies only to its stated environment and scope; not-recorded means no structured execution record is supplied.\n",
+  "sections": [
+    {
+      "id": "prepare-the-example",
+      "title": "Prepare the example",
+      "depth": 2,
+      "start": 495,
+      "end": 1373
+    },
+    {
+      "id": "understand-the-property",
+      "title": "Understand the property",
+      "depth": 2,
+      "start": 1373,
+      "end": 2028
+    },
+    {
+      "id": "run-both-models",
+      "title": "Run both models",
+      "depth": 2,
+      "start": 2028,
+      "end": 3050
+    },
+    {
+      "id": "interpret-the-retained-result",
+      "title": "Interpret the retained result",
+      "depth": 2,
+      "start": 3050,
+      "end": 4204
+    },
+    {
+      "id": "keep-the-claim-within-the-model",
+      "title": "Keep the claim within the model",
+      "depth": 2,
+      "start": 4204,
+      "end": 6095
+    }
+  ],
+  "sources": [
+    {
+      "label": "TLC",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/tlc/"
+    },
+    {
+      "label": "Get the examples",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/get-examples/"
+    },
+    {
+      "label": "execution record",
+      "url": "https://github.com/zwadhams/ToolWiki/blob/main/examples/tlc/evidence.md"
+    },
+    {
+      "label": "run record",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/run-record/"
+    },
+    {
+      "label": "Dafny",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/dafny/"
+    },
+    {
+      "label": "CBMC",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/cbmc/"
+    },
+    {
+      "label": "ToolWiki page",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/model-checking/"
+    },
+    {
+      "label": "JSON record and content revision",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/guides/model-checking.json"
+    }
+  ],
+  "evidence": {
+    "documentationReviewedOn": null,
+    "execution": {
+      "status": "recorded",
+      "scope": "TLC 2.19 from v1.7.4, Oracle Java 25.0.4.1 and Python 3.13.15 on Windows 11; capacity-2 queue occupancy and two invariants. No liveness properties or application implementation were checked.",
+      "sources": [
+        "https://github.com/zwadhams/ToolWiki/blob/main/examples/tlc/evidence.md"
+      ]
+    }
+  }
+}

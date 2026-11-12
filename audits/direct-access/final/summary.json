@@ -1,0 +1,20 @@
+{
+  "entry_url": "http://127.0.0.1:4324/ToolWiki/",
+  "manifest_revision": "786475d7ca683b1af789c9408dd3d67e74c8e6bba76acd1e9c4471ae0c023d8d",
+  "all_requests": 345,
+  "all_http_200": true,
+  "manifest_files": 332,
+  "manifest_files_all_valid": true,
+  "individual_documents_equal_snapshot": 159,
+  "retained_snapshots_valid": true,
+  "history_delta_counts": {
+    "added": 25,
+    "changed": 134,
+    "removed": 0
+  },
+  "history_deltas_match": true,
+  "static_comparison_without_javascript": true,
+  "example_links_consistent": true,
+  "report_ascii": true,
+  "report_bytes": 16118
+}

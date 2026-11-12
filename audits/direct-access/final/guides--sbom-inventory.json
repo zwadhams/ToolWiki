@@ -1,0 +1,91 @@
+{
+  "id": "guides/sbom-inventory",
+  "kind": "guide",
+  "title": "Record and compare an SBOM inventory",
+  "description": "Use Syft to inventory declared npm dependencies and inspect what changes when a dependency introduces another package version.",
+  "url": "https://zwadhams.github.io/ToolWiki/guides/sbom-inventory/",
+  "revision": "fc904c0a3738e181def18a49c3bde0d46740a6bfc30859417f64d9c2157b8069",
+  "markdown": "# Record and compare an SBOM inventory\n\nA software bill of materials (SBOM) records identified software components.\nThis example uses [Syft](https://zwadhams.github.io/ToolWiki/tools/syft/) to inventory two npm lockfiles and\nexplain a direct and transitive dependency change.\n\n## Prepare the inputs\n\nUse the repository's\n[`examples/sbom-inventory`](https://github.com/zwadhams/ToolWiki/tree/main/examples/sbom-inventory)\ndirectory. Install the official **Syft 1.57.1** binary for your host using the\n[installation guide](https://oss.anchore.com/docs/installation/syft/).\nThe retained run used its Windows ARM64 build. Use Node.js 22 or newer for the\nsmall verification runner; it has no npm dependencies to install.\n\nThe `baseline/` and `changed/` directories contain package manifests and\nlockfiles, with no installed packages. You do not need to run `npm install` in\neither input directory to reproduce the scan.\n\n## Run the inventory check\n\nFrom the example directory, run:\n\n```sh\nnode verify.mjs\n```\n\nIf Syft is not on PATH, pass its executable path:\n\n```sh\nnode verify.mjs \"C:/tools/syft/syft.exe\"\n```\n\nReplace that path with the binary you installed. The runner disables the update\ncheck for these local scans, records the Syft version, scans both directories,\nand checks their package/version sets. It writes the SBOMs and `run.json` into\n`reports/`.\n\nThe underlying command for the baseline is:\n\n```sh\nsyft scan dir:baseline --override-default-catalogers javascript-lock-cataloger -o syft-json=reports/baseline.syft.json\n```\n\nThe output directory is created by the runner. The cataloger override is\nintentional for this fixture: it replaces defaults so only npm lockfile\ndiscovery is evaluated. It should not replace an existing project's cataloger\nconfiguration without a reason.\n\n## Interpret the change\n\nThe recorded inventories were:\n\n| Package              | Baseline | Changed         |\n| -------------------- | -------- | --------------- |\n| Root fixture project | 1.0.0    | 1.0.0           |\n| `is-number`          | 7.0.0    | 6.0.0 and 7.0.0 |\n| `is-odd`             | Absent   | 3.0.1           |\n\nAdding `is-odd` introduces its dependency on a second version of `is-number`.\nThe root project is also an inventory record. Inspect `name`, `version`,\n`locations`, and `foundBy` in the JSON before summarizing counts.\n\nNeither inventory is labeled defective. A new package or version is a change\nto review, not automatically a vulnerability. The scan reads declared dependency\nmetadata; it does not prove that those packages are installed in a deployment,\nimported by the application, or reachable at runtime.\n\n## Preserve scope when using an SBOM\n\nRecord the source artifact identity, Syft version, selected catalogers, and\noutput format with the file. The\n[cataloger guide](https://oss.anchore.com/docs/guides/sbom/catalogers/) explains\nwhy image and directory defaults differ. For deployment inventory, inspect the\nactual image or installed filesystem with the appropriate scope.\n\nUse [Grype](https://zwadhams.github.io/ToolWiki/tools/grype/) for a separate vulnerability-matching step, or\ncompare the relevant [Trivy](https://zwadhams.github.io/ToolWiki/tools/trivy/) workflow. This example did not\nrun either scanner or access a vulnerability database. SBOM generation,\nvulnerability matching, and exploitability assessment are separate questions.\n\nThe [retained run](https://github.com/zwadhams/ToolWiki/tree/main/audits/api-supply-tools/evidence/sbom-inventory)\ncontains input hashes, commands, exit codes, the observed package sets, and\nthe original SBOM output for this fixture.\n\nSource: [ToolWiki page](https://zwadhams.github.io/ToolWiki/guides/sbom-inventory/). [JSON record and content revision](https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/guides/sbom-inventory.json).\n\n- **Documentation reviewed:** Not recorded\n- **Execution evidence:** recorded\n- **Execution scope:** November 12, 2026 run of Syft 1.57.1 on Windows ARM64 against two local npm lockfile directories, restricted to javascript-lock-cataloger. The baseline contained two package records including the root project; the changed fixture contained four. No vulnerability matching or application execution was performed.\n- [Execution record](https://github.com/zwadhams/ToolWiki/blob/main/audits/api-supply-tools/evidence/sbom-inventory/run.json)\n\nDocumentation review is separate from execution evidence. A recorded execution applies only to its stated environment and scope; not-recorded means no structured execution record is supplied.\n",
+  "sections": [
+    {
+      "id": "prepare-the-inputs",
+      "title": "Prepare the inputs",
+      "depth": 2,
+      "start": 277,
+      "end": 916
+    },
+    {
+      "id": "run-the-inventory-check",
+      "title": "Run the inventory check",
+      "depth": 2,
+      "start": 916,
+      "end": 1790
+    },
+    {
+      "id": "interpret-the-change",
+      "title": "Interpret the change",
+      "depth": 2,
+      "start": 1790,
+      "end": 2628
+    },
+    {
+      "id": "preserve-scope-when-using-an-sbom",
+      "title": "Preserve scope when using an SBOM",
+      "depth": 2,
+      "start": 2628,
+      "end": 4547
+    }
+  ],
+  "sources": [
+    {
+      "label": "Syft",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/syft/"
+    },
+    {
+      "label": "examples/sbom-inventory",
+      "url": "https://github.com/zwadhams/ToolWiki/tree/main/examples/sbom-inventory"
+    },
+    {
+      "label": "installation guide",
+      "url": "https://oss.anchore.com/docs/installation/syft/"
+    },
+    {
+      "label": "cataloger guide",
+      "url": "https://oss.anchore.com/docs/guides/sbom/catalogers/"
+    },
+    {
+      "label": "Grype",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/grype/"
+    },
+    {
+      "label": "Trivy",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/trivy/"
+    },
+    {
+      "label": "retained run",
+      "url": "https://github.com/zwadhams/ToolWiki/tree/main/audits/api-supply-tools/evidence/sbom-inventory"
+    },
+    {
+      "label": "ToolWiki page",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/sbom-inventory/"
+    },
+    {
+      "label": "JSON record and content revision",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/guides/sbom-inventory.json"
+    },
+    {
+      "label": "Execution record",
+      "url": "https://github.com/zwadhams/ToolWiki/blob/main/audits/api-supply-tools/evidence/sbom-inventory/run.json"
+    }
+  ],
+  "evidence": {
+    "documentationReviewedOn": null,
+    "execution": {
+      "status": "recorded",
+      "scope": "November 12, 2026 run of Syft 1.57.1 on Windows ARM64 against two local npm lockfile directories, restricted to javascript-lock-cataloger. The baseline contained two package records including the root project; the changed fixture contained four. No vulnerability matching or application execution was performed.",
+      "sources": [
+        "https://github.com/zwadhams/ToolWiki/blob/main/audits/api-supply-tools/evidence/sbom-inventory/run.json"
+      ]
+    }
+  }
+}

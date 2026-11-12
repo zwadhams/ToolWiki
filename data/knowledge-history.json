@@ -6,5 +6,14 @@
     "source": "https://zwadhams.github.io/ToolWiki/knowledge/v1/manifest.json",
     "sha256": "e0cabe226241203d1295ad25dbf36558b6eab96cde5f5105b5c289e239427c5b",
     "bytes": 1099082
+  },
+  {
+    "revision": "786475d7ca683b1af789c9408dd3d67e74c8e6bba76acd1e9c4471ae0c023d8d",
+    "capturedOn": "2026-11-12",
+    "label": "Tasks evidence and catalog expansion",
+    "source": "https://github.com/zwadhams/ToolWiki/commit/e337431f9ed20dcd5d157068e7c25e59a2e9c7e0",
+    "sha256": "c84aa25a105f6555d2210d7c4d20eb362740ac1e945c102a3bf17cb2e42b7004",
+    "bytes": 1878658,
+    "sourceCommit": "e337431f9ed20dcd5d157068e7c25e59a2e9c7e0"
   }
 ]

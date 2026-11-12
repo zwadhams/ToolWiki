@@ -1839,5 +1839,214 @@
         "sha256": "654b5dc695f45cfbe59754d6cc45e7ad78d22dc859040dbb9645fc008da4e6ae"
       }
     ]
+  },
+  {
+    "id": "site-expansion-integration-2026-11-12",
+    "date": "2026-11-12",
+    "reviewer": "coordinator integration review",
+    "scope": "Navigation, source-backed static comparisons, record/export consistency, fixture acquisition, and execution scope integration. Primary-source tool reviews and executed examples are recorded in their separate audits. Authored text uses repository LF; retained analyzer artifacts are unchanged.",
+    "reference": "audits/site-expansion/README.md",
+    "files": [
+      {
+        "path": "src/content/docs/compare.md",
+        "sha256": "4245b55a93d57dd2c47a809a76668267c866ce800ba5cfd9993d82b66dc75539"
+      },
+      {
+        "path": "src/content/docs/comparisons.md",
+        "sha256": "19874e4efcd545908f7b2d3ff684b314df51f457f99e682245af0ceafe926cdd"
+      },
+      {
+        "path": "src/content/docs/comparisons/address-sanitizer-and-valgrind-memcheck.md",
+        "sha256": "1f1c4e5c0dabd5ea4a2bc9fba4ed2f31b3be2acf03216a35c448acb38f565783"
+      },
+      {
+        "path": "src/content/docs/comparisons/codeql-and-jbmc.md",
+        "sha256": "ab5830dfc0daa7e1484affa8c2f10d3f6e45135da0ad9dbbf071f4391db4208f"
+      },
+      {
+        "path": "src/content/docs/comparisons/codeql-and-spotbugs.md",
+        "sha256": "0ad47190410dc7b8e512870b179842ed6833e0c86fffa8f5aeaa22e10178c828"
+      },
+      {
+        "path": "src/content/docs/comparisons/mypy-and-pyright.md",
+        "sha256": "9175e83786bcd0dc7b1b4082b55a21cc0021b8c4e1d1b5051a976b17eeea33f3"
+      },
+      {
+        "path": "src/content/docs/comparisons/rtamt-and-psy-taliro.md",
+        "sha256": "7fea06bcde82ca0047d8707c7b43c170b7004ca32d30b3dbfd34a8b05ea19bf0"
+      },
+      {
+        "path": "src/content/docs/comparisons/ruff-and-mypy.md",
+        "sha256": "66dc62e92e5996e1a447a62f3271a0f5456d7ad4d048e2262927856511b4581f"
+      },
+      {
+        "path": "src/content/docs/comparisons/ruff-and-pylint.md",
+        "sha256": "22935632da6aa6cbf0da5fe3c4801b52786d807e9d2695f4bc24c75f7f925c8f"
+      },
+      {
+        "path": "src/content/docs/comparisons/ruff-and-pyright.md",
+        "sha256": "dc6567fc488996ae1ec6acac20dae066acfc55a68a56783bde217485343ac6b2"
+      },
+      {
+        "path": "src/content/docs/comparisons/trivy-and-osv-scanner.md",
+        "sha256": "d594a4bebf52e717a93ddcc29972809297108806233c23ae097e60decfc8b9d8"
+      },
+      {
+        "path": "src/content/docs/guides/api-contracts.md",
+        "sha256": "fa8c6f5505c8515da4088096104cd203499f8a069ae38db56e6d76a408d01736"
+      },
+      {
+        "path": "src/content/docs/guides/browser-testing.md",
+        "sha256": "4793335511a4e70512e02186f6d24145d6be45db99dabeaf7c706aa1323f326d"
+      },
+      {
+        "path": "src/content/docs/guides/data-access.md",
+        "sha256": "b19f942d1fc7c0b1fb628fa4401d27fd2f1e3967bfcada18c7421fd5af300914"
+      },
+      {
+        "path": "src/content/docs/guides/data-reference.md",
+        "sha256": "e62c775ba8cc93255b15ce8846ca9a0d1a545d8d74e1583037c1679267a3c95c"
+      },
+      {
+        "path": "src/content/docs/guides/get-examples.md",
+        "sha256": "8cab6a50b4f55b5c8972049414d3fe216268cd7799dad9b0581fa5a9c8ddedf8"
+      },
+      {
+        "path": "src/content/docs/guides/model-checking.md",
+        "sha256": "d7f5f6b70e5689e59bcbbc18995bb9014c3eedef848e519e35bdc8d1f30e141f"
+      },
+      {
+        "path": "src/content/docs/guides/sbom-inventory.md",
+        "sha256": "66df7dbb861faa932ecfa77038cdabce80d038da5bc4ded3aea9bf46ba64d3a9"
+      },
+      {
+        "path": "src/content/docs/tasks.md",
+        "sha256": "96c47956ad3ce112f50d5b17f27e34005d3fc49cc708f075dc58967a5707a9d2"
+      },
+      {
+        "path": "src/content/docs/tools/address-sanitizer.md",
+        "sha256": "c376f0c217c92260ef55e9fd77ba7d5c688491c44afe112f609db84ed914a6d6"
+      },
+      {
+        "path": "src/content/docs/tools/axe-core.md",
+        "sha256": "9165a9350ba6868c47c50b1527f041caa7d914a3748e494fa58f0cb491198851"
+      },
+      {
+        "path": "src/content/docs/tools/boofuzz.md",
+        "sha256": "12e42087ca936b32be0e0e02211f6432e7e861efbbed06c9d56e1afd7bf2babd"
+      },
+      {
+        "path": "src/content/docs/tools/coverage-py.md",
+        "sha256": "f9fa3283d2e94ff44ed59a8e8cbe5600f5eac05da6986f32e5a9141e204744ba"
+      },
+      {
+        "path": "src/content/docs/tools/coverity-scan.md",
+        "sha256": "24174f87994134da49e06135ba0331321125a29f4dbef70de9ec80ab89635f45"
+      },
+      {
+        "path": "src/content/docs/tools/coverity.md",
+        "sha256": "11e64f4d7d416bc2fbda2f54232c60a6b7ba2b1db5bbf78e6cbd2c2bd68dcce3"
+      },
+      {
+        "path": "src/content/docs/tools/gitleaks.md",
+        "sha256": "631ac1a6277edc771a6df3e34179ce6556a0d18dcb3d7b8371eca94877504dfc"
+      },
+      {
+        "path": "src/content/docs/tools/heaptrack.md",
+        "sha256": "83b45c81c7dc5785978c3069fc3af4868fc0010f472f000bc11597370eeeb26d"
+      },
+      {
+        "path": "src/content/docs/tools/k6.md",
+        "sha256": "439c1826afc422b9d8b1c6d13d4079925567248fb48e6242218b62f10810786a"
+      },
+      {
+        "path": "src/content/docs/tools/mobsf.md",
+        "sha256": "24dfb81486104dd53de802fb09cc0018137ce46f3f80618a91f61422b116734b"
+      },
+      {
+        "path": "src/content/docs/tools/mypy.md",
+        "sha256": "3d88a5d2ca191a929072651682c49dab6fac8d7246cf21fdbaee0172e11148e9"
+      },
+      {
+        "path": "src/content/docs/tools/pact.md",
+        "sha256": "a7c7817a07eb280913800da968a04452638f775c20abbe62d80c409485fbf8be"
+      },
+      {
+        "path": "src/content/docs/tools/pit.md",
+        "sha256": "f823d60de49e83211297bfe8d5114844699804196081f3df45d85a6d69dfa721"
+      },
+      {
+        "path": "src/content/docs/tools/playwright.md",
+        "sha256": "3b779030061dd302b71d6683af1b05685b24433cc7fbabdbc04b947c258bdf25"
+      },
+      {
+        "path": "src/content/docs/tools/psscriptanalyzer.md",
+        "sha256": "ab11752f71fa301121775870abc41d26e26d1c0db6ea6ff6bfb3df00dccd39dd"
+      },
+      {
+        "path": "src/content/docs/tools/pvs-studio.md",
+        "sha256": "c83e78e28d86cf707d3c588d8e785210955ec347a4eced56b32612301e99818e"
+      },
+      {
+        "path": "src/content/docs/tools/py-spy.md",
+        "sha256": "16a2a32806b764275d39587c07fcfd9dc08f43ddd4d55d0ca48b47e30c7f6075"
+      },
+      {
+        "path": "src/content/docs/tools/pylint.md",
+        "sha256": "4e78f07919fb6b808470669d3edd4f75117fb72542ad6b304a6210dfcf6043d3"
+      },
+      {
+        "path": "src/content/docs/tools/rtamt.md",
+        "sha256": "15dcee61747ea649045e1b3ab8d1ab0e4b3c0e729c5b085be2525b234947aced"
+      },
+      {
+        "path": "src/content/docs/tools/ruff.md",
+        "sha256": "291798aba2db0d21c6e23bcd9beb564355758b426c91c8578135b1a96dedda95"
+      },
+      {
+        "path": "src/content/docs/tools/s-taliro.md",
+        "sha256": "a6b2d17e5203fa5d1ce71619b35d59bf49c39fed9d690494f19459445105d0e6"
+      },
+      {
+        "path": "src/content/docs/tools/schemathesis.md",
+        "sha256": "9b3966ff753a56051901dbe3158257975a42d16b86ff205bd876fafb576c8e32"
+      },
+      {
+        "path": "src/content/docs/tools/semgrep-ce.md",
+        "sha256": "6385f9ee95dfe3d1d150338afef2f023cdc5b9df02eff61925112c51c13e907a"
+      },
+      {
+        "path": "src/content/docs/tools/semgrep-code.md",
+        "sha256": "93a5f1f83429941494ffe05541b9340bef2c6395a9bc35926b46fef4c3fe5ae4"
+      },
+      {
+        "path": "src/content/docs/tools/sonarqube-community.md",
+        "sha256": "2402175c1363bf9bee010cfc5c33de1bd8d81bbcfff480fb588d39e6828d4c5b"
+      },
+      {
+        "path": "src/content/docs/tools/sonarqube.md",
+        "sha256": "0a2d27595d44f80573343a964d4fb9c2a0a4000c2fbe3e0ac4314131acb7ee19"
+      },
+      {
+        "path": "src/content/docs/tools/spectral.md",
+        "sha256": "30afff4ef3be9024ab1b332a78ec520b372dd0a17de198c95cd1e22a908bbe60"
+      },
+      {
+        "path": "src/content/docs/tools/strykerjs.md",
+        "sha256": "e506e53e679ab99df186063e9a8cf932af9d53f65108b8daf436149209c069c8"
+      },
+      {
+        "path": "src/content/docs/tools/syft.md",
+        "sha256": "682864e6b79b4703803f5fd5041afe953cbfe1692d59291b6fced72bf369b4dc"
+      },
+      {
+        "path": "src/content/docs/tools/tlc.md",
+        "sha256": "f47bc5a12d54807dd6ebdd6a869f6d62aa82b7466b49a2a0276a6dccfd60bf84"
+      },
+      {
+        "path": "src/content/docs/tools/typescript.md",
+        "sha256": "654b5dc695f45cfbe59754d6cc45e7ad78d22dc859040dbb9645fc008da4e6ae"
+      }
+    ]
   }
 ]

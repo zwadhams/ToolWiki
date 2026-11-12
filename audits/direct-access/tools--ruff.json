@@ -1,0 +1,250 @@
+{
+  "id": "tools/ruff",
+  "kind": "tool",
+  "title": "Ruff",
+  "description": "Find Python lint violations, common mistakes, and selected security patterns with configurable built-in rules.",
+  "url": "https://zwadhams.github.io/ToolWiki/tools/ruff/",
+  "revision": "82a894c0850f31783a12a58b61de8a4ffe3bf56729408ffc8f078f9391d5138d",
+  "markdown": "# Ruff\n\n<span id=\"what-it-does\"></span> <span id=\"a-useful-first-evaluation\"></span>\n\n## First try\n\n**Illustrative example; not executed in this review.** [Install Ruff](https://docs.astral.sh/ruff/installation/), then save this as `sample.py`:\n\n```python\nimport math\n\nprint(\"Ready\")\n```\n\nRun this in the directory containing the file. It checks for unused imports without changing the file or loading project configuration:\n\n```sh\nruff check --isolated --select F401 sample.py\n```\n\nRepresentative diagnostic excerpt, not captured output (formatting varies by version):\n\n```text\nsample.py:1:8: F401 `math` imported but unused\n```\n\nThe location identifies the import; `F401` identifies the unused-import rule. Remove that line and repeat the check. A clean result means this selected rule found no violation in this file.\n\n<span id=\"inputs-and-workflow\"></span>\n\n## Use it on your project\n\nFollow the [Ruff tutorial](https://docs.astral.sh/ruff/tutorial/) to configure rule selection, file exclusions, and the target Python version. Run `ruff check` for linting; `ruff format` only formats code. Start without automatic fixes so you can inspect the diagnostics.\n\n## Fixes and limitations\n\nRuff distinguishes safe and unsafe fixes. Review proposed changes and run your tests after applying them. Record the tool version, configuration, and preview setting for repeatable results.\n\n<span id=\"what-it-does-not-replace\"></span>\n\n## Alternatives and complements\n\nFollow the [Ruff and mypy recipe](https://zwadhams.github.io/ToolWiki/guides/python-checks/) to check one project with separate lint and type reports. Pair Ruff with [mypy](https://zwadhams.github.io/ToolWiki/tools/mypy/) or [Pyright](https://zwadhams.github.io/ToolWiki/tools/pyright/) when you also need type checking. Consider [Bandit](https://zwadhams.github.io/ToolWiki/tools/bandit/) for a dedicated Python security-rule workflow.\n\n[Pylint](https://zwadhams.github.io/ToolWiki/tools/pylint/) uses inference and supports plugins; Ruff provides built-in rule families. Their rules overlap but are not interchangeable. Before switching, compare the diagnostics and plugin requirements of your project. The [official comparison](https://docs.astral.sh/ruff/faq/#how-does-ruffs-linter-compare-to-pylint) explains these differences.\n\nUse the [finding review workflow](https://zwadhams.github.io/ToolWiki/guides/reviewing-findings/) to investigate a diagnostic and verify a correction.\n\n- **Summary:** Find Python lint violations, common mistakes, and selected security patterns with configurable built-in rules.\n- **Use it for:** Use Ruff to check Python files for unused imports, common mistakes, and coding conventions.\n- **What you need:** Python files or supported notebooks and an installed Ruff command. Choose the target Python version and rules for your project.\n- **What you get:** Diagnostics with a rule code and file location. Some rules offer fixes you can review.\n- **Checks and limits:** Checks depend on the rules you enable. Security rules need deliberate selection; use a separate type checker for type consistency.\n- **Finding scope:** Selected lint families; security-related rules require configuration. Ruff is not a Python type checker.\n\n## Compatibility and scope\n\n- **Analysis mode:** Static\n- **What it examines:** Source code\n- **Context:** Source code, Notebooks\n- **Techniques:** Linting, Bug finding\n- **Finding categories:** Logic errors, Coding conventions, Unsafe API use\n- **Where it runs:** Windows, Linux, and macOS through supported binary distributions or Python packages.\n- **Languages / ecosystem:** Python\n- **Language support:** Supported syntax and modernization suggestions depend on the configured Python target version. Notebook rules have additional restrictions.\n- **Edition and scope:** Ruff's Python linter, including documented notebook support. Formatting is a separate operation.\n\n## Cost and editions\n\n- **Cost:** Free\n- **Cost conditions:** Free open-source linter and formatter, with no paid analyzer edition required. Editor integration and local checks do not require a hosted account.\n- **License category:** Open source\n- **License:** MIT, with third-party notices in the project license file\n\nCost information checked 2026-09-22. Runtimes, hosting, and compute may cost extra. Free trials are not counted as free editions.\n\n## Sources and evidence\n\n[Official website](https://docs.astral.sh/ruff/)\n\n- [First lint check tutorial](https://docs.astral.sh/ruff/tutorial/)\n- [Installation platforms](https://docs.astral.sh/ruff/installation/)\n- [Ruff overview](https://docs.astral.sh/ruff/)\n- [Linter configuration and fix safety](https://docs.astral.sh/ruff/linter/)\n- [File discovery and notebook support](https://docs.astral.sh/ruff/configuration/)\n- [Ruff limitations and comparison with type checkers](https://docs.astral.sh/ruff/faq/)\n- [Ruff license and third-party notices](https://github.com/astral-sh/ruff/blob/main/LICENSE)\n\nSource: [ToolWiki page](https://zwadhams.github.io/ToolWiki/tools/ruff/). [JSON record and content revision](https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/tools/ruff.json).\n\n- **Documentation reviewed:** 2026-09-22\n- **Execution evidence:** not-recorded\n- **Execution scope:** No structured execution record for this document. Read the text for illustrative examples and limitations.\n\nDocumentation review is separate from execution evidence. A recorded execution applies only to its stated environment and scope; not-recorded means no structured execution record is supplied.\n",
+  "sections": [
+    {
+      "id": "first-try",
+      "title": "First try",
+      "depth": 2,
+      "start": 86,
+      "end": 862
+    },
+    {
+      "id": "use-it-on-your-project",
+      "title": "Use it on your project",
+      "depth": 2,
+      "start": 862,
+      "end": 1162
+    },
+    {
+      "id": "fixes-and-limitations",
+      "title": "Fixes and limitations",
+      "depth": 2,
+      "start": 1162,
+      "end": 1424
+    },
+    {
+      "id": "alternatives-and-complements",
+      "title": "Alternatives and complements",
+      "depth": 2,
+      "start": 1424,
+      "end": 3218
+    },
+    {
+      "id": "technical-details",
+      "title": "Compatibility and scope",
+      "depth": 2,
+      "start": 3218,
+      "end": 3891
+    },
+    {
+      "id": "cost-and-editions",
+      "title": "Cost and editions",
+      "depth": 2,
+      "start": 3891,
+      "end": 4342
+    },
+    {
+      "id": "tool-sources",
+      "title": "Sources and evidence",
+      "depth": 2,
+      "start": 4342,
+      "end": 5539
+    }
+  ],
+  "sources": [
+    {
+      "label": "First lint check tutorial",
+      "url": "https://docs.astral.sh/ruff/tutorial/"
+    },
+    {
+      "label": "Installation platforms",
+      "url": "https://docs.astral.sh/ruff/installation/"
+    },
+    {
+      "label": "Ruff overview",
+      "url": "https://docs.astral.sh/ruff/"
+    },
+    {
+      "label": "Linter configuration and fix safety",
+      "url": "https://docs.astral.sh/ruff/linter/"
+    },
+    {
+      "label": "File discovery and notebook support",
+      "url": "https://docs.astral.sh/ruff/configuration/"
+    },
+    {
+      "label": "Ruff limitations and comparison with type checkers",
+      "url": "https://docs.astral.sh/ruff/faq/"
+    },
+    {
+      "label": "Ruff license and third-party notices",
+      "url": "https://github.com/astral-sh/ruff/blob/main/LICENSE"
+    },
+    {
+      "label": "Ruff and mypy recipe",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/python-checks/"
+    },
+    {
+      "label": "mypy",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/mypy/"
+    },
+    {
+      "label": "Pyright",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/pyright/"
+    },
+    {
+      "label": "Bandit",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/bandit/"
+    },
+    {
+      "label": "Pylint",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/pylint/"
+    },
+    {
+      "label": "official comparison",
+      "url": "https://docs.astral.sh/ruff/faq/#how-does-ruffs-linter-compare-to-pylint"
+    },
+    {
+      "label": "finding review workflow",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/reviewing-findings/"
+    },
+    {
+      "label": "ToolWiki page",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/ruff/"
+    },
+    {
+      "label": "JSON record and content revision",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/tools/ruff.json"
+    }
+  ],
+  "evidence": {
+    "documentationReviewedOn": "2026-09-22",
+    "execution": {
+      "status": "not-recorded",
+      "scope": "No structured execution record for this document. Read the text for illustrative examples and limitations.",
+      "sources": []
+    }
+  },
+  "tool": {
+    "decision": {
+      "useWhen": "Use Ruff to check Python files for unused imports, common mistakes, and coding conventions.",
+      "result": "Diagnostics with a rule code and file location. Some rules offer fixes you can review.",
+      "limit": "Checks depend on the rules you enable. Security rules need deliberate selection; use a separate type checker for type consistency."
+    },
+    "analysisWorkflows": [
+      {
+        "id": "source",
+        "label": "Source analysis",
+        "subject": "component",
+        "inputs": [
+          "Source code"
+        ],
+        "languageScope": "source",
+        "languages": [
+          "Python"
+        ],
+        "findings": [
+          "Logic errors",
+          "Coding conventions",
+          "Unsafe API use"
+        ],
+        "interfaces": [],
+        "transports": [],
+        "definitions": [],
+        "binaryFormats": [],
+        "technologies": [],
+        "requires": [],
+        "hostPlatforms": [
+          "Windows",
+          "Linux",
+          "macOS"
+        ],
+        "targetPlatforms": [],
+        "excludedHosts": [],
+        "excludedTargets": [],
+        "caveat": "Selected lint families; security-related rules require configuration. Ruff is not a Python type checker.",
+        "sources": [
+          "https://docs.astral.sh/ruff/installation/",
+          "https://docs.astral.sh/ruff/",
+          "https://docs.astral.sh/ruff/linter/",
+          "https://docs.astral.sh/ruff/configuration/",
+          "https://docs.astral.sh/ruff/faq/",
+          "https://github.com/astral-sh/ruff/blob/main/LICENSE"
+        ]
+      }
+    ],
+    "aliases": [],
+    "searchTerms": [],
+    "modes": [
+      "Static"
+    ],
+    "inputTypes": [
+      "Source code"
+    ],
+    "findings": [
+      "Logic errors",
+      "Coding conventions",
+      "Unsafe API use"
+    ],
+    "findingNote": "Selected lint families; security-related rules require configuration. Ruff is not a Python type checker.",
+    "environment": "Windows, Linux, and macOS through supported binary distributions or Python packages.",
+    "setup": "Python files or supported notebooks and an installed Ruff command. Choose the target Python version and rules for your project.",
+    "techniques": [
+      "Linting",
+      "Bug finding"
+    ],
+    "languages": [
+      "Python"
+    ],
+    "languageNote": "Supported syntax and modernization suggestions depend on the configured Python target version. Notebook rules have additional restrictions.",
+    "targets": [
+      "Source code",
+      "Notebooks"
+    ],
+    "licenseCategory": "Open source",
+    "license": "MIT, with third-party notices in the project license file",
+    "cost": [
+      "Free"
+    ],
+    "costNote": "Free open-source linter and formatter, with no paid analyzer edition required. Editor integration and local checks do not require a hosted account.",
+    "website": "https://docs.astral.sh/ruff/",
+    "verified": "2026-09-22",
+    "scope": "Ruff's Python linter, including documented notebook support. Formatting is a separate operation.",
+    "sources": [
+      {
+        "label": "First lint check tutorial",
+        "url": "https://docs.astral.sh/ruff/tutorial/"
+      },
+      {
+        "label": "Installation platforms",
+        "url": "https://docs.astral.sh/ruff/installation/"
+      },
+      {
+        "label": "Ruff overview",
+        "url": "https://docs.astral.sh/ruff/"
+      },
+      {
+        "label": "Linter configuration and fix safety",
+        "url": "https://docs.astral.sh/ruff/linter/"
+      },
+      {
+        "label": "File discovery and notebook support",
+        "url": "https://docs.astral.sh/ruff/configuration/"
+      },
+      {
+        "label": "Ruff limitations and comparison with type checkers",
+        "url": "https://docs.astral.sh/ruff/faq/"
+      },
+      {
+        "label": "Ruff license and third-party notices",
+        "url": "https://github.com/astral-sh/ruff/blob/main/LICENSE"
+      }
+    ]
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "id": "comparisons/ruff-and-mypy",
+  "kind": "page",
+  "title": "Linting and type checking work together",
+  "description": "Ruff checks lint rules, such as unused imports. mypy checks type consistency, such as passing text where a number is expected. Use both when you want both kinds of checks.",
+  "url": "https://zwadhams.github.io/ToolWiki/comparisons/ruff-and-mypy/",
+  "revision": "2fc99821b1258da0191c80b2b2cf986ab29af432895a0bcba8176633b935d0fc",
+  "markdown": "# Linting and type checking work together\n\nRuff checks lint rules, such as unused imports. mypy checks type consistency, such as passing text where a number is expected. Use both when you want both kinds of checks.\n\n[Run the shared Python recipe](https://zwadhams.github.io/ToolWiki/guides/python-checks/).\n\n[Customize this comparison](https://zwadhams.github.io/ToolWiki/compare/?tools=tools/ruff,tools/mypy).\n\n## Requirements and results\n\nDocumentation comparison; shared labels do not establish equal checks or coverage.\n\n| Field | [Ruff](https://zwadhams.github.io/ToolWiki/tools/ruff/) | [mypy](https://zwadhams.github.io/ToolWiki/tools/mypy/) |\n| --- | --- | --- |\n| Use it for | Use Ruff to check Python files for unused imports, common mistakes, and coding conventions. | Check whether Python annotations, calls, and return values agree in a configured project. |\n| What you need | Python files or supported notebooks and an installed Ruff command. Choose the target Python version and rules for your project. | Provide Python files, type annotations, configuration, and relevant dependencies or stubs. No application execution or test harness is required. |\n| What you get | Diagnostics with a rule code and file location. Some rules offer fixes you can review. | Diagnostics name the file, line, type mismatch, and error code, such as arg-type for an incompatible argument. |\n| Checks and limits | Checks depend on the rules you enable. Security rules need deliberate selection; use a separate type checker for type consistency. | Any, missing stubs, untyped code, and suppressions can hide mistakes. A clean check does not validate runtime input or behavior. |\n| Where it runs | Windows, Linux, and macOS through supported binary distributions or Python packages. | A local or CI Python environment. The current getting-started guide requires Python 3.10 or later to run mypy. |\n| Cost conditions | Free open-source linter and formatter, with no paid analyzer edition required. Editor integration and local checks do not require a hosted account. | Free open-source type checker. Local use does not require a hosted service or paid analyzer edition. |\n| Edition and scope | Ruff's Python linter, including documented notebook support. Formatting is a separate operation. | The mypy command-line type checker and its documented gradual-typing workflow. This entry does not cover general security scanning or runtime type enforcement. |\n\n## Comparison sources and evidence\n\n### Ruff\n\nDocs checked 2026-09-22. Execution: not-recorded. No structured execution record is supplied.\n\n- [First lint check tutorial](https://docs.astral.sh/ruff/tutorial/)\n- [Installation platforms](https://docs.astral.sh/ruff/installation/)\n- [Ruff overview](https://docs.astral.sh/ruff/)\n- [Linter configuration and fix safety](https://docs.astral.sh/ruff/linter/)\n- [File discovery and notebook support](https://docs.astral.sh/ruff/configuration/)\n- [Ruff limitations and comparison with type checkers](https://docs.astral.sh/ruff/faq/)\n- [Ruff license and third-party notices](https://github.com/astral-sh/ruff/blob/main/LICENSE)\n\n### mypy\n\nDocs checked 2026-09-26. Execution: not-recorded. No structured execution record is supplied.\n\n- [Type checking and gradual typing](https://mypy.readthedocs.io/en/stable/)\n- [Installation, annotations, and strictness](https://mypy.readthedocs.io/en/stable/getting_started.html)\n- [Imports, stubs, and analysis scope](https://mypy.readthedocs.io/en/stable/running_mypy.html)\n- [Missing errors and other limitations](https://mypy.readthedocs.io/en/stable/common_issues.html)\n- [License and bundled notices](https://github.com/python/mypy/blob/master/LICENSE)\n- [Pyright configuration for comparable checks](https://github.com/microsoft/pyright/blob/main/docs/configuration.md)\n\n\nSource: [ToolWiki page](https://zwadhams.github.io/ToolWiki/comparisons/ruff-and-mypy/). [JSON record and content revision](https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/comparisons/ruff-and-mypy.json).\n\n- **Documentation reviewed:** Not recorded\n- **Execution evidence:** not-recorded\n- **Execution scope:** No structured execution record for this document. Read the text for illustrative examples and limitations.\n\nDocumentation review is separate from execution evidence. A recorded execution applies only to its stated environment and scope; not-recorded means no structured execution record is supplied.\n",
+  "sections": [
+    {
+      "id": "requirements-and-results",
+      "title": "Requirements and results",
+      "depth": 2,
+      "start": 412,
+      "end": 2447
+    },
+    {
+      "id": "comparison-sources-and-evidence",
+      "title": "Comparison sources and evidence",
+      "depth": 2,
+      "start": 2447,
+      "end": 4429
+    },
+    {
+      "id": "ruff",
+      "title": "Ruff",
+      "depth": 3,
+      "start": 2483,
+      "end": 3120
+    },
+    {
+      "id": "mypy",
+      "title": "mypy",
+      "depth": 3,
+      "start": 3120,
+      "end": 4429
+    }
+  ],
+  "sources": [
+    {
+      "label": "Run the shared Python recipe",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/python-checks/"
+    },
+    {
+      "label": "Customize this comparison",
+      "url": "https://zwadhams.github.io/ToolWiki/compare/?tools=tools/ruff,tools/mypy"
+    },
+    {
+      "label": "Ruff",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/ruff/"
+    },
+    {
+      "label": "mypy",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/mypy/"
+    },
+    {
+      "label": "First lint check tutorial",
+      "url": "https://docs.astral.sh/ruff/tutorial/"
+    },
+    {
+      "label": "Installation platforms",
+      "url": "https://docs.astral.sh/ruff/installation/"
+    },
+    {
+      "label": "Ruff overview",
+      "url": "https://docs.astral.sh/ruff/"
+    },
+    {
+      "label": "Linter configuration and fix safety",
+      "url": "https://docs.astral.sh/ruff/linter/"
+    },
+    {
+      "label": "File discovery and notebook support",
+      "url": "https://docs.astral.sh/ruff/configuration/"
+    },
+    {
+      "label": "Ruff limitations and comparison with type checkers",
+      "url": "https://docs.astral.sh/ruff/faq/"
+    },
+    {
+      "label": "Ruff license and third-party notices",
+      "url": "https://github.com/astral-sh/ruff/blob/main/LICENSE"
+    },
+    {
+      "label": "Type checking and gradual typing",
+      "url": "https://mypy.readthedocs.io/en/stable/"
+    },
+    {
+      "label": "Installation, annotations, and strictness",
+      "url": "https://mypy.readthedocs.io/en/stable/getting_started.html"
+    },
+    {
+      "label": "Imports, stubs, and analysis scope",
+      "url": "https://mypy.readthedocs.io/en/stable/running_mypy.html"
+    },
+    {
+      "label": "Missing errors and other limitations",
+      "url": "https://mypy.readthedocs.io/en/stable/common_issues.html"
+    },
+    {
+      "label": "License and bundled notices",
+      "url": "https://github.com/python/mypy/blob/master/LICENSE"
+    },
+    {
+      "label": "Pyright configuration for comparable checks",
+      "url": "https://github.com/microsoft/pyright/blob/main/docs/configuration.md"
+    },
+    {
+      "label": "ToolWiki page",
+      "url": "https://zwadhams.github.io/ToolWiki/comparisons/ruff-and-mypy/"
+    },
+    {
+      "label": "JSON record and content revision",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/comparisons/ruff-and-mypy.json"
+    }
+  ],
+  "evidence": {
+    "documentationReviewedOn": null,
+    "execution": {
+      "status": "not-recorded",
+      "scope": "No structured execution record for this document. Read the text for illustrative examples and limitations.",
+      "sources": []
+    }
+  }
+}

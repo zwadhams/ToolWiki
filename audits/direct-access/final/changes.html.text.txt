@@ -1,0 +1,182 @@
+
+
+
+Knowledge changes 
+
+
+
+Selected snapshots are retained in the repository. This is not a record of every deployment. Capture dates record when snapshots were saved, not when pages were published or documentation was reviewed. Removed records remain readable inside the preceding snapshot. 
+JSON change feed | Read changes as Markdown 
+
+Tasks evidence and catalog expansion 
+Current snapshot. Captured 2026-11-12. 159 documents. 
+Download complete snapshot 
+Revision: 786475d7ca683b1af789c9408dd3d67e74c8e6bba76acd1e9c4471ae0c023d8d 
+Compared with revision 3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d . Added (25) 
+Task comparisons comparisons 
+Can you rebuild the program? comparisons/address-sanitizer-and-valgrind-memcheck 
+Security queries or a stated property comparisons/codeql-and-jbmc 
+Java source database or compiled classes comparisons/codeql-and-spotbugs 
+Compare Python type-checking workflows comparisons/mypy-and-pyright 
+Check a trace or search for a failure comparisons/rtamt-and-psy-taliro 
+Linting and type checking work together comparisons/ruff-and-mypy 
+Two Python linting workflows comparisons/ruff-and-pylint 
+Linting and type checking work together comparisons/ruff-and-pyright 
+Compare package inventories and advisory matches comparisons/trivy-and-osv-scanner 
+Check API descriptions and consumer contracts guides/api-contracts 
+Check browser behavior and accessibility guides/browser-testing 
+Data and AI access guides/data-access 
+Data format reference guides/data-reference 
+Check a queue model with TLC guides/model-checking 
+Record and compare an SBOM inventory guides/sbom-inventory 
+Choose a task tasks 
+axe-core tools/axe-core 
+heaptrack tools/heaptrack 
+Pact JS tools/pact 
+PIT (Java mutation testing) tools/pit 
+Playwright Test tools/playwright 
+Spectral tools/spectral 
+Syft tools/syft 
+TLC (TLA+ model checker) tools/tlc Changed (134) 
+Find tools for your system analysis-suite 
+Compare tools compare 
+Understand static analysis methods concepts/advanced-static-methods 
+Ways to do DAST concepts/dast-approaches 
+Model and temporal falsification concepts/model-falsification 
+SAST vs. DAST concepts/sast-vs-dast 
+Static analysis approaches concepts/static-approaches 
+Static vs. dynamic analysis concepts/static-vs-dynamic 
+Verification and generated tests concepts/verification-and-generated-tests 
+Dynamic analysis tools dynamic 
+Agent knowledge reference guides/agents-reference 
+Test a disposable HTTP API guides/api-testing 
+Record a tool choice guides/choosing-and-recording-tools 
+Run repeatable CI checks guides/ci-checks 
+Add or update a tool guides/editing 
+Check execution and data boundaries guides/execution-and-data 
+Get the examples guides/get-examples 
+Java source and bytecode analysis guides/java-analysis 
+Choosing memory-error checks guides/memory-error-detection 
+Check Python linting and types together guides/python-checks 
+Review analysis findings guides/reviewing-findings 
+Record an analysis run guides/run-record 
+Scan current files and Git history guides/secret-scanning 
+Temporal monitoring and falsification guides/temporal-monitoring-and-falsification 
+Understand test evidence guides/test-evidence 
+Use this wiki guides/using-this-wiki 
+Use ToolWiki with agents guides/using-with-agents 
+Find a memory error on Windows guides/windows-memory-check 
+Browse tools index 
+Research overview research 
+Malware sophistication research/binary-analysis 
+Comparing SAST tools research/comparing-tools 
+SAST adoption research/sast-adoption 
+SAST in CI/CD research/sast-workflow 
+Software quality models research/software-quality 
+Static analysis tools static 
+actionlint tools/actionlint 
+AddressSanitizer (Clang) tools/address-sanitizer 
+AFL++ tools/afl-plus-plus 
+angr tools/angr 
+Atheris tools/atheris 
+Bandit tools/bandit 
+Binwalk tools/binwalk 
+boofuzz tools/boofuzz 
+Brakeman tools/brakeman 
+Breach tools/breach 
+Burp Suite Community Edition tools/burp-suite-community 
+Burp Suite Professional tools/burp-suite-professional 
+capa tools/capa 
+cargo-audit tools/cargo-audit 
+CBMC tools/cbmc 
+Checkov tools/checkov 
+Checkstyle tools/checkstyle 
+Clang Static Analyzer tools/clang-static-analyzer 
+clang-tidy tools/clang-tidy 
+Clippy tools/clippy 
+CodeQL tools/codeql 
+coverage.py tools/coverage-py 
+Coverity (commercial) tools/coverity 
+Coverity Scan tools/coverity-scan 
+CPAchecker tools/cpachecker 
+Cppcheck (Open Source) tools/cppcheck 
+CVE Binary Tool (cve-bin-tool) tools/cve-bin-tool 
+cwe-checker tools/cwe-checker 
+Dafny tools/dafny 
+OWASP Dependency-Check tools/dependency-check 
+detect-secrets tools/detect-secrets 
+detekt tools/detekt 
+.NET analyzers tools/dotnet-analyzers 
+Dr. Memory tools/dr-memory 
+ESBMC tools/esbmc 
+ESLint tools/eslint 
+fast-check tools/fast-check 
+FLOSS tools/floss 
+Frama-C (Eva and WP) tools/frama-c 
+Ghidra tools/ghidra 
+Gitleaks (Git history) tools/gitleaks 
+Go race detector tools/go-race-detector 
+go vet tools/go-vet 
+gosec tools/gosec 
+govulncheck tools/govulncheck 
+Grype tools/grype 
+Hadolint tools/hadolint 
+Hypothesis tools/hypothesis 
+Infer (Pulse) tools/infer 
+Jazzer tools/jazzer 
+JBMC tools/jbmc 
+Grafana k6 OSS tools/k6 
+Kani tools/kani 
+KLEE tools/klee 
+libFuzzer tools/libfuzzer 
+MemorySanitizer tools/memory-sanitizer 
+Miri tools/miri 
+MobSF (Android APK static analysis) tools/mobsf 
+mypy tools/mypy 
+OSV-Scanner tools/osv-scanner 
+PHPStan tools/phpstan 
+PMD tools/pmd 
+Polyspace Code Prover tools/polyspace-code-prover 
+Psalm tools/psalm 
+PSScriptAnalyzer tools/psscriptanalyzer 
+PSY-TaLiRo tools/psy-taliro 
+PVS-Studio tools/pvs-studio 
+py-spy tools/py-spy 
+Pylint tools/pylint 
+Pyright tools/pyright 
+RESTler tools/restler 
+RTAMT tools/rtamt 
+RuboCop tools/rubocop 
+Ruff tools/ruff 
+S-TaLiRo tools/s-taliro 
+Schemathesis tools/schemathesis 
+Semgrep CE tools/semgrep-ce 
+Semgrep Code tools/semgrep-code 
+ShellCheck tools/shellcheck 
+SonarQube Server tools/sonarqube 
+SonarQube Community Build tools/sonarqube-community 
+SpotBugs tools/spotbugs 
+SQLFluff tools/sqlfluff 
+Staticcheck tools/staticcheck 
+StrykerJS tools/strykerjs 
+Stylelint tools/stylelint 
+SwiftLint tools/swiftlint 
+ThreadSanitizer (Clang) tools/thread-sanitizer 
+Trivy tools/trivy 
+TypeScript compiler (tsc) tools/typescript 
+UndefinedBehaviorSanitizer (Clang) tools/undefined-behavior-sanitizer 
+Valgrind Helgrind tools/valgrind-helgrind 
+Valgrind Memcheck tools/valgrind-memcheck 
+VerifAI tools/verifai 
+Verilator (HDL lint) tools/verilator 
+WartRemover tools/wartremover 
+YARA-X tools/yara-x 
+ZAP tools/zap Removed (0) 
+None. 
+
+Published baseline captured before expansion 
+Captured 2026-11-12. 134 documents. 
+Download complete snapshot 
+Revision: 3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d 
+Archive baseline. No earlier snapshot is retained for comparison. 
+

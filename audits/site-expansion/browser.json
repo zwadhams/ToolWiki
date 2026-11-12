@@ -1,0 +1,73 @@
+[
+  {
+    "width": 1440,
+    "route": "tasks/",
+    "status": 200,
+    "h1": [
+      "Choose a task"
+    ],
+    "scrollWidth": 1440,
+    "mainText": "Choose a taskCopy as MarkdownRead MarkdownView JSONSelect and copy Markdownfunction e(e,t,n){if(e.id!==t||e.revision!==n)throw Error(`This page changed since it was loaded. Reload the page and try again.`);if(typeof e.markdown!=`string`||!/^[a-f0-9]{64}$/.test(e.revision))throw Error(`The document record could not be read. Open the Markdown link instead.`);return`${e.markdown}\\nContent revision: ${e.revision}\\n`}var t=class extends HTMLElement{connectedCallback(){let t=this.querySelector(`[data-",
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "route": "comparisons/ruff-and-mypy/",
+    "status": 200,
+    "h1": [
+      "Linting and type checking work together"
+    ],
+    "scrollWidth": 1440,
+    "mainText": "Linting and type checking work togetherCopy as MarkdownRead MarkdownView JSONSelect and copy Markdownfunction e(e,t,n){if(e.id!==t||e.revision!==n)throw Error(`This page changed since it was loaded. Reload the page and try again.`);if(typeof e.markdown!=`string`||!/^[a-f0-9]{64}$/.test(e.revision))throw Error(`The document record could not be read. Open the Markdown link instead.`);return`${e.markdown}\\nContent revision: ${e.revision}\\n`}var t=class extends HTMLElement{connectedCallback(){let t=",
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "route": "changes/",
+    "status": 200,
+    "h1": [
+      "Knowledge changes"
+    ],
+    "scrollWidth": 1440,
+    "mainText": "Knowledge changesSelected snapshots are retained in the repository. This is not a record of every deployment. Capture dates record when snapshots were saved, not when pages were published or documentation was reviewed. Removed records remain readable inside the preceding snapshot.JSON change feed | Read changes as MarkdownTasks evidence and catalog expansionCurrent snapshot. Captured 2026-11-12. 159 documents.Download complete snapshotRevision: 786475d7ca683b1af789c9408dd3d67e74c8e6bba76acd1e9c4",
+    "errors": []
+  },
+  {
+    "width": 390,
+    "route": "tasks/",
+    "status": 200,
+    "h1": [
+      "Choose a task"
+    ],
+    "scrollWidth": 390,
+    "mainText": "Choose a taskCopy as MarkdownRead MarkdownView JSONSelect and copy Markdownfunction e(e,t,n){if(e.id!==t||e.revision!==n)throw Error(`This page changed since it was loaded. Reload the page and try again.`);if(typeof e.markdown!=`string`||!/^[a-f0-9]{64}$/.test(e.revision))throw Error(`The document record could not be read. Open the Markdown link instead.`);return`${e.markdown}\\nContent revision: ${e.revision}\\n`}var t=class extends HTMLElement{connectedCallback(){let t=this.querySelector(`[data-",
+    "errors": []
+  },
+  {
+    "width": 390,
+    "route": "comparisons/ruff-and-mypy/",
+    "status": 200,
+    "h1": [
+      "Linting and type checking work together"
+    ],
+    "scrollWidth": 390,
+    "mainText": "Linting and type checking work togetherCopy as MarkdownRead MarkdownView JSONSelect and copy Markdownfunction e(e,t,n){if(e.id!==t||e.revision!==n)throw Error(`This page changed since it was loaded. Reload the page and try again.`);if(typeof e.markdown!=`string`||!/^[a-f0-9]{64}$/.test(e.revision))throw Error(`The document record could not be read. Open the Markdown link instead.`);return`${e.markdown}\\nContent revision: ${e.revision}\\n`}var t=class extends HTMLElement{connectedCallback(){let t=",
+    "errors": []
+  },
+  {
+    "width": 390,
+    "route": "changes/",
+    "status": 200,
+    "h1": [
+      "Knowledge changes"
+    ],
+    "scrollWidth": 390,
+    "mainText": "Knowledge changesSelected snapshots are retained in the repository. This is not a record of every deployment. Capture dates record when snapshots were saved, not when pages were published or documentation was reviewed. Removed records remain readable inside the preceding snapshot.JSON change feed | Read changes as MarkdownTasks evidence and catalog expansionCurrent snapshot. Captured 2026-11-12. 159 documents.Download complete snapshotRevision: 786475d7ca683b1af789c9408dd3d67e74c8e6bba76acd1e9c4",
+    "errors": []
+  },
+  {
+    "route": "comparisons/ruff-and-mypy/",
+    "interactive": true,
+    "copyStatus": "Clipboard access is unavailable. Copy the selected text below."
+  }
+]

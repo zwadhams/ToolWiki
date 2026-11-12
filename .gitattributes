@@ -15,3 +15,6 @@
 /examples/browser-testing/** -text
 /examples/api-contracts/** -text
 /examples/sbom-inventory/** -text
+
+/audits/direct-access/** -text
+/audits/site-expansion/** -text

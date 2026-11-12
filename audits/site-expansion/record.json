@@ -1,0 +1,66 @@
+{
+  "date": "2026-11-12",
+  "sourceCommit": "e337431f9ed20dcd5d157068e7c25e59a2e9c7e0",
+  "baselineCommit": "f5c052097b45e969ea4db1cc2cefa53151844c31",
+  "snapshotRevision": "786475d7ca683b1af789c9408dd3d67e74c8e6bba76acd1e9c4471ae0c023d8d",
+  "tools": {
+    "before": 98,
+    "after": 106,
+    "reviewedBuilderBefore": 86,
+    "reviewedBuilderAfter": 96
+  },
+  "verification": {
+    "unitTests": 134,
+    "mcpTests": 4,
+    "builtPages": 161,
+    "exportedDocuments": 159,
+    "anchors": 912,
+    "unchangedCodeBlocks": 166,
+    "staticComparisons": 9,
+    "staticBrowserWidths": [
+      390,
+      1440
+    ],
+    "copyControl": "Selectable Markdown fallback passed; browser clipboard unavailable."
+  },
+  "newRecordedTools": [
+    "playwright",
+    "axe-core",
+    "spectral",
+    "pact",
+    "syft",
+    "tlc"
+  ],
+  "newIllustrativeTools": [
+    "heaptrack",
+    "pit"
+  ],
+  "reconciledExistingExecutionProfiles": 13,
+  "preExistingEditedFiles": {
+    "mcp/server.ts": "a8d1f51460a71533a075772999f1d64369c14976ccee20be971aa22dbdf1c38f",
+    "scripts/check-agent-evidence.mjs": "5d6f60787a90c0d46f6e0e51ac5cca7139a8f6f50934b1308b1a2f7cedf039b4",
+    "src/content/docs/guides/agents-reference.md": "120206464268c47a03ec48065c2e5779e14330ea5b152859e3ba409512d3b8fd",
+    "tests/mcp/protocol.test.mjs": "bce6aded7e06a0a47e2ec25b1d9678469fa1e5ae2f900892cc71cbe7e0926d50"
+  },
+  "scope": "Verified an isolated archive of committed source using the existing pinned dependencies. No pre-existing uncommitted source edits are included in the retained release snapshot. Historical evidence bytes were not rewritten.",
+  "httpReader": {
+    "entry_url": "http://127.0.0.1:4324/ToolWiki/",
+    "manifest_revision": "786475d7ca683b1af789c9408dd3d67e74c8e6bba76acd1e9c4471ae0c023d8d",
+    "all_requests": 345,
+    "all_http_200": true,
+    "manifest_files": 332,
+    "manifest_files_all_valid": true,
+    "individual_documents_equal_snapshot": 159,
+    "retained_snapshots_valid": true,
+    "history_delta_counts": {
+      "added": 25,
+      "changed": 134,
+      "removed": 0
+    },
+    "history_deltas_match": true,
+    "static_comparison_without_javascript": true,
+    "example_links_consistent": true,
+    "report_ascii": true,
+    "report_bytes": 16118
+  }
+}

@@ -1,0 +1,45 @@
+
+
+
+Linting and type checking work together 
+
+
+Copy as Markdown Read Markdown View JSON 
+Select and copy Markdown 
+
+Ruff checks lint rules, such as unused imports. mypy checks type consistency, such as passing text where a number is expected. Use both when you want both kinds of checks. 
+Run the shared Python recipe . 
+Customize this comparison . 
+
+Requirements and results 
+Documentation comparison; shared labels do not establish equal checks or coverage. 
+
+Field Ruff mypy 
+Use it for Use Ruff to check Python files for unused imports, common mistakes, and coding conventions. Check whether Python annotations, calls, and return values agree in a configured project. 
+What you need Python files or supported notebooks and an installed Ruff command. Choose the target Python version and rules for your project. Provide Python files, type annotations, configuration, and relevant dependencies or stubs. No application execution or test harness is required. 
+What you get Diagnostics with a rule code and file location. Some rules offer fixes you can review. Diagnostics name the file, line, type mismatch, and error code, such as arg-type for an incompatible argument. 
+Checks and limits Checks depend on the rules you enable. Security rules need deliberate selection; use a separate type checker for type consistency. Any, missing stubs, untyped code, and suppressions can hide mistakes. A clean check does not validate runtime input or behavior. 
+Where it runs Windows, Linux, and macOS through supported binary distributions or Python packages. A local or CI Python environment. The current getting-started guide requires Python 3.10 or later to run mypy. 
+Cost conditions Free open-source linter and formatter, with no paid analyzer edition required. Editor integration and local checks do not require a hosted account. Free open-source type checker. Local use does not require a hosted service or paid analyzer edition. 
+Edition and scope Ruff's Python linter, including documented notebook support. Formatting is a separate operation. The mypy command-line type checker and its documented gradual-typing workflow. This entry does not cover general security scanning or runtime type enforcement. 
+Comparison sources and evidence 
+
+Ruff 
+Docs checked 2026-09-22. Execution: not-recorded. No structured execution record is supplied. 
+First lint check tutorial 
+Installation platforms 
+Ruff overview 
+Linter configuration and fix safety 
+File discovery and notebook support 
+Ruff limitations and comparison with type checkers 
+Ruff license and third-party notices 
+
+mypy 
+Docs checked 2026-09-26. Execution: not-recorded. No structured execution record is supplied. 
+Type checking and gradual typing 
+Installation, annotations, and strictness 
+Imports, stubs, and analysis scope 
+Missing errors and other limitations 
+License and bundled notices 
+Pyright configuration for comparable checks 
+Edit page 

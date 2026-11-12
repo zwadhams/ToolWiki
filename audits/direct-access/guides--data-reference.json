@@ -1,0 +1,142 @@
+{
+  "id": "guides/data-reference",
+  "kind": "guide",
+  "title": "Data format reference",
+  "description": "Static JSON schemas, field meanings, filter values, revisions, and evidence semantics.",
+  "url": "https://zwadhams.github.io/ToolWiki/guides/data-reference/",
+  "revision": "397204f07f10e2a92d20c469a076d761c5dbfcb7751e160413ee8e9fb8c46c9a",
+  "markdown": "# Data format reference\n\nStart with [Data and AI access](https://zwadhams.github.io/ToolWiki/guides/data-access/) for downloads and a fetch example.\nAll paths below are relative to the\n[knowledge manifest](https://zwadhams.github.io/ToolWiki/knowledge/v1/manifest.json) at `/ToolWiki/knowledge/v1/`.\nFiles use UTF-8. No request parameters or authentication are required.\n\n## Files and schemas\n\nThe [schema index](https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/index.json) lists the downloadable\nschemas and their stable identifiers. They use JSON Schema Draft 2020-12 and are\ngenerated from the schemas used by the site. The\n[vocabulary file](https://zwadhams.github.io/ToolWiki/knowledge/v1/vocabulary.json) lists the current filter\nvalues and system-builder choices.\n\n| Data                           | JSON Schema                                                                                             | Purpose                                                  |\n| ------------------------------ | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |\n| `manifest.json`                | [Manifest](https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/manifest.schema.json)               | Snapshot pointer and file checksums.                     |\n| `index.json`                   | [Document index](https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/index.schema.json)            | All published documents and links to their records.      |\n| `documents/{id}.json`          | [Document](https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/document.schema.json)               | One complete document, including its Markdown.           |\n| The document's `tool` property | [Tool metadata](https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/tool.schema.json)              | Tool capabilities, costs, scope, and reviewed workflows. |\n| `snapshots/{revision}.json`    | [Snapshot](https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/snapshot.schema.json)               | All records from one revision.                           |\n| `catalog.json`                 | [Catalog](https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/catalog.schema.json)                 | Compact tool discovery records.                          |\n| **Export system** download     | [System profile](https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/system-profile.schema.json)   | Editable components, connections, and preferences.       |\n| Filtered catalog JSON download | [Catalog results](https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/catalog-results.schema.json) | Filter state and ordered tool records.                   |\n| Recommendation JSON download   | [Recommendations](https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/recommendations.schema.json) | Input, matches, gaps, selections, and cited tools.       |\n\n`documents/{id}.md` is the document's Markdown as a standalone text file. Its\ncanonical page URL and JSON-record link identify the source. **Copy as Markdown**\nadds the content revision from that JSON record. Comparison and recommendation\nMarkdown downloads are readable reports; their structured equivalents are the\ntool records and recommendation JSON respectively.\n\n## Document fields\n\n| Field                  | Meaning                                                                                                                                                                                                                                       |\n| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| `id`                   | Stable document identifier such as `tools/ruff` or `guides/python-checks`.                                                                                                                                                                    |\n| `kind`                 | `tool`, `guide`, `concept`, `research`, or `page`.                                                                                                                                                                                            |\n| `title`, `description` | Display name and concise description.                                                                                                                                                                                                         |\n| `url`                  | Canonical website URL to cite.                                                                                                                                                                                                                |\n| `revision`             | SHA-256 content identity for this record, not a date or tool version.                                                                                                                                                                         |\n| `markdown`             | Complete article text, with tool decision facts, compatibility, editions, sources, and evidence where applicable. Relative Markdown links become absolute; code blocks remain unchanged.                                                      |\n| `sections`             | Heading `id`, `title`, `depth`, `start`, and `end`. Offsets are zero-based UTF-16 code units into `markdown`, with an exclusive end. A section includes child headings. IDs match website anchors, including custom metadata-section anchors. |\n| `sources`              | Objects with a `label` and absolute `url`. Includes tool references and links found in the exported text; not every link is independent evidence.                                                                                             |\n| `evidence`             | Documentation-review date and separately recorded execution evidence. See below.                                                                                                                                                              |\n| `tool`                 | Present only for tool profiles. Validated metadata used by the catalog, comparisons, and system builder.                                                                                                                                      |\n\nThe index replaces `markdown` text with a relative Markdown file path, adds a\n`record` path to JSON, and omits `tool`, `sources`, and section offsets. It keeps\neach document's identity, description, evidence, and revision. Its top-level\n`revision` is the snapshot revision.\n\n## Catalog and tool fields\n\nThe catalog's `tools` array contains discovery records, not full workflow\ndefinitions. Fetch a record through its `record` path before choosing a workflow.\nThe catalog's top-level `revision` identifies the snapshot; each tool's\n`revision` identifies that document. Paths are relative to the manifest.\n\n| Field or group                                              | Meaning                                                                                                                                     |\n| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |\n| `id`, `title`, `description`, `url`, `revision`, `evidence` | Same identity and evidence as the document record.                                                                                          |\n| `record`, `markdown`                                        | Relative JSON and Markdown paths.                                                                                                           |\n| `aliases`, `searchTerms`                                    | Alternate names and documented search phrases.                                                                                              |\n| `modes`, `techniques`                                       | Static/dynamic categories and analysis methods.                                                                                             |\n| `inputTypes`, `targets`                                     | Materials examined and software context. A language tag alone does not imply source-code analysis.                                          |\n| `languages`, `languageNote`                                 | Languages or ecosystems and qualifications on that support.                                                                                 |\n| `findings`, `findingNote`                                   | Finding categories and the conditions under which checks apply. Matching labels do not imply equal detection or coverage.                   |\n| `cost`, `costNote`, `licenseCategory`                       | Continuing cost categories, eligibility or edition conditions, and license class. Trials are not free editions.                             |\n| `environment`, `scope`                                      | Where the tool runs and the edition, component, or verified version described.                                                              |\n| `reviewedHostPlatforms`, `reviewedTargetPlatforms`          | Catalog-only unions of reviewed workflow platforms. They are not exhaustive support lists and do not establish support for every tool mode. |\n\nThe full `tool` object additionally supplies `website`, `license`, `verified`,\n`setup`, optional `cardRequirement`, optional `decision` (`useWhen`, `result`,\n`limit`), optional `editionGroup`, and `analysisWorkflows`. It uses `verified`\nfor the same date exposed as `evidence.documentationReviewedOn` in the record.\nThe [authoring field guide](https://zwadhams.github.io/ToolWiki/guides/editing/#metadata-fields) explains every tool field.\n\nEach workflow has its own inputs, findings, requirements, platform lists,\nsources, and caveat. Keep alternative workflows separate; do not combine their\nrequirements or capabilities. See [workflow fields](https://zwadhams.github.io/ToolWiki/guides/editing/#add-a-builder-workflow)\nfor the complete dictionary.\n\n## Allowed values and unknowns\n\nUse `vocabulary.json` rather than guessing spelling or capitalization. Its\n`catalog` object maps filter names to current values: `mode`, `input`,\n`language`, `finding`, `technique`, `license`, and `cost`. For example,\n`input: \"Source code\"` maps to membership in a tool's `inputTypes` array.\n`filterSentinels` describes the UI's empty selection, `any-free` cost preference,\nand sort values; these are not tool metadata tags.\n\nIn system profiles, `unknown` is an unanswered access question, while `no` is an\nexplicit negative answer. Empty platform choices mean unspecified. An empty\nworkflow platform list does not mean unsupported; explicit `excludedHosts` and\n`excludedTargets` carry exclusions. When `inputsComplete` is false, an omitted\ninput remains unconfirmed. When true, omitted inputs are unavailable.\n\n`candidate` means the recorded requirements match the supplied description.\n`details` means more information is needed. `blocked` means at least one stated\nrequirement is unmet. `gap` means no reviewed workflow matched that subject;\nit does not prove no suitable tool exists. An undescribed subject has\n`needsDescription: true` and may have no gap entry. None of these statuses\nestablishes execution, measured coverage, or permission to run a check.\n\n## Evidence and freshness\n\n| Field                              | Meaning                                                                                                          |\n| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------- |\n| `evidence.documentationReviewedOn` | `YYYY-MM-DD` documentation review date, or `null` when no structured date is supplied. It is not the build date. |\n| `evidence.execution.status`        | `recorded` or `not-recorded`.                                                                                    |\n| `evidence.execution.scope`         | The tested environment and limits, or an explanation of missing structured evidence.                             |\n| `evidence.execution.sources`       | URLs to execution records. A recorded status requires at least one source.                                       |\n\n`not-recorded` does not mean an example failed or has never run. Read the scope\nand article qualifications. A recorded execution applies to its stated\nenvironment and version; it is separate from a current documentation review.\n\n## Revisions and validation\n\n`version` is the format version. `revision` in the manifest, index, catalog, and\nsnapshot identifies the snapshot content. Reports and vocabulary call that value\n`snapshotRevision` to distinguish it from document revisions. A document hash is\ncomputed from its JSON without `revision`, sorting object keys recursively,\npreserving array order, using two-space indentation and one final newline. The\nsnapshot hash uses the same rule over its payload.\n\nManifest SHA-256 values cover exact UTF-8 file bytes. Verify both hashes and byte\ncounts when retaining a snapshot. Hashes detect changed bytes and mixed files;\nthey do not authenticate the publisher. Additional downloadable files can appear\nin version 1, so follow the manifest inventory instead of hardcoding its length.\n\nSchemas validate structure, required fields, types, enum values, and bounds.\nThey do not recompute hashes or fully express cross-field rules. The site also\nchecks unique IDs, valid connection endpoints, unique profile list values,\nworkflow findings and sources against their tool profile, and workflow-specific\ninput requirements. Saved system files additionally have a 1 MiB UTF-8 limit.\nSection offsets must be ordered and within the Markdown string. Reports must\nrefer to their included tool and subject IDs and retain the results of the\nmatching rules. Do not treat structural schema validation as evidence of factual\ncorrectness or compatibility.\n\nTo validate a downloaded Ruff record, first save the document schema as\n`document.schema.json` and the record as `ruff.json` in the same directory.\nWith Python 3 and the `jsonschema` package installed, run:\n\n```python\nimport json\nfrom pathlib import Path\nfrom jsonschema import Draft202012Validator\n\nschema = json.loads(Path(\"document.schema.json\").read_text(encoding=\"utf-8\"))\nrecord = json.loads(Path(\"ruff.json\").read_text(encoding=\"utf-8\"))\nDraft202012Validator.check_schema(schema)\nDraft202012Validator(schema).validate(record)\nprint(\"Document structure is valid.\")\n```\n\n## Downloaded report fields\n\nFiltered catalog JSON includes `version`, `kind: \"catalog-results\"`,\n`snapshotRevision`, `sourceUrl`, `knowledgeBase`, `filters`, `count`, and ordered\n`tools`. Resolve record paths against `knowledgeBase`. CSV flattens these tool\nfields; lists use `/`, standard CSV quoting preserves commas and newlines, and\nan apostrophe protects formula-like cells. JSON preserves the original strings.\n\nRecommendation JSON includes `version`, `kind: \"recommendations\"`,\n`snapshotRevision`, `sourceUrl`, `limitation`, `profile`, `selectedToolIds`,\n`results`, and the referenced `tools`. The input profile contains components,\nconnections, notes, and preferences; the\n[system authoring guide](https://zwadhams.github.io/ToolWiki/guides/editing/#use-and-save-a-system) explains import and\nrecovery. `selectedToolIds` records a comparison shortlist, not executed checks.\n\n`results.subjects` contains each included part's name, description status, and\ngrouped nonblocked candidates. `results.matches` contains all applicable\nworkflow evaluations, including blocked ones. Each match names its tool,\nworkflow, subject, findings, status, `reasons`, `unresolved` questions, and\n`blocked` requirements. `questions` gives a field, message, and whether an answer\nor compatibility verification is needed. `goalIds` classifies findings and does\nnot filter matches. `results.gaps` summarizes each described part's match status\nand reasons. The referenced tool records retain setup, scope, costs, workflows,\nand a `citation` containing the document URL, revision, and evidence.\n\nSource: [ToolWiki page](https://zwadhams.github.io/ToolWiki/guides/data-reference/). [JSON record and content revision](https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/guides/data-reference.json).\n\n- **Documentation reviewed:** Not recorded\n- **Execution evidence:** not-recorded\n- **Execution scope:** No structured execution record for this document. Read the text for illustrative examples and limitations.\n\nDocumentation review is separate from execution evidence. A recorded execution applies only to its stated environment and scope; not-recorded means no structured execution record is supplied.\n",
+  "sections": [
+    {
+      "id": "files-and-schemas",
+      "title": "Files and schemas",
+      "depth": 2,
+      "start": 372,
+      "end": 3350
+    },
+    {
+      "id": "document-fields",
+      "title": "Document fields",
+      "depth": 2,
+      "start": 3350,
+      "end": 6850
+    },
+    {
+      "id": "catalog-and-tool-fields",
+      "title": "Catalog and tool fields",
+      "depth": 2,
+      "start": 6850,
+      "end": 10405
+    },
+    {
+      "id": "allowed-values-and-unknowns",
+      "title": "Allowed values and unknowns",
+      "depth": 2,
+      "start": 10405,
+      "end": 11700
+    },
+    {
+      "id": "evidence-and-freshness",
+      "title": "Evidence and freshness",
+      "depth": 2,
+      "start": 11700,
+      "end": 12881
+    },
+    {
+      "id": "revisions-and-validation",
+      "title": "Revisions and validation",
+      "depth": 2,
+      "start": 12881,
+      "end": 14913
+    },
+    {
+      "id": "downloaded-report-fields",
+      "title": "Downloaded report fields",
+      "depth": 2,
+      "start": 14913,
+      "end": 17106
+    }
+  ],
+  "sources": [
+    {
+      "label": "Data and AI access",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/data-access/"
+    },
+    {
+      "label": "knowledge manifest",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/manifest.json"
+    },
+    {
+      "label": "schema index",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/index.json"
+    },
+    {
+      "label": "vocabulary file",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/vocabulary.json"
+    },
+    {
+      "label": "Manifest",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/manifest.schema.json"
+    },
+    {
+      "label": "Document index",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/index.schema.json"
+    },
+    {
+      "label": "Document",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/document.schema.json"
+    },
+    {
+      "label": "Tool metadata",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/tool.schema.json"
+    },
+    {
+      "label": "Snapshot",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/snapshot.schema.json"
+    },
+    {
+      "label": "Catalog",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/catalog.schema.json"
+    },
+    {
+      "label": "System profile",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/system-profile.schema.json"
+    },
+    {
+      "label": "Catalog results",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/catalog-results.schema.json"
+    },
+    {
+      "label": "Recommendations",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/schemas/recommendations.schema.json"
+    },
+    {
+      "label": "authoring field guide",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/editing/#metadata-fields"
+    },
+    {
+      "label": "workflow fields",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/editing/#add-a-builder-workflow"
+    },
+    {
+      "label": "system authoring guide",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/editing/#use-and-save-a-system"
+    },
+    {
+      "label": "ToolWiki page",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/data-reference/"
+    },
+    {
+      "label": "JSON record and content revision",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/guides/data-reference.json"
+    }
+  ],
+  "evidence": {
+    "documentationReviewedOn": null,
+    "execution": {
+      "status": "not-recorded",
+      "scope": "No structured execution record for this document. Read the text for illustrative examples and limitations.",
+      "sources": []
+    }
+  }
+}

@@ -1,0 +1,26 @@
+url	status	bytes	sha256	artifact
+http://127.0.0.1:4323/ToolWiki/	connection-refused	0		
+http://127.0.0.1:4323/ToolWiki/	200	217703	f0924a21b9d8db9223cad64a825d6828aef5e797b4016045fd27712bdef08391	entry.html
+http://127.0.0.1:4323/ToolWiki/llms.txt	200	2292	7750c119964f83b84b75b9e220812a4f93aa96894bde0a4e775455076ffe5aae	llms.txt
+http://127.0.0.1:4323/ToolWiki/guides/data-access/	200	53856	e01594019d6afa94c2138e2fe51f463202891e28bf7337199f5cefef26ddba43	data-access.html
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/manifest.json	200	55730	ab20ef40a7c675be2ea28ce61ab2523a4d79758befef34b044acbc5c5efff8bb	manifest.json
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/index.json	200	243332	d2a02e4de766116ddcd6cfff7726897384045227989cb584b4917bacec6a165f	index.json
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/catalog.json	200	243430	3c3a0dc74b0d239bb1a7561c512882a98279c9fba8de82a1bd22e4c9a3308cb8	catalog.json
+http://127.0.0.1:4323/ToolWiki/history/index.json	200	58649	5b2023ddfece89afe90a4b83ee89f978afd35950de6a4785bd0f1d3d3de5af9f	history-index.json
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/snapshots/5eaee2291425b0c0248079960a009c25b18d1d6fc93d33994b89a20c3c6dc955.json	200	1831965	9eadc6babcf57888e6b4baa2a18eb1dd26b2805cd0614897cafb68ddcd4d7529	
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/snapshots/3492d6a8c829b74b47514351643ba74e59df0cdd803138435101fbe90635a22d.json	200	1099082	e0cabe226241203d1295ad25dbf36558b6eab96cde5f5105b5c289e239427c5b	
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/documents/comparisons/ruff-and-mypy.json	200	8219	a1088b0651f0fdbad9c577847d59c1ed16bfc68025f27d30d86e8945c6a216ee	comparisons--ruff-and-mypy.json
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/documents/guides/browser-testing.json	200	10836	8128c1680d921ccb99a35b925762c120b605b04b645e5ccab3daa0a6d50a0fa3	guides--browser-testing.json
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/documents/guides/data-access.json	200	10383	2689663c5c89a3e8433dfe2ccc01c93c621b4502002af734206b906050728ccb	guides--data-access.json
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/documents/guides/data-reference.json	200	21470	d47e2b3f9252f23d01139771e37bf219ec555d40a6be20b6e8c4c9fa2d530870	guides--data-reference.json
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/documents/guides/python-checks.json	200	12344	cd8afa4c3a1c000fc9381d4381050c42a362abd589dd4e1b6d8c28e6fdf6f2bc	guides--python-checks.json
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/documents/tools/axe-core.json	200	14862	1617cb06b4f68c276ba43416f65986a104eceee5eabcd7da19fb59b31104ca4d	tools--axe-core.json
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/documents/tools/mypy.json	200	14537	272a8f0e08b30ed23531cc9509fa9755737e674b41dbcc2094ff75d8600a6a69	tools--mypy.json
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/documents/tools/playwright.json	200	15828	8a3784e98fc4dce5bcba6569295151a103fcee59cd1380d7d5deb161c72ed534	tools--playwright.json
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/documents/tools/pylint.json	200	12045	47e74ab6868d5d5fb02ccea10f4e404b66b27c3815901bf9a04a3414a940c60f	tools--pylint.json
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/documents/tools/pyright.json	200	11547	e5bd07ccaf33dfb9f42812b3414846e7141129d2682d9f8a76ac0912028b558a	tools--pyright.json
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/documents/tools/ruff.json	200	13149	964bc50d48134f33155aa03ebf4de8fc3d605a5a68648b64083026371fde4e4b	tools--ruff.json
+http://127.0.0.1:4323/ToolWiki/comparisons/ruff-and-mypy/	200	37251	2b6845ad2675e1378a6addeb78cf11d156bcc809c2e77d58556558c491d5faf4	comparison.html
+http://127.0.0.1:4323/ToolWiki/changes/	200	61081	e056de0b4fff0cc07de1c213e2711b224eb519b1dd8165777ec283c449c44d89	changes.html
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/documents/comparisons/ruff-and-mypy.md	200	4429	0c1b47dc4f32f0cd481ba6651a6ef4ab976ffde08866ff187f2fffcc1e3318cb	comparison.md
+http://127.0.0.1:4323/ToolWiki/knowledge/v1/documents/tools/ruff.md	200	5539	9d86ac9cd8be7897a0e973e7396f2b305e2af6fd5bfecfcb8bf34831c300c24c	ruff.md

@@ -1,0 +1,87 @@
+{
+  "id": "guides/api-contracts",
+  "kind": "guide",
+  "title": "Check API descriptions and consumer contracts",
+  "description": "Reproduce a document-lint failure and a consumer-provider contract mismatch, then interpret their corrections separately.",
+  "url": "https://zwadhams.github.io/ToolWiki/guides/api-contracts/",
+  "revision": "1fb84ee204be6093e103a46efa3f1058b569d9ef92e5f144ed34a3db7cf221fc",
+  "markdown": "# Check API descriptions and consumer contracts\n\nAn API description, a consumer expectation, and a running provider can disagree.\nThis guide checks two of those boundaries with an isolated parcel API example.\n\n| Question                                              | Check                                                           | Deliberate fault                                                            |\n| ----------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------- |\n| Does the document follow a selected convention?       | [Spectral](https://zwadhams.github.io/ToolWiki/tools/spectral/) | The GET operation has no `operationId`.                                     |\n| Does the provider satisfy the consumer's interaction? | [Pact JS](https://zwadhams.github.io/ToolWiki/tools/pact/)      | The provider returns numeric `status: 7` where the consumer needs a string. |\n\n## Prepare the example\n\nUse the repository's\n[`examples/api-contracts`](https://github.com/zwadhams/ToolWiki/tree/main/examples/api-contracts)\ndirectory. It pins Spectral CLI 6.17.1 and Pact JS 17.1.4 with a package lock.\nUse Node.js 22 or newer on a platform supported by Pact Core's native packages.\nThe retained run used **Node.js 24.22.1 x64 on Windows ARM64 through emulation**;\nthe locked Pact Core package does not supply a Windows ARM64 native binary.\n\nFrom the example directory, install only its dependencies:\n\n```sh\nnpm ci --ignore-scripts --no-audit --no-fund\nnpm test\n```\n\nThe fixture uses prebuilt native packages, so it needs no installation scripts.\nIts runner disables Pact install tracking for subprocesses. It creates a Pact\nmock provider and a small test provider on loopback with available ports, then\ncloses them. It does not require a broker, credentials, or an external endpoint.\n\n## Read the document-lint result\n\nThe `.spectral.yaml` ruleset contains one rule, `operation-id-required`, that\nchecks GET operations. `openapi.bad.json` omits the field;\n`openapi.good.json` adds `operationId: \"getParcel\"`.\n\nThe retained run produced:\n\n| Case               | Exit code | Observation                                                       |\n| ------------------ | --------- | ----------------------------------------------------------------- |\n| Faulty document    | 1         | One `operation-id-required` diagnostic at `paths./parcels/1.get`. |\n| Corrected document | 0         | An empty diagnostic array.                                        |\n\nThe runner writes `reports/spectral-bad.json` and `reports/spectral-good.json`\nusing Spectral's output-file option. Console output can contain an additional\ninformational message, so do not parse the entire console stream as JSON.\n\nThis ruleset is deliberately small. A passing result does not establish full\nOpenAPI validity, successful client generation, or agreement with a real server.\nWhen adapting the example, preserve the project's existing ruleset and failure\nthreshold unless a specific change is intended.\n\n## Read the contract result\n\n`consumer.mjs` describes a GET request for parcel 1 and calls `parcelStatus()`\nfrom `client.mjs` against Pact's mock provider. The returned object must have an\ninteger ID and a string status, and the consumer asserts its uppercase result.\nA successful consumer run generates `reports/pacts/ParcelClient-ParcelAPI.json`.\n\n`provider-check.mjs` reads that generated file and verifies a local provider.\nThe faulty variant returns a number for `status`; the correction returns the\nstring `queued`. The static fixture already supplies parcel 1, so its provider\nstate handler performs no setup. Replace that handler with appropriate state\npreparation when adapting the test to a real provider.\n\nThe retained run produced:\n\n| Case               | Exit code | Observation                                                                   |\n| ------------------ | --------- | ----------------------------------------------------------------------------- |\n| Consumer test      | 0         | The actual client agreed with the mock interaction and generated a pact file. |\n| Faulty provider    | 1         | A body-type mismatch at `$.status`: integer `7` did not match a string.       |\n| Corrected provider | 0         | The provider satisfied the one supplied interaction.                          |\n\nThe verifier checks that exact mismatch, not just any nonzero exit. A missing\nnative binary, provider startup error, or malformed contract must not be counted\nas evidence that the intended defect was detected.\n\n## Keep the evidence and choose the next check\n\nThe overall `npm test` exits zero only when all five expected outcomes occur.\nIt writes commands, tool/runtime versions, source hashes, output, and scope to\n`reports/`. The [retained run](https://github.com/zwadhams/ToolWiki/tree/main/audits/api-supply-tools/evidence/api-contracts)\nrecords the executed fixture, not a benchmark or cross-platform certification.\n\nA consumer pass alone says nothing about the real provider. A provider pass\nonly covers the supplied interactions and matching rules. Keep consumer,\ncontract, and provider versions together when investigating a regression.\n\nUse [Schemathesis and the disposable API guide](https://zwadhams.github.io/ToolWiki/guides/api-testing/) to generate\nadditional requests from an API definition. Use [finding review](https://zwadhams.github.io/ToolWiki/guides/reviewing-findings/)\nto distinguish an expected policy failure from a broken check. An API document\nand a generated Pact contract have different roles; one does not replace the other.\n\nSource: [ToolWiki page](https://zwadhams.github.io/ToolWiki/guides/api-contracts/). [JSON record and content revision](https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/guides/api-contracts.json).\n\n- **Documentation reviewed:** Not recorded\n- **Execution evidence:** recorded\n- **Execution scope:** November 12, 2026 run of Spectral CLI 6.17.1 and Pact JS 17.1.4 with Pact Core 20.2.0 on Windows using Node.js 24.22.1 x64. One custom lint rule and one local HTTP interaction were checked, including faulty and corrected variants. No external target, broker, or result publication was used.\n- [Execution record](https://github.com/zwadhams/ToolWiki/blob/main/audits/api-supply-tools/evidence/api-contracts/run.json)\n\nDocumentation review is separate from execution evidence. A recorded execution applies only to its stated environment and scope; not-recorded means no structured execution record is supplied.\n",
+  "sections": [
+    {
+      "id": "prepare-the-example",
+      "title": "Prepare the example",
+      "depth": 2,
+      "start": 1019,
+      "end": 1924
+    },
+    {
+      "id": "read-the-document-lint-result",
+      "title": "Read the document-lint result",
+      "depth": 2,
+      "start": 1924,
+      "end": 3108
+    },
+    {
+      "id": "read-the-contract-result",
+      "title": "Read the contract result",
+      "depth": 2,
+      "start": 3108,
+      "end": 4640
+    },
+    {
+      "id": "keep-the-evidence-and-choose-the-next-check",
+      "title": "Keep the evidence and choose the next check",
+      "depth": 2,
+      "start": 4640,
+      "end": 6602
+    }
+  ],
+  "sources": [
+    {
+      "label": "Spectral",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/spectral/"
+    },
+    {
+      "label": "Pact JS",
+      "url": "https://zwadhams.github.io/ToolWiki/tools/pact/"
+    },
+    {
+      "label": "examples/api-contracts",
+      "url": "https://github.com/zwadhams/ToolWiki/tree/main/examples/api-contracts"
+    },
+    {
+      "label": "retained run",
+      "url": "https://github.com/zwadhams/ToolWiki/tree/main/audits/api-supply-tools/evidence/api-contracts"
+    },
+    {
+      "label": "Schemathesis and the disposable API guide",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/api-testing/"
+    },
+    {
+      "label": "finding review",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/reviewing-findings/"
+    },
+    {
+      "label": "ToolWiki page",
+      "url": "https://zwadhams.github.io/ToolWiki/guides/api-contracts/"
+    },
+    {
+      "label": "JSON record and content revision",
+      "url": "https://zwadhams.github.io/ToolWiki/knowledge/v1/documents/guides/api-contracts.json"
+    },
+    {
+      "label": "Execution record",
+      "url": "https://github.com/zwadhams/ToolWiki/blob/main/audits/api-supply-tools/evidence/api-contracts/run.json"
+    }
+  ],
+  "evidence": {
+    "documentationReviewedOn": null,
+    "execution": {
+      "status": "recorded",
+      "scope": "November 12, 2026 run of Spectral CLI 6.17.1 and Pact JS 17.1.4 with Pact Core 20.2.0 on Windows using Node.js 24.22.1 x64. One custom lint rule and one local HTTP interaction were checked, including faulty and corrected variants. No external target, broker, or result publication was used.",
+      "sources": [
+        "https://github.com/zwadhams/ToolWiki/blob/main/audits/api-supply-tools/evidence/api-contracts/run.json"
+      ]
+    }
+  }
+}

@@ -21,6 +21,7 @@ tool:
       binaryFormats:
         - Native executable
       requires:
+        - instrument
         - testInstance
       targetPlatforms:
         - Linux

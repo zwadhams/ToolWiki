@@ -249,7 +249,7 @@ class SystemBuilder extends HTMLElement {
     renderTech();
     const access = el('div', '', 'suite-field-grid');
     for (const [key, label] of Object.entries(ACCESS)) this.field(access, `Can you ${label.toLowerCase()}?`, part.access[key], value => { part.access[key] = value; this.changed(); }, tri).dataset.answer = key;
-    advanced.append(access, el('p', 'A test harness is code that calls the target and checks its behavior. Instrumentation adds checks to a program when it is built or run.', 'suite-muted'));
+    advanced.append(access, el('p', 'A test harness is code that calls the target and checks its behavior. Instrumentation adds checks or recording hooks when a program is built or run. Runtime instrumentation can use an existing executable without rebuilding it.', 'suite-muted'));
     const description = this.disclosure(content, `${part.id}-description`, 'Optional description');
     description.append(el('p', 'These fields organize your description and do not affect suggestions.', 'suite-muted'));
     const fields = el('div', '', 'suite-field-grid');

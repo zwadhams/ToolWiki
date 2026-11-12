@@ -4,6 +4,16 @@ export const markdownText = value => String(value).replace(/[\\`*_[\]<>|#!]/g, '
 export const markdownLink = (label, url) => `[${markdownText(label)}](${url.replace(/\(/g, '%28').replace(/\)/g, '%29')})`;
 const fact = (label, value) => `- **${label}:** ${markdownText(Array.isArray(value) ? value.join(', ') : value)}\n`;
 
+export function builderScopeMarkdown(tools, site) {
+  const unmatched = tools.filter(tool => !tool.analysisWorkflows.length);
+  let text = `\n## Suggestion scope\n\n${tools.length - unmatched.length} of ${tools.length} catalog tools have reviewed workflows used by the builder.\n\n`;
+  if (unmatched.length) {
+    text += 'These tools are not matched yet but may still be suitable:\n\n';
+    text += unmatched.map(tool => `- ${markdownLink(tool.title, new URL(tool.id + '/', site).href)}\n`).join('');
+  }
+  return text;
+}
+
 /** Include the metadata rendered by ArticleContent and EditionComparison. */
 export function profileMarkdown(tool, site, description = '') {
   if (!tool) return '';

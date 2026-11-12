@@ -13,10 +13,7 @@ const exportData = { ...data, tools: data.tools.map(tool => ({ ...tool, citation
 ---
 <system-builder data-base={base} data-pagefind-ignore>
   <div class="suite-intro">
-    <p class="catalog-intro">Choose a language and the material you have. Add details to narrow the suggestions for each part of your system.</p>
-    <p class="suite-muted">This page suggests tools; it does not run them. Your system description saves in this browser and can be exported. Tool selections are temporary; bookmark the comparison page to keep them.</p>
-    <p><a href={`${base}/guides/choosing-and-recording-tools/`}>Record your choice and unresolved prerequisites</a> before running a tool.</p>
-    <details class="suggestion-scope"><summary>Suggestion scope: {data.tools.length} of {data.totalTools} catalog tools</summary>
+    <details class="suggestion-scope" id="suggestion-scope"><summary>Suggestion scope: {data.tools.length} of {data.totalTools} catalog tools</summary>
       <p>Suggestions use reviewed workflows. These tools are not matched yet but may still be suitable:</p>
       <ul>{tools.filter(tool => !tool.analysisWorkflows.length).map(tool => <li><a href={`${base}/${tool.id}/`}>{tool.title}</a></li>)}</ul>
     </details>

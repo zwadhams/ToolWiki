@@ -18,7 +18,7 @@ tool:
       findings: [Allocation hot spots, Resource leaks]
       hostPlatforms: [Linux]
       targetPlatforms: [Linux]
-      requires: [testInstance]
+      requires: [instrument, testInstance]
       caveat: Launch a supported Linux executable under heaptrack with a representative workload. Symbols improve attribution; custom allocators and static linking need separate review. Allocations still live at exit are leads to investigate, not proof of unintended leaks.
       sources:
         - https://github.com/KDE/heaptrack/blob/master/README.md

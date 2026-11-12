@@ -27,6 +27,7 @@ test('heaptrack distinguishes native artifacts, workload access, and unreviewed 
   const heaptrack = await authoredTool('heaptrack');
   const profile = profileFor({ languages: ['C++'], inputs: ['Binaries'], inputsComplete: true, binaryFormat: 'Native executable', hostPlatform: 'Linux', targetPlatform: 'Linux' });
   profile.components[0].access.testInstance = 'yes';
+  profile.components[0].access.instrument = 'yes';
   assert.equal(analyzeSystem(profile, [heaptrack]).matches[0]?.status, 'candidate');
   profile.components[0].access.testInstance = 'no';
   assert.equal(analyzeSystem(profile, [heaptrack]).matches[0]?.status, 'blocked');

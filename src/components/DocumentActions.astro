@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { exportDocument } from '../lib/knowledge-export.mjs';
+interface Props { entry: CollectionEntry<'docs'> }
+const { entry } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const record = exportDocument(entry, new URL(base + '/', import.meta.env.SITE).href);
+const path = `${base}/knowledge/v1/documents/${entry.id}`;
+---
+<document-actions class="document-actions" data-id={entry.id} data-revision={record.revision} data-record={`${path}.json`} data-pagefind-ignore>
+  <div class="document-action-links" aria-label="Use this page as data">
+    <button type="button" data-copy-markdown hidden>Copy as Markdown</button>
+    <a href={`${path}.md`}>Read Markdown</a>
+    <a href={`${path}.json`}>View JSON</a>
+  </div>
+  <p role="status" aria-live="polite" data-copy-status></p>
+  <label data-copy-fallback hidden>Select and copy Markdown
+    <textarea readonly rows="8" spellcheck="false"></textarea>
+  </label>
+</document-actions>
+<script>
+  import { documentCopy } from '../lib/document-copy.mjs';
+  class DocumentActions extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector<HTMLButtonElement>('[data-copy-markdown]')!;
+      const status = this.querySelector<HTMLElement>('[data-copy-status]')!;
+      const fallback = this.querySelector<HTMLElement>('[data-copy-fallback]')!;
+      const textarea = this.querySelector<HTMLTextAreaElement>('textarea')!;
+      button.hidden = false;
+      button.addEventListener('click', async () => {
+        button.disabled = true;
+        fallback.hidden = true;
+        status.textContent = 'Loading Markdown...';
+        try {
+          const response = await fetch(this.dataset.record!);
+          if (!response.ok) throw new Error('Could not load this document. Try again or open the Markdown link.');
+          const text = documentCopy(await response.json(), this.dataset.id!, this.dataset.revision!);
+          try {
+            await navigator.clipboard.writeText(text);
+            status.textContent = 'Copied Markdown with sources, evidence, and the content revision.';
+          } catch {
+            textarea.value = text;
+            fallback.hidden = false;
+            textarea.focus();
+            textarea.select();
+            status.textContent = 'Clipboard access is unavailable. Copy the selected text below.';
+          }
+        } catch (error) {
+          status.textContent = error instanceof Error ? error.message : 'Could not copy this document. Open the Markdown link instead.';
+        } finally {
+          button.disabled = false;
+        }
+      });
+    }
+  }
+  customElements.define('document-actions', DocumentActions);
+</script>

@@ -8,6 +8,11 @@ Read ToolWiki from the website, a script, or an agent that can fetch URLs. The
 files below are generated with the site. No account, API key, repository clone,
 or local server is needed.
 
+On tool profiles and articles, use **Copy as Markdown** to copy the text with
+sources, evidence status, and its content revision. **Read Markdown** and
+**View JSON** open the files directly and work without JavaScript. If clipboard
+access is unavailable, the copy button provides selectable text instead.
+
 ## Choose what to download
 
 - **Tool catalog:** Filter a compact list of tool names, aliases, languages,

@@ -1,6 +1,12 @@
 ---
 import Head from '@astrojs/starlight/components/Head.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const { entry } = Astro.locals.starlightRoute;
+const path = `${base}/knowledge/v1/documents/${entry.id || 'index'}`;
 ---
 <Head />
 <link rel="describedby" type="text/plain" href={`${base}/llms.txt`} />
+{entry.id !== '404' && !entry.data.draft && <>
+  <link rel="alternate" type="text/markdown" href={`${path}.md`} />
+  <link rel="alternate" type="application/json" href={`${path}.json`} />
+</>}

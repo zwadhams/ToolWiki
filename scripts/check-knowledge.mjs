@@ -50,6 +50,10 @@ for (const doc of snapshot.documents) {
   const page = path.resolve('dist', doc.id === 'index' ? 'index.html' : `${doc.id}/index.html`);
   const html = await readFile(page, 'utf8');
   assert.ok(html.includes(`href="${doc.url}"`), `Canonical URL mismatch for ${doc.id}`);
+  for (const [type, extension] of [['text/markdown', 'md'], ['application/json', 'json']]) {
+    assert.ok(html.includes(`rel="alternate" type="${type}" href="/ToolWiki/knowledge/v1/documents/${doc.id}.${extension}"`), `Missing alternate format for ${doc.id}`);
+  }
+  if (!source.data.catalog && !source.data.comparison && !source.data.systemBuilder) assert.ok(html.includes(`data-revision="${doc.revision}"`), `Copy action uses wrong revision for ${doc.id}`);
   for (const section of doc.sections) { assert.ok(html.includes(`id="${section.id}"`), `Missing website anchor ${doc.id}#${section.id}`); sections++; }
   const links = [];
   visit(parser.parse(doc.markdown), node => {
